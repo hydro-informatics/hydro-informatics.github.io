@@ -210,9 +210,12 @@ To use the new *vflussenv* in {ref}`Jupyter Lab <jupyter>`, a new *ipykernel* ne
 * Create a new *ipykernel*: `python3 -m ipykernel install --user --name=fluss_kernel`
 * Now the new kernel called *fluss_kernel* (referring to *vflussenv*) is available in Jupyter Lab (**Kernel** > **Change Kernel...**)
 
+***
 
 (pip-install-pckg)=
-### Manage pip (Install, Uninstall, or Upgrade) Modules or Packages
+### Manage Modules and Packages
+
+**Install a package**
 
 More than 300,000 projects live on [pypi.org](https://pypi.org/) and there are packages available for many purposes. To find suitable packages visit [https://pypi.org/search/](https://pypi.org/search/). To install (i.e., add) one of these `pip`/`pip3` packages use:
 
@@ -248,6 +251,31 @@ Here is a list of additional useful packages for data analysis:
 
 To install all-in-one, tap: `pip3 install -U fitter missingno seaborn scikit-learn statsmodels openpyxl`
 
+***
+
+**Update (upgrade) packages and environments**
+
+First, make sure pip is up-to-date:
+
+```
+python3 -m pip install --upgrade pip
+```
+
+Second, write (freeze) the current package installations and the versions to a requirements file:
+
+```
+pip freeze > requirements.txt
+```
+
+Finally, use the requirements file to upgrade all packages in the current environment:
+
+```
+pip install -r requirements.txt --upgrade
+```
+
+***
+
+**Remove a package**
 
 To remove (i.e., uninstall) a `pip`/`pip3`-installed package use:
 
@@ -289,6 +317,7 @@ deactivate
 
 Read more about virtual environments and pip at [https://packaging.python.org](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/).
 
+***
 
 (conda-env)=
 ## conda env (Windows Preference)

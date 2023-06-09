@@ -524,7 +524,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-and-venv-linux-preference">pip and venv (Linux Preference)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide">Quick Guide</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipykernel-jupyterlab-for-flusstools">Ipykernel (JupyterLab) for FlussTools</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages">Manage pip (Install, Uninstall, or Upgrade) Modules or Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-modules-and-packages">Manage Modules and Packages</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-env-windows-preference">conda env (Windows Preference)</a><ul class="nav section-nav flex-column">
@@ -713,9 +713,11 @@ Windows</label><div class="sd-tab-content docutils">
 <li><p>Create a new <em>ipykernel</em>: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">ipykernel</span> <span class="pre">install</span> <span class="pre">--user</span> <span class="pre">--name=fluss_kernel</span></code></p></li>
 <li><p>Now the new kernel called <em>fluss_kernel</em> (referring to <em>vflussenv</em>) is available in Jupyter Lab (<strong>Kernel</strong> &gt; <strong>Change Kernel…</strong>)</p></li>
 </ul>
+<hr class="docutils" />
 </section>
-<section id="manage-pip-install-uninstall-or-upgrade-modules-or-packages">
-<span id="pip-install-pckg"></span><h3>Manage pip (Install, Uninstall, or Upgrade) Modules or Packages<a class="headerlink" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages" title="Permalink to this headline">#</a></h3>
+<section id="manage-modules-and-packages">
+<span id="pip-install-pckg"></span><h3>Manage Modules and Packages<a class="headerlink" href="#manage-modules-and-packages" title="Permalink to this headline">#</a></h3>
+<p><strong>Install a package</strong></p>
 <p>More than 300,000 projects live on <a class="reference external" href="https://pypi.org/">pypi.org</a> and there are packages available for many purposes. To find suitable packages visit <a class="reference external" href="https://pypi.org/search/">https://pypi.org/search/</a>. To install (i.e., add) one of these <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code> packages use:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
@@ -749,6 +751,22 @@ Windows Command Prompt</label><div class="sd-tab-content docutils">
 <li><p><a class="reference external" href="https://www.statsmodels.org/0.9.0/install.html">statsmodels</a> through <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">statsmodels</span></code></p></li>
 </ul>
 <p>To install all-in-one, tap: <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">fitter</span> <span class="pre">missingno</span> <span class="pre">seaborn</span> <span class="pre">scikit-learn</span> <span class="pre">statsmodels</span> <span class="pre">openpyxl</span></code></p>
+<hr class="docutils" />
+<p><strong>Update (upgrade) packages and environments</strong></p>
+<p>First, make sure pip is up-to-date:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+<p>Second, write (freeze) the current package installations and the versions to a requirements file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Finally, use the requirements file to upgrade all packages in the current environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">upgrade</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Remove a package</strong></p>
 <p>To remove (i.e., uninstall) a <code class="docutils literal notranslate"><span class="pre">pip</span></code>/<code class="docutils literal notranslate"><span class="pre">pip3</span></code>-installed package use:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
@@ -788,6 +806,7 @@ Windows Command Prompt</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 <p>Read more about virtual environments and pip at <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/">https://packaging.python.org</a>.</p>
+<hr class="docutils" />
 </section>
 </section>
 <section id="conda-env-windows-preference">
@@ -1117,7 +1136,7 @@ Windows</label><div class="sd-tab-content docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-and-venv-linux-preference">pip and venv (Linux Preference)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide">Quick Guide</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipykernel-jupyterlab-for-flusstools">Ipykernel (JupyterLab) for FlussTools</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-pip-install-uninstall-or-upgrade-modules-or-packages">Manage pip (Install, Uninstall, or Upgrade) Modules or Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manage-modules-and-packages">Manage Modules and Packages</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conda-env-windows-preference">conda env (Windows Preference)</a><ul class="nav section-nav flex-column">

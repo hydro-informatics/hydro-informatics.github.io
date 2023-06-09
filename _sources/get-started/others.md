@@ -26,7 +26,7 @@ Many plugins for enriching Only Office are available on GitHub. To install them,
 
 Here is a list of hydro-informatics.com's favorite plugins:
 
-* [Word counter](https://www.onlyoffice.com/en/app-directory/word-counter) helps to count the number of characters, words, spaces, etc. Get it at [GitHub.com/ONLYOFFICE/plugin-wordscounter](https://github.com/ONLYOFFICE/plugin-wordscounter).
+* [Word counter](https://www.onlyoffice.com/en/app-directory/word-counter) helps to count the number of characters, words, spaces, etc. Get it at [GitHub.com/ONLYOFFICE/plugin-wordscounter](https://github.com/ONLYOFFICE/plugin-wordscounter). The plugin is now also part of the standard installation
 * [LanguageTool](https://www.onlyoffice.com/app-directory/languagetool) checks your writing in many languages, including spell and grammar checks. The plugin is based on the [LanguageTool](https://languagetool.org/) spell checker. Get it at [GitHub.com/ONLYOFFICE/plugin-languagetool](https://github.com/ONLYOFFICE/plugin-languagetool).
 * [Draw.io](https://www.onlyoffice.com/blog/2022/03/onlyoffice-integrates-draw-io/) aids in creating professional diagrams and graphs for any Only Office document. Get it at [GitHub.com/ONLYOFFICE/plugin-drawio](https://github.com/ONLYOFFICE/plugin-drawio).
 * [SDKJS](https://github.com/ONLYOFFICE/sdkjs-plugins) enables embedding (YouTube) videos, photo editing, graph generation with Draw.io, organization of lessons, and tweaks into a couple of translators ([read more](https://www.onlyoffice.com/blog/2022/08/best-onlyoffice-plugins-for-online-educators/)). Note: this plugin requires some more tweaking and you may prefer to install singular sdkjs plugins by searching them with your favorite search engine.
@@ -38,8 +38,8 @@ Here is a list of hydro-informatics.com's favorite plugins:
 
 (octave)=
 ## GNU Octave (Matlab&reg; alternative)
-*Matlab*&reg; is nowadays established as one of the leading tools in science and engineering. However, license fees and its proprietary nature limit the use of *Matlab*&reg; to privileged entities and users. The good news is that there is a remedy in the shape of [GNU Octave](https://www.gnu.org/software/octave/). *GNU Octave* and *Matlab*&reg; use very similar syntax and `.m` files can be run with both programs.
-If error messages occur by running a `.m` file with *GNU Octave*, make sure to load relevant packages at the top of the script (this is one of the major differences between *GNU Octave* and *Matlab*&reg;). For example:
+*Matlab*&reg; still is one of the leading tools in science and engineering. However, license fees and its proprietary nature limit the use of *Matlab*&reg; to privileged entities and users. The good news is that there is a remedy in the shape of [GNU Octave](https://www.gnu.org/software/octave/). *GNU Octave* and *Matlab*&reg; use very similar syntax and `.m` files can be run with both programs.
+If error messages occur by running a `.m` file with GNU Octave, make sure to load relevant packages at the top of the script (this is one of the major differences between *GNU Octave* and *Matlab*&reg;). For example:
 
 ```
 pkg load io
@@ -62,7 +62,7 @@ pkg load video
 ```
 
 ```{tip}
-*Python* provides comes with many more options for data processing and analyses. So instead of trying to tweak *Matlab*&reg; code, consider reading and using the *Python* tutorial with its {ref}`numpy` library descriptions. The tutorial also highlights the {ref}`differences between *Matlab*&reg; and *Python*'s *NumPy* <numpy-matlab>`) notation.
+Python provides comes with many more options for data processing and analyses. So instead of trying to tweak `.m` code, consider reading and using the Python tutorial with its {ref}`numpy` library descriptions, which also highlights principal {ref}`differences between Matlab and Python's NumPy <numpy-matlab>`) notation.
 ```
 
 

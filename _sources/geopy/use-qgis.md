@@ -127,7 +127,7 @@ Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and 
 
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).
 
-````{div} full-width
+
 ```{list-table} Providers of XYZ basemap tiles
 :header-rows: 1
 :name: basemap-providers
@@ -149,7 +149,7 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 * - OSM Black and White
   - http://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png
 ```
-````
+
 
 ```{admonition} Coordinate reference systems of basemaps
 :class: tip
@@ -266,20 +266,30 @@ The conversion between geospatial data types can be facilitated by using Python.
 
 ## Polygonize
 
-The inverse operation of *Rasterize* is called **Raster to Vector**, which is documented at [https://docs.qgis.org](https://docs.qgis.org/testing/en/docs/training_manual/complete_analysis/raster_to_vector.html). The creation of a Polygon from a raster is described in a video [coming soon].
+The inverse operation of *Rasterize* is called **Raster to Vector**, which is documented at [https://docs.qgis.org](https://docs.qgis.org/testing/en/docs/training_manual/complete_analysis/raster_to_vector.html). The creation of a Polygon shapefile from a Raster is described in the video below. The essential steps are:
 
-```{admonition} Polygonize (Video coming soon)
+* Go to **Raster** (top menu) > **Conversion** > **Polygonize (Raster to Vector)...**
+* **Input layer**: select the raster to convert
+* **Band number**: the raster band for inferring the polygon value (i.e., field in the attribute table); some notes:
+  * this algorithm will round decimals to integers (see video below)
+  * alternatively, search *Raster pixels to polygons* in the *Processing Toolbox*, but it will create an excessive number of polygons 
+* **Name of the field to create**: select a name for the polygon value field in the attribute table (**no more than 10 characters**)
+* **Vectorized**: define the directory and name for the new polygon shapefile
+* Click **Run**
 
-Coming soon.
+```{admonition} Polygonize (video)
+
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/r9MwkKvUD-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+
+Get the [**mannings-n GeoTIFF here**](https://github.com/hydro-informatics/materials-bm/raw/main/rasters/mannings-n.tif).
 
 ```
 
 
-```{admonition} Raster to (line/point) Vector
+To convert a Raster to a line/point (vector) shapfile, the options are the [Contour](https://docs.qgis.org/3.28/en/docs/training_manual/processing/interp_contour.html) tool (**Raster** menu > **Extraction** > **Contour**) or the [Raster pixels to points](https://docs.qgis.org/3.28/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#raster-pixels-to-points) algorithm (**Processing** toolbox > enter `raster pixels to points`). Also, have a look at the tutorials on {ref}`geo file conversion with Python <raster2line>`.
 
-Other options for creating vector datasets from rasters are the [Contour](https://docs.qgis.org/3.28/en/docs/training_manual/processing/interp_contour.html) tool (**Raster** menu > **Extraction** > **Contour**) or the [Raster pixels to points](https://docs.qgis.org/3.28/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#raster-pixels-to-points) algorithm (**Processing** toolbox > enter `raster pixels to points`).
 
-```
 
 ## Working with Rasters
 

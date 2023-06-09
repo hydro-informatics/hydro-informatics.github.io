@@ -204,7 +204,7 @@ With the above routines for reading the flow data, we derived monthly inflow vol
 
 Following the scheme of inflow volumes we can create a `numpy.array` for the monthly outflow volumes $Out_{m}$.
 
-```
+```python
 monthly_supply = np.array([1.5, 1.5, 1.5, 2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 3.0, 2.0, 1.5])
 ```
 
@@ -261,18 +261,19 @@ The new `def sequent_peak(in_vol_series, out_vol_target):` function needs to:
 
 1. Use `from scipy.signal import argrelextrema` and get the indices (positions of) local extrema and their value from the `storage_line`:
 
-```
+```python
 seas_max_index = np.array(argrelextrema(storage_line, np.greater, order=12)[0]) 
 seas_min_index = np.array(argrelextrema(storage_line, np.less, order=12)[0])
 seas_max_vol = np.take(storage_line, seas_max_index)
 seas_min_vol = np.take(storage_line, seas_min_index)
 ```
 
+
 2. Write two functions, which consecutively find local maxima and then local minima located between the extrema (course **homework**) OR use `from scipy.signal import find_peaks` to find the indices (positions) - consider to write a `find_seasonal_extrema(storage_line)` function.
 
 * Make sure that the curves and extrema are correct by copying the provided `plot_storage_curve` curve to your script ([available in the exercise repository](https://raw.githubusercontent.com/Ecohydraulics/Exercise-SequentPeak/master/plot_function.py)) and using it as follows:
 
-```
+```python
 plot_storage_curve(storage_line, seas_min_index, seas_max_index, seas_min_vol, seas_max_vol)
 ```
 

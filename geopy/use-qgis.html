@@ -688,7 +688,6 @@ document.write(`
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 </div>
 <p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).</p>
-<div class="full-width docutils">
 <table class="table" id="basemap-providers">
 <caption><span class="caption-number">Table 3 </span><span class="caption-text">Providers of XYZ basemap tiles</span><a class="headerlink" href="#basemap-providers" title="Permalink to this table">#</a></caption>
 <colgroup>
@@ -724,7 +723,6 @@ document.write(`
 </tr>
 </tbody>
 </table>
-</div>
 <div class="tip admonition">
 <p class="admonition-title">Coordinate reference systems of basemaps</p>
 <p>Most basemaps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
@@ -863,15 +861,27 @@ document.write(`
 </section>
 <section id="polygonize">
 <h2>Polygonize<a class="headerlink" href="#polygonize" title="Permalink to this headline">#</a></h2>
-<p>The inverse operation of <em>Rasterize</em> is called <strong>Raster to Vector</strong>, which is documented at <a class="reference external" href="https://docs.qgis.org/testing/en/docs/training_manual/complete_analysis/raster_to_vector.html">https://docs.qgis.org</a>. The creation of a Polygon from a raster is described in a video [coming soon].</p>
-<div class="admonition-polygonize-video-coming-soon admonition">
-<p class="admonition-title">Polygonize (Video coming soon)</p>
-<p>Coming soon.</p>
+<p>The inverse operation of <em>Rasterize</em> is called <strong>Raster to Vector</strong>, which is documented at <a class="reference external" href="https://docs.qgis.org/testing/en/docs/training_manual/complete_analysis/raster_to_vector.html">https://docs.qgis.org</a>. The creation of a Polygon shapefile from a Raster is described in the video below. The essential steps are:</p>
+<ul class="simple">
+<li><p>Go to <strong>Raster</strong> (top menu) &gt; <strong>Conversion</strong> &gt; <strong>Polygonize (Raster to Vector)…</strong></p></li>
+<li><p><strong>Input layer</strong>: select the raster to convert</p></li>
+<li><p><strong>Band number</strong>: the raster band for inferring the polygon value (i.e., field in the attribute table); some notes:</p>
+<ul>
+<li><p>this algorithm will round decimals to integers (see video below)</p></li>
+<li><p>alternatively, search <em>Raster pixels to polygons</em> in the <em>Processing Toolbox</em>, but it will create an excessive number of polygons</p></li>
+</ul>
+</li>
+<li><p><strong>Name of the field to create</strong>: select a name for the polygon value field in the attribute table (<strong>no more than 10 characters</strong>)</p></li>
+<li><p><strong>Vectorized</strong>: define the directory and name for the new polygon shapefile</p></li>
+<li><p>Click <strong>Run</strong></p></li>
+</ul>
+<div class="admonition-polygonize-video admonition">
+<p class="admonition-title">Polygonize (video)</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/r9MwkKvUD-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+<p>Get the <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/rasters/mannings-n.tif"><strong>mannings-n GeoTIFF here</strong></a>.</p>
 </div>
-<div class="admonition-raster-to-line-point-vector admonition">
-<p class="admonition-title">Raster to (line/point) Vector</p>
-<p>Other options for creating vector datasets from rasters are the <a class="reference external" href="https://docs.qgis.org/3.28/en/docs/training_manual/processing/interp_contour.html">Contour</a> tool (<strong>Raster</strong> menu &gt; <strong>Extraction</strong> &gt; <strong>Contour</strong>) or the <a class="reference external" href="https://docs.qgis.org/3.28/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#raster-pixels-to-points">Raster pixels to points</a> algorithm (<strong>Processing</strong> toolbox &gt; enter <code class="docutils literal notranslate"><span class="pre">raster</span> <span class="pre">pixels</span> <span class="pre">to</span> <span class="pre">points</span></code>).</p>
-</div>
+<p>To convert a Raster to a line/point (vector) shapfile, the options are the <a class="reference external" href="https://docs.qgis.org/3.28/en/docs/training_manual/processing/interp_contour.html">Contour</a> tool (<strong>Raster</strong> menu &gt; <strong>Extraction</strong> &gt; <strong>Contour</strong>) or the <a class="reference external" href="https://docs.qgis.org/3.28/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#raster-pixels-to-points">Raster pixels to points</a> algorithm (<strong>Processing</strong> toolbox &gt; enter <code class="docutils literal notranslate"><span class="pre">raster</span> <span class="pre">pixels</span> <span class="pre">to</span> <span class="pre">points</span></code>). Also, have a look at the tutorials on <a class="reference internal" href="../jupyter/geo-convert.html#raster2line"><span class="std std-ref">geo file conversion with Python</span></a>.</p>
 </section>
 <section id="working-with-rasters">
 <h2>Working with Rasters<a class="headerlink" href="#working-with-rasters" title="Permalink to this headline">#</a></h2>
