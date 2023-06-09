@@ -614,7 +614,7 @@ document.write(`
 <p><span class="caption-number">Fig. 18 </span><span class="caption-text">Open QGIS’ Toolbox window from the main menu.</span><a class="headerlink" href="#qgis-tbx" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in <em>QGIS</em>, go to the <code class="docutils literal notranslate"><span class="pre">Plugins</span></code> menu &gt; <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">and</span> <span class="pre">Install</span> <span class="pre">Plugins...</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">All</span></code> tab &gt; <code class="docutils literal notranslate"><span class="pre">Search...</span></code> for a relevant plugin and install it.</p>
+<p>The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in QGIS, go to the <strong>Plugins</strong> menu &gt; <strong>Manage and Install Plugins…</strong> &gt; <strong>All</strong> tab &gt; <strong>Search…</strong> for a relevant plugin and install it.</p>
 <p>In the context of river analysis, the following plugins are recommended and used at multiple places on this website:</p>
 <div class="admonition-qgis-plugins-for-hydro-informatics admonition" id="qgis-plugins">
 <p class="admonition-title">QGIS plugins for hydro-informatics</p>
@@ -625,7 +625,8 @@ document.write(`
 </ul>
 </div>
 <p>BASEmesh is only one (very well working) mesh generator for QGIS and <a class="reference internal" href="#tab-mesh-plugins"><span class="std std-numref">Tab. 2</span></a> lists of other plugins for generating computational meshes for numerical models along with target file formats and models</p>
-<div class="full-width docutils">
+<div class="full-width admonition">
+<p class="admonition-title">Mesh generators</p>
 <table class="table" id="tab-mesh-plugins">
 <caption><span class="caption-number">Table 2 </span><span class="caption-text">A list of QGIS mesh generator plugins.</span><a class="headerlink" href="#tab-mesh-plugins" title="Permalink to this table">#</a></caption>
 <colgroup>
@@ -690,7 +691,8 @@ document.write(`
 <p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
 </div>
 <p>The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).</p>
-<div class="full-width docutils">
+<div class="full-width admonition">
+<p class="admonition-title">Basemap providers</p>
 <table class="table" id="basemap-providers">
 <caption><span class="caption-number">Table 3 </span><span class="caption-text">Providers of XYZ basemap tiles</span><a class="headerlink" href="#basemap-providers" title="Permalink to this table">#</a></caption>
 <colgroup>
@@ -729,7 +731,7 @@ document.write(`
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Coordinate reference systems of basemaps</p>
-<p>Most basemaps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span> <span class="pre">/</span> <span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
+<p>Most basemaps are provided in the <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span> <span class="pre">-WGS84</span></code> / <code class="docutils literal notranslate"><span class="pre">Pseudo</span> <span class="pre">Mercator</span></code> coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the <a class="reference internal" href="geospatial-data.html#geospatial-data"><span class="std std-ref">Geospatial Data</span></a> and <a class="reference internal" href="../jupyter/geo-shp.html#prj-shp"><span class="std std-ref">shapefile projection</span></a> sections.</p>
 </div>
 </section>
 <section id="create-a-shapefile">
@@ -1040,7 +1042,10 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpkg</span><span class="o">-</span><span class="n">query</span> <span class="o">-</span><span class="n">L</span> <span class="n">python</span><span class="o">-</span><span class="n">qgis</span>
 </pre></div>
 </div>
-<p>This points to where PyQGIS lives, which, on Ubuntu/Mint typically is: <code class="docutils literal notranslate"><span class="pre">/usr/lib/python3/dist-packages/</span></code></p>
+<p>This points to where PyQGIS lives, which, on Ubuntu/Mint typically is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span>
+</pre></div>
+</div>
 <p>Thus, in this case add to <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span>
 </pre></div>

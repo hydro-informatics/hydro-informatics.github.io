@@ -60,7 +60,7 @@ Follow the below illustrated instructions to enable the *QGIS* *Toolbox*.
 Open QGIS' Toolbox window from the main menu.
 ```
 
-The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in *QGIS*, go to the `Plugins` menu > `Manage and Install Plugins...` > `All` tab > `Search...` for a relevant plugin and install it.
+The conversion between geospatial data types and numerical (computational) grids can be facilitated with plugins. To install any plugin in QGIS, go to the **Plugins** menu > **Manage and Install Plugins...** > **All** tab > **Search...** for a relevant plugin and install it.
 
 In the context of river analysis, the following plugins are recommended and used at multiple places on this website:
 
@@ -73,7 +73,9 @@ In the context of river analysis, the following plugins are recommended and used
 
 BASEmesh is only one (very well working) mesh generator for QGIS and {numref}`Tab. %s <tab-mesh-plugins>` lists of other plugins for generating computational meshes for numerical models along with target file formats and models
 
-````{div} full-width
+````{admonition} Mesh generators
+:class: full-width
+
 ```{list-table} A list of QGIS mesh generator plugins.
 :header-rows: 1
 :name: tab-mesh-plugins
@@ -129,7 +131,9 @@ Add a base map to QGIS: (1) locate the Browser (2) right-click on XYZ-Tiles and 
 
 The following URL can be used for retrieving online XYZ tiles (more URLs can be found on the internet).
 
-````{div} full-width
+````{admonition} Basemap providers
+:class: full-width
+
 ```{list-table} Providers of XYZ basemap tiles
 :header-rows: 1
 :name: basemap-providers
@@ -156,7 +160,7 @@ The following URL can be used for retrieving online XYZ tiles (more URLs can be 
 ```{admonition} Coordinate reference systems of basemaps
 :class: tip
 
-Most basemaps are provided in the `EPSG:3857 -WGS84 / Pseudo Mercator` coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the {ref}`geospatial-data` and {ref}`shapefile projection <prj-shp>` sections.
+Most basemaps are provided in the `EPSG:3857 -WGS84` / `Pseudo Mercator` coordinate system (CRS). To use custom geodata products, make sure that all other layers have the same coordinate system. Read more about coordinate systems and projections in the {ref}`geospatial-data` and {ref}`shapefile projection <prj-shp>` sections.
 ```
 
 ## Create a Shapefile
@@ -449,7 +453,11 @@ The `<qgispath>` expression should be replaced by the location where the PyQGIS 
 dpkg-query -L python-qgis
 ```
 
-This points to where PyQGIS lives, which, on Ubuntu/Mint typically is: `/usr/lib/python3/dist-packages/`
+This points to where PyQGIS lives, which, on Ubuntu/Mint typically is: 
+
+```
+/usr/lib/python3/dist-packages/
+```
 
 Thus, in this case add to `.bashrc`:
 
