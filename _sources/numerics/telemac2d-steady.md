@@ -160,12 +160,12 @@ The general parameters define the computation environment starting with a simula
 
 The model **output** can be defined with the following keywords:
 
-* `RESULTS FILE : r2dsteady.slf` - can be either a *MED* file or a *SLF* file
+* `RESULTS FILE : r2dsteady.slf` - can be either a *MED* file or an *SLF* file
 * `VARIABLES FOR GRAPHIC PRINTOUTS` (i.e., output parameters):  `U,V,H,S,Q,F` - many more options can be found in section 1.317 (page 85) of the {{ tm2dref }}.
 
-The velocities (`U` and `V`), the water depth (`H`), and the discharge (`Q`) are standard variables that should be used in every simulation. In particular, the discharge (`Q`) is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, the discharge (`Q`) enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the {ref}`discharge verification <verify-steady-tm2d>` section in the post-processing.
+The velocities (`U` and `V`), the water depth (`H`), and the discharge (`Q`) are standard variables that should be used in every simulation. In particular, the discharge `Q` is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, discharge `Q` enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the {ref}`discharge verification <verify-steady-tm2d>` section in the post-processing.
 
-The time variables (`TIME STEP` and `NUMBER OF TIME STEPS`) define the simulation length and the printout periods (`GRAPHIC PRINTOUT PERIOD` and `LISTING PRINTOUT PERIOD`) define the result output frequency. The **smaller the printout period**, **the longer will take the simulation** because writing results is one of the most time-consuming processes in numerical modeling. The printout periods (frequencies) refer to a multiple of the `TIME STEPS` parameter and need to be a smaller number than the `NUMBER OF TIME STEPS`. Read more about timestep parameters in the {{ tm2d }} in sections 5 and 12.4.2.
+The time variables (`TIME STEP` and `NUMBER OF TIME STEPS`) define the simulation length. The printout periods (`GRAPHIC PRINTOUT PERIOD` and `LISTING PRINTOUT PERIOD`) define the result output frequency. The **smaller the printout period**, **the longer will take the simulation** because writing results is a time-consuming process. The printout periods (frequencies) refer to a multiple of the `TIME STEPS` parameter and need to be a smaller number than the `NUMBER OF TIME STEPS`. Read more about timestep parameters in the {{ tm2d }} in sections 5 and 12.4.2.
 
 In addition, the `MASS-BALANCE : YES` setting will print out mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model. Note that this keyword only enables mass balance printouts and does not enforce mass balance of the model, which must be achieved through a consistent model setup following this tutorial and the {{ tm2d }}.
 
@@ -205,7 +205,7 @@ In addition, a type of discretization has to be specified with the **DISCRETIZAT
 * `12` activates quasi-bubble discretization with 4-nodes, and
 * `13` activates quadratic discretization with 6-nodes.
 
-The {{ tm2d }} recommend using **the default value of `DISCRETIZATIONS IN SPACE : 11;11`** that assigns a linear discretization for velocity and water depth, which **is computationally fast but potentially unstable**. The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computation time, memory usage, and it is currently not available in Telemac2d.
+The {{ tm2d }} recommend using **the default value of `DISCRETIZATIONS IN SPACE : 11;11`** that assigns a linear discretization for velocity and water depth, which **is computationally fast but potentially unstable**. The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computing time, memory usage, and it is currently not available in Telemac2d.
 
 In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but more realistic results can be yielded by setting this keyword to slightly more than zero (e.g., `0.1`). For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
 

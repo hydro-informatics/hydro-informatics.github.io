@@ -51,7 +51,7 @@ Install *BASEMENT*'s *BASEmesh* Plugin (instructions from the *BASEMENT* System 
 * Scroll to the bottom (**Plugin Repositories** listbox in {numref}`Fig. %s <qgis-plugins>`), click on **Add...**.
 * In the popup window enter:
   * a name for the new repository, for instance, `BASEmesh Plugin Repository`
-  * the repository address: [`https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml`](https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml)
+  * the repository address: [https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml)
   * keep all other defaults.
 * Click **OK**. The new repository should now be visible in the **Plugin Repositories** listbox. If the connection is **OK**.
 

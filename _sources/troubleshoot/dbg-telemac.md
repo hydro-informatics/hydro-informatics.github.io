@@ -9,7 +9,7 @@ To look up the reference, implementation, and/or meaning of a variable, class, s
 
 ## Traceback errors
 
-If a simulation crashes and it is not clear why debugging with [*gdb*](http://www.gdbtutorial.com) is a good option. To do so, first install *gdb*:
+If a simulation crashes and it is not clear why debugging with the *GNU Project debugger* [GDB](http://www.gdbtutorial.com) is a good option. To do so, first install GDB:
 
 ```
 sudo apt install gdb
@@ -45,12 +45,20 @@ This section lists quick fixes for some frequent error messages.
 RANDOM CRASH
 : If TELEMAC crashes for apparently random reasons, make sure that:
 
-  * No line in the steering file has more than 72 (active characteristics). For instance, the line `CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION = 0.011; 0.011; 0.011; 0.011` would be too long and needs a line break, such as:
+  * No line in the steering file has more than 72 (active characteristics). For instance:
 
+  `````{tab-set}
+  ````{tab-item} Too long line (bad)
+  ```fortran
+  CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION = 0.011; 0.011; 0.011; 0.011
+  ```
+  ````
+  ````{tab-item} Correct line break (good)
   ```fortran
   CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION = 0.011; 0.011
   ; 0.011; 0.011
   ```
+  ````
 
 ## Steering (CAS) Files
 
@@ -119,7 +127,7 @@ LIMIT VALUES : -1000;9000;-1000;1000;-1000;1000;-1000;1000 / default mins and ma
 
 ### Tidal Flats
 
-Wetting and drying of grid cells, for instance, during a simulation of dam breaks or flood hydrographs, may lead to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends using the following settings in the steering file as conservative choices from the BAW's Wesel example (similar to `/telemac/v8p2/examples/telemac2d/wesel/`).
+Wetting and drying of grid cells, for instance, during a simulation of dam breaks or flood hydrographs, may lead to model instability. While the {ref}`tm2d-tidal` section in the Telemac2d steady modeling tutorial suggests physically and computationally meaningful keyword option combinations, section 16.5 in the {{ tm2d }} recommends using the following settings in the steering file as conservative choices from the BAW's Wesel example.
 
 ```fortran
 VELOCITY PROFILES : 4;0
@@ -138,6 +146,17 @@ PRECONDITIONING : 2
 SOLVER ACCURACY : 1.E-5
 CONTINUITY CORRECTION : YES
 ```
+
+````{admonition} How to find the Wesel example
+:class: tip
+
+This example is typically installed in the following directory:
+
+```
+/telemac/v8p2/examples/telemac2d/wesel/
+```
+````
+
 
 ### Discretization Scheme
 
@@ -309,9 +328,10 @@ With a more precise of the cause for the error, try one of the following options
 Supercritical boundaries at the entrance
 :	For supercritical flow conditions at the entrance, make sure that a `prescribed Q and H` boundary also gets a discharge and a depth assigned in the steering file. For instance, if the Inlet in Figures {numref}`%s <dbg-bc-bk>` and {numref}`%s <dbg-boundaries>` was `5 5 5` (`prescribed Q and H`) instead of `4 5 5`, the steering file needs to prescribe flowrates and depths. For instance, add a depth of `0.9` for the Inlet as follows:
 
-  `PRESCRIBED FLOWRATES : 0.;10`
-
-  `PRESCRIBED DEPTHS : 0.75;0.9`
+  ```fortran
+  PRESCRIBED FLOWRATES : 0.;10
+  PRESCRIBED DEPTHS : 0.75;0.9
+  ```
 
 Change the (vertical) velocity profile
 : The definition of a `VELOCITY PROFILE` keyword in the steering file is explained in the {ref}`steady2d tutorial <tm2d-bounds>` in this eBook. The addition `VERTICAL` applies to 3d models only (read more in the {ref}`Telemac 3d (SLF) section <tm3d-slf-boundaries>`).
@@ -323,7 +343,7 @@ Change the (vertical) velocity profile
 
 ### UNKNOWN BOUNDARY CONDITIONS
 
-TELEMAC-Gaia may interrupt with an error message such as `KEYWORD: ... UNKNOWN BOUNDARY CONDITIONS FILE ...`. This message means that the boundary condition type in the `*.cli` file does not match the boundary conditions defined in the `*.cas` file. For instance, if the tracer (suspended load) boundary column (`9` in the Gaia `*.cli` file for `CBOR`) is set to `5`, try using `EQUILIBRIUM INFLOW CONCENTRATION : YES` or double-check the numbers defined for the **PRESCRIBED SUSPENDED SEDIMENTS CONCENTRATION VALUES** keyword.
+TELEMAC-Gaia may interrupt with an error message such as `KEYWORD:` [...] `UNKNOWN BOUNDARY CONDITIONS FILE ...`. This message means that the boundary condition type in the `*.cli` file does not match the boundary conditions defined in the `*.cas` file. For instance, if the tracer (suspended load) boundary column (`9` in the Gaia `*.cli` file for `CBOR`) is set to `5`, try using `EQUILIBRIUM INFLOW CONCENTRATION : YES` or double-check the numbers defined for the **PRESCRIBED SUSPENDED SEDIMENTS CONCENTRATION VALUES** keyword.
 
 Read more about setting up boundary condition files for Gaia in the {ref}`Gaia Basics section <gaia-bc>`. The definition of boundary types in the Gaia steering file are described separately for {ref}`bedload <gaia-bc-bl>` and {ref}`suspended load <gaia-bc-sl>`.
 
@@ -336,13 +356,31 @@ BlueKenue may throw errors or not correctly show when working with 3d meshes. So
 **OnFileOpendata(): ERROR: on Activate()**
 : **Causes:** The error message typically occurs with parallelized model runs when Telemac3d / PARTEL did not correctly merge the mesh at the end of the simulation.
 
-  **Solution:** Force TELEMAC to not delete the temporary simulation folder (a folder that is visible in the simulation directory by default only while a simulation is running). Keeping the temporary calculation directory is achieved through adding a `-t` flag at the end of the simulation run command. For instance, tap the following to keep the simulation folder for a Telemac3d simulation (read more in in Annex A of the {{ tm3d }}): `telemac3d.py steering-file.cas -t`<br>The temporary folder contains T3DRES (mesh partition) files that can be merged and then opened in BlueKenue. To merge the T3DRES files run the following command (make sure the TELEMAC environment is still activated with `source pysource.YOUR-ENV.sh`):<br>`runcode.py --merge -w temp_directory/ telemac3d file.cas` <br>To get help with running this command, read [this TELEMAC Forum entry](http://opentelemac.co.uk/index.php/assistance/forum5/21-telemac-3d/7221-continue-computation-from-temporary-file).
+  **Solution:** Force TELEMAC to not delete the temporary simulation folder (a folder that is visible in the simulation directory by default only while a simulation is running). Keeping the temporary calculation directory is achieved through adding a `-t` flag at the end of the simulation run command. For instance, tap the following to keep the simulation folder for a Telemac3d simulation (read more in in Annex A of the {{ tm3d }}): 
 
+  ```
+  telemac3d.py steering-file.cas -t
+  ```
+  
+  The temporary folder contains T3DRES (mesh partition) files that can be merged and then opened in BlueKenue. To merge the T3DRES files run the following command (make sure the TELEMAC environment is still activated with `source pysource.YOUR-ENV.sh`):
+  
+  ```
+  runcode.py --merge -w temp_directory/ telemac3d file.cas
+  ```
+  
+  To get help with running this command, read [this TELEMAC Forum entry](http://opentelemac.co.uk/index.php/assistance/forum5/21-telemac-3d/7221-continue-computation-from-temporary-file).
+  
   For **updates on this message**, follow the [BlueKenue thread in the TELEMAC Forum](http://www.openmascaret.org/index.php/assistance/forum5/blue-kenue/13278-issue-with-geometry-file?start=10#38837) for troubleshooting updates on this error.
 
 ## PostTelemac Plugin
 
-Some versions of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on **Stack** reveals an error message. At the bottom of the error message, it might be written `import error: no module named gdal`. The error probably stems from an import statement in one of the PostTelemac plugin's Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, `C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\`**`posttelemac_hdf_parser.py`** may cause the error with its `import gdal` statement. Therefore:
+Some versions of QGIS may throw a Python error (yellow frame in the top region of the map viewport) and a click on **Stack** reveals an error message. At the bottom of the error message, it might be written `import error: no module named gdal`. The error probably stems from an import statement in one of the PostTelemac plugin's Python scripts. To troubleshoot the gdal import error, find the Python script that is raising the error message. For instance, the script `posttelemac_hdf_parser.py` may cause the error through its `import gdal` statement. To troubleshoot, open it, and on Windows, you may find it in the following directory:
+
+```
+C:\Users\USERNAME\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\PostTelemac\meshlayerparsers\posttelemac_hdf_parser.py
+```
+
+In the opened file:
 
 * Open the concerned file, which is here: **`posttelemac_hdf_parser.py`**
 * Find the `import gdal` statement and **replace it with `from osgeo import gdal` (i.e.,  <s>`import gdal`</s> and write `from osgeo import gdal`)
@@ -356,13 +394,35 @@ Retry to start the PostTelemac plugin. It should run without issues now.
 (salome-dbg)=
 ### SALOME-HYDRO not starting  (**Kernel/Session**)
 
-If an error message is raised by `Kernel/Session` in the `Naming Service` (typically ends up in `[Errno 3] No such process` ... `RuntimeError: Process NUMBER for Kernel/Session not found`), there are multiple possible origins that partially root in potentially hard-coded library versions of the installer. To troubleshoot:
+If an error message is raised by `Kernel/Session` in the `Naming Service`, it will typically ends up in 
+```
+[Errno 3] No such process ... 
+   RuntimeError: Process NUMBER for Kernel/Session not found
+```
+
+There are multiple possible origins of such errors that partially root in potentially hard-coded library versions of the installer. The following troubleshoot options exist but those require careful consideration as they might harm the operation system:
 
 * Manually create copies of newer libraries with names of older versions. For instance,
-  + In the 4th line after running `./salome`, `Kernel/Session` may prompt `error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory`
-  + Identify the version installed with `whereis libSOMETHING.so.20` (replace `libSOMETHING.so.20` with the missing library); for example, this may output `/usr/lib/x86_64-linux-gnu/libSOMETHING.so.40`
-  + Create a copy of the newer library and rename the copy as needed by SALOME; for example, tap  `sudo cp /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40 usr/lib/x86_64-linux-gnu/libSOMETHING.so.20`
+  + In the 4th line after running `./salome`, `Kernel/Session` may prompt
+
+```
+$ error while loading [...] libSOMETHING.so.20 cannot open [...] No such file or directory
+```
+
+  + Identify the version installed with `whereis libSOMETHING.so.20` (replace `libSOMETHING.so.20` with the missing library); for example, this command may output
+
+```
+$ /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40
+```
+
+  + Create a copy of the newer library and rename the copy as needed by SALOME; for example, tap 
+
+```
+sudo cp /usr/lib/x86_64-linux-gnu/libSOMETHING.so.40 usr/lib/x86_64-linux-gnu/libSOMETHING.so.20
+```
+
   + Most likely, the following files need to be copied:
+
 ```
 sudo cp /usr/lib/x86_64-linux-gnu/libmpi.so.40 /usr/lib/x86_64-linux-gnu/libmpi.so.20
 sudo cp /usr/lib/x86_64-linux-gnu/libicui18n.so.63 /usr/lib/x86_64-linux-gnu/libicui18n.so.57
@@ -377,8 +437,16 @@ sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64
 ```
 
 * Overwrite the SALOME-HYDRO's internal version of *Qt*:
-  + Copy `/usr/lib/x86_64-linux-gnu/libQtCore.so.5`
-  + Paste in `/Salome-V2_2/prerequisites/Qt-591/lib/` - confirm replacing `libQtCore.so.5`
+  + Copy
+
+```
+/usr/lib/x86_64-linux-gnu/libQtCore.so.5
+```
+  + Paste in (confirm replacing `libQtCore.so.5`)
+
+```
+/Salome-V2_2/prerequisites/Qt-591/lib/
+``` 
 
 
 (qt-dbg)=
@@ -386,8 +454,13 @@ sudo cp /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr.so.40 /usr/lib/x86_64
 
 With the newer versions of the *Qt platform* any menu entry in *SALOME-HYDRO* will not show up. To fix this issue, install and configure `qt5ct` styles:
 
-* `sudo apt install qt5-style-plugins libnlopt0`
-* `sudo apt install qt5ct`
+
+```
+sudo apt install qt5-style-plugins libnlopt0 qt5ct
+```
+
+Then:
+
 * Configure `qt5ct` (just tap `qt5ct` in *Terminal*)
   + Go to the *Appearance* tab
   + Set *Style* to `gtk2` and *Standard dialogs* to `GTK2`
