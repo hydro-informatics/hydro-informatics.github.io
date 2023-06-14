@@ -396,7 +396,7 @@ Retry to start the PostTelemac plugin. It should run without issues now.
 
 If an error message is raised by `Kernel/Session` in the `Naming Service`, it will typically ends up in 
 ```
-[Errno 3] No such process ... 
+$ [Errno 3] No such process ... 
    RuntimeError: Process NUMBER for Kernel/Session not found
 ```
 

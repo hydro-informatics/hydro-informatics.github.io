@@ -353,6 +353,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="dbg-gis.html">GIS, CRS and Projections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dbg-zotero.html">Zotero Utilities</a></li>
 </ul>
 </li>
@@ -947,8 +948,8 @@ Correct line break (good)</label><div class="sd-tab-content docutils">
 <section id="salome-hydro-not-starting-kernel-session">
 <span id="salome-dbg"></span><h3>SALOME-HYDRO not starting  (<strong>Kernel/Session</strong>)<a class="headerlink" href="#salome-hydro-not-starting-kernel-session" title="Permalink to this headline">#</a></h3>
 <p>If an error message is raised by <code class="docutils literal notranslate"><span class="pre">Kernel/Session</span></code> in the <code class="docutils literal notranslate"><span class="pre">Naming</span> <span class="pre">Service</span></code>, it will typically ends up in</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Errno</span> <span class="mi">3</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">process</span> <span class="o">...</span> 
-   <span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">Process</span> <span class="n">NUMBER</span> <span class="k">for</span> <span class="n">Kernel</span><span class="o">/</span><span class="n">Session</span> <span class="ow">not</span> <span class="n">found</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ [Errno 3] No such process ... 
+   RuntimeError: Process NUMBER for Kernel/Session not found
 </pre></div>
 </div>
 <p>There are multiple possible origins of such errors that partially root in potentially hard-coded library versions of the installer. The following troubleshoot options exist but those require careful consideration as they might harm the operation system:</p>
