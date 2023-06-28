@@ -34,8 +34,8 @@ We provide tutorials for:
   * an introduction to {doc}`unsupervised learning <datascience/unsupervised-learning>`
   * a tutorial for {doc}`support vector machines (SVM) <datascience/morphology-predictor-svm>`
 * Numerical modeling with
-  * The {doc}`ETH Zurich's BASEMENT </numerics/basement>` (v3) software (2d hydrodynamics)
-  * {doc}`TELEMAC </numerics/telemac>` (2d, 3d, and morphodynamics)
+  * The {doc}`ETH Zurich's BASEMENT </numerics/basement/basement>` (v3) software (2d hydrodynamics)
+  * {doc}`TELEMAC </numerics/telemac/telemac>` (2d, 3d, and morphodynamics)
   * {doc}`OpenFOAM </numerics/openfoam/of-intro>` (3d hydrodynamics)
 
 

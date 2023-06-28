@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Basic Setup of Gaia &#8212; Hydro-Informatics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/telemac/gaia-basics';</script>
+    <link rel="canonical" href="https://hydro-informatics.com/numerics/telemac/gaia-basics.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Bedload" href="gaia-bedload.html" />
+    <link rel="prev" title="Introduction and Coupling" href="gaia-coupling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/take_seat.html">Take a Seat</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basement/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basement/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="telemac.html">TELEMAC</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="telemac-gaia.html">Gaia (Morphodynamics)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/py-requirements.html">Python Requirements</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/data-types.html">The Nature of Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/data-cleaning.html">Dataset Cleaning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/dimensional-analysis.html">Dimensional Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/machinelearning.html">Machine Learning (ML)</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../datascience/linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../datascience/linear-regression.html">Linear Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../datascience/non-linear-models.html">Non-linear models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../datascience/kernelized-supervised-models.html">Kernels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+<li class="toctree-l4"><a class="reference internal" href="../../datascience/three-based-methods.html">Three-based methods (Coming soon)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/neural-networks.html">Neural Networks (Coming soon)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/unsupervised-learning.html">Unsupervised Learning (Coming soon)</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-gis.html">GIS, CRS and Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/contributors.html">Contributors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/numerics/telemac/gaia-basics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic Setup of Gaia</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-parameters">General Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riverbed-composition">Riverbed Composition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sediment-classes">Sediment Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#active-layer">Active Layer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedload-vs-suspended-load">Bedload vs. Suspended Load</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-setup-of-gaia">
+<span id="gaia-basics"></span><h1>Basic Setup of Gaia<a class="headerlink" href="#basic-setup-of-gaia" title="Permalink to this headline">#</a></h1>
+<p>The following instructions refer to the setup of the above-created Gaia steering file (<em>gaia-morphodynamics.cas</em>), which needs some mandatory parameters and enables many more optional keywords settings. An overview of available keywords can be found in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/gaia/reference/gaia_reference_v8p4.pdf">Gaia reference manual</a> and the Gaia dictionary file <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/sources/gaia/gaia.dico</span></code>. Similar to the Telemac2d or Telemac3d hydrodynamics steering file, the Gaia steering file can be distinguished between keyword groups for general (file-related), physical (sediment transport), and numerical parameters. This section introduces general parameters embracing the setup of boundary condition files and basic definitions of sediment and riverbed characteristics. The implementation of <a class="reference internal" href="../../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> is covered in separate sections.</p>
+<section id="general-parameters">
+<span id="gaia-gen"></span><h2>General Parameters<a class="headerlink" href="#general-parameters" title="Permalink to this headline">#</a></h2>
+<p>The general parameters defining mandatory input and output files resemble those of the hydrodynamic steering file. The input files can even be the same used in the hydrodynamics steering file. For instance, <strong>define</strong> the <strong><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf">qgismesh.slf</a></strong> from the <a class="reference internal" href="../pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">pre-processing</span></a> <strong>as geometry file</strong>. In addition, add <strong>boundaries-gaia.cli</strong> as <strong>BOUNDARY CONDITIONS FILE</strong>, which will be explained in the section on <a class="reference internal" href="#gaia-bc"><span class="std std-ref">boundary conditions for Gaia</span></a>. The Gaia <strong>RESULTS FILE</strong> keyword should also differ from the RESULTS FILE keyword in the hydrodynamic steering file.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span><span class="w"> </span><span class="n">COMPUTATION</span><span class="w"> </span><span class="n">ENVIRONMENT</span>
+<span class="o">/</span>
+<span class="n">GEOMETRY</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">qgismesh</span><span class="p">.</span><span class="n">slf</span>
+<span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">boundaries</span><span class="o">-</span><span class="n">gaia</span><span class="p">.</span><span class="n">cli</span>
+<span class="n">RESULTS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">rGaia</span><span class="o">-</span><span class="n">steady2d</span><span class="p">.</span><span class="n">slf</span>
+<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span>
+</pre></div>
+</div>
+<p>Graphical output variables related to sediment transport can be defined with the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword for <a class="reference internal" href="../../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> and the following list-options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> for bottom elevation in (m a.s.l.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code> for bottom evolution in (m)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F</span></code> for <a class="reference internal" href="../../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> (-)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> for the magnitude (length) of the bi-directional (i.e., <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) unit sediment transport <span class="math notranslate nohighlight">\(\boldsymbol{q_s}\)</span> (read more in the definition of the <a class="reference internal" href="../../documentation/glossary.html#term-Exner-equation"><span class="xref std std-term">Exner equation</span></a>) in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MU</span></code> for the skin friction coefficient (as a function of <a class="reference internal" href="gaia-bedload.html#c-friction"><span class="std std-ref">skin friction correction factors</span></a> described in the section on bedload)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> for unit bedload transport in <span class="math notranslate nohighlight">\(x\)</span>-direction <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\cdot\cos\alpha\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>) where  <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the longitudinal channel (<span class="math notranslate nohighlight">\(x\)</span>) axis and the solid transport vector <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">P</span></code> for unit bedload transport in <span class="math notranslate nohighlight">\(y\)</span>-direction <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\cdot\sin\alpha\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QSBL</span></code> for the magnitude (length) of the bi-directional (i.e., <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) unit <strong>bedload (only)</strong> transport <span class="math notranslate nohighlight">\(\boldsymbol{q_b}\)</span> in (kg<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-1}\cdot\)</span>s<span class="math notranslate nohighlight">\(^{-1}\)</span>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> for the non-erodible bottom (?)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span></code> for water surface elevation in (m a.s.l.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOB</span></code> for bed shear stress in (N<span class="math notranslate nohighlight">\(\cdot\)</span>m<span class="math notranslate nohighlight">\(^{-2}\)</span>)</p></li>
+</ul>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">QSBL</span></code> will result in the same output if no suspended load is simulated. To output multiple parameters, <strong>set</strong> the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword for this tutorial as follows:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span>
+<span class="n">VARIABLES</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">QSBL</span><span class="p">,</span><span class="n">TOB</span>
+</pre></div>
+</div>
+</section>
+<section id="boundary-conditions">
+<span id="gaia-bc"></span><h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">#</a></h2>
+<p>The boundary conditions in Gaia work similarly to the hydrodynamics and can be derived from the hydrodynamics <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> file.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Recall the structure of the hydrodynamics boundaries.cli file</p>
+<p>The <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a> file has 13 variables per line, which are separated with a <code class="docutils literal notranslate"><span class="pre">space</span></code> and this is how the file head looks like (for closed wall <code class="docutils literal notranslate"><span class="pre">2</span></code>-type boundaries):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">138</span>           <span class="mi">1</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9836</span>           <span class="mi">2</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9838</span>           <span class="mi">3</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9194</span>           <span class="mi">4</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9827</span>           <span class="mi">5</span>   <span class="c1">#</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9828</span>           <span class="mi">6</span>   <span class="c1">#</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<p>A boundaries <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file is divided into 13 space (tab) - separated colons corresponding to 13 boundary type (variables) and value prescriptions. The cross-comparison <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Table 9</span></a> holds the 13 type/value prescription names of a hydrodynamic Telemac2d/3d (e.g., <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a>) boundary conditions file up side by side with those of a Gaia boundary conditions file.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+View the cross-comparison Table of Boundary variables and types in Telemac2d/3d and Gaia<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<table class="table" id="tab-gaia-bc">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text">Boundary variables and types in Telemac2d/3d and Gaia.</span><a class="headerlink" href="#tab-gaia-bc" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Variable no.<br></p></th>
+<th class="head"><p class="sd-card-text">Flag<br></p></th>
+<th class="head"><p class="sd-card-text">Telemac2d/3d<br>
+<small><em>parameter</em></small></p></th>
+<th class="head"><p class="sd-card-text">Gaia<br>
+<small><em>parameter</em></small></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">boundary type</p></td>
+<td><p class="sd-card-text">LIHBOR<br>
+<small><em>water depth</em></small></p></td>
+<td><p class="sd-card-text">LIHBOR<br>
+<small><em>water depth</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">boundary type</p></td>
+<td><p class="sd-card-text">LIUBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+<td><p class="sd-card-text">LIQBOR<br>
+<small><em>sediment load</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">boundary type</p></td>
+<td><p class="sd-card-text">LIVBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+<td><p class="sd-card-text">LIVBOR<br>
+<small><em>velocity</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">HBOR<br>
+<small><em>water depth</em></small></p></td>
+<td><p class="sd-card-text">Q2BOR<br>
+<small><em>sediment load</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">5</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">UBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+<td><p class="sd-card-text">UBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">6</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">VBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+<td><p class="sd-card-text">VBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">7</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">AUBOR<br>
+<small><em>wall friction</em></small></p></td>
+<td><p class="sd-card-text">AUBOR<br>
+<small><em>wall friction</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">boundary type</p></td>
+<td><p class="sd-card-text">LITBOR<br>
+<small><em>tracer</em></small></p></td>
+<td><p class="sd-card-text">LIEBOR (LICBOR)<br>
+<small><em>flowrate</em> (<em>concentration</em>)</small></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">9</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">TBOR<br>
+<small><em>tracer</em></small></p></td>
+<td><p class="sd-card-text">EBOR (CBOR)<br>
+<small><em>bottom elevation</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">10</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">ATBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+<td><p class="sd-card-text">ATBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">11</p></td>
+<td><p class="sd-card-text">Prescription</p></td>
+<td><p class="sd-card-text">BTBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+<td><p class="sd-card-text">BTBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">12</p></td>
+<td><p class="sd-card-text">Global Node ID</p></td>
+<td><p class="sd-card-text">N<br>
+<small><em>Selafin mesh</em></small></p></td>
+<td><p class="sd-card-text">N<br>
+<small><em>Selafin mesh</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">13</p></td>
+<td><p class="sd-card-text">Local Node ID</p></td>
+<td><p class="sd-card-text">K <br><small><em>boundary file</em></small></p></td>
+<td><p class="sd-card-text">K <br><small><em>boundary file</em></small></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><p>The boundary type variables (no. 1, 2, 3, and 8) listed in <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 9</span></a> can take the integer values <code class="docutils literal notranslate"><span class="pre">2</span></code> (closed wall), <code class="docutils literal notranslate"><span class="pre">4</span></code> (free Neumann-type boundary), <code class="docutils literal notranslate"><span class="pre">5</span></code> (Dirichlet-type prescribed boundary), or <code class="docutils literal notranslate"><span class="pre">6</span></code> (Dirichlet-type velocity). It is important for a Gaia simulation that the eighth entry (<strong>LIEBOR</strong>) is set to <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code> for open-type boundaries, but <strong>not to <code class="docutils literal notranslate"><span class="pre">2</span></code></strong>, which would correspond to a closed wall for tracers (suspended load).</p>
+<p>To this end, create a sediment transport boundaries file (<code class="docutils literal notranslate"><span class="pre">*.cli</span></code>) for Gaia by <strong>creating a copy of <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a></strong> and calling the copy <strong>boundaries-gaia.cli</strong>. In the context of Gaia, the hydrodynamic boundary types can be kept, though their flags are differently interpreted according to the list in <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 9</span></a>.</p>
+<div class="admonition-why-two-boundary-condition-files admonition">
+<p class="admonition-title">Why two boundary condition files?</p>
+<p>Most examples of the TELEMAC installation (<code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/gaia/</span></code>) use a single boundary conditions file, which works fine because the numerical values are identical. However, the flags of a Gaia <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> and a Telemac2d/3d <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file are not the same and for this reason, this eBook features good practice by using two (identical) boundary condition files. Thus, we could use a single <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file, but we do use <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> two files to be prepared for more complex and physically correct simulations in the future. For instance, a more complex future simulation may require prescribing bedload fluxes in the <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> file, where the extra Gaia boundary file is not just an option.</p>
+</div>
+<p>To verify the correct setup of the boundary conditions files, open <strong>boundaries.cli</strong> and <strong>boundaries-gaia.cli</strong>  with a <a class="reference internal" href="../../get-started/others.html#npp"><span class="std std-ref">text editor</span></a> and check on the liquid boundary definitions. Both the <strong>boundaries.cli</strong> and the <strong>boundaries-gaia.cli</strong> files are similarly organized according to <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 9</span></a>.</p>
+<ul class="simple">
+<li><p>The first three entries of the upstream boundary are (according to <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 9</span></a>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> for <strong>LIHBOR</strong> for water depth, which was set to <code class="docutils literal notranslate"><span class="pre">5</span></code> in the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d simulation</span></a>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> for <strong>LIQBOR</strong> for (solid) discharge, and <strong>LIVBOR</strong> (flow velocity) corresponding to the hydrodynamics boundary file (<a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d simulation</span></a>).</p></li>
+<li><p>In summary, make sure to <strong>prescribe Q only</strong> (i.e., with <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>) at the upstream boundary.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-why-not-prescribe-water-depth-elevation-at-the-upstream-boundary admonition">
+<p class="admonition-title">Why not prescribe water depth (elevation) at the upstream boundary?</p>
+<p>The riverbed elevation is expected to change in a morphodynamic simulation. Thus, with a movable bed, we are interested in how the water depth and the riverbed elevation change as a function of water runoff (e.g., important in the case of floods). Prescribing the water depth/elevation at the inflow boundary would fail to meet this objective.</p>
+</div>
+<ul class="simple">
+<li><p>The first three entries of the downstream boundary are (according to <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 9</span></a>):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> for <strong>LIHBOR</strong> for prescribed water depth, in line with the <a class="reference internal" href="telemac2d-steady.html#tm2d-dry"><span class="std std-ref">dry-initialized steady2d simulation</span></a>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> for <strong>LIQBOR</strong> for (solid) discharge, and <strong>LIVBOR</strong> (flow velocity).</p></li>
+<li><p>In summary, make sure to <strong>prescribe Q only</strong> (i.e., with <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code>) at the downstream boundary.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition-why-not-prescribe-discharge-at-the-downstream-boundary admonition">
+<p class="admonition-title">Why not prescribe discharge at the downstream boundary?</p>
+<p>The sediment outflow is mostly unknown and prescribing fluxes at the downstream boundary would force the model to deposit any sediment inflow in the model, too. Thus, the model must have the option to vary outflow as a function of eroded (or deposited) sediment, which may lead to different fluxes at the upstream and downstream boundaries.</p>
+</div>
+<ul class="simple">
+<li><p>The following four entries (4-7 in <a class="reference internal" href="#tab-gaia-bc"><span class="std std-numref">Tab. 9</span></a>) are <code class="docutils literal notranslate"><span class="pre">0.000</span></code> (for the Q2BOR, UBOR, VBOR, and AUBOR values) and would prescribe (assign) float values directly in the boundary file (deactivated through the <code class="docutils literal notranslate"><span class="pre">0.000</span></code> setting).</p></li>
+<li><p>The eighth entry is the <strong>LIEBOR</strong> type, which must bet set to <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code> for enabling solid discharge fluxes and may not be <code class="docutils literal notranslate"><span class="pre">2</span></code> (closed wall). To enable solid flux modeling with Gaia from any existing purely hydrodynamic Telemac2d/3d simulation <code class="docutils literal notranslate"><span class="pre">*.cli</span></code>, make the following modifications (already done in <em>boundaries.cli</em>/<em>boundaries-gaia.cli</em> for this tutorial):</p>
+<ul>
+<li><p>the <strong>upstream LIEBOR to <code class="docutils literal notranslate"><span class="pre">5</span></code></strong> (prescribed -equilibrium- flowrate), which also requires that EBOR is set to <code class="docutils literal notranslate"><span class="pre">0.0</span></code> (no change of bottom elevation), and</p></li>
+<li><p><strong>downstream LIEBOR to <code class="docutils literal notranslate"><span class="pre">4</span></code></strong> (free).</p></li>
+</ul>
+</li>
+</ul>
+<p>The prescription of time-dependent solid flowrates with a liquid boundaries file can be achieved with <code class="docutils literal notranslate"><span class="pre">LIEBOR=5</span></code> and following the descriptions in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady (quasi-steady) tutorial</span></a>.</p>
+<p>The below boxes feature the setup of the <strong>boundaries.cli</strong> and <strong>boundaries-gaia.cli</strong> files for this tutorial according to the above descriptions.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Upstream boundary</label><div class="sd-tab-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">7</span><span class="p">]</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9824</span>           <span class="mi">8</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9831</span>           <span class="mi">9</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">89</span>          <span class="mi">10</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9817</span>          <span class="mi">11</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9818</span>          <span class="mi">12</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">109</span>          <span class="mi">13</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">10011</span>          <span class="mi">14</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9820</span>          <span class="mi">15</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">105</span>          <span class="mi">16</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7936</span>          <span class="mi">17</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">93</span>          <span class="mi">18</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7940</span>          <span class="mi">19</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7555</span>          <span class="mi">20</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">11484</span>          <span class="mi">21</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">73</span>          <span class="mi">22</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">11481</span>          <span class="mi">23</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">77</span>          <span class="mi">24</span>   <span class="c1"># upstream (144 - 32)</span>
+<span class="mi">4</span> <span class="mi">5</span> <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">5</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">32</span>          <span class="mi">25</span>   <span class="c1"># upstream (144 - 32)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Downstream boundary</label><div class="sd-tab-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">go</span> <span class="n">to</span> <span class="n">line</span> <span class="mi">312</span><span class="p">]</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">34</span>         <span class="mi">312</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">113</span>         <span class="mi">313</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">765</span>         <span class="mi">314</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">116</span>         <span class="mi">315</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>       <span class="mi">11242</span>         <span class="mi">316</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">81</span>         <span class="mi">317</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">769</span>         <span class="mi">318</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">85</span>         <span class="mi">319</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">97</span>         <span class="mi">320</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">5293</span>         <span class="mi">321</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">101</span>         <span class="mi">322</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">5294</span>         <span class="mi">323</span>   <span class="c1"># downstream (34 - 5)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>           <span class="mi">5</span>         <span class="mi">324</span>   <span class="c1"># downstream (34 - 5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This section only explains the <strong>geometric</strong> assignment of boundary types in the <code class="docutils literal notranslate"><span class="pre">*.cli</span></code> files. In addition, (sediment) <strong>fluxes</strong> across these open boundaries are to be <strong>defined in the (Gaia) steering file</strong>. The prescription (and initialization) of sediment fluxes differs for bedload (discharge per boundary) and suspended load (concentration per sediment class fraction) and this is why the implementation of sediment flux prescriptions is defined in separate sections (i.e., <a class="reference internal" href="gaia-bedload.html#gaia-bc-bl"><span class="std std-ref">boundary prescriptions for bedload</span></a> and <a class="reference internal" href="gaia-suspended.html#gaia-bc-sl"><span class="std std-ref">concentration prescriptions for suspended load</span></a>).</p>
+</section>
+<section id="riverbed-composition">
+<h2>Riverbed Composition<a class="headerlink" href="#riverbed-composition" title="Permalink to this headline">#</a></h2>
+<section id="sediment-classes">
+<span id="gaia-sed"></span><h3>Sediment Classes<a class="headerlink" href="#sediment-classes" title="Permalink to this headline">#</a></h3>
+<p>The essential physical parameters embrace sediment type, grain sizes, and definitions of
+transport mechanisms that apply to the simulation. This tutorial deals with non-cohesive sediment only, which is defined through the keywords setting <code class="docutils literal notranslate"><span class="pre">TYPE</span> <span class="pre">OF</span> <span class="pre">SEDIMENT</span> <span class="pre">:</span> <span class="pre">NCO</span></code>.</p>
+<div class="admonition-cohesive-sediment-transport admonition">
+<p class="admonition-title">Cohesive sediment transport</p>
+<p>Gaia considers sediment with grain diameters of less than 60<span class="math notranslate nohighlight">\(\cdot\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m to 100<span class="math notranslate nohighlight">\(\cdot\)</span>10<span class="math notranslate nohighlight">\(^{-6}\)</span>m being cohesive. To model such fine sediment, where capillary forces may have significant effects on erosion, adaptations in the boundary conditions file and types are required. In the cohesive sediment case, the <strong>TYPE OF SEDIMENT</strong> keyword is <code class="docutils literal notranslate"><span class="pre">CO</span></code>. Read more about modeling cohesive sediment in section 3.3.3 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/gaia/user/gaia_user_v8p4.pdf">Gaia manual</a>.</p>
+</div>
+<p>Gaia enables the differentiation between classes of sediment diameters with the <strong>CLASSES SEDIMENT DIAMETERS</strong> keyword (same keyword for both bedload and suspended load). This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assigns a grain density (<strong>CLASSES SEDIMENT DENSITY</strong>) of 2680 kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> to the three classes. The grain sizes correspond to representative mean (average) diameters for every class. The <strong>CLASSES INITIAL FRACTION</strong> keyword is a list assigning a fraction (i.e., the share of the total sediment) to each of the three classes. Make sure that the <strong>sum of all fractions is exactly 1.0</strong>. Moreover, as <em>INITIAL</em> already suggests, the here defined fractions correspond to the initial state and Gaia will re-mix the sediment fractions as a function of erosion and deposition of sediment size classes.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PHYSICAL</span><span class="w"> </span><span class="n">PARAMETERS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">SEDIMENT</span>
+<span class="o">/</span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="k">TYPE </span><span class="n">OF</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NCO</span><span class="p">;</span><span class="n">NCO</span><span class="p">;</span><span class="n">NCO</span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"> </span><span class="n">DIAMETERS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.0005</span><span class="p">;</span><span class="mf">0.02</span><span class="p">;</span><span class="mf">0.1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">m</span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">SEDIMENT</span><span class="w"> </span><span class="n">DENSITY</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="p">;</span><span class="mi">2680</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">kg</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">m3</span>
+<span class="n">CLASSES</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="nb">FRACTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span><span class="mf">0.65</span><span class="p">;</span><span class="mf">0.25</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="nb">sum </span><span class="n">up</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>The particle size classes can also be assigned specific <a class="reference internal" href="../../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> values (<strong>CLASSES CRITICAL SHEAR STRESS</strong>) or settling velocities (<strong>CLASSES SETTLING VELOCITIES</strong>), for example, to impose no-erosion or no-deposition conditions. Note that the SISYPHE keyword NUMBER OF SIZE-CLASSES OF BED MATERIAL is obsolete in Gaia.</p>
+<p>Particular sediment transport formulae for simulating <a class="reference internal" href="../../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> or <a class="reference internal" href="../../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> are related to the phenomena under consideration and their implementation in the Gaia steering file is explained in the next sections.</p>
+<div class="tip admonition">
+<p class="admonition-title">Zonal sediment size and fraction definitions</p>
+<p>Sediment size classes can be declared for particular zones of a model, similar to friction zones (recall the friction zone box at the bottom of the <a class="reference internal" href="telemac2d-steady.html#tm2d-friction"><span class="std std-ref">section on friction boundaries</span></a>). Thus, a Selafin (<code class="docutils literal notranslate"><span class="pre">*.slf</span></code>) file containing riverbed characteristics can be declared with the geometry in the Gaia steering file. An example for zonal sediment definitions is provided with the Wilcock-Crowe model in the TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">/telemac/v8p2/examples/gaia/wilcock_crowe-t2d/</span></code> -  have a look at <strong>gai_ref_WC2003.slf</strong> in <a class="reference internal" href="../../get-started/install-telemac.html#bluekenue"><span class="std std-ref">BlueKenue</span></a>).</p>
+</div>
+</section>
+<section id="active-layer">
+<span id="gaia-active-lyr"></span><h3>Active Layer<a class="headerlink" href="#active-layer" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference internal" href="#gaia-bc"><span class="std std-ref">boundary conditions</span></a> of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) <span id="id1">[<a class="reference internal" href="../../documentation/bibliography.html#id1389" title="K.G. Renard. Predicting soil erosion by water: a guide to conservation planning with the revised universal soil loss equation (RUSLE). Technical Report 703, United States Department of Agriculture, Washington, D.C., USA, 1997. URL: https://www.ars.usda.gov/arsuserfiles/64080530/rusle/ah_703.pdf.">Ren97</a>]</span>. Sediment that just passes through the model and merely settles from time to time before being mobilized again (by <span id="id2">Einstein [<a class="reference internal" href="../../documentation/bibliography.html#id179" title="Hans Albert Einstein. The Bed-Load Function for Sediment Transport in Open Channel Flows. Technical Bulletin of the USDA Soil Conservation Service, 1026:71, 1950. URL: https://ageconsearch.umn.edu/record/156389, doi:10.22004/ag.econ.156389.">Ein50</a>]</span>s theory) is referred to as wash load or traveling bedload <span id="id3">[<a class="reference internal" href="../../documentation/bibliography.html#id461" title="Guillaum Piton and Alain Recking. The concept of travelling bedload and its consequences for bedload computation in mountain streams. Earth Surface Processes and Landforms, (\textit in press):52, 2017. doi:10.1002/esp.4105.">PR17</a>]</span>. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification in the riverbed with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers <span id="id4">[<a class="reference internal" href="../../documentation/bibliography.html#id1370" title="Muneo Hirano. River-Bed Degradation with Armoring. Proceedings of the Japan Society of Civil Engineers, 1971(195):55–65, 1971. doi:10.2208/jscej1969.1971.195_55.">Hir71</a>]</span>. <strong>Above the active layer</strong> of the riverbed <strong>is the mixing layer</strong>, which is in direct contact with the bulk water flow. <a class="reference internal" href="#active-layers"><span class="std std-numref">Figure 149</span></a> qualitatively illustrates this concept, where the uppermost layer corresponds to the mixing layer and the lower sublayers constitute the active layer of the riverbed.</p>
+<figure class="align-default" id="active-layers">
+<img alt="active mixing layer riverbed hyporheic zone" src="../../_images/active-layers-web.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 149 </span><span class="caption-text">Qualitative illustration of the active layer in the form of multiple sublayers of the riverbed. In this illustration, the uppermost layer corresponds to the mixing layer (Figure conceptually adapted from <span id="id5">Du Boys [<a class="reference internal" href="../../documentation/bibliography.html#id171" title="P Du Boys. Etudes du régime du Rhône et l 'action exercée par les eaux sur un lit à fond de graviers indéfiniment affouillable [Studies of the flow of the Rhone and the forces exerted by the waters on an indefinitely erodible gravel bed]. Annales des Ponts et Chaussées, 5(18):141–195, 1879.">DB79</a>]</span> and <span id="id6">Church and Haschenburger [<a class="reference internal" href="../../documentation/bibliography.html#id127" title="Michael Church and Judy K Haschenburger. What is the &quot;active layer&quot;? Water Resources Research, 53:5–10, 2017. doi:10.1002/2016WR019675.">CH17</a>]</span>).</span><a class="headerlink" href="#active-layers" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The active layer concept was initially introduced by <span id="id7">Du Boys [<a class="reference internal" href="../../documentation/bibliography.html#id171" title="P Du Boys. Etudes du régime du Rhône et l 'action exercée par les eaux sur un lit à fond de graviers indéfiniment affouillable [Studies of the flow of the Rhone and the forces exerted by the waters on an indefinitely erodible gravel bed]. Annales des Ponts et Chaussées, 5(18):141–195, 1879.">DB79</a>]</span> as a sequence of layers of the riverbed, which are moving at different speeds (the deeper the layer, the slower). <span id="id8">Du Boys [<a class="reference internal" href="../../documentation/bibliography.html#id171" title="P Du Boys. Etudes du régime du Rhône et l 'action exercée par les eaux sur un lit à fond de graviers indéfiniment affouillable [Studies of the flow of the Rhone and the forces exerted by the waters on an indefinitely erodible gravel bed]. Annales des Ponts et Chaussées, 5(18):141–195, 1879.">DB79</a>]</span> described that the thickness of every layer was equal to the diameter of representative grain size and that the active bed (i.e., the sum of all moving layers) can be up to 10 times the representative grain size (i.e., approximately 10 grain diameters) <span id="id9">[<a class="reference internal" href="../../documentation/bibliography.html#id1391" title="Philippe Frey and Michael Church. Bedload: a granular phenomenon. Earth Surface Processes and Landforms, 36(1):58–69, 2011. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/esp.2103 (visited on 2021-08-05), doi:10.1002/esp.2103.">FC11</a>, <a class="reference internal" href="../../documentation/bibliography.html#id1390" title="F. Ravelet, F. Bakir, S. Khelladi, and R. Rey. Experimental study of hydraulic transport of large particles in horizontal pipes. Experimental Thermal and Fluid Science, 45:187–197, February 2013. URL: https://www.sciencedirect.com/science/article/pii/S089417771200310X (visited on 2021-08-05), doi:10.1016/j.expthermflusci.2012.11.003.">RBKR13</a>]</span>. <span id="id10">Hirano [<a class="reference internal" href="../../documentation/bibliography.html#id1370" title="Muneo Hirano. River-Bed Degradation with Armoring. Proceedings of the Japan Society of Civil Engineers, 1971(195):55–65, 1971. doi:10.2208/jscej1969.1971.195_55.">Hir71</a>]</span> picked up on this concept and characterized the active layer as an exchange layer with a thickness of multiple times the <span class="math notranslate nohighlight">\(D_{50}\)</span>, between an immobile sublayer and a fully mobile layer in the bulk flow along the riverbed. Several processes (e.g., hydraulic shear, grain collision, or sorting) dominate within the exchange layer and the thickness of the exchange layer has been defined differently by several authors. One reason for the different definitions of the active layer thickness is that it also depends on the proportion of fine sediment contents. The difference between coarse and fine sediment is that it might build up bedforms such as ripples or dunes. Thus, in the presence of fine sediments, such as sand (diameter smaller than 1-2 mm), only models accounting for bedforms in the active layer can reproduce bed aggradation or degradation and grain sorting effects <span id="id11">[<a class="reference internal" href="../../documentation/bibliography.html#id1392" title="Astrid Blom. Different approaches to handling vertical and streamwise sorting in modeling river morphodynamics. Water Resources Research, 2008. URL: https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2006WR005474 (visited on 2021-08-05), doi:10.1029/2006WR005474.">Blo08</a>]</span>. However, a model considering bedforms composed of fine sediments describes the active layer as a function of (0.5 times) the height of dunes (i.e., mega ripples) <span id="id12">[<a class="reference internal" href="../../documentation/bibliography.html#id1393" title="Maarten G. Kleinhans. Dune-Phase Fluvial Transport and Deposition Model of Gravelly Sand. In Fluvial Sedimentology VII, International Conference on Fluvial Sedimentology, pages 75–97. John Wiley &amp; Sons, Ltd, Lincoln, NE, USA, 2005. URL: https://onlinelibrary.wiley.com/doi/abs/10.1002/9781444304350.ch5 (visited on 2021-08-05).">Kle05</a>]</span>, which contrasts with the definition of the active layer thickness as a multiple of a grain diameter (e.g., 3<span class="math notranslate nohighlight">\(\cdot D_{50}\)</span>). Thus, there are <strong>two</strong> competing parametric and <strong>conceptual definitions of the active layer</strong>, which is why <span id="id13">Church and Haschenburger [<a class="reference internal" href="../../documentation/bibliography.html#id127" title="Michael Church and Judy K Haschenburger. What is the &quot;active layer&quot;? Water Resources Research, 53:5–10, 2017. doi:10.1002/2016WR019675.">CH17</a>]</span> propose the following terminology that is adapted in this eBook:</p>
+<ul class="simple">
+<li><p>The <strong>active layer describes the immediately mobile riverbed</strong> where <strong>real-time</strong>, <strong>dynamic</strong> particle displacement happens. Its thickness is a multiple of the characteristic grain diameter.</p></li>
+<li><p>The <strong>disturbance layer encompasses sand wave progression</strong> in the form of <strong>scour and fill</strong> on an <strong>event scale</strong>. Its thickness is 0.5 times the dune (or ripple) height.</p></li>
+</ul>
+<p>Though Gaia accepts only an <strong>ACTIVE LAYER THICKNESS</strong> keyword, it may refer to the <em>active layer</em> as a multiple of the representative grain size, or when fine sediment is present (<span class="math notranslate nohighlight">\(\geq\)</span> 20%), to the <em>disturbance layer</em> with a thickness of 0.5 times the dune height. When the riverbed is composed not of cobble and gravel and a small share of fine sediment (approximately between 1% and 20%), the active layer thickness should be generously assumed with a multiple (2-3 times) of the cobble size.</p>
+<p>Moreover, the thickness of the active layer is a user-defined <strong>target</strong> value in Gaia. Thus, Gaia will iterate based on hydrodynamics and sediment characteristics toward the user-defined active layer thickness. In particular, Gaia erodes the user-defined <a class="reference internal" href="#gaia-sed"><span class="std std-ref">sediment size classes</span></a> from the active layer as a function of hydrodynamics computed with Telemac2d/3d. The eroded sediment is then transported in the form of <a class="reference internal" href="gaia-bedload.html#gaia-bl"><span class="std std-ref">bedload</span></a> or <a class="reference internal" href="gaia-suspended.html#gaia-sl"><span class="std std-ref">suspended load</span></a>. To this end, Gaia creates the active layer with the user-defined sediment classes at the surface of the riverbed at the beginning of a simulation. During the simulation, Gaia not only erodes the sediment but also redeposits it depending on hydrodynamics and sediment characteristics, and it modifies the user-defined initial values of sediment class fractions. Thus, Gaia changes the active layer during the simulation in space and in time and it uses the <strong>ACTIVE LAYER THICKNESS</strong> as target value (not as a forced constant).</p>
+<p>The riverbed can be stratified into several sublayers (cf. <a class="reference internal" href="#active-layers"><span class="std std-numref">Fig. 149</span></a>) by defining the <strong>NUMBER OF LAYERS FOR INITIAL STRATIFICATION</strong> keyword (integer). Gaia then vertically divides the riverbed into the number of user-defined layers plus one, where the plus-one layer corresponds to the active layer. In addition, the thickness of the riverbed layers can be defined with the <strong>LAYERS INITIAL THICKNESS</strong> keyword. If the <strong>ACTIVE LAYER THICKNESS</strong> is larger than the riverbed’s <strong>LAYERS INITIAL THICKNESS</strong>, Gaia will mix the stratified layers down to the <strong>ACTIVE LAYER THICKNESS</strong>. However, the active layer thickness is not a forced value in Gaia. Thus, if the active layer thickness is larger than the riverbed layer thickness, Gaia will not erode beyond the riverbed layer thickness.</p>
+<div class="admonition-what-happens-when-gaia-has-to-deposit-sediment admonition">
+<p class="admonition-title">What happens when Gaia has to deposit sediment?</p>
+<p>Sediment deposition at a grid node corresponds to a mass flux into the active layer. Because Gaia is programmed to conserve the mass of the active layer, a portion corresponding to the volume of deposition is passed to the riverbed. Thus, Gaia changes the composition of the active layer and the riverbed layers below the active layer when sediment deposits.</p>
+</div>
+<p>In this tutorial, a sand, gravel, and cobble sediment mix is used with an <strong>ACTIVE LAYER THICKNESS</strong> of 3 <span class="math notranslate nohighlight">\(\cdot D_{90}\)</span> (of cobble). The riverbed is initially stratified into three sublayers (plus the 0.3-m thick active layer) and the initial thickness of the riverbed layers is assumed with 1.5 m with the following keyword definitions in the Gaia steering file:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">continued</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span>
+<span class="o">/</span><span class="w"> </span><span class="n">RIVERBED</span><span class="w"> </span><span class="n">LAYERS</span>
+<span class="n">ACTIVE</span><span class="w"> </span><span class="n">LAYER</span><span class="w"> </span><span class="n">THICKNESS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">D90</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">10000</span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">LAYERS</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">STRATIFICATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">1</span>
+<span class="n">LAYERS</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">THICKNESS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">100</span>
+</pre></div>
+</div>
+<p>Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. Non-cohesive sediment in the form of gravel and cobble is transported as bedload and sand is transported in suspension. Cohesive sediment is purely transported as suspended load. The <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/gaia/user/gaia_user_v8p4.pdf">Gaia manual</a> provides more information on the transport of mixed (cohesive and non-cohesive) sediment in section 3.2.1. In addition, riverbed consolidation can be simulated by defining the <strong>BED MODEL</strong> keyword with <code class="docutils literal notranslate"><span class="pre">2</span></code> (cf. <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/gaia/user/gaia_user_v8p4.pdf">Gaia manual</a>, section 3.3).</p>
+</section>
+</section>
+<section id="bedload-vs-suspended-load">
+<h2>Bedload vs. Suspended Load<a class="headerlink" href="#bedload-vs-suspended-load" title="Permalink to this headline">#</a></h2>
+<p>Sediment transport modeling quickly becomes computationally expensive. Therefore, it is important to be clear about the primary type of sediment transport mode and to activate only the most important phenomenon (i.e., either <a class="reference internal" href="../../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> or <a class="reference internal" href="../../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a>). For this reason, answer the question <em><strong>What type of sediment transport phenomenon is predominant in the model?</strong></em> If you are not sure about the answer to this question, revise the section on <a class="reference internal" href="gaia-coupling.html#gaia-seditrans"><span class="std std-ref">sediment transport modes</span></a>. In addition, here are some practice-oriented suggestions:</p>
+<ul class="simple">
+<li><p><strong>Bedload only</strong>: Modeling suspended load in a gravel-cobble bed river with a sand content (i.e., the sediment is mostly larger than 2 mm) of less than 5-10% is not purposeful and the definition <code class="docutils literal notranslate"><span class="pre">SUSPENSION</span> <span class="pre">FOR</span> <span class="pre">ALL</span> <span class="pre">SANDS</span> <span class="pre">:</span> <span class="pre">NO</span></code> should be used. In this case, the <a class="reference internal" href="gaia-bedload.html#gaia-bl"><span class="std std-ref">section on bedload modeling</span></a> provides all necessary information and the suspended load section can be skipped.</p></li>
+<li><p><strong>Suspended load only</strong>: Fine particle displacement in reservoirs, lakes, or coastal areas, primarily involves suspended load processes. If the sediment is generally finer than 1 mm, modeling bedload may not be necessary. In this case, skip the bedload modeling section and directly jump to the <a class="reference internal" href="gaia-suspended.html#gaia-sl"><span class="std std-ref">section on suspended load modeling</span></a>.</p></li>
+<li><p><strong>Bedload and suspended load</strong>: When the sediment mixture involves sand particles with diameters between 1-2 mm, and/or particles that may be both finer or coarser, mixed transport processes drive sediment transport. In this case, both sections on <a class="reference internal" href="gaia-bedload.html#gaia-bl"><span class="std std-ref">bedload</span></a> and <a class="reference internal" href="gaia-suspended.html#gaia-sl"><span class="std std-ref">suspended load</span></a> modeling should be accomplished.</p></li>
+<li><p><strong>Cohesive sediment</strong>: When cohesive sediment is in the system (i.e., grain diameters of less than 0.06 mm), <a class="reference internal" href="gaia-suspended.html#gaia-sl"><span class="std std-ref">suspended load</span></a> modeling must be activated.</p></li>
+</ul>
+<p>This eBook features the implementation of combined bedload and suspended load modeling in a short river section with a gravel-cobble bed and a sand content of 10% (with the 0.5-mm class).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/jupyter-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./numerics/telemac"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="gaia-coupling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction and Coupling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="gaia-bedload.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bedload</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-parameters">General Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riverbed-composition">Riverbed Composition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sediment-classes">Sediment Classes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#active-layer">Active Layer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bedload-vs-suspended-load">Bedload vs. Suspended Load</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -133,6 +133,13 @@ Dimensionless bed shear stress
 
   *French: Cisaillement adimensionel <br>German: Dimensionslose Schubspannung*
 
+
+Dirichlet boundary condition
+  A Dirichlet boundary condition (after Johann Peter Gustav Lejeune Dirichlet) prescribes values for the solutions of ordinary or partial differential equations at the boundaries (i.e., outer edges) of a (numerical) model. This is why Dirichlet boundary conditions are also called first-order boundary conditions. In contrast, a second-order {term}`Neumann boundary condition` prescribes values for the derivatives of ordinary or partial differential equations {cite:p}`kundu_fluid_2008`.
+
+  *French: Condition aux limites de Dirichlet <br>German: Dirichlet-Randbedingung*
+
+
 Echo sounder
   An echo sounder emits an acoustic signal under water, which is reflected by the objects of the underwater landscape. Echo sounding is an active {term}`Sonar` technique and enables the creation of an underwater DEM, which is also referred to as bathymetry. To perform echo sounding a probe must be installed on a boat that requires a minimum navigable water depth. In addition, the use of the echo sounder (probe) itself also requires a minimum water depth to operate with little noise inference. Therefore, by experience, a minimum water depth of 1-2 m is necessary to survey the bathymetry of a river by echo sounding. Echo sounding can be performed with single-beam (one underwater spot) or multi-beam (underwater surface) devices.
 
@@ -253,6 +260,11 @@ Navier-Stokes equations
   Contemporary models predominantly use a specific form of the Navier-Stokes equations, notably the {term}`Reynolds-averaged Navier-Stokes (RANS) <RANS>` equations.
 
   *French: Équations de Navier-Stokes <br>German: Navier-Stokes-Gleichungen*
+
+Neumann boundary condition
+  A Neumann boundary condition (after Carl Gottfried Neumann) prescribes values for the derivatives of ordinary or partial differential equations at the boundaries (i.e., outer edges) of a (numerical) model. This is why Neumann boundary conditions are also called second-order boundary conditions. In contrast, a first-order {term}`Dirichlet boundary condition` prescribes values for the solutions of ordinary or partial differential equations {cite:p}`kundu_fluid_2008`.
+
+  *French: Condition aux limites de Neumann <br>German: Neumann-Randbedingung*
 
 Oceanodromous
   Oceanodromous {term}`fish guilds <Guild>` exclusively live in oceans. while oceanodromous fish may encounter {term}`diadromous fish <Diadromous>` (migrate from the sea to freshwaters), they will very likely never meet {term}`potamodromous <Potamodromous>` fish {cite:p}`myers_fish_1949`. Examples for oceanmodromous fish are Atlantic mackerels (*Scomber scombrus*) or Atlantic herring (*Clupea harengus*).

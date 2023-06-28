@@ -84,7 +84,7 @@ By using BASEmesh, this tutorial employs BASEMENT's efficient mesh generator to 
 (get-dem-xyz)=
 ## Load DEM
 
-This tutorial uses height information that is stored in a {term}`DEM`. For the QGIS section, preferably use the {term}`GeoTIFF` {term}`DEM` with UTM zone 33N as {term} `CRS` as follows:
+This tutorial uses height information that is stored in a {term}`DEM`. For the QGIS section, preferably use the {term}`GeoTIFF` {term}`DEM` with UTM zone 33N as {term}`CRS` as follows:
 
 * [**Download the GeoTIFF DEM**](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
 * Add the downloaded DEM as a new raster layer in *QGIS*:

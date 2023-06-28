@@ -163,7 +163,7 @@ sudo apt install -y cmake build-essential dialog vim gedit gedit-plugins
 ```
 
 
-### Get TELEMAC Repo
+### Get the TELEMAC Repo
 
 ***Estimated duration: 25-40 minutes (large downloads).***
 
@@ -749,22 +749,35 @@ TELEMAC should startup, run the example case, and again end with the phrase `My 
 If you interrupted the Terminal session and get an error message such as `No such file or directory`, you may need to re-define (re-load) the Python source file: In Terminal go (`cd`) to `~/telemac/configs`, type `source pysource.gfortranHPC.sh` > `config.py`, and then go back to the `examples` folder to re-run the example.
 ```
 
-### Generate Example Case Docs
+### Generate Telemac Docs
 
-TELEMAC comes with many application examples in the sub-directory `~/telemac/examples/`. To generate the documentation and verify the TELEMAC installation, load the TELEMAC environment and validate it (essentially runs through all examples, but some of them are broken and will cause script crashes):
+TELEMAC comes with many application examples in the subdirectory `~/telemac/examples/` and the documentation plus reference manuals can be generated locally. To this end, make sure to source the TELEMAC environment: 
 
 ```
-cd ~/telemac/configs/
-source pysource.gfortranHPC.sh
-cd ..
-config.py
+source ~/telemac/configs/pysource.gfortranHPC.sh
+```
+
+To generate the user manual type (takes a while):
+
+```
+doc_telemac.py
+```
+
+To generate the reference manual type:
+
+```
+doc_telemac.py --reference
+```
+
+To create the documentation of all example causes use:
+
+```
 validate_telemac.py
 ```
 
 ```{note}
-The `validate_telemac.py` script may fail to run when not all modules are installed (e.g., *Hermes* is missing).
+The `validate_telemac.py` essentially runs through all examples, but some of them are broken and will cause the script to crash. This may also happen if not all modules are installed (e.g., *Hermes* is missing).
 ```
-
 
 
 
