@@ -16,6 +16,13 @@ The first steps in numerical modeling of a river with BASEMENT consist in the co
 All software applications featured in this tutorial can be run on *Linux*, *Windows*, and *macOS* (in theory - not tested) platforms. Note that {ref}`chpt-basement` itself will not work on *macOS* platforms.
 ```
 
+```{admonition} Recall: BASEMENT versions, BASEMD, and BASEHPC
+:class: note
+
+BASEMENT version 2 (v2) was developed with complex structures and a broad range of capacities, yet little focus was drawn on computing time. BASEMENT version 3 (v3) considerably simplified the modeling process for users and came with highly efficient computing options, including massive parallelization on GPUs. However, the simplified v3 lacks many relevant modules, such as multi-layer riverbeds for calculating topographic change as a function of multi-grain size bedload transport formulae. Now, BASEMENT version 4 (v4) provides both the manifold capacities of v2 in the form of BASEMD setups, and the computing efficiency of v3 in the form of BASEHPC setups. This tutorial explains the setup of a BASEHPC model.
+
+```
+
 (start-qgis)=
 ## QGIS Setup
 

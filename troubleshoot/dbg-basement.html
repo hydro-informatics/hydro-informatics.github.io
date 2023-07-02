@@ -523,7 +523,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-geospatial-model-output">Export geospatial model output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-of-xdmf-model-output-fails">Import of XDMF Model Output Fails</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xdmf-error-of-wrong-versions">XDMF error of wrong versions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xdmf-error-of-wrong-simulation-directories">XDMF error of wrong simulation directories</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -538,12 +542,37 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="debugging-basement">
 <h1>Debugging BASEMENT<a class="headerlink" href="#debugging-basement" title="Permalink to this headline">#</a></h1>
 <p>Since its early development, <em>BASEMENT</em> has become a robust an reliable tool for the numerically modelling of rivers. Yet there are a few little challenges and this page provides some answers (under development).</p>
-<section id="export-geospatial-model-output">
-<h2>Export geospatial model output<a class="headerlink" href="#export-geospatial-model-output" title="Permalink to this headline">#</a></h2>
+<section id="import-of-xdmf-model-output-fails">
+<span id="dbg-bm-xdmf"></span><h2>Import of XDMF Model Output Fails<a class="headerlink" href="#import-of-xdmf-model-output-fails" title="Permalink to this headline">#</a></h2>
+<section id="xdmf-error-of-wrong-versions">
+<h3>XDMF error of wrong versions<a class="headerlink" href="#xdmf-error-of-wrong-versions" title="Permalink to this headline">#</a></h3>
+<p>Depending on the system environment, the header of <code class="docutils literal notranslate"><span class="pre">results.xmdf</span></code> may not be readable for QGIS. The two below tabs show the wrong and correct header lines. To fix the issue, open <code class="docutils literal notranslate"><span class="pre">results.xmdf</span></code> in a text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> on Windows), replace the wrong with the correct header, and save the corrected <code class="docutils literal notranslate"><span class="pre">results.xmdf</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Wrong header</label><div class="sd-tab-content docutils">
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="p">&lt;</span><span class="nt">Xdmf</span> <span class="na">Version</span><span class="o">=</span><span class="s">&quot;3.0&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Correct header</label><div class="sd-tab-content docutils">
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE Xdmf SYSTEM &quot;Xdmf.dtd&quot; []&gt;</span>
+<span class="p">&lt;</span><span class="nt">Xdmf</span> <span class="na">Version</span><span class="o">=</span><span class="s">&quot;2.0&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="xdmf-error-of-wrong-simulation-directories">
+<h3>XDMF error of wrong simulation directories<a class="headerlink" href="#xdmf-error-of-wrong-simulation-directories" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code> contains geospatially explicit data (e.g., of flow velocity and water depth), which can be theoretically directly imported in <em>QGIS</em> with the <em>Crayfish</em> plugin (read more in the <a class="reference internal" href="../numerics/basement/basement2d.html#qgis-imp-steps"><span class="std std-ref">BASEMENT post-processing</span></a> section). However, there is a little issue: QGIS may crash because of an invalid directory. To fix it:</p>
 <ol class="arabic simple">
-<li><p>Open <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code> in a text editor (e.g., <a class="reference external" href="https://notepad-plus-plus.org/downloads/"><em>Notepad++</em></a>).</p></li>
-<li><p>Use the find-and-replace tool (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> keys in <em>Notpad++</em>) to remove file paths before <code class="docutils literal notranslate"><span class="pre">results_aux.h5</span></code>.</p>
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code> in a text editor (e.g., <a class="reference internal" href="../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> on Windows).</p></li>
+<li><p>Use the find-and-replace tool (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> keys in Notepad++) to remove file paths before <code class="docutils literal notranslate"><span class="pre">results_aux.h5</span></code>.</p>
 <ul class="simple">
 <li><p>Search the <code class="docutils literal notranslate"><span class="pre">results_aux.h5</span></code> string and identify the path written in front of it (e.g., <code class="docutils literal notranslate"><span class="pre">C:\temp\</span></code>).</p></li>
 <li><p>Find and replace that user path, for example: <code class="docutils literal notranslate"><span class="pre">Find</span></code> = <code class="docutils literal notranslate"><span class="pre">C:\temp\results_aux.h5</span></code> and <code class="docutils literal notranslate"><span class="pre">Replace</span> <span class="pre">with</span></code> = <code class="docutils literal notranslate"><span class="pre">results_aux.h5</span></code>.</p></li>
@@ -552,6 +581,7 @@ document.write(`
 <li><p>After having removed all path occurrences in the document, save and close <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code>.</p></li>
 </ol>
 <p>This issue is also discussed in the <a class="reference external" href="http://people.ee.ethz.ch/~basement/forum/viewtopic.php?id=5261">BASEMENT User Forum</a>).</p>
+</section>
 </section>
 </section>
 
@@ -616,7 +646,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export-geospatial-model-output">Export geospatial model output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-of-xdmf-model-output-fails">Import of XDMF Model Output Fails</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xdmf-error-of-wrong-versions">XDMF error of wrong versions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xdmf-error-of-wrong-simulation-directories">XDMF error of wrong simulation directories</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

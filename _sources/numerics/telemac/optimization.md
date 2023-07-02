@@ -29,6 +29,12 @@ STOP CRITERIA : 1.E-3;1.E-3;1.E-3 / use list of three values - defaults are 1.E-
 
 However, stop criteria are not functional for non-stationary flows (e.g., {cite:t}`von_karman_mechanische_1930` vortex street downstream of bridge piers). Read more about the convergence stop criteria in the {{ tm2d }} (section 5.1).
 
+```{admonition} More recommendations are in the user manual
+:class: tip
+
+The {{ tm2d }} provides more recommendations for computing time, stability, and model optimization, including the mesh, in section 16.
+```
+
 ## Stability & Physical Correctness
 
 ### Mass conservation
@@ -48,6 +54,7 @@ SCHEME FOR ADVECTION OF VELOCITIES : 3 / use 3, also for FV - MATRIX STORAGE mus
 SCHEME OPTION FOR ADVECTION OF VELOCITIES : 4 / overrides SUPG OPTION and OPTION FOR CHARACTERISTICS
 NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2 / increase for higher accuracy and longer computing time, requires SCHEME OF ADVECTION 3,4,5, or 15 and OPTION 2,3,4
 TYPE OF SOURCES : 2 / 2=Dirac is the only possibility for mass conservation, the default=1 means linear function and is not mass conservative
+CONTINUITY CORRECTION : YES / particularly important when not only discharge but also depth is imposed at boundaries
 ```
 
 

@@ -566,6 +566,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="run-and-check-a-steady-2d-simulation">
 <span id="basement2d"></span><h1>Run and Check a Steady 2d Simulation<a class="headerlink" href="#run-and-check-a-steady-2d-simulation" title="Permalink to this headline">#</a></h1>
+<div class="note admonition">
+<p class="admonition-title">Recall BASEMENT versions, BASEMD, and BASEHPC</p>
+<p>BASEMENT version 2 (v2) was developed with complex structures and a broad range of capacities, yet little focus was drawn on computing time. BASEMENT version 3 (v3) considerably simplified the modeling process for users and came with highly efficient computing options, including massive parallelization on GPUs. However, the simplified v3 lacks many relevant modules, such as multi-layer riverbeds for calculating topographic change as a function of multi-grain size bedload transport formulae. Now, BASEMENT version 4 (v4) provides both the manifold capacities of v2 in the form of BASEMD setups, and the computing efficiency of v3 in the form of BASEHPC setups. This tutorial explains the setup of a BASEHPC model.</p>
+</div>
 <p>In addition to the <a class="reference internal" href="../../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> file from the <a class="reference internal" href="../pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial, the numerical engine of BASEMENT needs a model setup file (<strong>model.json</strong>) and a simulation file (<strong>simulation.json</strong>), which both are created automatically by BASEMENT.</p>
 <p>The following sections describe how to make BASEMENT creating the required <a class="reference internal" href="../../jupyter/xml.html#json"><span class="std std-ref">JSON</span></a> files in a project directory such as <code class="docutils literal notranslate"><span class="pre">C:\Basement\steady2d-tutorial\</span></code> (<em>Windows</em>) or <code class="docutils literal notranslate"><span class="pre">~/Basement/steady2d-tutorial/</span></code> (<em>Linux</em>). Therefore, the <strong>first step is to create a project directory (folder)</strong>.</p>
 <div class="attention admonition">
@@ -579,34 +583,34 @@ document.write(`
 </ul>
 <section id="initiate-the-model">
 <h2>Initiate the Model<a class="headerlink" href="#initiate-the-model" title="Permalink to this headline">#</a></h2>
-<p>This section guides through the model setup, which is saved in a file called <code class="docutils literal notranslate"><span class="pre">/steady2d-tutorial/</span></code><strong>model.json</strong>. <strong>Start BASEMENT</strong> and <strong>select the folder created above</strong> as the <strong>Scenario Directory</strong>. <a class="reference internal" href="#bm-setup-start"><span class="std std-numref">Fig. 44</span></a> indicates the position of the directory selection button in addition to the <strong>Save Project</strong> button to regularly save the setup.</p>
+<p>This section guides through the model setup, which is saved in a file called <strong>model.json</strong> (here: in the folder <code class="docutils literal notranslate"><span class="pre">/steady2d-tutorial/</span></code>). <strong>Start BASEMENT</strong> and <strong>select the folder created above</strong> as the <strong>Scenario Directory</strong> (see <a class="reference internal" href="#bm-setup-start"><span class="std std-numref">Fig. 44</span></a>).</p>
 <figure class="align-default" id="bm-setup-start">
 <img alt="basement new project setup launch start" src="../../_images/setup-start.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 44 </span><span class="caption-text">BASEMENT’s welcome screen after selecting a <em>Scenario Directory</em> and with the <em>Save Project</em> button highlighted. The directory references may look different on other platforms (e.g., start with <strong>“C:/…</strong>).</span><a class="headerlink" href="#bm-setup-start" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">BASEMENT’s welcome screen after selecting a <em>Scenario Directory</em> with the <em>Save Project</em> button in the top-right corner. The directory references may look different on other platforms (e.g., start with <strong>“C:/…</strong> on Windows).</span><a class="headerlink" href="#bm-setup-start" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Next, <strong>left-click</strong> on <strong>SETUP</strong>, then <strong>right-click</strong> and select <strong>Add item DOMAIN</strong>. A new tab called <strong>Define Scenario Parameters</strong> opens. For the moment ignore the warning and error messages (red tags) and define a <strong>simulation_name</strong>:</p>
+<p>Next, <strong>left-click</strong> on <strong>SETUP</strong>, then <strong>right-click</strong> and select <strong>Add item BASEHPC</strong>. A new tab called <strong>Define Scenario Parameters</strong> opens. For the moment, ignore the warning and error messages (red tags) and define a <strong>simulation_name</strong>:</p>
 <ul class="simple">
-<li><p><strong>Right-click</strong> on <strong>SETUP</strong> and select <strong>Add item ‘simulation_name’</strong>. A new entry called <em>simulation_name</em> will appear in the <em>Define Scenario Parameters</em> tab.</p></li>
-<li><p><strong>Double-click</strong> on <strong>“RUNFILE”</strong> (default value behind <strong>simulation_name</strong>) and <strong>replace</strong> <code class="docutils literal notranslate"><span class="pre">RUNFILE</span></code> with <code class="docutils literal notranslate"><span class="pre">steady2d</span></code>.</p></li>
+<li><p><strong>Right-click</strong> on <strong>SETUP</strong> and select <strong>Add item ‘simulation_name’</strong>. A new entry called <em>simulation_name</em> will appear at the bottom of the <em>Define Scenario Parameters</em> tab.</p></li>
+<li><p><strong>Scroll to the bottom</strong>, <strong>double-click</strong> on <strong>“RUNFILE”</strong> (default value behind <strong>simulation_name</strong>) and <strong>replace</strong> <code class="docutils literal notranslate"><span class="pre">RUNFILE</span></code> with <code class="docutils literal notranslate"><span class="pre">steady2d</span></code>.</p></li>
 </ul>
-<p>Save the project and proceed with the next sections.</p>
+<p><strong>Scroll back</strong> to the <strong>top</strong>, and <strong>save the project</strong>, to proceed with the next sections.</p>
 </section>
 <section id="geometry-and-regions">
 <span id="bm-geometry"></span><h2>Geometry and Regions<a class="headerlink" href="#geometry-and-regions" title="Permalink to this headline">#</a></h2>
 <p>The <strong>GEOMETRY</strong> group in the <strong>Define Scenario Parameters</strong> tab tells the model, which <a class="reference internal" href="../../documentation/glossary.html#term-SMS-2dm"><span class="xref std std-term">SMS 2dm</span></a> mesh file to use and enables the definition of region and liquid boundary properties. To this end, make the following settings:</p>
 <ul class="simple">
-<li><p><strong>Double-click</strong> on the <strong>mesh_file</strong> entry and click on the folder symbol <br> <img alt="../../_images/select-meshfile.png" src="../../_images/select-meshfile.png" /></p></li>
+<li><p><strong>Double-click</strong> on the <strong>Value</strong> field of the <strong>mesh_file</strong> row and click on the folder symbol <br> <img alt="../../_images/select-meshfile.png" src="../../_images/select-meshfile.png" /></p></li>
 <li><p>In the popup window select the <a class="reference internal" href="../pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">previously created prepro-tutorial_quality-mesh-interp.2dm</span></a> and hit <strong>Enter</strong>.</p></li>
 </ul>
-<p>The mesh contains regions, which need to be defined in the model setup:</p>
+<p>The mesh created in the last chapter contains multiple regions, which also need to be defined in the model setup:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>GEOMETRY</strong> &gt; <strong>Add item REGIONDEF</strong></p></li>
-<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="../pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a> (see also <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 5</span></a>).</p></li>
+<li><p><strong>Add 5 region items</strong> by <strong>right-clicking</strong> on the new <strong>REGIONDEF</strong> entry &gt; <strong>Add item</strong>. The number of regions should correspond to the regions defined in the <a class="reference internal" href="../pre-qgis-bm.html#region-defs"><span class="std std-ref">pre-processing tutorial</span></a>, which are also below-listed in <a class="reference internal" href="#region-defs-bm"><span class="std std-numref">Tab. 5</span></a>.</p></li>
 <li><p>Define the five regions by a <strong>right-click</strong> on <strong>index</strong> &gt; <strong>Add item</strong>.</p>
 <ul>
-<li><p>Every <strong>index</strong> item gets an integer number assigned corresponding to the <strong>MATID</strong> field in the region points shapefile (see the <a class="reference internal" href="../pre-qgis-bm.html#regions"><span class="std std-ref">Region Markers</span></a> section in the <a class="reference internal" href="../pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial).</p></li>
+<li><p>Every <strong>index [0]</strong> item gets an integer number assigned corresponding to the MATID field in the region points shapefile (see the <a class="reference internal" href="../pre-qgis-bm.html#regions"><span class="std std-ref">Region Markers</span></a> section in the <a class="reference internal" href="../pre-qgis-bm.html#qgis-prepro-bm"><span class="std std-ref">Pre-processing with QGIS</span></a> tutorial).</p></li>
 <li><p>The <strong>name</strong> of every region item corresponds to the <strong>type</strong> field of the MATID.</p></li>
 </ul>
 </li>
@@ -658,19 +662,19 @@ document.write(`
 <p class="admonition-title">Save the project…</p>
 <p>Regularly save the model setup by clicking on the disk button (top-right corner, see <a class="reference internal" href="#bm-setup-start"><span class="std std-numref">Fig. 44</span></a>).</p>
 </div>
-<p>The <a class="reference internal" href="../pre-qgis-bm.html#liquid-boundary"><span class="std std-ref">Liquid (Hydraulic) Boundaries</span></a> from the pre-processing tutorial geographically define <strong>inflow and outflow</strong> lines with <strong>stringdef</strong> attributes that are incorporated in the height-interpolated mesh file (<em>prepro-tutorial_quality-mesh-interp.2dm</em>). To inform BASEMENT about the types and the properties of the liquid boundaries, complete the GEOMETRY section:</p>
+<p>The <a class="reference internal" href="../pre-qgis-bm.html#liquid-boundary"><span class="std std-ref">liquid (hydraulic) boundaries</span></a> from the pre-processing tutorial geographically define <strong>inflow and outflow</strong> lines with <strong>stringdef</strong> attributes that are incorporated in the mesh file (<em>prepro-tutorial_quality-mesh-interp.2dm</em>) with height (elevation) information. To communicate BASEMENT the types and the properties of the liquid boundaries, complete the GEOMETRY section:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>GEOMETRY</strong> &gt; <strong>Add item STRINGDEF</strong>.</p></li>
 <li><p><strong>Right-click</strong> on the new <strong>STRINGDEF</strong> item and select <strong>Add item</strong> two times. Thus, two items should be available to define the upstream and downstream liquid boundaries.</p></li>
 <li><p>Define STRINGDEF item <strong>[0]</strong> with:</p>
 <ul>
-<li><p><strong>name</strong> = <code class="docutils literal notranslate"><span class="pre">Inflow</span></code></p></li>
+<li><p><strong>name</strong> = <code class="docutils literal notranslate"><span class="pre">inflow</span></code></p></li>
 <li><p><strong>upstream_direction</strong> = <code class="docutils literal notranslate"><span class="pre">right</span></code></p></li>
 </ul>
 </li>
 <li><p>Define STRINGDEF item <strong>[1]</strong> with:</p>
 <ul>
-<li><p><strong>name</strong> = <code class="docutils literal notranslate"><span class="pre">Outflow</span></code></p></li>
+<li><p><strong>name</strong> = <code class="docutils literal notranslate"><span class="pre">outflow</span></code></p></li>
 <li><p><strong>upstream_direction</strong> = <code class="docutils literal notranslate"><span class="pre">right</span></code></p></li>
 </ul>
 </li>
@@ -686,35 +690,35 @@ document.write(`
 <section id="hydraulics">
 <span id="bm-hydraulics"></span><h2>Hydraulics<a class="headerlink" href="#hydraulics" title="Permalink to this headline">#</a></h2>
 <p>Hydraulic model characteristics that apply to the above-defined geometry setup are defined in the <strong>HYDRAULICS</strong> group of BASEMENT’s model setup. This tutorial uses the <strong>default</strong> for <strong>INITIAL</strong> conditions, which is <strong>“dry”</strong>. Also <strong>keep the default PARAMETERS</strong> for <strong><a class="reference internal" href="../../documentation/glossary.html#term-CFL"><span class="xref std std-term">CFL</span></a></strong> = <code class="docutils literal notranslate"><span class="pre">0.9</span></code>, <strong>fluid_density</strong> = <code class="docutils literal notranslate"><span class="pre">1000.0</span></code>, <strong>max_time_step</strong> = <code class="docutils literal notranslate"><span class="pre">100.0</span></code>, and <strong>minimum_water_depth</strong> =<code class="docutils literal notranslate"> <span class="pre">0.01</span></code>.</p>
-<p>Hydraulic values such as discharge or water depth must be assigned to the liquid boundaries defined above so that the numerical model knows how much water it must make running through the model. Therefore, <strong>add</strong> the following <strong>boundary</strong> definitions in the HYDRAULICS group:</p>
+<p>Hydraulic quantities, such as water depth and discharge, must be assigned to the liquid boundaries defined above so that the numerical model knows how much water it must make running through the model. Therefore, add the following boundary definitions in the HYDRAULICS group:</p>
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>HYDRAULICS</strong> and select <strong>Add item BOUNDARY</strong>.</p></li>
 <li><p><strong>Right-click</strong> on the new <strong>BOUNDARY</strong> item and select <strong>Add item STANDARD</strong>.</p></li>
-<li><p><strong>Right-click two times</strong> on the new <strong>STANDARD</strong> item and select <strong>Add item</strong>. Thus, there should be two items <strong>[0]</strong> and <strong>[1]</strong> to define the inflow and outflow conditions, respectively.</p></li>
+<li><p><strong>Right-click two times</strong> on the new <strong>STANDARD</strong> item and select <strong>Add item</strong> each time. Thus, there should be two items <strong>[0]</strong> and <strong>[1]</strong> to define the inflow and outflow conditions, respectively.</p></li>
 <li><p><strong>Define item [0]</strong> with the following <strong>inflow</strong> conditions:</p>
 <ul>
-<li><p><strong>Right-click</strong> on <strong>[0]</strong> and select <strong>Add item ‘discharge_file’</strong>.</p></li>
-<li><p>Click on the folder symbol to select the above-downloaded <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt">steady-inflow.txt</a> file.</p></li>
-<li><p>For <strong>name</strong> tap <code class="docutils literal notranslate"><span class="pre">Inflow</span></code>.</p></li>
-<li><p><strong>Right-click</strong> on <strong>[0]</strong> and select <strong>Add item ‘slope’</strong>.</p></li>
-<li><p>For the new <strong>slope</strong> item, define a value of <code class="docutils literal notranslate"><span class="pre">0.0044</span></code>.</p></li>
-<li><p>For <strong>string_def</strong> select the above-defined <code class="docutils literal notranslate"><span class="pre">inflow</span></code> STRINGDEF.</p></li>
+<li><p>For <strong>name</strong> enter <code class="docutils literal notranslate"><span class="pre">inflow</span></code>.</p></li>
+<li><p>For <strong>string_name</strong> select <em>inflow</em> (defined above).</p></li>
 <li><p>For <strong>type</strong> select <code class="docutils literal notranslate"><span class="pre">uniform_in</span></code></p></li>
+<li><p><strong>Right-click</strong> on <strong>[0]</strong> and select <strong>Add item ‘slope’</strong>.</p></li>
+<li><p>For the new <strong>slope</strong> item, define a value of <code class="docutils literal notranslate"><span class="pre">0.0044</span></code>. After entering the slope value, check if BASEMENT correctly understood the decimal separator: make sure to use the decimal separator of your system locale (e.g., on a European keyboard, it may be necessary to use <code class="docutils literal notranslate"><span class="pre">,</span></code> instead of <code class="docutils literal notranslate"><span class="pre">.</span></code>).</p></li>
+<li><p><strong>Right-click</strong> on <strong>[0]</strong> and select <strong>Add item ‘discharge_file’</strong>.</p></li>
+<li><p>In the new <em>discharge_file</em> row, click on the folder symbol to select the above-described <a class="reference external" href="https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt">steady-inflow.txt</a> file.</p></li>
 </ul>
 </li>
 <li><p><strong>Define item [1]</strong> with the following <strong>outflow</strong> conditions:</p>
 <ul>
-<li><p>For <strong>name</strong> tap <code class="docutils literal notranslate"><span class="pre">Outflow</span></code>.</p></li>
+<li><p>For <strong>name</strong> tap <code class="docutils literal notranslate"><span class="pre">outflow</span></code>.</p></li>
+<li><p>For <strong>string_name</strong> select the above-defined <code class="docutils literal notranslate"><span class="pre">outflow</span></code> STRINGDEF.</p></li>
+<li><p>For <strong>type</strong> select <code class="docutils literal notranslate"><span class="pre">uniform_out</span></code></p></li>
 <li><p><strong>Right-click</strong> on <strong>[1]</strong> and select <strong>Add item ‘slope’</strong>.</p></li>
 <li><p>For the new <strong>slope</strong> item, define a value of <code class="docutils literal notranslate"><span class="pre">0.0044</span></code>.</p></li>
-<li><p>For <strong>string_def</strong> select the above-defined <code class="docutils literal notranslate"><span class="pre">outflow</span></code> STRINGDEF.</p></li>
-<li><p>For <strong>type</strong> select <code class="docutils literal notranslate"><span class="pre">uniform_out</span></code></p></li>
 </ul>
 </li>
 </ul>
 <div class="note admonition">
 <p class="admonition-title">Liquid boundaries in practice</p>
-<p>In practice, better use a <a class="reference internal" href="../../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">Stage-discharge relation</span></a> for the downstream boundary condition, which in BASEMENT corresponds to <strong>type</strong> = <code class="docutils literal notranslate"><span class="pre">hqrelation_out</span></code>. The upstream inflow condition, however, is also often specified in practice only by discharge as a function of time, as shown in this tutorial. A critical factor of the discharge-only function of time is the <strong>slope</strong> field value, which corresponds to the energy slope and is often assumed to be equivalent to the channel slope. However, this assumption is <strong>only valid for steady flows</strong>, which almost never occur in reality. This is why, in practice, quasi-unsteady flow conditions are often used in the form of a time-dependent sequence of steady discharges, for example, to model a flood hydrograph.</p>
+<p>In practice, a <a class="reference internal" href="../../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">stage-discharge relation</span></a> might be preferable for the downstream boundary condition, which, in BASEMENT, corresponds to <strong>type</strong> = <code class="docutils literal notranslate"><span class="pre">hqrelation_out</span></code>. The upstream inflow condition, however, is also often specified in practice only by discharge as a function of time, as shown in this tutorial. A critical factor of the discharge-only function of time is the <strong>slope</strong> field value, which corresponds to the energy slope and is often assumed to be equivalent to the channel slope. However, this assumption is <strong>only valid for steady flows</strong>, which almost never occur in reality. This is why, in practice, quasi-unsteady flow conditions are often used in the form of a time-dependent sequence of steady discharges, for example, to model a flood hydrograph.</p>
 </div>
 <p><a class="reference internal" href="#bm-hy-standard"><span class="std std-numref">Figure 47</span></a> shows the definitions of STANDARD BOUNDARY items in BASEMENT’s HYDRAULIC model setup group.</p>
 <figure class="align-default" id="bm-hy-standard">
@@ -732,8 +736,7 @@ document.write(`
 <ul class="simple">
 <li><p><strong>Right-click</strong> on <strong>FRICTION</strong> &gt; <strong>Add item regions</strong>.</p></li>
 <li><p><strong>Right-click</strong> on the new <strong>regions</strong> item and select <strong>Add item</strong> (<strong>five times</strong> for the five regions).</p></li>
-<li><p>Assign the <strong>friction</strong> and <strong>region_def</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 6</span></a> to the <strong>five regions items</strong>.</p></li>
-<li><p>Set the <strong>type</strong> of the five regions to <strong>“strickler”</strong>.</p></li>
+<li><p>Assign the <strong>friction</strong> and <strong>region_name</strong> values listed in <a class="reference internal" href="#region-kst"><span class="std std-numref">Tab. 6</span></a> to the <strong>five regions items</strong>.</p></li>
 </ul>
 <table class="table" id="region-kst">
 <caption><span class="caption-number">Table 6 </span><span class="caption-text">Strickler values for HYDRAULIC FRICTION regions.</span><a class="headerlink" href="#region-kst" title="Permalink to this table">#</a></caption>
@@ -762,7 +765,7 @@ document.write(`
 <td><p>14</p></td>
 <td><p>39</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>region_def</strong></p></td>
+<tr class="row-odd"><td><p><strong>region_name</strong></p></td>
 <td><p>riverbed</p></td>
 <td><p>block_ramp</p></td>
 <td><p>gravel_bank</p></td>
@@ -785,7 +788,7 @@ document.write(`
 </section>
 <section id="write-setup-file">
 <span id="bm-export-setup"></span><h2>Write Setup File<a class="headerlink" href="#write-setup-file" title="Permalink to this headline">#</a></h2>
-<p>Make sure that all error messages are resolved and that the model setup resembles <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>. Before exporting the project, save the simulation setup (click on the disk symbol in the top-right corner in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>). Double-check that BASEMENT correctly wrote the files <strong>model.json</strong>, <strong>simulation.json</strong>, and <strong>results.json</strong> in the project directory (e.g., <code class="docutils literal notranslate"><span class="pre">/Basement/steady2d-tutorial/</span></code>). Export the model setup by clicking on the <strong>Write</strong> button (bottom-right corner in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>).</p>
+<p>Make sure that any potential warning or error message is resolved and that the model setup resembles <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>. Before exporting the project, save the simulation setup (click on the disk symbol in the top-right corner in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>). Double-check that BASEMENT correctly wrote the files <strong>model.json</strong>, <strong>simulation.json</strong>, and <strong>results.json</strong> in the project directory (e.g., <code class="docutils literal notranslate"><span class="pre">/Basement/steady2d-tutorial/</span></code>). Export the model setup by clicking on the <strong>Write</strong> button (bottom-right corner in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>).</p>
 <figure class="align-default" id="ready2export-setup">
 <img alt="basement export model setup h5" src="../../_images/setup-ready2export.png" />
 <figcaption>
@@ -793,13 +796,17 @@ document.write(`
 </figcaption>
 </figure>
 <p>The <strong>Console</strong> tab automatically activates and informs about the export progress. If the <strong>Error Output</strong> canvas is not empty, check the error messages and troubleshoot the causes.</p>
+<div class="error admonition">
+<p class="admonition-title">Out of range (NUM &gt;= 110) in file … Substance.cpp one line 188</p>
+<p>This error message can be related to an incoherent definition of string names in the .2dm mesh file and the model setup. Even varying capital letters could be the cause. For instance, if the last two lines (bottom of) <code class="docutils literal notranslate"><span class="pre">prepro-tutorial_quality-mesh-interp.2dm</span></code> define the liquid boundaries with all-lower letters <code class="docutils literal notranslate"><span class="pre">inflow</span></code> and <code class="docutils literal notranslate"><span class="pre">outflow</span></code>, but you called them <code class="docutils literal notranslate"><span class="pre">Inflow</span></code> and <code class="docutils literal notranslate"><span class="pre">Outflow</span></code>, correct the error either by renaming the strings at the bottom of the .2dm file, or correcting the <code class="docutils literal notranslate"><span class="pre">string_name</span></code> fields defined in the <a class="reference internal" href="#bm-hydraulics"><span class="std std-ref">HYDRAULICS section</span></a>.</p>
+</div>
 </section>
 <section id="setup-simulation-file">
 <span id="bm-sim-file"></span><h2>Setup Simulation File<a class="headerlink" href="#setup-simulation-file" title="Permalink to this headline">#</a></h2>
 <p>After the successful export of the model setup, the <strong>Simulation</strong> ribbon (on the left in <a class="reference internal" href="#ready2export-setup"><span class="std std-numref">Fig. 49</span></a>) becomes available for setting up the <strong>simulation.json</strong> file in the project folder. Click on the <strong>Simulation</strong> ribbon to setup the <em>simulation.json</em> file:</p>
 <ul class="simple">
-<li><p><strong>Right-click</strong> on the <strong>SIMULATION</strong> group in the <strong>Define Simulation Run</strong> tab and select <strong>Add item ‘OUTPUT’</strong>.</p></li>
-<li><p><strong>Right-click</strong> on the new <strong>OUTPUT</strong> item to define four output types:</p>
+<li><p><strong>Right-click</strong> on the <strong>SIMULATION</strong> group in the activated <strong>Define Simulation Run</strong> tab and select <strong>Add item ‘OUTPUT’</strong>.</p></li>
+<li><p><strong>Right-click</strong> on the new <strong>OUTPUT</strong> item to define five output types:</p>
 <ul>
 <li><p><strong>[0]</strong> = <code class="docutils literal notranslate"><span class="pre">water_depth</span></code></p></li>
 <li><p><strong>[1]</strong> = <code class="docutils literal notranslate"><span class="pre">water_surface</span></code></p></li>
@@ -819,7 +826,7 @@ document.write(`
 </ul>
 <div class="admonition-discharge-controls admonition">
 <p class="admonition-title">Discharge controls</p>
-<p>The output parameter <code class="docutils literal notranslate"><span class="pre">ns_hyd_discharge</span></code> (<em>ns</em> denotes <em>nodestring</em>) enables the verification of discharges at inflow and outflow boundaries (STRINGDEFs), which is a <strong>necessary requirement in practice</strong>. Learn more about mass balance verification in the <a class="reference internal" href="#bm-python"><span class="std std-ref">Python Simulation Verification</span></a> section.</p>
+<p>The output parameter <code class="docutils literal notranslate"><span class="pre">ns_hyd_discharge</span></code> (<em>ns</em> denotes <em>nodestring</em>) enables us to verify the discharge mass balance at inflow and outflow boundaries (STRING_NAMEs), which is a <strong>necessary requirement in practice</strong>. Learn more about mass balance controls in the <a class="reference internal" href="#bm-python"><span class="std std-ref">simulation verification</span></a> section.</p>
 </div>
 <p>The values defined in the TIME section refer to the same time units as defined in the above-downloaded and linked <em>steady-inflow.txt</em> file. <a class="reference internal" href="#bm-sim-setup"><span class="std std-numref">Figure 50</span></a> shows BASEMENT with the definitions in the Simulation ribbon.</p>
 <figure class="align-default" id="bm-sim-setup">
@@ -831,14 +838,14 @@ document.write(`
 </section>
 <section id="run-simulation-steady-2d">
 <span id="bm-run"></span><h2>Run Simulation (Steady 2d)<a class="headerlink" href="#run-simulation-steady-2d" title="Permalink to this headline">#</a></h2>
-<p>The simulation can be run with different options that mainly affect the computation speed (bottom of <a class="reference internal" href="#bm-sim-setup"><span class="std std-numref">Fig. 50</span></a>).</p>
+<p>The simulation can be run with different options that mainly affect the computing time (bottom of <a class="reference internal" href="#bm-sim-setup"><span class="std std-numref">Fig. 50</span></a>).</p>
 <ul class="simple">
 <li><p>The <strong>Standard Hardware</strong> frame enables to switch between single and multi-threaded CPU usage. The default option is multi-threaded, which is strongly recommended with contemporary computers.</p></li>
 <li><p>The <strong>High-performance Hardware</strong> frame enables to use a graphical processing unit (GPU), which can be significantly faster than CPU, but only when a powerful graphics processor is available. A standard-slow GPU will not have an advantage and may even slow down the computation. If you are not sure about the GPU of your computer, keep the default options (all void).</p></li>
 <li><p>The <strong>Options</strong> frame enables to choose:</p>
 <ul>
 <li><p>The <strong>Number of CPU cores</strong>, which enables to use multiple CPUs of a computer. Contemporary computers mostly have at least 8 cores that can all be used when you are working on a server or computer that has no other purpose than running numerical models. Otherwise, keep the system functional while the simulation is running by using half the number of available cores.</p></li>
-<li><p>Numeric precision; for faster simulations, select <strong>Single precision</strong>. For this tutorial, <em>Double</em> precision will work sufficiently fast as well, but in practice and for larger models use <em>Single</em> precision.</p></li>
+<li><p>Numeric precision; for faster simulations, select <strong>Single precision</strong>. For this tutorial, <em>Double</em> precision will work sufficiently fast as well, but in practice, <em>Single</em> precision is mostly sufficient and considerably faster.</p></li>
 </ul>
 </li>
 </ul>
@@ -847,7 +854,7 @@ document.write(`
 <p><strong>Windows</strong> users can fire up <strong>Task Manager</strong> (<em>Start</em> &gt; tap <code class="docutils literal notranslate"><span class="pre">task</span> <span class="pre">manager</span></code>) and look up the number of available cores in the Task Manager’s <strong>Performance</strong> tab.</p>
 <p><strong>Linux</strong> users get an overview of system resources by installing and using <a class="reference internal" href="../../get-started/vm.html#install-htop"><span class="std std-ref">htop</span></a>.</p>
 </div>
-<p>To start the simulation click on the <strong>Run</strong> button on the bottom-right of the BASEMENT window. Depending on the hardware and performance settings (e.g., number of CPUs), the simulation of the tutorial model takes approximately 2-10 minutes. BASEMENT informs about the simulation progress in the <strong>Console Output</strong> frame, where the <strong>Error Output</strong> frame should remain empty (see <a class="reference internal" href="#bm-sim-end"><span class="std std-numref">Fig. 51</span></a>). If any error occurs, go back to the above sections (or even to the <a class="reference internal" href="../../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">mesh generation tutorial</span></a>) and fix errors.</p>
+<p>To start the simulation click on the <strong>Run</strong> button on the bottom-right of the BASEMENT window. Depending on the hardware and performance settings (e.g., number of CPUs), the simulation of the tutorial model takes approximately 1-10 minutes. BASEMENT informs about the simulation progress in the <strong>Console Output</strong> frame, where the <strong>Error Output</strong> frame should remain empty (see <a class="reference internal" href="#bm-sim-end"><span class="std std-numref">Fig. 51</span></a>). If any error occurs, go back to the above sections (or even to the <a class="reference internal" href="../../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">mesh generation tutorial</span></a>) to fix errors.</p>
 <figure class="align-default" id="bm-sim-end">
 <img alt="basement simulation end" src="../../_images/simulation-end.png" />
 <figcaption>
@@ -887,6 +894,12 @@ document.write(`
 <li><p>In the <strong>Layers</strong> panel, <strong>double-click</strong> on <strong>prepro-tutorial_quality-mesh-interp.2dm</strong> to open the <strong>Layer Properties</strong> window.</p></li>
 <li><p>In the <strong>Layer Properties</strong>  window, go to the <strong>Source</strong> ribbon.</p></li>
 <li><p>In the <strong>Available Datasets</strong> frame (see <a class="reference internal" href="#qgis-assign-meshdata"><span class="std std-numref">Fig. 53</span></a>) click on the <strong>Assign Extra Data Set to Mesh</strong> button <img alt="../../_images/sym-add-meshdata.png" src="../../_images/sym-add-meshdata.png" /> and choose <code class="docutils literal notranslate"><span class="pre">results.xdmf</span></code>.</p></li>
+</ul>
+<div class="error admonition">
+<p class="admonition-title">Could not read mesh dataset.</p>
+<p>This error can be caused by two known formatting issues in BASEMENT. To troubleshoot it, have a look at our <a class="reference internal" href="../../troubleshoot/dbg-basement.html#dbg-bm-xdmf"><span class="std std-ref">chapter on debugging BASEMENT</span></a>.</p>
+</div>
+<ul class="simple">
 <li><p>In the <strong>Static Dataset</strong> frame, select a <strong>Scalar Dataset Group</strong> and use the maximum timestep (i.e., <code class="docutils literal notranslate"><span class="pre">625</span> <span class="pre">d</span> <span class="pre">00:00:00</span></code> in the case of simulation time <span class="math notranslate nohighlight">\(t\)</span>=15000 with an output interval of 1000).</p></li>
 <li><p>Click on <strong>Apply</strong> and <strong>OK</strong>.</p></li>
 </ul>

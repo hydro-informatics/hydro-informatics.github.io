@@ -1,10 +1,11 @@
 (chpt-basement)=
 # BASEMENT
 
-```{admonition} BASEMENT 4 is available
-:class: tip
+```{admonition} Old BASEMENT versions, BASEMD, and BASEHPC
+:class: important
 
-BASEMENT 4 merges the capacities of v2 and the power and ease of use of v3. It is now available at [https://basement.ethz.ch](https://basement.ethz.ch/), and the tutorials on hydro-informatics.com will soon be updated.
+BASEMENT version 2 (v2) was developed with complex structures and a broad range of capacities, yet little focus was drawn on computing time. BASEMENT version 3 (v3) considerably simplified the modeling process for users and came with highly efficient computing options, including massive parallelization on GPUs. However, the simplified v3 lacks many relevant modules, such as multi-layer riverbeds for calculating topographic change as a function of multi-grain size bedload transport formulae. Now, BASEMENT version 4 (v4) provides both the manifold capacities of v2 in the form of BASEMD setups, and the computing efficiency of v3 in the form of BASEHPC setups. This tutorial explains the setup of a BASEHPC model.
+
 ```
 
 This chapter guides through the setup of a two-dimensional (2d) numerical simulation with the freely available software BASEMENT developed at the ETH Zurich (Switzerland). Visit their [website](https://basement.ethz.ch/) to download the program and read the detailed documentation. This tutorial features:
