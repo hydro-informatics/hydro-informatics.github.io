@@ -19,12 +19,11 @@ This chapter guides through the setup of a two-dimensional (2d) numerical simula
 Completing this tutorial requires:
 
 * The installation of {ref}`qgis-install`.
-* The {term}`SMS 2dm` file resulting from the {ref}`qgis-prepro-bm` tutorial.
-* The installation of [BASEMENT v3.1.1](https://basement.ethz.ch/) or newer.
+* The installation of [BASEMENT v4.0.1](https://basement.ethz.ch/) or newer.
 * Optional: [ParaView](https://www.paraview.org/).
 ```
 
 ```{admonition} Platform compatibility
 :class: tip
-All software applications featured in this tutorial are **compatible with *Linux* and *Windows*** platforms. Note that BASEMENT is **not** available **for *macOS***.
+All software applications featured in this tutorial are **compatible with Linux and Windows** platforms. Note that BASEMENT is **not** available **for macOS**.
 ```
