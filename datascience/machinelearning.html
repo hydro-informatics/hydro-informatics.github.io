@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Machine Learning (ML) &#8212; Hydro-Informatics</title>
+    <title>Introduction &#8212; Hydro-Informatics</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Supervised Learning" href="supervised-learning.html" />
-    <link rel="prev" title="Dimensional Analysis" href="dimensional-analysis.html" />
+    <link rel="next" title="About Data" href="dimensional-analysis.html" />
+    <link rel="prev" title="Post-processing" href="../numerics/openfoam/of-tutorial-multiphase-post.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -270,6 +270,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../numerics/telemac/gaia-run.html">Run and Analyze</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/telemac/mass-balance-bc.html">Boundaries &amp; Mass Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerics/telemac/roughness.html">Roughness (Friction) Zones</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../numerics/telemac/optimization.html">Optimization</a></li>
 </ul>
 </li>
@@ -288,39 +290,28 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Science</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (ML)</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="data-science.html">Fundamentals (Coming soon)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="py-requirements.html">Python Requirements</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="data-prepro.html">Data Pre-Processing</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="data-types.html">The Nature of Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="data-cleaning.html">Dataset Cleaning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dimensional-analysis.html">Dimensional Analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensional-analysis.html">About Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="linear-classification.html">Linear Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-regression.html">Linear Regression</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Machine Learning (ML)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="linear-classification.html">Linear Classification</a></li>
-<li class="toctree-l4"><a class="reference internal" href="linear-regression.html">Linear Regression</a></li>
-</ul>
-</li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="non-linear-models.html">Non-linear models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l4"><a class="reference internal" href="kernelized-supervised-models.html">Kernels</a></li>
-<li class="toctree-l4"><a class="reference internal" href="morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="non-linear-models.html">Non-linear models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="kernelized-supervised-models.html">Kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
 
-<li class="toctree-l4"><a class="reference internal" href="three-based-methods.html">Three-based methods (Coming soon)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="three-based-methods.html">Three-based methods (Coming soon)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="neural-networks.html">Neural Networks (Coming soon)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unsupervised-learning.html">Unsupervised Learning (Coming soon)</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="neural-networks.html">Neural Networks (Coming soon)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsupervised-learning.html">Unsupervised Learning (Coming soon)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="nav bd-sidenav">
@@ -328,30 +319,30 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../exercises/ex-git.html">Git and Markdown</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-25"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-26"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-gis.html">GIS, CRS and Projections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
 </ul>
@@ -513,7 +504,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Machine Learning (ML)</h1>
+    <h1>Introduction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -540,8 +531,8 @@ document.write(`
 <p class="admonition-title">Contributor</p>
 <p>This chapter was written and developed by <a class="reference external" href="https://beatriznegreiros.com/">Beatriz Negreiros</a> <a class="reference internal" href="../_images/beatriz.jpg"><img alt="Beatriz Negreiros" src="../_images/beatriz.jpg" style="width: 50px; height: 50px;" /></a></p>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="machine-learning-ml">
-<span id="machinelearning"></span><h1>Machine Learning (ML)<a class="headerlink" href="#machine-learning-ml" title="Permalink to this headline">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<span id="machinelearning"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
 <p>Machine learning (ML) is argually one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. We will cover a variety of learning algorithms and methods to optimize ML models so that they can generalize to unseen data, which will include in principle supervised and unsupervised learning techniques.</p>
 <section id="the-goal-of-machine-learning">
 <h2>The goal of machine learning<a class="headerlink" href="#the-goal-of-machine-learning" title="Permalink to this headline">#</a></h2>
@@ -563,8 +554,6 @@ document.write(`
 <p>Keep in mind to look for materials and study independently for your optimal learning. For instance, we highly recommend the comprehensive <a class="reference external" href="https://www.edx.org/course/machine-learning-with-python-from-linear-models-to">machine learning course</a> offered by MITx, the online learning initiative of the Massachusetts Institute of Technology.</p>
 </div>
 </section>
-<div class="toctree-wrapper compound">
-</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -596,20 +585,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="dimensional-analysis.html"
+       href="../numerics/openfoam/of-tutorial-multiphase-post.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dimensional Analysis</p>
+        <p class="prev-next-title">Post-processing</p>
       </div>
     </a>
     <a class="right-next"
-       href="supervised-learning.html"
+       href="dimensional-analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supervised Learning</p>
+        <p class="prev-next-title">About Data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

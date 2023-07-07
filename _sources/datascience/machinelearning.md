@@ -5,7 +5,7 @@ This chapter was written and developed by {{ negreiros }} <img src="../img/autho
 
 (machinelearning)=
 
-# Machine Learning (ML)
+# Introduction
 
 Machine learning (ML) is argually one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. We will cover a variety of learning algorithms and methods to optimize ML models so that they can generalize to unseen data, which will include in principle supervised and unsupervised learning techniques. 
 

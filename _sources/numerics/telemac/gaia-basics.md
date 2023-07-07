@@ -46,9 +46,11 @@ VARIABLES FOR GRAPHIC PRINTOUTS : B,E,M,MU,N,P,QSBL,TOB
 
 The boundary conditions in Gaia work similarly to the hydrodynamics and can be derived from the hydrodynamics [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli) file.
 
-````{admonition} Recall the structure of the hydrodynamics boundaries.cli file
-:class: tip, dropdown
-The [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli) file has 13 variables per line, which are separated with a `space` and this is how the file head looks like (for closed wall `2`-type boundaries):
+
+````{admonition} Boundary conditions file structure and mass balance
+:class: tip
+
+Recall the structure of the hydrodynamics [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli) file, which has 13 values (i.e., columns) per line (row), which are separated with a `space` and this is how the file head looks like (for closed wall `2`-type boundaries):
 
 ```
 2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000         138           1   #
@@ -59,7 +61,11 @@ The [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2
 2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9828           6   #
 ...
 ```
+
+**The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`.**
+
 ````
+
 
 A boundaries `*.cli` file is divided into 13 space (tab) - separated colons corresponding to 13 boundary type (variables) and value prescriptions. The cross-comparison {numref}`Table %s <tab-gaia-bc>` holds the 13 type/value prescription names of a hydrodynamic Telemac2d/3d (e.g., [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli)) boundary conditions file up side by side with those of a Gaia boundary conditions file.
 

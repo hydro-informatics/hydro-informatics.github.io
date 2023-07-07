@@ -37,26 +37,6 @@ The {{ tm2d }} provides more recommendations for computing time, stability, and 
 
 ## Stability & Physical Correctness
 
-### Mass conservation
-
-The conservation of mass is a primary concern that has already been discussed in the analysis of the results in the steady 2d case by {ref}`verifying discharge convergence <verify-steady-tm2d>` at the liquid model boundaries.
-
-
-* An initial steady state may take a considerable amount of time: make sure to run a numerical model long enough.
-* Avoid `MASSING LUMPING ...` keywords: they introduce incorrect smoothing.
-* Keep the default value for `H CLIPPING` because modifications impair mass conservation.
-* The `MASS-BALANCE : YES` keyword only prints mass fluxes across liquid boundaries, but does not enforce mass conservation.
-* Use the following combination of keywords to increase the mass conservation of a Telemac2d model using finite elements:
-
-```fortran
-OPTION FOR THE DIFFUSION OF VELOCITIES : 2 / only option to get mass conservation but can cause problems with tidal flats
-SCHEME FOR ADVECTION OF VELOCITIES : 3 / use 3, also for FV - MATRIX STORAGE must be 3
-SCHEME OPTION FOR ADVECTION OF VELOCITIES : 4 / overrides SUPG OPTION and OPTION FOR CHARACTERISTICS
-NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2 / increase for higher accuracy and longer computing time, requires SCHEME OF ADVECTION 3,4,5, or 15 and OPTION 2,3,4
-TYPE OF SOURCES : 2 / 2=Dirac is the only possibility for mass conservation, the default=1 means linear function and is not mass conservative
-CONTINUITY CORRECTION : YES / particularly important when not only discharge but also depth is imposed at boundaries
-```
-
 
 ### Accuracy
 

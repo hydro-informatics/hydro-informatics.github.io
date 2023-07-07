@@ -78,7 +78,14 @@ LISTING PRINTOUT PERIOD : 500
 (tm2d-liq-file)=
 ### Open Boundaries
 
-This section features the implementation of quasi-steady (unsteady) flow conditions at the open liquid boundaries with a time-dependent inflow hydrograph and a downstream {term}`Stage-discharge relation`  (recall the rationales behind the choice of boundary types from the {ref}`pre-processing tutorial <bk-liquid-bc>`).
+This section features the implementation of quasi-steady (unsteady) flow conditions at the open liquid boundaries with a time-dependent inflow hydrograph and a downstream {term}`stage-discharge relation <Stage-discharge relation>`  (recall the rationales behind the choice of boundary types from the {ref}`pre-processing tutorial <bk-liquid-bc>`).
+
+
+```{admonition} Boundary conditions and mass balance
+
+The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`.
+```
+
 
 ---
 

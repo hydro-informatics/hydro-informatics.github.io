@@ -1,8 +1,21 @@
-# Dimensional Analysis
+(data-science)=
+# About Data
+
+Traditionally, dimensional analysis were used to derive isnights from different experimental setups and survey environments. This chapter briefly diggs into the type of data and explains traditional data insights with dimensional analysis. 
+
+## The Nature of Data
+
+```{admonition} Under construction - incomplete instructions
+:class: error
+We differentiat between data in the form of nominal, ordinal, interval, and ratio representations (cf. MA Negreiros chpt 2.1.1).
+```
+
+
+## Dimensional Analysis
 
 This section introduces the scaling theory according to {cite:t}`barenblatt_dimensional_1987`, {cite:t}`barenblatt_scaling_1996`, and {cite:t}`yalin71`.
 
-## Mathematical Model Description
+### Mathematical Model Description
 
 River hydrodynamics can be expressed by a simplified expression of the one-dimensional {term}`Navier-Stokes equations` for incompressible fluids, assuming hydrostatic pressure distribution {cite:p}`kundu_fluid_2008, graf_hydraulique_2011`). This results in the Saint-Venant shallow water equations as used in some hydraulic computer models (e.g., HEC-RAS or BASEMENT1D {cite:p}`us_army_corps_of_engineeers_hydrologic_2016, vaw_laboratory_2017`. This shallow water equation consists of five terms {cite:p}`jansen_scale_1994`:
 
@@ -30,7 +43,7 @@ $$
 
 where $\lambda_C$ $\equiv$ Ch\'ezy roughness scale.
 
-## Similitude Concepts
+### Similitude Concepts
 
 The similarity of the Froude number in a scaled model and a prototype is achieved based on the Froude condition, which results from equating the scales of terms II and III in the above equation {cite:p}`de_vries_river_1993`:
 
@@ -38,7 +51,8 @@ $$
 	\frac{\lambda_u^2}{\lambda_l} = \frac{\lambda_h}{\lambda_l} \Longrightarrow \lambda_u = \sqrt{\lambda_h}.
 $$
 
-The similarity of sediment transport is of particular interest in this study and requires that the scales of the {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` $\tau_{*}$ and of the {term}`bed load transport intensity <Bedload>` $\Phi_b$ are unity (i.e., $\lambda_{\tau_*}$=1 and $\lambda_{\Phi_}$=1 {cite:p}`de_vries_river_1993`).
+The similarity of sediment transport is of particular interest in this study and requires that the scales of the {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` $\tau_{*}$ and of the {term}`bed load transport intensity <Bedload>` $\Phi_b$ are unity (i.e., $\lambda_{\tau_*}$=1 and $\lambda_{\Phi}$=1 {cite:p}`de_vries_river_1993`).
+
 With respect to the shear velocity $u_*$ = $\sqrt{\tau/\rho_f}$ = $\sqrt{\tau_*(s-1)gD}$ and the requirement of $\lambda_{\tau_*}$=1, the similarity of sediment transport is given when {cite:p}`jansen_scale_1994`:
 
 $$
@@ -52,10 +66,13 @@ where
 
 
 The similarity of unitary sediment transport (i.e., per unit width) can be verified based on the scale $\lambda_{q_b}$, which is derived from the {term}`Exner equation`:
+
 $$
 	\frac{\partial z}{\partial t} = -\frac{1}{1-\zeta} \cdot \frac{\partial q_s}{\partial x}
 $$
+
 With respect to the scale considerations above, $\lambda_{q_b}$ is derived as:
+
 $$
 	\frac{\lambda_l}{\lambda_t} = \frac{\lambda_{q_b}}{\lambda_l} \Rightarrow \lambda_{q_b} =\frac{\lambda_l^2}{\lambda_t} = \lambda_l^{3/2}
 $$

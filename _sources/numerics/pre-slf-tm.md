@@ -31,10 +31,10 @@ Launch QGIS and {ref}`create a new QGIS project <qgis-project>` to get started w
 
 * In the QGIS top menu go to **Project** > **Properties**.
 * Activate the **CRS** tab.
-* Enter `UTM zone 33N` and select the CRS shown in {numref}`Fig. %s <qgis-crs-utm33n>`.
+* Enter `UTM zone 33N` and select the CRS shown in {numref}`Fig. %s <qgis-crs-utm33n>`: EPSG 32633.
 * Click **Apply** and **OK**.
 
-Note that the CRS used with TELEMAC differs from the one used with BASEMENT to enable the compatibility of geospatial data products from QGIS with {ref}`BlueKenue <bluekenue>`.
+Note that the CRS used with TELEMAC differs from the one used with BASEMENT to enable the compatibility of geospatial data products from QGIS with {ref}`BlueKenue <bluekenue>`. Also, EPSG 32633 is not a great choice because of its low precision (at best 2 m), but it will do the job for this tutorial.
 
 ```{figure} ../img/qgis/crs-utm-33n.png
 :alt: qgis set coordinate reference system crs germany utm zone 33n Inn river
@@ -86,10 +86,10 @@ By using BASEmesh, this tutorial employs BASEMENT's efficient mesh generator to 
 
 This tutorial uses height information that is stored in a {term}`DEM`. For the QGIS section, preferably use the {term}`GeoTIFF` {term}`DEM` with UTM zone 33N as {term}`CRS` as follows:
 
-* [**Download the GeoTIFF DEM**](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif) and save it in the same folder (`/Project Home/` or a sub-directory) as the above-create **qgz** project.
+* [**Download the GeoTIFF DEM**](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif) and save it in the same folder (`/ProjectHome/` or a sub-directory) as the above-create **qgz** project.
 * Add the downloaded DEM as a new raster layer in *QGIS*:
-  * In *QGIS*' **Browser** panel find the **Project Home** directory where you downloaded the DEM *tif*.
-  * Drag the DEM *tif* from the **Project Home** folder into QGIS' **Layer** panel.
+  * In *QGIS*' **Browser** panel find the **ProjectHome** directory where you downloaded the DEM *tif*.
+  * Drag the DEM *tif* from the **ProjectHome** folder into QGIS' **Layer** panel.
 * To facilitate delineating specific regions of the river ecosystem later, add a {ref}`satellite imagery basemap <basemap>` (XYZ tile) under the {term}`DEM` and customize the layer symbology.
 
 ```{admonition} What are QGIS panels, what is a basemap, and how can I re-order layers?
@@ -180,14 +180,14 @@ To **correct drawing errors** use the **Vertex Tool** <img src="../img/qgis/sym-
 
 ```{admonition} Troubles with drawing boundaries and breaklines?
 :class: tip
-Download the [zipped breaklines shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) shown in the above figure and unpack it into the project folder, for instance, `/Project Home/shapefiles/breaklines.[SHP]`.
+Download the [zipped breaklines shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) shown in the above figure and unpack it into the project folder, for instance, `/ProjectHome/shapefiles/breaklines.[SHP]`.
 ```
 
 ```{admonition} Draw boundaries of complex DEMs...
 :class: tip
 Drawing boundaries manually around large {term}`DEM`s can be very time consuming, in particular, if the raw data are a point cloud and not yet converted to a {ref}`raster`.
 
-If you are dealing with a point cloud, consider using *QGIS* [Convex Hull tool](https://docs.qgis.org/3.16/en/docs/training_manual/vector_analysis/spatial_statistics.html?highlight=convex%20hull#basic-fa-create-a-test-dataset) that draws a tight bounding polygon around points.
+If you are dealing with a point cloud, consider using QGIS [Convex Hull tool](https://docs.qgis.org/3.16/en/docs/training_manual/vector_analysis/spatial_statistics.html?highlight=convex%20hull#basic-fa-create-a-test-dataset) that draws a tight bounding polygon around points.
 
 If you are dealing with a large {term}`GeoTIFF`, consider using QGIS' [Raster to Vector](https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html) tool.
 ```
@@ -216,7 +216,7 @@ Finally, save the liquid boundary lines (edits of **liquid-boundaries.shp**) by 
 
 ```{admonition} Troubles with drawing the liquid boundary lines?
 :class: tip
-Download the [zipped liquid-boundaries shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) and unpack it into the project folder, for instance, `/Project Home/shapefiles/liquid-boundaries.[SHP]`.
+Download the [zipped liquid-boundaries shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) and unpack it into the project folder, for instance, `/ProjectHome/shapefiles/liquid-boundaries.[SHP]`.
 ```
 
 ### Region Point Markers
@@ -264,11 +264,11 @@ After drawing a point in every closed area, save the region point markers (edits
 
 ```{admonition} Troubles with drawing the region marker points?
 :class: tip
-Download the [zipped region-points shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/region-points.zip) and unpack it into the project folder, for instance, `/Project Home/shapefiles/region-points.[SHP]`.
+Download the [zipped region-points shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/region-points.zip) and unpack it into the project folder, for instance, `/ProjectHome/shapefiles/region-points.[SHP]`.
 ```
 
 (tm-qualm)=
-## Quality Meshing (*.2dm)
+## Quality Meshing (.2dm)
 
 *BASEmesh*'s quality mesh tool creates a computationally efficient triangular mesh based on {cite:t}`shewchuk1996` and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile, but it does not include elevation data. Thus, after generating a quality mesh in {term}`SMS 2dm` format, elevation information needs to be added with the BlueKenue<sup>TM</sup> software. To generate the quality mesh, open BASEmesh's **QUALITY MESHING** tool (QGIS' **Plugins** > **BASEmesh 2** > **QUALITY MESHING**). Make the following settings in the popup window (see also {numref}`Fig. %s <fig-tm-qualm>`):
 
@@ -289,7 +289,7 @@ Download the [zipped region-points shapefile](https://github.com/hydro-informati
   * Ignore all BASEMENT 2.8 options.
 * Settings frame: keep defaults.
 * Output frame:
-  * Click on the **Browse...** button and define a **2dm** file name in the `/Project Home/` directory, such as **prepro-tutorial_quality-mesh.2dm**.
+  * Click on the **Browse...** button and define a **2dm** file name in the `/ProjectHome/` directory, such as **prepro-tutorial_quality-mesh.2dm**.
 * Click on the **Run** button to create the quality mesh.
 
 
@@ -304,7 +304,7 @@ Quality meshing may take a short while. After a successful mesh generation the f
 
 ```{admonition} Troubles with running the quality mesh generator?
 :class: tip
-Download the [tutorial quality mesh file](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) and save it in the project folder, for instance, `/Project Home/meshes/prepro-tutorial_quality-mesh-utm33n.2dm`.
+Download the [tutorial quality mesh file](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) and save it in the project folder, for instance, `/ProjectHome/meshes/prepro-tutorial_quality-mesh-utm33n.2dm`.
 ```
 
 (bk-tutorial)=
@@ -581,6 +581,12 @@ Download the BOTTOM mesh and the SELAFIN object from the supplemental materials 
 * [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (**EPSG:6173** - ETRS 89 / UTM zone 33N).
 ```
 
+```{admonition} Roughness zone interpolation.
+:class: tip
+
+Similar to the elevation, friction values can be assigned to created zones with different roughness in the study domain. Read more in the spotlight focus on {ref}`roughness (friction) zones <tm-friction-zones>`.
+```
+
 (bk-bc)=
 ## Boundary Conditions (Conlim - CLI)
 
@@ -609,13 +615,28 @@ To **save the new BOTTOM_BC object**, highlight it in the **Data Items** tree an
 (bk-liquid-bc)=
 ### Define Liquid Boundaries
 
-The default boundary type of the **boundaries** object is **Closed boundary (wall)**. Therefore, to enable mass (i.e., water, sediment, and/or tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in {numref}`Fig. %s <bk-bc-types>`.
+The default boundary type of the **boundaries** object is **Closed boundary (wall)**. To enable mass (i.e., water, sediment, and/or tracer) fluxes through the model, at least two openings must be drawn into the closed boundary. For this purpose, at least one inflow and one outflow open boundary for liquids must be defined. This tutorial uses this minimum number of required open boundaries (i.e., one upstream inflow and one downstream outflow boundary), which are indicated in {numref}`Fig. %s <bk-bc-types>`.
 
 ```{admonition} Liquid boundaries must be defined in BlueKenue
 Even though the liquid boundaries are already defined in QGIS (see the {ref}`QGIS section on Liquid Boundaries <tm-bm-liquid-boundaries>`), it is always necessary to define the liquid boundaries in BlueKenue<sup>TM</sup> to fit the node numbers (IDs) of the Selafin mesh.
 ```
 
-The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed Q and H** (i.e., prescribed {term}`Rating curve` / {term}`Stage-discharge relation`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`Stage-discharge relation` ({term}`Rating curve`) has been calibrated with historic data. To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  {numref}`Fig. %s <bk-bc-types>` and create both boundaries as follows (toggle tabs):
+The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) with the code `4 5 5` and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed H** with the code `5 4 4` (i.e., prescribed {term}`stage-discharge relation <Stage-discharge relation>`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`stage-discharge relation <Stage-discharge relation>` has been calibrated with historic data. To back-calculate cross-section averaged roughness from a {term}`stage-discharge relation <Stage-discharge relation>`, take a look at the {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>` formula.
+
+````{admonition} Drawing boundary conditions for mass balance
+
+The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`. Also, to avoid computational issues, define liquid boundary lines only along the channel bottom as illustrated in the below {numref}`Fig. %s <draw-inflow-pre-slf>`.
+
+```{figure} ../img/telemac/cross-section-sx.png
+:alt: draw bluekenue liquid boundary conditions conlim upstream inflow
+:name: draw-inflow-pre-slf
+
+The red highlighted part of this qualitative cross section should be defined as the inflow (upstream) boundary condition. Mesh nodes at the riverbanks and on the floodplains should not be included.
+```
+````
+
+
+To assign the two liquid boundary lines, zoom into the downstream and upstream regions indicated in  {numref}`Fig. %s <bk-bc-types>` and create both boundaries as follows (toggle tabs):
 
 `````{tab-set}
 ````{tab-item} Upstream boundary
@@ -646,7 +667,7 @@ The upstream boundary definition. Double-click on a node at one bank, then hold 
 * **Right-click** on the purple outflow line and select **Add Boundary Segment**.
 * In the opening window (**CONLIM Boundary Segment Editor**) make the following settings:
   * Define **Boundary Name** as `downstream`.
-  * In the **Boundary Code** field select `Open boundary with prescribed Q and H`.
+  * In the **Boundary Code** field select `Open boundary with prescribed H`.
   * Keep all other defaults and click **OK**.
 * **Save** the **boundaries** object by clicking on the disk <img src="../img/telemac/bk-sym-save.png"> symbol and confirm overwriting `boundaries.bc2` (i.e., click **Yes**).
 
@@ -659,7 +680,14 @@ The downstream boundary definition. Double-click on a node at one bank, then hol
 ````
 `````
 
-Ultimately, TELEMAC will need a **`*.cli` file (*Conlim Table*)** that can be created by
+```{admonition} Number of nodes
+:class: important
+
+Make sure that every liquid boundary has at least 5-10 nodes and that every the number of inflow nodes is approximately equal to the number of outflow nodes (in sum), also when defining multiple inflow/outflow boundaries. Read more tips on drawing boundaries in the spotlight focus on {ref}`boundary conditions <tm-foc-draw-bc>`. 
+```
+
+
+Ultimately, TELEMAC will need a **`.cli` file (*Conlim Table*)** that can be created by
 * highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree and
 * pressing the disk <img src="../img/telemac/bk-sym-save.png"> symbol (see {numref}`Fig. %s <bk-bc-fin>`).
 
@@ -669,7 +697,7 @@ Save the boundaries file, for instance, as **boundaries.cli**.
 :alt: bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli
 :name: bk-bc-fin
 
-The finalized boundary conditions are saved in a .CLI file by highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree.
+The finalized boundary conditions are saved in a `.cli` file by highlighting the **boundaries (LIHBOR)** entry of the **boundaries** (or BOTTOM_BC) object in the **Data Items** tree.
 ```
 
 ```{admonition} Troubles with creating and defining the liquid boundaries?
@@ -680,4 +708,4 @@ Download the **boundaries** (BOTTOM_BC) BlueKenue<sup>TM</sup> and TELEMAC bound
 * [Download boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli).
 ```
 
-The here created Selafin/Serafin (`*.slf`) and boundary conditions (`*.cli`) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The {ref}`steady 2d <telemac2d-steady>` tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a `*.qsl` ASCII text file. To this end, the `*.cli` file can be easily adapted any time later with a basic text editor (e.g., {ref}`npp` on Windows or {ref}`Atom <install-atom>`).
+The here created Selafin/Serafin (`*.slf`) and boundary conditions (`*.cli`) files are the main products that are needed for running any other SELAFIN-based TELEMAC tutorial in this eBook. The {ref}`steady 2d <telemac2d-steady>` tutorial assigns a constant discharge at the upstream (inflow) and a constant discharge plus constant depth at the downstream (outflow) boundaries. To perform an unsteady calculation, the steady flow rates can be replaced with a `*.qsl` ASCII text file. To this end, the `.cli` file can be easily adapted any time later with a basic {ref}`text editor <npp>`.

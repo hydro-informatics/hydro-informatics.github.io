@@ -69,7 +69,7 @@ VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibr
 /			GENERAL PARAMETERS
 /------------------------------------------------------------------/
 TIME STEP : 1.
-NUMBER OF TIME STEPS : 8000
+NUMBER OF TIME STEPS : 10000
 GRAPHIC PRINTOUT PERIOD : 200
 LISTING PRINTOUT PERIOD : 100
 /
@@ -118,25 +118,29 @@ MATRIX STORAGE : 3 / default is 3
 /
 / BOUNDARY CONDITIONS
 /------------------------------------------------------------------
-/ Friction
-LAW OF BOTTOM FRICTION : 4 / 4-Manning
-FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 /
 / Liquid boundaries
-PRESCRIBED FLOWRATES  : 35.;35.
+PRESCRIBED FLOWRATES  : 35.; 0.
 PRESCRIBED ELEVATIONS : 0.;371.33
 /
 / Type of velocity profile can be 1-constant normal profile (default) 2-UBOR and VBOR in the boundary conditions file (cli) 3-vector in UBOR in the boundary conditions file (cli) 4-vector is proportional to the root (water depth, only for Q) 5-vector is proportional to the root (virtual water depth), the virtual water depth is obtained from a lower point at the boundary condition (only for Q)
 VELOCITY PROFILES : 4;1
+/
+/ Friction at the bed
+LAW OF BOTTOM FRICTION : 4 / 4-Manning
+FRICTION COEFFICIENT : 0.03 / Roughness coefficient
+/ Friction at the boundaries
+LAW OF FRICTION ON LATERAL BOUNDARIES : 4 / 4-Manning
+ROUGHNESS COEFFICIENT OF BOUNDARIES : 0.03 / Roughness coefficient
 /
 / INITIAL CONDITIONS
 / ------------------------------------------------------------------
 INITIAL CONDITIONS : 'CONSTANT DEPTH' / use ZERO DEPTH to start with dry model conditions
 INITIAL DEPTH : 1 / INTEGER for speeding up calculations
 /
-/------------------------------------------------------------------/
+/-------------------------------------------------------------------
 /			TURBULENCE
-/------------------------------------------------------------------/
+/-------------------------------------------------------------------
 /
 DIFFUSION OF VELOCITY : YES / default is YES
 TURBULENCE MODEL : 3
@@ -182,7 +186,7 @@ MASS-BALANCE : YES / activates mass balance printouts - does not enforce mass ba
 VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibrium controls
 /
 TIME STEP : 1.
-NUMBER OF TIME STEPS : 8000
+NUMBER OF TIME STEPS : 10000
 GRAPHIC PRINTOUT PERIOD : 200
 LISTING PRINTOUT PERIOD : 100
 ```
@@ -226,7 +230,7 @@ ADVECTION OF TRACERS : NO / deactivates tracer advection
 The **PROPAGATION** keyword (default: `YES`) steers the simulation of propagation and related phenomena. For instance, disabling propagation (`PROPAGATION : NO`) will also disable {term}`Diffusion`. The other way round, when propagation is enabled, {term}`Diffusion` can be disabled separately. Read more about {term}`Diffusion` in Telemac2d in the {ref}`turbulence <tm2d-turbulence>` section.
 
 (tm2d-fe)=
-### Numerical Parameters for Finite Elements
+### Finite Elements
 
 **The following descriptions refer to section 7.2.1 in the {{ tm2d }}.**
 
@@ -309,9 +313,15 @@ The **OPTION OF CHARACTERISTICS** keyword defines the method of characteristics 
 
 None of these options should be used with tracers because they are not mass-conservative.
 
-### Numerical Parameters for Finite Volumes
+(steady2d-fv)=
+### Finite Volumes
 
-The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the {{ tm2d }}.
+The finite volume method is mentioned here for completeness and detailed descriptions are available in section 7.2.2 of the {{ tm2d }}, and the malpasset example (`telemac/v8p4/examples/malpasset/`). To activate the finite volume scheme use:
+
+```fortran
+EQUATIONS : 'SAINT-VENANT FV' / the apostrophes are strictly needed here
+```
+
 
 ```{admonition} Use finite volumes only with v8p2 or later
 Earlier versions of Telemac2d's finite volume solver are buggy, but since major improvements were implemented with v8p2, the newest versions run stable.
@@ -345,7 +355,27 @@ FINITE VOLUME SCHEME TIME ORDER : 2 / default is 1 - Euler explicit
 NEWMARK TIME INTEGRATION COEFFICIENT : 0.5 / default is 0.5
 ```
 
-Depending on the type of analysis, the solver-related parameters of **SOLVER**, **SOLVER OPTIONS**, **MAXIMUM NUMBER OF ITERATION FOR SOLVER**, and **TIDAL FLATS** may also be modified.
+However, other tutorials, and the Telemac forum recommend using the following scheme settings for finite volumes:
+
+```fortran
+FINITE VOLUME SCHEME : 5 / HLLC
+FINITE VOLUME SCHEME SPACE ORDER : 1
+FINITE VOLUME SCHEME TIME ORDER : 1
+```
+
+
+Additional keyword recommendations for the finite volume scheme are the following:
+
+```fortran
+OPTION FOR THE DIFFUSION OF VELOCITIES : 2 / only option to get mass conservation but can cause problems with tidal flats
+SCHEME FOR ADVECTION OF VELOCITIES : 3 / use 3, also for FV - MATRIX STORAGE must be 3
+SCHEME OPTION FOR ADVECTION OF VELOCITIES : 4 / overrides SUPG OPTION and OPTION FOR CHARACTERISTICS
+NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2 / increase for higher accuracy and longer computing time, requires SCHEME OF ADVECTION 3,4,5, or 15 and OPTION 2,3,4
+TYPE OF SOURCES : 2 / 2=Dirac is the only possibility for mass conservation, the default=1 means linear function and is not mass conservative
+CONTINUITY CORRECTION : YES / particularly important when not only discharge but also depth is imposed at boundaries
+```
+
+Depending on the type of analysis, the solver-related parameters of **SOLVER**, **SOLVER OPTIONS**, **MAXIMUM NUMBER OF ITERATION FOR SOLVER**, and **TIDAL FLATS** may also be modified. Specifically, all **TIDAL FLAT** keywords become **obsolete with the FV scheme**.
 
 (tm2d-solver-pars)=
 ### Numerical Solver Parameters
@@ -413,7 +443,8 @@ Telemac2d will print out warning messages when convergence could not be reached 
 
 **The following descriptions refer to section 7.5 in the {{ tm2d }}.**
 
-The **TIDAL FLATS (default: `YES`)** keyword applies to the **finite elements scheme only ({ref}`EQUATIONS keyword <tm2d-numerical>`)** and can be ignored with finite volumes. The term *tidal* may be slightly confusing because tidal flats can occur beyond coastal regions: Tidal flats can occur wherever wetting and drying of grid cells may occur or at flow transitions (e.g., when fast-flowing water enters a backwater zone). Wetting and drying, and flow transitions occur in almost all environments more complex than a square-like flume, and therefore, the activation of tidal flats in Telemac2d models is highly recommended. Though activating tidal flats leads to longer computation times, in most cases a calculation with tidal flats provides physically reasonable results.
+The **TIDAL FLATS (default: `YES`)** keyword applies to the **finite elements scheme only ({ref}`EQUATIONS keyword <tm2d-numerical>`) and can be ignored with {ref}`finite volumes <steady2d-fv>`**. The term *tidal* may be slightly confusing because tidal flats can occur beyond coastal regions: Tidal flats can occur wherever wetting and drying of grid cells may occur or at flow transitions (e.g., when fast-flowing water enters a backwater zone). Wetting and drying, and flow transitions occur in almost all environments more complex than a square-like flume, and therefore, the activation of tidal flats in Telemac2d models is highly recommended. Though activating tidal flats leads to longer computation times, in most cases a calculation with tidal flats provides physically reasonable results.
+
 
 The **TIDAL FLATS** keyword is linked with a couple of other Telemac2d keywords driving model stability and physical meaningfulness. The following keyword setups may be generally applied to (quasi) steady, real-world rivers and channels (as opposed to lab flumes with simplified geometries):
 
@@ -473,12 +504,83 @@ The **MATRIX STORAGE** keyword may be set to:
 
 The additional **MATRIX-VECTOR PRODUCT** keyword may be used to switch between multiplication methods for the finite element scheme. However, the default value of `1` (vector multiplication by a non-assembled matrix) should currently **not be changed** because the only alternative (`2` for frontal assembled matrix multiplication) is not implemented for parallelism and quasi-bubble discretization.
 
+
+(tm2d-bounds)=
+### Boundary Conditions
+
+**The following descriptions of friction parameters refer to section 4.2 in the {{ tm2d }}.**
+
+Liquid boundary keywords assign hydraulic properties to the spatially defined upstream and downstream liquid boundary lines in the Conlim (`*.cli`) file {ref}`created with BlueKenue <bk-liquid-bc>`. This section features the assignment of steady liquid boundaries for one discharge of 35 m$^3$/s. To this end, the upstream boundary condition is set to a steady target inflow rate (*Open boundary with prescribed Q*) and the downstream boundary condition gets a {term}`Stage-discharge relation` (*Open boundary with prescribed Q and H*) assigned (recall {numref}`Fig. %s <bk-bc-types>`). Thus, for running this tutorial add the following keywords to the steering (`*.cas`) file:
+
+* The keyword `PRESCRIBED FLOWRATES : 35.;0.` assigns a flowrate of 35 m$^3$/s to the **upstream** boundary edge, and does not impose a flowrate on the **downstream** boundary edge.
+* The keyword `PRESCRIBED ELEVATIONS : 0.;371.33` assigns a water surface elevation $wse$ (or H in Telemac) of 371.33 m a.s.l. (above sea level) to the **downstream** boundary. The upstream $wse$ prescription of 0.0 makes Telemac2d ignore this value corresponding to the assigned upstream boundary type (prescribed flowrate only).
+
+The order of prescribed flowrates (Q) and $wse$ (H) values depends on the order of the definition of the boundaries. Thus, the first list element defines values for the upstream and the second list element for the downstream open boundary.
+
+````{admonition} How to find out the order of boundary conditions?
+:class: tip
+The order of open boundaries can be read from the `*.cli` file. The first open boundary that is listed in the `*.cli` file corresponds to the first list element in any **PRESCRIBED ...** keyword. An open boundary node in the `*.cli` file is characterized by a line beginning with something like `4 5 5` or `5 5 5` (i.e., anything but `2 2 2`, which corresponds to a closed wall boundary node) and BlueKenue also marks the names of open boundaries at the line ends (after the hashtag). {numref}`Figure %s <boundary-cli>` illustrates the [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli) file used in this chapter where the `upstream` open boundary is defined at line 7, before the definition of the downstream open boundary starting at line 313.
+
+```{figure} ../../img/telemac/boundary-cli.png
+:alt: telemac 2d cli boundary conditions order cas steering file prescribed prescription
+:name: boundary-cli
+
+The [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli) file used in this tutorial starts with the upstream boundary defined in line 7. To find the downstream boundary scroll down to line 313.
+```
+````
+
+Liquid boundary conditions may be assigned to any open boundary in the `*.cli` file.
+
+````{admonition} External files instead of PRESCRIBED-keywords
+:class: note, dropdown
+Instead of a list of semi-colon separated numbers in the steering file, liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, the `LIQUID BOUNDARIES FILE` and/or `STAGE-DISCHARGE CURVES FILE` keywords need to be defined in the steering file. External files are required for the simulation of quasi-unsteady flows (e.g., a flood hydrograph or low flow sequences for habitat conditions) and more details can be found in sections 4.2.5 and 4.2.6 in the {{ tm2d }} or the {ref}`unsteady section in this eBook <chpt-unsteady>`.
+````
+
+A velocity profile type can be assigned to any prescribed Q (flowrate) or prescribed U (velocity) open boundary in the form of a list that has the same element order as the above-defined **PRESCRIBED ...** keywords. For this purpose, upstream and downstream velocity profiles can be defined with the **VELOCITY PROFILES** keyword that accepts the following values:
+
+* `1` is the **default** option that defines the flow velocity direction at the boundary nodes normal to their edges. This option assigns a length of 1 to the vector and multiplies it with a numeric factor to yield a target flowrate.
+* `2` reads U and V velocity profiles from the boundary conditions (`*.cli`) file, which are multiplied with a constant to yield a target flowrate.
+* `3` imposes the velocity vector direction normal to the boundary and reads the value (UBOR) from the `*.cli` file, which is then multiplied by a constant to yield a target flowrate.
+* `4` imposes the velocity vector direction normal to the boundary and calculates the value's norm proportional to the square root of the water depth. This option can only be used with a *prescribed Q* open boundary.
+* `5` imposes the velocity vector direction normal to the boundary and calculates the value's norm proportional to the square root of a virtual water depth.
+
+With the upstream boundary being a *prescribed Q* boundary, this tutorial uses `VELOCITY PROFILES : 4;1` in the steering file. Read more about options for defining velocity profiles in section 4.2.8 of the {{ tm2d }}.
+
+
+```{admonition} Boundary conditions and mass balance
+:class: tip
+
+The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
+```
+
+
+(tm2d-init)=
+### Initial Conditions
+
+**The following descriptions refer to section 4.1 in the {{ tm2d }}.**
+
+The initial conditions describe the state of the model at the beginning of a simulation. Telemac2d recognizes the following types of initial conditions, which can be defined in the steering file with the keyword `INITIAL CONDITIONS : 'TYPE'` where `TYPE` can be one of the following:
+
+* `ZERO ELEVATION` initializes the free surface elevation at 0 (**default**). Thus, the initial water depths correspond to the bottom elevation.
+* `CONSTANT ELEVATION` initializes the free surface elevation at a value defined with an **INITIAL ELEVATION** keyword that has a default value of `0.`. Thus, the initial water depths correspond to the subtraction of the bottom elevation from the water surface elevation $wse$. The initial water depth is set to zero at nodes where the bottom elevation is higher than defined by the **INITIAL ELEVATION** keyword.
+* `ZERO DEPTH` initializes the simulation with `0` (i.e., $wse$ corresponds to bottom elevation). Thus, the model starts with dry conditions, similar as in the {ref}`BASEMENT <basement2d>` tutorial.
+* `CONSTANT DEPTH` initializes the water depths at a value defined by an **INITIAL DEPTH** keyword that has a default value of `0.`.
+* `TPXO SATELLITE ALTIMETRY` initializes the model using information provided by a user-defined database (e.g., the [OSU TPXO model for ocean tides](http://g.hyyb.org/archive/Tide/TPXO/TPXO_WEB/global.html)). Read more in section 4.2.12 of the {{ tm2d }} on modeling marine systems.
+
+This tutorial uses a *constant* water *depth* initial condition of `1` (integer to speed up calculations), which corresponds to a completely flooded initial model state (i.e., water volume surplus):
+
+```fortran
+INITIAL CONDITIONS : 'CONSTANT DEPTH'
+INITIAL DEPTH : 1
+```
+
+The simulation speed can be significantly increased when the model has already been running once at the same discharge. The result of an earlier simulation can be used for the initial condition with the `COMPUTATION CONTINUED : YES` (default is `NO`) and `PREVIOUS COMPUTATION FILE : *.slf` (provide the name of a `*.slf` file) keywords. This type of model initialization is also referred to as *hotstart*. Read more about hotstarts in the {ref}`unsteady simulation <tm2d-hotstart>` and {ref}`Gaia <gaia-hotstart>` sections. Also section 4.1.3 in the {{ tm2d }} provides descriptions for continuing (hotstart) calculations.
+
+
 (tm2d-friction)=
-### Friction Boundary Conditions
+### Friction (Roughness)
 
 **The following descriptions of friction parameters refer to section 6.1 in the {{ tm2d }}.**
-
-Parameters for **Boundary Conditions** enable the definition of roughness laws and properties of liquid boundaries.
 
 The **LAW OF BOTTOM FRICTION** keyword defines a friction law for topographic boundaries, which can be set to:
 
@@ -540,92 +642,24 @@ FRICTION COEFFICIENT : 0.03 / Roughness coefficient
 
 ```{admonition} Friction zones (regional friction values)
 :class: tip, dropdown
-:name: tm-friction-zones
 
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`*.slf`) file. To create a zonal roughness Selafin geometry with QGIS and BlueKenue use the *[Create Roughness Selafin File PDF workflow](https://github.com/hydro-informatics/telemac/raw/main/friction/create-friction-zone-slf.pdf)*. Some additional hints for using the workflow:
-
-* Delineate zones with different roughness coefficients by drawing polygons (e.g., following landscapes characteristics on a basemap) in separate shapefiles with QGIS (see also the {ref}`pre-processing tutorial on QGIS <tm-qgis-prepro>`).
-* Import the separate polygons as XYZ file or closed lines in BlueKenue (see also the {ref}`pre-processing tutorial on BlueKenue <bk-tutorial>`).
-* Assign friction values to the polygons (closed lines) in BlueKenue (similar to {ref}`XYZ elevation information <bk-xyz>`).
-* Add a new variable to the {ref}`Selafin <bk-create-slf>` geometry and call it `BOTTOM FRICTION`.
-* Use the {ref}`Map Object <bk-2dinterp>` function (*Tools* > *Map Object...*) to add the polygons (closed lines) to the `BOTTOM FRICTION` mesh variable.
-* In the `*.cas` file, make sure to set a value for the **FRICTION** parameter according to the above descriptions and the `*.slf` file with the `BOTTOM FRICTION` variable for the **ZONES FILE** keyword.
-
-
-Useful examples for creating roughness zones are:
-* The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
-* Also, the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) features friction zones.
-
-In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some tips for when the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law, such as the {cite:t}`ferguson_flow_2007` equation):
-
-* The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
-* To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
-* Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
-* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
+To create zones with different friction values, have a look at the spotlight focus on {ref}`roughness zones <tm-friction-zones>`.
 ```
 
-(tm2d-bounds)=
-### Liquid Boundary Conditions
-
-**The following descriptions of friction parameters refer to section 4.2 in the {{ tm2d }}.**
-
-Liquid boundary keywords assign hydraulic properties to the spatially defined upstream and downstream liquid boundary lines in the Conlim (`*.cli`) file {ref}`created with BlueKenue <bk-liquid-bc>`. This section features the assignment of steady liquid boundaries for one discharge of 35 m$^3$/s. To this end, the upstream boundary condition is set to a steady target inflow rate (*Open boundary with prescribed Q*) and the downstream boundary condition gets a {term}`Stage-discharge relation` (*Open boundary with prescribed Q and H*) assigned (recall {numref}`Fig. %s <bk-bc-types>`). Thus, for running this tutorial add the following keywords to the steering (`*.cas`) file:
-
-* The keyword `PRESCRIBED FLOWRATES : 35.;35.` assigns a flowrate of 35 m$^3$/s to the **upstream** and the **downstream** boundary edges, respectively.
-* The keyword `PRESCRIBED ELEVATIONS : 0.;371.33` assigns a water surface elevation $wse$ (or H in Telemac) of 371.33 m a.s.l. (above sea level) to the **downstream** boundary. The upstream $wse$ prescription of 0.0 makes Telemac2d ignore this value corresponding to the assigned upstream boundary type (prescribed flowrate only).
-
-The order of prescribed flowrates (Q) and $wse$ (H) values depends on the order of the definition of the boundaries. Thus, the first list element defines values for the upstream and the second list element for the downstream open boundary.
-
-````{admonition} How to find out the order of boundary conditions?
-:class: tip
-The order of open boundaries can be read from the `*.cli` file. The first open boundary that is listed in the `*.cli` file corresponds to the first list element in any **PRESCRIBED ...** keyword. An open boundary node in the `*.cli` file is characterized by a line beginning with something like `4 5 5` or `5 5 5` (i.e., anything but `2 2 2`, which corresponds to a closed wall boundary node) and BlueKenue also marks the names of open boundaries at the line ends (after the hashtag). {numref}`Figure %s <boundary-cli>` illustrates the [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli) file used in this chapter where the `upstream` open boundary is defined at line 7, before the definition of the downstream open boundary starting at line 313.
-
-```{figure} ../../img/telemac/boundary-cli.png
-:alt: telemac 2d cli boundary conditions order cas steering file prescribed prescription
-:name: boundary-cli
-
-The [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli) file used in this tutorial starts with the upstream boundary defined in line 7. To find the downstream boundary scroll down to line 313.
-```
-````
-
-Liquid boundary conditions may be assigned to any open boundary in the `*.cli` file.
-
-````{admonition} External files instead of PRESCRIBED-keywords
-:class: note, dropdown
-Instead of a list of semi-colon separated numbers in the steering file, liquid boundary conditions can also be defined with a liquid boundary condition file in *ASCII* text format. For this purpose, the `LIQUID BOUNDARIES FILE` and/or `STAGE-DISCHARGE CURVES FILE` keywords need to be defined in the steering file. External files are required for the simulation of quasi-unsteady flows (e.g., a flood hydrograph or low flow sequences for habitat conditions) and more details can be found in sections 4.2.5 and 4.2.6 in the {{ tm2d }} or the {ref}`unsteady section in this eBook <chpt-unsteady>`.
-````
-
-A velocity profile type can be assigned to any prescribed Q (flowrate) or prescribed U (velocity) open boundary in the form of a list that has the same element order as the above-defined **PRESCRIBED ...** keywords. For this purpose, upstream and downstream velocity profiles can be defined with the **VELOCITY PROFILES** keyword that accepts the following values:
-
-* `1` is the **default** option that defines the flow velocity direction at the boundary nodes normal to their edges. This option assigns a length of 1 to the vector and multiplies it with a numeric factor to yield a target flowrate.
-* `2` reads U and V velocity profiles from the boundary conditions (`*.cli`) file, which are multiplied with a constant to yield a target flowrate.
-* `3` imposes the velocity vector direction normal to the boundary and reads the value (UBOR) from the `*.cli` file, which is then multiplied by a constant to yield a target flowrate.
-* `4` imposes the velocity vector direction normal to the boundary and calculates the value's norm proportional to the square root of the water depth. This option can only be used with a *prescribed Q* open boundary.
-* `5` imposes the velocity vector direction normal to the boundary and calculates the value's norm proportional to the square root of a virtual water depth.
-
-With the upstream boundary being a *prescribed Q* boundary, this tutorial uses `VELOCITY PROFILES : 4;1` in the steering file. Read more about options for defining velocity profiles in section 4.2.8 of the {{ tm2d }}.
-
-(tm2d-init)=
-### Initial Conditions
-
-**The following descriptions refer to section 4.1 in the {{ tm2d }}.**
-
-The initial conditions describe the state of the model at the beginning of a simulation. Telemac2d recognizes the following types of initial conditions, which can be defined in the steering file with the keyword `INITIAL CONDITIONS : 'TYPE'` where `TYPE` can be one of the following:
-
-* `ZERO ELEVATION` initializes the free surface elevation at 0 (**default**). Thus, the initial water depths correspond to the bottom elevation.
-* `CONSTANT ELEVATION` initializes the free surface elevation at a value defined with an **INITIAL ELEVATION** keyword that has a default value of `0.`. Thus, the initial water depths correspond to the subtraction of the bottom elevation from the water surface elevation $wse$. The initial water depth is set to zero at nodes where the bottom elevation is higher than defined by the **INITIAL ELEVATION** keyword.
-* `ZERO DEPTH` initializes the simulation with `0` (i.e., $wse$ corresponds to bottom elevation). Thus, the model starts with dry conditions, similar as in the {ref}`BASEMENT <basement2d>` tutorial.
-* `CONSTANT DEPTH` initializes the water depths at a value defined by an **INITIAL DEPTH** keyword that has a default value of `0.`.
-* `TPXO SATELLITE ALTIMETRY` initializes the model using information provided by a user-defined database (e.g., the [OSU TPXO model for ocean tides](http://g.hyyb.org/archive/Tide/TPXO/TPXO_WEB/global.html)). Read more in section 4.2.12 of the {{ tm2d }} on modeling marine systems.
-
-This tutorial uses a *constant* water *depth* initial condition of `1` (integer to speed up calculations), which corresponds to a completely flooded initial model state (i.e., water volume surplus):
+In addition, specific roughness conditions should be defined for the liquid boundaries (see {ref}`above <tm2d-bounds>`), which should not be changed in the process of model calibration later. To this end, a **measured {term}`stage-discharge relation <Stage-discharge relation>`** is required to back-calculate cross-section averaged hydraulics. For this purpose, take a look at the {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>` formula.
 
 ```fortran
-INITIAL CONDITIONS : 'CONSTANT DEPTH'
-INITIAL DEPTH : 1
+LAW OF FRICTION ON LATERAL BOUNDARIES : 3 / integer (3 is Strickler)
+ROUGHNESS COEFFICIENT OF BOUNDARIES : 33.3 / float inverse of n_m=0.03
 ```
 
-The simulation speed can be significantly increased when the model has already been running once at the same discharge. The result of an earlier simulation can be used for the initial condition with the `COMPUTATION CONTINUED : YES` (default is `NO`) and `PREVIOUS COMPUTATION FILE : *.slf` (provide the name of a `*.slf` file) keywords. This type of model initialization is also referred to as *hotstart*. Read more about hotstarts in the {ref}`unsteady simulation <tm2d-hotstart>` and {ref}`Gaia <gaia-hotstart>` sections. Also section 4.1.3 in the {{ tm2d }} provides descriptions for continuing (hotstart) calculations.
+```{admonition} Differentiate between bottom and boundary friction
+:class: important
+
+Not using the two keywords defining the friction at the boundaries will make that any roughness calibration affects the mass balance.
+```
+
+
 
 (tm2d-turbulence)=
 ### Turbulence
@@ -743,7 +777,7 @@ Is the results file `r2dsteady.slf` not showing up in QGIS? Make sure to import 
 The PostTelemac plugin typically opens as a frame at the bottom-right of the QGIS window (maybe hard to find the first time). Detach the PostTelemac plugin from the main QGIS window by clicking on the resize window button in the top-right corner of the PostTelemac plugin frame (next to the *close* cross). In the detached window load the model results as follows (also indicated in {numref}`Fig. %s <post-tm>`):
 
 * Click on the **File ...** button, navigate to the location where the simulation lives and select `r2dsteady.slf`.
-* **Move the Time slider** to the last timestep (e.g., `8000`) and observe the main window, which will show by default the VELOCITY U parameter in this tutorial (depends on the variables defined with the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword).
+* **Move the Time slider** to the last timestep (e.g., `10000`) and observe the main window, which will show by default the VELOCITY U parameter in this tutorial (depends on the variables defined with the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword).
 * Familiarize with the PostTelemac plugin by modifying the display **Parameter** and the **Color gradient**.
 
 ```{figure} ../../img/telemac/post-telemac.png
@@ -770,9 +804,9 @@ The PostTelemac plugin enables to export simulation results in the form of multi
 
 ### Export GeoTIFF
 
-This example features the export of a flow velocity raster at the simulation end time (8000). For this purpose, click on the **RasterCreation** entry of the **Export** menu in the **Tools** tab. To export a flow velocity {term}`GeoTIFF` raster:
+This example features the export of a flow velocity raster at the simulation end time (`10000`). For this purpose, click on the **RasterCreation** entry of the **Export** menu in the **Tools** tab. To export a flow velocity {term}`GeoTIFF` raster:
 
-* Set the **time step** to `8000` (use the field indicated in {numref}`Fig. %s <posttm-export-tif>`).
+* Set the **time step** to the maximum (use the field indicated in {numref}`Fig. %s <posttm-export-tif>`).
 * Select `6 : VITESSE` for **Parameter**.
   * *Vitesse* is French for *velocity* and it is calculated as $VITESSE = \sqrt{(VELOCITY\ U)^2 + (VELOCITY\ V)^2}$
   * Note that `VELOCITY U` and `VELOCITY V` are the flow velocities in $x$ and $y$ directions, respectively.
@@ -787,7 +821,7 @@ The processing frame can be found at the bottom of the window (scroll down by cl
 :alt: qgis export simulation results slf PostTelemac raster geotiff tif
 :name: posttm-export-tif
 
-Export a flow velocity raster of simulation results with the PostTelemac plugin.
+Export a flow velocity raster of simulation results with the PostTelemac plugin (maximum time step here: 8000).
 ```
 
 The successful raster creation results in a new layer called **r2dsteady_raster_VITESSE**, which is automatically saved as a {term}`GeoTIFF` raster in the same folder where the QGIS project (`*.qgz`) and the `r2dsteady.slf` files are located.
@@ -814,6 +848,13 @@ How reasonable are the results?
 ### Verify Discharge Convergence
 
 The discharge convergence can be observed during the simulation in the Terminal running Telemac2d with the `PRINTING CUMULATED FLOWRATES : YES` keyword, and also later to make sure fluxes are correctly entering and leaving the model. Furthermore, it can be determined at which timestep inflows and outflows converge to each other, which enables the simulation to be shortened to this moment of convergence in steady simulations.
+
+
+```{admonition} Recall: boundary conditions and mass balance
+
+Mass balance is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`.
+```
+
 
 To export flowrates along any line or at any node of the mesh, make sure that `Q` is in the list of the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword. Then, go to the **Tools** tab of the PostTelemac plugin in QGIS ({numref}`Fig. %s <draw-flow-controls>`) and:
 

@@ -1,6 +1,6 @@
 # Welcome to Hydro-Informatics.com
 
-***<span style="color: #707070 "> The educational platform and eBook for data analysis & programming, geospatial analysis, and modeling tools in water resources engineering & research. </span>***
+**<span style="color: #707070 "> The educational platform and eBook for data analysis & programming, geospatial analysis, and modeling tools in water resources engineering & research. </span>**
 
 ```{image} img/icons/banner-logo.jpg
 :alt: hydro-informatics github sebastian schwindt ricardo barros beatriz negreiros federica scolari
@@ -30,7 +30,7 @@ We provide tutorials for:
   * Guides for code and project {doc}`documentation </documentation/documentation>` (*Markdown* / *reStructuredText*)
 * Geospatial analyses with {ref}`QGIS <qgis-tutorial>` and {doc}`Python </geopy/geo-python>`
 * {doc}`Machine learning <datascience/machinelearning>` with illustrative exercises and Python implementations to dive into:
-  * the fundamentals of {doc}`supervised learning <datascience/supervised-learning>`
+  * the fundamentals of {ref}`supervised learning <supervisedlearning>`
   * an introduction to {doc}`unsupervised learning <datascience/unsupervised-learning>`
   * a tutorial for {doc}`support vector machines (SVM) <datascience/morphology-predictor-svm>`
 * Numerical modeling with
