@@ -20,7 +20,7 @@ This tutorial shows how a steady discharge can be simulated with Telemac3d using
 
 * The computational mesh in [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf).
 * The boundary definitions in [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries.cli).
-* The results of the steady 2d model run for 35 m$^3$/s in [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) (result of the {ref}`dry bonus run <tm2d-dry>` ending at `T=15000`).
+* The results of the {ref}`steady 2d model <tm2d-init-dry>` simulaton of 35 m$^3$/s in [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) (ending at `t=15000`).
 
 Consider saving the files in a new folder, such as `/steady3d-tutorial/`.
 

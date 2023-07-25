@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Boundary Conditions &#8212; Hydro-Informatics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/telemac/boundaries';</script>
+    <link rel="canonical" href="https://hydro-informatics.com/numerics/telemac/boundaries.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Convergence (Quantitative)" href="convergence.html" />
+    <link rel="prev" title="Boundaries &amp; Mass Convergence" href="mass-balance-bc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/icon.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/icon.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/principles.html">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/lectures.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures/take_seat.html">Take a Seat</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/vm.html">Virtual Machines and Linux</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../python-basics/pyinstall.html">Python (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/git.html">Version Control : git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/geo.html">Geospatial Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get-started/others.html">Other Software Resources</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/python.html">First Steps</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pybase.html">Hello Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyerror.html">Errors, Logging, and Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyloop.html">Loops and Conditional Statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/modularize.html">Object Orientation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyfun.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pypckg.html">Packages, Modules and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/classes.html">Object Orientation and Classes</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python-basics/data-handling.html">Data and File Handling</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pynum.html">Data Files, NumPy &amp; Pandas</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/xml.html">Structured Data (XML, xlsx &amp; JSON)</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/pyplot.html">Plotting</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/pystyle.html">Code Style and Conventions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/gui.html">Graphical User Interfaces (GUIs)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/python-exercises.html">Python Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-ms.html">1d Hydraulics (Manning-Strickler Formula)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-sp.html">Reservoir Volume (Sequent Peak Algorithm)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-floods.html">Flood Return Periods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-sediment.html">1d Sediment Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-gui.html">Create a GUI</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Analysis</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/geospatial-data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/use-qgis.html">QGIS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geopy/drone-processing.html">Process Drone (UAV) Imagery</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../geopy/geo-python.html">Geospatial Python</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../geopy/geo-pckg.html">Geospatial Open Source Python Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-shp.html">Shapefile (Vector) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-raster.html">Raster (Grid) Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-convert.html">Vectorize and Rasterize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jupyter/geo-arcpy.html">The Commercial arcpy Library</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/geo-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-geco.html">Script a Habitat Suitability Map</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../numerical-modeling.html">Principles</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basement/basement.html">BASEMENT</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pre-qgis-bm.html">Pre-processing with QGIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basement/basement2d.html">Run and Check a Steady 2d Simulation</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="telemac.html">TELEMAC</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../pre-slf-tm.html">Pre-processing</a></li>
+
+
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac2d.html">Telemac2d</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-steady.html">Steady 2d</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="telemac2d-unsteady.html">Unsteady 2d</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac3d.html">Telemac3d</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-slf.html">Steady 3d (SLF - Selafin)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telemac3d-med.html">Steady 3d (MED and Salome)</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="telemac-gaia.html">Gaia (Morphodynamics)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="gaia-coupling.html">Introduction and Coupling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-basics.html">Basic Setup of Gaia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-bedload.html">Bedload</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-suspended.html">Suspended Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gaia-run.html">Run and Analyze</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="mass-balance-bc.html">Boundaries &amp; Mass Convergence</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="convergence.html">Convergence (Quantitative)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mass-optimization.html">Mass Conservation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="roughness.html">Roughness (Friction) Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html">Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-run.html">Run OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-post.html">Post-processing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (ML)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../datascience/machinelearning.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datascience/dimensional-analysis.html">About Data</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/linear-regression.html">Linear Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/non-linear-models.html">Non-linear models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/kernelized-supervised-models.html">Kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../datascience/three-based-methods.html">Three-based methods (Coming soon)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/neural-networks.html">Neural Networks (Supervised)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../datascience/unsupervised-learning.html">Unsupervised Learning (Coming soon)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/bibliography.html">References</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-git.html">Git and Markdown</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-gis.html">GIS, CRS and Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../terms/license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../terms/disclaimer.html">Disclaimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/contributors.html">Contributors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/hydro-informatics/jupyter-python-course" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/numerics/telemac/boundaries.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Boundary Conditions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-liquid-boundaries">Draw Liquid Boundaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-boundaries-cli">Understand Boundaries.Cli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-boundary-cli-to-change-conditions">Edit Boundary.Cli to Change Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-convergence">Verify Convergence</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="boundary-conditions">
+<span id="tm-foc-bc"></span><h1>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">#</a></h1>
+<div class="admonition-requirements admonition">
+<p class="admonition-title">Requirements</p>
+<p>This tutorial does not require running code, but we recommend to at least setting up a Telemac model, such as described in the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a>, which eases the understanding of concepts and terms.</p>
+</div>
+<p>The liquid boundary conditions are overdetermined when too many parameters are prescribed, which are at least numerically competing. For example, if discharge and water depth are prescribed but cannot be achieved with the defined roughness coefficients, Telemac will attempt to comply with the water depth. However, this water depth does often not correspond to the prescribed discharge and Telemac tries to compensate for the difference by varying the lengths (amounts) of the velocity vectors. In turn, the velocity vectors are constrained by the roughness coefficients. Thus, Telemac tries to vary water depths and velocity vectors to achieve a <a class="reference internal" href="../../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">stage (H)-discharge (Q) relation</span></a> prescribed at the boundary, which might be impossible with the defined roughness. A workaround would be to adjust roughness (friction) coefficients so that the defined boundary conditions and roughness coefficients are exactly in balance. However, the boundary conditions should be calibrated specifically for multiple terrain types (i.e., <a class="reference internal" href="roughness.html#tm-friction-zones"><span class="std std-ref">roughness zones</span></a>) through model calibration using measured values and not imposed by issues at the model boundaries to achieve mass balance. So, what next?</p>
+<p>To deal with the problem of overdetermined boundary conditions and mass imbalance, the next sections first provide tips on correctly placing liquid boundaries geometrically, then recall the setup of a boundary file, the types of boundaries (i.e., values), and how they might affect the mass balance.</p>
+<section id="draw-liquid-boundaries">
+<span id="tm-foc-draw-bc"></span><h2>Draw Liquid Boundaries<a class="headerlink" href="#draw-liquid-boundaries" title="Permalink to this headline">#</a></h2>
+<p>When drawing liquid boundaries, for example, in BlueKenue, a couple of geometric characteristics will help to improve the stability and mass balance of the later simulation:</p>
+<ul class="simple">
+<li><p>Liquid boundaries should have at least 5-10 nodes.</p></li>
+<li><p>All liquid inflow boundaries should have a close-to equal number of nodes as the sum of liquid outflow boundaries.</p></li>
+<li><p>Liquid inflow (upstream) boundaries should only be defined at the lower riverbed, never on the riverbanks or floodplains (see <a class="reference internal" href="#draw-inflow"><span class="std std-numref">Fig. 161</span></a>).</p></li>
+<li><p>Draw the boundaries sufficiently far away from the region of interest: imposed or unrealistic water depths (or water surface elevations) related to the flowrates will otherwise strongly affect the region of interest. As a rule of thumb, in a 2d simulation, the upstream and downstream boundaries should be at least 800 to 1000 m distanced from the region of interest.</p></li>
+</ul>
+<figure class="align-default" id="draw-inflow">
+<img alt="draw bluekenue liquid boundary conditions conlim upstream inflow" src="../../_images/cross-section-sx.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 161 </span><span class="caption-text">The red highlighted part of this qualitative cross section should be defined as the inflow (upstream) boundary condition. Mesh nodes at the riverbanks and on the floodplains should not be included.</span><a class="headerlink" href="#draw-inflow" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="understand-boundaries-cli">
+<span id="tm-foc-unpack-bc"></span><h2>Understand Boundaries.Cli<a class="headerlink" href="#understand-boundaries-cli" title="Permalink to this headline">#</a></h2>
+<p>The steady 2d, unsteady 2d, and tutorials showcase the different types of boundaries using prescribed discharge (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) and/or water depth (<code class="docutils literal notranslate"><span class="pre">H</span></code>), which are implemented into a boundaries <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file consisting of 13 space (tab) - separated colons:</p>
+<div class="note admonition">
+<p class="admonition-title">Example of a hydrodynamics boundaries.cli file (first 3 rows)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">138</span>           <span class="mi">1</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9836</span>           <span class="mi">2</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9838</span>           <span class="mi">3</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<p>The 13 space (tab) - separated colons correspond to 13 boundary variables, which are listed in <a class="reference internal" href="#tab-bc-overview"><span class="std std-numref">Table 11</span></a> for a hydrodynamic Telemac2d/3d (see <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a>) and a Gaia boundary conditions file.</p>
+<table class="table" id="tab-bc-overview">
+<caption><span class="caption-number">Table 11 </span><span class="caption-text">Meaning of columns in a Boundary.Cli file for Telemac2d/3d and Gaia.</span><a class="headerlink" href="#tab-bc-overview" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Column no.<br></p></th>
+<th class="head"><p>Flag<br></p></th>
+<th class="head"><p>Telemac2d/3d<br>
+<small><em>parameter</em></small></p></th>
+<th class="head"><p>Gaia<br>
+<small><em>parameter</em></small></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>boundary type</p></td>
+<td><p>LIHBOR<br>
+<small><em>water depth</em></small></p></td>
+<td><p>LIHBOR<br>
+<small><em>water depth</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>boundary type</p></td>
+<td><p>LIUBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+<td><p>LIQBOR<br>
+<small><em>sediment load</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>boundary type</p></td>
+<td><p>LIVBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+<td><p>LIVBOR<br>
+<small><em>velocity</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Prescription</p></td>
+<td><p>HBOR<br>
+<small><em>water depth</em></small></p></td>
+<td><p>Q2BOR<br>
+<small><em>sediment load</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Prescription</p></td>
+<td><p>UBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+<td><p>UBOR<br>
+<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Prescription</p></td>
+<td><p>VBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+<td><p>VBOR<br>
+<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Prescription</p></td>
+<td><p>AUBOR<br>
+<small><em>wall friction</em></small></p></td>
+<td><p>AUBOR<br>
+<small><em>wall friction</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>boundary type</p></td>
+<td><p>LITBOR<br>
+<small><em>tracer</em></small></p></td>
+<td><p>LIEBOR (LICBOR)<br>
+<small><em>flowrate</em> (<em>concentration</em>)</small></p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Prescription</p></td>
+<td><p>TBOR<br>
+<small><em>tracer</em></small></p></td>
+<td><p>EBOR (CBOR)<br>
+<small><em>bottom elevation</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Prescription</p></td>
+<td><p>ATBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+<td><p>ATBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Prescription</p></td>
+<td><p>BTBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+<td><p>BTBOR<br>
+<small><em>heat fluxes</em></small></p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Global Node ID</p></td>
+<td><p>N<br>
+<small><em>Selafin mesh</em></small></p></td>
+<td><p>N<br>
+<small><em>Selafin mesh</em></small></p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Local Node ID</p></td>
+<td><p>K <br><small><em>boundary file</em></small></p></td>
+<td><p>K <br><small><em>boundary file</em></small></p></td>
+</tr>
+</tbody>
+</table>
+<p>The first three columns of a <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file determine whether a boundary is solid or liquid, and if liquid, the type of liquid boundaries. These three columns (i.e. LIHBOR, LIUBOR, and LIVBOR) may take the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> to enforce a zero velocity boundary</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> to indicate a solid (wall) boundary with friction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> to define a free liquid boundary type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> to define a prescribed (i.e., determined) liquid boundary type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> to prescribe a velocity (only for LIUBOR/LIVBOR)</p></li>
+</ul>
+<p>Also, these values can be assigned to column 8 (LITBOR/LIEBOR) of the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file. Note that in a hydrodynamic simulation, the combination of columns 2 and 3 (LIUBOR and LIVBOR) is effectively a discharge boundary. All other columns are <em>Prescriptions</em> and <em>Node IDs</em>. The <em>Prescriptions</em> may be used to impose, for example, a flow velocity value (not recommended). The <em>Node IDs</em> were written by BlueKenue (or whatever mesh generator was used) and should not be modified. Thus, regarding the mass balance of water, the first three columns are important and they can get assigned the (common) value combinations listed in <a class="reference internal" href="#bc-defs-tm"><span class="std std-numref">Tab. 12</span></a> below. For the mass balance of tracers, column 8 can be defined analogously. Additionally, a <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file for sediment transport can be similarly defined with the first three columns, as described in the <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">Gaia tutorial</span></a>.</p>
+<table class="table" id="bc-defs-tm">
+<caption><span class="caption-number">Table 12 </span><span class="caption-text">Value combinations for the first three columns of a hydrodynamic boundaries.cli file affecting the mass balance of water.</span><a class="headerlink" href="#bc-defs-tm" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p>Number code</p></th>
+<th class="head"><p>Typical application</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Solid</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">2</span> <span class="pre">2</span></code></p></td>
+<td><p>Solid boundaries</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prescribed Q</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code></p></td>
+<td><p><a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">Upstream liquid</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Prescribed H</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code></p></td>
+<td><p><a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">Downstream liquid</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Prescribed H and Q</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code></p></td>
+<td><p><a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">Stream gauges</span></a> (rather avoid)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="edit-boundary-cli-to-change-conditions">
+<h2>Edit Boundary.Cli to Change Conditions<a class="headerlink" href="#edit-boundary-cli-to-change-conditions" title="Permalink to this headline">#</a></h2>
+<p>To view or edit the type of boundary conditions, open the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file with a text editor (read more about <a class="reference internal" href="../../get-started/others.html#npp"><span class="std std-ref">text editors</span></a>). Typically, most of the rows will hold the value combination <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">2</span> <span class="pre">2</span></code> in columns 1-3, that is, they are solid boundaries. The liquid boundary rows start with <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code> as listed in <a class="reference internal" href="#bc-defs-tm"><span class="std std-numref">Tab. 12</span></a>. Every row in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file represents a node of the mesh, and neighboring rows represent neighboring mesh nodes. For instance, the node described in row 435 of a <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file is geospatially located directly between the boundary nodes described in lines 434 and 436 of the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file. Since the definitions in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file are purely geometric or geometric attributes, additional hydraulic attributes must be prescribed or linked in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file. Thus, the Telemac steering file controls how much water is flowing through the liquid boundaries, and/or the water depth/surface elevation with the following keywords:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">Keywords</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="mf">8.20</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">11</span><span class="mf">8.0</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">not </span><span class="k">use </span><span class="n">simultaneously</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">not </span><span class="k">use </span><span class="n">simultaneously</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span>
+</pre></div>
+</div>
+<p>Alternatives to these keywords can be found in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady 2d</span></a> and <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">Gaia</span></a> tutorials, or section 4.2 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a>. Note that every <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">...</span></code> row holds to <code class="docutils literal notranslate"><span class="pre">;</span></code> separated values. The first and second values apply to the first and second boundaries defined in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file. If one of these values is <code class="docutils literal notranslate"><span class="pre">0</span></code> (e.g., the second ELEVATION and the first FLOWRATE boundary), Telemac will treat it as a free (<code class="docutils literal notranslate"><span class="pre">4</span></code>) liquid boundary. Now, how can we tell what the first and second, or even third, fourth, etc. boundaries are?</p>
+<p>The order of boundaries can be found in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file: the first liquid boundary (i.e., the first row starts with either <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code>) is the first liquid boundary. Because the mesh generator placed neighboring nodes in neighboring rows, the boundary lines are defined in neighboring rows, too. The below box features an example of a downstream boundary defined between nodes 7-12 (global IDs 144-9818). Further down in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file, another liquid boundary (e.g., <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>) might be found to define upstream inflows. In this case, the downstream boundary is boundary 1 and the upstream boundary is boundary 2, and both are accordingly prescribed in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file.</p>
+<div class="tip admonition" id="cli-example">
+<p class="admonition-title">Example of a downstream 5 4 4 (prescribed H) boundary defined in a .cli file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9828</span>           <span class="mi">6</span>   <span class="c1"># </span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># downstream (144 - 9818)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9824</span>           <span class="mi">8</span>   <span class="c1"># downstream (144 - 9818)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9831</span>           <span class="mi">9</span>   <span class="c1"># downstream (144 - 9818)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">89</span>          <span class="mi">10</span>   <span class="c1"># downstream (144 - 9818)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9817</span>          <span class="mi">11</span>   <span class="c1"># downstream (144 - 9818)</span>
+<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9818</span>          <span class="mi">12</span>   <span class="c1"># downstream (144 - 9818)</span>
+<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7602</span>          <span class="mi">13</span>   <span class="c1"># </span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> boundary condition in the <a class="reference internal" href="#cli-example"><span class="std std-ref">above example</span></a> may result in the mass balance not being fulfilled because discharge at the model outlet (downstream boundary) is calculated as a function of water depth. To conserve the mass balance, a <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q) boundary condition can be used instead of the <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> boundary condition (at both upstream and downstream boundaries):</p>
+<ol class="arabic simple">
+<li><p>With the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file opened in a text editor, find and replace <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> value combinations with <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>. Then, save the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file.</p></li>
+<li><p>With the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file opened in a text editor, comment out any <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">DEPTH</span></code> or <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> keywords. Make sure that <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> are defined (i.e., not zero) at all liquid boundaries and that the sum of inflow and outflow fluxes is equal. For example:</p></li>
+</ol>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">Keywords</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
+<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="mf">8.20</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="mf">8.0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">11</span><span class="mf">8.0</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-convergence">
+<h2>Verify Convergence<a class="headerlink" href="#verify-convergence" title="Permalink to this headline">#</a></h2>
+<p>The next section on the <a class="reference internal" href="convergence.html#tm-convergence"><span class="std std-ref">quantitative convergence</span></a> features the analysis of fluxes across (or through) the liquid boundaries.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "hydro-informatics/jupyter-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./numerics/telemac"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mass-balance-bc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Boundaries &amp; Mass Convergence</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="convergence.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Convergence (Quantitative)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-liquid-boundaries">Draw Liquid Boundaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-boundaries-cli">Understand Boundaries.Cli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-boundary-cli-to-change-conditions">Edit Boundary.Cli to Change Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-convergence">Verify Convergence</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

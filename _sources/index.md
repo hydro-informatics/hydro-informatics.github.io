@@ -1,9 +1,9 @@
 # Welcome to Hydro-Informatics.com
 
-**<span style="color: #707070 "> The educational platform and eBook for data analysis & programming, geospatial analysis, and modeling tools in water resources engineering & research. </span>**
+**<span style="color: #707070 "> The educational platform and eBook for data analysis & programming, numerical modeling, and geospatial analysis in water resources engineering & research. </span>**
 
-```{image} img/icons/banner-logo.jpg
-:alt: hydro-informatics github sebastian schwindt ricardo barros beatriz negreiros federica scolari
+```{image} img/icons/banner-logo.png
+:alt: hydro-informatics on github by sebastian schwindt beatriz negreiros federica scolari ricardo barros
 ```
 
 ## Preface
@@ -34,7 +34,7 @@ We provide tutorials for:
   * an introduction to {doc}`unsupervised learning <datascience/unsupervised-learning>`
   * a tutorial for {doc}`support vector machines (SVM) <datascience/morphology-predictor-svm>`
 * Numerical modeling with
-  * The {doc}`ETH Zurich's BASEMENT </numerics/basement/basement>` (v3) software (2d hydrodynamics)
+  * The {doc}`ETH Zurich's BASEMENT </numerics/basement/basement>` (v4) software (2d hydrodynamics)
   * {doc}`TELEMAC </numerics/telemac/telemac>` (2d, 3d, and morphodynamics)
   * {doc}`OpenFOAM </numerics/openfoam/of-intro>` (3d hydrodynamics)
 

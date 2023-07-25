@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Boundaries &amp; Mass Balance &#8212; Hydro-Informatics</title>
+    <title>Boundaries &amp; Mass Convergence &#8212; Hydro-Informatics</title>
   
   
   
@@ -62,14 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/telemac/mass-balance-bc';</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/telemac/mass-balance-bc.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Roughness (Friction) Zones" href="roughness.html" />
+    <link rel="next" title="Boundary Conditions" href="boundaries.html" />
     <link rel="prev" title="Run and Analyze" href="gaia-run.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -256,6 +254,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
 <li class="toctree-l3"><a class="reference internal" href="telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
 </li>
@@ -272,13 +271,18 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="gaia-run.html">Run and Analyze</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Boundaries &amp; Mass Balance</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Boundaries &amp; Mass Convergence</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="boundaries.html">Boundary Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="convergence.html">Convergence (Quantitative)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mass-optimization.html">Mass Conservation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="roughness.html">Roughness (Friction) Zones</a></li>
 <li class="toctree-l2"><a class="reference internal" href="optimization.html">Optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../openfoam/of-intro.html">OpenFOAM</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../openfoam/of-tutorial-multiphase.html">Multiphase Solver (interFoam Tutorial)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-mesh.html">Geometry and Mesh Generation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../openfoam/of-tutorial-multiphase-setup.html">Case set-up</a></li>
 
@@ -296,13 +300,13 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../datascience/machinelearning.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../datascience/dimensional-analysis.html">About Data</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/linear-regression.html">Linear Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/non-linear-models.html">Non-linear models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/non-linear-models.html">Non-linear models</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/kernelized-supervised-models.html">Kernels</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/morphology-predictor-svm.html">Support Vector Machine (SVM)</a></li>
 
@@ -310,9 +314,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/three-based-methods.html">Three-based methods (Coming soon)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../datascience/neural-networks.html">Neural Networks (Supervised)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../datascience/neural-networks.html">Neural Networks (Coming soon)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../datascience/unsupervised-learning.html">Unsupervised Learning (Coming soon)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
@@ -321,30 +325,30 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/bibliography.html">References</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../exercises/docs-exercises.html">Exercises</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../exercises/ex-git.html">Git and Markdown</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Troubleshoot</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-programming.html">Programming Tools and IDEs</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-anaconda.html">Debugging Anaconda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-python.html">Debugging Python Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-jupyter.html">Debugging Jupyter</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-21"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-numerical-models.html">Numerical Models</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-basement.html">Debugging BASEMENT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-telemac.html">Debugging TELEMAC</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-22"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-os.html">Operating Systems (Linux and VMs)</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-linux.html">Debugging Debian Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-vm.html">Debugging Virtual Machines</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-23"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../troubleshoot/dbg-scilife.html">Science Life Hacks</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-24"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-gis.html">GIS, CRS and Projections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../troubleshoot/dbg-zotero.html">Zotero Utilities</a></li>
 </ul>
@@ -493,9 +497,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -506,29 +508,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Boundaries & Mass Balance</h1>
+    <h1>Boundaries & Mass Convergence</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-liquid-boundaries">Draw Liquid Boundaries</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-boundaries-cli">Understand Boundaries.Cli</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-boundary-cli-to-change-conditions">Edit Boundary.Cli to Change Conditions</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation">Mass Conservation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-for-mass-conservation">Workflow for Mass Conservation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-steering-file-keywords">Additional Steering File Keywords</a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -538,311 +522,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="boundaries-mass-balance">
-<span id="foc-mass-bc"></span><h1>Boundaries &amp; Mass Balance<a class="headerlink" href="#boundaries-mass-balance" title="Permalink to this headline">#</a></h1>
-<p>The conservation of mass and definition of boundary conditions go hand in hand, as overdetermined or wrongly constrained liquid boundaries entail unbalanced water or sediment masses, or other computational issues, such as supercritical flows (resulting from high <a class="reference internal" href="../../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude numbers</span></a>). This chapter looks under the hood of boundary conditions, how they affect mass balance, and what can be done to obtain a robust, mass-conservative numerical Telemac model. A <strong>complete workflow for robust modeling is provided at the <a class="reference internal" href="#tm-foc-mass-workflow"><span class="std std-ref">end of this chapter</span></a></strong>.</p>
-<div class="admonition-requirements admonition">
-<p class="admonition-title">Requirements</p>
-<p>This tutorial does not require running code, but we recommend to at least setting up a Telemac model, such as described in the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a>, which eases the understanding of concepts and terms.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="boundaries-mass-convergence">
+<span id="foc-mass-bc"></span><h1>Boundaries &amp; Mass Convergence<a class="headerlink" href="#boundaries-mass-convergence" title="Permalink to this headline">#</a></h1>
+<p>The conservation of mass and definition of boundary conditions go hand in hand, as overdetermined or wrongly constrained liquid boundaries entail unbalanced water or sediment masses, or other computational issues, such as supercritical flows (resulting from high <a class="reference internal" href="../../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude numbers</span></a>). This chapter looks under the hood of boundary conditions, how they affect mass balance, flux convergence analysis, and what can be done to obtain a robust, mass-conservative numerical Telemac model. A <strong>complete workflow for robust modeling is provided at the <a class="reference internal" href="mass-optimization.html#tm-foc-mass-workflow"><span class="std std-ref">end of this chapter</span></a></strong>.</p>
+<div class="toctree-wrapper compound">
 </div>
-<section id="boundary-conditions">
-<span id="tm-foc-bc"></span><h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">#</a></h2>
-<p>The liquid boundary conditions are overdetermined when too many parameters are prescribed, which are at least numerically competing. For example, if discharge and water depth are prescribed but cannot be achieved with the defined roughness coefficients, Telemac will attempt to comply with the water depth. However, this water depth does often not correspond to the prescribed discharge and Telemac tries to compensate for the difference by varying the lengths (amounts) of the velocity vectors. In turn, the velocity vectors are constrained by the roughness coefficients. Thus, Telemac tries to vary water depths and velocity vectors to achieve a <a class="reference internal" href="../../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">stage (H)-discharge (Q) relation</span></a> prescribed at the boundary, which might be impossible with the defined roughness. A workaround would be to adjust roughness (friction) coefficients so that the defined boundary conditions and roughness coefficients are exactly in balance. However, the boundary conditions should be calibrated specifically for multiple terrain types (i.e., <a class="reference internal" href="roughness.html#tm-friction-zones"><span class="std std-ref">roughness zones</span></a>) through model calibration using measured values and not imposed by issues at the model boundaries to achieve mass balance. So, what next?</p>
-<p>To deal with the problem of overdetermined boundary conditions and mass imbalance, the next sections first provide tips on correctly placing liquid boundaries geometrically, then recall the setup of a boundary file, the types of boundaries (i.e., values), and how they might affect the mass balance.</p>
-<section id="draw-liquid-boundaries">
-<span id="tm-foc-draw-bc"></span><h3>Draw Liquid Boundaries<a class="headerlink" href="#draw-liquid-boundaries" title="Permalink to this headline">#</a></h3>
-<p>When drawing liquid boundaries, for example, in BlueKenue, a couple of geometric characteristics will help to improve the stability and mass balance of the later simulation:</p>
-<ul class="simple">
-<li><p>Liquid boundaries should have at least 5-10 nodes.</p></li>
-<li><p>All liquid inflow boundaries should have a close-to equal number of nodes as the sum of liquid outflow boundaries.</p></li>
-<li><p>Liquid inflow (upstream) boundaries should only be defined at the lower riverbed, never on the riverbanks or floodplains (see <a class="reference internal" href="#draw-inflow"><span class="std std-numref">Fig. 156</span></a>).</p></li>
-<li><p>Draw the boundaries sufficiently far away from the region of interest: imposed or unrealistic water depths (or water surface elevations) related to the flowrates will otherwise strongly affect the region of interest. As a rule of thumb, in a 2d simulation, the upstream and downstream boundaries should be at least 800 to 1000 m distanced from the region of interest.</p></li>
-</ul>
-<figure class="align-default" id="draw-inflow">
-<img alt="draw bluekenue liquid boundary conditions conlim upstream inflow" src="../../_images/cross-section-sx.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 156 </span><span class="caption-text">The red highlighted part of this qualitative cross section should be defined as the inflow (upstream) boundary condition. Mesh nodes at the riverbanks and on the floodplains should not be included.</span><a class="headerlink" href="#draw-inflow" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="understand-boundaries-cli">
-<span id="tm-foc-unpack-bc"></span><h3>Understand Boundaries.Cli<a class="headerlink" href="#understand-boundaries-cli" title="Permalink to this headline">#</a></h3>
-<p>The steady 2d, unsteady 2d, and tutorials showcase the different types of boundaries using prescribed discharge (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) and/or water depth (<code class="docutils literal notranslate"><span class="pre">H</span></code>), which are implemented into a boundaries <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file consisting of 13 space (tab) - separated colons:</p>
-<div class="note admonition">
-<p class="admonition-title">Example of a hydrodynamics boundaries.cli file (first 3 rows)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">138</span>           <span class="mi">1</span>
-<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9836</span>           <span class="mi">2</span>
-<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9838</span>           <span class="mi">3</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-</div>
-<p>The 13 space (tab) - separated colons correspond to 13 boundary variables, which are listed in <a class="reference internal" href="#tab-bc-overview"><span class="std std-numref">Table 11</span></a> for a hydrodynamic Telemac2d/3d (see <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli">boundaries.cli</a>) and a Gaia boundary conditions file.</p>
-<table class="table" id="tab-bc-overview">
-<caption><span class="caption-number">Table 11 </span><span class="caption-text">Meaning of columns in a Boundary.Cli file for Telemac2d/3d and Gaia.</span><a class="headerlink" href="#tab-bc-overview" title="Permalink to this table">#</a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Column no.<br></p></th>
-<th class="head"><p>Flag<br></p></th>
-<th class="head"><p>Telemac2d/3d<br>
-<small><em>parameter</em></small></p></th>
-<th class="head"><p>Gaia<br>
-<small><em>parameter</em></small></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>boundary type</p></td>
-<td><p>LIHBOR<br>
-<small><em>water depth</em></small></p></td>
-<td><p>LIHBOR<br>
-<small><em>water depth</em></small></p></td>
-</tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td><p>boundary type</p></td>
-<td><p>LIUBOR<br>
-<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
-<td><p>LIQBOR<br>
-<small><em>sediment load</em></small></p></td>
-</tr>
-<tr class="row-even"><td><p>3</p></td>
-<td><p>boundary type</p></td>
-<td><p>LIVBOR<br>
-<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
-<td><p>LIVBOR<br>
-<small><em>velocity</em></small></p></td>
-</tr>
-<tr class="row-odd"><td><p>4</p></td>
-<td><p>Prescription</p></td>
-<td><p>HBOR<br>
-<small><em>water depth</em></small></p></td>
-<td><p>Q2BOR<br>
-<small><em>sediment load</em></small></p></td>
-</tr>
-<tr class="row-even"><td><p>5</p></td>
-<td><p>Prescription</p></td>
-<td><p>UBOR<br>
-<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
-<td><p>UBOR<br>
-<small><em><span class="math notranslate nohighlight">\(x\)</span>-flowrate or <span class="math notranslate nohighlight">\(u\)</span></em></small></p></td>
-</tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td><p>Prescription</p></td>
-<td><p>VBOR<br>
-<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
-<td><p>VBOR<br>
-<small><em><span class="math notranslate nohighlight">\(y\)</span>-flowrate or <span class="math notranslate nohighlight">\(v\)</span></em></small></p></td>
-</tr>
-<tr class="row-even"><td><p>7</p></td>
-<td><p>Prescription</p></td>
-<td><p>AUBOR<br>
-<small><em>wall friction</em></small></p></td>
-<td><p>AUBOR<br>
-<small><em>wall friction</em></small></p></td>
-</tr>
-<tr class="row-odd"><td><p>8</p></td>
-<td><p>boundary type</p></td>
-<td><p>LITBOR<br>
-<small><em>tracer</em></small></p></td>
-<td><p>LIEBOR (LICBOR)<br>
-<small><em>flowrate</em> (<em>concentration</em>)</small></p></td>
-</tr>
-<tr class="row-even"><td><p>9</p></td>
-<td><p>Prescription</p></td>
-<td><p>TBOR<br>
-<small><em>tracer</em></small></p></td>
-<td><p>EBOR (CBOR)<br>
-<small><em>bottom elevation</em></small></p></td>
-</tr>
-<tr class="row-odd"><td><p>10</p></td>
-<td><p>Prescription</p></td>
-<td><p>ATBOR<br>
-<small><em>heat fluxes</em></small></p></td>
-<td><p>ATBOR<br>
-<small><em>heat fluxes</em></small></p></td>
-</tr>
-<tr class="row-even"><td><p>11</p></td>
-<td><p>Prescription</p></td>
-<td><p>BTBOR<br>
-<small><em>heat fluxes</em></small></p></td>
-<td><p>BTBOR<br>
-<small><em>heat fluxes</em></small></p></td>
-</tr>
-<tr class="row-odd"><td><p>12</p></td>
-<td><p>Global Node ID</p></td>
-<td><p>N<br>
-<small><em>Selafin mesh</em></small></p></td>
-<td><p>N<br>
-<small><em>Selafin mesh</em></small></p></td>
-</tr>
-<tr class="row-even"><td><p>13</p></td>
-<td><p>Local Node ID</p></td>
-<td><p>K <br><small><em>boundary file</em></small></p></td>
-<td><p>K <br><small><em>boundary file</em></small></p></td>
-</tr>
-</tbody>
-</table>
-<p>The first three columns of a <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file determine whether a boundary is solid or liquid, and if liquid, the type of liquid boundaries. These three columns (i.e. LIHBOR, LIUBOR, and LIVBOR) may take the following values:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> to enforce a zero velocity boundary</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> to indicate a solid (wall) boundary with friction</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> to define a free liquid boundary type</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">5</span></code> to define a prescribed (i.e., determined) liquid boundary type</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> to prescribe a velocity (only for LIUBOR/LIVBOR)</p></li>
-</ul>
-<p>Also, these values can be assigned to column 8 (LITBOR/LIEBOR) of the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file. Note that in a hydrodynamic simulation, the combination of columns 2 and 3 (LIUBOR and LIVBOR) is effectively a discharge boundary. All other columns are <em>Prescriptions</em> and <em>Node IDs</em>. The <em>Prescriptions</em> may be used to impose, for example, a flow velocity value (not recommended). The <em>Node IDs</em> were written by BlueKenue (or whatever mesh generator was used) and should not be modified. Thus, regarding the mass balance of water, the first three columns are important and they can get assigned the (common) value combinations listed in <a class="reference internal" href="#bc-defs-tm"><span class="std std-numref">Tab. 12</span></a> below. For the mass balance of tracers, column 8 can be defined analogously. Additionally, a <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file for sediment transport can be similarly defined with the first three columns, as described in the <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">Gaia tutorial</span></a>.</p>
-<table class="table" id="bc-defs-tm">
-<caption><span class="caption-number">Table 12 </span><span class="caption-text">Value combinations for the first three columns of a hydrodynamic boundaries.cli file affecting the mass balance of water.</span><a class="headerlink" href="#bc-defs-tm" title="Permalink to this table">#</a></caption>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Type</strong></p></th>
-<th class="head"><p>Number code</p></th>
-<th class="head"><p>Typical application</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Solid</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">2</span> <span class="pre">2</span></code></p></td>
-<td><p>Solid boundaries</p></td>
-</tr>
-<tr class="row-odd"><td><p>Prescribed Q</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code></p></td>
-<td><p><a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">Upstream liquid</span></a></p></td>
-</tr>
-<tr class="row-even"><td><p>Prescribed H</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code></p></td>
-<td><p><a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">Downstream liquid</span></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Prescribed H and Q</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code></p></td>
-<td><p><a class="reference internal" href="telemac2d-steady.html#tm2d-bounds"><span class="std std-ref">Stream gauges</span></a> (rather avoid)</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="edit-boundary-cli-to-change-conditions">
-<h3>Edit Boundary.Cli to Change Conditions<a class="headerlink" href="#edit-boundary-cli-to-change-conditions" title="Permalink to this headline">#</a></h3>
-<p>To view or edit the type of boundary conditions, open the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file with a text editor (read more about <a class="reference internal" href="../../get-started/others.html#npp"><span class="std std-ref">text editors</span></a>). Typically, most of the rows will hold the value combination <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">2</span> <span class="pre">2</span></code> in columns 1-3, that is, they are solid boundaries. The liquid boundary rows start with <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code> as listed in <a class="reference internal" href="#bc-defs-tm"><span class="std std-numref">Tab. 12</span></a>. Every row in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file represents a node of the mesh, and neighboring rows represent neighboring mesh nodes. For instance, the node described in row 435 of a <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file is geospatially located directly between the boundary nodes described in lines 434 and 436 of the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file. Since the definitions in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file are purely geometric or geometric attributes, additional hydraulic attributes must be prescribed or linked in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file. Thus, the Telemac steering file controls how much water is flowing through the liquid boundaries, and/or the water depth/surface elevation with the following keywords:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">Keywords</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
-<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="mf">8.20</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">0</span>
-<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">11</span><span class="mf">8.0</span>
-<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">not </span><span class="k">use </span><span class="n">simultaneously</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span>
-<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">not </span><span class="k">use </span><span class="n">simultaneously</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span>
-</pre></div>
-</div>
-<p>Alternatives to these keywords can be found in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady 2d</span></a> and <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">Gaia</span></a> tutorials, or section 4.2 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a>. Note that every <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">...</span></code> row holds to <code class="docutils literal notranslate"><span class="pre">;</span></code> separated values. The first and second values apply to the first and second boundaries defined in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file. If one of these values is <code class="docutils literal notranslate"><span class="pre">0</span></code> (e.g., the second ELEVATION and the first FLOWRATE boundary), Telemac will treat it as a free (<code class="docutils literal notranslate"><span class="pre">4</span></code>) liquid boundary. Now, how can we tell what the first and second, or even third, fourth, etc. boundaries are?</p>
-<p>The order of boundaries can be found in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file: the first liquid boundary (i.e., the first row starts with either <code class="docutils literal notranslate"><span class="pre">4</span></code> or <code class="docutils literal notranslate"><span class="pre">5</span></code>) is the first liquid boundary. Because the mesh generator placed neighboring nodes in neighboring rows, the boundary lines are defined in neighboring rows, too. The below box features an example of a downstream boundary defined between nodes 7-12 (global IDs 144-9818). Further down in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file, another liquid boundary (e.g., <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>) might be found to define upstream inflows. In this case, the downstream boundary is boundary 1 and the upstream boundary is boundary 2, and both are accordingly prescribed in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file.</p>
-<div class="tip admonition" id="cli-example">
-<p class="admonition-title">Example of a downstream 5 4 4 (prescribed H) boundary defined in a .cli file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9828</span>           <span class="mi">6</span>   <span class="c1"># </span>
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>         <span class="mi">144</span>           <span class="mi">7</span>   <span class="c1"># downstream (144 - 9818)</span>
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9824</span>           <span class="mi">8</span>   <span class="c1"># downstream (144 - 9818)</span>
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9831</span>           <span class="mi">9</span>   <span class="c1"># downstream (144 - 9818)</span>
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>          <span class="mi">89</span>          <span class="mi">10</span>   <span class="c1"># downstream (144 - 9818)</span>
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9817</span>          <span class="mi">11</span>   <span class="c1"># downstream (144 - 9818)</span>
-<span class="mi">5</span> <span class="mi">4</span> <span class="mi">4</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">9818</span>          <span class="mi">12</span>   <span class="c1"># downstream (144 - 9818)</span>
-<span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>  <span class="mi">2</span>  <span class="mf">0.000</span> <span class="mf">0.000</span> <span class="mf">0.000</span>        <span class="mi">7602</span>          <span class="mi">13</span>   <span class="c1"># </span>
-</pre></div>
-</div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> boundary condition in the <a class="reference internal" href="#cli-example"><span class="std std-ref">above example</span></a> may result in the mass balance not being fulfilled because discharge at the model outlet (downstream boundary) is calculated as a function of water depth. To conserve the mass balance, a <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code> (prescribed Q) boundary condition can be used instead of the <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> boundary condition (at both upstream and downstream boundaries):</p>
-<ol class="arabic simple">
-<li><p>With the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file opened in a text editor, find and replace <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> value combinations with <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code>. Then, save the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file.</p></li>
-<li><p>With the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file opened in a text editor, comment out any <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">DEPTH</span></code> or <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> keywords. Make sure that <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> are defined (i.e., not zero) at all liquid boundaries and that the sum of inflow and outflow fluxes is equal. For example:</p></li>
-</ol>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">Keywords</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
-<span class="o">/</span><span class="w"> </span><span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">ELEVATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="mf">8.20</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">0</span>
-<span class="n">PRESCRIBED</span><span class="w"> </span><span class="n">FLOWRATES</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="mf">8.0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="mi">11</span><span class="mf">8.0</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="mass-conservation">
-<span id="tm-foc-mass"></span><h2>Mass Conservation<a class="headerlink" href="#mass-conservation" title="Permalink to this headline">#</a></h2>
-<section id="workflow-for-mass-conservation">
-<span id="tm-foc-mass-workflow"></span><h3>Workflow for Mass Conservation<a class="headerlink" href="#workflow-for-mass-conservation" title="Permalink to this headline">#</a></h3>
-<p>With the understanding of boundary conditions, a Telemac model can be robustly built according to the following workflow:</p>
-<ol class="arabic simple">
-<li><p>Make sure to <a class="reference internal" href="#tm-foc-draw-bc"><span class="std std-ref">draw liquid boundaries according to the above recommendations</span></a>.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">5</span> <span class="pre">5</span></code> upstream (prescribed Q) and a <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> downstream (prescribed H) boundaries in the <code class="docutils literal notranslate"><span class="pre">.cli</span></code> file to prescribe <strong>steady</strong> discharges through the <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> and <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> keywords, respectively in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file.</p></li>
-<li><p>Use the following keywords to prescribe roughness coefficients at the boundaries that correspond to <strong>measured <a class="reference internal" href="../../documentation/glossary.html#term-Stage-discharge-relation"><span class="xref std std-term">stage-discharge relation</span></a></strong> and back-calculated cross-section averaged hydraulics:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">LAW</span> <span class="pre">OF</span> <span class="pre">FRICTION</span> <span class="pre">ON</span> <span class="pre">LATERAL</span> <span class="pre">BOUNDARIES</span></code> (integer)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ROUGHNESS</span> <span class="pre">COEFFICIENT</span> <span class="pre">OF</span> <span class="pre">BOUNDARIES</span></code> (float)</p></li>
-<li><p>To back-calculate a roughness (friction) coefficient corresponding to a measured pair of water depth and discharge, take a look at the <a class="reference internal" href="../../exercises/ex-ms.html#ex-1d-hydraulics"><span class="std std-ref">Python exercise on 1-d hydraulics for solving the Manning-Strickler</span></a> formula.</p></li>
-<li><p><em><span style="color: #41C639 ">Note that <strong>not using these keywords</strong> will make any roughness calibration <strong>affect the mass balance</strong>.</span></em></p></li>
-</ul>
-</li>
-<li><p>Run steady simulations with <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> corresponding to discharges for which hydraulic (e.g., water depth and flow velocity) <strong>measurements</strong> are available to <strong>calibrate the roughness</strong> (i.e., <code class="docutils literal notranslate"><span class="pre">FRICTION</span></code>).</p>
-<ul class="simple">
-<li><p>Any initial steady state simulation should run sufficiently long (<span class="math notranslate nohighlight">\(\geq\)</span> 10<span class="math notranslate nohighlight">\(^4\)</span> timesteps) to reach mass convergence, that is, close-to equal inflows and outflows written through the <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> keyword.</p></li>
-<li><p>The roughness should be preferably defined specifically for zones with equal terrain attributes (e.g., <em>cobble</em>, <em>sand bar</em>, or <em>vegetation</em>), as described in the spotlight focus on <a class="reference internal" href="roughness.html#tm-friction-zones"><span class="std std-ref">defining roughness zones</span></a>. As a result, simulated and measured water depths (or water surface elevations) and flow velocities should be in similar ranges (not more than <span class="math notranslate nohighlight">\(\pm\)</span>0.10 m difference).</p></li>
-</ul>
-</li>
-<li><p>Use the calibrated model for your purposes with hotstart conditions:</p>
-<ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">FLOWRATES</span></code> keyword in the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> file is sufficient to calculate physical <a class="reference internal" href="../../exercises/ex-geco.html#hsi-def-ex"><span class="std std-ref">habitat suitability indices</span></a> for specific discharges.</p></li>
-<li><p>Define unsteady inflows through a hydrograph file, such as <code class="docutils literal notranslate"><span class="pre">inflows.liq</span></code> used in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-liq-file"><span class="std std-ref">unsteady 2d</span></a> tutorial.</p></li>
-</ul>
-</li>
-</ol>
-<div class="tip admonition" id="fv-tip">
-<p class="admonition-title">Finite volume solver</p>
-<p>Have a look at Telemac’s finite volume scheme, which is better in preserving mass balance, and does not require dealing with <code class="docutils literal notranslate"><span class="pre">TIDAL</span> <span class="pre">FLATS</span></code>. It can be activated by setting the keyword:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="k">file</span>
-<span class="n">EQUATIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;SAINT-VENANT FV&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">apostrophes</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">strictly</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="n">here</span>
-<span class="n">VARIABLE</span><span class="w"> </span><span class="nb">TIME</span><span class="o">-</span><span class="n">STEP</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">TRUE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">use </span><span class="n">instead</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">TIME </span><span class="n">STEP</span><span class="w"> </span><span class="n">keyword</span>
-<span class="n">DURATION</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="k">value</span>
-<span class="n">DESIRED</span><span class="w"> </span><span class="n">COURANT</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span>
-<span class="o">/</span>
-<span class="o">/</span><span class="w"> </span><span class="n">additional</span><span class="w"> </span><span class="n">FV</span><span class="w"> </span><span class="n">recommendations</span>
-<span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">DIFFUSION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">only </span><span class="n">option</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="n">conservation</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">cause</span><span class="w"> </span><span class="n">problems</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">tidal</span><span class="w"> </span><span class="n">flats</span>
-<span class="n">SCHEME</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">use </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">FV</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">MATRIX</span><span class="w"> </span><span class="n">STORAGE</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="mi">3</span>
-<span class="n">SCHEME</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">overrides</span><span class="w"> </span><span class="n">SUPG</span><span class="w"> </span><span class="n">OPTION</span><span class="w"> </span><span class="nb">and </span><span class="n">OPTION</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">CHARACTERISTICS</span>
-<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">CORRECTIONS</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">DISTRIBUTIVE</span><span class="w"> </span><span class="n">SCHEMES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">increase</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">higher</span><span class="w"> </span><span class="n">accuracy</span><span class="w"> </span><span class="nb">and </span><span class="n">longer</span><span class="w"> </span><span class="n">computing</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">SCHEME</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">ADVECTION</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nb">or </span><span class="mi">15</span><span class="w"> </span><span class="nb">and </span><span class="n">OPTION</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span>
-<span class="k">TYPE </span><span class="n">OF</span><span class="w"> </span><span class="n">SOURCES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="o">=</span><span class="n">Dirac</span><span class="w"> </span><span class="k">is </span><span class="n">the</span><span class="w"> </span><span class="k">only </span><span class="n">possibility</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">mass</span><span class="w"> </span><span class="n">conservation</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="k">function </span><span class="nb">and </span><span class="k">is </span><span class="nb">not </span><span class="n">mass</span><span class="w"> </span><span class="n">conservative</span>
-<span class="n">CONTINUITY</span><span class="w"> </span><span class="n">CORRECTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">particularly</span><span class="w"> </span><span class="n">important</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="nb">not </span><span class="k">only </span><span class="n">discharge</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="k">is </span><span class="n">imposed</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">boundaries</span>
-</pre></div>
-</div>
-<p>Read more about the finite volume scheme in section 7.2.2 of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a>, and the malpasset example (<code class="docutils literal notranslate"><span class="pre">telemac/v8p4/examples/malpasset/</span></code>).</p>
-</div>
-</section>
-<section id="additional-steering-file-keywords">
-<span id="tm-foc-mass-keywords"></span><h3>Additional Steering File Keywords<a class="headerlink" href="#additional-steering-file-keywords" title="Permalink to this headline">#</a></h3>
-<p>During a simulation, the mass balance can be observed by activating the <code class="docutils literal notranslate"><span class="pre">MASS</span> <span class="pre">BALANCE</span></code> keyword in the steering file, which, however, <strong>does not enforce mass balance</strong>:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="k">file</span>
-<span class="n">MASS</span><span class="o">-</span><span class="n">BALANCE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span>
-</pre></div>
-</div>
-<p>After the simulation, the conservation of mass can be verified as discussed in the analysis of the <a class="reference internal" href="telemac2d-steady.html#verify-steady-tm2d"><span class="std std-ref">results in the steady 2d tutorial</span></a>.</p>
-<p>Other keywords can be defined to not only observe but also improve the mass balance. For example, the default number of boundary nodes in a steering file is 30, which is quickly exceeded in a large model. Thus, if there are more than 30 boundary nodes, increase the maximum number of boundary nodes in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file, for example to <code class="docutils literal notranslate"><span class="pre">50</span></code>:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="k">file</span>
-<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">BOUNDARIES</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
-</pre></div>
-</div>
-<p>Also, too small water depths can cause supercritical flows at liquid boundaries, which should be avoided, either by correctly defining the boundary nodes at the bottom of the riverbed only (recall the <a class="reference internal" href="#tm-foc-draw-bc"><span class="std std-ref">recommendations to draw liquid boundaries</span></a>) or by increasing the minimum water depth from its default value of 0.1 m to a higher value in the steering file, for example to 0.2 m:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="k">file</span>
-<span class="n">MINIMUM</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="n">TO</span><span class="w"> </span><span class="n">COMPUTE</span><span class="w"> </span><span class="n">TIDAL</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span>
-<span class="n">MINIMUM</span><span class="w"> </span><span class="n">DEPTH</span><span class="w"> </span><span class="n">TO</span><span class="w"> </span><span class="n">COMPUTE</span><span class="w"> </span><span class="n">TIDAL</span><span class="w"> </span><span class="n">VELOCITIES</span><span class="w"> </span><span class="n">INITIAL</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span>
-</pre></div>
-</div>
-<p>In addition, the <code class="docutils literal notranslate"><span class="pre">MINIMUM</span> <span class="pre">VALUE</span> <span class="pre">OF</span> <span class="pre">DEPTH</span></code> keyword may be increased from its default value of <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, but such increases might negatively effect on the mass balance.</p>
-<p>To increase computing speed, some tutorials recommend using mass lumping, which, however, negatively affect mass conservation:</p>
-<ul class="simple">
-<li><p>Avoid <code class="docutils literal notranslate"><span class="pre">MASSING</span> <span class="pre">LUMPING</span> <span class="pre">...</span></code> keywords: they introduce incorrect smoothing.</p></li>
-<li><p>Keep the default value for <code class="docutils literal notranslate"><span class="pre">H</span> <span class="pre">CLIPPING</span></code> because modifications impair mass conservation.</p></li>
-</ul>
-</section>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -883,11 +567,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="roughness.html"
+       href="boundaries.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Roughness (Friction) Zones</p>
+        <p class="prev-next-title">Boundary Conditions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -897,30 +581,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-liquid-boundaries">Draw Liquid Boundaries</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understand-boundaries-cli">Understand Boundaries.Cli</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-boundary-cli-to-change-conditions">Edit Boundary.Cli to Change Conditions</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation">Mass Conservation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-for-mass-conservation">Workflow for Mass Conservation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-steering-file-keywords">Additional Steering File Keywords</a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

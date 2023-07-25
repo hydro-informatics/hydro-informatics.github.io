@@ -67,11 +67,11 @@ To get updates on the coupling period and modes of Gaia, follow the [discussion 
 
 ### File Requirements for Coupling Gaia
 
-In addition to the standard Telemac2d steering, boundaries, and geometry mesh files, coupling hydrodynamics with Gaia requires a new steering (`*.cas`) file that needs to be referenced in the main steering file of the simulation. To this end, **create a new folder for the Gaia tutorial** (e.g., called `/gaia2d-tutorial/`), copy the {ref}`dry-initialized steady2d simulation and results files <tm2d-dry>` (or clone the [gaia2d-tutorial repository](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/)), and **create a new Gaia steering file** (e.g., called `gaia-morphodynamics.cas`). Thus, the following files should live in the modeling folder for this tutorial:
+In addition to the standard Telemac2d steering, boundaries, and geometry mesh files, coupling hydrodynamics with Gaia requires a new steering (`*.cas`) file that needs to be referenced in the main steering file of the simulation. To this end, **create a new folder for the Gaia tutorial** (e.g., called `/gaia2d-tutorial/`), copy the {ref}`dry-initialized steady2d simulation and results files <tm2d-init-dry>` (or clone the [gaia2d-tutorial repository](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/)), and **create a new Gaia steering file** (e.g., called `gaia-morphodynamics.cas`). Thus, the following files should live in the modeling folder for this tutorial:
 
 * The computational mesh in the form of [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf).
 * The boundary definitions in the form of [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli).
-* The results of the dry-initialized steady 2d model run for 35 m$^3$/s in the form of [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf) ({ref}`dry steady run <tm2d-dry>` ending at `T=15000`).
+* The results of the dry-initialized steady 2d model run for 35 m$^3$/s in the form of [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf) ({ref}`dry steady run <tm2d-init-dry>` ending at `T=15000`).
 * A Telemac2d steering file for this tutorial, building on the dry-initialized steady2d steering file and called [steady2d-gaia.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/steady2d-gaia.cas).
 * The new [gaia-morphodynamics.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas) steering file.
 
@@ -101,10 +101,12 @@ In addition, the **GAIA STEERING FILE** keyword links the above-created `gaia-mo
 GAIA STEERING FILE : gaia-morphodynamics.cas
 ```
 
+
 (gaia-hotstart)=
 ### Hotstart
 
-This tutorial builds on the results of the {ref}`dry-initialized steady2d model <tm2d-dry>` because Gaia is designed as a decoupled model (see the {ref}`above definitions <tm-coupling>). Using a former simulation result for model initialization is called **hotstart** for which TELEMAC requires, of course, a results file from a previous simulation. For this purpose, make sure that the dry-initialized steady2d results file in the simulation folder ([download r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf)). Then **define the hotstart in the Telemac2d steering file** with the following keywords:
+This tutorial builds on the results of the {ref}`dry-initialized steady2d model <tm2d-init-dry>` because Gaia is designed as a decoupled model (see the {ref}`above definitions <tm-coupling>`). Using a former simulation result for model initialization is called **hotstart** for which TELEMAC requires, of course, a results file from a previous simulation. For this purpose, make sure that the dry-initialized steady2d results file in the simulation folder ([download r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf)). Then **define the hotstart in the Telemac2d steering file** with the following keywords:
+
 
 ```fortran
 / steady2d-gaia.cas
@@ -127,7 +129,7 @@ The **INITIAL TIME SET TO ZERO** keyword resets the simulation time to `0`. Next
 
 ```{admonition} Bottom elevation must be available in the hotstart geometry (SLF)
 :class: warning
-The bottom elevation must be printed out in the results file of the simulation used for the hotstart. To this end, make sure that the list of values for the **VARIABLES FOR GRAPHIC PRINTOUTS** keyword contains `B` as indicated in the {ref}`explanations for the setup of the dry-initialized model <tm2d-dry>`.
+The bottom elevation must be printed out in the results file of the simulation used for the hotstart. To this end, make sure that the list of values for the **VARIABLES FOR GRAPHIC PRINTOUTS** keyword contains `B` as indicated in the {ref}`explanations for the setup of the dry-initialized model <tm2d-init-dry>`.
 ```
 
 The dry-initialized steering file prescribes flowrates and elevations, which requires **modifications in steady2d-gaia.cas** to **prescribed Q only**. The reason for the Q-only prescription is that with Gaia, we want to model-predict changes in water depths and riverbed elevation, which means that the water surface elevation must not be constrained (i.e., not prescribed) as a boundary condition. Thus, the setup of boundary conditions for Gaia also requires slight modifications of the boundary (`*.cli`) file(s), which will be explained in the next section on the {ref}`Basic Setup of Gaia <gaia-bc>`. To this end, make sure that in the hydrodynamics steering file **only the flowrate prescription keyword is activated** and the elevation prescription is deactivated (comment out with `/`):

@@ -355,7 +355,7 @@ When running Jupyter, the `fluss_kernel` will be available in the top menu **Ker
 
 
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/cbIPRGOUAVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@ Hydroinformatics channel on YouTube</a>.</p>
 
 
 ### Create and Install

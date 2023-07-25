@@ -51,6 +51,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - g m$^{-3}$
   - fine material concentration (cf. Equation {eq}`eq-gaia-dep`)
 
+* - $c_{\varepsilon}$
+  - $-$
+  - convergence constant (cf. Equation {eq}`error_lim`)
+
 * - $cHSI$
   - index
   - combined habitat suitability index
@@ -159,9 +163,9 @@ The consistent use of parameters and symbols for parameters is summarized in a n
   - $-$
   - probability
 
-* - $Q$
+* - $Q$ (also $Q_i$ or $Q_j$)
   - m$^3$ s$^{-1}$
-  - discharge (water)
+  - discharge (water), fluxes, or volume flow rate
 
 * - $q$
   - m$^2$ s$^{-1}$
@@ -308,6 +312,10 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 * - $\epsilon$
   - $-$
   - porosity
+
+* - $\varepsilon$
+  - var.
+  - absolute error between two quantities (see Equation {eq}`error_rate`)
 
 * - $\eta$
   - m

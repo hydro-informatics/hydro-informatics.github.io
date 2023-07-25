@@ -564,9 +564,10 @@ The primarily important file is **Discharge.csv**, from which can be read when i
 Convergence of inflow and outflow at the model boundaries.
 ```
 
-Note the difference between the convergence duration in this steady simulation with BASEMENT (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model compared to the shorter convergence duration in the Telemac2d  tutorial that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`). This difference mainly stems from the type of initial conditions (dry channel versus initial depth) that also reflects in a zero-outflow in the BASEMENT simulation and an outflow surplus that is visible in the Telemac2d simulation at the beginning of the simulations.
 
-```{admonition} Discharge convergence issues
+```{admonition} Checkup: discharge convergence
+Note the difference between the convergence duration in this steady simulation with BASEMENT (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model compared to the steady Telemac2d tutorial (plot in {numref}`Fig. %s <steady-flux-convergence>`).
+
 * **Perpetually increasing discharge in a steady simulation**<br>The definition of the  {ref}`upstream_direction <bm-geo-fin>` (e.g., wrongly defined as `"left"` or `"right"`) may cause this error.
 * **Outflow smaller than inflow**<br>Increase the simulation time (see the {ref}`bm-sim-file` section).
 * **No water in the model**<br>The discharge defined in the *steady-inflow.txt* file (see {ref}`bm-hydraulics` section) must define reasonable flows in the simulation time. In addition, the definition of the  {ref}`upstream_direction <bm-geo-fin>` (e.g., wrongly defined as `"left"` or `"right"`) may cause this error. Depending on your system's region settings, use the English **`.`** in lieu of the European **`,`** decimal delimiter to define discharges in *steady-inflow.txt*.

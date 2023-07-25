@@ -15,7 +15,7 @@ The case featured in this tutorial was established with the following software:
 
 This section builds on the SELAFIN (`*.slf`) geometry and the Conlim (`*.cli`) boundary condition files that result from the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`. Both files can also be downloaded from the supplemental materials repository of this eBook:
 
-* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (uses **EPSG:6173** - ETRS 89 / UTM zone 33N).
+* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (uses **EPSG:32633** - ETRS 89 / UTM zone 33N).
 * [Download boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli).
 
 Consider saving both files in a new folder, such as `/steady2d-tutorial/` that will contain all model files.
@@ -48,7 +48,7 @@ The below box shows the provided [steady2d.cas](https://github.com/hydro-informa
 
 ```fortran
 /---------------------------------------------------------------------
-/ TELEMAC2D Version v8p2
+/ TELEMAC2D Version v8p4
 / STEADY HYDRODYNAMICS TRAINING
 /---------------------------------------------------------------------
 
@@ -63,13 +63,13 @@ GEOMETRY FILE            : qgismesh.slf
 RESULTS FILE           : r2dsteady.slf
 /
 MASS-BALANCE : YES / activates mass balance printouts - does not enforce mass balance
-VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibrium controls
+VARIABLES FOR GRAPHIC PRINTOUTS : U,V,B,H,S,Q,F / Q enables boundary flux equilibrium controls, B required for gaia (optional)
 /
 /------------------------------------------------------------------/
 /			GENERAL PARAMETERS
 /------------------------------------------------------------------/
 TIME STEP : 1.
-NUMBER OF TIME STEPS : 10000
+NUMBER OF TIME STEPS : 15000
 GRAPHIC PRINTOUT PERIOD : 200
 LISTING PRINTOUT PERIOD : 100
 /
@@ -92,8 +92,8 @@ SCHEME FOR ADVECTION OF TRACERS : 5
 SCHEME FOR ADVECTION OF K-EPSILON : 14
 IMPLICITATION FOR DEPTH : 0.55 / should be between 0.55 and 0.6
 IMPLICITATION FOR VELOCITY : 0.55 / should be between 0.55 and 0.6
-IMPLICITATION FOR DIFFUSION OF VELOCITY : 1. / v8p2 default
-IMPLICITATION COEFFICIENT OF TRACERS : 0.6 / v8p2 default
+IMPLICITATION FOR DIFFUSION OF VELOCITY : 1. / v8p4 default
+IMPLICITATION COEFFICIENT OF TRACERS : 0.6 / v8p4 default
 MASS-LUMPING ON H : 1.
 MASS-LUMPING ON VELOCITY : 1.
 MASS-LUMPING ON TRACERS : 1.
@@ -121,7 +121,7 @@ MATRIX STORAGE : 3 / default is 3
 /
 / Liquid boundaries
 PRESCRIBED FLOWRATES  : 35.; 0.
-PRESCRIBED ELEVATIONS : 0.;371.33
+PRESCRIBED ELEVATIONS : 374.80565;371.33
 /
 / Type of velocity profile can be 1-constant normal profile (default) 2-UBOR and VBOR in the boundary conditions file (cli) 3-vector in UBOR in the boundary conditions file (cli) 4-vector is proportional to the root (water depth, only for Q) 5-vector is proportional to the root (virtual water depth), the virtual water depth is obtained from a lower point at the boundary condition (only for Q)
 VELOCITY PROFILES : 4;1
@@ -135,8 +135,7 @@ ROUGHNESS COEFFICIENT OF BOUNDARIES : 0.03 / Roughness coefficient
 /
 / INITIAL CONDITIONS
 / ------------------------------------------------------------------
-INITIAL CONDITIONS : 'CONSTANT DEPTH' / use ZERO DEPTH to start with dry model conditions
-INITIAL DEPTH : 1 / INTEGER for speeding up calculations
+INITIAL CONDITIONS : 'ZERO DEPTH' / start with dry model conditions
 /
 /-------------------------------------------------------------------
 /			TURBULENCE
@@ -186,7 +185,7 @@ MASS-BALANCE : YES / activates mass balance printouts - does not enforce mass ba
 VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibrium controls
 /
 TIME STEP : 1.
-NUMBER OF TIME STEPS : 10000
+NUMBER OF TIME STEPS : 15000
 GRAPHIC PRINTOUT PERIOD : 200
 LISTING PRINTOUT PERIOD : 100
 ```
@@ -293,7 +292,7 @@ The default is `SUPG OPTION : 2;2;2;2`, where
 
 Note that the `SUPG OPTION` keyword **is not optional** for many keyword combinations and this tutorial uses `SUPG OPTION : 0;0;2;2`.
 
-**Implicitation parameters** (**IMPLICITATION FOR DEPTH**, **IMPLICITATION FOR VELOCITIES**, and **IMPLICITATION FOR DIFFUSION OF VELOCITY**) apply to the semi-implicit time discretization used in Telemac2d. To enable cross-version compatibility, implicitation parameters should be defined in the `*.cas` file. For **DEPTH** and **VELOCITIES** use values between `0.55` and `0.60` (**default is `0.55` since v8p1**); for **IMPLICITATION FOR DIFFUSION OF VELOCITY** set the v8p2 default of `1.0`.
+**Implicitation parameters** (**IMPLICITATION FOR DEPTH**, **IMPLICITATION FOR VELOCITIES**, and **IMPLICITATION FOR DIFFUSION OF VELOCITY**) apply to the semi-implicit time discretization used in Telemac2d. To enable cross-version compatibility, implicitation parameters should be defined in the `*.cas` file. For **DEPTH** and **VELOCITIES** use values between `0.55` and `0.60` (**default is `0.55` since v8p1**); for **IMPLICITATION FOR DIFFUSION OF VELOCITY** set the v8p4 default of `1.0`.
 
 The default `TREATMENT OF THE LINEAR SYSTEM : 2` involves so-called **mass lumping**, which leads to a smoothening of results. Specific mass lumping keywords and values are required for the flux control option of the **TREATMENT OF NEGATIVE DEPTHS** keyword and the default value for the treatment of tidal flats. To this end, the mass lumping keywords should be defined as:
 
@@ -341,7 +340,7 @@ The finite volume/elements schemes are (semi-) explicit and potentially subjecte
 ```fortran
 DESIRED COURANT NUMBER : 0.9
 VARIABLE TIME-STEP : YES / default is NO
-DURATION : 10000
+DURATION : 15000
 ```
 
 The **DURATION** keyword is required to terminate the simulation.
@@ -512,8 +511,8 @@ The additional **MATRIX-VECTOR PRODUCT** keyword may be used to switch between m
 
 Liquid boundary keywords assign hydraulic properties to the spatially defined upstream and downstream liquid boundary lines in the Conlim (`*.cli`) file {ref}`created with BlueKenue <bk-liquid-bc>`. This section features the assignment of steady liquid boundaries for one discharge of 35 m$^3$/s. To this end, the upstream boundary condition is set to a steady target inflow rate (*Open boundary with prescribed Q*) and the downstream boundary condition gets a {term}`Stage-discharge relation` (*Open boundary with prescribed Q and H*) assigned (recall {numref}`Fig. %s <bk-bc-types>`). Thus, for running this tutorial add the following keywords to the steering (`*.cas`) file:
 
-* The keyword `PRESCRIBED FLOWRATES : 35.;0.` assigns a flowrate of 35 m$^3$/s to the **upstream** boundary edge, and does not impose a flowrate on the **downstream** boundary edge.
-* The keyword `PRESCRIBED ELEVATIONS : 0.;371.33` assigns a water surface elevation $wse$ (or H in Telemac) of 371.33 m a.s.l. (above sea level) to the **downstream** boundary. The upstream $wse$ prescription of 0.0 makes Telemac2d ignore this value corresponding to the assigned upstream boundary type (prescribed flowrate only).
+* The keyword `PRESCRIBED FLOWRATES : 35.;0.` assigns a flowrate of 35 m$^3$/s to the **upstream** boundary edge, and does not impose a flowrate on the **downstream** boundary edge. The downstream `Q` prescription of 0.0 makes Telemac2d ignore this value corresponding for the downstream boundary (prescribed depth only).
+* The keyword `PRESCRIBED ELEVATIONS : 374.80565;371.33` assigns a water surface elevation $wse$ (or H in Telemac) in meters above sea level (m a.s.l.) to both the **upstream** and **downstream** boundaries.
 
 The order of prescribed flowrates (Q) and $wse$ (H) values depends on the order of the definition of the boundaries. Thus, the first list element defines values for the upstream and the second list element for the downstream open boundary.
 
@@ -554,7 +553,7 @@ The boundary condition settings affect mass balance, which is a crucial criterio
 ```
 
 
-(tm2d-init)=
+(tm2d-init-dry)=
 ### Initial Conditions
 
 **The following descriptions refer to section 4.1 in the {{ tm2d }}.**
@@ -567,15 +566,26 @@ The initial conditions describe the state of the model at the beginning of a sim
 * `CONSTANT DEPTH` initializes the water depths at a value defined by an **INITIAL DEPTH** keyword that has a default value of `0.`.
 * `TPXO SATELLITE ALTIMETRY` initializes the model using information provided by a user-defined database (e.g., the [OSU TPXO model for ocean tides](http://g.hyyb.org/archive/Tide/TPXO/TPXO_WEB/global.html)). Read more in section 4.2.12 of the {{ tm2d }} on modeling marine systems.
 
-This tutorial uses a *constant* water *depth* initial condition of `1` (integer to speed up calculations), which corresponds to a completely flooded initial model state (i.e., water volume surplus):
+To begin, define the initial water depth as 0 with the following keyword, which means that the model will be initialized with a dry riverbed:
+
+```fortran
+INITIAL CONDITIONS : 'ZERO DEPTH'
+```
+
+The simulation speed can be significantly increased when the model has already been running once at the same (initial) discharge. The result of an earlier simulation can be used for the initial condition with the `COMPUTATION CONTINUED : YES` (default is `NO`) and `PREVIOUS COMPUTATION FILE : *.slf` (provide the name of a `*.slf` file) keywords. This type of model initialization is also referred to as *hotstart*. Read more about hotstarts in the {ref}`unsteady simulation <tm2d-hotstart>` and {ref}`Gaia <gaia-hotstart>` sections. Also section 4.1.3 in the {{ tm2d }} provides descriptions for continuing (hotstart) calculations.
+
+
+````{admonition} Wet the model at the beginning
+
+Use a *constant* water *depth* initial condition of `1` (integer) to speed up calculations, which corresponds to a completely flooded initial model state (i.e., water volume surplus). However, this type initialization will also place a 1-m thick water layer beyond the riverbanks, where water may not be able to run off. Thus, puddles are likely to form longitudinally along the solid `2 2 2` boundaries.
 
 ```fortran
 INITIAL CONDITIONS : 'CONSTANT DEPTH'
 INITIAL DEPTH : 1
 ```
 
-The simulation speed can be significantly increased when the model has already been running once at the same discharge. The result of an earlier simulation can be used for the initial condition with the `COMPUTATION CONTINUED : YES` (default is `NO`) and `PREVIOUS COMPUTATION FILE : *.slf` (provide the name of a `*.slf` file) keywords. This type of model initialization is also referred to as *hotstart*. Read more about hotstarts in the {ref}`unsteady simulation <tm2d-hotstart>` and {ref}`Gaia <gaia-hotstart>` sections. Also section 4.1.3 in the {{ tm2d }} provides descriptions for continuing (hotstart) calculations.
-
+In the case of delta simulations, an initial condition defined with `CONSTANT ELEVATION` might be preferably defined at a lake or sea level.
+````
 
 (tm2d-friction)=
 ### Friction (Roughness)
@@ -660,7 +670,6 @@ Not using the two keywords defining the friction at the boundaries will make tha
 ```
 
 
-
 (tm2d-turbulence)=
 ### Turbulence
 
@@ -691,7 +700,7 @@ TURBULENCE MODEL : 3
 (tm2d-run)=
 ## Run Telemac2d
 
-With the steering (`*.cas`) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., `~/telemac/v8p2/mysimulations/steady2d-tutorial/`). The required files can also be downloaded from this eBook's [steady2d tutorial repository](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/) and include:
+With the steering (`*.cas`) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., `~/telemac/v8p4/mysimulations/steady2d-tutorial/`). The required files can also be downloaded from this eBook's [steady2d tutorial repository](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/) and include:
 
 * [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/qgismesh.slf)
 * [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli)
@@ -701,11 +710,11 @@ With these files prepared, load the TELEMAC environment, and run Telemac2d follo
 
 ### Load environment and files
 
-Go to the configuration folder of the TELEMAC installation (e.g., `~/telemac/v8p2/configs/`) and load the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
+Go to the configuration folder of the TELEMAC installation (e.g., `~/telemac/v8p4/configs/`) and load the environment (e.g., `pysource.gfortranHPC.sh` - use the same as for compiling TELEMAC).
 
 ```
-cd ~/telemac/v8p2/configs
-source pysource.openmpi.sh
+cd ~/telemac/v8p4/configs
+source pysource.gfortranHPC.sh
 ```
 
 ````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
@@ -719,13 +728,16 @@ source pysource.hyfo-dyn.sh
 ```
 ````
 
-To start a simulation, change to the directory (`cd`) where the simulation files live and run the steering file (`*.cas`) with the **telemac2d.py** script:
+### Start a Telemac2d simulation
+
+To start a simulation, change to the directory (`cd`) where the simulation files live and run the steering file (`.cas`) with the **telemac2d.py** script:
 
 ```
-cd ~/telemac/v8p2/mysimulations/steady2d-tutorial/
-telemac2d.py steady2d.cas
+cd ~/telemac/v8p4/mysimulations/steady2d-tutorial/
+telemac2d.py steady2d.cas -s
 ```
 
+The `-s` flag is not strictly needed but useful for revising simulation characteristics, such as fluxes across the liquid boundaries or the total simulation time. It will write a file named `steady2d.cas.[...].sortie` and can be used for convergence analysis described in the spotlight chapter on {ref}`quantitative convergence <tm-convergence>`.
 
 As a result, a successful computation should end with the following lines (or similar) in *Terminal*:
 
@@ -738,7 +750,7 @@ As a result, a successful computation should end with the following lines (or si
  CORRECT END OF RUN
 
  ELAPSE TIME :
-                             06  MINUTES
+                             03  MINUTES
                              44  SECONDS
 ... merging separated result files
 
@@ -755,11 +767,19 @@ Thus, Telemac2d produced the file *r2dsteady.slf* that can now be analyzed in th
 (tm-steady2d-postpro)=
 # Post-processing
 
-The post-processing of the steady 2d scenario uses QGIS and the {ref}`PostTelemac plugin <tm-qgis-plugins>`. Alternatively, TELEMAC results can also be visualized with [ParaView](https://www.paraview.org) or BlueKenue.
+The post-processing of the steady 2d scenario uses QGIS and the {ref}`PostTelemac plugin <tm-qgis-plugins>`. Alternatively, Telemac results can also be visualized with [ParaView](https://www.paraview.org) or BlueKenue.
 
 ## Load Results
 
-Launch QGIS, {ref}`create a new QGIS project <qgis-project>`, set the project {term}`CRS` to `UTM zone 33N`, add a satellite imagery {ref}`basemap <basemap>`, and save the project (e.g., as `tm2d-postpro.qgis`) in the same folder where the Telemac2d simulation results file (*r2dsteady.slf* is located), similar to the descriptions in the {ref}`pre-processing tutorial <tm-qgis-prepro>`. Then, open the PostTelemac plugin as indicated in {numref}`Fig. %s <open-post-tm>`.
+Launch QGIS, {ref}`create a new QGIS project <qgis-project>`, set the project {term}`CRS` to `UTM zone 33N`, add a satellite imagery {ref}`basemap <basemap>`, and save the project (e.g., as `tm2d-postpro.qgis`) in the same folder where the Telemac2d simulation results file (*r2dsteady.slf* is located), similar to the descriptions in the {ref}`pre-processing tutorial <tm-qgis-prepro>`.
+
+Load the `r2dsteady.slf` geometry file as mesh layer with drag and drop from the Browser panel to the Layers panel. Make sure to import it with its correct georeference: **EPSG:32633** (ETRS 89 / UTM zone 33N).
+
+
+````{admonition} The PostTelemac Plugin
+:class: tip, dropdown
+
+The PostTelemac plugin provides useful routines for mesh analysis, in particular, for older QGIS versions. However, QGIS now has powerful mesh analysis tools that enable insights into Telemac results. To work with the PostTelemac plugin, open it as indicated in {numref}`Fig. %s <open-post-tm>`.
 
 ```{figure} ../../img/telemac/load-tm-plugin.png
 :alt: qgis load open PostTelemac plugin
@@ -768,16 +788,10 @@ Launch QGIS, {ref}`create a new QGIS project <qgis-project>`, set the project {t
 Open the PostTelemac plugin in QGIS.
 ```
 
-```{admonition} r2dsteady.slf (results file) not correctly showing in QGIS
-:class: error, dropdown
-
-Is the results file `r2dsteady.slf` not showing up in QGIS? Make sure to import it with its correct georeference: **EPSG:6173** (ETRS 89 / UTM zone 33N).
-```
-
 The PostTelemac plugin typically opens as a frame at the bottom-right of the QGIS window (maybe hard to find the first time). Detach the PostTelemac plugin from the main QGIS window by clicking on the resize window button in the top-right corner of the PostTelemac plugin frame (next to the *close* cross). In the detached window load the model results as follows (also indicated in {numref}`Fig. %s <post-tm>`):
 
 * Click on the **File ...** button, navigate to the location where the simulation lives and select `r2dsteady.slf`.
-* **Move the Time slider** to the last timestep (e.g., `10000`) and observe the main window, which will show by default the VELOCITY U parameter in this tutorial (depends on the variables defined with the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword).
+* **Move the Time slider** to the last timestep (e.g., `15000`) and observe the main window, which will show by default the VELOCITY U parameter in this tutorial (depends on the variables defined with the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword).
 * Familiarize with the PostTelemac plugin by modifying the display **Parameter** and the **Color gradient**.
 
 ```{figure} ../../img/telemac/post-telemac.png
@@ -787,24 +801,11 @@ The PostTelemac plugin typically opens as a frame at the bottom-right of the QGI
 Load the Telemac2d simulation results file in the detached PostTelemac plugin window.
 ```
 
-```{admonition} Find the r2dsteady layer in the QGIS *Layers* panel
-:class: tip
 Once imported, the *r2dsteady* layer is listed in the *Layers* panel of QGIS (typically in the bottom-left of the window). Double-clicking on the *r2dsteady* layer will re-open the PostTelemac plugin when it was closed (e.g., after restarting QGIS). Structurally, the *r2dsteady* layer is a mesh with a particular format.
-```
 
-```{admonition} SLF Geometries can be loaded in QGIS without the PostTelemac plugin
-:class: tip
-The latest QGIS versions enable direct loading of SLF geometry files as mesh layer. Try it: Drag and drop *r2dsteady.slf* from the Browser panel to the Layers panel. Moreover, the {ref}`unsteady post-processing section <tm-unsteady-qgis>` features this direct mesh loading in QGIS.
-```
+***
 
-(tm2d-post-export)=
-## Analyze Results
-
-The PostTelemac plugin enables to export simulation results in the form of multiple formats including {term}`GeoTIFF` rasters of simulation output variables or data along nodes. In addition, the evolution of a parameter over the simulation time can be exported to a video. To export or animate results, go to the **Tools** tab (light blue box in {numref}`Fig. %s <post-tm>`) and follow the descriptions in the following paragraphs.
-
-### Export GeoTIFF
-
-This example features the export of a flow velocity raster at the simulation end time (`10000`). For this purpose, click on the **RasterCreation** entry of the **Export** menu in the **Tools** tab. To export a flow velocity {term}`GeoTIFF` raster:
+To export a flow velocity raster at the simulation end time (in this example `8000`). For this purpose, click on the **RasterCreation** entry of the **Export** menu in the **Tools** tab. Then:
 
 * Set the **time step** to the maximum (use the field indicated in {numref}`Fig. %s <posttm-export-tif>`).
 * Select `6 : VITESSE` for **Parameter**.
@@ -821,151 +822,219 @@ The processing frame can be found at the bottom of the window (scroll down by cl
 :alt: qgis export simulation results slf PostTelemac raster geotiff tif
 :name: posttm-export-tif
 
-Export a flow velocity raster of simulation results with the PostTelemac plugin (maximum time step here: 8000).
+Export a flow velocity raster of simulation results with the PostTelemac plugin (the screenshot uses a maximum time of 8000).
 ```
 
-The successful raster creation results in a new layer called **r2dsteady_raster_VITESSE**, which is automatically saved as a {term}`GeoTIFF` raster in the same folder where the QGIS project (`*.qgz`) and the `r2dsteady.slf` files are located.
+The successful raster creation results in a new layer called **r2dsteady_raster_VITESSE**, which is automatically saved as a {term}`GeoTIFF` raster in the same folder where the QGIS project (`*.qgz`) and the `r2dsteady.slf` files are located. {numref}`Figure %s <exported-tif>` in the {ref}`below-shown wet initialization exercise <tm2d-init-wet>` displays the exported flow velocity raster in QGIS with a *Magma* color map (select in the layer symbology).
 
-{numref}`Figure %s <exported-tif>` shows the exported flow velocity raster in QGIS with a *Magma* color map (select in the layer symbology).
-
-```{figure} ../../img/telemac/qgis-exported-tif.png
-:alt: qgis flow velocity vitesse results slf PostTelemac raster geotiff tif
-:name: exported-tif
-
-The exported flow velocity (VITESSE) GeoTIFF raster in QGIS (background map: {cite:t}`googlesat` satellite imagery).
-```
 
 ```{admonition} Export to shapefile or mesh
 :class: tip
 The PostTelemac plugin also enables exporting to other geodata types such as vector shapefiles or meshes.
 ```
 
-How reasonable are the results?
-: The flow velocity raster in {numref}`Fig. %s <exported-tif>` shows some non-zero pixels on the floodplains, beyond the riverbanks. However, because the simulated discharge of 35 m$^3$/s corresponds to low baseflow conditions, there should not be any water on the floodplains. These apparently wrongly modeled pixels are an artifact of the wet initial conditions that put a 1-m deep water layer all over the model. In local swales (i.e., hollows or small terrain depressions) beside the main channel, the water cannot run off and remains here until the end of the simulation. To avoid the unrealistic disconnected swales, use `INITIAL DEPTH : 0` or `INITIAL CONDITIONS : ZERO DEPTH`, which corresponds to dry initial conditions (see the {ref}`initial conditions <tm2d-init>` section below). Note that initializing the model with zero depths (dry) will require open (liquid) boundary conditions of the type *PRESCRIBED Q AND H*. Thus, for starting this tutorial with dry conditions, go back to the pre-processing section on creating {ref}`Conlim Boundary Conditions <bk-bc>` and assign prescribed Q and H to both upstream and downstream open boundaries (i.e., not only at the downstream open boundary). Alternatively, set the initial depth to a very small value such as `INITIAL DEPTH : 0.01`.
+***
 
+In addition, the evolution of a parameter over the simulation time can be exported to a video with the PostTelemac plugin. For this purpose, go to the **Tools** tab (light blue box in {numref}`Fig. %s <post-tm>`) and follow the descriptions in the following paragraphs.
 
-(verify-steady-tm2d)=
-### Verify Discharge Convergence
-
-The discharge convergence can be observed during the simulation in the Terminal running Telemac2d with the `PRINTING CUMULATED FLOWRATES : YES` keyword, and also later to make sure fluxes are correctly entering and leaving the model. Furthermore, it can be determined at which timestep inflows and outflows converge to each other, which enables the simulation to be shortened to this moment of convergence in steady simulations.
-
-
-```{admonition} Recall: boundary conditions and mass balance
-
-Mass balance is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`.
-```
-
-
-To export flowrates along any line or at any node of the mesh, make sure that `Q` is in the list of the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword. Then, go to the **Tools** tab of the PostTelemac plugin in QGIS ({numref}`Fig. %s <draw-flow-controls>`) and:
+For example, to export flow rates (fluxes) along any line or at any node of the mesh, make sure that `Q` is in the list of the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword. Then, go to the **Tools** tab of the PostTelemac plugin in QGIS and:
 
 * Click on the **Flow** ribbon.
 * In the **Selection** frame select **Temporary polyline** and move the mouse cursor on the map viewport where the cursor should turn into a black cross that enables drawing a (green) thick line anywhere in the mesh layer (*r2dsteady*). If the cursor does not enable drawing, go somewhere else in the PostTelemac plugin (e.g., to the *Samplingtool* ribbon), then go back to the *Flow* ribbon, click in the *Selection* frame, and re-try. To draw a line for exporting associated flows:
-  * left-click with the mouse cursor somewhere on the *r2dsteady* mesh on the map (e.g., the left bank at the inflow open boundary indicated in {numref}`Fig. %s <draw-flow-controls>`), and
-  * double left-click on another point on the *r2dsteady* mesh (e.g., the right bank at the inflow open boundary indicated in {numref}`Fig. %s <draw-flow-controls>`).
+  * left-click with the mouse cursor somewhere on the *r2dsteady* mesh on the map (e.g., the left bank at the inflow open boundary), and
+  * double left-click on another point on the *r2dsteady* mesh (e.g., the right bank at the inflow open boundary indicated in {numref}`Fig. %s <draw-flow-controls-pt>`).
   * The PostTelemac plugin then automatically draws the shortest path between the two points along the mesh nodes.
-* The flowrate across the green line is now plotted in the graph of the PostTelemac plugin for the simulation time (e.g., timesteps `0` to `8000` in {numref}`Fig. %s <draw-flow-controls>`).
+* The flowrate across the green line is now plotted in the graph of the PostTelemac plugin for the simulation time (e.g., timesteps `0` to `8000`).
 * To save the values for comparison at another line, click on **Copy to clipboard** and paste the values into a spreadsheet (office software,  such as {ref}`Libre Office <lo>`).
 
 **Repeat** the procedure **at the downstream open boundary** and paste the values in another column of the spreadsheet used for the upstream open boundary.
 
-```{figure} ../../img/telemac/flow-control-us.png
+```{figure} ../../img/telemac/flow-control-us-pt.png
 :alt: qgis flow rate discharge control section Post Telemac convergence
-:name: draw-flow-controls
+:name: draw-flow-controls-pt
 
 Draw polylines along mesh nodes and export associated flows (Copy to clipboard; background map: {cite:t}`googlesat` satellite imagery).
 ```
 
-The diagram in {numref}`Fig. %s <convergence-diagram-tm2d>` plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability after the 55th output listing (simulation time $t \leq 5500$). Thus, the simulation time could be limited to $t = 6000$, but a simulation time of $t = 5000$ would be too short.
+The extracted data with the PostTelemac plugin were used in the {ref}`wet initialization exercise below <tm2d-init-wet>`.
 
-```{figure} ../../img/telemac/convergence-diagram-tm.png
-:alt: telemac2d convergence steady model simulation discharge verification validation
-:name: convergence-diagram-tm2d
+````
 
-Convergence of inflow (upstream) and outflow (downstream) at the open model boundaries.
+(tm2d-post-export)=
+## Export to GeoTIFF
+
+To export the model results to a {term}`GeoTIFF` raster, go to the **Processing Toolbox** (in QGIS), expand the **Mesh** entry, and open the **Rasterize mesh dataset** tool. In the **Rasterize Mesh Dataset** popup window ({numref}`Figure %s <rasterize-v-mesh>`) make the following settings:
+
+* **Input mesh layer**: select the Telemac results mesh layer (`r2dsteady`)
+* **Dataset groups**: click on the **...** button > **Select in Available Dataset Groups** and select a quantity of interest. This tutorial features the export of a flow velocity. Click **OK** to return to the Rasterize Mesh Dataset tool.
+* **Dataset time**: click on the up/down arrow symbol to scroll to the bottom and select the last timestep. In an unsteady (i.e., quasi-steady) simulation, other timesteps might be of interest, too.
+* **Extent**: click on the dropdown arrow > **Calculate from Layer** > select **r2dsteady**
+* **Pixel size**: `1.0` (default). With coarser or finer meshes, the pixel size should be varied.
+* **Output coordinate system**: select `EPSG:32633` (that is, the coordinate reference system of the mesh)
+* **Output raster layer**: click on **...** to navigate to a target folder and enter a name for the raster. Here: `velocity-tmax.tif`.
+* **Run** the rasterization.
+
+
+```{figure} ../../img/telemac/rasterize-mesh.png
+:alt: telemac qgis export velocity geotiff raster
+:name: rasterize-v-mesh
+
+The Rasterize Mesh Dataset tool in QGIS.
 ```
 
-```{admonition} Control Sections are more consistent for exporting fluxes along lines
-:class: tip
-In practice, the use of {ref}`CONTROL SECTIONS (unsteady tutorial) <tm-control-sections>` is more consistent to verify flows.
+The resulting **velocity-tmax** raster will be added to the Layers panel. For better visualization, some color is helpful. Therefore, double-click on the new **velocity-tmax** to open its properties. Go to the **Symbology**, change the **Render type** to `Singleband pseudocolor`, and use your favorite color ramp and number of classes for visualizing the velocity. To make `0`-entries invisible, click on their **Color** symbol and set the **Opacity** to 0%, or set the **Min** to `0.0001`.
+
+
+```{figure} ../../img/telemac/qgis-exported-v.png
+:alt: qgis telemac flow velocity vitesse results slf raster geotiff tif
+:name: qgis-exported-v
+
+The exported flow velocity (VITESSE) GeoTIFF raster in QGIS (background map: {cite:t}`googlesat` satellite imagery). The location of the Raster mesh dataset tool in the Processing Toolbox is highlighted on the right.
 ```
 
-Note the difference between the convergence duration in this steady simulation with Telemac2d that starts with an initial condition of 1.0 m water depth (plot in {numref}`Fig. %s <convergence-diagram-tm2d>`) compared with the longer convergence duration in the BASEMENT tutorial (plot in {numref}`Fig. %s <convergence-diagram-bm>`) that starts with a dry model. This difference mainly stems from the type of initial conditions (initial depth versus dry channel) that also reflects in an outflow surplus of the Telemac2d simulation and a zero-outflow in the BASEMENT simulation at the beginning of the simulations. However, the faster convergence is at the cost of unrealistically wetted hollows in the Telemac2d simulation. Read more in the above comment: *How reasonable are the results?*
 
-(tm2d-dry)=
-# Re-Initialize Dry
-For comparison, run the Telemac2d simulation with initial dry conditions. To this end, change the downstream boundary type to `5 4 4` (prescribed H only) in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For making this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
+## Analyze Results
 
- * In the **Find** field type `5 5 5`.
- * In the **Replace with** field type `5 4 4`.
- * Click on **Replace** until all **downstream** boundary node types are changed.
+The first analysis of results should address the basic correctness of the model, for instance, regarding mass balance and its evolution over time. For this purpose, open the **Time Controller** <img src="../../img/qgis/time-controller.png" width="15" height="15"> in QGIS top menu.
 
-In addition, the upstream boundary requires a prescription of flowrate and water depth to avoid supercritical fluxes at the beginning of the simulation. To this end, **find-and-replace** the upstream boundary settings in **boundaries.cli**:
 
-* In the **Find** field type `4 5 5`.
-* In the **Replace with** field type `5 5 5`.
-* Click on **Replace** until all **upstream** boundary node types are modified.
-* Save and close **boundaries.cli**.
+(verify-steady-tm2d)=
+### Quantitative Discharge Convergence
 
-In the Telemac2d steering (`*.cas`) file comment out the **INITIAL DEPTH** keyword, change the **INITIAL CONDITIONS** keyword to `ZERO DEPTH`, and change the **PRESCRIBED ELEVATIONS** keyword to `374.80565;371.33`. In addition, the **PRESCRIBED FLOWRATES** needs to be changed to prescribe the discharge only at the inflow boundary with `35.;0.`.
+During the simulation, the keywords `MASS-BALANCE : YES` and/or `PRINTING CUMULATED FLOWRATES : YES` print mass fluxes across liquid boundaries in the Terminal. To retrospectively review flux rates and volume balance, the simulation must have run with the `-s` flag, which saves the simulation state in a file called similar to `steady2d.cas_YEAR-MM-DD-HHhMMminSSs.sortie`. Based on the `.sortie` file, sums of fluxes, the total volume, and volume error can be extracted and analyzed with the Python scripts provided along with the Telemac installation (*HOMETEL/scripts/python3/*). The Telemac Jupyter notebooks (*HOMETEL/notebooks/* > *data_manip/extraction/\*.ipynb* or *workshops/exo_fluxes.ipynb*) exemplify the usage of the Python scripts. A detailed discussion on convergence and tweaked Python scripts ([pythomac](https://pythomac.readthedocs.io)) can be found in this eBook, in the chapter on {ref}`quantitative Telemac convergence analysis <tm-convergence>`. With these scripts, {numref}`Fig. %s <steady-flux-convergence-standalone>` was generated showing the flows across the two boundaries of the steady-2d study, indicating convergence after approximately 7000 timesteps.
 
-```{admonition} 5-5-5 boundaries everywhere
-`5 5 5` (prescribed Q and H) boundaries can alternatively applied in the here presented case, also to the downstream boundary, which would require to keep `PRESCRIBED FLOWRATES : 35.;35.` in the steering file. However, this setting may lead to an overdetermination of boundary conditions which may cause non-sense results (e.g., standing waves) in some model setups (in particular, simple geometries).
+```{figure} ../../img/telemac/steady-flux-convergence.png
+:alt: python telemac flux discharge convergence pythomac
+:name: steady-flux-convergence-standalone
+
+Flux convergence plot across the two boundaries of the dry-initialized steady Telemac2d simulation (created with pythomac).
 ```
 
-Moreover, to use the results of the dry initialization for morphodynamic calculations, the bottom elevation (`B`) must be added to the list of graphical printout variables.
+(qualitative-postel)=
+### Qualitative Velocity, Depth, and Discharge Evolution
 
-In summary, the steering file should involve the following changes for a dry model initialization:
+The convergence of water depth and flow velocity, and therefore, discharge, can be qualitatively observed in QGIS through the **Time Controller** (see activation in {numref}`Fig. %s <qgis-time-controller-tm>`). The frequency of images can be set through clicking on the cogwheel of the time controller, and image sequences played by clicking in the *Play* button. Additionally, {numref}`Fig. %s <qgis-time-controller-tm>` uses an overlay of water depth pixel colors (contour plot), and flow velocity vectors, defined in the *Layer Styling* panel. The North and discharge arrows, and the title are *Decorators*, which can be found in **View** > **Decorators**.
+
+```{figure} ../../img/telemac/qgis-time-controller.jpg
+:alt: time controller qgis telemac
+:name: qgis-time-controller-tm
+
+The activated time controller in QGIS enables to move along the time axis of modeled quantities (background map: {cite:t}`googlesat` satellite imagery). The red-highlighted buttons activate the time controller, play the sequence of images of selected quantities, provide a setting for playing a frequency of images per second, and enable saving images of all timesteps (see instructions below).
+```
+
+To **export a series of images for turning them into a movie-like GIF**, use the **Save** button of the time controller. Set up the desired resolution and define an output folder. The series of PNG images can then be converted, for example, with [GIMP](https://www.gimp.org/), into a GIF. For this purpose, download and open GIMP, then:
+
+* Open the first image of the exported series.
+* Pull all other exported images into the *Layers* panel of GIMP.
+* Reverse the order of the layers in GIMP: **Layer** > **Stack** > **Reverse Layer Order**.
+* Save the image as GIF: **File** > **Export As...**.
+* Select a folder to save the file, in the **Name** field enter `[any-name].GIF`, and click **Export**.
+* In the popup window enable **As animation** and **Loop forever** with a recommended delay between frames of **100 milliseconds**. Keep all other defaults and click **Export**.
+
+The animated figure below features an exported GIF with water depth in the background and flow velocity as streamline-vectors ranging from 0 to 2.0 m/s. The animation shows how the model is filled from both its upstream (left) and downstream (right) boundaries at the beginning of the simulation. While the upstream discharge was imposed along with a water depth through a `5 5 5` boundary, the downstream boundary only had a prescribed water depth `5 4 4` boundary. The prescription of sufficient water depths was necessary to avoid supercritical flows at the boundaries, which would make the numerical model crash immediately. Because the flux coming from the downstream boundary needs to move uphill, it cannot go very fast and is rolled over by a wave of water coming from the upstream boundary. If a downstream flux was prescribed, the model would have been more unstable and overdetermined. 
+
+```{admonition} GIF sequence of a dry-initialized Telemac2d model (large file size!)
+:class: tip, dropdown
+:name: telemac-flow-convergence-gif
+
+<img src="https://github.com/hydro-informatics/media/blob/main/gif/inn-dry-init.gif?raw=true" alt="Telemac dry-init GIF" />
+
+```
+
+```{admonition} Recall: boundary conditions and mass balance
+:class: important
+
+Mass balance is a crucial criterion for a sound numerical model. Read more in the focus chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
+```
+
+
+(tm2d-init-wet)=
+# Modify Initial Conditions
+
+The above {numref}`Fig. %s <steady-flux-convergence>` and {ref}`depth-velocity animation <telemac-flow-convergence-gif>` point to stability achieved after approximately 7000 timesteps. A wet-initialized model converges much faster, but either requires a previous run of a dry model initialization, or it can make use of other initial condition keywords in Telemac. Ideally, the dry-initialized model is used as a so-called hotstart condition for a wet-initialized model, as described in the {ref}`unsteady 2d tutorial <tm2d-hotstart>`. 
+  
+````{admonition} Challenge: initialize Telemac with an initial water depth
+:class: important
+
+Even though it is not best practice for modeling a river, running the steady2d.cas simulation with an initial water depth of 1 m is an interesting exercise to experience why it is not a good choice. To run the model with an initial water depth, we can facilitate the boundary conditions by removing the upstream depth constraint (i.e., setting the first entry of the `PRESCRIBED ELEVATIONS` keyword to `0.`), and modifying the `INITIAL [...]` condition keywords to a `'CONSTANT DEPTH'` of `1` meter:
 
 ```fortran
+/ steady2d_wet.cas
 / ... header
-VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F,B
 / ...
 PRESCRIBED FLOWRATES  : 35.;0.
-PRESCRIBED ELEVATIONS : 374.80565;371.33
+PRESCRIBED ELEVATIONS : 0.;371.33
 / ...
-INITIAL CONDITIONS : 'ZERO DEPTH'
-/ INITIAL DEPTH : 1
+INITIAL CONDITIONS : 'CONSTANT DEPTH'
+INITIAL DEPTH : 1
+/ ...
 / ... footer
 ```
 
-Alternatively, download the modified files:
+Also, change the upstream boundary type to a less constrained `4 5 5` (prescribed Q only) type in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`):
 
-* [boundaries-dry.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-dry/boundaries-dry.cli)
-* [steady2d-initdry.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-dry/steady2d-dry.cas)
+* In the **Find** field type `5 5 5`.
+* In the **Replace with** field type `4 5 5`.
+* Click on **Replace** until all **upstream** boundary node types are modified.
+* Save and close **boundaries.cli**.
 
-Re-{ref}`run Telemac2d <tm2d-run>` and open the resulting `r2d...slf` file in QGIS. The following video features the flow velocity vector evolution during the dry-initialized model run.
+Save the modified `.cas` and `.cli` files, and re-run Telemac:
 
-```{admonition} Flow velocity vector evolution during the dry-initialized model run
-:class: tip
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/hh843xrLycI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+```
+telemac2d.py steady2d_wet.cas
 ```
 
-Compare the results of the dry and wet model initializations with regard to the following questions:
+The diagram in {numref}`Fig. %s <convergence-diagram-tm2d-wet>` plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability (i.e., converges) after the 55th output listing (simulation time $t \leq 5500$).
 
-* How does the mass balance evolve during the simulation?
-* How long did the simulations take to converge and did you need to modify the `NUMBER OF TIME STEPS`?
-* How reasonable are the results (double-check with the above comment)?
-* Which of the two initial conditions would you use in practice to show that the simulation is correct?
+```{figure} ../../img/telemac/convergence-diagram-tm-pt.png
+:alt: telemac2d convergence steady simulation wet initialization
+:name: convergence-diagram-tm2d-wet
+
+Convergence of inflow (upstream) and outflow (downstream) at the open model boundaries of a wet model.
+```
+
+```{figure} ../../img/telemac/qgis-exported-tif.png
+:alt: qgis flow velocity vitesse results slf PostTelemac raster geotiff tif
+:name: exported-tif
+
+The flow velocity (VITESSE) GeoTIFF raster after a wet-initialized Telemac simulation, shown in QGIS (background map: {cite:t}`googlesat` satellite imagery).
+```
+
+```{admonition} Question: what are the pros and cons of the wet-initialized simulation with constant water depth?
+:class: note, dropdown
+
+**Positive (pro)** is that the simulation converges considerably faster than in the case of the dry-initialized model.
+
+**Negative (contra)** performance indicators are some non-zero flow velocity pixels on the floodplains (beyond the riverbanks) in {numref}`Fig. %s <exported-tif>`. These apparently wrongly modeled pixels are an artifact of the use of wet initial conditions, which put a 1-m thick water layer all over the model. Specifically, water patches remained in small, local terrain depressions between the solid boundaries (`2 2 2`) and dykes along the riverbanks. This water could not run off and stayed on these patches until the end of the simulation. This is a physically unreasonable no-go flag, which disqualifies a model for any application.
+```
+````
 
 (tm2d-calibration)=
-# 2d Calibration Parameters
+# Notes on 2d Calibration
 
-```{dropdown} Recall: How to calibrate?
-Calibration involves the step-wise adaptation of model input parameters to yield a possibly best (statistic) fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the beginning `FRICTION COEFFICIENT : 0.03`, the calibration may test for `FRICTION COEFFICIENT : 0.033`, then `FRICTION COEFFICIENT : 0.036`, `FRICTION COEFFICIENT : 0.027` and so on, ultimately to find out which value for **FRICTION COEFFICIENT** brings the model results closest to observations.
+## Refresher: How does calibration work?
+
+{ref}`Calibration <calibration>` involves the step-wise adaptation of model input parameters to yield a possibly best (statistic) fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the beginning `FRICTION COEFFICIENT : 0.03`, the calibration may test for `FRICTION COEFFICIENT : 0.033`, then `FRICTION COEFFICIENT : 0.036`, `FRICTION COEFFICIENT : 0.027` and so on, ultimately to find out which value for **FRICTION COEFFICIENT** brings the model results closest to observations.
 
 Moreover, a sensitivity analysis compares step-wise modifications of multiple parameters (still: one at a time) and theirs effect on model results. For instance, if a 10-% variation of **FRICTION COEFFICIENT** yields a 5-% change in global water depth while a 10-% variation of grid size (edge length) yields a 20-% change in global water depth, it may be concluded that the model sensitivity is higher with respect to the grid size. However, such conclusions require careful considerations in multi-parametric, complex models of river ecosystems.
-```
 
+## Calibration Parameters in Telemac
 The following parameters may be used for calibrating a 2d model to measurements (e.g., water surface elevation, water depth, or flow velocity data):
 
 * **FRICTION COEFFICIENT** ({ref}`friction section <tm2d-friction>`)
 * Solvers, solver options, implicitation and other numerical parameters ({ref}`numerical parameter section <tm2d-solver-pars>`)
-* Type of model {ref}`initialization <tm2d-init>`
+* Type of model {ref}`initialization <tm2d-init-dry>`
 * {ref}`Turbulence models and parameters <tm2d-turbulence>`
 
 ```{admonition} Avoid accuracy-reducing keyword settings
 Keyword settings such as `MASS-LUMPING ... : ...`  lead to increased smoothing (i.e., reduced accuracy) of results to increase computation speed. However, in most cases, it is worth accepting longer computation times and yielding higher accuracy, which will reduce efforts for model calibration, and thus, saves more time in the end.
 ```
 
-**What next?**
-: A steady discharge almost never occurs in reality and can be used at maximum to {ref}`calibrate <calibration>` the model based on (field) measurements. Once the model is well-calibrated for 2-3 steady discharges, the steady model results may be used for initializing an {ref}`unsteady <chpt-unsteady>` simulation, possibly with {ref}`sediment transport <tm-gaia>`.
+# Next Steps
+
+1. Make sure the simulation is conservative according to the descriptions in the spotlight chapter on {ref}`mass balance <foc-mass-bc>`.
+1. Find a meaningful simulation duration for convergence of a dry-initialized simulation following the algorithms provided with the chapter on {ref}`quantitative convergence <tm-convergence>`.
+1. Use the dry-initialized model to simulate at least 2-3 steady discharges (with {ref}`hotstart conditions <tm2d-hotstart>`) for which measurement data is available for {ref}`calibration <calibration>` and validation. 
+1. The calibrated and validated model can be 
+  * used for {ref}`unsteady hydrodynamic <chpt-unsteady>` simulations, and 
+  * serve a basis for morphodynamic {ref}`sediment transport modeling with Gaia <tm-gaia>`.

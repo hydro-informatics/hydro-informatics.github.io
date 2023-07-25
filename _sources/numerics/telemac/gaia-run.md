@@ -1,4 +1,3 @@
-
 (gaia-run)=
 # Run and Analyze
 
@@ -9,7 +8,7 @@ Make sure that the simulation folder (e.g., `/gaia2d-tutorial/`) contains at lea
 * A computational mesh, for example, in the form of [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/qgismesh.slf).
 * A hydrodynamic boundary definitions file, for example, in the form of [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli).
 * A Gaia boundary definitions, for example, in the form of [boundaries-gaia.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries-gaia.cli).
-* A results file of a Telemac2d/3d simulation for a hotstart initialization, for example, for 35 m$^3$/s in the form of [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf) (result of the {ref}`dry-initialized steady run <tm2d-dry>` ending at `T=15000`).
+* A results file of a Telemac2d/3d simulation for a hotstart initialization, for example, for 35 m$^3$/s in the form of [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf) (result of the {ref}`dry-initialized steady run <tm2d-init-dry>` ending at `t=15000`).
 * A Telemac2d steering file, such as [steady2d-gaia.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/steady2d-gaia.cas).
 * A Gaia steering file, such as [gaia-morphodynamics.cas](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/gaia-morphodynamics.cas).
 

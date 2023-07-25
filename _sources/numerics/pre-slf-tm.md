@@ -621,7 +621,7 @@ The default boundary type of the **boundaries** object is **Closed boundary (wal
 Even though the liquid boundaries are already defined in QGIS (see the {ref}`QGIS section on Liquid Boundaries <tm-bm-liquid-boundaries>`), it is always necessary to define the liquid boundaries in BlueKenue<sup>TM</sup> to fit the node numbers (IDs) of the Selafin mesh.
 ```
 
-The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q** (discharge) with the code `4 5 5` and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed H** with the code `5 4 4` (i.e., prescribed {term}`stage-discharge relation <Stage-discharge relation>`). These types of boundary conditions are commonly used in practice, with the downstream boundary typically chosen to be at a gauging station where a {term}`stage-discharge relation <Stage-discharge relation>` has been calibrated with historic data. To back-calculate cross-section averaged roughness from a {term}`stage-discharge relation <Stage-discharge relation>`, take a look at the {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>` formula.
+The upstream (inflow) liquid boundary will constitute an **Open boundary with prescribed Q and H** (discharge and water depth corresponding to a {term}`stage-discharge relation <Stage-discharge relation>`) with the code `5 5 5` and the downstream outflow (liquid) boundary will constitute an **Open boundary with prescribed H** with the code `5 4 4` (i.e., prescribed water depth). These types of boundary conditions are required for a dry initialization of the model. In practice, the downstream boundary should be located be at a gauging station where a {term}`stage-discharge relation <Stage-discharge relation>` has been calibrated with historic data. To back-calculate cross-section averaged roughness from a {term}`stage-discharge relation <Stage-discharge relation>`, take a look at the {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>` formula.
 
 ````{admonition} Drawing boundary conditions for mass balance
 
@@ -630,6 +630,7 @@ The boundary condition settings affect mass balance, which is a crucial criterio
 ```{figure} ../img/telemac/cross-section-sx.png
 :alt: draw bluekenue liquid boundary conditions conlim upstream inflow
 :name: draw-inflow-pre-slf
+:scale: 75%
 
 The red highlighted part of this qualitative cross section should be defined as the inflow (upstream) boundary condition. Mesh nodes at the riverbanks and on the floodplains should not be included.
 ```
@@ -646,7 +647,7 @@ To assign the two liquid boundary lines, zoom into the downstream and upstream r
 * **Right-click** on the purple inflow line and select **Add Boundary Segment**.
 * In the opening window (**CONLIM Boundary Segment Editor**) make the following settings:
   * Define **Boundary Name** as `upstream`.
-  * In the **Boundary Code** field select `Open boundary with prescribed Q`.
+  * In the **Boundary Code** field select `Open boundary with prescribed Q and H` (`5 5 5`).
   * Keep all other defaults and click **OK**.
 * **Save** the **boundaries** object by clicking on the disk <img src="../img/telemac/bk-sym-save.png"> symbol and confirm overwriting `boundaries.bc2` (i.e., click **Yes**).
 
@@ -667,7 +668,7 @@ The upstream boundary definition. Double-click on a node at one bank, then hold 
 * **Right-click** on the purple outflow line and select **Add Boundary Segment**.
 * In the opening window (**CONLIM Boundary Segment Editor**) make the following settings:
   * Define **Boundary Name** as `downstream`.
-  * In the **Boundary Code** field select `Open boundary with prescribed H`.
+  * In the **Boundary Code** field select `Open boundary with prescribed H` (`5 4 4`).
   * Keep all other defaults and click **OK**.
 * **Save** the **boundaries** object by clicking on the disk <img src="../img/telemac/bk-sym-save.png"> symbol and confirm overwriting `boundaries.bc2` (i.e., click **Yes**).
 

@@ -184,8 +184,8 @@ Most examples of the TELEMAC installation (`/telemac/v8p2/examples/gaia/`) use a
 To verify the correct setup of the boundary conditions files, open **boundaries.cli** and **boundaries-gaia.cli**  with a {ref}`text editor <npp>` and check on the liquid boundary definitions. Both the **boundaries.cli** and the **boundaries-gaia.cli** files are similarly organized according to {numref}`Tab. %s <tab-gaia-bc>`.
 
 * The first three entries of the upstream boundary are (according to {numref}`Tab. %s <tab-gaia-bc>`):
-  * `4` for **LIHBOR** for water depth, which was set to `5` in the {ref}`dry-initialized steady2d simulation<tm2d-dry>`;
-  * `5` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity) corresponding to the hydrodynamics boundary file ({ref}`dry-initialized steady2d simulation<tm2d-dry>`).
+  * `4` for **LIHBOR** for water depth, which was set to `5` in the {ref}`dry-initialized steady2d simulation <tm2d-init-dry>`;
+  * `5` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity) corresponding to the hydrodynamics boundary file ({ref}`dry-initialized steady2d simulation <tm2d-init-dry>`).
   *  In summary, make sure to **prescribe Q only** (i.e., with `4 5 5`) at the upstream boundary.
 
 ```{admonition} Why not prescribe water depth (elevation) at the upstream boundary?
@@ -193,7 +193,7 @@ The riverbed elevation is expected to change in a morphodynamic simulation. Thus
 ```
 
 * The first three entries of the downstream boundary are (according to {numref}`Tab. %s <tab-gaia-bc>`):
-  * `5` for **LIHBOR** for prescribed water depth, in line with the {ref}`dry-initialized steady2d simulation<tm2d-dry>`;
+  * `5` for **LIHBOR** for prescribed water depth, in line with the {ref}`dry-initialized steady2d simulation <tm2d-init-dry>`;
   * `4` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity).
   *  In summary, make sure to **prescribe Q only** (i.e., with `5 4 4`) at the downstream boundary.
 

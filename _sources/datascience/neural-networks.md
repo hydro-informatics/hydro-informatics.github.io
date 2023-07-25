@@ -4,11 +4,15 @@ This chapter is being written and developed by {{ negreiros }} <img src="../img/
 ```
 
 (neuralnetworks)=
-# Neural Networks (Coming soon)
+# Neural Networks (Supervised)
 
 
 The training process of artificial neural networks consists of not only finding best feature representations for our data, but also optimizing the model parameters (weights) toward a correct classification.
+
+[Scikit-learn reference](https://scikit-learn.org/stable/modules/neural_networks_supervised.html).
+
 ## Forward propagation
+
 
 Forward propagation is the process that ...
 

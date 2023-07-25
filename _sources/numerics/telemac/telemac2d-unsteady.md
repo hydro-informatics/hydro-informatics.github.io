@@ -6,27 +6,27 @@ This tutorial is designed for **advanced modelers** and before diving into this 
 
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
+* TELEMAC v8p2r0 ({ref}`standalone installation <modular-install>`).
 * {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
-* Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
+* Debian Linux 11 installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
 
 ## Get Started
 
-The {ref}`steady 2d tutorial <telemac2d-steady>` hypothesizes that the discharge of a river is constant over time. However, the discharge of a river is never truly constant (i.e., never steady) and varies slightly from second to second, even in flow-controlled rivers. Alas, the inherently unsteady flow regime of rivers cannot realistically be modeled with most software. As a result, we must discretize time-dependent discharge (e.g., a flood hydrograph) in a numerical model as a series of steady discharges. {numref}`Figure %s <unsteady-hydrograph>` illustrates the discretization of a natural flood hydrograph into steps of steady flows, which will be used in this tutorial. Note that the hydrograph **starts at Time = 15000**, which is the result of the steady2d simulation end state with dry initialization. Thus, the end time of T=15000 represents the end of the dry steady model initialization, as described in the {ref}`tm2d-dry` section (results can be downloaded, see below).
+The {ref}`steady 2d tutorial <telemac2d-steady>` hypothesizes that the discharge of a river is constant over time. However, the discharge of a river is never truly constant (i.e., never steady) and varies slightly from second to second, even in controlled rivers. To model the inherently unsteady flows of rivers, we can discretize time-dependent discharge (e.g., a flood hydrograph) in a numerical model as a series of steady discharges. {numref}`Figure %s <unsteady-hydrograph>` illustrates the discretization of a natural flood hydrograph into steps of steady flows, which will be used in this chapter. Note that the hydrograph **starts at Time = 15000**, which is the result of the dry-initialized steady2d simulation.
 
 ```{figure} ../../img/telemac/unsteady-hydrograph.png
 :alt: unsteady flow discharge quasi steady telemac telemac2d hydrodynamic
 :name: unsteady-hydrograph
 
-The discretization of a natural hydrograph into steps of steady flows (qualitative hydrograph for this tutorial).
+The discretization of a continuous hydrograph into steps of steady flows (qualitative hydrograph for this tutorial).
 ```
 
-This tutorial shows how a quasi-steady discharge hydrograph can be implemented in a hydrodynamic Telemac2d simulation through the definition of an inflow sequence (red circles in {numref}`Fig. %s <unsteady-hydrograph>`). The tutorial builds on the steady simulation of a discharge of 35 m$^3$/s and requires the following data from the {ref}`pre-processing <slf-prepro-tm>` and {ref}`steady2d <telemac2d-steady>` tutorials, which can be downloaded by clicking on the filenames:
+This chapter features the implementation of a quasi-steady discharge hydrograph into a hydrodynamic Telemac2d simulation through the definition of an inflow sequence (red circles in {numref}`Fig. %s <unsteady-hydrograph>`). The tutorial builds on the steady simulation of a discharge of 35 m$^3$/s and requires the following data from the {ref}`pre-processing <slf-prepro-tm>` and {ref}`steady2d <telemac2d-steady>` tutorials, which can be downloaded by clicking on the filenames:
 
-* The computational mesh [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) file  (uses **EPSG:6173** - ETRS 89 / UTM zone 33N).
+* The computational mesh [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) file  (uses **EPSG:32633** - ETRS 89 / UTM zone 33N).
 * The boundary definitions [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) file.
-* The results file [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) of the {ref}`dry initialized steady 2d simulation <tm2d-dry>` ending at `T=15000` for 35 m$^3$/s.
+* The results file [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) of the {ref}`dry initialized steady 2d simulation <tm2d-init-dry>` ending at `t=15000` for 35 m$^3$/s.
 
 Consider saving the files in a new folder, such as `/unsteady2d-tutorial/`.
 
@@ -37,10 +37,10 @@ The simulation files used in this tutorial are available at [https://github.com/
 (prepro-unsteady)=
 ## Model Adaptations
 
-The integration of unsteady flows requires the adaptation of keywords and additional keywords (e.g., for linking liquid boundary files) in the steering (`*.cas`) file from the steady2d tutorial ([download steady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas)).
+The implementation of unsteady flows requires the adaptation of keywords and additional keywords (e.g., for linking liquid boundary files) in the steering (`.cas`) file from the steady2d tutorial ([download steady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas)).
 
 ```{admonition} View the unsteady steering file
-To view the integration of the unsteady simulation keywords in the steering file, [download *unsteady2d.cas*](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/unsteady2d.cas).
+To view the integration of the unsteady simulation keywords in the steering file, [download unsteady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/unsteady2d.cas).
 ```
 
 (tm2d-hotstart)=
@@ -48,7 +48,7 @@ To view the integration of the unsteady simulation keywords in the steering file
 
 **The following descriptions refer to section 4.1.3 in the {{ tm2d }}.**
 
-To speed up the calculations and provide a well-converging baseline for the quasi-steady calculations, this tutorial re-uses the output of the steady 2d simulation with dry initial conditions (see the {ref}`tm2d-dry` section). This type of model initialization is also called *hotstart*. To hotstart the simulation, the steady results file [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) needs to be defined as **PREVIOUS COMPUTATION FILE**:
+To speed up the calculations and provide a well-converging baseline for the quasi-steady calculations, this tutorial re-uses the output of the steady 2d simulation with dry initial conditions (see the {ref}`tm2d-init-dry` section). This type of model initialization is also called *hotstart*. To hotstart the simulation, the steady results file [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) needs to be defined as **PREVIOUS COMPUTATION FILE**:
 
 ```fortran
 COMPUTATION CONTINUED : YES
@@ -56,17 +56,17 @@ PREVIOUS COMPUTATION FILE : r2dsteady.slf / results of 35 CMS steady simulation
 / INITIAL TIME SET TO ZERO : 0 / avoid restarting at 15000
 ```
 
-In addition, an **INITIAL TIME SET TO ZERO** keyword may be defined  to reset the time from the previous computation file from `15000` to `0`. However, this tutorial does not use this option and continues at timestep 15000.
-To avoid ambiguous definitions of initial conditions, **deactivate** (i.e., delete or comment out lines with a `/`) a little further down in the steering file the **INITIAL ... keywords**:
+An **INITIAL TIME SET TO ZERO** keyword may be defined  to reset the time from the previous computation file from `15000` to `0`. However, this tutorial does not use this option and continues at timestep 15000.
+
+To avoid ambiguous definitions of initial conditions, **deactivate** (i.e., delete or comment out lines with a `/`) the **INITIAL CONDITIONS keyword**:
 
 ```fortran
-/ INITIAL CONDITIONS : 'CONSTANT DEPTH'
-/ INITIAL DEPTH : 1
+/ INITIAL CONDITIONS : 'ZERO DEPTH'
 ```
 
 ### General Parameters
 
-To simulate the hydrograph shown in {numref}`Fig. %s <unsteady-hydrograph>`, the simulation must run for at least 15000 time steps (i.e., from `T=15000` to `T=30000`). Since printing out (intermediate) results has a significant effect on computational speed, increase the graphic printout timestep to `500` (i.e., decrease the printout frequency compared to `200` used for the steady simulation):
+To simulate the hydrograph shown in {numref}`Fig. %s <unsteady-hydrograph>`, the simulation must run for at least another 15000 time steps (i.e., from `t=15000` to `t=30000`). Since printing out (intermediate) results has a significant effect on computing time, increase the graphic printout timestep to `500` (i.e., decrease the printout frequency compared to `200` used for the steady simulation):
 
 ```fortran
 TIME STEP : 1.
@@ -83,7 +83,7 @@ This section features the implementation of quasi-steady (unsteady) flow conditi
 
 ```{admonition} Boundary conditions and mass balance
 
-The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`.
+The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
 ```
 
 
@@ -91,15 +91,15 @@ The boundary condition settings affect mass balance, which is a crucial criterio
 
 **Define a Quasi-steady Hydrograph**
 
-With the dry-initialized model ending at T=15000, the hydrograph needs to start at `15000`, even though the model start will represent time *zero* of the unsteady simulation. To implement the triangular-shaped hydrograph shown in {numref}`Fig. %s <unsteady-hydrograph>`, **create a new file called `inflows.liq`** in the simulation folder. Open the new `inflows.liq` file in a text editor and add the red-circled points in {numref}`Fig. %s <unsteady-hydrograph>` as time-dependent flow information at the **upstream (1)** and **downstream (2)** open (liquid) boundaries. In this file:
+With the dry-initialized model ending at $t$=15000, the hydrograph needs to start at `15000`, even though the model start will represent time *zero* of the unsteady simulation. To implement the triangular-shaped hydrograph shown in {numref}`Fig. %s <unsteady-hydrograph>`, **create a new file called `inflows.liq`** in the simulation folder. Open the new `inflows.liq` file in a text editor and add the red-circled points in {numref}`Fig. %s <unsteady-hydrograph>` as time-dependent flow information at the **upstream (1)** and **downstream (2)** open (liquid) boundaries. In this file:
 
 * Add a file header starting with `#` signs (commented lines ignored by TELEMAC).
-* Implement 2 columns (for time **T** and upstream inflow rate **Q(1)**).
-* Separate the columns either with *spaces*.
+* Implement 2 columns for the time **T** ($t$) and upstream inflow rate **Q(1)**.
+* Separate the columns with *spaces*.
 * The first column must be time `T` with strictly monotonously increasing values and the last time value must be greater than or equal to the last simulation timestep.
 
-```{admonition} How does TELEMAC count open (liquid) boundaries?
-Recall the information provided in the comment box in the {ref}`steady2d tutorial <tm2d-bounds>`.
+```{admonition} How does Telemac count open (liquid) boundaries?
+This and more information on the definition of boundaries is provided in the spotlight chapter on {ref}`boundary conditions <tm-foc-bc>`.
 ```
 
 Thus, the [inflows.liq](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/inflows.liq) file should look similar to this:
@@ -120,20 +120,19 @@ s	m3/s
 
 The original *boundaries.cli* file describes the downstream boundary with *prescribed Q and H* (type `5 5 5`). However, in the unsteady calculation, `Q` needs to be free (otherwise, Q(2) needed to be defined in `inflows.liq` with an additional column) and for this reason, the `boundaries.cli` file requires some adaptions:
 
-* **Open** the provided [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) file with a text editor (e.g., {ref}`npp` on Windows or {ref}`Atom <install-atom>`).
-* Use find-and-replace (e.g., `CTRL` + `H` keys in {ref}`npp`, or `CTRL` + `F` keys in {ref}`install-atom`):
+* **Open** the provided [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) file with a text editor (e.g., {ref}`npp` on Windows).
+* Use find-and-replace (e.g., `CTRL` + `H` keys in {ref}`Notepad++ <npp>`, or `CTRL` + `F` keys in other text editors):
   * **Find** `5 5 5`
-  * **Replace** with `5 4 4`
-  * Click on **Replace** all downstream boundary nodes.
-* Similarly, make sure the upstream boundary nodes are all set to `4 5 5`.
-* **Save** the file as **boundaries-544.cli** and close it.
+  * **Replace** with `4 5 5`
+  * Click on **Replace** all upstream boundary nodes.
+* **Save** the file as **boundaries-unsteady.cli** and close it.
 
-Verify the correct settings by downloading [boundaries-544.cli](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries-544.cli) for the unsteady simulation.
+To verify the correct settings [download boundaries-unsteady.cli](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries-unsteady.cli) for the unsteady simulation.
 
 In the **steering file**, adapt the **file name for the boundary conditions** and add the link to **inflows.liq**:
 
 ```
-BOUNDARY CONDITIONS FILE : boundaries-544.cli
+BOUNDARY CONDITIONS FILE : boundaries-unsteady.cli
 / ...
 LIQUID BOUNDARIES FILE : inflows.liq
 ```
@@ -141,7 +140,7 @@ LIQUID BOUNDARIES FILE : inflows.liq
 ---
 
 **Rating Curve (Stage-Discharge Relation)**
-To activate the use of a {term}`Stage-discharge relation` for an open (liquid) boundary, the **STAGE-DISCHARGE CURVES** keyword needs to be added to the steering file. This keyword accepts the following integers:
+To activate the use of a {term}`stage-discharge relation <Stage-discharge relation>` for an open (liquid) boundary, the **STAGE-DISCHARGE CURVES** keyword needs to be added to the steering file. This keyword requires a list consisting of the following integers:
 
 * `0` is the **default** that deactivates the usage of a stage-discharge curve.
 * `1` applies prescribed elevations as a function of calculated flow rate (discharge).
@@ -149,7 +148,7 @@ To activate the use of a {term}`Stage-discharge relation` for an open (liquid) b
 
 The **STAGE-DISCHARGE CURVES** keyword is a list that assigns one of the three integers (i.e., either `0`, `1`, or `2`) to the open (liquid) boundaries. In this tutorial, the setting `STAGE-DISCHARGE CURVES : 0;1` activates the use of a {term}`Stage-discharge relation` for the downstream boundary only where the **upstream open boundary number 1** is set to `0` and the **downstream open boundary number 1** is set to `0`.
 
-The form (curve) of the {term}`Stage-discharge relation` needs to be defined in a stage-discharge file ({term}`ASCII` text format). Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). This tutorial uses the following relationship that is stored in a file called *ratingcurve.txt* ([download](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/ratingcurve.txt)):
+The form (curve) of the {term}`Stage-discharge relation` needs to be defined in a stage-discharge file ({term}`ASCII` text format). Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). This tutorial uses the following relationship that is stored in a file called [ratingcurve.txt (download)](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/ratingcurve.txt):
 
 ```
 # Downstream ratingcurve.txt
@@ -163,9 +162,12 @@ m	m3/s
 379.08	2560
 ```
 
-To define {term}`Stage-discharge relation`s for multiple open boundaries (e.g., at river diversions or tributaries), add the curves to the same file. TELEMAC automatically recognizes where the curves apply by the number given in parentheses after the parameter name in the column header. For instance, in the above example for this tutorial, the column headers `Z(2)` and `Q(2)` tell TELEMAC to use these values for the second (i.e., here, the downstream) open boundary. The column order is not important because TELEMAC reads the curve type (i.e., either $Q(Z)$ or $Z(Q)$) from the **STAGE-DISCHARGE CURVES** keyword.
 
-````{dropdown} Expand to view an example for multiple stage-discharge curve definitions
+````{admonition} How to assign different stage-discharge curves at multiple boundaries?
+:class: tip, dropdown
+
+To define {term}`stage-discharge relation <Stage-discharge relation>`s at multiple open boundaries (e.g., at river diversions or tributaries), add the curves to the same file. TELEMAC automatically recognizes where the curves apply by the number given in parentheses after the parameter name in the column header. For instance, in the above example for this tutorial, the column headers `Z(2)` and `Q(2)` tell TELEMAC to use these values for the second (i.e., here, the downstream) open boundary. The column order is not important because TELEMAC reads the curve type (i.e., either $Q(Z)$ or $Z(Q)$) from the **STAGE-DISCHARGE CURVES** keyword.
+
 The following file block would prescribe {term}`Stage-discharge relation`s to the upstream and downstream boundary conditions in this tutorial. However, the file cannot be used here unless the upstream boundary type is changed to `5 5 5` (`prescribed H and Q`) in the `boundaries.cli` file (read more in the {ref}`pre-processing tutorial <bk-liquid-bc>`).
 ```
 #
@@ -206,13 +208,13 @@ STAGE-DISCHARGE CURVES FILE : ratingcurve.txt
 To avoid ambiguous definitions of the open boundaries conditions, **deactivate** (i.e., delete or comment out lines with a `/`) the **PRESCRIBED ...** keywords in the steering file:
 
 ```fortran
-/ PRESCRIBED FLOWRATES  : 35.;35.
-/ PRESCRIBED ELEVATIONS : 0.;371.33
+/ PRESCRIBED FLOWRATES  : 35.;0.
+/ PRESCRIBED ELEVATIONS : 374.80565;371.33
 ```
 
 ### Numerical Parameters
 
-The predictor-corrector schemes (**SCHEME FOR ...** keywords defined with `3`, `4`, `5`, or `15` as explained in the {ref}`steady2d tutorial <tm2d-numerical>`) rely on a parameter defining the number of iterations at every timestep for convergence. For quasi-steady simulations, TELEMAC developers recommend setting this parameter to `2` or slightly larger (section 7.2.1 in the {{ tm2d }}). Therefore, **add the following line to the steering file**:
+The predictor-corrector schemes (**SCHEME FOR ...** keywords defined with `3`, `4`, `5`, or `15` rely on a parameter defining the number of iterations at every timestep for convergence (see the {ref}`steady2d tutorial <telemac2d-steady>`). For quasi-steady simulations, Telemac developers recommend setting this parameter to `2` or slightly larger (section 7.2.1 in the {{ tm2d }}). Therefore, **add the following line to the steering file**:
 
 ```fortran
 NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2
@@ -272,8 +274,8 @@ Thus, re-running the simulation will write the fluxes across the two define cont
 Go to the configuration folder of the local TELEMAC installation (e.g., `~/telemac/v8p2/configs/`) and load the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
 
 ```
-cd ~/telemac/v8p2/configs
-source pysource.openmpi.sh
+cd ~/telemac/v8p4/configs
+source pysource.gfortranHPC.sh
 ```
 
 ````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
@@ -343,7 +345,7 @@ The unsteady simulation intends to model time-variable flows over the open upstr
 The simulated flows over the upstream *Inflow_boundary* and the downstream *Outflow_boundary* control sections.
 ```
 
-The peak inflow corresponds to the specified 1130 m$^3$/s while the outflow peak discharge is only 889 m$^3$/s and the peak takes about 1070 seconds (inflow at $T=19000$ and outflow at $T\approx 20070$) to travel through the section.
+The peak inflow corresponds to the specified 1130 m$^3$/s while the outflow peak discharge is only 889 m$^3$/s and the peak takes about 1070 seconds (inflow at $t$=19000 and outflow at $t\approx$ 20070) to travel through the section.
 
 
 ````{admonition} Resolve volume balance issues in unsteady simulations
@@ -371,7 +373,7 @@ The unsteady (quasi-steady) simulation results file r2dunsteady.slf imported as 
 ```{admonition} r2dunsteady.slf (results file) not correctly showing in QGIS
 :class: error, dropdown
 
-Is the results file `r2dunsteady.slf` not showing up in QGIS? Make sure to import it with its correct georeference: **EPSG:6173** (ETRS 89 / UTM zone 33N).
+Is the results file `r2dunsteady.slf` not showing up in QGIS? Make sure to import it with its correct georeference: **EPSG:32633** (ETRS 89 / UTM zone 33N).
 ```
 
 
@@ -386,9 +388,8 @@ The first time that a video is exported, *Crayfish* will require the definition 
 
 The below-shown box features an exemplary video output of flow velocity.
 
-```{dropdown} Expand to view the resulting video
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/JKAiZ1ChUEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+```{admonition} Expand to view the results as video
+:class: tip, dropdown
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/JKAiZ1ChUEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 ```
 
-**What next?**
-: This tutorial ends with the graphical output of modeled flow parameters, but there are a couple more steps to accomplish in practice. For instance, the time that the flow peak takes to travel through the modeled river section might be too short (i.e., flow is too fast) or too long (i.e., flow is too slow) compared to observation data (e.g., from stream gauges). In these cases, model {ref}`calibration <calibration>` through variations of the {ref}`FRICTION COEFFICIENT <tm2d-friction>` keyword might be a solution.

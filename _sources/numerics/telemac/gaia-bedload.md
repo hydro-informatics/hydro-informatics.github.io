@@ -1,11 +1,13 @@
 (gaia-bl)=
 # Bedload
 
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/e6lk2pk72Gc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Bedload traveling in a lab flume by jumping, rolling, and sliding (under water footage). Source: Sebastian Schwindt<a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 
 ```{admonition} Bedload basics
 :class: important
+
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/e6lk2pk72Gc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Bedload traveling in a lab flume by jumping, rolling, and sliding (under water footage). Source: Sebastian Schwindt<a href="https://www.youtube.com/@hydroinformatics">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+
 
 For a better learning experience, the {ref}`glossary` helps with explanations of the terms {term}`Sediment transport`, (dimensionless) {term}`bedload <Bedload>` transport $\Phi_b$, {term}`dimensionless bed shear stress <Dimensionless bed shear stress>` $\tau_{x}$, and the {term}`Shields parameter` $\tau_{x,cr}$ (in this order).
 ```
