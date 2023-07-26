@@ -13,7 +13,7 @@ After having created and filled in all necessary dictionaries, the case can fina
 user@user123:~/OpenFOAM-9/channel/Simulation$ setFields
 ```
 
-* For parallel runs, use the `decomposePar` command, as done during the meshing process, to decompose the geometry into individual geometries for each MPI process.
+* For parallel runs, use the `decomposePar` command, as done during the meshing process, to decompose the geometry into individual geometries for each [MPI (Message Passing Interface, a standard for parallel computing)](https://www.mpi-forum.org/) process.
 
 ```
 user@user123:~/OpenFOAM-9/channel/Simulation$ decomposePar

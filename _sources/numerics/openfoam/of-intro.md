@@ -12,8 +12,7 @@ OpenFOAM has a wide range of functions, such as:
 
 * The ability to simulate anything related to CFD, such as turbulent flows in automotive aerodynamics, fires and fire suppression in buildings, combustion, chemical reactions, heat transfer, liquid sprinklers, or films.  
 * It includes tools for dealing with complex geometries (e.g., a fish pass) and for data processing and visualization.   
-* It performs parallel calculations allowing to take full advantage of modern multicore processors and multiprocessor computers.
-
+* It performs parallel calculations allowing to take full advantage of modern multicore processors and multiprocessor computers through the [Message Passing Interface (MPI) standard)](https://www.mpi-forum.org/).
 
 
 ```{admonition} Requirements for this tutorial

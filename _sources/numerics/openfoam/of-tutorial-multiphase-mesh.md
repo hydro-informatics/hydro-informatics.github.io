@@ -30,13 +30,13 @@ Background mesh created with blockMesh containing the structure to be meshed.
 
 In the *blockMeshDict* file, the following items need to be added:
 
-* The scaling factor for the vertex coordinates
+* the scaling factor for the vertex coordinates
 
 ```
    convertToMeters 1;
 ```
   
-* Coordinates of the vertices of the background mesh
+* coordinates of the vertices of the background mesh
 
 ```
     vertices
@@ -52,7 +52,7 @@ In the *blockMeshDict* file, the following items need to be added:
         );
 ```
 
-*  The coordinates of the vertices, following the order indicated below
+*  coordinates of the vertices, following the order indicated below
 
 ```{figure} ../../img/openfoam/snappyHexMesh/block-mesh-vertexorder.png
 :alt: openfoam 
@@ -61,7 +61,7 @@ In the *blockMeshDict* file, the following items need to be added:
 Background mesh indicating the order in which the vertices are written in the block-meshDict file.
 ```
 
-* Ordered list of vertex labels and mesh size
+* an ordered list of vertex labels and mesh size
 
 ```
     blocks
@@ -97,7 +97,7 @@ The complete version of the surfaceFeaturesDict for the current tutorial is save
 
 ## decomposeParDict
 
-The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each MPI process. The *numberOfSubdomains* entry is mandatory, and the *Method* defines the decomposition method type. Several decomposition methods are available. Therefore, the *decomposeParDict* file shown below presents only one exemplary option.
+The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each [MPI (Message Passing Interface, a standard for parallel computing)](https://www.mpi-forum.org/) process. The *numberOfSubdomains* entry is mandatory, and the *Method* defines the decomposition method type. Several decomposition methods are available. Therefore, the *decomposeParDict* file shown below presents only one exemplary option.
 
 ```
     numberOfSubdomains 8;
@@ -129,9 +129,10 @@ The decomposeParDict is used to decompose a mesh and fields of a case for parall
 ***
 
 ## SnappyHexMesh
+
 The snappyHexMeshDict dictionary contains a series of commands that control the various steps of the meshing process. The main ones are the following:
 
-* *castellatedMesh* enables the creation of the castellated mesh.
+* *castellatedMesh* enables the creation of a castellated (i.e., refined) mesh.
 * *snap* enables the surface snapping stage.
 * *addLayers* enables the surface layer insertion.
 * *geometry* is a sub-dictionary of all surface geometry used.
@@ -143,11 +144,12 @@ The snappyHexMeshDict dictionary contains a series of commands that control the 
 
 The key steps involved when running snappyHexMesh are:
 
-* *Castellation*: the cells that are beyond a region defined by a predefined point are removed.
-* *Snapping*: reconstructs the cells to move the edges from inside the region to the required boundary.
-* *Layering*: creates additional layers in the boundary region.
+1. {ref}`Castellation <of-mesh-castel>`: the cells that are beyond a region defined by a predefined point are removed.
+1. {ref}`Snapping <of-mesh-snap>`: reconstructs the cells to move the edges from inside the region to the required boundary.
+1. {ref}`Layering <of-mesh-layer>`: creates additional layers in the boundary region.
+1. {ref}`Mesh quality <of-mesh-quality>`: control and verify the quality of the mesh.
 
-For this example, the *add Layers* option, which enables the addition of viscous layers, was set to *false*.
+For this example, the *add Layers* option, which enables the addition of viscous layers, was set to `false`.
 
 ```
 /*--------------------------------*- C++ -*----------------------------------*\
@@ -185,6 +187,9 @@ geometry // Load all the STL files here
 };
 ```
 
+(of-mesh-castel)=
+### Castellation (Refinement)
+
 The **CastellatedMeshControls** settings then allow the definition of the mesh refinement. The level of refinement can be set in the *features*, *refinementSurfaces*, and *refinementRegions* sections. Starting from level 0, which corresponds to no refinement, each subsequentrefinement level divides the cell in 4 parts.
 
 ```{figure} ../../img/openfoam//snappyHexMesh/refinement-levels.png
@@ -205,10 +210,10 @@ For further details regarding these settings refer to the [castellation and refi
 ```
 castellatedMeshControls
 {
-    maxLocalCells 50000000;  //max cells per CPU core
-    maxGlobalCells 500000000; //max cells to use before mesh deletion step
-    minRefinementCells 0;  //was 0 - zero means no bad cells are allowed during refinement stages
-    nCellsBetweenLevels 3;  // expansion factor between each high & low refinement zone
+    maxLocalCells 50000000;   // max cells per CPU core
+    maxGlobalCells 500000000; // max cells to use before mesh deletion step
+    minRefinementCells 0;     // was 0 - zero means no bad cells are allowed during refinement stages
+    nCellsBetweenLevels 3;    // expansion factor between each high & low refinement zone
 
     // Explicit feature edge refinement
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -254,9 +259,11 @@ Resulting refinement for the **Obstacle** and **Gravel-Bottom** elements composi
 Once the feature and surface splitting process is complete, the cell removal process takes place. The latter requires one or more regions wrapped entirely by a bounding surface belonging to the domain. In order to specify the region in which the cells have to be kept, the *locationInMesh* keyword needs to be defined. This vector simply defines the region that wants to be retained.
  
 ```
-locationInMesh (43.359 5 2.5803);  //to decide which side of mesh to keep **
-
+locationInMesh (43.359 5 2.5803);  // to decide which side of mesh to keep **
 ```
+
+(of-mesh-snap)=
+### Snapping
 
 After having completed the cell splitting and cell removal processes, the **Snapping** process can take place. This task deals with moving the cell vertex points on the surface to create a conforming mesh, meaning to conform the input geometry. Here is a list of the keywords to be set:
 
@@ -288,9 +295,12 @@ snapControls
 }
 ```
 
+(of-mesh-layer)=
+### Layering
+
 In the case in which some irregular cells are present along the boundaries in the mesh obtained with the snapping stage, it is possible to introduce additional layers composed of hexahedral cells along the boundary. This stage includes shrinking the existing mesh in order to insert the layer of cells.
 
-A user can choose between 4 different layer thickness parameters: *expansionRatio*, *finalLayerThickness*, *firstLayerThickness*, *thickness*. In this example case, specify only two to avoid an over-specification of the problem. The parameters to be set have the following meanings:
+Users can choose between 4 different layer thickness parameters: *expansionRatio*, *finalLayerThickness*, *firstLayerThickness*, *thickness*. In this example case, specify only two to avoid an over-specification of the problem. The parameters to be set have the following meanings:
 
 * *expansionRatio*: necessary in order to calculate the relative size to the prescribed thickness of either first or final layer.
 * *minThickness*: indicates the minimum thickness of the layer.
@@ -334,28 +344,35 @@ addLayersControls
  }
 ```
 
-The final part of the *snappyHexMeshDict* file deals with the **Mesh Quality**. In this section, the values of the extrema encountered during the meshing process are defined. The purpose is to ensure an adequate quality of the resulting mesh. The keywords that can be defined are:
+(of-mesh-quality)=
+### Mesh Quality Controls
+
+The final part of the *snappyHexMeshDict* file deals with the **Mesh Quality**. In this section, the values of the extrema encountered during the meshing process are defined. The purpose is to ensure an adequate quality of the resulting mesh. A comprehensive overview on the meaning of the mesh quality parameters can be found at [https://simscale.com/docs](https://www.simscale.com/docs/simulation-setup/meshing/mesh-quality/). The OpenFOAM keywords defining mesh quality parameters are (with <span style="color: #f2003c ">***highlighting of the most important***</span>, and <span style="color: #e68a19 ">***somewhat important***</span> parameters):
  
-* *maxNonOrtho*: maximum face non-orthogonality angle.
-* *maxBoundarySkewness*: maximum boundary skewness.
-* *maxInternalSkewness*: maximum internal face skewness.
-* *maxConcave*: maximum cell concavity.
-* *minVol*: minimum cell pyramid volume.
-* *minTetQuality*: minimum tetrahedron quality.
-* *minArea*: minimum face area.
-* *minDeterminant*: minimum cell determinant.
-* *minFaceWeight*: minimum face interpolation weight.
+* <span style="color: #f2003c ">***maxNonOrtho***</span>: maximum face non-orthogonality angle, calculated as the normalized dot product of the surface vector of a cell $i$ and the controid-to-centroid vector of two neighboring cells $i$ and $j$.
+* <span style="color: #e68a19 ">***maxBoundarySkewness***</span>: maximum boundary skewness.
+* <span style="color: #e68a19 ">***maxInternalSkewness***</span>: maximum internal face skewness.
+* <span style="color: #e68a19 ">***maxConcave***</span>: maximum cell concavity to check on the face of interior angles.
+* <span style="color: #f2003c ">***minVol***</span>: minimum cell pyramid volume, calculated as the dot product of the cell surface vector and the cell center to pyramid peak vector.
+* <span style="color: #e68a19 ">***minArea***</span>: minimum face area.
+* <span style="color: #e68a19 ">***minTetQuality***</span>: minimum tetrahedron quality, a small positive value to ensure cell checks run successfully.
+* *minTwist*: normalized dot product of the vector between two neighboring cell centers with their triangular face area vector.
+* <span style="color: #f2003c ">***minDeterminant***</span>: minimum cell determinant.
+* <span style="color: #f2003c ">***minFaceWeight***</span>: minimum face interpolation weight, calculated as the minimum of the projected distances $d_{prj}$ between two neighboring cells $i$ and $j$, notably $\min (d_{prj, i}, d_{prj, j}) / (d_{prj, i} + d_{prj, j})$
+* <span style="color: #f2003c ">***minVolRatio***</span>: ratio of the minimum and maximum of volumes $V$ of neighboring cells $i$ and $j$; that is, $\min(V_i, V_j) / \max(V_i, V_j)$.
+* *minTriangleTwist*: the dot product of the unit normals of neighboring triangular elements.
 * *nSmoothScale*: smoothing iterations.
 * *errorReduction*: error reduction.
+
 
 ```
 // Generic mesh quality settings
 
 meshQualityControls
 {
-    maxNonOrtho 65;
-    maxBoundarySkewness 20;
-    maxInternalSkewness 4;
+    maxNonOrtho 65;         // consider to set a limit of 45 deg
+    maxBoundarySkewness 20; 
+    maxInternalSkewness 4;  // however, skewness should not exceed 0.5
     maxConcave 80;
     minVol 1e-13;
     minTetQuality 1e-15;

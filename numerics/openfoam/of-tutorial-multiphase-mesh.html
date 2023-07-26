@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'numerics/openfoam/of-tutorial-multiphase-mesh';</script>
     <link rel="canonical" href="https://hydro-informatics.com/numerics/openfoam/of-tutorial-multiphase-mesh.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
@@ -523,7 +525,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-of-the-background-hex-mesh">Creation of the Background Hex Mesh</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surfacefeaturesdict">SurfaceFeaturesDict</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposepardict">decomposeParDict</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snappyhexmesh">SnappyHexMesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snappyhexmesh">SnappyHexMesh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#castellation-refinement">Castellation (Refinement)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#snapping">Snapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layering">Layering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-quality-controls">Mesh Quality Controls</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-meshing-blockmesh">Run Meshing (blockMesh)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-visualization">Mesh Visualization</a></li>
 </ul>
@@ -563,13 +571,13 @@ document.write(`
 </figure>
 <p>In the <em>blockMeshDict</em> file, the following items need to be added:</p>
 <ul class="simple">
-<li><p>The scaling factor for the vertex coordinates</p></li>
+<li><p>the scaling factor for the vertex coordinates</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">convertToMeters</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Coordinates of the vertices of the background mesh</p></li>
+<li><p>coordinates of the vertices of the background mesh</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vertices</span>
         <span class="p">(</span>
@@ -585,7 +593,7 @@ document.write(`
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The coordinates of the vertices, following the order indicated below</p></li>
+<li><p>coordinates of the vertices, following the order indicated below</p></li>
 </ul>
 <figure class="align-default" id="of-block-mesh-vertexorder">
 <img alt="openfoam" src="../../_images/block-mesh-vertexorder.png" />
@@ -594,7 +602,7 @@ document.write(`
 </figcaption>
 </figure>
 <ul class="simple">
-<li><p>Ordered list of vertex labels and mesh size</p></li>
+<li><p>an ordered list of vertex labels and mesh size</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">blocks</span>
         <span class="p">(</span>
@@ -626,7 +634,7 @@ document.write(`
 <hr class="docutils" />
 <section id="decomposepardict">
 <h2>decomposeParDict<a class="headerlink" href="#decomposepardict" title="Permalink to this headline">#</a></h2>
-<p>The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each MPI process. The <em>numberOfSubdomains</em> entry is mandatory, and the <em>Method</em> defines the decomposition method type. Several decomposition methods are available. Therefore, the <em>decomposeParDict</em> file shown below presents only one exemplary option.</p>
+<p>The decomposeParDict is used to decompose a mesh and fields of a case for parallel execution. When running in parallel, the geometry has to first be segmented into individual geometries for each <a class="reference external" href="https://www.mpi-forum.org/">MPI (Message Passing Interface, a standard for parallel computing)</a> process. The <em>numberOfSubdomains</em> entry is mandatory, and the <em>Method</em> defines the decomposition method type. Several decomposition methods are available. Therefore, the <em>decomposeParDict</em> file shown below presents only one exemplary option.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">numberOfSubdomains</span> <span class="mi">8</span><span class="p">;</span>
     <span class="n">method</span>          <span class="n">simple</span><span class="p">;</span>
 
@@ -659,7 +667,7 @@ document.write(`
 <h2>SnappyHexMesh<a class="headerlink" href="#snappyhexmesh" title="Permalink to this headline">#</a></h2>
 <p>The snappyHexMeshDict dictionary contains a series of commands that control the various steps of the meshing process. The main ones are the following:</p>
 <ul class="simple">
-<li><p><em>castellatedMesh</em> enables the creation of the castellated mesh.</p></li>
+<li><p><em>castellatedMesh</em> enables the creation of a castellated (i.e., refined) mesh.</p></li>
 <li><p><em>snap</em> enables the surface snapping stage.</p></li>
 <li><p><em>addLayers</em> enables the surface layer insertion.</p></li>
 <li><p><em>geometry</em> is a sub-dictionary of all surface geometry used.</p></li>
@@ -670,12 +678,13 @@ document.write(`
 <li><p><em>mergeTolerance</em> is the merge tolerance as a fraction of the initial bounding mesh.</p></li>
 </ul>
 <p>The key steps involved when running snappyHexMesh are:</p>
-<ul class="simple">
-<li><p><em>Castellation</em>: the cells that are beyond a region defined by a predefined point are removed.</p></li>
-<li><p><em>Snapping</em>: reconstructs the cells to move the edges from inside the region to the required boundary.</p></li>
-<li><p><em>Layering</em>: creates additional layers in the boundary region.</p></li>
-</ul>
-<p>For this example, the <em>add Layers</em> option, which enables the addition of viscous layers, was set to <em>false</em>.</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#of-mesh-castel"><span class="std std-ref">Castellation</span></a>: the cells that are beyond a region defined by a predefined point are removed.</p></li>
+<li><p><a class="reference internal" href="#of-mesh-snap"><span class="std std-ref">Snapping</span></a>: reconstructs the cells to move the edges from inside the region to the required boundary.</p></li>
+<li><p><a class="reference internal" href="#of-mesh-layer"><span class="std std-ref">Layering</span></a>: creates additional layers in the boundary region.</p></li>
+<li><p><a class="reference internal" href="#of-mesh-quality"><span class="std std-ref">Mesh quality</span></a>: control and verify the quality of the mesh.</p></li>
+</ol>
+<p>For this example, the <em>add Layers</em> option, which enables the addition of viscous layers, was set to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*--------------------------------*-</span> <span class="n">C</span><span class="o">++</span> <span class="o">-*----------------------------------*</span>\
 <span class="o">|</span> <span class="o">=========</span>                 <span class="o">|</span>                                                 <span class="o">|</span>
 <span class="o">|</span> \\      <span class="o">/</span>  <span class="n">F</span> <span class="n">ield</span>         <span class="o">|</span> <span class="n">OpenFOAM</span><span class="p">:</span> <span class="n">The</span> <span class="n">Open</span> <span class="n">Source</span> <span class="n">CFD</span> <span class="n">Toolbox</span>           <span class="o">|</span>
@@ -709,6 +718,8 @@ document.write(`
 <span class="p">};</span>
 </pre></div>
 </div>
+<section id="castellation-refinement">
+<span id="of-mesh-castel"></span><h3>Castellation (Refinement)<a class="headerlink" href="#castellation-refinement" title="Permalink to this headline">#</a></h3>
 <p>The <strong>CastellatedMeshControls</strong> settings then allow the definition of the mesh refinement. The level of refinement can be set in the <em>features</em>, <em>refinementSurfaces</em>, and <em>refinementRegions</em> sections. Starting from level 0, which corresponds to no refinement, each subsequentrefinement level divides the cell in 4 parts.</p>
 <figure class="align-default" id="of-refinement-levels">
 <img alt="openfoam" src="../../_images/refinement-levels.png" />
@@ -725,10 +736,10 @@ document.write(`
 <p>For further details regarding these settings refer to the <a class="reference external" href="https://www.openfoam.com/documentation/guides/latest/doc/guide-meshing-snappyhexmesh-castellation.html#meshing-snappyhexmesh-global-castellation">castellation and refinement</a> section of the <a class="reference external" href="https://foam.sourceforge.net/docs/Guides-a4/OpenFOAMUserGuide-A4.pdf">OpenFOAM User Guide</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">castellatedMeshControls</span>
 <span class="p">{</span>
-    <span class="n">maxLocalCells</span> <span class="mi">50000000</span><span class="p">;</span>  <span class="o">//</span><span class="nb">max</span> <span class="n">cells</span> <span class="n">per</span> <span class="n">CPU</span> <span class="n">core</span>
-    <span class="n">maxGlobalCells</span> <span class="mi">500000000</span><span class="p">;</span> <span class="o">//</span><span class="nb">max</span> <span class="n">cells</span> <span class="n">to</span> <span class="n">use</span> <span class="n">before</span> <span class="n">mesh</span> <span class="n">deletion</span> <span class="n">step</span>
-    <span class="n">minRefinementCells</span> <span class="mi">0</span><span class="p">;</span>  <span class="o">//</span><span class="n">was</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">zero</span> <span class="n">means</span> <span class="n">no</span> <span class="n">bad</span> <span class="n">cells</span> <span class="n">are</span> <span class="n">allowed</span> <span class="n">during</span> <span class="n">refinement</span> <span class="n">stages</span>
-    <span class="n">nCellsBetweenLevels</span> <span class="mi">3</span><span class="p">;</span>  <span class="o">//</span> <span class="n">expansion</span> <span class="n">factor</span> <span class="n">between</span> <span class="n">each</span> <span class="n">high</span> <span class="o">&amp;</span> <span class="n">low</span> <span class="n">refinement</span> <span class="n">zone</span>
+    <span class="n">maxLocalCells</span> <span class="mi">50000000</span><span class="p">;</span>   <span class="o">//</span> <span class="nb">max</span> <span class="n">cells</span> <span class="n">per</span> <span class="n">CPU</span> <span class="n">core</span>
+    <span class="n">maxGlobalCells</span> <span class="mi">500000000</span><span class="p">;</span> <span class="o">//</span> <span class="nb">max</span> <span class="n">cells</span> <span class="n">to</span> <span class="n">use</span> <span class="n">before</span> <span class="n">mesh</span> <span class="n">deletion</span> <span class="n">step</span>
+    <span class="n">minRefinementCells</span> <span class="mi">0</span><span class="p">;</span>     <span class="o">//</span> <span class="n">was</span> <span class="mi">0</span> <span class="o">-</span> <span class="n">zero</span> <span class="n">means</span> <span class="n">no</span> <span class="n">bad</span> <span class="n">cells</span> <span class="n">are</span> <span class="n">allowed</span> <span class="n">during</span> <span class="n">refinement</span> <span class="n">stages</span>
+    <span class="n">nCellsBetweenLevels</span> <span class="mi">3</span><span class="p">;</span>    <span class="o">//</span> <span class="n">expansion</span> <span class="n">factor</span> <span class="n">between</span> <span class="n">each</span> <span class="n">high</span> <span class="o">&amp;</span> <span class="n">low</span> <span class="n">refinement</span> <span class="n">zone</span>
 
     <span class="o">//</span> <span class="n">Explicit</span> <span class="n">feature</span> <span class="n">edge</span> <span class="n">refinement</span>
     <span class="o">//</span> <span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
@@ -770,10 +781,12 @@ document.write(`
 </figcaption>
 </figure>
 <p>Once the feature and surface splitting process is complete, the cell removal process takes place. The latter requires one or more regions wrapped entirely by a bounding surface belonging to the domain. In order to specify the region in which the cells have to be kept, the <em>locationInMesh</em> keyword needs to be defined. This vector simply defines the region that wants to be retained.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locationInMesh</span> <span class="p">(</span><span class="mf">43.359</span> <span class="mi">5</span> <span class="mf">2.5803</span><span class="p">);</span>  <span class="o">//</span><span class="n">to</span> <span class="n">decide</span> <span class="n">which</span> <span class="n">side</span> <span class="n">of</span> <span class="n">mesh</span> <span class="n">to</span> <span class="n">keep</span> <span class="o">**</span>
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locationInMesh</span> <span class="p">(</span><span class="mf">43.359</span> <span class="mi">5</span> <span class="mf">2.5803</span><span class="p">);</span>  <span class="o">//</span> <span class="n">to</span> <span class="n">decide</span> <span class="n">which</span> <span class="n">side</span> <span class="n">of</span> <span class="n">mesh</span> <span class="n">to</span> <span class="n">keep</span> <span class="o">**</span>
 </pre></div>
 </div>
+</section>
+<section id="snapping">
+<span id="of-mesh-snap"></span><h3>Snapping<a class="headerlink" href="#snapping" title="Permalink to this headline">#</a></h3>
 <p>After having completed the cell splitting and cell removal processes, the <strong>Snapping</strong> process can take place. This task deals with moving the cell vertex points on the surface to create a conforming mesh, meaning to conform the input geometry. Here is a list of the keywords to be set:</p>
 <ul class="simple">
 <li><p><em>nSmoothpatch</em>: defines the number of smoothing iterations along the surface.</p></li>
@@ -803,8 +816,11 @@ snapControls
 }
 </pre></div>
 </div>
+</section>
+<section id="layering">
+<span id="of-mesh-layer"></span><h3>Layering<a class="headerlink" href="#layering" title="Permalink to this headline">#</a></h3>
 <p>In the case in which some irregular cells are present along the boundaries in the mesh obtained with the snapping stage, it is possible to introduce additional layers composed of hexahedral cells along the boundary. This stage includes shrinking the existing mesh in order to insert the layer of cells.</p>
-<p>A user can choose between 4 different layer thickness parameters: <em>expansionRatio</em>, <em>finalLayerThickness</em>, <em>firstLayerThickness</em>, <em>thickness</em>. In this example case, specify only two to avoid an over-specification of the problem. The parameters to be set have the following meanings:</p>
+<p>Users can choose between 4 different layer thickness parameters: <em>expansionRatio</em>, <em>finalLayerThickness</em>, <em>firstLayerThickness</em>, <em>thickness</em>. In this example case, specify only two to avoid an over-specification of the problem. The parameters to be set have the following meanings:</p>
 <ul class="simple">
 <li><p><em>expansionRatio</em>: necessary in order to calculate the relative size to the prescribed thickness of either first or final layer.</p></li>
 <li><p><em>minThickness</em>: indicates the minimum thickness of the layer.</p></li>
@@ -844,17 +860,23 @@ snapControls
  <span class="p">}</span>
 </pre></div>
 </div>
-<p>The final part of the <em>snappyHexMeshDict</em> file deals with the <strong>Mesh Quality</strong>. In this section, the values of the extrema encountered during the meshing process are defined. The purpose is to ensure an adequate quality of the resulting mesh. The keywords that can be defined are:</p>
+</section>
+<section id="mesh-quality-controls">
+<span id="of-mesh-quality"></span><h3>Mesh Quality Controls<a class="headerlink" href="#mesh-quality-controls" title="Permalink to this headline">#</a></h3>
+<p>The final part of the <em>snappyHexMeshDict</em> file deals with the <strong>Mesh Quality</strong>. In this section, the values of the extrema encountered during the meshing process are defined. The purpose is to ensure an adequate quality of the resulting mesh. A comprehensive overview on the meaning of the mesh quality parameters can be found at <a class="reference external" href="https://www.simscale.com/docs/simulation-setup/meshing/mesh-quality/">https://simscale.com/docs</a>. The OpenFOAM keywords defining mesh quality parameters are (with <span style="color: #f2003c "><em><strong>highlighting of the most important</strong></em></span>, and <span style="color: #e68a19 "><em><strong>somewhat important</strong></em></span> parameters):</p>
 <ul class="simple">
-<li><p><em>maxNonOrtho</em>: maximum face non-orthogonality angle.</p></li>
-<li><p><em>maxBoundarySkewness</em>: maximum boundary skewness.</p></li>
-<li><p><em>maxInternalSkewness</em>: maximum internal face skewness.</p></li>
-<li><p><em>maxConcave</em>: maximum cell concavity.</p></li>
-<li><p><em>minVol</em>: minimum cell pyramid volume.</p></li>
-<li><p><em>minTetQuality</em>: minimum tetrahedron quality.</p></li>
-<li><p><em>minArea</em>: minimum face area.</p></li>
-<li><p><em>minDeterminant</em>: minimum cell determinant.</p></li>
-<li><p><em>minFaceWeight</em>: minimum face interpolation weight.</p></li>
+<li><p><span style="color: #f2003c "><em><strong>maxNonOrtho</strong></em></span>: maximum face non-orthogonality angle, calculated as the normalized dot product of the surface vector of a cell <span class="math notranslate nohighlight">\(i\)</span> and the controid-to-centroid vector of two neighboring cells <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p><span style="color: #e68a19 "><em><strong>maxBoundarySkewness</strong></em></span>: maximum boundary skewness.</p></li>
+<li><p><span style="color: #e68a19 "><em><strong>maxInternalSkewness</strong></em></span>: maximum internal face skewness.</p></li>
+<li><p><span style="color: #e68a19 "><em><strong>maxConcave</strong></em></span>: maximum cell concavity to check on the face of interior angles.</p></li>
+<li><p><span style="color: #f2003c "><em><strong>minVol</strong></em></span>: minimum cell pyramid volume, calculated as the dot product of the cell surface vector and the cell center to pyramid peak vector.</p></li>
+<li><p><span style="color: #e68a19 "><em><strong>minArea</strong></em></span>: minimum face area.</p></li>
+<li><p><span style="color: #e68a19 "><em><strong>minTetQuality</strong></em></span>: minimum tetrahedron quality, a small positive value to ensure cell checks run successfully.</p></li>
+<li><p><em>minTwist</em>: normalized dot product of the vector between two neighboring cell centers with their triangular face area vector.</p></li>
+<li><p><span style="color: #f2003c "><em><strong>minDeterminant</strong></em></span>: minimum cell determinant.</p></li>
+<li><p><span style="color: #f2003c "><em><strong>minFaceWeight</strong></em></span>: minimum face interpolation weight, calculated as the minimum of the projected distances <span class="math notranslate nohighlight">\(d_{prj}\)</span> between two neighboring cells <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, notably <span class="math notranslate nohighlight">\(\min (d_{prj, i}, d_{prj, j}) / (d_{prj, i} + d_{prj, j})\)</span></p></li>
+<li><p><span style="color: #f2003c "><em><strong>minVolRatio</strong></em></span>: ratio of the minimum and maximum of volumes <span class="math notranslate nohighlight">\(V\)</span> of neighboring cells <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>; that is, <span class="math notranslate nohighlight">\(\min(V_i, V_j) / \max(V_i, V_j)\)</span>.</p></li>
+<li><p><em>minTriangleTwist</em>: the dot product of the unit normals of neighboring triangular elements.</p></li>
 <li><p><em>nSmoothScale</em>: smoothing iterations.</p></li>
 <li><p><em>errorReduction</em>: error reduction.</p></li>
 </ul>
@@ -862,9 +884,9 @@ snapControls
 
 <span class="n">meshQualityControls</span>
 <span class="p">{</span>
-    <span class="n">maxNonOrtho</span> <span class="mi">65</span><span class="p">;</span>
-    <span class="n">maxBoundarySkewness</span> <span class="mi">20</span><span class="p">;</span>
-    <span class="n">maxInternalSkewness</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">maxNonOrtho</span> <span class="mi">65</span><span class="p">;</span>         <span class="o">//</span> <span class="n">consider</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">a</span> <span class="n">limit</span> <span class="n">of</span> <span class="mi">45</span> <span class="n">deg</span>
+    <span class="n">maxBoundarySkewness</span> <span class="mi">20</span><span class="p">;</span> 
+    <span class="n">maxInternalSkewness</span> <span class="mi">4</span><span class="p">;</span>  <span class="o">//</span> <span class="n">however</span><span class="p">,</span> <span class="n">skewness</span> <span class="n">should</span> <span class="ow">not</span> <span class="n">exceed</span> <span class="mf">0.5</span>
     <span class="n">maxConcave</span> <span class="mi">80</span><span class="p">;</span>
     <span class="n">minVol</span> <span class="mf">1e-13</span><span class="p">;</span>
     <span class="n">minTetQuality</span> <span class="mf">1e-15</span><span class="p">;</span>
@@ -885,6 +907,7 @@ snapControls
 <span class="n">mergeTolerance</span> <span class="mf">1E-6</span><span class="p">;</span>
 </pre></div>
 </div>
+</section>
 </section>
 <hr class="docutils" />
 <section id="run-meshing-blockmesh">
@@ -1066,7 +1089,13 @@ snapControls
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-of-the-background-hex-mesh">Creation of the Background Hex Mesh</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surfacefeaturesdict">SurfaceFeaturesDict</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decomposepardict">decomposeParDict</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snappyhexmesh">SnappyHexMesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#snappyhexmesh">SnappyHexMesh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#castellation-refinement">Castellation (Refinement)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#snapping">Snapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layering">Layering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-quality-controls">Mesh Quality Controls</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-meshing-blockmesh">Run Meshing (blockMesh)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-visualization">Mesh Visualization</a></li>
 </ul>
