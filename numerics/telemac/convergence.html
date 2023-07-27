@@ -301,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (ML)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../datascience/machinelearning.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../datascience/dimensional-analysis.html">About Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datascience/dimensional-analysis.html">About Data Analysis</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
@@ -524,6 +524,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-flux-data">Extract Flux Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tm-calculate-convergence">Identify Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derive-optimum-simulation-time">Derive Optimum Simulation Time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshoot-instabilities-divergence">Troubleshoot Instabilities &amp; Divergence</a></li>
 </ul>
             </nav>
@@ -538,20 +539,46 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="convergence-quantitative">
 <span id="tm-convergence"></span><h1>Convergence (Quantitative)<a class="headerlink" href="#convergence-quantitative" title="Permalink to this headline">#</a></h1>
-<div class="admonition-requirements admonition">
+<div class="important dropdown admonition">
 <p class="admonition-title">Requirements</p>
 <ul class="simple">
 <li><p>Complete the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">Telemac steady 2d tutorial</span></a> (or similar).</p></li>
-<li><p>An installation of Python along with the <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> libraries (<a class="reference internal" href="../../python-basics/pyinstall.html#install-python"><span class="std std-ref">see the Python installation guide</span></a>), even though <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is not required).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> and/or <code class="docutils literal notranslate"><span class="pre">PRINTING</span> <span class="pre">CUMULATED</span> <span class="pre">FLOWRATES</span> <span class="pre">:</span> <span class="pre">YES</span></code>  keywords must have been used in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file to print mass fluxes across liquid boundaries in the Terminal.</p></li>
+<li><p>The Telemac simulation must have been running with the <code class="docutils literal notranslate"><span class="pre">s</span></code> flag (more details below):</p></li>
 </ul>
-</div>
-<p>The convergence study featured in this study requires that the <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> and/or <code class="docutils literal notranslate"><span class="pre">PRINTING</span> <span class="pre">CUMULATED</span> <span class="pre">FLOWRATES</span> <span class="pre">:</span> <span class="pre">YES</span></code>  keywords were used in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file to print mass fluxes across liquid boundaries in the Terminal. Additionally, the simulation must have run with the <code class="docutils literal notranslate"><span class="pre">-s</span></code> flag, which saves the simulation state in a file called similar to <code class="docutils literal notranslate"><span class="pre">[FILE-NAME].cas_YEAR-MM-DD-HHhMMminSSs.sortie</span></code>.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">steady2d</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="o">-</span><span class="n">s</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="p">[</span><span class="n">STUDY</span><span class="o">-</span><span class="n">NAME</span><span class="p">].</span><span class="n">cas</span><span class="w"> </span><span class="o">-</span><span class="n">s</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>An installation of Python along with the <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> libraries (<a class="reference internal" href="../../python-basics/pyinstall.html#install-python"><span class="std std-ref">see the Python installation guide</span></a>), even though <code class="docutils literal notranslate"><span class="pre">flusstools</span></code> is not required).</p></li>
+</ul>
+<p><strong>All required simulation files for this tutorial can be downloaded from the <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial">hydro-informatics/telemac repository on GitHub</a> (see details below).</strong></p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Goals &amp; purpose</p>
+<p>This tutorial describes the verification of flux convergence to optimize the required number of simulation timesteps (<code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>) of a <strong>steady</strong> Telemac simulation. Such convergence analysis is recommended before using steady simulation results for hotstarting an <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady</span></a> or a <a class="reference internal" href="gaia-basics.html#gaia-basics"><span class="std std-ref">morphodynamic (sediment transport)</span></a> simulation.</p>
+<p>If you are looking for solutions to fix a non-converging model, please refer to the <a class="reference internal" href="mass-optimization.html#tm-foc-mass"><span class="std std-ref">spotlight chapter on mass conservation</span></a> and make sure the <a class="reference internal" href="boundaries.html#tm-foc-bc"><span class="std std-ref">liquid boundaries are well defined</span></a>.</p>
+</div>
+<p>This chapter uses the simulation files from the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">Telemac steady 2d tutorial</span></a>, but with a slightly different definition of timesteps and printout periods:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">conv</span><span class="p">.</span><span class="n">cas</span>
+<span class="nb">TIME </span><span class="n">STEP</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="nb">TIME </span><span class="n">STEPS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span>
+<span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="n">LISTING</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+</pre></div>
+</div>
+<p>Additionally, the simulation was rerun with the <code class="docutils literal notranslate"><span class="pre">-s</span></code> flag, which saves the simulation state in a file called similar to <code class="docutils literal notranslate"><span class="pre">[FILE-NAME].cas_YEAR-MM-DD-HHhMMminSSs.sortie</span></code>.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">conv</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>Both the steering <code class="docutils literal notranslate"><span class="pre">.cas</span></code> and <code class="docutils literal notranslate"><span class="pre">.sortie</span></code> files can be downloaded from the <a class="reference external" href="http://hydro-informatics.com">hydro-informatics.com</a> repositories:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-conv.cas">download steady2d-conv.cas</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-conv.cas_2023-07-26-18h41min26s.sortie">download steady2d-conv.cas_2023-07-26-18h41min26s.sortie</a></p></li>
+</ul>
 <section id="extract-flux-data">
 <h2>Extract Flux Data<a class="headerlink" href="#extract-flux-data" title="Permalink to this headline">#</a></h2>
-<p>The Telemac notebook examples (<em>HOMETEL/notebooks/</em> &gt; <em>data_manip/extraction/*.ipynb</em> or <em>workshops/exo_fluxes.ipynb</em>) provide some guidance for extracting data from simulation results, which can be tweaked into a generally applicable framework for observing mass convergence at the boundaries as a function of the defined timestep. However, the Python examples do not work straight forward, which is why the following paragraphs describe a simple, minimalist Python tweak called <a class="reference external" href="https://pythomac.readthedocs.io">pythomac</a>, developed by <a class="reference external" href="http://hydro-informatics.com">hydro-informatics.com</a>. There are three options for working with our codes, all of them require having an installation of Python along with the <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> libraries (<a class="reference internal" href="../../python-basics/pyinstall.html#install-python"><span class="std std-ref">see the Python installation guide</span></a>):</p>
+<p>The Telemac jupyter notebook templates (<em>HOMETEL/notebooks/</em> &gt; <em>data_manip/extraction/*.ipynb</em> or <em>workshops/exo_fluxes.ipynb</em>) provide some guidance for extracting data from simulation results, which can be tweaked into a generally applicable framework for observing mass convergence at the boundaries as a function of the defined <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>. However, the notebook templates do not work straightforwardly, which is why the following paragraphs describe a simple, minimalist Python tweak called <a class="reference external" href="https://pythomac.readthedocs.io">pythomac</a>, developed by <a class="reference external" href="http://hydro-informatics.com">hydro-informatics.com</a>. There are three options for working with our codes, and all of them require having an installation of Python along with the <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> libraries (<a class="reference internal" href="../../python-basics/pyinstall.html#install-python"><span class="std std-ref">see the Python installation guide</span></a>):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
@@ -564,16 +591,16 @@ pip-install pythomac</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
 clone pythomac</label><div class="sd-tab-content docutils">
-<p>Clone the <em>pythomac</em> repository from <a class="reference external" href="https://github.com/hydro-informatics/pythomac">github.com</a>:</p>
+<p>Clone the <em>pythomac</em> repository from <a class="reference external" href="https://github.com/hydro-informatics/pythomac">GitHub</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">hydro</span><span class="o">-</span><span class="n">informatics</span><span class="o">/</span><span class="n">pythomac</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Copy-past the folder <code class="docutils literal notranslate"><span class="pre">pythomac/pythomac/</span></code> into your simulation directory. That is, make sure that the Python script <code class="docutils literal notranslate"><span class="pre">/dir/to/simulation/pythomac/extract_fluxes.py</span></code> (among others) is correctly located, next to <code class="docutils literal notranslate"><span class="pre">/dir/to/simulation/steady2d.cas</span></code>.</p>
+<p>Copy-paste the folder <code class="docutils literal notranslate"><span class="pre">pythomac/pythomac/</span></code> into your simulation directory. That is, make sure that the Python script <code class="docutils literal notranslate"><span class="pre">/HOME/pythomac/extract_fluxes.py</span></code> (among others) is correctly located, next to <code class="docutils literal notranslate"><span class="pre">/HOME/your-simulation-dir/steady2d.cas</span></code>.</p>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
 download pythomac as zip</label><div class="sd-tab-content docutils">
-<p>Download a zipped archive of the <em>pythomac</em> repository from <a class="reference external" href="https://github.com/hydro-informatics/pythomac/archive/refs/heads/main.zip">github.com (right-click here &gt; save as…)</a>. Open the zip archive &gt; open <code class="docutils literal notranslate"><span class="pre">pythomac-main</span></code>, and extract the contents of the <code class="docutils literal notranslate"><span class="pre">pythomac</span></code> folder (i.e., <code class="docutils literal notranslate"><span class="pre">pythomac-main/pythomac/</span></code>) into your simulation directory. That is, make sure that the Python script <code class="docutils literal notranslate"><span class="pre">/dir/to/simulation/pythomac/extract_fluxes.py</span></code> (among others) is correctly located, next to <code class="docutils literal notranslate"><span class="pre">/dir/to/simulation/steady2d.cas</span></code>.</p>
+<p>Download a zipped archive of the <em>pythomac</em> repository from <a class="reference external" href="https://github.com/hydro-informatics/pythomac/archive/refs/heads/main.zip">GitHub (right-click here &gt; save as…)</a>. Open the zip archive &gt; open <code class="docutils literal notranslate"><span class="pre">pythomac-main</span></code>, and extract the contents of the <code class="docutils literal notranslate"><span class="pre">pythomac</span></code> folder (i.e., <code class="docutils literal notranslate"><span class="pre">pythomac-main/pythomac/</span></code>) next to your simulation directory. That is, make sure that the Python script <code class="docutils literal notranslate"><span class="pre">/HOME/pythomac/extract_fluxes.py</span></code> (among others) is correctly located, next to <code class="docutils literal notranslate"><span class="pre">/HOME/your-simulation-dir/steady2d.cas</span></code>.</p>
 </div>
 </div>
 <div class="tip dropdown admonition" id="python-extract-fluxes-telemac">
@@ -583,8 +610,6 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 <span class="sd">    HOMETEL/notebooks/data_manip/extraction/output_file_extraction.ipynb</span>
 <span class="sd"> which uses the following example case:</span>
 <span class="sd">    /examples/telemac2d/bump/t2d_bump_FE.cas</span>
-
-<span class="sd">@author: Sebastian Schwindt (July 2023)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># retrieve file paths - this script must be stored in the directory where the simulation lives</span>
@@ -710,8 +735,11 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<p>Detailed instructions for using pythomac and its dependencies (<code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>) can be found at <a class="reference external" href="https://pythomac.readthedocs.io">https://pythomac.readthedocs.io</a>. To use the <code class="docutils literal notranslate"><span class="pre">extract_fluxes</span></code> functions from <code class="docutils literal notranslate"><span class="pre">pythomac.extract_fluxes</span></code>, copy the following code into a new Python script called, for instance, <code class="docutils literal notranslate"><span class="pre">steady2dconv.py</span></code> in the directory where the dry-initialized steady2d simulation ran (<a class="reference external" href="https://github.com/hydro-informatics/pythomac/blob/main/example.py">download code here</a>):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<p>Detailed instructions for using the <code class="docutils literal notranslate"><span class="pre">extract_fluxes()</span></code> function through pythomac and its dependencies (<code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>) can be found at <a class="reference external" href="https://pythomac.readthedocs.io">https://pythomac.readthedocs.io</a>.</p>
+<p>To use the functions defined in <code class="docutils literal notranslate"><span class="pre">pythomac</span></code>, copy the following code into a new Python script called, for instance, <code class="docutils literal notranslate"><span class="pre">example_flux_convergence.py</span></code> in the directory where the dry-initialized steady2d simulation ran (or <a class="reference external" href="https://github.com/hydro-informatics/pythomac/blob/main/example_flux_convergence.py">download example_flux_convergence.py</a>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># example_flux_convergence.py</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">extract_fluxes</span>
 
 <span class="n">simulation_dir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -724,52 +752,157 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
+<div class="error admonition">
+<p class="admonition-title">Got errors? Verify that the simulation directories are correct.</p>
+<p>Adding a simple <code class="docutils literal notranslate"><span class="pre">print(simulation_dir)</span></code> line in the above code block might help to check the correctness of directories. That is, the Python code should be able to fine the simulation.</p>
+</div>
 <p>Run the Python script from Terminal (or Anaconda Prompt) as follows (make sure to <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the simulation directory):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">steady2dconv</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">example_flux_convergence</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>The script will have placed in the simulation folder:</p>
 <ul class="simple">
 <li><p>a CSV file called <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/extracted_fluxes.csv">extracted_fluxes.csv (download)</a>, and</p></li>
-<li><p>a plot of flux convergences across the model boundaries (see <a class="reference internal" href="#steady-flux-convergence"><span class="std std-numref">Fig. 162</span></a>) show that the fluxes reached convergence after approximately 7000 timesteps.</p></li>
+<li><p>a plot of flux convergences (<em>flux-convergence.png</em>) across the model boundaries (see <a class="reference internal" href="#steady-flux-convergence"><span class="std std-numref">Fig. 162</span></a>) showing qualitatively that the fluxes reached convergence after approximately 6000-7000 timesteps.</p></li>
 </ul>
 <figure class="align-default" id="steady-flux-convergence">
-<img alt="python telemac flux discharge convergence pythomac" src="../../_images/steady-flux-convergence.png" />
+<img alt="python telemac flux discharge convergence pythomac" src="../../_images/flux-convergence.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 162 </span><span class="caption-text">Flux convergence plot across the two boundaries of the dry-initialized steady Telemac2d simulation, created with the pythomac.extract_fluxes() function.</span><a class="headerlink" href="#steady-flux-convergence" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 162 </span><span class="caption-text">Flux convergence plot across the two boundaries of the dry-initialized steady Telemac2d simulation with a total simulation time of 10000 seconds, created with the pythomac.extract_fluxes() function.</span><a class="headerlink" href="#steady-flux-convergence" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="tm-calculate-convergence">
 <span id="identify-convergence"></span><h2>Identify Convergence<a class="headerlink" href="#tm-calculate-convergence" title="Permalink to this headline">#</a></h2>
-<p>To test if the fluxes converge, we can calculate the differences between fluxes for each timestep <span class="math notranslate nohighlight">\(t\)</span> as:</p>
+<p>To test if and when the fluxes converged, we can calculate the differences between fluxes for every timestep <span class="math notranslate nohighlight">\(t\)</span> as:</p>
 <div class="math notranslate nohighlight" id="equation-error-rate">
-<span class="eqno">(18)<a class="headerlink" href="#equation-error-rate" title="Permalink to this equation">#</a></span>\[\varepsilon_{t} = \|Q_i - Q_j\|\]</div>
-<p>where <span class="math notranslate nohighlight">\(Q_i\)</span> and <span class="math notranslate nohighlight">\(Q_j\)</span> are the sum of the outflow and inflow fluxes across the model boundaries, respectively. The difference between inflows and outflows should converge to zero in a stable simulation; that is:</p>
+<span class="eqno">(18)<a class="headerlink" href="#equation-error-rate" title="Permalink to this equation">#</a></span>\[\varepsilon_{t} = |Q_i,t - Q_j,t|\]</div>
+<p>where <span class="math notranslate nohighlight">\(Q_i,t\)</span> and <span class="math notranslate nohighlight">\(Q_j,t\)</span> are the sum of the outflow and inflow fluxes across the model boundaries at timestep <span class="math notranslate nohighlight">\(t\)</span>, respectively. In a stable steady simulation, the ratio of inflows and outflows should converge toward a convergence constant c_{\varepsilon} equal to unity with increasing time:</p>
 <div class="math notranslate nohighlight" id="equation-error-lim">
-<span class="eqno">(19)<a class="headerlink" href="#equation-error-lim" title="Permalink to this equation">#</a></span>\[\lim_{t\to \infty} \frac{\varepsilon_{t+1}}{\varepsilon^{\iota}_{t}} &lt; c_{\varepsilon}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\iota\)</span> is the convergence order, and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> is a convergence constant indicating:</p>
+<span class="eqno">(19)<a class="headerlink" href="#equation-error-lim" title="Permalink to this equation">#</a></span>\[\lim_{t\to \infty} \frac{\varepsilon_{t+1}}{\varepsilon^{\iota}_{t}} = c_{\varepsilon}\]</div>
+<p>The combination of the convergence rate (or order) <span class="math notranslate nohighlight">\(\iota\)</span>, and the convergence constant <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> indicate:</p>
 <ul class="simple">
 <li><p>linear convergence if <span class="math notranslate nohighlight">\(\iota\)</span> = 1 <strong>and</strong> <span class="math notranslate nohighlight">\(c_{\varepsilon} \in ]0, 1[\)</span></p></li>
 <li><p>slow <em>sublinear</em> convergence if <span class="math notranslate nohighlight">\(\iota\)</span> = 1 <strong>and</strong> <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1</p></li>
 <li><p>fast <em>superlinear</em> convergence if <span class="math notranslate nohighlight">\(\iota\)</span> &gt; 1 <strong>and</strong> <span class="math notranslate nohighlight">\(c_{\varepsilon} \in ]0, 1]\)</span></p></li>
 <li><p>divergence convergence if <span class="math notranslate nohighlight">\(\iota\)</span> = 1 <strong>and</strong> <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> &gt; 1; <strong>or</strong> <span class="math notranslate nohighlight">\(\iota\)</span> &lt; 1</p></li>
 </ul>
-<p>To determine the timestep at which a steady simulation can be considered to have reached a stable state, we want to observe when <span class="math notranslate nohighlight">\(\iota\)</span> = 1 and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 indicate sublinear convergence. That is, we look for the timestep <span class="math notranslate nohighlight">\(t\)</span> above which each additional timestep <span class="math notranslate nohighlight">\(t+1\)</span> does not significantly improve the model results. For this purpose we want to estimate <span class="math notranslate nohighlight">\(\iota\)</span> by means of the slope of the convergence curve (Equation <a class="reference internal" href="#equation-error-lim">(19)</a>) as follows, :</p>
-<div class="math notranslate nohighlight" id="equation-estimate-convergence">
-<span class="eqno">(20)<a class="headerlink" href="#equation-estimate-convergence" title="Permalink to this equation">#</a></span>\[\iota \approx \left[\ln\|\ln(\varepsilon_{t+1}/\varepsilon_t)\|\right]' = \left[\ln \|\ln \varepsilon_{t+1} - \ln \varepsilon_t\|\right]'\]</div>
-<p>This approximation equation can be implemented into a Python function as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">approx_convergence</span><span class="p">(</span><span class="n">series_1</span><span class="p">,</span> <span class="n">series_2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    to do</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">series_1</span> <span class="o">-</span> <span class="n">series_2</span><span class="p">))</span>
+<aside class="margin sidebar">
+<p class="sidebar-title">Calculate <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span></p>
+<p>To calculate <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span> (<code class="docutils literal notranslate"><span class="pre">epsilon_t1</span></code>) from <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> (<code class="docutils literal notranslate"><span class="pre">epsilon_t0</span></code>), we simply roll <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> by one element in Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon_t0</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># cut off last element</span>
+<span class="n">epsilon_t1</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>   <span class="c1"># cut off element zero</span>
+</pre></div>
+</div>
+</aside>
+<p>To determine the timestep at which a steady simulation can be considered to have reached a stable state, we want to observe when <span class="math notranslate nohighlight">\(\iota\)</span> = 1 and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 indicate sublinear convergence. That is, we look for the timestep <span class="math notranslate nohighlight">\(t\)</span> above which each additional timestep <span class="math notranslate nohighlight">\(t+1\)</span> only insignificantly improves the model precision (read more on the term <em>insignificant</em> in the <a class="reference internal" href="#tm-target-conv"><span class="std std-ref">below section</span></a>). Thus, assuming that the model convergences in any form, we can set <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 to compute <span class="math notranslate nohighlight">\(\iota (t)\)</span> as a function of <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-01d01b5f-ba13-4b17-91c4-52dd49497453">
+<span class="eqno">(20)<a class="headerlink" href="#equation-01d01b5f-ba13-4b17-91c4-52dd49497453" title="Permalink to this equation">#</a></span>\[\begin{align}
+\label{estimate_convergence}
+\frac{\varepsilon_{t+1}}{\varepsilon^{\iota(t)}_{t}} &amp;=c_{\varepsilon} &amp; \Leftrightarrow \\
+\iota(t) &amp;=  \frac{1}{c_{\varepsilon}} \cdot \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp; \overbrace{\Longleftrightarrow }^{c_{\varepsilon} = 1}\\
+\iota(t) &amp;=  \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp;
+\end{align}\]</div>
+<p>This equation can be implemented in a function Python as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_convergence</span><span class="p">(</span><span class="n">Q_in</span><span class="p">,</span> <span class="n">Q_out</span><span class="p">,</span> <span class="n">conv_constant</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+    <span class="c1"># calculate the error epsilon between two flux series</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Q_in</span> <span class="o">-</span> <span class="n">Q_out</span><span class="p">))</span>
+    <span class="c1"># derive epsilon at t and t+1</span>
+    <span class="n">epsilon_t0</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># cut off last element</span>
+    <span class="n">epsilon_t1</span> <span class="o">=</span> <span class="n">epsilon</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>   <span class="c1"># cut off element zero</span>
+    <span class="c1"># return convergence rate as pandas DataFrame</span>
+    <span class="k">return</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Convergence rate&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">emath</span><span class="o">.</span><span class="n">logn</span><span class="p">(</span><span class="n">epsilon_t0</span><span class="p">,</span> <span class="n">epsilon_t1</span><span class="p">)</span> <span class="o">/</span> <span class="n">conv_constant</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Also this function is available in pythomac</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">calculate_convergence</span>
+</pre></div>
+</div>
+</div>
+<p>To calculate <span class="math notranslate nohighlight">\(\iota (t)\)</span> (Python variable name: <code class="docutils literal notranslate"><span class="pre">iota_t</span></code>) with the above function, amend the <em>example_flux_convergence.py</em> Python script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># example_flux_convergence.py</span>
+
+<span class="c1"># ...</span>
+<span class="c1"># add to header (alternatively copy-paste the above function into this script):</span>
+<span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">calculate_convergence</span>
+
+<span class="c1"># calculate fluxes_df (see above code block)</span>
+<span class="n">fluxes_df</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+<span class="c1"># calculate iota (t) with the calculate_convergence function</span>
+<span class="n">iota_t</span> <span class="o">=</span> <span class="n">calculate_convergence</span><span class="p">(</span>
+    <span class="n">fluxes_df</span><span class="p">[</span><span class="s2">&quot;Fluxes Boundary 1&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span>  <span class="c1"># remove first zero-entry</span>
+    <span class="n">fluxes_df</span><span class="p">[</span><span class="s2">&quot;Fluxes Boundary 2&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span>  <span class="c1"># remove first zero-entry</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting convergence rate <span class="math notranslate nohighlight">\(\iota (t)\)</span> is plotted in <a class="reference internal" href="#tm-convergence-rate"><span class="std std-numref">Fig. 163</span></a> for the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a>, with the modified printout periods of <code class="docutils literal notranslate"><span class="pre">50</span></code> seconds and a total simulation time of <code class="docutils literal notranslate"><span class="pre">10000</span></code> seconds.</p>
+<figure class="align-default" id="tm-convergence-rate">
+<img alt="convergence rate fluxes telemac boundaries" src="../../_images/convergence-rate.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 163 </span><span class="caption-text">The convergence rate <span class="math notranslate nohighlight">\(\iota\)</span> as a function 10000 simulation timesteps of the steady 2d simulation.</span><a class="headerlink" href="#tm-convergence-rate" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="derive-optimum-simulation-time">
+<span id="tm-target-conv"></span><h2>Derive Optimum Simulation Time<a class="headerlink" href="#derive-optimum-simulation-time" title="Permalink to this headline">#</a></h2>
+<p>To save computing time, we are interested in the timestep at which the inflow and outflow fluxes converged. The fluxes plotted in <a class="reference internal" href="#steady-flux-convergence"><span class="std std-numref">Fig. 162</span></a>, and the convergence rate in <a class="reference internal" href="#tm-convergence-rate"><span class="std std-numref">Fig. 163</span></a> qualitatively suggest that the simulation was stable after approximately 6000 seconds (timesteps). The bumps in both figures after 4000 timesteps well indicate the “encounter” of the flux “waves” coming from the upstream and downstream boundaries (see the <a class="reference internal" href="telemac2d-steady.html#telemac-flow-convergence-gif"><span class="std std-ref">animation in the steady 2d tutorial</span></a>). Only afterward, did convergence set in.</p>
+<p>The definition of when convergence is reached (i.e., <span class="math notranslate nohighlight">\(\iota\)</span> being insignificant) can be subjective. Most modelers would agree that fluctuations of the convergence rate <span class="math notranslate nohighlight">\(\iota\)</span> of more than 0.1 to 0.01 are unacceptably high, but, depending on the problem considered, <span class="math notranslate nohighlight">\(\iota\)</span>-fluctuations in the order of 10<span class="math notranslate nohighlight">\(^{-4}\)</span> to 10<span class="math notranslate nohighlight">\(^{-12}\)</span> might be considered acceptable. To investigate at which simulation timestep a target convergence rate <span class="math notranslate nohighlight">\(\iota_{tar}\)</span> was achieved, we can analyze the vector of <span class="math notranslate nohighlight">\(\iota (t)\)</span> resulting from the above Equation. Specifically, we want to know after which timestep <span class="math notranslate nohighlight">\(t\)</span> the targeted convergence fluctuation <span class="math notranslate nohighlight">\(\delta\iota_{tar}\)</span> is not exceeded anymore. Note that <span class="math notranslate nohighlight">\(\delta\iota (t)\)</span> plotted in <a class="reference internal" href="#tm-convergence-rate"><span class="std std-numref">Fig. 163</span></a> achieved a possibly desired target convergence rate of <span class="math notranslate nohighlight">\(\delta\iota_{tar}\)</span> = 10<span class="math notranslate nohighlight">\(^{-4}\)</span> already after approximately 3000 timesteps, but <span class="math notranslate nohighlight">\(\iota\)</span> jumped up again after 4000 timesteps when the upstream “wave” rolled over the downstream boundary. Therefore, we want an algorithmic implementation that detects the last <span class="math notranslate nohighlight">\(\iota_{t} - \iota_{t-1}\)</span> &gt; <span class="math notranslate nohighlight">\(\delta\iota_{tar}\)</span> in the vector of <span class="math notranslate nohighlight">\(\iota (t)\)</span>. To this end, we can add to the above-started <em>example_flux_convergence.py</em> Python script the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># example_flux_convergence.py</span>
+
+<span class="c1"># ...</span>
+
+<span class="c1"># calculate fluxes_df (see above code block)</span>
+<span class="n">fluxes_df</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+<span class="c1"># calculate iota (t) with the calculate_convergence function</span>
+<span class="n">iota_t</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+<span class="c1"># define a desired target convergence precision (delta iota_tar)</span>
+<span class="n">target_convergence_precision</span> <span class="o">=</span> <span class="mf">1.0E-6</span>
+
+<span class="c1"># calculate the differences in the convergence rates</span>
+<span class="n">convergence_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">iota_t</span><span class="p">)</span>
+
+<span class="c1"># find the index of the last element in the convergence differences that is larger than</span>
+<span class="c1">#   the desired target convergence precision and add +1 (i.e., the first element being</span>
+<span class="c1">#   permanently smaller than the desired precision)</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">convergence_diff</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">target_convergence_precision</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># print the timestep at which the desired convergence was achieve to the console</span>
+<span class="n">printout_period_in_cas</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># the printout period defined in the cas file</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The simulation converged after </span><span class="si">{0}</span><span class="s2"> simulation seconds (</span><span class="si">{1}</span><span class="s2">th printout).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">printout_period_in_cas</span> <span class="o">*</span> <span class="n">idx</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">idx</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">simulation</span> <span class="n">converged</span> <span class="n">after</span> <span class="mi">8050</span> <span class="n">simulation</span> <span class="n">seconds</span> <span class="p">(</span><span class="mi">161</span><span class="n">th</span> <span class="n">printout</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Bolster your code</p>
+<p>The code for calculating the timestep at which a target convergence level was achieved is also implemented in the <code class="docutils literal notranslate"><span class="pre">get_convergence_time()</span></code> function in <code class="docutils literal notranslate"><span class="pre">pythomac</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">get_convergence_time</span>
+</pre></div>
+</div>
+<p>A full implementation with also a convenient way for retrieving the <code class="docutils literal notranslate"><span class="pre">printout_period_in_cas</span></code> variable can be found in <a class="reference external" href="https://github.com/hydro-informatics/pythomac/blob/main/example_flux_convergence.py">this version of example_flux_convergence.py</a> with documentation on <a class="reference external" href="https://pythomac.readthedocs.io/en/latest/convergence.html">https://pythomac.readthedocs.io</a>.</p>
+</div>
+<p>Now that you know when your Telemac simulation converges satisfactorily, you can reduce the <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> steering file, for example:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">conv</span><span class="p">.</span><span class="n">cas</span>
+<span class="nb">TIME </span><span class="n">STEP</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.</span>
+<span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="nb">TIME </span><span class="n">STEPS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">8050</span>
+<span class="n">GRAPHIC</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
+<span class="n">LISTING</span><span class="w"> </span><span class="n">PRINTOUT</span><span class="w"> </span><span class="n">PERIOD</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span>
 </pre></div>
 </div>
 </section>
 <section id="troubleshoot-instabilities-divergence">
 <h2>Troubleshoot Instabilities &amp; Divergence<a class="headerlink" href="#troubleshoot-instabilities-divergence" title="Permalink to this headline">#</a></h2>
-<p>If a steady simulation never reaches stability of fluxes, or even flux divergence, make sure that all boundaries are robustly defined according to the spotlight section on <a class="reference internal" href="boundaries.html#tm-foc-bc"><span class="std std-ref">boundaries conditions</span></a>, and have a look at the workflow on mass balance in next section on the <a class="reference internal" href="mass-optimization.html#tm-foc-mass"><span class="std std-ref">optimization of mass conservation</span></a>.</p>
+<p>If a steady simulation never reaches stability of fluxes or even flux divergence, make sure that all boundaries are robustly defined according to the spotlight section on <a class="reference internal" href="boundaries.html#tm-foc-bc"><span class="std std-ref">boundary conditions</span></a>, and have a look at the workflow in the next section on <a class="reference internal" href="mass-optimization.html#tm-foc-mass"><span class="std std-ref">mass conservation</span></a>.</p>
 </section>
 </section>
 
@@ -836,6 +969,7 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-flux-data">Extract Flux Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tm-calculate-convergence">Identify Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derive-optimum-simulation-time">Derive Optimum Simulation Time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshoot-instabilities-divergence">Troubleshoot Instabilities &amp; Divergence</a></li>
 </ul>
   </nav></div>

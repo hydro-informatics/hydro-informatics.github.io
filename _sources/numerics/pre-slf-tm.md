@@ -14,7 +14,7 @@ The first steps in numerical modeling of a river with TELEMAC consist in the con
 
 * A QGIS project for creating a computational mesh (similar to the {ref}`BASEMENT <qgis-prepro-bm>` pre-processing).
 * Optionally, the mesh generation with the BlueKenue<sup>TM</sup> software is featured.
-* A {ref}`BlueKenue <bluekenue>` workspace to interpolate terrain elevations from a {term}`DEM`, including the export of a mesh to the SELAFIN/SERAFIN (`*.slf`) geometry format for TELEMAC, and the definition boundary edges.
+* A {ref}`BlueKenue <bluekenue>` workspace to interpolate terrain elevations from a {term}`DEM`, including the export of a mesh to the SELAFIN/SERAFIN (`.slf`) geometry format for Telemac, and the definition boundary edges.
 
 At the end of this tutorial, {ref}`chpt-telemac` users will have generated a computational mesh in the `*.slf` file format, which is ready to use for the {ref}`Telemac2d steady <telemac2d-steady>` simulation tutorial. Additional materials and intermediate data products are provided in this eBook's supplemental [telemac](https://github.com/hydro-informatics/telemac) data repository.
 

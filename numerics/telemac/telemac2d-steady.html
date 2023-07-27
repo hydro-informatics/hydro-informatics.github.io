@@ -301,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (ML)</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../datascience/machinelearning.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../datascience/dimensional-analysis.html">About Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../datascience/dimensional-analysis.html">About Data Analysis</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../datascience/supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../datascience/linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../datascience/linear-classification.html">Linear Classification</a></li>
@@ -1392,13 +1392,15 @@ Expand to see exemplary values for Manning roughness<div class="sd-summary-down 
 <li><p>In the popup window enable <strong>As animation</strong> and <strong>Loop forever</strong> with a recommended delay between frames of <strong>100 milliseconds</strong>. Keep all other defaults and click <strong>Export</strong>.</p></li>
 </ul>
 <p>The animated figure below features an exported GIF with water depth in the background and flow velocity as streamline-vectors ranging from 0 to 2.0 m/s. The animation shows how the model is filled from both its upstream (left) and downstream (right) boundaries at the beginning of the simulation. While the upstream discharge was imposed along with a water depth through a <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">5</span> <span class="pre">5</span></code> boundary, the downstream boundary only had a prescribed water depth <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">4</span> <span class="pre">4</span></code> boundary. The prescription of sufficient water depths was necessary to avoid supercritical flows at the boundaries, which would make the numerical model crash immediately. Because the flux coming from the downstream boundary needs to move uphill, it cannot go very fast and is rolled over by a wave of water coming from the upstream boundary. If a downstream flux was prescribed, the model would have been more unstable and overdetermined.</p>
+<div class="full-width docutils">
 <div class="tip dropdown admonition" id="telemac-flow-convergence-gif">
 <p class="admonition-title">GIF sequence of a dry-initialized Telemac2d model (large file size!)</p>
 <img alt="Telemac dry-init GIF" src="https://github.com/hydro-informatics/media/blob/main/gif/inn-dry-init.gif?raw=true" />
 </div>
+</div>
 <div class="important admonition">
 <p class="admonition-title">Recall: boundary conditions and mass balance</p>
-<p>Mass balance is a crucial criterion for a sound numerical model. Read more in the focus chapter on setting up <a class="reference internal" href="mass-balance-bc.html#foc-mass-bc"><span class="std std-ref">boundary conditions for mass balance</span></a>.</p>
+<p>Mass balance is a crucial criterion for a sound numerical model. Read more in the spotlight chapter on setting up <a class="reference internal" href="mass-balance-bc.html#foc-mass-bc"><span class="std std-ref">boundary conditions for mass balance</span></a>.</p>
 </div>
 </section>
 </section>

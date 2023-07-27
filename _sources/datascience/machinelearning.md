@@ -4,10 +4,9 @@ This chapter was written and developed by {{ negreiros }} <img src="../img/autho
 ```
 
 (machinelearning)=
-
 # Introduction
 
-Machine learning (ML) is argually one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. We will cover a variety of learning algorithms and methods to optimize ML models so that they can generalize to unseen data, which will include in principle supervised and unsupervised learning techniques. 
+Machine learning (ML) is arguably one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. We will cover a variety of learning algorithms and methods to optimize ML models so that they can generalize to unseen data, which will include in principle supervised and unsupervised learning techniques. 
 
 ## The goal of machine learning
 
@@ -24,13 +23,14 @@ In this section, we dealt mainly with basic elements of supervised learning, but
 * Transfer learning: when a methods is trained for an individual scenario and you wish to use it in a different scenario. This translates into: how to make use of what was learned from A on B? 
 * Reinforcement learning: the model is trained to act, rather than just to predict, and the algorithm itself uses outcomes from its experimented acts as feedback or *reinforcement* to achieve an optimized result of actions (e.g., a robot learning to walk).
 
+(data-science)=
+## The difference between machine learning and data science
 
+The conceptual difference between data science and machine learning can be imagined similar to the concept of rectangles and squares in geometry, where data science corresponds to *rectangles*, and machine learning to *squares*. Both data science and machine learning deal with programming (e.g., in Python, R, or SQL), statistics, and data modeling. Data science additionally embraces data visualization and data wrangling.
 
 ```{admonition} Recommended course
 :class: tip
 
 Keep in mind to look for materials and study independently for your optimal learning. For instance, we highly recommend the comprehensive [machine learning course](https://www.edx.org/course/machine-learning-with-python-from-linear-models-to) offered by MITx, the online learning initiative of the Massachusetts Institute of Technology.
-
-
 ```
 

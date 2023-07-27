@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="About Data" href="dimensional-analysis.html" />
+    <link rel="next" title="About Data Analysis" href="dimensional-analysis.html" />
     <link rel="prev" title="Post-processing" href="../numerics/openfoam/of-tutorial-multiphase-post.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -299,7 +299,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning (ML)</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimensional-analysis.html">About Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensional-analysis.html">About Data Analysis</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="supervised-learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="linear-models.html">Linear Models</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="linear-classification.html">Linear Classification</a></li>
@@ -522,6 +522,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-goal-of-machine-learning">The goal of machine learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difference-between-machine-learning-and-data-science">The difference between machine learning and data science</a></li>
 </ul>
             </nav>
         </div>
@@ -539,7 +540,7 @@ document.write(`
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <span id="machinelearning"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
-<p>Machine learning (ML) is argually one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. We will cover a variety of learning algorithms and methods to optimize ML models so that they can generalize to unseen data, which will include in principle supervised and unsupervised learning techniques.</p>
+<p>Machine learning (ML) is arguably one of the most prominent tools in data science to advance water resources research. ML models are capable of learning complex underlying relationships of a system, and thus finds its applications in various water resources topics: from river ecosystems to water supply. We will cover a variety of learning algorithms and methods to optimize ML models so that they can generalize to unseen data, which will include in principle supervised and unsupervised learning techniques.</p>
 <section id="the-goal-of-machine-learning">
 <h2>The goal of machine learning<a class="headerlink" href="#the-goal-of-machine-learning" title="Permalink to this headline">#</a></h2>
 <p>Machine learning aims at computationally learning complex relationships from experience (i.e., data). <em>Computational learning</em> is a subfield of artificial intelligence (AI) that focuses on the development of models that enable computers to learn and make predictions or decisions without being explicitly programmed. It involves designing and implementing mathematical and statistical models that can automatically analyze data, identify patterns, and make informed decisions or predictions based on the observed data. This task may be, for instance, predicting or modelling complex phenomena. Note that predicting here does not refer only to the future but to any non-identified event. For instance, we can predict whether a chemical substance will be, or was, or is, dissolved in water given a set of environmental conditions.</p>
@@ -555,6 +556,10 @@ document.write(`
 <li><p>Transfer learning: when a methods is trained for an individual scenario and you wish to use it in a different scenario. This translates into: how to make use of what was learned from A on B?</p></li>
 <li><p>Reinforcement learning: the model is trained to act, rather than just to predict, and the algorithm itself uses outcomes from its experimented acts as feedback or <em>reinforcement</em> to achieve an optimized result of actions (e.g., a robot learning to walk).</p></li>
 </ul>
+</section>
+<section id="the-difference-between-machine-learning-and-data-science">
+<span id="data-science"></span><h2>The difference between machine learning and data science<a class="headerlink" href="#the-difference-between-machine-learning-and-data-science" title="Permalink to this headline">#</a></h2>
+<p>The conceptual difference between data science and machine learning can be imagined similar to the concept of rectangles and squares in geometry, where data science corresponds to <em>rectangles</em>, and machine learning to <em>squares</em>. Both data science and machine learning deal with programming (e.g., in Python, R, or SQL), statistics, and data modeling. Data science additionally embraces data visualization and data wrangling.</p>
 <div class="tip admonition">
 <p class="admonition-title">Recommended course</p>
 <p>Keep in mind to look for materials and study independently for your optimal learning. For instance, we highly recommend the comprehensive <a class="reference external" href="https://www.edx.org/course/machine-learning-with-python-from-linear-models-to">machine learning course</a> offered by MITx, the online learning initiative of the Massachusetts Institute of Technology.</p>
@@ -604,7 +609,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">About Data</p>
+        <p class="prev-next-title">About Data Analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -625,6 +630,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-goal-of-machine-learning">The goal of machine learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difference-between-machine-learning-and-data-science">The difference between machine learning and data science</a></li>
 </ul>
   </nav></div>
 

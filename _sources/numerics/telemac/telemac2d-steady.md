@@ -933,6 +933,7 @@ To **export a series of images for turning them into a movie-like GIF**, use the
 
 The animated figure below features an exported GIF with water depth in the background and flow velocity as streamline-vectors ranging from 0 to 2.0 m/s. The animation shows how the model is filled from both its upstream (left) and downstream (right) boundaries at the beginning of the simulation. While the upstream discharge was imposed along with a water depth through a `5 5 5` boundary, the downstream boundary only had a prescribed water depth `5 4 4` boundary. The prescription of sufficient water depths was necessary to avoid supercritical flows at the boundaries, which would make the numerical model crash immediately. Because the flux coming from the downstream boundary needs to move uphill, it cannot go very fast and is rolled over by a wave of water coming from the upstream boundary. If a downstream flux was prescribed, the model would have been more unstable and overdetermined. 
 
+````{div} full-width
 ```{admonition} GIF sequence of a dry-initialized Telemac2d model (large file size!)
 :class: tip, dropdown
 :name: telemac-flow-convergence-gif
@@ -940,11 +941,12 @@ The animated figure below features an exported GIF with water depth in the backg
 <img src="https://github.com/hydro-informatics/media/blob/main/gif/inn-dry-init.gif?raw=true" alt="Telemac dry-init GIF" />
 
 ```
+````
 
 ```{admonition} Recall: boundary conditions and mass balance
 :class: important
 
-Mass balance is a crucial criterion for a sound numerical model. Read more in the focus chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
+Mass balance is a crucial criterion for a sound numerical model. Read more in the spotlight chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
 ```
 
 

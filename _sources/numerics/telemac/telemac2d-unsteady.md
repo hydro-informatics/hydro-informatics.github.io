@@ -6,8 +6,8 @@ This tutorial is designed for **advanced modelers** and before diving into this 
 
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 ({ref}`standalone installation <modular-install>`).
-* {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
+* Telemac v8p2r0 or more recent ({ref}`standalone installation <modular-install>`).
+* {ref}`QGIS <qgis-install>`.
 * Debian Linux 11 installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
 

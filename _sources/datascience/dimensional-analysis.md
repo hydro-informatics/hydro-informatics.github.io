@@ -1,7 +1,7 @@
-(data-science)=
-# About Data
+(about-data)=
+# About Data Analysis
 
-Traditionally, dimensional analysis were used to derive isnights from different experimental setups and survey environments. This chapter briefly diggs into the type of data and explains traditional data insights with dimensional analysis. 
+Traditionally, dimensional analysis were used to derive insights from different experimental setups and survey environments. This chapter briefly digs into the type of data and explains traditional data insights with dimensional analysis. 
 
 ## The Nature of Data
 
