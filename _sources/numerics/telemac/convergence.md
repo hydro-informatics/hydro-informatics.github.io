@@ -20,7 +20,7 @@ telemac2d.py [STUDY-NAME].cas -s
 ```{admonition} Goals & purpose
 :class: note
 
-This tutorial describes the verification of flux convergence to optimize the required number of simulation timesteps (`NUMBER OF TIME STEPS`) of a **steady** Telemac simulation. Such convergence analysis is recommended before using steady simulation results for hotstarting an {ref}`unsteady <chpt-unsteady>` or a {ref}`morphodynamic (sediment transport) <gaia-basics>` simulation.
+This tutorial describes the verification of flux convergence to optimize the required number of simulation timesteps (`NUMBER OF TIME STEPS`) of a **steady** Telemac simulation. Such convergence analysis is recommended before using steady simulation results for hotstarting an {ref}`unsteady <chpt-unsteady>` or a {ref}`morphodynamic (sediment transport) <gaia-basics>` simulation. However, the here-shown scripts can also serve for comparison of travel times of flood waves traveling from an upstream to a downstream boundary.
 
 If you are looking for solutions to fix a non-converging model, please refer to the {ref}`spotlight chapter on mass conservation <tm-foc-mass>` and make sure the {ref}`liquid boundaries are well defined <tm-foc-bc>`.
 ```
@@ -46,8 +46,13 @@ Both the steering `.cas` and `.sortie` files can be downloaded from the hydro-in
 * [download steady2d-conv.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-conv.cas)
 * [download steady2d-conv.cas_2023-07-26-18h41min26s.sortie](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d-conv.cas_2023-07-26-18h41min26s.sortie)
 
+(tm-flux-convergence)=
+## Extract and Check Flux Data
 
-## Extract Flux Data
+```{admonition} Alternative: use control sections
+
+This section features flux (flow) convergence analysis directly from Telemac message logging with Python. Alternatively, fluxes can be extracted by {ref}`defining control sections (read more in the unsteady tutorial <tm-control-sections>`.
+```
 
 The Telemac jupyter notebook templates (*HOMETEL/notebooks/* > *data_manip/extraction/\*.ipynb* or *workshops/exo_fluxes.ipynb*) provide some guidance for extracting data from simulation results, which can be tweaked into a generally applicable framework for observing mass convergence at the boundaries as a function of the defined `NUMBER OF TIME STEPS`. However, the notebook templates do not work straightforwardly, which is why the following paragraphs describe a simple, minimalist Python tweak called [pythomac](https://pythomac.readthedocs.io), developed by hydro-informatics.com. There are three options for working with our codes, and all of them require having an installation of Python along with the `numpy`, `pandas`, and `matplotlib` libraries ({ref}`see the Python installation guide <install-python>`):
 
@@ -255,7 +260,7 @@ The script will have placed in the simulation folder:
 :alt: python telemac flux discharge convergence pythomac
 :name: steady-flux-convergence
 
-Flux convergence plot across the two boundaries of the dry-initialized steady Telemac2d simulation with a total simulation time of 10000 seconds, created with the pythomac.extract_fluxes() function.
+Flux convergence plot across the two boundaries of the dry-initialized steady Telemac2d simulation with a total simulation time of timesteps seconds, created with the pythomac.extract_fluxes() function.
 ```
 
 (tm-calculate-convergence)=

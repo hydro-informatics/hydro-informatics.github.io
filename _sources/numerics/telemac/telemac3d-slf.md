@@ -10,9 +10,9 @@ This tutorial is still growing and provides currently only rough guidance to con
 This tutorial is designed for **advanced beginners** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
 
 The case featured in this tutorial was established with the following software:
-* {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`).
-* {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
+* a text editor, such as {ref}`Notepad++ <npp>` (any other text editor will do the job).
+* Telemac v8p2r0 or newer ({ref}`stand-alone installation <modular-install>`).
+* {ref}`QGIS <qgis-install>`.
 * Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
 

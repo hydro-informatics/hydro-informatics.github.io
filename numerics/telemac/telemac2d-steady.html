@@ -256,7 +256,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
 <li class="toctree-l3"><a class="reference internal" href="telemac2d-unsteady.html">Unsteady 2d</a></li>
 </ul>
 </li>
@@ -555,10 +554,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-velocity-depth-and-discharge-evolution">Qualitative Velocity, Depth, and Discharge Evolution</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-initial-conditions">Exercise: Initial Conditions</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-initial-conditions">Modify Initial Conditions</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-2d-calibration">Notes on 2d Calibration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-calibration">Notes on Calibration</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refresher-how-does-calibration-work">Refresher: How does calibration work?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-parameters-in-telemac">Calibration Parameters in Telemac</a></li>
 </ul>
@@ -583,8 +582,8 @@ document.write(`
 <p>This tutorial is designed for <strong>advanced beginners</strong> and before diving into this tutorial make sure to complete the <a class="reference internal" href="../pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">TELEMAC pre-processing tutorial</span></a>.</p>
 <p>The case featured in this tutorial was established with the following software:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> text editor (any other text editor will do just as well.)</p></li>
-<li><p>TELEMAC v8p2r0 or newer (<a class="reference internal" href="../../get-started/install-telemac.html#modular-install"><span class="std std-ref">stand-alone installation</span></a>).</p></li>
+<li><p>a text editor, such as <a class="reference internal" href="../../get-started/others.html#npp"><span class="std std-ref">Notepad++</span></a> (any other text editor will do the job).</p></li>
+<li><p>Telemac v8p2r0 or newer (<a class="reference internal" href="../../get-started/install-telemac.html#modular-install"><span class="std std-ref">stand-alone installation</span></a>).</p></li>
 <li><p><a class="reference internal" href="../../get-started/geo.html#qgis-install"><span class="std std-ref">QGIS</span></a> and the <a class="reference internal" href="../pre-slf-tm.html#tm-qgis-plugins"><span class="std std-ref">PostTelemac plugin</span></a>.</p></li>
 <li><p>Debian Linux 10 (Buster) / Debian 11 installed on a Virtual Machine (read more in the <a class="reference internal" href="../../get-started/vm.html#chpt-vm-linux"><span class="std std-ref">software chapter</span></a>).</p></li>
 </ul>
@@ -740,7 +739,13 @@ document.write(`
 <p>The model <strong>output</strong> can be defined with the following keywords:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">RESULTS</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">r2dsteady.slf</span></code> - can be either a <em>MED</em> file or an <em>SLF</em> file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code> (i.e., output parameters):  <code class="docutils literal notranslate"><span class="pre">U,V,H,S,Q,F</span></code> - many more options can be found in section 1.317 (page 85) of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/reference/telemac2d_reference_v8p4.pdf">Telemac2d reference manual</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VARIABLES</span> <span class="pre">FOR</span> <span class="pre">GRAPHIC</span> <span class="pre">PRINTOUTS</span></code> (i.e., output parameters):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">U,V,H,S,Q,F</span></code> , for streamwise (<code class="docutils literal notranslate"><span class="pre">U</span></code>: <span class="math notranslate nohighlight">\(u\)</span>) and lateral (<code class="docutils literal notranslate"><span class="pre">V</span></code>: <span class="math notranslate nohighlight">\(v\)</span>) velocities, water depth (<code class="docutils literal notranslate"><span class="pre">H</span></code>: <span class="math notranslate nohighlight">\(h\)</span>), water surface elevation (<code class="docutils literal notranslate"><span class="pre">S</span></code>: <span class="math notranslate nohighlight">\(wse\)</span>), discharge/fluxes (<code class="docutils literal notranslate"><span class="pre">Q</span></code>: <span class="math notranslate nohighlight">\(Q\)</span>), and <a class="reference internal" href="../../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> (<code class="docutils literal notranslate"><span class="pre">F</span></code>: <span class="math notranslate nohighlight">\(Fr\)</span>)</p></li>
+<li><p>Other variables of interest for tutorials in this eBook: bottom elevation <code class="docutils literal notranslate"><span class="pre">B</span></code> (required for <a class="reference internal" href="gaia-basics.html#gaia-basics"><span class="std std-ref">morphodynamics with Gaia</span></a>, value of the type of bottom friction used <code class="docutils literal notranslate"><span class="pre">W</span></code> (<a class="reference internal" href="#tm2d-friction"><span class="std std-ref">see below</span></a>), and <a class="reference internal" href="../../documentation/glossary.html#term-Turbulent-kinetic-energy"><span class="xref std std-term">turbulent kinetic energy</span></a> <code class="docutils literal notranslate"><span class="pre">K</span></code> (requires the use of the <span class="math notranslate nohighlight">\(k-\epsilon\)</span> <a class="reference internal" href="#tm2d-turbulence"><span class="std std-ref">turbulence model</span></a>).</p></li>
+<li><p>The full list of available output variables can be found in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/reference/telemac2d_reference_v8p4.pdf">Telemac2d reference manual</a>, section 1.348 (page 92).</p></li>
+</ul>
+</li>
 </ul>
 <p>The velocities (<code class="docutils literal notranslate"><span class="pre">U</span></code> and <code class="docutils literal notranslate"><span class="pre">V</span></code>), the water depth (<code class="docutils literal notranslate"><span class="pre">H</span></code>), and the discharge (<code class="docutils literal notranslate"><span class="pre">Q</span></code>) are standard variables that should be used in every simulation. In particular, the discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, discharge <code class="docutils literal notranslate"><span class="pre">Q</span></code> enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the <a class="reference internal" href="#verify-steady-tm2d"><span class="std std-ref">discharge verification</span></a> section in the post-processing.</p>
 <p>The time variables (<code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code> and <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>) define the simulation length. The printout periods (<code class="docutils literal notranslate"><span class="pre">GRAPHIC</span> <span class="pre">PRINTOUT</span> <span class="pre">PERIOD</span></code> and <code class="docutils literal notranslate"><span class="pre">LISTING</span> <span class="pre">PRINTOUT</span> <span class="pre">PERIOD</span></code>) define the result output frequency. The <strong>smaller the printout period</strong>, <strong>the longer will take the simulation</strong> because writing results is a time-consuming process. The printout periods (frequencies) refer to a multiple of the <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEPS</span></code> parameter and need to be a smaller number than the <code class="docutils literal notranslate"><span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">TIME</span> <span class="pre">STEPS</span></code>. Read more about timestep parameters in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a> in sections 5 and 12.4.2.</p>
@@ -1194,7 +1199,7 @@ Expand to see exemplary values for Manning roughness<div class="sd-summary-down 
 </section>
 <section id="run-telemac2d">
 <span id="tm2d-run"></span><h2>Run Telemac2d<a class="headerlink" href="#run-telemac2d" title="Permalink to this headline">#</a></h2>
-<p>With the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p4/mysimulations/steady2d-tutorial/</span></code>). The required files can also be downloaded from this eBook’s <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/">steady2d tutorial repository</a> and include:</p>
+<p>With the steering (<code class="docutils literal notranslate"><span class="pre">*.cas</span></code>) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., <code class="docutils literal notranslate"><span class="pre">~HOMETEL/mysimulations/steady2d-tutorial/</span></code>). The required files can also be downloaded from this eBook’s <a class="reference external" href="https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/">steady2d tutorial repository</a> and include:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/qgismesh.slf">qgismesh.slf</a></p></li>
 <li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli">boundaries.cli</a></p></li>
@@ -1203,7 +1208,7 @@ Expand to see exemplary values for Manning roughness<div class="sd-summary-down 
 <p>With these files prepared, load the TELEMAC environment, and run Telemac2d following the explanations in the next sections.</p>
 <section id="load-environment-and-files">
 <h3>Load environment and files<a class="headerlink" href="#load-environment-and-files" title="Permalink to this headline">#</a></h3>
-<p>Go to the configuration folder of the TELEMAC installation (e.g., <code class="docutils literal notranslate"><span class="pre">~/telemac/v8p4/configs/</span></code>) and load the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.gfortranHPC.sh</span></code> - use the same as for compiling TELEMAC).</p>
+<p>Go to the configuration folder of the Telemac installation (e.g., <code class="docutils literal notranslate"><span class="pre">HOMETEL/configs/</span></code> where <code class="docutils literal notranslate"><span class="pre">HOMETEL</span></code> could be something like <code class="docutils literal notranslate"><span class="pre">/home/telemac/v8p4/</span></code>) and load the environment (e.g., <code class="docutils literal notranslate"><span class="pre">pysource.gfortranHPC.sh</span></code> - use the same as for <a class="reference internal" href="../../get-started/install-telemac.html#tm-compile"><span class="std std-ref">compiling Telemac</span></a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p4</span><span class="o">/</span><span class="n">configs</span>
 <span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">gfortranHPC</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -1404,10 +1409,9 @@ Expand to see exemplary values for Manning roughness<div class="sd-summary-down 
 </div>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="modify-initial-conditions">
-<span id="tm2d-init-wet"></span><h1>Modify Initial Conditions<a class="headerlink" href="#modify-initial-conditions" title="Permalink to this headline">#</a></h1>
-<p>The above <a class="reference internal" href="convergence.html#steady-flux-convergence"><span class="std std-numref">Fig. 162</span></a> and <a class="reference internal" href="#telemac-flow-convergence-gif"><span class="std std-ref">depth-velocity animation</span></a> point to stability achieved after approximately 7000 timesteps. A wet-initialized model converges much faster, but either requires a previous run of a dry model initialization, or it can make use of other initial condition keywords in Telemac. Ideally, the dry-initialized model is used as a so-called hotstart condition for a wet-initialized model, as described in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-hotstart"><span class="std std-ref">unsteady 2d tutorial</span></a>.</p>
+<section id="exercise-initial-conditions">
+<span id="tm2d-init-wet"></span><h2>Exercise: Initial Conditions<a class="headerlink" href="#exercise-initial-conditions" title="Permalink to this headline">#</a></h2>
+<p>The above <a class="reference internal" href="convergence.html#steady-flux-convergence"><span class="std std-numref">Fig. 163</span></a> and <a class="reference internal" href="#telemac-flow-convergence-gif"><span class="std std-ref">depth-velocity animation</span></a> point to stability achieved after approximately 7000 timesteps. A wet-initialized model converges much faster, but either requires a previous run of a dry model initialization, or it can make use of other initial condition keywords in Telemac. Ideally, the dry-initialized model is used as a so-called hotstart condition for a wet-initialized model, as described in the <a class="reference internal" href="telemac2d-unsteady.html#tm2d-hotstart"><span class="std std-ref">unsteady 2d tutorial</span></a>.</p>
 <div class="important admonition">
 <p class="admonition-title">Challenge: initialize Telemac with an initial water depth</p>
 <p>Even though it is not best practice for modeling a river, running the steady2d.cas simulation with an initial water depth of 1 m is an interesting exercise to experience why it is not a good choice. To run the model with an initial water depth, we can facilitate the boundary conditions by removing the upstream depth constraint (i.e., setting the first entry of the <code class="docutils literal notranslate"><span class="pre">PRESCRIBED</span> <span class="pre">ELEVATIONS</span></code> keyword to <code class="docutils literal notranslate"><span class="pre">0.</span></code>), and modifying the <code class="docutils literal notranslate"><span class="pre">INITIAL</span> <span class="pre">[...]</span></code> condition keywords to a <code class="docutils literal notranslate"><span class="pre">'CONSTANT</span> <span class="pre">DEPTH'</span></code> of <code class="docutils literal notranslate"><span class="pre">1</span></code> meter:</p>
@@ -1454,8 +1458,9 @@ Expand to see exemplary values for Manning roughness<div class="sd-summary-down 
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="notes-on-2d-calibration">
-<span id="tm2d-calibration"></span><h1>Notes on 2d Calibration<a class="headerlink" href="#notes-on-2d-calibration" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="notes-on-calibration">
+<span id="tm2d-calibration"></span><h1>Notes on Calibration<a class="headerlink" href="#notes-on-calibration" title="Permalink to this headline">#</a></h1>
 <section id="refresher-how-does-calibration-work">
 <h2>Refresher: How does calibration work?<a class="headerlink" href="#refresher-how-does-calibration-work" title="Permalink to this headline">#</a></h2>
 <p><a class="reference internal" href="../numerical-modeling.html#calibration"><span class="std std-ref">Calibration</span></a> involves the step-wise adaptation of model input parameters to yield a possibly best (statistic) fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the beginning <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">0.03</span></code>, the calibration may test for <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">0.033</span></code>, then <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">0.036</span></code>, <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span> <span class="pre">:</span> <span class="pre">0.027</span></code> and so on, ultimately to find out which value for <strong>FRICTION COEFFICIENT</strong> brings the model results closest to observations.</p>
@@ -1584,10 +1589,10 @@ Expand to see exemplary values for Manning roughness<div class="sd-summary-down 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-velocity-depth-and-discharge-evolution">Qualitative Velocity, Depth, and Discharge Evolution</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-initial-conditions">Exercise: Initial Conditions</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modify-initial-conditions">Modify Initial Conditions</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-2d-calibration">Notes on 2d Calibration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-on-calibration">Notes on Calibration</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refresher-how-does-calibration-work">Refresher: How does calibration work?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calibration-parameters-in-telemac">Calibration Parameters in Telemac</a></li>
 </ul>

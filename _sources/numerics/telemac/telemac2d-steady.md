@@ -5,8 +5,8 @@
 This tutorial is designed for **advanced beginners** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
 
 The case featured in this tutorial was established with the following software:
-* {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 or newer ({ref}`stand-alone installation <modular-install>`).
+* a text editor, such as {ref}`Notepad++ <npp>` (any other text editor will do the job).
+* Telemac v8p2r0 or newer ({ref}`stand-alone installation <modular-install>`).
 * {ref}`QGIS <qgis-install>` and the {ref}`PostTelemac plugin <tm-qgis-plugins>`.
 * Debian Linux 10 (Buster) / Debian 11 installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
@@ -164,7 +164,10 @@ The general parameters define the computation environment starting with a simula
 The model **output** can be defined with the following keywords:
 
 * `RESULTS FILE : r2dsteady.slf` - can be either a *MED* file or an *SLF* file
-* `VARIABLES FOR GRAPHIC PRINTOUTS` (i.e., output parameters):  `U,V,H,S,Q,F` - many more options can be found in section 1.317 (page 85) of the {{ tm2dref }}.
+* `VARIABLES FOR GRAPHIC PRINTOUTS` (i.e., output parameters):  
+  * `U,V,H,S,Q,F` , for streamwise (`U`: $u$) and lateral (`V`: $v$) velocities, water depth (`H`: $h$), water surface elevation (`S`: $wse$), discharge/fluxes (`Q`: $Q$), and {term}`Froude number` (`F`: $Fr$)
+  * Other variables of interest for tutorials in this eBook: bottom elevation `B` (required for {ref}`morphodynamics with Gaia <gaia-basics>`, value of the type of bottom friction used `W` ({ref}`see below <tm2d-friction>`), and {term}`turbulent kinetic energy <Turbulent kinetic energy>` `K` (requires the use of the $k-\epsilon$ {ref}`turbulence model <tm2d-turbulence>`).
+  * The full list of available output variables can be found in the {{ tm2dref }}, section 1.348 (page 92).
 
 The velocities (`U` and `V`), the water depth (`H`), and the discharge (`Q`) are standard variables that should be used in every simulation. In particular, the discharge `Q` is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, discharge `Q` enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the {ref}`discharge verification <verify-steady-tm2d>` section in the post-processing.
 
@@ -700,7 +703,7 @@ TURBULENCE MODEL : 3
 (tm2d-run)=
 ## Run Telemac2d
 
-With the steering (`*.cas`) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., `~/telemac/v8p4/mysimulations/steady2d-tutorial/`). The required files can also be downloaded from this eBook's [steady2d tutorial repository](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/) and include:
+With the steering (`*.cas`) file, the last necessary ingredient for running a steady hydrodynamic 2d simulation with Telemac2d is available. Make sure to put all required files in one simulation folder (e.g., `~HOMETEL/mysimulations/steady2d-tutorial/`). The required files can also be downloaded from this eBook's [steady2d tutorial repository](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/) and include:
 
 * [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/qgismesh.slf)
 * [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli)
@@ -710,7 +713,7 @@ With these files prepared, load the TELEMAC environment, and run Telemac2d follo
 
 ### Load environment and files
 
-Go to the configuration folder of the TELEMAC installation (e.g., `~/telemac/v8p4/configs/`) and load the environment (e.g., `pysource.gfortranHPC.sh` - use the same as for compiling TELEMAC).
+Go to the configuration folder of the Telemac installation (e.g., `HOMETEL/configs/` where `HOMETEL` could be something like `/home/telemac/v8p4/`) and load the environment (e.g., `pysource.gfortranHPC.sh` - use the same as for {ref}`compiling Telemac <tm-compile>`).
 
 ```
 cd ~/telemac/v8p4/configs
@@ -951,7 +954,7 @@ Mass balance is a crucial criterion for a sound numerical model. Read more in th
 
 
 (tm2d-init-wet)=
-# Modify Initial Conditions
+## Exercise: Initial Conditions
 
 The above {numref}`Fig. %s <steady-flux-convergence>` and {ref}`depth-velocity animation <telemac-flow-convergence-gif>` point to stability achieved after approximately 7000 timesteps. A wet-initialized model converges much faster, but either requires a previous run of a dry model initialization, or it can make use of other initial condition keywords in Telemac. Ideally, the dry-initialized model is used as a so-called hotstart condition for a wet-initialized model, as described in the {ref}`unsteady 2d tutorial <tm2d-hotstart>`. 
   
@@ -1012,7 +1015,7 @@ The flow velocity (VITESSE) GeoTIFF raster after a wet-initialized Telemac simul
 ````
 
 (tm2d-calibration)=
-# Notes on 2d Calibration
+# Notes on Calibration
 
 ## Refresher: How does calibration work?
 

@@ -5,8 +5,8 @@
 This tutorial is designed for **advanced modelers** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing <slf-prepro-tm>` and {ref}`Telemac2d steady hydrodynamic modeling <telemac2d-steady>` tutorials.
 
 The case featured in this tutorial was established with the following software:
-* {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* Telemac v8p2r0 or more recent ({ref}`standalone installation <modular-install>`).
+* a text editor, such as {ref}`Notepad++ <npp>` (any other text editor will do the job).
+* Telemac v8p2r0 or newer ({ref}`standalone installation <modular-install>`).
 * {ref}`QGIS <qgis-install>`.
 * Debian Linux 11 installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
@@ -336,7 +336,7 @@ Telemac2d will write the files *r2dunsteady.slf* and *r-control-sections.txt*. B
 
 ### Open Boundary Flows
 
-The unsteady simulation intends to model time-variable flows over the open upstream and downstream open boundaries. The above-defined {ref}`control sections <tm-control-sections>` enable insights into the correct adaptation of the flow at the upstream inflow boundary (*prescribed Q* through *inflows.liq*) and the downstream outflow boundary (*prescribed H* through *ratingcurve.txt*). {numref}`Figure %s <res-unsteady-hydrograph>` shows the modeled flow rates where the *Inflow_boundary* shows perfect agreement with *inflows.liq* and the *Outflow_boundary* reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.
+The unsteady simulation intends to model time-variable flows (fluxes) over the upstream and downstream liquid boundaries. The above-defined {ref}`control sections <tm-control-sections>` enable insights into the correct adaptation of the flow at the upstream inflow boundary (*prescribed Q* through *inflows.liq*) and the downstream outflow boundary (*prescribed H* through *ratingcurve.txt*). {numref}`Figure %s <res-unsteady-hydrograph>` shows the modeled flow rates where the *Inflow_boundary* shows perfect agreement with *inflows.liq* and the *Outflow_boundary* reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.
 
 ```{figure} ../../img/telemac/res-unsteady-hydrograph.png
 :alt: result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections
@@ -350,7 +350,7 @@ The peak inflow corresponds to the specified 1130 m$^3$/s while the outflow peak
 
 ````{admonition} Resolve volume balance issues in unsteady simulations
 :class: warning, dropdown
-The total inflow and outflow volumes in the here featured simulation amount to 3479930.958 m$^3$ and 3430100.437 m$^3$, respectively. Thus, there is a total volume error of 1.4$%$. To overcome such issues, the {{ tm2d }} recommends using a minimum value for water depth to define when a cell is wet or dry. At the same time, the developers do not recommend using a minimum water depth for most simulations and emphasize to use this option only for unsteady (quasi-steady) simulations. Defining a minimum water depth requires setting the **TREATMENT OF THE TIDAL FLATS** keyword to `2` (read more in the {ref}`steady2d tutorial <tm2d-tidal>`), which is neither compatible with parallelization routines, nor with the here used `SCHEME FOR ADVECTION ... : 14` settings. Thus, better results, but long non-parallelized quasi-steady calculations could be supposedly yielded with the following keywords in the steering file:
+The total inflow and outflow volumes in the here featured simulation amount to 3479930.958 m$^3$ and 3430100.437 m$^3$, respectively. Thus, there is a total volume error of 1.4$%$. To overcome such issues, the {{ tm2d }} recommends using a minimum value for water depth to define when a cell is wet or dry. At the same time, the developers do not recommend using a minimum water depth for most simulations and emphasize to use this option only for unsteady (quasi-steady) simulations. Defining a minimum water depth requires setting the **TREATMENT OF THE TIDAL FLATS** keyword to `2` (read more in the {ref}`steady2d tutorial <tm2d-tidal>`), which is neither compatible with parallelization routines, nor with the here used `SCHEME FOR ADVECTION ... : 14` settings. Thus, better results but long non-parallelized quasi-steady calculations could be supposedly obtained with the following keywords in the steering file:
 
 ```fortran
 OPTION FOR THE TREATMENT OF TIDAL FLATS : 2 / use segment-wise flux control
@@ -361,7 +361,7 @@ MINIMUM VALUE OF DEPTH : 0.1 / in meters
 (tm-unsteady-qgis)=
 ### Visualization with QGIS
 
-The results of the unsteady simulation can be visualized and snapshots exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS with the PostTelemac plugin the same way as explained in the steady2d tutorial ({ref}`read the steady2d post-processing <tm2d-post-export>`). The latest QGIS releases additionally enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
+The results of the unsteady simulation can be visualized and snapshots exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS, similar as explained in the {ref}`steady2d post-processing <tm2d-post-export>`. Specifically, the latest QGIS releases enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
 
 ```{figure} ../../img/telemac/qgis-r2dunsteady-imported.png
 :alt: qgis telemac2d unsteady quasi steady simulation results slf
@@ -377,19 +377,22 @@ Is the results file `r2dunsteady.slf` not showing up in QGIS? Make sure to impor
 ```
 
 
-The simulation output parameters (e.g., `U`, `V`, or `Q`) and the timestep shown can be controlled in the layer properties of the `r2dunsteady` layer (double-click on it in the *Layers* panel).
+The simulation output parameters (e.g., `U`, `V`, or `Q`) at a selected timestep can be controlled in the layer properties of the `r2dunsteady` layer (double-click on it in the *Layers* panel).
 
-To **create a video of simulation results**, use the [Crayfish](https://www.lutraconsulting.co.uk/projects/crayfish/) plugin that enables the animated visualization of meshes and their attributes (e.g., change of node values over time). Get the *Crayfish* plugin from QGIS **Plugins** menu > **Manage and Install Plugins...** > tap `crayfish` in the **All** tab and click on **Install Plugin**. The plugin is now ready to create a video by clicking through QGIS **Mesh** menu > **Crayfish** **Export Animation ...**. In the *Crayfish* popup window, toggle through the three tabs, and adapt video settings (e.g., define a file name such as `velocity-video.avi` in the **General** tab). Note that *Crayfish* will automatically export the frame and active variable (here, the default is `U`) selected on the mesh (*Layer Properties*). When all settings are made, click on **OK** to start the export.
+To **create a video of simulation results**, use the **Time Controller** (see activation in {numref}`Fig. %s <qgis-time-controller-tm-recall>`). The frequency of images can be set through clicking on the cogwheel of the time controller, and image sequences played by clicking in the *Play* button. Additionally, {numref}`Fig. %s <qgis-time-controller-tm>` uses an overlay of water depth pixel colors (contour plot), and flow velocity vectors, defined in the *Layer Styling* panel. The North and discharge arrows, and the title are *Decorators*, which can be found in **View** > **Decorators**.
 
-```{admonition} Crayfish first time use
-:class: warning
-The first time that a video is exported, *Crayfish* will require the definition of an **FFmpeg video encoder** and guide through the installation (if required). Follow the instructions (preferably use automatic installers). If *Crayfish* did not automatically continue the video export, re-start exporting the video after the FFmpeg installation.
+````{admonition} Expand to see the Time Controller
+```{figure} ../../img/telemac/qgis-time-controller.jpg
+:alt: time controller qgis telemac
+:name: qgis-time-controller-tm-recall
+
+The activated time controller in QGIS enables to move along the time axis of modeled quantities (background map: {cite:t}`googlesat` satellite imagery). The red-highlighted buttons activate the time controller, play the sequence of images of selected quantities, provide a setting for playing a frequency of images per second, and enable saving images of all timesteps (see instructions below).
 ```
+````
 
-The below-shown box features an exemplary video output of flow velocity.
+The exported series of images can be converted to a video with video-editing software, such as the easy and free-to-use [OpenShot](https://www.openshot.org/) (good for Windows) or [kdenlive](https://kdenlive.org/) (good for Linux) tools. The below-shown box features an exemplary video created with [kdenlive](https://kdenlive.org/).
 
 ```{admonition} Expand to view the results as video
 :class: tip, dropdown
-<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/JKAiZ1ChUEg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/UJovUYb_Bo0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
 ```
-

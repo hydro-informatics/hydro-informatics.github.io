@@ -6,7 +6,7 @@ This chapter was co-written and developed by {{ scolari }} <img src="../../img/a
 (tm-friction-zones)=
 # Roughness (Friction) Zones
 
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`*.slf`) file. Specifically, if the study domain is characterized by regions of different roughness, it is not sufficient to define a global friction through a `FRICTION COEFFICIENT` keyword in the steering (`.cas`) file. To define roughness zones the geometry (`.slf`) file requires an additional layer called `BOTTOM FRICTION` on top of the `BOTTOM` elevation. To this end, roughness values can be define in a roughness `.xyz` file created with QGIS or *Closed Lines* `.i2s` file created with BlueKenue. While QGIS is recommended to delineate roughness zones with correct and possibly precise georeferences, BlueKenue is required for interpolating the roughness from the `.xyz` or `.i2s` file on the geometry `.slf` file in the last step.
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`.slf`) mesh file. Specifically, if the study domain is characterized by regions of different roughness, it is not sufficient to define global friction through a `FRICTION COEFFICIENT` keyword in the steering (`.cas`) file. Defining roughness zones in the mesh (`.slf`) file requires an additional layer called `BOTTOM FRICTION` on top of the `BOTTOM` elevation. To this end, roughness values can be defined in a roughness `.xyz` file created with QGIS or *Closed Lines* `.i2s` created with BlueKenue. While QGIS is recommended to delineate roughness zones with correct and possibly precise georeferences, BlueKenue is still required for interpolating the roughness from the `.xyz` or `.i2s` file on the `.slf` file in the last step.
 
 
 ```{admonition} Requirements
@@ -19,15 +19,15 @@ Similar to the assignment of multiple friction coefficient values to multiple mo
 
 ## Roughness.XYZ with QGIS (recommended)
 
-The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the `QGIS pre-processing turorial <tm-qgis-prepro>`: 
+The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the `QGIS pre-processing tutorial <tm-qgis-prepro>`: 
 
 * Open QGIS, and in the top menu go to **Project** > **Properties**.
 * Activate the **CRS** tab.
-* Set the CRS that your {ref}`basemap <basemap>` / {term}`DEM` data use; for this example, enter `UTM zone 33N` and select *UTM zone 33N (WGS84)* (EPSG 32633), which is basically not a great choice because of its low precision, but it will do the job for this tutorial.
+* Set the CRS that your {ref}`basemap <basemap>` / {term}`DEM` data use; for this example, enter `UTM zone 33N` and select *UTM zone 33N (WGS84)* (EPSG 32633), which is not a great choice because of its low precision, but it will do the job for this tutorial.
 * Click **Apply** and **OK**.
 * Save the project into a new folder where all files for this tutorial will be stored.
 
-It will be important to avoid overlapping that would lead to avoid ambiguous or missing definitions of regions. Therefore, activate snapping:
+It will be important to avoid overlapping that would lead to ambiguous or missing definitions of regions. Therefore, activate snapping:
 
 * Activate the *Snapping Toolbar*: **View** > **Toolbars** > **Snapping Toolbar**
 * In the **Snapping toolbar** > **Enable Snapping** <img src="../../img/qgis/snapping-horseshoe.png">
@@ -36,13 +36,13 @@ It will be important to avoid overlapping that would lead to avoid ambiguous or 
   * **Snapping on Intersections** <img src="../../img/qgis/snapping-intersection.png">.
   * **Self Snapping** <img src="../../img/qgis/sym-self-snapping.png">.
 
-This tutorial picks up the example from the {ref}`Telemac QGIS pre-processing tutorial <slf-prepro-tm>` to draw polygons along the [breaklines](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) and [liquid-boundaries](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) shapefiles. The type of friction zones are inferred from a {ref}`Google Satellite basemap <basemap>`, and friction attributes are qualitatively estimated, which is just fine for a tutorial. In practice, we strongly recommend to perform field surveys on grain size distributions and high-precision differential GPS (DGPS) systems to delineate roughness zones on-site supported by drone imagery.
+This tutorial picks up the example from the {ref}`Telemac QGIS pre-processing tutorial <slf-prepro-tm>` to draw polygons along the [breaklines](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) and [liquid-boundaries](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) shapefiles. The friction zones are inferred from a {ref}`Google Satellite basemap <basemap>` and friction attributes are qualitatively estimated, which is just fine for a tutorial. In practice, we strongly recommend performing field surveys on grain size distributions with high-precision differential GPS (DGPS) systems to delineate roughness zones on-site supported by drone imagery.
 
 ```{admonition} AI can do a better job
 :class: tip
 :name: ai-image-recognition-numerics
 
-This tutorial shows how to manually draw polygons delineating particular roughness zones, such as *sand*, *gravel*, or *vegetation*. However, artificial intelligence (AI) has already been proven to do a great job in automatically recognizing similar terrain patches for consistent recognition of roughness zones. Examples can be found in {cite:t}`diazgomez_mapping_2022`, or [Kenny Larrieu's implementation of Segment Anything EO tools](https://github.com/klarrieu/segment-anything-eo).
+This tutorial shows how to manually draw polygons delineating particular roughness zones, such as *sand*, *gravel*, or *vegetation*. However, artificial intelligence (AI) has already been proven to do a great job in automatically recognizing similar terrain patches for consistent recognition of roughness zones. Examples can be found in {cite:t}`diazgomez_mapping_2022` or [Kenny Larrieu's implementation of Segment Anything EO tools](https://github.com/klarrieu/segment-anything-eo).
 
 What you need is:
 
@@ -62,7 +62,7 @@ The roughness zones can be described by attributes of a polygon shapefile. To cr
 Create a new polygon shapefile.
 ```
 
-In the popup window enter the following definitions:
+In the popup window, enter the following definitions:
 
 * **File name**: press on **...**, navigate to the project folder, and tap `friction-polygons`.
 * **File encoding**: keep default (sample files use `UTF-8`).
@@ -81,7 +81,7 @@ In the popup window enter the following definitions:
   * Click **Add to Fields List**
 * Press **OK** to create the new shapefile.
 
-To follow this tutorial, import the [breaklines (download as zip-file)](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) and [liquid-boundaries (download as zip-file)](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) shapefiles from the Telemac pre-processing. To draw polygons by editing fiction-polygons.shp along the breaklines and liquid boundaries, highlight **fiction-polygons** in the *Layers* panel, and enable editing by clicking on the yellow pen <img src="../../img/qgis/yellow-pen.png">. Activating **Add Polygon Feature** and draw polygons by snapping to points of the breaklines and liquid boundaries layers, according to {numref}`Fig. %s <tm-fricID-polygons>`. To **finalize each polygon** with a **right-click on the mouse** and **enter** the `fricID` and `dMean` values according to {numref}`Tab. %s <tab-tm-fricID-zones>` (qualitative grain sizes).
+To follow this tutorial, import the [breaklines (download as zip-file)](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) and [liquid-boundaries (download as zip-file)](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) shapefiles from the Telemac pre-processing. To draw polygons by editing fiction-polygons.shp along the breaklines and liquid boundaries, highlight **fiction-polygons** in the *Layers* panel, and enable editing by clicking on the yellow pen <img src="../../img/qgis/yellow-pen.png">. Activating **Add Polygon Feature** and draw polygons by snapping to points of the *breaklines* and *liquid boundaries* layers, according to {numref}`Fig. %s <tm-fricID-polygons>`. To **finalize each polygon** with a **right-click on the mouse** and **enter** the `fricID` and `dMean` values according to {numref}`Tab. %s <tab-tm-fricID-zones>` (qualitative grain sizes).
 
 To **correct drawing errors** use the **Vertex Tool** <img src="../../img/qgis/sym-vertex-tool.png">. Finally, save the new polygons (edits of **friction-zones.shp**) by clicking on the **Save Layer Edits** <img src="../../img/qgis/sym-save-edits.png"> symbol. **Stop (Toggle) Editing** by clicking again on the yellow pen <img src="../../img/qgis/yellow-pen.png"> symbol.
 
@@ -131,7 +131,7 @@ The next step on the pathway to creating the required XYZ file for assigning fri
 * **Random points**: click on **...** and define a target point shapefile name, such as `friction-pts.shp` to be stored in the project folder.
 * Click **Run** to create the points shapefile. This process may take a while depending on the defined point density.
 
-The resulting point shapefile is shown in {numref}`Fig. %s <tm-fric-pts>`
+The resulting point shapefile is shown in {numref}`Fig. %s <tm-fric-pts>`.
 
 ```{figure} ../../img/telemac/fric-zones-pts.png
 :alt: random points polygons qgis telemac roughness zone
@@ -155,9 +155,9 @@ Download the [zipped friction-pts shapefile](https://github.com/hydro-informatic
 
 ### Assign Friction Attributes to Points
 
-Alas, the point generation does not automatically pick up the polygon attributes, which need to be interpolated to the points in this step. Depending on the targeted roughness law for use with Telemac, either the friction IDs or directly roughness coefficients can be added to the attribute table of the friction point shapefile. In this tutorial, a friction coefficient in the form of the Strickler roughness is interpolated and calculated using an empirical formula. A more complex case for calculating roughness values can be found in the BAW's Donau (*Danube*) case study (located in `/telemac/v8p4/examples/telemac2d/donau/`).
+Alas, the point generation does not automatically pick up the polygon attributes, which need to be interpolated to the points. Depending on the targeted roughness law for use with Telemac, either the friction IDs or directly roughness coefficients can be added to the attribute table of the friction point shapefile. In this tutorial, a friction coefficient in the form of the Strickler roughness is interpolated and calculated using an empirical formula. A more complex case for calculating roughness values can be found in the BAW's Donau (*Danube*) case study (located in `HOMETEL/examples/telemac2d/donau/`).
 
-The transfer of the `dMean` and/or `fricID` attributes of the poylgons to the points is essentially an interpolation operation in which QGIS looks at every point and assigns it the `dMean` and/or `fricID` attributes of the closest polygon. To this end, click on to the **Vector** top menu > **Data Management Tools** > **Join Attributes by Location** (see {numref}`Fig. %s <fric-data-mgmt-join-attributes>`).
+The transfer of the `dMean` and/or `fricID` attributes of the polygons to the points is essentially an interpolation operation in which QGIS looks at every point and assigns it the `dMean` and/or `fricID` attributes of the closest polygon. To this end, click on the **Vector** top menu > **Data Management Tools** > **Join Attributes by Location** (see {numref}`Fig. %s <fric-data-mgmt-join-attributes>`).
 
 
 ```{figure} ../../img/telemac/fric-data-mgmt-join-attributes.png
@@ -175,7 +175,7 @@ Open the Join Attributes by Location tool in QGIS.
 :scale: 75%
 :align: right
 
-Open the attribute table of the friction point table.
+Open the Attribute Table of the friction point table.
 ```
 
 In the *Join Attributes by Location* popup window ({numref}`Fig. %s <fric-join-attributes-by-location>`) make the following settings:
@@ -188,7 +188,7 @@ In the *Join Attributes by Location* popup window ({numref}`Fig. %s <fric-join-a
 * **Joined layer**: click on the **...** button > **Save to file** > navigate to the **project folder** > **enter a filename, such as `friction-pts-at`**
 * Click on **Run**.
 
-The error message *No spatial index exists for input layer, performance will be severely degraded* can be ignored for this application. Still, to verify false output, it might be wise to also define the layer **Unjoinable features from first layer**.
+The error message *No spatial index exists for input layer, performance will be severely degraded* can be ignored for this application. Still, to verify any false output, it might be wise to also define the layer **Unjoinable features from first layer**.
 
 As a result, the **friction-pts-at** is available in the **Layers** panel (see {numref}`Fig. %s <fric-pts-open-at>`).
 
@@ -199,11 +199,11 @@ To convert the mean grain sizes (`dMean`) into friction values, open the *Attrib
 :name: fric-pts-open-at
 
 
-Open the attribute table of the friction point shapefile with attribute table. Background map: {cite:t}`googlesat` satellite imagery.
+Open the Attribute Table of the friction point shapefile with attribute table. Background map: {cite:t}`googlesat` satellite imagery.
 ```
 
 
-Edit the attribute table ({numref}`Fig. %s <fric-pts-at-edit>`):
+Edit the **Attribute Table** ({numref}`Fig. %s <fric-pts-at-edit>`):
 
 1. enable editing,
 1. remove unnecessary columns, such as the `id` field, and potentially also the `fricID` field (this showcase will only use the `dMean` column),
@@ -217,7 +217,7 @@ Edit the attribute table ({numref}`Fig. %s <fric-pts-at-edit>`):
 The Attribute Table of the friction-pts-at layer with the highlighted (red rectangles) editing, remove columns, and field calculator buttons (from left to right).
 ```
 
-````{admonition} Optional: derive x and y coordinates with Field Calculator
+````{admonition} Optional: derive x and y coordinates with the Field Calculator
 :class: dropdown
 
 In the **Field Calculator**, add the $x$ and $y$ coordinates to the *Attribute Table*:
@@ -226,7 +226,7 @@ In the **Field Calculator**, add the $x$ and $y$ coordinates to the *Attribute T
 * **Output field name**: `x_coord`
 * **Output field type**: `Decimal number (real)`
 * **Output field length**: `10` and **Precision**: `10`
-* Enter a formula by either selecting the x-value from the geometry in the scrollbox, or enter directly in the **Expression** field:
+* Enter a formula by either selecting the x-value from the geometry in the scrollbox or entering directly in the **Expression** field:
 
 ```
  x( @geometry ) 
@@ -248,7 +248,7 @@ According to {cite:t}`Meyer-Peter and Müller 1948 <meyer-peter_formulas_1948>`,
 * **Output field name**: `k_st`
 * **Output field type**: `Decimal number (real)`
 * **Output field length**: `3` and **Precision**: `2`
-* Enter a formula by either selecting `dMean` from `Fields and Values` in the scrollbox, or enter directly in the **Expression** field:
+* Enter a formula by either selecting `dMean` from `Fields and Values` in the scrollbox or directly entering the equation in the **Expression** field:
 
 ```
 26 / ( ( 2.25 * "dMean" ) ^ ( 1 / 6 ) )
@@ -283,7 +283,6 @@ Download the [zipped friction-pts shapefile](https://github.com/hydro-informatic
 
 Start with opening the export dialogue with a right click on the friction-pts-at layer > Export > Save Features As... ({numref}`Fig. %s <fric-pts-export-as>`).
 
-
 ```{figure} ../../img/telemac/fric-pts-export-as.png
 :alt: export friction points xyz qgis attribute table
 :name: fric-pts-export-as
@@ -299,7 +298,7 @@ In the **Save Vector Layer as...** popup window, make the following settings ({n
 * **Layer name**: keep clear
 * **CRS**: make sure the CRS of the friction-pts-at layer is defined (in the showcase `EPSG:32633 - WGS 84 / UTM zone 33N`)
 * **Encoding**: use default (in the showcase `UTF-8`)
-* **Select** all relevant **fields**, that is, in the showcase, at least `k_st`. The optional `x_coord` and `y_coord` fields are only necessary if the geometry is not exported (for what ever reason).
+* **Select** all relevant **fields**, that is, in the showcase, at least `k_st`. The optional `x_coord` and `y_coord` fields are only necessary if the geometry is not exported (for whatever reason).
 * **Check** the **Persist layer metadata**
 * **Geometry type**: `Automatic` (mostly default)
 * **Scroll down** to the **Layer Options** and:
@@ -315,7 +314,7 @@ In the **Save Vector Layer as...** popup window, make the following settings ({n
 Settings in the Save Vector Layer as... popup window for exporting the friction points to an XYZ (tab-separated CSV) file.
 ```
 
-QGIS will have exported the file with an `.xyz.csv` ending. **Rename the file** to **remove `.csv`** at the end. **Verify the correct formatting of the `.xyz` file** by opening it in a {ref}`text editor (e.g., Notepad++) <npp>`. Specifically, if you calculated and exported the `x_coord` and `y_coord` fields, and additionally the geometry, the `.xyz` file will hold two times the coordinates. In this case, import the `.xyz` file in a spreadsheet editor ({ref}`office application <lo>`), delete the `x_coord` and `y_coord` columns, and re-export the file as tab-separated CSV file. Read more about `.xyz` file conversion in the {ref}`QGIS tutorial <make-xyz>`.
+QGIS will have exported the file with a `.xyz.csv` ending. **Rename the file** to **remove `.csv`** at the end. **Verify the correct formatting of the `.xyz` file** by opening it in a {ref}`text editor (e.g., Notepad++) <npp>`. For instance, if you calculated and exported the `x_coord` and `y_coord` fields, and additionally the geometry, the `.xyz` file will hold two times the coordinates. In this case, import the `.xyz` file in a spreadsheet editor (i.e., {ref}`office application <lo>`), delete the `x_coord` and `y_coord` columns, and re-export the file as a tab-separated CSV file. Read more about `.xyz` file conversion in the {ref}`QGIS tutorial <make-xyz>`.
 
 ````{admonition} Expand to see the correct header of the showcase friction-pts.xyz file
 :class: dropdown
@@ -337,7 +336,7 @@ Download [`friction-pts.xyz`](https://github.com/hydro-informatics/telemac/raw/m
 
 ## Zonal Bottom Friction Assignment in BlueKenue
 
-This section walks through the interpolation of friction values on an existing selafin (`.slf`) geometry file. A showcase builds on the `.slf` file created in the {ref}`Telemac pre-processing tutorial <slf-prepro-tm>` ([download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf)). Start with **opening BlueKenue** and open the selafin `.slf` file: click on **File** > **Open...** > navigate to the directory where the `.slf` is stored, make sure to select **Telemac Selafin File (\*.slf)**, highlight `qgismesh.slf`, and press **Open**. Pull the `BOTTOM (BOTTOM)` layer from the work space data items to **Views** > **2D View (1)** to verify and visualize the correct import of the mesh ({numref}`Fig. %s <fric-bk-slf>`).
+This section walks through the interpolation of friction values on an existing selafin (`.slf`) geometry file. The showcase builds on the `.slf` file created in the {ref}`Telemac pre-processing tutorial <slf-prepro-tm>` ([download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf)). Start with **opening BlueKenue** and open the selafin `.slf` file: click on **File** > **Open...** > navigate to the directory where the `.slf` is stored, make sure to select **Telemac Selafin File (\*.slf)**, highlight `qgismesh.slf`, and press **Open**. Pull the `BOTTOM (BOTTOM)` layer from the workspace data items to **Views** > **2D View (1)** to verify and visualize the correct import of the mesh ({numref}`Fig. %s <fric-bk-slf>`).
 
 
 ```{figure} ../../img/telemac/bk-slf.png
@@ -349,7 +348,7 @@ The showcase qgismesh.slf selafin file opened in BlueKenue.
 
 ### Import or Create Friction Zones
 
-As an alternative to the creation of zonal friction values stored in an `.xyz`, generated with QGIS, such zones can also directly be drawn in BlueKenue through a series of *Closed lines*. However, because of BlueKenue's very limited capacities to deal with geospatial reference and coordinate systems (CRSs), **the preferable option** for creating friction zone input **is** the above-feature application of **QGIS**. 
+As an alternative to the creation of zonal friction values stored in a `.xyz` file generated with QGIS, zones can also be directly drawn in BlueKenue through a series of *Closed lines*. However, because of BlueKenue's very limited capacities to deal with geospatial references and coordinate systems (CRSs), **the preferable option** for creating friction zone input **is** the above-featured application of **QGIS**. 
 
 `````{tab-set}
 ````{tab-item} Open the .xyz file in BlueKenue
@@ -371,7 +370,7 @@ Assign a friction (roughness) value (here: a Strickler roughness of 50) to the d
 
 **Ignore** the **warning** message (click **OK**). To verify and visualize the imported friction values **right-click** on the **friction-pts (X)** layer > **Properties** > go to the **Data** tab > **select Z(double)**, press **Apply**. Then, go to the **ColourScale** tab, press **Reset**, **Apply**, and **OK**.
 
-Verify the correct representation of the friction values by pulling the `friction-pts (Z)` layer from the work space data items to **Views** > **2D View (1)** ({numref}`Fig. %s <bk-fric-pts>`).
+Verify the correct representation of the friction values by pulling the `friction-pts (Z)` layer from the workspace data items to **Views** > **2D View (1)** ({numref}`Fig. %s <bk-fric-pts>`).
 
 
 ```{figure} ../../img/telemac/bk-fric-pts.png
@@ -381,8 +380,8 @@ Verify the correct representation of the friction values by pulling the `frictio
 
 The imported friction-pts.xyz file (created with QGIS) visualized in BlueKenue.
 ```
-
 ````
+
 ````{tab-item} Create friction zones in BlueKenue
 
 Start with creating new closed lines ({numref}`Fig. %s <bk-new-closed-lines>`), similar to polygons delineating roughness zones.
@@ -405,13 +404,13 @@ Settings in the Save Vector Layer as... popup window for exporting the friction 
 Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.
 ```
 
-After drawing of a *Closed line* is finished, press the `Esc` key and the window shown in {numref}`Fig. %s <bk-finalize-friction-cl>` will appear, where a roughness value can be assigned. The exemplary figure assigns a Strickler roughness of `50` in the **Value** field to a *Closed line* named `A-D_substrate`. Continue to assign names to all relevant roughness areas.
+After drawing a *Closed line* is finished, press the `Esc` key and the window shown in {numref}`Fig. %s <bk-finalize-friction-cl>` will appear, where a roughness value can be assigned. The exemplary figure assigns a Strickler roughness of `50` in the **Value** field to a *Closed line* named `A-D_substrate`. Continue to assign names to all relevant roughness areas.
 ````
 `````
 
 ### Interpolate Friction on the SLF Mesh
 
-In BlueKenue, go to **File** > **New** > **2D Interpolator**, which will then occur in the **Work Space** > **Data Items**. **Drag & drop** either the **friction-pts** `.xyz` points or the *Closed line* objects delineating roughness zones **on the new 2D Interpolator** (see {numref}`Fig. %s <bk-fric-2d-interpolator>`).
+In BlueKenue, go to **File** > **New** > **2D Interpolator**, which will occur in the **Work Space** > **Data Items**. **Drag & drop** either the **friction-pts** `.xyz` points or the *Closed line* objects delineating roughness zones **on the new 2D Interpolator** (see {numref}`Fig. %s <bk-fric-2d-interpolator>`).
 
 ```{figure} ../../img/telemac/bk-fric-2d-interpolator.png
 :alt: bluekenue 2d interpolator roughness friction
@@ -431,7 +430,7 @@ Drag & drop the friction-pts (or closed lines) on a new 2D Interpolator in BlueK
 Add a new Variable to the Selafin object.
 ```
 
-Next, add a new Variable to the `qgismesh.slf` selafin file:
+Next, add a new variable to the `qgismesh.slf` mesh:
 
 * In **Work Space** > **Data Items**, find the **Selafin `qgismesh`** object and **right-click** on it.
 * Click on **Add Variable...** and enter the following in the popup window ({numref}`Fig. %s <bk-new-slf-variable>`):
@@ -440,8 +439,7 @@ Next, add a new Variable to the `qgismesh.slf` selafin file:
   * **Units**: `strickler` (or keep clear, irrelevant field)
   * **Default Node Value**: `30` (default Strickler value to use when no friction points can be found)
  
-
-To interpolate the friction values to the mesh, highlight the new variable variable `BOTTOM FRICTION` of the `qgismesh` object in **Work Space** > **Data Items**. With this new mesh variable highlighted go to **Tools** > **Map Object...** (top menu in {numref}`Fig. %s <bk-map-2d-interpolator>`), select the **new 2D Interpolator**, and click **OK**, which opens the **Processing...** popup window. After the processing completed, click **OK**.
+To interpolate the friction values on the mesh, highlight the new variable variable `BOTTOM FRICTION` of the `qgismesh` object in **Work Space** > **Data Items**. With this new mesh variable highlighted, go to **Tools** > **Map Object...** (top menu in {numref}`Fig. %s <bk-map-2d-interpolator>`), select the **new 2D Interpolator**, and click **OK**, which opens the **Processing...** popup window. After the processing is completed, click **OK**.
 
 ```{figure} ../../img/telemac/bk-map-2d-interpolator.png
 :alt: map object  2dinterpolator roughness friction bluekenue
@@ -460,9 +458,10 @@ Adjust the color scale for BOTTOM FRICTION.
 ```
 
 Verify the correct interpolation:
+
 * Define a relevant color scale:
   * In **Work Space** > **Data Items** > **qgismesh**, **right-click** on the new **BOTTOM FRICTION** variable > **Properties**.
-  * In the properties, go to the **ColourScale** tab, and use, for example, a *Linear* scale with `10` *Levels*, a *Min* of `22`, and an *Interval* of `1.8`. The exemplary minima and interval are good choices for the showcase, but other settings might be preferable for other applications (e.g., prefer *Min* of `0` when using Manning's n).
+  * In the properties, go to the **ColourScale** tab, and use, for example, a *Linear* scale with `10` *Levels*, a *Min* of `22`, and an *Interval* of `1.8`. The exemplary minima and interval are good choices for the showcase, but other settings might be preferable for other applications (e.g., prefer *Min* of `0` when using Manning's $n_m$).
   * Press **Apply** > **OK**.
 * **Drag & drop** the **BOTTOM FRICTION** variable into **Views** > **2D View (1)** to verify the correct interpolation of friction values (e.g., see {numref}`Fig. %s <bk-fric-on-mesh>` for the showcase).
 
@@ -473,10 +472,10 @@ Verify the correct interpolation:
 The correctly interpolated new BOTTOM FRICTION variable of the qgismesh.slf mesh.
 ```
 
-To **save** the selafin **mesh** with interpolated the interpolated friction values, **highlight the selafin object** (e.g., `qgismesh`) and **click on the disk <img src="../../img/telemac/bk-sym-save.png"> symbol**. Click **Yes** to confirm replacing it the `.slf` file.
+To **save** the selafin **mesh** with interpolated the interpolated friction values, **highlight the selafin object** (e.g., `qgismesh-friction`) and **click on the disk <img src="../../img/telemac/bk-sym-save.png"> symbol**.
 
 
-```{admonition} Download the qgismesh.slf with BOTTOM FRICTION
+```{admonition} Download qgismesh-friction.slf (with BOTTOM FRICTION)
 :class: tip
 Download the updated [qgismesh-friction.slf with BOTTOM FRICTION](https://github.com/hydro-informatics/telemac/raw/main/friction/qgismesh-friction.slf).
 ```
@@ -484,42 +483,233 @@ Download the updated [qgismesh-friction.slf with BOTTOM FRICTION](https://github
 (zonal-fric-cas)=
 ## Implementation in the CAS File
 
+### Friction Keywords
 
-````{admonition} Under construction - Incomplete instructions!
-:class: error
+The updated `qgismesh-friction.slf` mesh can be used just like in the {ref}`steady 2d tutorial <telemac2d-steady>`, but some keywords need to be modified, even though the `BOTTOM FRICTION` values assigned in the `.slf` mesh automatically overwrite the global **FRICTION COEFFICIENT** keyword in the `.cas` steering file. However, we need to make Telemac recognize the newly defined `BOTTOM FRICTION` zones as **Strickler** roughness type. To this end, change the **LAW OF BOTTOM FRICTION** to `3` (instead of `4` pointing to Manning's $n_m$), and set the default **FRICTION COEFFICIENT** to `33` (inverse of $n_m$ = 0.03). The definition of the **FRICTION COEFFICIENT** is for coherence and is not strictly needed as it will be overwritten by the `BOTTOM FRICTION` from the `.slf` mesh.
 
-The updated `qgismesh.slf` can be used just like in the {ref}`steady 2d tutorial <telemac2d-steady>`, but some keywords need to be added to make Telemac recognize the newly defined friction zones in the `BOTTOM FRICTION` variable. Previously, friction was defined as follows in the Telemac `.cas` steering file:
-
+`````{tab-set}
+````{tab-item} New (Strickler)
 ```fortran
-/ steady 2d .cas steering file
-/ Friction at the bed
-LAW OF BOTTOM FRICTION : 4 / 4-Manning
-FRICTION COEFFICIENT : 0.03 / Roughness coefficient
-```
-
-With the pre-defined Strickler coefficients, use:
-
-```fortran
-/ steady 2d .cas steering file
+/ steady2d-zonal-ks.cas steering file
+/ ...
 / Friction at the bed
 LAW OF BOTTOM FRICTION : 3 / 3-Strickler
-/ FRICTION COEFFICIENT : 30 / not use with zonal friction
-FRICTION DATA : YES / default is NO
-FRICTION DATA FILE : 'BOTTOM FRICTION'
-MAXIMIM NUMBER OF FRICTION DOMAINS : 20 / default is 10
+FRICTION COEFFICIENT : 33  / will be overwritten by zonal friction values
+```
+````
+
+````{tab-item} Old (Manning from steady 2d)
+```fortran
+/ steady2d.cas steering file
+/ ...
+/ Friction at the bed
+LAW OF BOTTOM FRICTION : 4  / 4-Manning
+FRICTION COEFFICIENT : 0.03 / Roughness coefficient
+```
+````
+`````
+
+Add the letter `W` to the graphic printouts for writing the friction coefficient to the results file:
+
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+VARIABLES FOR GRAPHIC PRINTOUTS : 'U,V,H,S,Q,W' / add W for friction coefficient
+```
+
+
+````{admonition} Do you have more than 10 different friction zones?
+:class: tip, dropdown
+
+To increase the number of friction zones recognized by Telemac, set the **MAXIMUM NUMBER OF FRICTION DOMAINS** keyword, for example, to `20`:
+
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+MAXIMUM NUMBER OF FRICTION DOMAINS : 20 / default is 10
 ```
 ````
 
 
-## Telemac Examples Cases
+### Initial Hotstart Conditions
 
-* The BAW's Donau case study that lives in `/telemac/v8p2/examples/telemac2d/donau/` features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with TELEMAC and algorithmic differentiation*).
-* Also, the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) features friction zones.
+**The following descriptions refer to section 4.1.3 in the {{ tm2d }}.**
+
+To speed up the simulation, this tutorial re-uses the output of the {ref}`steady 2d simulation <telemac2d-steady>` (though, re-created with a printout period of `2500` steps). This type of model initialization is also called *hotstart*, here, based on the steady results file [r2dsteady-t15k.slf](https://github.com/hydro-informatics/telemac/raw/main/friction/r2dsteady-t15k.slf), which needs to be defined as **PREVIOUS COMPUTATION FILE**:
+
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+COMPUTATION CONTINUED : YES
+PREVIOUS COMPUTATION FILE : r2dsteady-t15k.slf / results of 35 CMS steady simulation after 15000 timesteps
+```
+
+With the hotstart conditions, the boundaries can be eased to:
+
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+/ Liquid boundaries
+PRESCRIBED FLOWRATES  : 35.; 0.
+PRESCRIBED ELEVATIONS : 0.; 371.33
+```
+
+For these boundary conditions to take effect, the liquid boundaries file from the steady 2d simulation must be modified:
+
+* open *boundaries.cli* in a {ref}`text editor <npp>`
+* find the `5 5 5` (prescribed Q and H) upstream boundary and replace it with `4 5 5` (prescribed Q only)
+* save and close *boundaries.cli*
+* for more information, have a look at the spotlight chapter on {ref}`boundary conditions <tm-foc-bc>`
+* alternatively, [download the adapted boundaries.cli here](https://github.com/hydro-informatics/telemac/raw/main/friction/boundaries.cli).
+
+Finally, comment out any initial conditions keywords in the `.cas` steering file, for instance:
+
+
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+/ INITIAL CONDITIONS : 'ZERO DEPTH'
+/ INITIAL DEPTH : 0.005
+```
+
+## Run the Simulation with Friction Zones
+
+Make sure all required files are placed in a simulation folder (e.g., `/HOME/modeling/friction-tutorial/`), notably:
+
+* the [qgismesh-friction.slf](https://github.com/hydro-informatics/telemac/raw/main/friction/qgismesh-friction.slf) mesh with `BOTTOM` and `BOTTOM FRICTION` information
+* the corrected [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/friction/boundaries.cli)
+* the [r2dsteady-t15k.slf](https://github.com/hydro-informatics/telemac/raw/main/friction/r2dsteady-t15k.slf) results file to enable the hotstart 
+* the [steady2d-zonal-ks.cas](https://github.com/hydro-informatics/telemac/raw/main/friction/steady2d-zonal-ks.cas) steering file with updated keywords.
+
+Navigate (`cd`) to the Telemac installation directory (`HOEMTEL`) to activate (`source`) the Telemac environment in Terminal (use the same environment as for {ref}`compiling Telemac <tm-compile>`):
+
+```
+cd ~/telemac/v8p4/configs
+source pysource.gfortranHPC.sh
+```
+
+Next, `cd` into the simulation folder and run the simulation, potentially with the `-s` flag, to trace back {ref}`flux convergence <tm-convergence>`:
+
+```
+cd ~/modeling/friction-tutorial/
+telemac2d.py steady2d-zonal-ks.cas -s
+```
+
+The successful simulation run will have finished with something like this:
+
+````{admonition} Unfold to see the correct Terminal output
+:class: note, dropdown
+
+```
+================================================================================
+ ITERATION    10000    TIME:  6 H 56 MIN  40.0000 S   (    25000.0000 S)
+--------------------------------------------------------------------------------
+
+[...]
+
+--------------------------------------------------------------------------------
+                       BALANCE OF WATER VOLUME
+     VOLUME IN THE DOMAIN :    268926.5     M3
+     FLUX BOUNDARY    1:     35.00000     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     FLUX BOUNDARY    2:    -34.99963     M3/S  ( >0 : ENTERING  <0 : EXITING )
+     RELATIVE ERROR IN VOLUME AT T =       0.2500E+05 S :    0.2327571E-14
+--------------------------------------------------------------------------------
+                   FINAL BALANCE OF WATER VOLUME
+
+     RELATIVE ERROR CUMULATED ON VOLUME:    0.4112446E-14
+
+     INITIAL VOLUME              :     268899.0     M3
+     FINAL VOLUME                :     268926.5     M3
+     VOLUME THAT ENTERED THE DOMAIN:     27.48362     M3  ( IF <0 EXIT )
+     TOTAL VOLUME LOST             :    0.1105946E-08 M3
+
+ END OF TIME LOOP
+
+ EXITING MPI
+
+                     *************************************
+                     *    END OF MEMORY ORGANIZATION:    *
+                     *************************************
+
+ CORRECT END OF RUN
+
+ ELAPSE TIME :
+                              3  MINUTES
+                              3  SECONDS
+Note: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG IEEE_DENORMAL
+STOP 0
+
+... merging separated result files
+
+... handling result files
+
+        moving: r2dsteady-ks-zonal.slf
+      copying: steady2d-zonal-ks.cas_2030-07-28-14h55min04s.sortie
+... deleting working dir
+
+
+
+My work is done
+
+```
+````
+
+The resulting {ref}`flux convergence <tm-flux-convergence>` and {ref}`convergence rates <tm-calculate-convergence>` should look similar to this:
+
+`````{tab-set}
+````{tab-item} Flux convergence
+```{figure} ../../img/telemac/flux-convergence-zonal-fric.png
+:alt: zonal friction telemac flux convergence pythomac
+:name: tm-friction-flux-convergence
+
+Flux convergence plot across the two boundaries of the hotstarted steady Telemac2d simulation, starting at a simulation time of 15000 timesteps.
+```
+````
+
+````{tab-item} Convergence rate
+```{figure} ../../img/telemac/convergence-rate-zonal-fric.png
+:alt: zonal friction convergence rate fluxes telemac boundaries
+:name: tm-friction-convergence-rate
+
+The convergence rate $\iota$ as a function 15000 simulation timesteps of the hotstarted steady 2d simulation with friction zones.
+```
+````
+`````
+
+The required [steady2d-zonal-ks.cas_2023-07-28-14h55min04s is available here](https://github.com/hydro-informatics/telemac/raw/main/friction/steady2d-zonal-ks.cas_2023-07-28-14h55min04s) for use with instructions from the spotlight chapter on {ref}`convergence <tm-convergence>`.
+
+```{admonition} Look at the results in QGIS
+
+Load the simulation results file (`r2dsteady-ks-zonal.slf`) in QGIS to verify the correctness of the used bottom friction and look at the slight changes in flow velocity and water depth resulting from the now different roughness (friction) values.
+```
+
+
+## Working with Friction Tables
+
+The friction zones can also be assigned through friction IDs, which then require setting up a zones file and friction data file, for example, as showcased in the Donau example (`HOMETEL/examples/telemac2d/donau/`)
 
 In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some tips for when the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law, such as the {cite:t}`ferguson_flow_2007` equation):
 
-* The FICTION_USER subroutine can be found in `/telemac/v8p2/sources/telemac2d/friction_user.f`.
+* The FICTION_USER subroutine can be found in `HOMETEL/sources/telemac2d/friction_user.f`.
 * To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
 * Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
-* Tell the steering (`*.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
+* Tell the steering (`.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
+
+To activate a zones file through a friction data file, add the following keywords to the `.cas` steering file:
+
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+/ Friction at the bed
+FRICTION DATA : YES / default is NO
+FRICTION DATA FILE : 'BOTTOM FRICTION'
+```
+
+
+## Telemac Examples Cases
+
+* The BAW's Donau case study that lives in `HOMETEL/examples/telemac2d/donau/` features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with Telemac and algorithmic differentiation*).
+* Also, the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) features friction zones.
+
+
 

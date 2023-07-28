@@ -654,6 +654,7 @@ export LD_LIBRARY_PATH=$AEDHOME/obj:$LD_LIBRARY_PATH
 ````
 `````
 
+(tm-compile)=
 ### Compile
 
 ***Estimated duration: 20-30 minutes (compiling takes time).***
