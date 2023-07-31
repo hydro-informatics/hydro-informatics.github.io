@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Roughness (Friction) Zones &#8212; Hydro-Informatics</title>
+    <title>Friction (Roughness) Zones &#8212; Hydro-Informatics</title>
   
   
   
@@ -278,7 +278,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="mass-optimization.html">Mass Conservation</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Roughness (Friction) Zones</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Friction (Roughness) Zones</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="optimization.html">Optimization</a></li>
 </ul>
 </li>
@@ -511,7 +515,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Roughness (Friction) Zones</h1>
+    <h1>Friction (Roughness) Zones</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -521,6 +525,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Friction (Roughness) Zones</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roughness-xyz-with-qgis-recommended">Roughness.XYZ with QGIS (recommended)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delineate-roughness-zone-polygons">Delineate Roughness Zone Polygons</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-roughness-points">Generate Roughness Points</a></li>
@@ -528,20 +533,35 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-points-to-xyz">Export Points to XYZ</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-bottom-friction-assignment-in-bluekenue">Zonal Bottom Friction Assignment in BlueKenue</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-or-create-friction-zones">Import or Create Friction Zones</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-friction-on-the-slf-mesh">Interpolate Friction on the SLF Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-draw-friction-zones-in-bluekenue">Alternative: Draw Friction Zones in BlueKenue</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-friction-mesh-bluekenue">Zonal Friction Mesh (BlueKenue)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-friction-zones">Import Friction Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-friction-on-the-mesh">Interpolate Friction on the Mesh</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#telemac-bindings">Telemac Bindings</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-in-the-cas-file">Implementation in the CAS File</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friction-keywords">Friction Keywords</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-hotstart-conditions">Initial Hotstart Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-hotstart-conditions-optional">Initial Hotstart Conditions (optional)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-simulation-with-friction-zones">Run the Simulation with Friction Zones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-friction-tables">Working with Friction Tables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telemac-examples-cases">Telemac Examples Cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-friction-zone-simulation">Run Friction Zone Simulation</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-friction-ids">Working with Friction IDs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#friction-tbl-cas">friction.tbl &amp; CAS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-friction-tbl">Create friction.tbl</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-friction-tbl-in-cas-file">Link friction.tbl in CAS file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-telemac-with-friction-ids">Run Telemac with Friction IDs</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-friction-routines">Advanced Friction Routines</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -556,19 +576,19 @@ document.write(`
 <p class="admonition-title">Contributors</p>
 <p>This chapter was co-written and developed by <a class="reference external" href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/">Federica Scolari</a> <a class="reference internal" href="../../_images/federica.jpg"><img alt="Federica Scolari" src="../../_images/federica.jpg" style="width: 25px; height: 25px;" /></a> and <a class="reference external" href="https://sebastian-schwindt.org">Sebastian Schwindt</a> <a class="reference internal" href="../../_images/sebastian.jpg"><img alt="Sebastian Schwindt" src="../../_images/sebastian.jpg" style="width: 25px; height: 25px;" /></a>.</p>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="roughness-friction-zones">
-<span id="tm-friction-zones"></span><h1>Roughness (Friction) Zones<a class="headerlink" href="#roughness-friction-zones" title="Permalink to this headline">#</a></h1>
-<p>Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the <a class="reference internal" href="../basement/basement2d.html#bm-geometry"><span class="std std-ref">BASEMENT tutorial</span></a>, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (<code class="docutils literal notranslate"><span class="pre">.slf</span></code>) mesh file. Specifically, if the study domain is characterized by regions of different roughness, it is not sufficient to define global friction through a <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span></code> keyword in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file. Defining roughness zones in the mesh (<code class="docutils literal notranslate"><span class="pre">.slf</span></code>) file requires an additional layer called <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> on top of the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span></code> elevation. To this end, roughness values can be defined in a roughness <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file created with QGIS or <em>Closed Lines</em> <code class="docutils literal notranslate"><span class="pre">.i2s</span></code> created with BlueKenue. While QGIS is recommended to delineate roughness zones with correct and possibly precise georeferences, BlueKenue is still required for interpolating the roughness from the <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">.i2s</span></code> file on the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> file in the last step.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="friction-roughness-zones">
+<span id="tm-friction-zones"></span><h1>Friction (Roughness) Zones<a class="headerlink" href="#friction-roughness-zones" title="Permalink to this headline">#</a></h1>
+<p>Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the <a class="reference internal" href="../basement/basement2d.html#bm-geometry"><span class="std std-ref">BASEMENT tutorial</span></a>, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (<code class="docutils literal notranslate"><span class="pre">.slf</span></code>) mesh file. Specifically, if the study domain is characterized by regions of different roughness, it is not sufficient to define global friction through a <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">COEFFICIENT</span></code> keyword in the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file. Defining roughness zones in the mesh (<code class="docutils literal notranslate"><span class="pre">.slf</span></code>) file requires an additional layer called <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> or <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code> on top of the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span></code> elevation. To this end, roughness values can be defined in a roughness <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file created with QGIS (<a class="reference internal" href="#tm-friction-qgis"><span class="std std-ref">recommended</span></a>) or <em>Closed Lines</em> <code class="docutils literal notranslate"><span class="pre">.i2s</span></code> created with BlueKenue (<a class="reference internal" href="#bk-import-friction"><span class="std std-ref">see the meshing section</span></a>). While QGIS is recommended to delineate roughness zones with correct and possibly precise georeferences, BlueKenue is still required for interpolating the roughness from the <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> or <code class="docutils literal notranslate"><span class="pre">.i2s</span></code> file on the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> file in the last step.</p>
 <div class="admonition-requirements admonition">
 <p class="admonition-title">Requirements</p>
 <ul class="simple">
-<li><p>Understand geospatial data formats and be able to work with QGIS (see the <a class="reference internal" href="../../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>).</p></li>
+<li><p>Understand geospatial data formats and know to work with QGIS (see the <a class="reference internal" href="../../geopy/use-qgis.html#qgis-tutorial"><span class="std std-ref">QGIS tutorial</span></a>).</p></li>
 <li><p>Complete the <a class="reference internal" href="../pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">Telemac QGIS pre-processing tutorial</span></a>.</p></li>
-<li><p>An installation of <a class="reference internal" href="../../get-started/install-telemac.html#bluekenue"><span class="std std-ref">BlueKenue (also works on Linux, see the installation guide)</span></a></p></li>
+<li><p>Installation of <a class="reference internal" href="../../get-started/install-telemac.html#bluekenue"><span class="std std-ref">BlueKenue (also works on Linux, see the installation guide)</span></a>, and <a class="reference internal" href="../../get-started/install-telemac.html#telemac-install"><span class="std std-ref">Telemac</span></a>.</p></li>
 </ul>
 </div>
 <section id="roughness-xyz-with-qgis-recommended">
-<h2>Roughness.XYZ with QGIS (recommended)<a class="headerlink" href="#roughness-xyz-with-qgis-recommended" title="Permalink to this headline">#</a></h2>
+<span id="tm-friction-qgis"></span><h2>Roughness.XYZ with QGIS (recommended)<a class="headerlink" href="#roughness-xyz-with-qgis-recommended" title="Permalink to this headline">#</a></h2>
 <p>The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the <code class="docutils literal notranslate"><span class="pre">QGIS</span> <span class="pre">pre-processing</span> <span class="pre">tutorial</span> <span class="pre">&lt;tm-qgis-prepro&gt;</span></code>:</p>
 <ul class="simple">
 <li><p>Open QGIS, and in the top menu go to <strong>Project</strong> &gt; <strong>Properties</strong>.</p></li>
@@ -856,17 +876,40 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="zonal-bottom-friction-assignment-in-bluekenue">
-<h2>Zonal Bottom Friction Assignment in BlueKenue<a class="headerlink" href="#zonal-bottom-friction-assignment-in-bluekenue" title="Permalink to this headline">#</a></h2>
-<p>This section walks through the interpolation of friction values on an existing selafin (<code class="docutils literal notranslate"><span class="pre">.slf</span></code>) geometry file. The showcase builds on the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> file created in the <a class="reference internal" href="../pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">Telemac pre-processing tutorial</span></a> (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">download qgismesh.slf</a>). Start with <strong>opening BlueKenue</strong> and open the selafin <code class="docutils literal notranslate"><span class="pre">.slf</span></code> file: click on <strong>File</strong> &gt; <strong>Open…</strong> &gt; navigate to the directory where the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> is stored, make sure to select <strong>Telemac Selafin File (*.slf)</strong>, highlight <code class="docutils literal notranslate"><span class="pre">qgismesh.slf</span></code>, and press <strong>Open</strong>. Pull the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">(BOTTOM)</span></code> layer from the workspace data items to <strong>Views</strong> &gt; <strong>2D View (1)</strong> to verify and visualize the correct import of the mesh (<a class="reference internal" href="#fric-bk-slf"><span class="std std-numref">Fig. 177</span></a>).</p>
+<section id="alternative-draw-friction-zones-in-bluekenue">
+<h2>Alternative: Draw Friction Zones in BlueKenue<a class="headerlink" href="#alternative-draw-friction-zones-in-bluekenue" title="Permalink to this headline">#</a></h2>
+<p>This procedure is an imprecise alternative to the above-described <code class="docutils literal notranslate"><span class="pre">roughness.xyz</span></code> creation because of BlueKenue’s weak geospatial referencing capacities, which is why the below <a class="reference internal" href="#bk-closed-fric-lines"><span class="std std-ref">instruction box</span></a> is only provided for completeness.</p>
+<div class="note dropdown admonition" id="bk-closed-fric-lines">
+<p class="admonition-title">Unfold to read this non-recommended alternative</p>
+<p>Start with creating new closed lines (<a class="reference internal" href="#bk-new-closed-lines"><span class="std std-numref">Fig. 177</span></a>), similar to polygons delineating roughness zones.</p>
+<figure class="align-left" id="bk-new-closed-lines">
+<a class="reference internal image-reference" href="../../_images/bk-new-closed-lines.png"><img alt="bluekenue create closed line" src="../../_images/bk-new-closed-lines.png" style="width: 557.5px; height: 141.5px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 177 </span><span class="caption-text">Settings in the Save Vector Layer as… popup window for exporting the friction points to an XYZ (tab-separated CSV) file.</span><a class="headerlink" href="#bk-new-closed-lines" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-right" id="bk-finalize-friction-cl">
+<a class="reference internal image-reference" href="../../_images/bk-finalize-friction-cl.png"><img alt="bluekenue roughness friction closed line" src="../../_images/bk-finalize-friction-cl.png" style="width: 330.0px; height: 144.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 178 </span><span class="caption-text">Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.</span><a class="headerlink" href="#bk-finalize-friction-cl" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>After drawing a <em>Closed line</em> is finished, press the <code class="docutils literal notranslate"><span class="pre">Esc</span></code> key and the window shown in <a class="reference internal" href="#bk-finalize-friction-cl"><span class="std std-numref">Fig. 178</span></a> will appear, where a roughness value can be assigned. The exemplary figure assigns a Strickler roughness of <code class="docutils literal notranslate"><span class="pre">50</span></code> in the <strong>Value</strong> field to a <em>Closed line</em> named <code class="docutils literal notranslate"><span class="pre">A-D_substrate</span></code>. Continue to assign names to all relevant roughness areas.</p>
+<p>Finally, <strong>save</strong> the <em>Closed line</em> objects as <code class="docutils literal notranslate"><span class="pre">.i2s</span></code> / <code class="docutils literal notranslate"><span class="pre">.i3s</span></code> files.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="zonal-friction-mesh-bluekenue">
+<span id="bk-interpolate-fric-zones"></span><h1>Zonal Friction Mesh (BlueKenue)<a class="headerlink" href="#zonal-friction-mesh-bluekenue" title="Permalink to this headline">#</a></h1>
+<p>This section walks through the interpolation of friction values on an existing selafin (<code class="docutils literal notranslate"><span class="pre">.slf</span></code>) geometry file. The showcase builds on the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> file created in the <a class="reference internal" href="../pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">Telemac pre-processing tutorial</span></a> (<a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf">download qgismesh.slf</a>). Start with <strong>opening BlueKenue</strong> and open the selafin <code class="docutils literal notranslate"><span class="pre">.slf</span></code> file: click on <strong>File</strong> &gt; <strong>Open…</strong> &gt; navigate to the directory where the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> is stored, make sure to select <strong>Telemac Selafin File (*.slf)</strong>, highlight <code class="docutils literal notranslate"><span class="pre">qgismesh.slf</span></code>, and press <strong>Open</strong>. Pull the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">(BOTTOM)</span></code> layer from the workspace data items to <strong>Views</strong> &gt; <strong>2D View (1)</strong> to verify and visualize the correct import of the mesh (<a class="reference internal" href="#fric-bk-slf"><span class="std std-numref">Fig. 179</span></a>).</p>
 <figure class="align-default" id="fric-bk-slf">
 <img alt="BlueKenue 2dmesh interpolated elevation" src="../../_images/bk-slf.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 177 </span><span class="caption-text">The showcase qgismesh.slf selafin file opened in BlueKenue.</span><a class="headerlink" href="#fric-bk-slf" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 179 </span><span class="caption-text">The showcase qgismesh.slf selafin file opened in BlueKenue.</span><a class="headerlink" href="#fric-bk-slf" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<section id="import-or-create-friction-zones">
-<h3>Import or Create Friction Zones<a class="headerlink" href="#import-or-create-friction-zones" title="Permalink to this headline">#</a></h3>
+<section id="import-friction-zones">
+<span id="bk-import-friction"></span><h2>Import Friction Zones<a class="headerlink" href="#import-friction-zones" title="Permalink to this headline">#</a></h2>
 <p>As an alternative to the creation of zonal friction values stored in a <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file generated with QGIS, zones can also be directly drawn in BlueKenue through a series of <em>Closed lines</em>. However, because of BlueKenue’s very limited capacities to deal with geospatial references and coordinate systems (CRSs), <strong>the preferable option</strong> for creating friction zone input <strong>is</strong> the above-featured application of <strong>QGIS</strong>.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
@@ -882,40 +925,27 @@ Open the .xyz file in BlueKenue</label><div class="sd-tab-content docutils">
 <figure class="align-left" id="bk-fric-xyz-properties">
 <a class="reference internal image-reference" href="../../_images/bk-fric-xyz-properties.png"><img alt="bluekenue roughness friction visualize coefficients" src="../../_images/bk-fric-xyz-properties.png" style="width: 349.0px; height: 290.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 178 </span><span class="caption-text">Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.</span><a class="headerlink" href="#bk-fric-xyz-properties" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 180 </span><span class="caption-text">Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.</span><a class="headerlink" href="#bk-fric-xyz-properties" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p><strong>Ignore</strong> the <strong>warning</strong> message (click <strong>OK</strong>). To verify and visualize the imported friction values <strong>right-click</strong> on the <strong>friction-pts (X)</strong> layer &gt; <strong>Properties</strong> &gt; go to the <strong>Data</strong> tab &gt; <strong>select Z(double)</strong>, press <strong>Apply</strong>. Then, go to the <strong>ColourScale</strong> tab, press <strong>Reset</strong>, <strong>Apply</strong>, and <strong>OK</strong>.</p>
-<p>Verify the correct representation of the friction values by pulling the <code class="docutils literal notranslate"><span class="pre">friction-pts</span> <span class="pre">(Z)</span></code> layer from the workspace data items to <strong>Views</strong> &gt; <strong>2D View (1)</strong> (<a class="reference internal" href="#bk-fric-pts"><span class="std std-numref">Fig. 179</span></a>).</p>
+<p>Verify the correct representation of the friction values by pulling the <code class="docutils literal notranslate"><span class="pre">friction-pts</span> <span class="pre">(Z)</span></code> layer from the workspace data items to <strong>Views</strong> &gt; <strong>2D View (1)</strong> (<a class="reference internal" href="#bk-fric-pts"><span class="std std-numref">Fig. 181</span></a>).</p>
 <figure class="align-default" id="bk-fric-pts">
 <img alt="friction roughness coefficients bluekenue" src="../../_images/bk-fric-pts.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 179 </span><span class="caption-text">The imported friction-pts.xyz file (created with QGIS) visualized in BlueKenue.</span><a class="headerlink" href="#bk-fric-pts" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 181 </span><span class="caption-text">The imported friction-pts.xyz file (created with QGIS) visualized in BlueKenue.</span><a class="headerlink" href="#bk-fric-pts" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
-Create friction zones in BlueKenue</label><div class="sd-tab-content docutils">
-<p>Start with creating new closed lines (<a class="reference internal" href="#bk-new-closed-lines"><span class="std std-numref">Fig. 180</span></a>), similar to polygons delineating roughness zones.</p>
-<figure class="align-left" id="bk-new-closed-lines">
-<a class="reference internal image-reference" href="../../_images/bk-new-closed-lines.png"><img alt="bluekenue create closed line" src="../../_images/bk-new-closed-lines.png" style="width: 557.5px; height: 141.5px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 180 </span><span class="caption-text">Settings in the Save Vector Layer as… popup window for exporting the friction points to an XYZ (tab-separated CSV) file.</span><a class="headerlink" href="#bk-new-closed-lines" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-right" id="bk-finalize-friction-cl">
-<a class="reference internal image-reference" href="../../_images/bk-finalize-friction-cl.png"><img alt="bluekenue roughness friction closed line" src="../../_images/bk-finalize-friction-cl.png" style="width: 330.0px; height: 144.0px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 181 </span><span class="caption-text">Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.</span><a class="headerlink" href="#bk-finalize-friction-cl" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>After drawing a <em>Closed line</em> is finished, press the <code class="docutils literal notranslate"><span class="pre">Esc</span></code> key and the window shown in <a class="reference internal" href="#bk-finalize-friction-cl"><span class="std std-numref">Fig. 181</span></a> will appear, where a roughness value can be assigned. The exemplary figure assigns a Strickler roughness of <code class="docutils literal notranslate"><span class="pre">50</span></code> in the <strong>Value</strong> field to a <em>Closed line</em> named <code class="docutils literal notranslate"><span class="pre">A-D_substrate</span></code>. Continue to assign names to all relevant roughness areas.</p>
+Closed lines from BlueKenue</label><div class="sd-tab-content docutils">
+<p>If not yet done, import the <em>Closed lines</em> delineating roughness zones in the form of <code class="docutils literal notranslate"><span class="pre">.i2s</span></code> / <code class="docutils literal notranslate"><span class="pre">.i3s</span></code> files.</p>
 </div>
 </div>
 </section>
-<section id="interpolate-friction-on-the-slf-mesh">
-<h3>Interpolate Friction on the SLF Mesh<a class="headerlink" href="#interpolate-friction-on-the-slf-mesh" title="Permalink to this headline">#</a></h3>
+<section id="interpolate-friction-on-the-mesh">
+<h2>Interpolate Friction on the Mesh<a class="headerlink" href="#interpolate-friction-on-the-mesh" title="Permalink to this headline">#</a></h2>
 <p>In BlueKenue, go to <strong>File</strong> &gt; <strong>New</strong> &gt; <strong>2D Interpolator</strong>, which will occur in the <strong>Work Space</strong> &gt; <strong>Data Items</strong>. <strong>Drag &amp; drop</strong> either the <strong>friction-pts</strong> <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> points or the <em>Closed line</em> objects delineating roughness zones <strong>on the new 2D Interpolator</strong> (see <a class="reference internal" href="#bk-fric-2d-interpolator"><span class="std std-numref">Fig. 182</span></a>).</p>
 <figure class="align-default" id="bk-fric-2d-interpolator">
 <a class="reference internal image-reference" href="../../_images/bk-fric-2d-interpolator.png"><img alt="bluekenue 2d interpolator roughness friction" src="../../_images/bk-fric-2d-interpolator.png" style="width: 322.0px; height: 257.0px;" /></a>
@@ -923,35 +953,58 @@ Create friction zones in BlueKenue</label><div class="sd-tab-content docutils">
 <p><span class="caption-number">Fig. 182 </span><span class="caption-text">Drag &amp; drop the friction-pts (or closed lines) on a new 2D Interpolator in BlueKenue.</span><a class="headerlink" href="#bk-fric-2d-interpolator" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<figure class="margin align-default" id="bk-new-slf-variable">
-<img alt="selafin add variable bluekenue roughness friction" src="../../_images/bk-new-slf-variable.png" />
+<p>Next, add a new variable to the <code class="docutils literal notranslate"><span class="pre">qgismesh.slf</span></code> mesh by highlighting the <strong>Selafin <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code></strong> object (in <strong>Work Space</strong> &gt; <strong>Data Items</strong>), and <strong>right-clicking</strong> on it.  Click on <strong>Add Variable…</strong> and enter the following in the popup window (<a class="reference internal" href="#bk-new-slf-variable-fric"><span class="std std-numref">Fig. 183</span></a> or <a class="reference internal" href="#bk-new-slf-variable-fricid"><span class="std std-numref">Fig. 184</span></a>), depending on if you are working with friction values (as showcased here with Strickler roughness), or <a class="reference internal" href="#tm-fricid"><span class="std std-ref">friction IDs (see below)</span></a>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+BOTTOM FRICTION (Strickler) value</label><div class="sd-tab-content docutils">
+<figure class="align-right" id="bk-new-slf-variable-fric">
+<a class="reference internal image-reference" href="../../_images/bk-new-slf-variable-fric.png"><img alt="selafin add variable bluekenue roughness friction" src="../../_images/bk-new-slf-variable-fric.png" style="width: 239.0px; height: 296.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 183 </span><span class="caption-text">Add a new Variable to the Selafin object.</span><a class="headerlink" href="#bk-new-slf-variable" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 183 </span><span class="caption-text">Add a new Variable to the Selafin object for direct friction values.</span><a class="headerlink" href="#bk-new-slf-variable-fric" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Next, add a new variable to the <code class="docutils literal notranslate"><span class="pre">qgismesh.slf</span></code> mesh:</p>
 <ul class="simple">
-<li><p>In <strong>Work Space</strong> &gt; <strong>Data Items</strong>, find the <strong>Selafin <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code></strong> object and <strong>right-click</strong> on it.</p></li>
-<li><p>Click on <strong>Add Variable…</strong> and enter the following in the popup window (<a class="reference internal" href="#bk-new-slf-variable"><span class="std std-numref">Fig. 183</span></a>):</p>
-<ul>
 <li><p><strong>Mesh</strong>: <code class="docutils literal notranslate"><span class="pre">BOTTOM</span></code></p></li>
-<li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code></p></li>
-<li><p><strong>Units</strong>: <code class="docutils literal notranslate"><span class="pre">strickler</span></code> (or keep clear, irrelevant field)</p></li>
-<li><p><strong>Default Node Value</strong>: <code class="docutils literal notranslate"><span class="pre">30</span></code> (default Strickler value to use when no friction points can be found)</p></li>
+<li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> (this example)</p></li>
+<li><p><strong>Units</strong>: keep clear (irrelevant field)</p></li>
+<li><p><strong>Default Node Value</strong>: <code class="docutils literal notranslate"><span class="pre">30</span></code> (in this example) for a default (Strickler) value to use when no xyz friction points can be found in the vicinity of a mesh node</p></li>
 </ul>
-</li>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+FRICTION ID</label><div class="sd-tab-content docutils">
+<figure class="align-right" id="bk-new-slf-variable-fricid">
+<a class="reference internal image-reference" href="../../_images/bk-new-slf-variable-fricID.png"><img alt="selafin add variable bluekenue roughness friction" src="../../_images/bk-new-slf-variable-fricID.png" style="width: 239.0px; height: 296.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 184 </span><span class="caption-text">Add a new Variable to the Selafin object for friction IDs.</span><a class="headerlink" href="#bk-new-slf-variable-fricid" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Mesh</strong>: <code class="docutils literal notranslate"><span class="pre">BOTTOM</span></code></p></li>
+<li><p><strong>Name</strong>: <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code> (must be entered, cannot be selected from list)</p></li>
+<li><p><strong>Units</strong>: keep clear (irrelevant field)</p></li>
+<li><p><strong>Default Node Value</strong>: <code class="docutils literal notranslate"><span class="pre">0</span></code> (ID to use when no xyz points can be found in the vicinity of a mesh node)</p></li>
 </ul>
-<p>To interpolate the friction values on the mesh, highlight the new variable variable <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> of the <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code> object in <strong>Work Space</strong> &gt; <strong>Data Items</strong>. With this new mesh variable highlighted, go to <strong>Tools</strong> &gt; <strong>Map Object…</strong> (top menu in <a class="reference internal" href="#bk-map-2d-interpolator"><span class="std std-numref">Fig. 184</span></a>), select the <strong>new 2D Interpolator</strong>, and click <strong>OK</strong>, which opens the <strong>Processing…</strong> popup window. After the processing is completed, click <strong>OK</strong>.</p>
+</div>
+</div>
+<p>To interpolate the friction values on the mesh, highlight the new variable variable <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> (or <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code>) of the <code class="docutils literal notranslate"><span class="pre">qgismesh</span></code> object in <strong>Work Space</strong> &gt; <strong>Data Items</strong>. The <em>Anonymous Attribute</em> of the new variable can be ignored. To map the new variable onto the mesh:</p>
+<ul class="simple">
+<li><p>Highlight the new <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> (or <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code>) mesh variable (in <strong>Data Items</strong>)</p></li>
+<li><p>Go to <strong>Tools</strong> &gt; <strong>Map Object…</strong> (top menu in <a class="reference internal" href="#bk-map-2d-interpolator"><span class="std std-numref">Fig. 185</span></a>)</p></li>
+<li><p>Select the <strong>new 2D Interpolator</strong>, and click <strong>OK</strong>, which opens the <strong>Processing…</strong> popup window</p></li>
+<li><p>After the processing is completed, click <strong>OK</strong>.</p></li>
+</ul>
 <figure class="align-default" id="bk-map-2d-interpolator">
 <a class="reference internal image-reference" href="../../_images/bk-map-2d-interpolator.png"><img alt="map object  2dinterpolator roughness friction bluekenue" src="../../_images/bk-map-2d-interpolator.png" style="width: 814.0px; height: 351.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 184 </span><span class="caption-text">Map the friction value on the new 2D Interpolator in BlueKenue.</span><a class="headerlink" href="#bk-map-2d-interpolator" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 185 </span><span class="caption-text">Map the friction value on the new 2D Interpolator in BlueKenue.</span><a class="headerlink" href="#bk-map-2d-interpolator" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<figure class="margin align-default" id="bk-fric-colourscale">
-<img alt="bottom friction colourscale selafin bluekenue" src="../../_images/bk-fric-colourscale.png" />
+<figure class="align-right" id="bk-fric-colourscale">
+<a class="reference internal image-reference" href="../../_images/bk-fric-colourscale.png"><img alt="bottom friction colourscale selafin bluekenue" src="../../_images/bk-fric-colourscale.png" style="width: 332.0px; height: 264.0px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 185 </span><span class="caption-text">Adjust the color scale for BOTTOM FRICTION.</span><a class="headerlink" href="#bk-fric-colourscale" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 186 </span><span class="caption-text">Adjust the color scale for BOTTOM FRICTION.</span><a class="headerlink" href="#bk-fric-colourscale" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Verify the correct interpolation:</p>
@@ -963,29 +1016,31 @@ Create friction zones in BlueKenue</label><div class="sd-tab-content docutils">
 <li><p>Press <strong>Apply</strong> &gt; <strong>OK</strong>.</p></li>
 </ul>
 </li>
-<li><p><strong>Drag &amp; drop</strong> the <strong>BOTTOM FRICTION</strong> variable into <strong>Views</strong> &gt; <strong>2D View (1)</strong> to verify the correct interpolation of friction values (e.g., see <a class="reference internal" href="#bk-fric-on-mesh"><span class="std std-numref">Fig. 186</span></a> for the showcase).</p></li>
+<li><p><strong>Drag &amp; drop</strong> the <strong>BOTTOM FRICTION</strong> variable into <strong>Views</strong> &gt; <strong>2D View (1)</strong> to verify the correct interpolation of friction values (e.g., see <a class="reference internal" href="#bk-fric-on-mesh"><span class="std std-numref">Fig. 187</span></a> for the showcase).</p></li>
 </ul>
 <figure class="align-default" id="bk-fric-on-mesh">
 <img alt="selfin slf mesh bottom friction bluekenue" src="../../_images/bk-fric-on-mesh.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 186 </span><span class="caption-text">The correctly interpolated new BOTTOM FRICTION variable of the qgismesh.slf mesh.</span><a class="headerlink" href="#bk-fric-on-mesh" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 187 </span><span class="caption-text">The correctly interpolated new BOTTOM FRICTION variable of the qgismesh.slf mesh.</span><a class="headerlink" href="#bk-fric-on-mesh" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>To <strong>save</strong> the selafin <strong>mesh</strong> with interpolated the interpolated friction values, <strong>highlight the selafin object</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">qgismesh-friction</span></code>) and <strong>click on the disk <img alt="../../_images/bk-sym-save.png" src="../../_images/bk-sym-save.png" /> symbol</strong>.</p>
+<p>To <strong>save</strong> the selafin <strong>mesh</strong> with interpolated the interpolated friction values, <strong>right-click</strong> on the <strong>qgismesh selafin object</strong> &gt; <strong>Properties</strong> &gt; go to the <strong>Meta Data</strong> tab, and enter a new <strong>Name</strong>, for example, <code class="docutils literal notranslate"><span class="pre">qgismesh-friction</span></code>. Next, <strong>highlight the selafin object</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">qgismesh-friction</span></code>) and <strong>click on the disk <img alt="../../_images/bk-sym-save.png" src="../../_images/bk-sym-save.png" /> symbol</strong>. If renaming did no take effect on the file name, confirm replacing the existing file.</p>
 <div class="tip admonition">
 <p class="admonition-title">Download qgismesh-friction.slf (with BOTTOM FRICTION)</p>
 <p>Download the updated <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction/qgismesh-friction.slf">qgismesh-friction.slf with BOTTOM FRICTION</a>.</p>
 </div>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="telemac-bindings">
+<h1>Telemac Bindings<a class="headerlink" href="#telemac-bindings" title="Permalink to this headline">#</a></h1>
 <section id="implementation-in-the-cas-file">
 <span id="zonal-fric-cas"></span><h2>Implementation in the CAS File<a class="headerlink" href="#implementation-in-the-cas-file" title="Permalink to this headline">#</a></h2>
 <section id="friction-keywords">
 <h3>Friction Keywords<a class="headerlink" href="#friction-keywords" title="Permalink to this headline">#</a></h3>
 <p>The updated <code class="docutils literal notranslate"><span class="pre">qgismesh-friction.slf</span></code> mesh can be used just like in the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d tutorial</span></a>, but some keywords need to be modified, even though the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> values assigned in the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> mesh automatically overwrite the global <strong>FRICTION COEFFICIENT</strong> keyword in the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> steering file. However, we need to make Telemac recognize the newly defined <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> zones as <strong>Strickler</strong> roughness type. To this end, change the <strong>LAW OF BOTTOM FRICTION</strong> to <code class="docutils literal notranslate"><span class="pre">3</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">4</span></code> pointing to Manning’s <span class="math notranslate nohighlight">\(n_m\)</span>), and set the default <strong>FRICTION COEFFICIENT</strong> to <code class="docutils literal notranslate"><span class="pre">33</span></code> (inverse of <span class="math notranslate nohighlight">\(n_m\)</span> = 0.03). The definition of the <strong>FRICTION COEFFICIENT</strong> is for coherence and is not strictly needed as it will be overwritten by the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> from the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> mesh.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-2">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
 New (Strickler)</label><div class="sd-tab-content docutils">
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ks</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
 <span class="o">/</span><span class="w"> </span><span class="p">...</span>
@@ -995,8 +1050,8 @@ New (Strickler)</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-3">
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
 Old (Manning from steady 2d)</label><div class="sd-tab-content docutils">
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
 <span class="o">/</span><span class="w"> </span><span class="p">...</span>
@@ -1023,8 +1078,8 @@ Old (Manning from steady 2d)</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
-<section id="initial-hotstart-conditions">
-<h3>Initial Hotstart Conditions<a class="headerlink" href="#initial-hotstart-conditions" title="Permalink to this headline">#</a></h3>
+<section id="initial-hotstart-conditions-optional">
+<h3>Initial Hotstart Conditions (optional)<a class="headerlink" href="#initial-hotstart-conditions-optional" title="Permalink to this headline">#</a></h3>
 <p><strong>The following descriptions refer to section 4.1.3 in the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a>.</strong></p>
 <p>To speed up the simulation, this tutorial re-uses the output of the <a class="reference internal" href="telemac2d-steady.html#telemac2d-steady"><span class="std std-ref">steady 2d simulation</span></a> (though, re-created with a printout period of <code class="docutils literal notranslate"><span class="pre">2500</span></code> steps). This type of model initialization is also called <em>hotstart</em>, here, based on the steady results file <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction/r2dsteady-t15k.slf">r2dsteady-t15k.slf</a>, which needs to be defined as <strong>PREVIOUS COMPUTATION FILE</strong>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ks</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
@@ -1058,8 +1113,8 @@ Old (Manning from steady 2d)</label><div class="sd-tab-content docutils">
 </div>
 </section>
 </section>
-<section id="run-the-simulation-with-friction-zones">
-<h2>Run the Simulation with Friction Zones<a class="headerlink" href="#run-the-simulation-with-friction-zones" title="Permalink to this headline">#</a></h2>
+<section id="run-friction-zone-simulation">
+<h2>Run Friction Zone Simulation<a class="headerlink" href="#run-friction-zone-simulation" title="Permalink to this headline">#</a></h2>
 <p>Make sure all required files are placed in a simulation folder (e.g., <code class="docutils literal notranslate"><span class="pre">/HOME/modeling/friction-tutorial/</span></code>), notably:</p>
 <ul class="simple">
 <li><p>the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction/qgismesh-friction.slf">qgismesh-friction.slf</a> mesh with <code class="docutils literal notranslate"><span class="pre">BOTTOM</span></code> and <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> information</p></li>
@@ -1135,23 +1190,23 @@ Old (Manning from steady 2d)</label><div class="sd-tab-content docutils">
 </div>
 <p>The resulting <a class="reference internal" href="convergence.html#tm-flux-convergence"><span class="std std-ref">flux convergence</span></a> and <a class="reference internal" href="convergence.html#tm-calculate-convergence"><span class="std std-ref">convergence rates</span></a> should look similar to this:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
 Flux convergence</label><div class="sd-tab-content docutils">
 <figure class="align-default" id="tm-friction-flux-convergence">
 <img alt="zonal friction telemac flux convergence pythomac" src="../../_images/flux-convergence-zonal-fric.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 187 </span><span class="caption-text">Flux convergence plot across the two boundaries of the hotstarted steady Telemac2d simulation, starting at a simulation time of 15000 timesteps.</span><a class="headerlink" href="#tm-friction-flux-convergence" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 188 </span><span class="caption-text">Flux convergence plot across the two boundaries of the hotstarted steady Telemac2d simulation, starting at a simulation time of 15000 timesteps.</span><a class="headerlink" href="#tm-friction-flux-convergence" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-5">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 Convergence rate</label><div class="sd-tab-content docutils">
 <figure class="align-default" id="tm-friction-convergence-rate">
 <img alt="zonal friction convergence rate fluxes telemac boundaries" src="../../_images/convergence-rate-zonal-fric.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 188 </span><span class="caption-text">The convergence rate <span class="math notranslate nohighlight">\(\iota\)</span> as a function 15000 simulation timesteps of the hotstarted steady 2d simulation with friction zones.</span><a class="headerlink" href="#tm-friction-convergence-rate" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 189 </span><span class="caption-text">The convergence rate <span class="math notranslate nohighlight">\(\iota\)</span> as a function 15000 simulation timesteps of the hotstarted steady 2d simulation with friction zones.</span><a class="headerlink" href="#tm-friction-convergence-rate" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1162,32 +1217,138 @@ Convergence rate</label><div class="sd-tab-content docutils">
 <p>Load the simulation results file (<code class="docutils literal notranslate"><span class="pre">r2dsteady-ks-zonal.slf</span></code>) in QGIS to verify the correctness of the used bottom friction and look at the slight changes in flow velocity and water depth resulting from the now different roughness (friction) values.</p>
 </div>
 </section>
-<section id="working-with-friction-tables">
-<h2>Working with Friction Tables<a class="headerlink" href="#working-with-friction-tables" title="Permalink to this headline">#</a></h2>
-<p>The friction zones can also be assigned through friction IDs, which then require setting up a zones file and friction data file, for example, as showcased in the Donau example (<code class="docutils literal notranslate"><span class="pre">HOMETEL/examples/telemac2d/donau/</span></code>)</p>
-<p>In addition, Appendix E of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a> provides explanations for the implementation of zonal friction values. Note that the proposed modification of the <strong>FRICTION_USER</strong> Fortran function (subroutine) is not mandatory. Here are some tips for when the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law, such as the <span id="id8">Ferguson [<a class="reference internal" href="../../documentation/bibliography.html#id188" title="Rob Ferguson. Flow resistance equations for gravel- and boulder-bed streams. Water Resources Research, 43:W05427, 2007. doi:10.1029/2006WR005422.">Fer07</a>]</span> equation):</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="working-with-friction-ids">
+<span id="tm-fricid"></span><h1>Working with Friction IDs<a class="headerlink" href="#working-with-friction-ids" title="Permalink to this headline">#</a></h1>
+<p>The friction zones can also be assigned through friction IDs, which then require setting up a zones file and friction data file, for example, as showcased in the Donau example (<code class="docutils literal notranslate"><span class="pre">HOMETEL/examples/telemac2d/donau/</span></code>).</p>
+<div class="tip admonition">
+<p class="admonition-title">The Donau zonal friction ID example</p>
+<p>The BAW’s Donau case study lives in <code class="docutils literal notranslate"><span class="pre">HOMETEL/examples/telemac2d/donau/</span></code> and it was presented at the XXth Telemac-Mascaret user conference. The conference proceedings are available at the BAW’s <a class="reference external" href="https://hdl.handle.net/20.500.11970/100418">HENRY portal</a> (look for the contribution <em>Reverse engineering of initial &amp; boundary conditions with Telemac and algorithmic differentiation</em>). However, this case uses an unnecessary complication in the form of a <code class="docutils literal notranslate"><span class="pre">.bfr</span></code> zone file.</p>
+</div>
+<p>In the showcase of this tutorial, working with friction tables required assigning the friction IDs defined in <a class="reference internal" href="#tab-tm-fricid-zones"><span class="std std-numref">Tab. 13</span></a> to the <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> variable of the <code class="docutils literal notranslate"><span class="pre">.slf</span></code> mesh. The according files can be downloaded from our repositories:</p>
 <ul class="simple">
-<li><p>The FICTION_USER subroutine can be found in <code class="docutils literal notranslate"><span class="pre">HOMETEL/sources/telemac2d/friction_user.f</span></code>.</p></li>
-<li><p>To use a modified version, copy <code class="docutils literal notranslate"><span class="pre">friction_user.f</span></code> to a new subfolder called <code class="docutils literal notranslate"><span class="pre">/user_fortran/</span></code> in your simulation case folder.</p></li>
-<li><p>Modify and save edits in <code class="docutils literal notranslate"><span class="pre">/your/simulation/case/user_fortran/friction_user.f</span></code>.</p></li>
-<li><p>Tell the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file to use the modified FRICTION_USER Fortran file by adding the keyword <code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'user_fortran'</span></code>, which makes Telemac2d look up Fortran files in the <code class="docutils literal notranslate"><span class="pre">/user_fortran/</span></code> subfolder.</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/friction-with-IDs.xyz">get friction-with-IDs.xyz</a> for interpolation in BlueKenue (<a class="reference internal" href="#bk-interpolate-fric-zones"><span class="std std-ref">see above</span></a>, or directly</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/qgismesh-frictionIDs.slf">get qgismesh-frictionIDs.slf</a> with <code class="docutils literal notranslate"><span class="pre">BOTTOM</span></code> and <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code> instead of <code class="docutils literal notranslate"><span class="pre">BOTTOM</span> <span class="pre">FRICTION</span></code> Strickler roughness coefficients (uses default friction ID <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
 </ul>
-<p>To activate a zones file through a friction data file, add the following keywords to the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> steering file:</p>
+<section id="friction-tbl-cas">
+<h2>friction.tbl &amp; CAS<a class="headerlink" href="#friction-tbl-cas" title="Permalink to this headline">#</a></h2>
+<section id="create-friction-tbl">
+<h3>Create friction.tbl<a class="headerlink" href="#create-friction-tbl" title="Permalink to this headline">#</a></h3>
+<p>Create a friction table file called <code class="docutils literal notranslate"><span class="pre">friction.tbl</span></code> (consider this <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/friction.tbl">friction.tbl template</a>) with the following content, where the <code class="docutils literal notranslate"><span class="pre">no</span></code> entries (here starting in line 36) must correspond to the <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code> assigned to the mesh (recall <a class="reference internal" href="#bk-new-slf-variable-fricid"><span class="std std-numref">Fig. 184</span></a>):</p>
+<aside class="margin sidebar">
+<p class="sidebar-title">More information</p>
+<p>Appendix E of the <a class="reference external" href="https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v8p4r0/documentation/telemac2d/user/telemac2d_user_v8p4.pdf">Telemac2d manual</a> provides more explanations on the tabular parameters (e.g., <code class="docutils literal notranslate"><span class="pre">typeB</span></code>, <code class="docutils literal notranslate"><span class="pre">rB</span></code>, or <code class="docutils literal notranslate"><span class="pre">nDefB</span></code>), and the friction laws (e.g., STRI, NIKU) are explained in more detail in this eBook in the steady-2d <a class="reference internal" href="telemac2d-steady.html#tm2d-friction"><span class="std std-ref">section on friction</span></a>.</p>
+</aside>
+<div class="literal-block-wrapper docutils container" id="friction-tbl">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Example for a friction(.tbl) ID table.</span><a class="headerlink" href="#friction-tbl" title="Permalink to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="o">*</span><span class="w"> </span><span class="o">-----------------------------------------------------------------------------</span><span class="w"> </span>
+<span class="linenos"> 2</span><span class="o">*</span><span class="w">  </span><span class="n">EXAMPLE</span><span class="w"> </span><span class="n">ADAPTED</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">HOMETEL</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">telemac2d</span><span class="o">/</span><span class="n">donau</span><span class="o">/</span>
+<span class="linenos"> 3</span><span class="o">*</span>
+<span class="linenos"> 4</span><span class="o">*</span><span class="w">  </span><span class="n">Implemented</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="n">laws</span><span class="p">:</span><span class="w"> </span>
+<span class="linenos"> 5</span><span class="o">*</span><span class="w">    </span><span class="n">NOFR</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">friction</span><span class="w">         </span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos"> 6</span><span class="o">*</span><span class="w">    </span><span class="n">HAAL</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Haaland</span><span class="w">   </span><span class="n">law</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos"> 7</span><span class="o">*</span><span class="w">    </span><span class="n">CHEZ</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Chezy</span><span class="w">     </span><span class="n">law</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos"> 8</span><span class="o">*</span><span class="w">    </span><span class="n">STRI</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Strickler</span><span class="w"> </span><span class="n">law</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos"> 9</span><span class="o">*</span><span class="w">    </span><span class="n">MANN</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Manning</span><span class="w">   </span><span class="n">law</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">10</span><span class="o">*</span><span class="w">    </span><span class="n">NIKU</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Nikuradse</span><span class="w"> </span><span class="n">law</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">11</span><span class="o">*</span><span class="w">    </span><span class="n">LOGW</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">Log </span><span class="n">Wall</span><span class="w">  </span><span class="n">law</span><span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="k">value</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">12</span><span class="o">*</span><span class="w">    </span><span class="n">COWH</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Colebrook</span><span class="o">-</span><span class="n">White</span><span class="w"> </span><span class="n">law</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">rB</span><span class="p">,</span><span class="w"> </span><span class="n">nDef</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">13</span><span class="o">*</span><span class="w"> </span>
+<span class="linenos">14</span><span class="o">*</span><span class="w">  </span><span class="n">no</span><span class="w">             </span><span class="p">:</span><span class="w"> </span><span class="n">FRIC_ID</span><span class="w"> </span><span class="n">assigned</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">SLF</span><span class="w"> </span><span class="n">mesh</span>
+<span class="linenos">15</span><span class="o">*</span><span class="w"> </span>
+<span class="linenos">16</span><span class="o">*</span><span class="w">  </span><span class="n">Riverbed</span>
+<span class="linenos">17</span><span class="o">*</span><span class="w">  </span><span class="o">-------------</span><span class="w"> </span>
+<span class="linenos">18</span><span class="o">*</span><span class="w">  </span><span class="n">typeB</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="n">law</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">riverbed</span>
+<span class="linenos">19</span><span class="o">*</span><span class="w">  </span><span class="n">rB</span><span class="w">             </span><span class="p">:</span><span class="w"> </span><span class="n">friction</span><span class="w"> </span><span class="k">value </span><span class="n">for</span><span class="w"> </span><span class="n">riverbed</span>
+<span class="linenos">20</span><span class="o">*</span><span class="w">  </span><span class="n">nDefB</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">Mannings</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">shallow</span><span class="w"> </span><span class="n">flow</span><span class="w"> </span><span class="n">zones</span>
+<span class="linenos">21</span><span class="o">*</span><span class="w"> </span>
+<span class="linenos">22</span><span class="o">*</span><span class="w">  </span><span class="n">Later</span><span class="w"> </span><span class="n">walls</span><span class="w"> </span><span class="p">(</span><span class="k">only </span><span class="n">with</span><span class="w"> </span><span class="n">k</span><span class="o">-</span><span class="nb">epsilon </span><span class="n">model</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">23</span><span class="o">*</span><span class="w">  </span><span class="o">-----------------------------------------</span><span class="w"> </span>
+<span class="linenos">24</span><span class="o">*</span><span class="w">  </span><span class="n">typeS</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="n">law</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">walls</span><span class="w">          </span><span class="p">(</span><span class="n">option</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">25</span><span class="o">*</span><span class="w">  </span><span class="n">rS</span><span class="w">             </span><span class="p">:</span><span class="w"> </span><span class="n">friction</span><span class="w"> </span><span class="k">value </span><span class="n">for</span><span class="w"> </span><span class="n">walls</span><span class="w">         </span><span class="p">(</span><span class="n">option</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">26</span><span class="o">*</span><span class="w">  </span><span class="n">nDefS</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="n">Mannings</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">shallow</span><span class="w"> </span><span class="n">waters</span><span class="w">    </span><span class="p">(</span><span class="n">option</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">27</span><span class="o">*</span><span class="w"> </span>
+<span class="linenos">28</span><span class="o">*</span><span class="w">  </span><span class="n">Non</span><span class="o">-</span><span class="n">submerged</span><span class="w"> </span><span class="n">Vegetation</span><span class="w"> </span><span class="p">(</span><span class="k">if </span><span class="n">needed</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">29</span><span class="o">*</span><span class="w">  </span><span class="o">------------------------</span><span class="w"> </span>
+<span class="linenos">30</span><span class="o">*</span><span class="w">  </span><span class="n">dp</span><span class="w">             </span><span class="p">:</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="n">diameter</span><span class="w">                                </span><span class="p">(</span><span class="n">option</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">31</span><span class="o">*</span><span class="w">  </span><span class="n">sp</span><span class="w">             </span><span class="p">:</span><span class="w"> </span><span class="n">averaged</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="n">between</span><span class="w"> </span><span class="n">roughness</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="p">(</span><span class="n">option</span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">32</span><span class="o">*</span><span class="w"> </span>
+<span class="linenos">33</span><span class="o">*</span><span class="w"> </span><span class="o">-----------------------------------------------------------------------------</span><span class="w"> </span>
+<span class="linenos">34</span><span class="o">*</span><span class="w"> </span><span class="n">no</span><span class="w">        </span><span class="n">typeB</span><span class="w">  </span><span class="n">rB</span><span class="w">    </span><span class="n">NDefB</span><span class="w">  </span><span class="n">typeS</span><span class="w">  </span><span class="n">rS</span><span class="w">  </span><span class="n">NDefS</span><span class="w">   </span><span class="n">dp</span><span class="w">     </span><span class="n">sp</span><span class="w"> </span>
+<span class="linenos">35</span><span class="o">*</span><span class="w"> </span>
+<span class="linenos">36</span><span class="w">  </span><span class="mi">0</span><span class="w">  </span><span class="n">STRI</span><span class="w">   </span><span class="mi">3</span><span class="mf">3.0</span><span class="w">  </span><span class="nb">NULL</span>
+<span class="linenos">37</span><span class="nb">  </span><span class="mi">1</span><span class="w">  </span><span class="n">STRI</span><span class="w">   </span><span class="mi">3</span><span class="mf">4.6</span><span class="w">  </span><span class="nb">NULL</span>
+<span class="linenos">38</span><span class="nb">  </span><span class="mi">2</span><span class="w">  </span><span class="n">STRI</span><span class="w">   </span><span class="mi">2</span><span class="mf">7.7</span><span class="w">  </span><span class="nb">NULL</span>
+<span class="linenos">39</span><span class="nb">  </span><span class="mi">3</span><span class="w">  </span><span class="n">STRI</span><span class="w">   </span><span class="mi">4</span><span class="mf">0.3</span><span class="w">  </span><span class="nb">NULL</span>
+<span class="linenos">40</span><span class="nb">  </span><span class="mi">4</span><span class="w">  </span><span class="n">STRI</span><span class="w">   </span><span class="mi">2</span><span class="mf">2.7</span><span class="w">  </span><span class="nb">NULL</span>
+<span class="linenos">41</span><span class="k">END</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="link-friction-tbl-in-cas-file">
+<h3>Link friction.tbl in CAS file<a class="headerlink" href="#link-friction-tbl-in-cas-file" title="Permalink to this headline">#</a></h3>
+<p>To activate the friction data, add the following keywords to the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> steering file, and deactivate any not-wall related FRICTION keywords:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Activation keywords</label><div class="sd-tab-content docutils">
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ks</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
 <span class="o">/</span><span class="w"> </span><span class="p">...</span>
-<span class="o">/</span><span class="w"> </span><span class="n">Friction</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">bed</span>
+<span class="o">/</span><span class="w"> </span><span class="n">ACTIVATE</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">keywords</span>
 <span class="n">FRICTION</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="n">NO</span>
-<span class="n">FRICTION</span><span class="w"> </span><span class="k">DATA FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;BOTTOM FRICTION&#39;</span>
+<span class="n">FRICTION</span><span class="w"> </span><span class="k">DATA FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;friction.tbl&#39;</span>
+<span class="n">MAXIMUM</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="n">DOMAINS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">consider</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">increase</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Deactivation keywords</label><div class="sd-tab-content docutils">
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ks</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
+<span class="o">/</span><span class="w"> </span><span class="p">...</span>
+<span class="o">/</span><span class="w"> </span><span class="n">DEACTIVATE</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">keywords</span>
+<span class="o">/</span><span class="w"> </span><span class="n">LAW</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">BOTTOM</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="o">-</span><span class="n">Strickler</span>
+<span class="o">/</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="n">COEFFICIENT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">not </span><span class="k">use </span><span class="n">with</span><span class="w"> </span><span class="n">zonal</span><span class="w"> </span><span class="n">friction</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> steering file.</p>
+</section>
+</section>
+<section id="run-telemac-with-friction-ids">
+<h2>Run Telemac with Friction IDs<a class="headerlink" href="#run-telemac-with-friction-ids" title="Permalink to this headline">#</a></h2>
+<p>To run Telemac with friction IDs, make sure the above-indicated keywords are activated in the <code class="docutils literal notranslate"><span class="pre">.cas</span></code> steering file. The required files now embrace:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/qgismesh-frictionIDs.slf">qgismesh-frictionIDs.slf</a> (mesh with <code class="docutils literal notranslate"><span class="pre">FRIC_ID</span></code>)</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/boundaries.cli">boundaries.cli</a> or hotstart conditions</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/r2dsteady-t15k.slf">r2dsteady-t15k.slf</a> results file to enable the hotstart</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/steady2d-zonal-ID.cas">steady2d-zonal-ID.cas</a> steering file updated keywords</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/friction.tbl">friction.tbl</a> with friction IDs</p></li>
+</ul>
+<p>With these files, activate and run Telemac as usual:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p4</span><span class="o">/</span><span class="n">configs</span>
+<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">gfortranHPC</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">modeling</span><span class="o">/</span><span class="n">frictionID</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span>
+<span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ID</span><span class="o">.</span><span class="n">cas</span>
 </pre></div>
 </div>
 </section>
-<section id="telemac-examples-cases">
-<h2>Telemac Examples Cases<a class="headerlink" href="#telemac-examples-cases" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>The BAW’s Donau case study that lives in <code class="docutils literal notranslate"><span class="pre">HOMETEL/examples/telemac2d/donau/</span></code> features the usage of a <code class="docutils literal notranslate"><span class="pre">*.bfr</span></code> <strong>ZONES FILE</strong>, and a <code class="docutils literal notranslate"><span class="pre">roughness.tbl</span></code> <strong>FRICTION DATA FILE</strong>. Zonal friction values are enabled through the <code class="docutils literal notranslate"><span class="pre">FRICTION</span> <span class="pre">DATA</span> <span class="pre">:</span> <span class="pre">YES</span></code> keyword in the <code class="docutils literal notranslate"><span class="pre">t2d_donau.cas</span></code> file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW’s <a class="reference external" href="https://hdl.handle.net/20.500.11970/100418">HENRY portal</a> (look for the contribution <em>Reverse engineering of initial &amp; boundary conditions with Telemac and algorithmic differentiation</em>).</p></li>
-<li><p>Also, the <a class="reference external" href="http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55">Baxter tutorial</a> features friction zones.</p></li>
-</ul>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="advanced-friction-routines">
+<h1>Advanced Friction Routines<a class="headerlink" href="#advanced-friction-routines" title="Permalink to this headline">#</a></h1>
+<p>Modifying the <strong>FRICTION_USER</strong> Fortran subroutines is not mandatory for working with friction zones but can be useful for implementing or adapting the behavior of roughness laws. To activate a FRICTION_USER subroutine, for example, to implement the variable power equation from <span id="id8">Ferguson [<a class="reference internal" href="../../documentation/bibliography.html#id188" title="Rob Ferguson. Flow resistance equations for gravel- and boulder-bed streams. Water Resources Research, 43:W05427, 2007. doi:10.1029/2006WR005422.">Fer07</a>]</span>:</p>
+<ul class="simple">
+<li><p>Copy the FICTION_USER subroutine template from  <code class="docutils literal notranslate"><span class="pre">HOMETEL/sources/telemac2d/friction_user.f</span></code> into a new folder of your simulation directory, for example:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">HOME</span><span class="o">/</span><span class="n">modeling</span><span class="o">/</span><span class="n">frictionID</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">user_fortran</span><span class="o">/</span><span class="n">friction_user</span><span class="o">.</span><span class="n">f</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Modify and save edits of <code class="docutils literal notranslate"><span class="pre">friction_user.f</span></code>.</p></li>
+<li><p>Tell the steering (<code class="docutils literal notranslate"><span class="pre">.cas</span></code>) file to use the modified FRICTION_USER Fortran file by adding the keyword <code class="docutils literal notranslate"><span class="pre">FORTRAN</span> <span class="pre">FILE</span> <span class="pre">:</span> <span class="pre">'user_fortran'</span></code>, which makes Telemac2d look up Fortran files in the <code class="docutils literal notranslate"><span class="pre">/user_fortran/</span></code> subfolder.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1251,6 +1412,7 @@ Convergence rate</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Friction (Roughness) Zones</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roughness-xyz-with-qgis-recommended">Roughness.XYZ with QGIS (recommended)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delineate-roughness-zone-polygons">Delineate Roughness Zone Polygons</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-roughness-points">Generate Roughness Points</a></li>
@@ -1258,20 +1420,35 @@ Convergence rate</label><div class="sd-tab-content docutils">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#export-points-to-xyz">Export Points to XYZ</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-bottom-friction-assignment-in-bluekenue">Zonal Bottom Friction Assignment in BlueKenue</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-or-create-friction-zones">Import or Create Friction Zones</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-friction-on-the-slf-mesh">Interpolate Friction on the SLF Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-draw-friction-zones-in-bluekenue">Alternative: Draw Friction Zones in BlueKenue</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#zonal-friction-mesh-bluekenue">Zonal Friction Mesh (BlueKenue)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-friction-zones">Import Friction Zones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolate-friction-on-the-mesh">Interpolate Friction on the Mesh</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#telemac-bindings">Telemac Bindings</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-in-the-cas-file">Implementation in the CAS File</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friction-keywords">Friction Keywords</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-hotstart-conditions">Initial Hotstart Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-hotstart-conditions-optional">Initial Hotstart Conditions (optional)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-simulation-with-friction-zones">Run the Simulation with Friction Zones</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-friction-tables">Working with Friction Tables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#telemac-examples-cases">Telemac Examples Cases</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-friction-zone-simulation">Run Friction Zone Simulation</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-friction-ids">Working with Friction IDs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#friction-tbl-cas">friction.tbl &amp; CAS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-friction-tbl">Create friction.tbl</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-friction-tbl-in-cas-file">Link friction.tbl in CAS file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-telemac-with-friction-ids">Run Telemac with Friction IDs</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-friction-routines">Advanced Friction Routines</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

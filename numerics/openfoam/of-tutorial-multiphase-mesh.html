@@ -278,7 +278,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../telemac/mass-optimization.html">Mass Conservation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../telemac/roughness.html">Roughness (Friction) Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../telemac/roughness.html">Friction (Roughness) Zones</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="../telemac/optimization.html">Optimization</a></li>
 </ul>
 </li>
@@ -555,7 +559,7 @@ document.write(`
 <figure class="align-default" id="of-folder-structure">
 <img alt="openfoam" src="../../_images/folder-structure.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 197 </span><span class="caption-text">Case directory containing the files necessary to run snappyHexMesh.</span><a class="headerlink" href="#of-folder-structure" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 198 </span><span class="caption-text">Case directory containing the files necessary to run snappyHexMesh.</span><a class="headerlink" href="#of-folder-structure" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The following sections describe the steps that need to be followed.</p>
@@ -565,7 +569,7 @@ document.write(`
 <figure class="align-default" id="of-block-mesh-init">
 <img alt="openfoam" src="../../_images/block-mesh-init.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 198 </span><span class="caption-text">Background mesh created with blockMesh containing the structure to be meshed.</span><a class="headerlink" href="#of-block-mesh-init" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 199 </span><span class="caption-text">Background mesh created with blockMesh containing the structure to be meshed.</span><a class="headerlink" href="#of-block-mesh-init" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In the <em>blockMeshDict</em> file, the following items need to be added:</p>
@@ -597,7 +601,7 @@ document.write(`
 <figure class="align-default" id="of-block-mesh-vertexorder">
 <img alt="openfoam" src="../../_images/block-mesh-vertexorder.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 199 </span><span class="caption-text">Background mesh indicating the order in which the vertices are written in the block-meshDict file.</span><a class="headerlink" href="#of-block-mesh-vertexorder" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 200 </span><span class="caption-text">Background mesh indicating the order in which the vertices are written in the block-meshDict file.</span><a class="headerlink" href="#of-block-mesh-vertexorder" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -723,7 +727,7 @@ document.write(`
 <figure class="align-default" id="of-refinement-levels">
 <img alt="openfoam" src="../../_images/refinement-levels.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 200 </span><span class="caption-text">Example of different mesh refinement levels.</span><a class="headerlink" href="#of-refinement-levels" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 201 </span><span class="caption-text">Example of different mesh refinement levels.</span><a class="headerlink" href="#of-refinement-levels" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Additionally, the following items are set:</p>
@@ -776,7 +780,7 @@ document.write(`
 <figure class="align-default" id="of-obstacle-refinement">
 <img alt="openfoam" src="../../_images/obstacle-refinement.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 201 </span><span class="caption-text">Resulting refinement for the <strong>Obstacle</strong> and <strong>Gravel-Bottom</strong> elements composing the mesh.</span><a class="headerlink" href="#of-obstacle-refinement" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 202 </span><span class="caption-text">Resulting refinement for the <strong>Obstacle</strong> and <strong>Gravel-Bottom</strong> elements composing the mesh.</span><a class="headerlink" href="#of-obstacle-refinement" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Once the feature and surface splitting process is complete, the cell removal process takes place. The latter requires one or more regions wrapped entirely by a bounding surface belonging to the domain. In order to specify the region in which the cells have to be kept, the <em>locationInMesh</em> keyword needs to be defined. This vector simply defines the region that wants to be retained.</p>
@@ -1011,14 +1015,14 @@ snapControls
 <figure class="align-default" id="of-parafoam-mesh">
 <img alt="openfoam snappyHexMesh paraFoam" src="../../_images/paraFoam-mesh.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 202 </span><span class="caption-text">Visualization of the resulting mesh in ParaView.</span><a class="headerlink" href="#of-parafoam-mesh" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 203 </span><span class="caption-text">Visualization of the resulting mesh in ParaView.</span><a class="headerlink" href="#of-parafoam-mesh" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The image below highlights some features required to adequately visualize the created mesh. Specifically, to analyze the cells, it is possible to select the option <em>Surface with Edges</em>. The various elements composing the mesh can then be selected/deselected to analyze specific parts in detail. Finally, in the case in which the Mesh Check returned errors, for instance, faces with high skewness, they can be visualized by selecting the <em>Include Sets</em> option.</p>
 <figure class="align-default" id="of-parafoam-mesh-cells">
 <img alt="openfoam snappyHexMesh paraFoam" src="../../_images/paraFoam-mesh-cells.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 203 </span><span class="caption-text">Visualization of the resulting mesh in ParaView, highlighting the created cells.</span><a class="headerlink" href="#of-parafoam-mesh-cells" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 204 </span><span class="caption-text">Visualization of the resulting mesh in ParaView, highlighting the created cells.</span><a class="headerlink" href="#of-parafoam-mesh-cells" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

@@ -4,19 +4,19 @@ This chapter was co-written and developed by {{ scolari }} <img src="../../img/a
 ```
 
 (tm-friction-zones)=
-# Roughness (Friction) Zones
+# Friction (Roughness) Zones
 
-Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`.slf`) mesh file. Specifically, if the study domain is characterized by regions of different roughness, it is not sufficient to define global friction through a `FRICTION COEFFICIENT` keyword in the steering (`.cas`) file. Defining roughness zones in the mesh (`.slf`) file requires an additional layer called `BOTTOM FRICTION` on top of the `BOTTOM` elevation. To this end, roughness values can be defined in a roughness `.xyz` file created with QGIS or *Closed Lines* `.i2s` created with BlueKenue. While QGIS is recommended to delineate roughness zones with correct and possibly precise georeferences, BlueKenue is still required for interpolating the roughness from the `.xyz` or `.i2s` file on the `.slf` file in the last step.
+Similar to the assignment of multiple friction coefficient values to multiple model regions featured in the {ref}`BASEMENT tutorial <bm-geometry>`, Telemac2d provides routines for domain-wise (i.e., zonal) friction area definitions in the geometry (`.slf`) mesh file. Specifically, if the study domain is characterized by regions of different roughness, it is not sufficient to define global friction through a `FRICTION COEFFICIENT` keyword in the steering (`.cas`) file. Defining roughness zones in the mesh (`.slf`) file requires an additional layer called `BOTTOM FRICTION` or `FRIC_ID` on top of the `BOTTOM` elevation. To this end, roughness values can be defined in a roughness `.xyz` file created with QGIS ({ref}`recommended <tm-friction-qgis>`) or *Closed Lines* `.i2s` created with BlueKenue ({ref}`see the meshing section <bk-import-friction>`). While QGIS is recommended to delineate roughness zones with correct and possibly precise georeferences, BlueKenue is still required for interpolating the roughness from the `.xyz` or `.i2s` file on the `.slf` file in the last step.
 
 
 ```{admonition} Requirements
 
-* Understand geospatial data formats and be able to work with QGIS (see the {ref}`QGIS tutorial <qgis-tutorial>`).
+* Understand geospatial data formats and know to work with QGIS (see the {ref}`QGIS tutorial <qgis-tutorial>`).
 * Complete the {ref}`Telemac QGIS pre-processing tutorial <slf-prepro-tm>`.
-* An installation of {ref}`BlueKenue (also works on Linux, see the installation guide) <bluekenue>`
+* Installation of {ref}`BlueKenue (also works on Linux, see the installation guide) <bluekenue>`, and {ref}`Telemac <telemac-install>`.
 ```
 
-
+(tm-friction-qgis)=
 ## Roughness.XYZ with QGIS (recommended)
 
 The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the `QGIS pre-processing tutorial <tm-qgis-prepro>`: 
@@ -334,7 +334,42 @@ X Y k_st
 Download [`friction-pts.xyz`](https://github.com/hydro-informatics/telemac/raw/main/friction/friction-pts.xyz) and save it into the project folder, for instance, `/ProjectHome/friction-pts.xyz`.
 ```
 
-## Zonal Bottom Friction Assignment in BlueKenue
+## Alternative: Draw Friction Zones in BlueKenue
+
+This procedure is an imprecise alternative to the above-described `roughness.xyz` creation because of BlueKenue's weak geospatial referencing capacities, which is why the below {ref}`instruction box <bk-closed-fric-lines>` is only provided for completeness.
+
+````{admonition} Unfold to read this non-recommended alternative
+:class: note, dropdown
+:name: bk-closed-fric-lines
+
+Start with creating new closed lines ({numref}`Fig. %s <bk-new-closed-lines>`), similar to polygons delineating roughness zones. 
+
+```{figure} ../../img/telemac/bk-new-closed-lines.png
+:alt: bluekenue create closed line
+:name: bk-new-closed-lines
+:scale: 50%
+:align: left
+
+Settings in the Save Vector Layer as... popup window for exporting the friction points to an XYZ (tab-separated CSV) file.
+```
+
+```{figure} ../../img/telemac/bk-finalize-friction-cl.png
+:alt: bluekenue roughness friction closed line
+:name: bk-finalize-friction-cl
+:scale: 100%
+:align: right
+
+Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.
+```
+
+After drawing a *Closed line* is finished, press the `Esc` key and the window shown in {numref}`Fig. %s <bk-finalize-friction-cl>` will appear, where a roughness value can be assigned. The exemplary figure assigns a Strickler roughness of `50` in the **Value** field to a *Closed line* named `A-D_substrate`. Continue to assign names to all relevant roughness areas.
+
+Finally, **save** the *Closed line* objects as `.i2s` / `.i3s` files.
+````
+
+
+(bk-interpolate-fric-zones)=
+# Zonal Friction Mesh (BlueKenue)
 
 This section walks through the interpolation of friction values on an existing selafin (`.slf`) geometry file. The showcase builds on the `.slf` file created in the {ref}`Telemac pre-processing tutorial <slf-prepro-tm>` ([download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf)). Start with **opening BlueKenue** and open the selafin `.slf` file: click on **File** > **Open...** > navigate to the directory where the `.slf` is stored, make sure to select **Telemac Selafin File (\*.slf)**, highlight `qgismesh.slf`, and press **Open**. Pull the `BOTTOM (BOTTOM)` layer from the workspace data items to **Views** > **2D View (1)** to verify and visualize the correct import of the mesh ({numref}`Fig. %s <fric-bk-slf>`).
 
@@ -346,7 +381,8 @@ This section walks through the interpolation of friction values on an existing s
 The showcase qgismesh.slf selafin file opened in BlueKenue.
 ```
 
-### Import or Create Friction Zones
+(bk-import-friction)=
+## Import Friction Zones
 
 As an alternative to the creation of zonal friction values stored in a `.xyz` file generated with QGIS, zones can also be directly drawn in BlueKenue through a series of *Closed lines*. However, because of BlueKenue's very limited capacities to deal with geospatial references and coordinate systems (CRSs), **the preferable option** for creating friction zone input **is** the above-featured application of **QGIS**. 
 
@@ -382,33 +418,12 @@ The imported friction-pts.xyz file (created with QGIS) visualized in BlueKenue.
 ```
 ````
 
-````{tab-item} Create friction zones in BlueKenue
-
-Start with creating new closed lines ({numref}`Fig. %s <bk-new-closed-lines>`), similar to polygons delineating roughness zones.
-
-```{figure} ../../img/telemac/bk-new-closed-lines.png
-:alt: bluekenue create closed line
-:name: bk-new-closed-lines
-:scale: 50%
-:align: left
-
-Settings in the Save Vector Layer as... popup window for exporting the friction points to an XYZ (tab-separated CSV) file.
-```
-
-```{figure} ../../img/telemac/bk-finalize-friction-cl.png
-:alt: bluekenue roughness friction closed line
-:name: bk-finalize-friction-cl
-:scale: 100%
-:align: right
-
-Assign a friction (roughness) value (here: a Strickler roughness of 50) to the delineated area by the closed line.
-```
-
-After drawing a *Closed line* is finished, press the `Esc` key and the window shown in {numref}`Fig. %s <bk-finalize-friction-cl>` will appear, where a roughness value can be assigned. The exemplary figure assigns a Strickler roughness of `50` in the **Value** field to a *Closed line* named `A-D_substrate`. Continue to assign names to all relevant roughness areas.
+````{tab-item} Closed lines from BlueKenue
+If not yet done, import the *Closed lines* delineating roughness zones in the form of `.i2s` / `.i3s` files.
 ````
 `````
 
-### Interpolate Friction on the SLF Mesh
+## Interpolate Friction on the Mesh
 
 In BlueKenue, go to **File** > **New** > **2D Interpolator**, which will occur in the **Work Space** > **Data Items**. **Drag & drop** either the **friction-pts** `.xyz` points or the *Closed line* objects delineating roughness zones **on the new 2D Interpolator** (see {numref}`Fig. %s <bk-fric-2d-interpolator>`).
 
@@ -421,25 +436,53 @@ In BlueKenue, go to **File** > **New** > **2D Interpolator**, which will occur i
 Drag & drop the friction-pts (or closed lines) on a new 2D Interpolator in BlueKenue.
 ```
 
-```{figure} ../../img/telemac/bk-new-slf-variable.png
+
+
+Next, add a new variable to the `qgismesh.slf` mesh by highlighting the **Selafin `qgismesh`** object (in **Work Space** > **Data Items**), and **right-clicking** on it.  Click on **Add Variable...** and enter the following in the popup window ({numref}`Fig. %s <bk-new-slf-variable-fric>` or {numref}`Fig. %s <bk-new-slf-variable-fricID>`), depending on if you are working with friction values (as showcased here with Strickler roughness), or {ref}`friction IDs (see below) <tm-fricID>`:
+
+`````{tab-set}
+````{tab-item} BOTTOM FRICTION (Strickler) value
+```{figure} ../../img/telemac/bk-new-slf-variable-fric.png
 :alt: selafin add variable bluekenue roughness friction
-:name: bk-new-slf-variable
-:figclass: margin
+:name: bk-new-slf-variable-fric
+:scale: 100%
+:align: right
 
 
-Add a new Variable to the Selafin object.
+Add a new Variable to the Selafin object for direct friction values.
+```
+* **Mesh**: `BOTTOM`
+* **Name**: `BOTTOM FRICTION` (this example)
+* **Units**: keep clear (irrelevant field)
+* **Default Node Value**: `30` (in this example) for a default (Strickler) value to use when no xyz friction points can be found in the vicinity of a mesh node
+
+````
+
+````{tab-item} FRICTION ID
+```{figure} ../../img/telemac/bk-new-slf-variable-fricID.png
+:alt: selafin add variable bluekenue roughness friction
+:name: bk-new-slf-variable-fricID
+:scale: 100%
+:align: right
+
+
+Add a new Variable to the Selafin object for friction IDs.
 ```
 
-Next, add a new variable to the `qgismesh.slf` mesh:
+* **Mesh**: `BOTTOM`
+* **Name**: `FRIC_ID` (must be entered, cannot be selected from list)
+* **Units**: keep clear (irrelevant field)
+* **Default Node Value**: `0` (ID to use when no xyz points can be found in the vicinity of a mesh node)
 
-* In **Work Space** > **Data Items**, find the **Selafin `qgismesh`** object and **right-click** on it.
-* Click on **Add Variable...** and enter the following in the popup window ({numref}`Fig. %s <bk-new-slf-variable>`):
-  * **Mesh**: `BOTTOM`
-  * **Name**: `BOTTOM FRICTION`
-  * **Units**: `strickler` (or keep clear, irrelevant field)
-  * **Default Node Value**: `30` (default Strickler value to use when no friction points can be found)
- 
-To interpolate the friction values on the mesh, highlight the new variable variable `BOTTOM FRICTION` of the `qgismesh` object in **Work Space** > **Data Items**. With this new mesh variable highlighted, go to **Tools** > **Map Object...** (top menu in {numref}`Fig. %s <bk-map-2d-interpolator>`), select the **new 2D Interpolator**, and click **OK**, which opens the **Processing...** popup window. After the processing is completed, click **OK**.
+````
+`````
+
+To interpolate the friction values on the mesh, highlight the new variable variable `BOTTOM FRICTION` (or `FRIC_ID`) of the `qgismesh` object in **Work Space** > **Data Items**. The *Anonymous Attribute* of the new variable can be ignored. To map the new variable onto the mesh:
+
+* Highlight the new `BOTTOM FRICTION` (or `FRIC_ID`) mesh variable (in **Data Items**)
+* Go to **Tools** > **Map Object...** (top menu in {numref}`Fig. %s <bk-map-2d-interpolator>`)
+* Select the **new 2D Interpolator**, and click **OK**, which opens the **Processing...** popup window
+* After the processing is completed, click **OK**.
 
 ```{figure} ../../img/telemac/bk-map-2d-interpolator.png
 :alt: map object  2dinterpolator roughness friction bluekenue
@@ -452,7 +495,8 @@ Map the friction value on the new 2D Interpolator in BlueKenue.
 ```{figure} ../../img/telemac/bk-fric-colourscale.png
 :alt: bottom friction colourscale selafin bluekenue
 :name: bk-fric-colourscale
-:figclass: margin
+:scale: 100%
+:align: right
 
 Adjust the color scale for BOTTOM FRICTION.
 ```
@@ -472,13 +516,16 @@ Verify the correct interpolation:
 The correctly interpolated new BOTTOM FRICTION variable of the qgismesh.slf mesh.
 ```
 
-To **save** the selafin **mesh** with interpolated the interpolated friction values, **highlight the selafin object** (e.g., `qgismesh-friction`) and **click on the disk <img src="../../img/telemac/bk-sym-save.png"> symbol**.
+To **save** the selafin **mesh** with interpolated the interpolated friction values, **right-click** on the **qgismesh selafin object** > **Properties** > go to the **Meta Data** tab, and enter a new **Name**, for example, `qgismesh-friction`. Next, **highlight the selafin object** (e.g., `qgismesh-friction`) and **click on the disk <img src="../../img/telemac/bk-sym-save.png"> symbol**. If renaming did no take effect on the file name, confirm replacing the existing file.
 
 
 ```{admonition} Download qgismesh-friction.slf (with BOTTOM FRICTION)
 :class: tip
 Download the updated [qgismesh-friction.slf with BOTTOM FRICTION](https://github.com/hydro-informatics/telemac/raw/main/friction/qgismesh-friction.slf).
 ```
+
+
+# Telemac Bindings
 
 (zonal-fric-cas)=
 ## Implementation in the CAS File
@@ -531,7 +578,7 @@ MAXIMUM NUMBER OF FRICTION DOMAINS : 20 / default is 10
 ````
 
 
-### Initial Hotstart Conditions
+### Initial Hotstart Conditions (optional)
 
 **The following descriptions refer to section 4.1.3 in the {{ tm2d }}.**
 
@@ -572,7 +619,7 @@ Finally, comment out any initial conditions keywords in the `.cas` steering file
 / INITIAL DEPTH : 0.005
 ```
 
-## Run the Simulation with Friction Zones
+## Run Friction Zone Simulation
 
 Make sure all required files are placed in a simulation folder (e.g., `/HOME/modeling/friction-tutorial/`), notably:
 
@@ -683,33 +730,145 @@ The required [steady2d-zonal-ks.cas_2023-07-28-14h55min04s is available here](ht
 Load the simulation results file (`r2dsteady-ks-zonal.slf`) in QGIS to verify the correctness of the used bottom friction and look at the slight changes in flow velocity and water depth resulting from the now different roughness (friction) values.
 ```
 
+(tm-fricID)=
+# Working with Friction IDs
 
-## Working with Friction Tables
+The friction zones can also be assigned through friction IDs, which then require setting up a zones file and friction data file, for example, as showcased in the Donau example (`HOMETEL/examples/telemac2d/donau/`). 
 
-The friction zones can also be assigned through friction IDs, which then require setting up a zones file and friction data file, for example, as showcased in the Donau example (`HOMETEL/examples/telemac2d/donau/`)
+```{admonition} The Donau zonal friction ID example
+:class: tip
 
-In addition, Appendix E of the {{ tm2d }} provides explanations for the implementation of zonal friction values. Note that the proposed modification of the **FRICTION_USER** Fortran function (subroutine) is not mandatory. Here are some tips for when the FRICTION_USER subroutines must be enabled anyway (e.g., to implement a new roughness law, such as the {cite:t}`ferguson_flow_2007` equation):
+The BAW's Donau case study lives in `HOMETEL/examples/telemac2d/donau/` and it was presented at the XXth Telemac-Mascaret user conference. The conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with Telemac and algorithmic differentiation*). However, this case uses an unnecessary complication in the form of a `.bfr` zone file.
+```
 
-* The FICTION_USER subroutine can be found in `HOMETEL/sources/telemac2d/friction_user.f`.
-* To use a modified version, copy `friction_user.f` to a new subfolder called `/user_fortran/` in your simulation case folder.
-* Modify and save edits in `/your/simulation/case/user_fortran/friction_user.f`.
-* Tell the steering (`.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
+In the showcase of this tutorial, working with friction tables required assigning the friction IDs defined in {numref}`Tab. %s <tab-tm-fricID-zones>` to the `BOTTOM FRICTION` variable of the `.slf` mesh. The according files can be downloaded from our repositories:
 
-To activate a zones file through a friction data file, add the following keywords to the `.cas` steering file:
+* [get friction-with-IDs.xyz](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/friction-with-IDs.xyz) for interpolation in BlueKenue ({ref}`see above <bk-interpolate-fric-zones>`, or directly
+* [get qgismesh-frictionIDs.slf](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/qgismesh-frictionIDs.slf) with `BOTTOM` and `FRIC_ID` instead of `BOTTOM FRICTION` Strickler roughness coefficients (uses default friction ID `0`).
 
+## friction.tbl & CAS
+
+### Create friction.tbl
+
+Create a friction table file called `friction.tbl` (consider this [friction.tbl template](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/friction.tbl)) with the following content, where the `no` entries (here starting in line 36) must correspond to the `FRIC_ID` assigned to the mesh (recall {numref}`Fig. %s <bk-new-slf-variable-fricID>`):
+
+```{margin} More information
+
+Appendix E of the {{ tm2d }} provides more explanations on the tabular parameters (e.g., `typeB`, `rB`, or `nDefB`), and the friction laws (e.g., STRI, NIKU) are explained in more detail in this eBook in the steady-2d {ref}`section on friction <tm2d-friction>`. 
+```
+
+```{code-block} fortran
+---
+name: friction_tbl
+linenos: True
+caption: |
+    Example for a friction(.tbl) ID table.
+---
+* ----------------------------------------------------------------------------- 
+*  EXAMPLE ADAPTED FROM HOMETEL/examples/telemac2d/donau/
+*
+*  Implemented roughness laws: 
+*    NOFR : no friction         (number of values) 
+*    HAAL : Haaland   law       (1 value  : rB) 
+*    CHEZ : Chezy     law       (1 value  : rB) 
+*    STRI : Strickler law       (1 value  : rB) 
+*    MANN : Manning   law       (1 value  : rB) 
+*    NIKU : Nikuradse law       (1 value  : rB) 
+*    LOGW : Log Wall  law       (1 value  : rB) 
+*    COWH : Colebrook-White law (2 values : rB, nDef) 
+* 
+*  no             : FRIC_ID assigned to the SLF mesh
+* 
+*  Riverbed
+*  ------------- 
+*  typeB          : roughness law for riverbed
+*  rB             : friction value for riverbed
+*  nDefB          : Mannings n for shallow flow zones
+* 
+*  Later walls (only with k-epsilon model) 
+*  ----------------------------------------- 
+*  typeS          : roughness law for walls          (option) 
+*  rS             : friction value for walls         (option) 
+*  nDefS          : Mannings n for shallow waters    (option) 
+* 
+*  Non-submerged Vegetation (if needed) 
+*  ------------------------ 
+*  dp             : mean diameter                                (option) 
+*  sp             : averaged distance between roughness elements (option) 
+* 
+* ----------------------------------------------------------------------------- 
+* no        typeB  rB    NDefB  typeS  rS  NDefS   dp     sp 
+* 
+  0  STRI   33.0  NULL
+  1  STRI   34.6  NULL
+  2  STRI   27.7  NULL
+  3  STRI   40.3  NULL
+  4  STRI   22.7  NULL
+END 
+```
+
+### Link friction.tbl in CAS file
+
+To activate the friction data, add the following keywords to the `.cas` steering file, and deactivate any not-wall related FRICTION keywords:
+
+
+`````{tab-set}
+````{tab-item} Activation keywords
 ```fortran
 / steady2d-zonal-ks.cas steering file
 / ...
-/ Friction at the bed
+/ ACTIVATE these keywords
 FRICTION DATA : YES / default is NO
-FRICTION DATA FILE : 'BOTTOM FRICTION'
+FRICTION DATA FILE : 'friction.tbl'
+MAXIMUM NUMBER OF FRICTION DOMAINS : 20 / consider to increase (default is 10)
+```
+````
+````{tab-item} Deactivation keywords
+```fortran
+/ steady2d-zonal-ks.cas steering file
+/ ...
+/ DEACTIVATE these keywords
+/ LAW OF BOTTOM FRICTION : 3 / 3-Strickler
+/ FRICTION COEFFICIENT : 80 / not use with zonal friction
+```
+````
+`````
+
+Save the `.cas` steering file.
+
+## Run Telemac with Friction IDs
+
+To run Telemac with friction IDs, make sure the above-indicated keywords are activated in the `.cas` steering file. The required files now embrace:
+
+* [qgismesh-frictionIDs.slf](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/qgismesh-frictionIDs.slf) (mesh with `FRIC_ID`)
+* [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/boundaries.cli) or hotstart conditions
+* [r2dsteady-t15k.slf](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/r2dsteady-t15k.slf) results file to enable the hotstart 
+* [steady2d-zonal-ID.cas](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/steady2d-zonal-ID.cas) steering file updated keywords
+* [friction.tbl](https://github.com/hydro-informatics/telemac/raw/main/friction-with-IDs/friction.tbl) with friction IDs
+
+With these files, activate and run Telemac as usual:
+
+```
+cd ~/telemac/v8p4/configs
+source pysource.gfortranHPC.sh
+cd ~/modeling/frictionID-tutorial/
+telemac2d.py steady2d-zonal-ID.cas
 ```
 
 
-## Telemac Examples Cases
+# Advanced Friction Routines
 
-* The BAW's Donau case study that lives in `HOMETEL/examples/telemac2d/donau/` features the usage of a `*.bfr` **ZONES FILE**, and a `roughness.tbl` **FRICTION DATA FILE**. Zonal friction values are enabled through the `FRICTION DATA : YES` keyword in the `t2d_donau.cas` file. The Donau example was also presented at the XXth Telemac-Mascaret user conference and the conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with Telemac and algorithmic differentiation*).
-* Also, the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55) features friction zones.
+Modifying the **FRICTION_USER** Fortran subroutines is not mandatory for working with friction zones but can be useful for implementing or adapting the behavior of roughness laws. To activate a FRICTION_USER subroutine, for example, to implement the variable power equation from {cite:t}`ferguson_flow_2007`:
+
+* Copy the FICTION_USER subroutine template from  `HOMETEL/sources/telemac2d/friction_user.f` into a new folder of your simulation directory, for example:
+```
+/HOME/modeling/frictionID-tutorial/user_fortran/friction_user.f
+```
+* Modify and save edits of `friction_user.f`.
+* Tell the steering (`.cas`) file to use the modified FRICTION_USER Fortran file by adding the keyword `FORTRAN FILE : 'user_fortran'`, which makes Telemac2d look up Fortran files in the `/user_fortran/` subfolder.
+
+
+
 
 
 
