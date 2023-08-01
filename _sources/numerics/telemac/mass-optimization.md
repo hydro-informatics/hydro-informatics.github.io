@@ -1,11 +1,13 @@
 (tm-foc-mass)=
 # Mass Conservation
 
-```{admonition} Requirements
+```{admonition} Tips for modeling rivers
+:class: important
 
-This tutorial does not require running code, but we recommend to at least setting up a Telemac model, such as described in the {ref}`steady 2d tutorial <telemac2d-steady>`, which eases the understanding of concepts and terms.
+The workflows and tips shown in this chapter primarily refer to the numerical modeling of rivers with Telemac. Similar conditions might apply to lake estuaries, but other environments, such as coastal regions, will require different considerations for mass conservation.
 ```
 
+This tutorial does not require running code, but we recommend to at least setting up a Telemac model, such as described in the {ref}`steady 2d tutorial <telemac2d-steady>`, which eases the understanding of concepts and terms.
 
 (tm-foc-mass-workflow)=
 ## Workflow for Mass Conservation

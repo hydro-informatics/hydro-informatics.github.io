@@ -10,6 +10,12 @@ The liquid boundary conditions are overdetermined when too many parameters are p
 
 To deal with the problem of overdetermined boundary conditions and mass imbalance, the next sections first provide tips on correctly placing liquid boundaries geometrically, then recall the setup of a boundary file, the types of boundaries (i.e., values), and how they might affect the mass balance.
 
+```{admonition} Tips for modeling rivers
+:class: important
+
+The workflows and tips shown in this chapter primarily refer to the numerical modeling of rivers with Telemac. Similar conditions might apply to lake estuaries, but other environments, such as coastal regions, will require different considerations for defining boundary conditions.
+```
+
 (tm-foc-draw-bc)=
 ## Draw Liquid Boundaries
 

@@ -16,6 +16,7 @@ Similar to the assignment of multiple friction coefficient values to multiple mo
 * Installation of {ref}`BlueKenue (also works on Linux, see the installation guide) <bluekenue>`, and {ref}`Telemac <telemac-install>`.
 ```
 
+
 (tm-friction-qgis)=
 ## Roughness.XYZ with QGIS (recommended)
 
