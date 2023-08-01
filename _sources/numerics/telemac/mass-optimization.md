@@ -13,17 +13,21 @@ This tutorial does not require running code, but we recommend to at least settin
 With the understanding of boundary conditions, a Telemac model can be robustly built according to the following workflow:
 
 1. Make sure to {ref}`draw liquid boundaries according to the recommendations in the section on boundaries <tm-foc-draw-bc>`.
-1. Use `4 5 5` upstream (prescribed Q) and a `5 4 4` downstream (prescribed H) boundaries in the `.cli` file to prescribe **steady** discharges through the `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVATIONS` keywords, respectively in the steering (`.cas`) file.
+1. For a **dry-initialized model** (e.g., in the {ref}`steady 2d tutorial <telemac2d-steady>`), use `5 5 5` upstream (prescribed Q and H) and a `5 4 4` downstream (prescribed H) boundaries in the `.cli` file to prescribe **steady** discharges through the `PRESCRIBED FLOWRATES` and `PRESCRIBED ELEVATIONS` keywords, respectively in the steering (`.cas`) file.
+   * A `4 5 5` upstream (prescribed Q) boundary can cause simulation crashes because of supercritical flow conditions resulting from zero water depth and non-zero flow velocity (recall the {term}`definition of the Froude number <Froude number>`) at the concerned boundary.
+   * The `5 5 5` boundary of the dry-initialized model requires a well defined {term}`stage-discharge relation <Stage-discharge relation>` that can be established according to the {ref}`1d hydraulics Python exercise <ex-1d-hydraulics>` and the resulting optimum value for the **ROUGHNESS COEFFICIENT OF BOUNDARIES** keyword in the steering file (see below).
+   * For a **wet-initialized** (i.e., {ref}`hotstarted <tm2d-hotstart>`) model, as described in the {ref}`unsteady 2d simulation tutorial< tm2d-hotstart>`, **use a `4 5 5` upstream (prescribed Q)** along with a `5 4 4` downstream (prescribed H) boundary to avoid overdetermined conditions. However, once robustly determined, never modify the **ROUGHNESS COEFFICIENT OF BOUNDARIES** keyword in the steering file (see below).
+   * If necessary, modify boundaries in the `.cli` file along with the correct keywords in the steering (`.cas`) file. For more details refer to {ref}`our tutorial on editing boundaries <tm-edit-bc>`.
 1. Use the following keywords to prescribe roughness coefficients at the boundaries that correspond to **measured {term}`stage-discharge relation <Stage-discharge relation>`** and back-calculated cross-section averaged hydraulics:
-   * `LAW OF FRICTION ON LATERAL BOUNDARIES` (integer)
-   * `ROUGHNESS COEFFICIENT OF BOUNDARIES` (float)
+   * **LAW OF FRICTION ON LATERAL BOUNDARIES (integer)**
+   * **ROUGHNESS COEFFICIENT OF BOUNDARIES (float)**
    * To back-calculate a roughness (friction) coefficient corresponding to a measured pair of water depth and discharge, take a look at the {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>` formula.
    * *<span style="color: #41C639 ">Note that **not using these keywords** will make any roughness calibration **affect the mass balance**.</span>*
-1. Run steady simulations with `PRESCRIBED FLOWRATES` corresponding to discharges for which hydraulic (e.g., water depth and flow velocity) **measurements** are available to **calibrate the roughness** (i.e., `FRICTION`).
-   * Any initial steady state simulation should run sufficiently long ($\geq$ 10$^4$ timesteps) to reach mass convergence, that is, close-to equal inflows and outflows written through the `MASS-BALANCE : YES` keyword.
+1. Run steady simulations with **PRESCRIBED FLOWRATES** corresponding to discharges for which hydraulic (e.g., water depth and flow velocity) **measurements** are available to **calibrate the roughness** (i.e., **FRICTION**).
+   * Any initial steady state simulation should run sufficiently long ($\geq$ 10$^4$ timesteps) to reach {ref}`mass convergence <tm-convergence>`, that is, close-to equal inflows and outflows written through the **MASS-BALANCE : YES** keyword.
    * The roughness should be preferably defined specifically for zones with equal terrain attributes (e.g., *cobble*, *sand bar*, or *vegetation*), as described in the spotlight focus on {ref}`defining roughness zones <tm-friction-zones>`. As a result, simulated and measured water depths (or water surface elevations) and flow velocities should be in similar ranges (not more than $\pm$0.10 m difference).
 1. Use the calibrated model for your purposes with hotstart conditions:
-   * The `PRESCRIBED FLOWRATES` keyword in the `.cas` file is sufficient to calculate physical {ref}`habitat suitability indices <hsi-def-ex>` for specific discharges.
+   * The **PRESCRIBED FLOWRATES** keyword in the `.cas` file is sufficient to calculate physical {ref}`habitat suitability indices <hsi-def-ex>` for specific discharges.
    * Define unsteady inflows through a hydrograph file, such as `inflows.liq` used in the {ref}`unsteady 2d <tm2d-liq-file>` tutorial.
 
 
@@ -31,7 +35,7 @@ With the understanding of boundary conditions, a Telemac model can be robustly b
 :class: tip
 :name: fv-tip
 
-Have a look at Telemac's finite volume scheme, which is better in preserving mass balance, and does not require dealing with `TIDAL FLATS`. It can be activated by setting the keyword:
+Have a look at Telemac's finite volume scheme, which is better in preserving mass balance, and does not require dealing with **TIDAL FLATS**. It can be activated by setting the following keywords:
 
 ```fortran
 / steering .cas file
@@ -56,7 +60,7 @@ Read more about the finite volume scheme in section 7.2.2 of the {{ tm2d }}, and
 (tm-foc-mass-keywords)=
 ## Additional Steering File Keywords 
 
-During a simulation, the mass balance can be observed by activating the `MASS BALANCE` keyword in the steering file, which, however, **does not enforce mass balance**:
+During a simulation, the mass balance can be observed by activating the **MASS BALANCE** keyword in the steering file, which, however, **does not enforce mass balance**:
 
 ```fortran
 / steering .cas file
@@ -91,5 +95,5 @@ In addition, the `MINIMUM VALUE OF DEPTH` keyword may be increased from its defa
 
 To increase computing speed, some tutorials recommend using mass lumping, which, however, negatively affect mass conservation:
 
-* Avoid `MASSING LUMPING ...` keywords: they introduce incorrect smoothing.
-* Keep the default value for `H CLIPPING` because modifications impair mass conservation.
+* Avoid **MASSING LUMPING ...** keywords: they introduce incorrect smoothing.
+* Keep the default value for **H CLIPPING** because modifications impair mass conservation.

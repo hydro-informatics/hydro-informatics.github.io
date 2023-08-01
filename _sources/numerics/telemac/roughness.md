@@ -738,7 +738,7 @@ The friction zones can also be assigned through friction IDs, which then require
 ```{admonition} The Donau zonal friction ID example
 :class: tip
 
-The BAW's Donau case study lives in `HOMETEL/examples/telemac2d/donau/` and it was presented at the XXth Telemac-Mascaret user conference. The conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with Telemac and algorithmic differentiation*). However, this case uses an unnecessary complication in the form of a `.bfr` zone file.
+The BAW's Donau case study lives in `HOMETEL/examples/telemac2d/donau/` and it was presented at the XXth Telemac-Mascaret user conference. The conference proceedings are available at the BAW's [HENRY portal](https://hdl.handle.net/20.500.11970/100418) (look for the contribution *Reverse engineering of initial & boundary conditions with Telemac and algorithmic differentiation*). However, this case uses an unnecessary complication in the form of a `.bfr` zone file. The geospatial reference system of this example is EPSG 31468 (GK4) (see [this post in the Telemac Forum](http://opentelemac.org/index.php/kunena/16-telemac-2d/14284-coordinate-reference-systems-and-projections-of-examples-e-g-donau#43037)).
 ```
 
 In the showcase of this tutorial, working with friction tables required assigning the friction IDs defined in {numref}`Tab. %s <tab-tm-fricID-zones>` to the `BOTTOM FRICTION` variable of the `.slf` mesh. The according files can be downloaded from our repositories:

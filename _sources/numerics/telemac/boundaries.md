@@ -29,7 +29,7 @@ The red highlighted part of this qualitative cross section should be defined as 
 
 
 (tm-foc-unpack-bc)=
-## Understand Boundaries.Cli
+## The Structure of Boundaries.Cli
 
 The steady 2d, unsteady 2d, and tutorials showcase the different types of boundaries using prescribed discharge (`Q`) and/or water depth (`H`), which are implemented into a boundaries `.cli` file consisting of 13 space (tab) - separated colons:
 
@@ -180,10 +180,10 @@ Also, these values can be assigned to column 8 (LITBOR/LIEBOR) of the `.cli` fil
   - {ref}`Stream gauges <tm2d-bounds>` (rather avoid)
 ```
 
-
+(tm-edit-bc)=
 ## Edit Boundary.Cli to Change Conditions
 
-To view or edit the type of boundary conditions, open the `.cli` file with a text editor (read more about {ref}`text editors <npp>`). Typically, most of the rows will hold the value combination `2 2 2` in columns 1-3, that is, they are solid boundaries. The liquid boundary rows start with `4` or `5` as listed in {numref}`Tab. %s <bc-defs-tm>`. Every row in the `.cli` file represents a node of the mesh, and neighboring rows represent neighboring mesh nodes. For instance, the node described in row 435 of a `.cli` file is geospatially located directly between the boundary nodes described in lines 434 and 436 of the `.cli` file. Since the definitions in the `.cli` file are purely geometric or geometric attributes, additional hydraulic attributes must be prescribed or linked in the steering (`.cas`) file. Thus, the Telemac steering file controls how much water is flowing through the liquid boundaries, and/or the water depth/surface elevation with the following keywords:
+To view or edit the type of boundary conditions, open the `.cli` file with a text editor (read more about {ref}`text editors <npp>`). Typically, most of the rows will hold the value combination `2 2 2` in columns 1-3, that is, they are solid boundaries. The liquid boundary rows start with `4` or `5` as listed in {numref}`Tab. %s <bc-defs-tm>`. Every row in the `.cli` file represents a node of the mesh, and neighboring rows represent neighboring mesh nodes. For instance, the node described in row (line) 435 of a `.cli` file is geospatially located directly between the boundary nodes described in lines 434 and 436 of the `.cli` file. Since the definitions in the `.cli` file are purely geometric or geometric attributes, additional hydraulic attributes must be prescribed or linked in the steering (`.cas`) file. Thus, the Telemac steering file controls how much water is flowing through the liquid boundaries, and/or the water depth/surface elevation with the following keywords:
 
 ```fortran
 / Keywords in a .cas steering file
@@ -193,9 +193,9 @@ PRESCRIBED FLOWRATES  : 0 ; 118.0
 / PRESCRIBED DEPTH : 1.0 ; 1.0 / not use simultaneously with PRESCRIBED ELEVATIONS
 ```
 
-Alternatives to these keywords can be found in the {ref}`unsteady 2d <tm2d-liq-file>` and {ref}`Gaia <gaia-bc>` tutorials, or section 4.2 of the {{ tm2d }}. Note that every `PRESCRIBED ...` row holds to `;` separated values. The first and second values apply to the first and second boundaries defined in the `.cli` file. If one of these values is `0` (e.g., the second ELEVATION and the first FLOWRATE boundary), Telemac will treat it as a free (`4`) liquid boundary. Now, how can we tell what the first and second, or even third, fourth, etc. boundaries are?
+Alternative usages of these keywords can be found in the {ref}`unsteady 2d <tm2d-liq-file>` and {ref}`Gaia <gaia-bc>` tutorials, or section 4.2 of the {{ tm2d }}. Note that every `PRESCRIBED ...` row separates values for each liquid boundary with a `;` sign. Notably, the first and second values apply to the first and second boundaries defined in the `.cli` file, counting from the top of the `.cli` file (see next paragraph). If one of these values is `0` (e.g., the second ELEVATION and the first FLOWRATE boundary), Telemac will treat it as a free (`4`) liquid boundary.
 
-The order of boundaries can be found in the `.cli` file: the first liquid boundary (i.e., the first row starts with either `4` or `5`) is the first liquid boundary. Because the mesh generator placed neighboring nodes in neighboring rows, the boundary lines are defined in neighboring rows, too. The below box features an example of a downstream boundary defined between nodes 7-12 (global IDs 144-9818). Further down in the `.cli` file, another liquid boundary (e.g., `4 5 5`) might be found to define upstream inflows. In this case, the downstream boundary is boundary 1 and the upstream boundary is boundary 2, and both are accordingly prescribed in the steering (`.cas`) file.
+The order of boundaries can be found in the `.cli` file: the first node sequence where rows (lines) start with either `4` or `5` (or `6`) is the first liquid boundary. Because the mesh generator placed neighboring nodes in neighboring rows, the boundary lines are defined in neighboring rows, too. The below box features an example of a downstream boundary defined between nodes 7-12 (global IDs 144-9818). Further down in the `.cli` file, another liquid boundary (e.g., `4 5 5`) might be found to define upstream inflows. In this case, the downstream boundary is boundary 1 and the upstream boundary is boundary 2, and both are accordingly prescribed in the steering (`.cas`) file.
 
 ````{admonition} Example of a downstream 5 4 4 (prescribed H) boundary defined in a .cli file
 :class: tip
@@ -213,17 +213,11 @@ The order of boundaries can be found in the `.cli` file: the first liquid bounda
 ```
 ````
 
-The `5 4 4` boundary condition in the {ref}`above example <cli-example>` may result in the mass balance not being fulfilled because discharge at the model outlet (downstream boundary) is calculated as a function of water depth. To conserve the mass balance, a `4 5 5` (prescribed Q) boundary condition can be used instead of the `5 4 4` boundary condition (at both upstream and downstream boundaries):
 
-1. With the `.cli` file opened in a text editor, find and replace `5 4 4` value combinations with `4 5 5`. Then, save the `.cli` file.
-1. With the steering (`.cas`) file opened in a text editor, comment out any `PRESCRIBED DEPTH` or `PRESCRIBED ELEVATIONS` keywords. Make sure that `PRESCRIBED FLOWRATES` are defined (i.e., not zero) at all liquid boundaries and that the sum of inflow and outflow fluxes is equal. For example:
+## Boundaries & Convergence
 
-```fortran
-/ Keywords in a .cas steering file
-/ PRESCRIBED ELEVATIONS : 518.20 ; 0
-PRESCRIBED FLOWRATES  : 118.0 ; 118.0
-```
+The prescription of `5 4 4` (H only), `4 5 5` (Q only), or `5 5 5` (Q and H) boundary conditions in the {ref}`above example <cli-example>` may result in numerical instabilities of a dry-initialized simulation, or unbalanced inflows and outflows.
 
-## Verify Convergence
+To verify mass conservation, refer to the next section on {ref}`quantitative convergence <tm-convergence>` analysis of fluxes across (or through) the liquid boundaries.
 
-The next section on the {ref}`quantitative convergence <tm-convergence>` features the analysis of fluxes across (or through) the liquid boundaries.
+To troubleshoot mass convergence issues, have a look at our {ref}`workflow for mass conservation <tm-foc-mass-workflow>`.
