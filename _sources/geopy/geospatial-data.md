@@ -5,8 +5,10 @@
 Use {ref}`qgis-install` to display geospatial data and to create maps in *PDF* or image formats (e.g., *tif*, *png*, *jpg*). In addition, the {ref}`qgis-tutorial` provides an easy and interactive walk through geospatial analyses.
 ```
 
+```{admonition} Geodata explained on YouTube
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/lJUvZv5ts3U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Watch this section as a video on the <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Watch this section as a video on the <a href="hhttps://www.youtube.com/@hydroinformatics">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+```
 
 ## Geodata Sources
 Geospatial data can be retrieved for various purposes from different sources. Here are some of them:
