@@ -803,8 +803,8 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 </div>
 </aside>
 <p>To determine the timestep at which a steady simulation can be considered to have reached a stable state, we want to observe when <span class="math notranslate nohighlight">\(\iota\)</span> = 1 and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 indicate sublinear convergence. That is, we look for the timestep <span class="math notranslate nohighlight">\(t\)</span> above which each additional timestep <span class="math notranslate nohighlight">\(t+1\)</span> only insignificantly improves the model precision (read more on the term <em>insignificant</em> in the <a class="reference internal" href="#tm-target-conv"><span class="std std-ref">below section</span></a>). Thus, assuming that the model convergences in any form, we can set <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 to compute <span class="math notranslate nohighlight">\(\iota (t)\)</span> as a function of <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7628ac90-51cd-47f2-a527-93fab9e03640">
-<span class="eqno">(20)<a class="headerlink" href="#equation-7628ac90-51cd-47f2-a527-93fab9e03640" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-af5995d5-08fb-40e2-b1ca-ef2d8a50fb0e">
+<span class="eqno">(20)<a class="headerlink" href="#equation-af5995d5-08fb-40e2-b1ca-ef2d8a50fb0e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \label{estimate_convergence}
 \frac{\varepsilon_{t+1}}{\varepsilon^{\iota(t)}_{t}} &amp;=c_{\varepsilon} &amp; \Leftrightarrow \\
 \iota(t) &amp;=  \frac{1}{c_{\varepsilon}} \cdot \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp; \overbrace{\Longleftrightarrow }^{c_{\varepsilon} = 1}\\

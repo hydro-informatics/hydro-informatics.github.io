@@ -305,14 +305,14 @@ RANS
   where subscript $_j$ is analogous to $_k$, $t$ denotes time, $p$ is pressure, and $\mu$ is the dynamic viscosity (of water). The terms I to X have the following meanings:
 
   * I local derivative of (time) averaged momentum
-  * II local derivative of averaged momentum fluctuation
+  * <font color='orange'>II local derivative of averaged momentum fluctuation</font>
   * III mean {term}`advection <Advection>` of averaged momentum
-  * IV mean {term}`advection <Advection>` of momentum fluctuation (in $_k$ direction)
-  * V mean {term}`advection <Advection>` of momentum fluctuation (in $_j$ direction)
+  * <font color='orange'>IV mean {term}`advection <Advection>` of momentum fluctuation (in $_k$ direction)</font>
+  * <font color='orange'>V mean {term}`advection <Advection>` of momentum fluctuation (in $_j$ direction)</font>
   * VI averaged pressure
   * VII viscous diffusion
   * VIII Reynolds stress
-  * IX turbulent {term}`diffusion <Diffusion>` (i.e., turbulent transport of momentum fluctuation)
+  * <font color='orange'>IX turbulent {term}`diffusion <Diffusion>` (i.e., turbulent transport of momentum fluctuation)</font>
   * X average body force / gravity
 
   The <font color='orange'>orange-color</font> terms involve <font color='orange'>density fluctuation</font>, and thus, <font color='orange'>cancel out</font> when using the {term}`Boussinesq approximation`. In term VIII, $\overline{u'_k u'_j}$ denotes the Reynolds stress tensor, which is an additional stress that results from Reynolds averaging, and poses a closure problem. To this end, the (in)famous $k$-$\epsilon$ model is often used, where $k$ denotes the {term}`turbulent kinetic energy <Turbulent kinetic energy>` and $\epsilon$ its dissipation rate.

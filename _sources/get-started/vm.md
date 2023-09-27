@@ -489,6 +489,8 @@ On top of wine, the currently maybe best available frameworks is [PlayOnLinux](h
 sudo apt install winbind playonlinux winetricks -y 
 ```
 
+Note that `winbind` is required to correctly pass on Windows login information for licensed software such as MS Office.
+
 After the installation, go to the system **Menu** > **Applications** > search for *PlayOnLinux*. Before continuing, setup a wine version to use by clicking on **Tools** > **Manage Wine Versions**. Most applications now run on 64 bit architectures, so adding the newest amd64 Wine version might be a good choice. After installing a wine version, click on the **Configure** button in the main window to select a wine configuration to use and click on **New** to setup an environment (e.g., **HYINFO-ENVIRONMENT**. Follow the installation instructions.
 
 The **+Install** button opens a pop-up window with a search box to look for Windows applications that can be directly installed. Additionally, on the bottom of the pop-up window, the **Install a non-listed program** option enables to install other Windows installers, which are not listed. During the first installation of a Windows application, PlayOnLinux shows a couple of **messages with very important information - take the time to read them**.
