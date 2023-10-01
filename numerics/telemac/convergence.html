@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,8 +39,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -803,8 +803,8 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 </div>
 </aside>
 <p>To determine the timestep at which a steady simulation can be considered to have reached a stable state, we want to observe when <span class="math notranslate nohighlight">\(\iota\)</span> = 1 and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 indicate sublinear convergence. That is, we look for the timestep <span class="math notranslate nohighlight">\(t\)</span> above which each additional timestep <span class="math notranslate nohighlight">\(t+1\)</span> only insignificantly improves the model precision (read more on the term <em>insignificant</em> in the <a class="reference internal" href="#tm-target-conv"><span class="std std-ref">below section</span></a>). Thus, assuming that the model convergences in any form, we can set <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 to compute <span class="math notranslate nohighlight">\(\iota (t)\)</span> as a function of <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af5995d5-08fb-40e2-b1ca-ef2d8a50fb0e">
-<span class="eqno">(20)<a class="headerlink" href="#equation-af5995d5-08fb-40e2-b1ca-ef2d8a50fb0e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5c3d082c-19e2-4483-b01f-cae797d506ee">
+<span class="eqno">(20)<a class="headerlink" href="#equation-5c3d082c-19e2-4483-b01f-cae797d506ee" title="Permalink to this equation">#</a></span>\[\begin{align}
 \label{estimate_convergence}
 \frac{\varepsilon_{t+1}}{\varepsilon^{\iota(t)}_{t}} &amp;=c_{\varepsilon} &amp; \Leftrightarrow \\
 \iota(t) &amp;=  \frac{1}{c_{\varepsilon}} \cdot \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp; \overbrace{\Longleftrightarrow }^{c_{\varepsilon} = 1}\\
@@ -939,7 +939,10 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="boundaries.html"
@@ -959,7 +962,10 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -986,7 +992,7 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1016,7 +1022,7 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1025,8 +1031,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari, Ricardo Barros
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
