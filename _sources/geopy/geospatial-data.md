@@ -7,7 +7,7 @@ Use {ref}`qgis-install` to display geospatial data and to create maps in *PDF* o
 
 ```{admonition} Geodata explained on YouTube
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/lJUvZv5ts3U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Watch this section as a video on the <a href="hhttps://www.youtube.com/@hydroinformatics">@Hydro-Morphodynamics channel on YouTube</a>.</p>
+<p>Watch this section as a video on the <a href="https://www.youtube.com/@hydroinformatics">@Hydro-Morphodynamics channel on YouTube</a>.</p>
 ```
 
 ## Geodata Sources
@@ -23,7 +23,7 @@ Geospatial data can be retrieved for various purposes from different sources. He
 * [LiDAR](https://oceanservice.noaa.gov/facts/lidar.html) data can be found at [opentopography.org](https://opentopography.org/).
 * Climatological data are provided by [NASA Earth Observation](https://neo.sci.gsfc.nasa.gov/).
 * Meteorological (e.g., temperature or precipitation) and real-time satellite data are available at [wunderground.com](https://www.wunderground.com/) and its [wundermap](https://www.wunderground.com/wundermap).
-* Climate and meteorological data and forecasts are available at [cds.climate.copernicus.eu][https://cds.climate.copernicus.eu], including, for example, ERA5 monthly averaged temperature data
+* Climate and meteorological data and forecasts are available at [cds.climate.copernicus.eu](https://cds.climate.copernicus.eu), including, for example, ERA5 monthly averaged temperature data
 * Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([go to their GitHub archive](https://globalmaps.github.io/)).
 
 ## Visualization

@@ -10,8 +10,6 @@ For the visualization of geodata (`.shp` and `.tif` files), GIS software is requ
 ### Install QGIS on Windows
 Download and install the latest version of [QGIS](https://www.qgis.org/en/site/forusers/download.html) for Windows. Even though the developers recommend installing QGIS through *OSGeo4W*, this pathway for installation is not recommended for working with the *hydro-informatics* eBook (many plugin errors and outdated library dependencies). Therefore, **preferably download and use the latest QGIS Standalone Installer**.
 
-
-
 ### Install QGIS on Linux (via Flatpak)
 
 The QGIS developers provide detailed installation instructions for several *Linux* distributions, but the instructions will not satisfy all requirements for the use of QGIS described in this eBook. One of the most functional ways for installing QGIS on *Linux* is to use [Flatpak](https://flathub.org/apps/details/org.qgis.qgis), which requires some system preparation. On *Debian*-based *Linux* platforms (e.g., all sorts of *Ubuntu* such as *Lubuntu* or *Mint*) open *Terminal* and tap (the second line is only needed if you use *GNOME*):
@@ -28,8 +26,6 @@ The *QGIS Flatpak* installation will most likely not include the important *scip
 <br>`flatpak run --command=pip3 org.qgis.qgis install scipy --user`
 
 This solution has been tested on *Linux Ubuntu* and *Linux Mint*. It potentially also works with *Red Hat*, *openSUSE*, *Mac OS*, *Arch*, *Fedora*, *Android*, *Debian*, *Kubuntu* and many more (read installation guides on the [maintainer's website](https://flatpak.org/setup/)). Read more about the *QGIS Flatpak* installation on the [QGIS website](https://qgis.org/en/site/forusers/alldownloads.html#flatpak).
-
-
 
 ### Install QGIS on macOS
 
