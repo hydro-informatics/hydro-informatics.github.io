@@ -6,8 +6,8 @@ Traditionally, dimensional analysis were used to derive insights from different 
 ## The Nature of Data
 
 ```{admonition} Under construction - incomplete instructions
-:class: error
-We differentiat between data in the form of nominal, ordinal, interval, and ratio representations (cf. MA Negreiros chpt 2.1.1).
+:class: warning
+We differentiate between data in the form of nominal, ordinal, interval, and ratio representations (cf. MA Negreiros chpt 2.1.1).
 ```
 
 

@@ -723,10 +723,30 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </div>
 <p>Shapefiles can also be created and drawn in QGIS and the following figures guide through the procedure of creating a polygon shapefile. We will not need the resulting shapefile in this section anymore, but later for making it interact with raster datasets.</p>
 <p>The first step to making a shapefile with QGIS is obviously to run QGIS and create a new project. The following example uses water depth and flow velocity raster data as background information to delineate the so-called <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0169555X14000099"><em>morphological unit</em> of <em>slackwater</em></a>. Both the water depth and flow velocity rasters are part of the <a class="reference external" href="https://github.com/RiverArchitect/SampleData/archive/master.zip"><em>River Architect</em> sample datasets</a> (precisely located at <a class="reference external" href="https://github.com/RiverArchitect/SampleData/tree/master/01_Conditions/2100_sample"><code class="docutils literal notranslate"><span class="pre">RiverArchitect/SampleData/01_Conditions/2100_sample/</span></code></a>). After downloading the sample data, they can be imported in QGIS by dragging the files from the <strong>Browser</strong> panel into the <em>Layers</em> panel. Then:</p>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-create-shp.png" />
-<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-new-shp.png" />
-<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-toggle-editing.png" />
-<img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-draw-polygon.png" /></p>
+<figure class="align-default" id="qgis-create-shp-py">
+<img alt="qgis create new shapefile" src="../_images/qgis-create-shp.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">QGIS: Create Layer &gt; New Shapefile Layer…</span><a class="headerlink" href="#qgis-create-shp-py" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="qgis-new-shp-py">
+<img alt="qgis define new shapefile" src="../_images/qgis-new-shp.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 45 </span><span class="caption-text">Define New Shapefile Layer</span><a class="headerlink" href="#qgis-new-shp-py" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="qgis-toggle-editing-py">
+<img alt="qgis shapefile toggle-editing" src="../_images/qgis-toggle-editing.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 46 </span><span class="caption-text">Enable shapefile editing</span><a class="headerlink" href="#qgis-toggle-editing-py" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="qgis-draw-polygon-py">
+<img alt="qgis draw polygon shapefile" src="../_images/qgis-draw-polygon.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 47 </span><span class="caption-text">Draw polygons in a shapefile in QGIS.</span><a class="headerlink" href="#qgis-draw-polygon-py" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="get-and-set-shapefile-projections">
 <span id="prj-shp"></span><h2>Get and Set Shapefile Projections<a class="headerlink" href="#get-and-set-shapefile-projections" title="Permalink to this headline">#</a></h2>
@@ -1035,7 +1055,12 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </div>
 </div>
 <p>The resulting <code class="docutils literal notranslate"><span class="pre">rivers.shp</span></code> shapefile can be imported in QGIS along with a DEM from the <a class="reference external" href="http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip">Natural Earth quick start kit</a>.</p>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-rivers.png" /></p>
+<figure class="align-default" id="qgis-rivers-py">
+<img alt="river map shapefile" src="../_images/qgis-rivers.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 48 </span><span class="caption-text">The river names bound to points in a point shapefile shown in QGIS.</span><a class="headerlink" href="#qgis-rivers-py" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="multiline-polyline-shapefile">
 <span id="line-create"></span><h2>Multiline (Polyline) Shapefile<a class="headerlink" href="#multiline-polyline-shapefile" title="Permalink to this headline">#</a></h2>
@@ -1088,7 +1113,12 @@ The command <code class="docutils literal notranslate"><span class="pre">shp_dri
 </div>
 </div>
 <p>The resulting <code class="docutils literal notranslate"><span class="pre">rhine_proxy.shp</span></code> shapefile can be imported in QGIS along with a DEM and the cities point shapefile from the <a class="reference external" href="http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip">Natural Earth quick start kit</a>.</p>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/qgis-rhine.png" /></p>
+<figure class="align-default" id="qgis-rhine-py">
+<img alt="rhine line shapefile" src="../_images/qgis-rhine.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">The line approximating the Rhine river in QGIS.</span><a class="headerlink" href="#qgis-rhine-py" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="polygon-shapefile">
 <span id="poly-create"></span><h2>Polygon Shapefile<a class="headerlink" href="#polygon-shapefile" title="Permalink to this headline">#</a></h2>

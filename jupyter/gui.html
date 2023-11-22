@@ -663,8 +663,13 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first.png" /></p>
-<p>After calling the <code class="docutils literal notranslate"><span class="pre">mainloop()</span></code> method the window is in a <em>wait</em> state. That means, the window is waiting for <code class="docutils literal notranslate"><span class="pre">events</span></code> being triggered through user action (e.g., a click on a button). This is called <em>event-driven programming</em>, where <em>event handlers</em> are called rather than a single linear flow in the form of a sequence of (Python) commands.</p>
+<figure class="align-default" id="py-tk-first">
+<img alt="python GUI tkinter" src="../_images/py-tk-first.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">The resulting GUI.</span><a class="headerlink" href="#py-tk-first" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>After calling the <code class="docutils literal notranslate"><span class="pre">mainloop()</span></code> method the window is in a <em>wait</em> state. That means the window is waiting for <code class="docutils literal notranslate"><span class="pre">events</span></code> being triggered through user action (e.g., a click on a button). This is called <em>event-driven programming</em>, where <em>event handlers</em> are called rather than a single linear flow in the form of a sequence of (Python) commands.</p>
 <p>For now, our window uses default values, for instance, for the window title, size, and background color. These window properties can be modified with the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">minsize</span></code> or <code class="docutils literal notranslate"><span class="pre">maxsize</span></code>, and <code class="docutils literal notranslate"><span class="pre">configure</span></code> attributes of the <code class="docutils literal notranslate"><span class="pre">top</span></code> parent window:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -680,7 +685,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-first-config.png" /></p>
+<figure class="align-default" id="py-tk-first-config">
+<img alt="python GUI tkinter with label config" src="../_images/py-tk-first-config.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">The configured GUI.</span><a class="headerlink" href="#py-tk-first-config" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="add-a-button-to-call-a-function">
 <span id="add-button"></span><h2>Add a Button to Call a Function<a class="headerlink" href="#add-a-button-to-call-a-function" title="Permalink to this headline">#</a></h2>
@@ -705,7 +715,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-button.png" /></p>
+<figure class="align-default" id="py-tk-button">
+<img alt="python GUI tkinter with button" src="../_images/py-tk-button.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">The GUI with a button calling an infobox.</span><a class="headerlink" href="#py-tk-button" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">command</span></code> keyword receives a <a class="reference internal" href="pyfun.html#lambda"><span class="std std-ref">lambda</span></a> function that links to the <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function. Why do we need this complication? The answer is that the <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function would be automatically triggered with the <code class="docutils literal notranslate"><span class="pre">mainloop()</span></code> method if we were not using a <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function.</p>
@@ -714,7 +729,7 @@ document.write(`
 <section id="a-vanilla-tkinter-program">
 <h2>A Vanilla <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> Program<a class="headerlink" href="#a-vanilla-tkinter-program" title="Permalink to this headline">#</a></h2>
 <p>The above code blocks instantiate <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> objects (<em>widgets</em>) in non-object-oriented script style. However, when we write a GUI, we most likely want to start an application (<em>App</em>) by running the script. This is why <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets are usually created as objects of custom classes that typically inherit from <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>. Therefore, the following code block recasts the previous example into an object-oriented code with the template from the <a class="reference internal" href="classes.html#template"><span class="std std-ref">section on Python classes</span></a>.</p>
-<p>The below example creates a <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code>, which is a child of <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (<code class="docutils literal notranslate"><span class="pre">tkinters</span></code> <em>master</em> frame). The initialization method <code class="docutils literal notranslate"><span class="pre">__init__</span></code> needs to invoke <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">pack()</span></code> it to initialize the window. After that, we can place other <code class="docutils literal notranslate"><span class="pre">widget</span></code>s such as labels and buttons as before. In the <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code>, we can also directly implement the above <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function as a method. In addition, make script running stand-alone (not supported by a beautiful Jupyter notebook) by adding an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span> <span class="pre">VanillaApp().mainloop()</span></code> statement at the bottom of the script (read more about the <code class="docutils literal notranslate"><span class="pre">__main__</span></code> statement in the <a class="reference internal" href="pypckg.html#standalone"><span class="std std-ref">section on packages</span></a>).</p>
+<p>The below example creates a <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code>, which is a child of <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (<code class="docutils literal notranslate"><span class="pre">tkinters</span></code> <em>master</em> frame). The initialization method <code class="docutils literal notranslate"><span class="pre">__init__</span></code> needs to invoke <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">pack()</span></code> it to initialize the window. After that, we can place other <code class="docutils literal notranslate"><span class="pre">widget</span></code>s such as labels and buttons as before. In the <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code>, we can also directly implement the above <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function as a method. In addition, make the script run stand-alone (not supported by a beautiful Jupyter notebook) by adding an <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span> <span class="pre">VanillaApp().mainloop()</span></code> statement at the bottom of the script (read more about the <code class="docutils literal notranslate"><span class="pre">__main__</span></code> statement in the <a class="reference internal" href="pypckg.html#standalone"><span class="std std-ref">section on packages</span></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the VanillaApp class</span>
@@ -741,10 +756,15 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-vanilla.png" /></p>
+<figure class="align-default" id="py-tk-vanilla">
+<img alt="python GUI tkinter vanilla label button" src="../_images/py-tk-vanilla.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">The VanillaApp GUI with two buttons and a label.</span><a class="headerlink" href="#py-tk-vanilla" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <section id="make-script-a-stand-alone-app">
 <h3>Make Script a Stand-alone App<a class="headerlink" href="#make-script-a-stand-alone-app" title="Permalink to this headline">#</a></h3>
-<p>The above code block providing the <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code> class can be copied to any external Python file and saved as, for example, <code class="docutils literal notranslate"><span class="pre">vanilla_app.py</span></code>. Next, in <em>Anaconda Prompt</em> (Windows) or <em>Linux Terminal</em> start the GUI as follows (depends on the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python installation</span></a> used):</p>
+<p>The above code block providing the <code class="docutils literal notranslate"><span class="pre">VanillaApp</span></code> class can be copied to any external Python file and saved as, for example, <code class="docutils literal notranslate"><span class="pre">vanilla_app.py</span></code>. Next, in <em>Anaconda Prompt</em> (Windows) or <em>Linux Terminal</em> start the GUI as follows (depending on the <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python installation</span></a> used):</p>
 <ol class="arabic simple">
 <li><p>Activate the required environment, for example:</p>
 <ul class="simple">
@@ -755,7 +775,7 @@ document.write(`
 <li><p>Navigate to the directory where the script is located (use <code class="docutils literal notranslate"><span class="pre">cd</span></code> in <a class="reference external" href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cd">Windows</a> or <a class="reference external" href="http://www.linfo.org/cd.html">Linux/macOS</a>).</p></li>
 <li><p>Type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">vanilla_app.py</span></code> (or <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">vanilla_app.py</span></code>) to launch the GUI.</p></li>
 </ol>
-<p>This sequence of commands can also be written to a batch or bash file (<a class="reference external" href="https://www.wikihow.com/Write-a-Batch-File"><code class="docutils literal notranslate"><span class="pre">.bat</span></code> on Windows</a>) or shell script (<a class="reference external" href="https://www.linux.com/training-tutorials/writing-simple-bash-script/">.sh on Linux/macOS</a> - <a class="reference external" href="http://linuxcommand.org/lc3_writing_shell_scripts.php">alternative documentation</a>). After writing and saving a batch or bash file, double click on the file to start the Python-based GUI.</p>
+<p>This sequence of commands can also be written to a batch or bash file (<a class="reference external" href="https://www.wikihow.com/Write-a-Batch-File"><code class="docutils literal notranslate"><span class="pre">.bat</span></code> on Windows</a>) or shell script (<a class="reference external" href="https://www.linux.com/training-tutorials/writing-simple-bash-script/">.sh on Linux/macOS</a> - <a class="reference external" href="http://linuxcommand.org/lc3_writing_shell_scripts.php">alternative documentation</a>). After writing and saving a batch or bash file, double-click on the file to start the Python-based GUI.</p>
 </section>
 </section>
 <section id="more-widgets">
@@ -767,19 +787,24 @@ document.write(`
 </ul>
 <div class="warning admonition">
 <p class="admonition-title">Issues with window icons</p>
-<p>Some recent versions versions of <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> cannot open icons because of an unknown error that might stem from relative path definitions in the library. Therefore, if you get an error message such as <code class="docutils literal notranslate"><span class="pre">TclError:</span> <span class="pre">bitmap</span> <span class="pre">&quot;gui/sample-icon.ico&quot;</span> <span class="pre">not</span> <span class="pre">defined</span></code>, the only solution might be to comment out the line <code class="docutils literal notranslate"><span class="pre">self.master.iconbitmap(&quot;gui/sample-icon.ico&quot;)</span></code>.</p>
+<p>Some recent versions of <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> cannot open icons because of an unknown error that might stem from relative path definitions in the library. Therefore, if you get an error message such as <code class="docutils literal notranslate"><span class="pre">TclError:</span> <span class="pre">bitmap</span> <span class="pre">&quot;gui/sample-icon.ico&quot;</span> <span class="pre">not</span> <span class="pre">defined</span></code>, the only solution might be to comment out the line <code class="docutils literal notranslate"><span class="pre">self.master.iconbitmap(&quot;gui/sample-icon.ico&quot;)</span></code>.</p>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Menu</span></code> with drop-down cascade</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Label</span></code> (see above)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> (see above)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Entry</span></code> that is a blank field where users can enter values or words</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code> that is a drop down menu in the master frame (<a class="reference external" href="https://docs.python.org/3/library/tkinter.ttk.html">tk-themed</a> <code class="docutils literal notranslate"><span class="pre">ttk</span></code> widget)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code> that is a drop-down menu in the master frame (<a class="reference external" href="https://docs.python.org/3/library/tkinter.ttk.html">tk-themed</a> <code class="docutils literal notranslate"><span class="pre">ttk</span></code> widget)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Listbox</span></code> with a <code class="docutils literal notranslate"><span class="pre">tk.Scrollbar</span></code>, where the scrollbar is required to navigate to listbox entries that are not in the visible range of the listbox size</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.Checkbutton</span></code> that can be checked (ticked) to set a <code class="docutils literal notranslate"><span class="pre">tk.BooleanVar()</span></code> object to <code class="docutils literal notranslate"><span class="pre">True</span></code> (default: not checked -&gt; <code class="docutils literal notranslate"><span class="pre">False</span></code>)<br>Alternatively, have a look at <a class="reference external" href="http://effbot.org/tkinterbook/radiobutton.htm"><code class="docutils literal notranslate"><span class="pre">tk.Radiobutton</span></code></a> to enable selections from a multiple-choice frame (rather than the <code class="docutils literal notranslate"><span class="pre">False</span></code>-<code class="docutils literal notranslate"><span class="pre">True</span></code>-only frame of a checkbutton)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tk.PhotoImage</span></code> to display a sub-sampled image in the GUI</p></li>
 </ul>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-elements.png" /></p>
+<figure class="align-default" id="py-tk-elements">
+<img alt="python GUI tkinter with widgets entry combobox listbox checkbutton radiobutton photo image" src="../_images/py-tk-elements.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">GUI with multiple widgets, such as a Menu, Label, Button, Entry, Combobox, Listbox, Checkbutton, and PhotoImage.</span><a class="headerlink" href="#py-tk-elements" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The next block features the code that creates the <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets in the figure (the <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/start_gui.py">script</a>, <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/sunny-image.gif">image</a> and <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/gui-icon.ico">icon</a> are available at the course repository):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -937,7 +962,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-variables.png" /></p>
+<figure class="align-default" id="py-tk-variables">
+<img alt="python GUI tkinter bound to variables" src="../_images/py-tk-variables.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">The GUI bound to Tk-variables.</span><a class="headerlink" href="#py-tk-variables" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="design-place-and-modify-widgets">
 <span id="place-widget"></span><h2>Design, Place and Modify Widgets<a class="headerlink" href="#design-place-and-modify-widgets" title="Permalink to this headline">#</a></h2>
@@ -967,7 +997,7 @@ document.write(`
 <p>The following sections provide more details on the <code class="docutils literal notranslate"><span class="pre">place</span></code> and <code class="docutils literal notranslate"><span class="pre">grid</span></code> geometry managers (the relevant functions of <code class="docutils literal notranslate"><span class="pre">pack</span></code> are already above shown: <code class="docutils literal notranslate"><span class="pre">pack()</span></code> -  that is all) and illustrate keyword arguments along with widget methods to modify widgets.</p>
 <section id="place-with-place-and-use-object-colors">
 <h3>Place with <code class="docutils literal notranslate"><span class="pre">place</span></code> and Use Object Colors<a class="headerlink" href="#place-with-place-and-use-object-colors" title="Permalink to this headline">#</a></h3>
-<p>The simplest geometry manager is the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, which works even without any keyword provided (see the very first examples in this section). With the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, widgets can be placed relatively in the window (<code class="docutils literal notranslate"><span class="pre">relx</span></code> and <code class="docutils literal notranslate"><span class="pre">rely</span></code>, where both must be &lt; 1) or with absolute positions (<code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, where both should fit into the window dimensions defined through <code class="docutils literal notranslate"><span class="pre">self.config(width=INT,</span> <span class="pre">height=INT)</span></code>). The axis origin (zero positions of <em>x</em> and <em>y</em>) are determined with the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> keyword.</p>
+<p>The simplest geometry manager is the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, which works even without any keyword provided (see the very first examples in this section). With the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, widgets can be placed relatively in the window (<code class="docutils literal notranslate"><span class="pre">relx</span></code> and <code class="docutils literal notranslate"><span class="pre">rely</span></code>, where both must be &lt; 1) or with absolute positions (<code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, where both should fit into the window dimensions defined through <code class="docutils literal notranslate"><span class="pre">self.config(width=INT,</span> <span class="pre">height=INT)</span></code>). The axis origin (zero positions of <em>x</em> and <em>y</em>) is determined with the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> keyword.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PlacedApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
@@ -987,7 +1017,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-placed.png" /></p>
+<figure class="align-default" id="py-tk-placed">
+<img alt="python GUI tkinter using placed" src="../_images/py-tk-placed.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">The GUI organized with placed widgets.</span><a class="headerlink" href="#py-tk-placed" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The above example does not create class objects of <code class="docutils literal notranslate"><span class="pre">tk.Labels</span></code>, which makes the labels non-modifiable. This definition of widgets is acceptable to shorten the often long GUI scripts, but only if the widgets should not be modified later.</p>
@@ -1018,7 +1053,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-grid.png" /></p>
+<figure class="align-default" id="py-tk-grid">
+<img alt="python GUI tkinter structured as grid" src="../_images/py-tk-grid.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">The GUI organized on a grid.</span><a class="headerlink" href="#py-tk-grid" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="configure-widgets">
 <h3>Configure Widgets<a class="headerlink" href="#configure-widgets" title="Permalink to this headline">#</a></h3>
@@ -1069,17 +1109,25 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-config.png" /></p>
-<hr class="docutils" />
+<figure class="align-default" id="py-tk-config">
+<img alt="python GUI tkinter re-configured" src="../_images/py-tk-config.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">The re-configured GUI.</span><a class="headerlink" href="#py-tk-config" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="admonition-challenges admonition">
 <p class="admonition-title">Challenges</p>
 <ol class="arabic simple">
 <li><p>The roughness value varies as a function of surface characteristics. Can you implement a <code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code> to let a user choose a Strickler <em>k<sub>st</sub></em> roughness value between 10 and 85 (integers) and define the channel slope in a <code class="docutils literal notranslate"><span class="pre">tk.Entry</span></code> or a custom pop-up window (see below)?</p></li>
 <li><p>The cross-section averaged flow velocity also depends on the cross-section geometry. Can you implement <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets to enable the definition of a bank slope <code class="docutils literal notranslate"><span class="pre">m</span></code> and channel base width <code class="docutils literal notranslate"><span class="pre">w</span></code> for calculating the hydraulic radius?</p></li>
 </ol>
+<figure class="align-default" id="flowvariables-xs">
+<img alt="flow variables for the challenge" src="../_images/flowVariables_xs.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">Flow variables of the cross section.</span><a class="headerlink" href="#flowvariables-xs" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </div>
-<hr class="docutils" />
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/flowVariables_xs.png" /></p>
 </section>
 </section>
 <section id="pop-up-windows">
@@ -1099,7 +1147,7 @@ document.write(`
 </section>
 <section id="top-level-custom-pop-ups">
 <h3>Top-level Custom Pop-ups<a class="headerlink" href="#top-level-custom-pop-ups" title="Permalink to this headline">#</a></h3>
-<p>The default windows may not meet the needs for every application, for instance, to invite users to enter a custom value. In this case, a <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> object aids to produce a customized pop-up window and the below example shows how a customized top-level pop-up window can be called within a method. With the <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> widget and the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (master) widgets, the code block produces two frames, in which buttons, labels, or any other <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> object can be placed. The very first argument of any <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widget-object created determines whether the object is placed in the master or the top-level frame. For example, <code class="docutils literal notranslate"><span class="pre">tk.Entry(self).pack()</span></code> creates an entry in the master <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>, and <code class="docutils literal notranslate"><span class="pre">tk.Entry(pop_up).pack()</span></code> creates an entry in the child <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code>.</p>
+<p>The default windows may not meet the needs for every application, for instance, to invite users to enter a custom value. In this case, a <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> object aids in producing a customized pop-up window, and the below example shows how a customized top-level pop-up window can be called within a method. With the <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> widget and the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (master) widgets, the code block produces two frames, in which buttons, labels, or any other <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> object can be placed. The very first argument of any <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widget-object created determines whether the object is placed in the master or the top-level frame. For example, <code class="docutils literal notranslate"><span class="pre">tk.Entry(self).pack()</span></code> creates an entry in the master <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>, and <code class="docutils literal notranslate"><span class="pre">tk.Entry(pop_up).pack()</span></code> creates an entry in the child <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showwarning</span>
@@ -1136,7 +1184,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-popup-custom.png" /></p>
+<figure class="align-default" id="py-tk-popup-custom">
+<img alt="python tkinter popup window customized" src="../_images/py-tk-popup-custom.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">The GUI with customized popup window.</span><a class="headerlink" href="#py-tk-popup-custom" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="file-dialog-open">
 <h3>File Dialog (Open …)<a class="headerlink" href="#file-dialog-open" title="Permalink to this headline">#</a></h3>
@@ -1169,7 +1222,12 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-tk-filedialog.png" /></p>
+<figure class="align-default" id="py-tk-filedialog">
+<img alt="python tkinter with filedialog" src="../_images/py-tk-filedialog.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">The GUI with filedialog to select a file.</span><a class="headerlink" href="#py-tk-filedialog" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 <section id="quit">

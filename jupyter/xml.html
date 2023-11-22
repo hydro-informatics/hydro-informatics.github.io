@@ -624,7 +624,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="structured-data-xml-xlsx-json">
 <span id="chpt-xml"></span><h1>Structured Data (XML, xlsx &amp; JSON)<a class="headerlink" href="#structured-data-xml-xlsx-json" title="Permalink to this headline">#</a></h1>
-<p>Create, manipulate and copy semi-structured data files in the form of xlsx-workbooks and JSON files. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>xml.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
+<p>Create, manipulate, and copy semi-structured data files in the form of xlsx-workbooks and JSON files. For interactive reading and executing code blocks <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> and find <em>xml.ipynb</em>, or install <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">Python</span></a> and <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> locally.</p>
 <p>This chapter starts with background information about XML and what XML has to do with workbooks, and JSON: XML is an abbreviation for <a class="reference external" href="https://www.w3.org/TR/xml/">E<strong>x</strong>tensible <strong>M</strong>arkup <strong>L</strong>anguage</a> that defines rules for encoding documents. XML was designed for straightforward usage over the internet and we encounter XML documents all the time, on websites (e.g., <em>XHTML</em>), in the shape office documents (e.g., Office Open XML such as <em>docx</em>, <em>pptx</em>, or <em>xlsx</em>), or podcasts (e.g., <em>RSS</em>). The strength of the XML format is its characteristic of being both machine-readable (i.e., a computer can process XML files) and human-readable (i.e., we can read it like a newspaper). For instance, entering formulas in an xlsx workbook is simultaneously machine-readable and human-readable, since humans and computers can interpret and evaluate the formulas in this XML frame. Other file formats such as <a class="reference external" href="https://www.json.org/json-en.html"><em>JSON</em> (JavaScript Object Notation)</a> resemble XML and Python can extract information from and export information to both formats. In water resources engineering and research, for example, we are mainly interested in the exchange of information with office workbooks (<em>xlsx</em> files), or with JSON files, which provide boundary conditions for numerical models.</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Watch this section as a video</p>
@@ -642,14 +642,14 @@ document.write(`
 <p>This introduction uses the following workbook-related terms:</p>
 <ul class="simple">
 <li><p><strong>workbook</strong> is the main <em>xlsx</em> file we work with (also called <em>spreadsheet</em>);</p></li>
-<li><p><strong>sheet</strong> is tabular content of a workbook and one workbook can have multiple sheets;</p></li>
+<li><p><strong>sheet</strong> is the tabular content of a workbook and one workbook can have multiple sheets;</p></li>
 <li><p><strong>column</strong>s are vertical lines in a sheet;</p></li>
 <li><p><strong>row</strong>s are horizontal lines in a sheet;</p></li>
 <li><p><strong>cell</strong>s are elements of a sheet.</p></li>
 </ul>
 <section id="create-a-workbook">
 <h3>Create a Workbook<a class="headerlink" href="#create-a-workbook" title="Permalink to this headline">#</a></h3>
-<p><em>openpyxl</em> has a <code class="docutils literal notranslate"><span class="pre">Workbook</span></code> class that enables to create and fill workbooks with data. Typically, an instance of the <code class="docutils literal notranslate"><span class="pre">Workbook</span></code> class is called <code class="docutils literal notranslate"><span class="pre">wb</span></code> and worksheet variables are called <code class="docutils literal notranslate"><span class="pre">ws</span></code>.</p>
+<p><em>openpyxl</em> has a <code class="docutils literal notranslate"><span class="pre">Workbook</span></code> class that enables to create and fill workbooks with data. Typically, an instance of the <code class="docutils literal notranslate"><span class="pre">Workbook</span></code> class is called <code class="docutils literal notranslate"><span class="pre">wb</span></code>, and worksheet variables are called <code class="docutils literal notranslate"><span class="pre">ws</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">openpyxl</span> <span class="k">as</span> <span class="nn">oxl</span>
@@ -686,7 +686,12 @@ Corresponds to np.array value: 0.3678794411714422
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-xlsx.png" /></p>
+<figure class="align-default" id="py-xlsx">
+<img alt="python excel file creation" src="../_images/py-xlsx.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">The resulting workbook.</span><a class="headerlink" href="#py-xlsx" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="read-and-manipulate-an-existing-workbook">
 <h3>Read and Manipulate an Existing Workbook<a class="headerlink" href="#read-and-manipulate-an-existing-workbook" title="Permalink to this headline">#</a></h3>
@@ -697,11 +702,11 @@ Corresponds to np.array value: 0.3678794411714422
 <p><em>openpyxl</em> reads existing workbooks with <code class="docutils literal notranslate"><span class="pre">openpyxl.load_workbook(filename=str())</span></code>. This function accepts optional keyword arguments, such as:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">read_only=BOOLEAN</span></code> decides whether a workbook is opened in <em>read-only</em> mode. A workbook can only be manipulated if <code class="docutils literal notranslate"><span class="pre">read_only=False</span></code> (this is the default option, which can be useful to handle large files or to ensure that graphical objects are not lost).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">write_only=BOOLEAN</span></code> decides whether a workbook is opened in <em>write only</em> mode. If <code class="docutils literal notranslate"><span class="pre">write_only=True</span></code> (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>), no data can be read from a workbook but writing data is significantly faster (i.e., this option is useful to write large datasets).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write_only=BOOLEAN</span></code> decides whether a workbook is opened in <em>write only</em> mode. If <code class="docutils literal notranslate"><span class="pre">write_only=True</span></code> (the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>), no data can be read from a workbook but writing data is significantly faster (i.e., this option is useful for writing large datasets).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_only=BOOLEAN</span></code> determines if cell formulae or cell data will be read. For example, when a workbook cell’s content is <code class="docutils literal notranslate"><span class="pre">=PI()</span></code>, <code class="docutils literal notranslate"><span class="pre">data_only=False</span></code> (this is the default option) reads the cell value as <code class="docutils literal notranslate"><span class="pre">=PI()</span></code> and <code class="docutils literal notranslate"><span class="pre">data_only=True</span></code> reads the cell value as <code class="docutils literal notranslate"><span class="pre">3.14159265359</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">keep_vba=BOOLEAN</span></code> controls whether <em>Visual Basic</em> elements (macros) are kept or not. The default is <code class="docutils literal notranslate"><span class="pre">keep_vba=False</span></code> (i.e., no preservation) and <code class="docutils literal notranslate"><span class="pre">keep_vba=True</span></code> will still not enable a modification of Visual Basic elements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keep_vba=BOOLEAN</span></code> controls whether <em>Visual Basic</em> elements (macros) are kept or not. The default is <code class="docutils literal notranslate"><span class="pre">keep_vba=False</span></code> (i.e., no preservation), and <code class="docutils literal notranslate"><span class="pre">keep_vba=True</span></code> will still not enable a modification of Visual Basic elements.</p></li>
 </ul>
-<p>If <code class="docutils literal notranslate"><span class="pre">read_only=False</span></code>, we can manipulate cell values and also cell formats, including data formats (e.g., date, time, and <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/_modules/openpyxl/styles/numbers.html">many more</a>), <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/styles.html">font properties (and many more cell styles)</a>, or colors in <em>HEX Color Code</em> (<a class="reference external" href="https://www.colorcodehex.com/">find your favorite color here</a>). The following example opens the above created <code class="docutils literal notranslate"><span class="pre">python_workbook.xlsx</span></code>, adds a new worksheet, illustrates the implementation of cell styles, and fills the workbook with random discharge measurements.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">read_only=False</span></code>, we can manipulate cell values and also cell formats, including data formats (e.g., date, time, and <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/_modules/openpyxl/styles/numbers.html">many more</a>), <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/styles.html">font properties (and many more cell styles)</a>, or colors in <em>HEX Color Code</em> (<a class="reference external" href="https://www.colorcodehex.com/">find your favorite color here</a>). The following example opens the above-created <code class="docutils literal notranslate"><span class="pre">python_workbook.xlsx</span></code>, adds a new worksheet, illustrates the implementation of cell styles, and fills the workbook with random discharge measurements.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
@@ -742,7 +747,12 @@ Corresponds to np.array value: 0.3678794411714422
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-xlsx-reloaded.png" /></p>
+<figure class="align-default" id="py-xlsx-reloaded">
+<img alt="python xlsx styling" src="../_images/py-xlsx-reloaded.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">The updated workbook.</span><a class="headerlink" href="#py-xlsx-reloaded" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The below code block provides the short helper function <code class="docutils literal notranslate"><span class="pre">read_columns</span></code> to read only one or more columns into a (nested) <em>list</em> (reads until the maximum number of rows, defined by <code class="docutils literal notranslate"><span class="pre">ws.rows</span></code>, in a workbook is reached). A similar function can be written for reading rows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,7 +787,7 @@ Corresponds to np.array value: 0.3678794411714422
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">wb.save(os.getcwd()</span> <span class="pre">+</span> <span class="pre">&quot;/data/re-modified-data-wb.xlsx&quot;</span></code> (do not forget to <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">os</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">wb.close()</span></code></p></li>
-<li><p>Alternatively, use a name space for the workbook manipulation!</p></li>
+<li><p>Alternatively, use a namespace for the workbook manipulation!</p></li>
 </ul>
 </li>
 </ul>
@@ -814,7 +824,7 @@ Corresponds to np.array value: 0.3678794411714422
 </section>
 <section id="charts-plots">
 <h3>Charts (Plots)<a class="headerlink" href="#charts-plots" title="Permalink to this headline">#</a></h3>
-<p>In the unlikely event that you want to insert plots directly into workbooks with Python (<a class="reference internal" href="pyplot.html#matplotlib"><span class="std std-ref">matplotlib</span></a> is more powerful anyway), <em>openpyxl</em> offers features for this purpose as well. To illustrate the creation of an area chart, the below code block re-uses the first column of random values in the above-created <code class="docutils literal notranslate"><span class="pre">python_workbook.xlsx</span></code>.</p>
+<p>In the unlikely event that you want to insert plots directly into workbooks with Python (<a class="reference internal" href="pyplot.html#matplotlib"><span class="std std-ref">matplotlib</span></a> is more powerful anyway), <em>openpyxl</em> provides features for this purpose as well. To illustrate the creation of an area chart, the below code block re-uses the first column of random values in the above-created <code class="docutils literal notranslate"><span class="pre">python_workbook.xlsx</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">openpyxl.chart</span> <span class="kn">import</span> <span class="n">AreaChart</span><span class="p">,</span> <span class="n">Reference</span><span class="p">,</span> <span class="n">Series</span>
@@ -842,7 +852,12 @@ Corresponds to np.array value: 0.3678794411714422
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-xlsx-plot.png" /></p>
+<figure class="align-default" id="py-xlsx-plot">
+<img alt="plot python excel file" src="../_images/py-xlsx-plot.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">The workbook with the plot created in Python.</span><a class="headerlink" href="#py-xlsx-plot" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Other workbook charts are available and their implementation (still: why would you?) is explained in the <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/charts/introduction.html">openpyxl docs</a>.</p>
 </section>
 <section id="customize-workbook-manipulation">
@@ -888,7 +903,7 @@ Corresponds to np.array value: 0.3678794411714422
 </section>
 <section id="an-example-from-water-resources-engineering-and-research">
 <h3>An Example from Water Resources Engineering and Research<a class="headerlink" href="#an-example-from-water-resources-engineering-and-research" title="Permalink to this headline">#</a></h3>
-<p>The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called <a class="reference external" href="https://riverarchitect.github.io/RA_wiki/SHArC#hefish">habitat suitability index (HSI)</a> curves in workbook formats. Typically, we produce geospatially explicit data of water depth and flow velocity with numerical models. The output of two or three-dimensional numerical models is way too large for being handled with office applications. So we need an advanced tool, such as Python, to handle the geospatially explicit data, and read and interpolate HSI curves from workbooks. How does that look like technically? The <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">exercises on geospatial Python</span></a> will let you dive into aquatic habitat (assessments)…</p>
+<p>The ecological restoration or enhancement of rivers requires, among other data, information on preferred water depths and flow velocities of target fish species. This information is established by biologists and then often provided in the shape of so-called <a class="reference external" href="https://riverarchitect.github.io/RA_wiki/SHArC#hefish">habitat suitability index (HSI)</a> curves in workbook formats. Typically, we produce geospatially explicit data on water depth and flow velocity with numerical models. The output of two or three-dimensional numerical models is way too large to be handled with office applications. So we need an advanced tool, such as Python, to handle the geospatially explicit data, and read and interpolate HSI curves from workbooks. What does that look like technically? The <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">exercises on geospatial Python</span></a> will let you dive into aquatic habitat (assessments).</p>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Familiarize with workbook handling in the <a class="reference internal" href="../exercises/ex-sediment.html#ex-py-sediment"><span class="std std-ref">Sediment transport (1d) exercise</span></a>.</p>
@@ -897,7 +912,7 @@ Corresponds to np.array value: 0.3678794411714422
 </section>
 <section id="json">
 <span id="id1"></span><h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">#</a></h2>
-<p>JavaScript Object Notation (<a class="reference external" href="https://www.json.org/json-en.html">JSON</a>) files have a similar structure to XML and enable the structured storage of (human-readable) data. For instance, the numerical code <em>BASEMENT v.3.x</em> (<a class="reference internal" href="../numerics/basement/basement.html#chpt-basement"><span class="std std-ref">read more in the numerical modeling chapter</span></a>) uses a <em>model.json</em> and a <em>simulation.json</em> file to store model setup parameters such as material properties. Thus, automating numerical model setups and starts with Python involves the modification of model parameters stored in <em>json</em> files. This is where Python steps in with the <code class="docutils literal notranslate"><span class="pre">JSON</span></code> package and <code class="docutils literal notranslate"><span class="pre">pandas</span></code>’ JSON modules.</p>
+<p>JavaScript Object Notation (<a class="reference external" href="https://www.json.org/json-en.html">JSON</a>) files have a similar structure to XML and enable the structured storage of (human-readable) data. For instance, the numerical code <em>BASEMENT v.3.x</em> (<a class="reference internal" href="../numerics/basement/basement.html#chpt-basement"><span class="std std-ref">read more in the numerical modeling chapter</span></a>) uses a <em>model.json</em> and a <em>simulation.json</em> file to store model setup parameters such as material properties. Thus, automating numerical model setups with Python involves the modification of model parameters stored in <em>json</em> files. This is where Python steps in with the <code class="docutils literal notranslate"><span class="pre">JSON</span></code> package and <code class="docutils literal notranslate"><span class="pre">pandas</span></code>’ JSON modules.</p>
 <section id="json-file-structure">
 <h3>JSON file structure<a class="headerlink" href="#json-file-structure" title="Permalink to this headline">#</a></h3>
 <p>A JSON file consists of two types of data structures, which are <em>dictionary</em> objects and <em>array</em>s in the form of <em>lists</em> of values. The <em>dictionary</em> objects in a JSON file correspond to the same format that we already know in Python: Pairs of <em>keys</em> (names) and <em>values</em> embraced by curly brackets (<em>braces</em>) <code class="docutils literal notranslate"><span class="pre">{&quot;name&quot;:</span> <span class="pre">value}</span></code>. The <code class="docutils literal notranslate"><span class="pre">value</span></code> can be a <em>string</em>, <em>numeric</em>, a comma-separated <em>list</em> <code class="docutils literal notranslate"><span class="pre">[]</span></code> (<em>array</em>) of data, or another <em>dictionary</em>.
@@ -983,7 +998,7 @@ The following example shows a JSON file called <code class="docutils literal not
 </section>
 <section id="read-decode-and-write-encode-json-files-with-the-json-library">
 <h3>Read (Decode) and Write (Encode) JSON Files with the <code class="docutils literal notranslate"><span class="pre">json</span></code> Library<a class="headerlink" href="#read-decode-and-write-encode-json-files-with-the-json-library" title="Permalink to this headline">#</a></h3>
-<p>JSON files can be implemented in many programming languages including HTML and Python. This is also the reason why Jupyter notebooks (as used in this eBook) can be run in Python and displayed as a web page. Python has a built-in <code class="docutils literal notranslate"><span class="pre">json</span></code> library that enables JSON decoding and encoding. The <code class="docutils literal notranslate"><span class="pre">json</span></code> library provides a <code class="docutils literal notranslate"><span class="pre">json.dumps(DATA)</span></code> method to “dump” (i.e., encode) data in JSON format. Vice versa, the <code class="docutils literal notranslate"><span class="pre">json.load()</span></code> function reads data from JSON files. The following example illustrates encoding and decoding an arbitrarily nested dataset with the <code class="docutils literal notranslate"><span class="pre">json</span></code> library.</p>
+<p>JSON files can be implemented in many programming languages, including HTML and Python. This is also why Jupyter notebooks (as used in this eBook) can be run in Python and displayed as a web page. Python has a built-in <code class="docutils literal notranslate"><span class="pre">json</span></code> library that enables JSON decoding and encoding. The <code class="docutils literal notranslate"><span class="pre">json</span></code> library provides a <code class="docutils literal notranslate"><span class="pre">json.dumps(DATA)</span></code> method to “dump” (i.e., encode) data in JSON format. Vice versa, the <code class="docutils literal notranslate"><span class="pre">json.load()</span></code> function reads data from JSON files. The following example illustrates encoding and decoding an arbitrarily nested dataset with the <code class="docutils literal notranslate"><span class="pre">json</span></code> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -1027,7 +1042,7 @@ The following example shows a JSON file called <code class="docutils literal not
 </div>
 </div>
 </div>
-<p>Since a river without data is like ice cream without taste, we will add (random) data of flow characteristics to the data structure. Let’s assume that we have used the data from <code class="docutils literal notranslate"><span class="pre">river_struct.json</span></code> to simulate a stationary discharge in a two-dimensional numerical model. As a result, we have two regular grids (arrays) with data on flow velocity and water depth. Now, we want to append both the flow velocity and water depth arrays in the form of a result structure (dictionary) to <code class="docutils literal notranslate"><span class="pre">river_struct.json</span></code> and give the river a new name.</p>
+<p>Since a river without data is like ice cream without taste, we will add (random) data on flow characteristics to the data structure. Let’s assume that we have used the data from <code class="docutils literal notranslate"><span class="pre">river_struct.json</span></code> to simulate a stationary discharge in a two-dimensional numerical model. As a result, we have two regular grids (arrays) with data on flow velocity and water depth. Now, we want to append both the flow velocity and water depth arrays in the form of a result structure (dictionary) to <code class="docutils literal notranslate"><span class="pre">river_struct.json</span></code> and give the river a new name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create random data</span>
@@ -1050,7 +1065,12 @@ The following example shows a JSON file called <code class="docutils literal not
 </div>
 </div>
 </div>
-<p><img alt="img" src="https://raw.githubusercontent.com/sschwindt/hydroinformatics/main/docs/img/py-json-file.png" /></p>
+<figure class="align-default" id="py-json-file">
+<img alt="python json file creation manipulation" src="../_images/py-json-file.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">The resulting workbook.</span><a class="headerlink" href="#py-json-file" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <div class="admonition-exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Familiarize with JSON file handling in the <a class="reference internal" href="../exercises/ex-geco.html#ex-geco"><span class="std std-ref">geospatial ecohydraulics</span></a> exercise (requires understanding the full <a class="reference internal" href="../geopy/geo-python.html#sec-geo-python"><span class="std std-ref">geospatial Python chapter</span></a>).</p>
