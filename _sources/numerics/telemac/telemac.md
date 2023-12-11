@@ -44,7 +44,7 @@ For any TELEMAC simulation, the following input files are **mandatory**:
 
 * Steering file
   + File format: `*.cas`
-  + Prepare either with {ref}`Fudaa PrePro <fudaa>` or use a text editor (e.g., {ref}`npp` or {ref}`Atom <install-atom>`).
+  + Prepare either with {ref}`Fudaa PrePro <fudaa>` or use a text editor (e.g., {ref}`npp`).
 * Geometry file
   + File formats: `*.slf` ([selafin](https://gdal.org/drivers/vector/selafin.html) or `*.med` (MED file library from the [salome-platform](https://www.salome-platform.org)
   + Prepare `*.slf` geometries with {ref}`QGIS <qgis-tutorial>`or {ref}`Blue Kenue <bluekenue>` (read more in the {ref}`TELEMAC pre-processing tutorial <bk-create-slf>`).

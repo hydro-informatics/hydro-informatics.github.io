@@ -60,7 +60,6 @@ The Linux **Mint** Hydro-informatics (**Hyfo**) VM facilitates working with the 
 ### About the Mint Hyfo VM
 To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.3 (last updated on February, 2022) machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:
 
-* {ref}`Atom IDE <install-atom>` (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)
 * {ref}`JupyterLab <install-jupyter-linux>` (start in Terminal with `jupyter-lab`)
 * {ref}`QGIS <qgis-install>`
 * {ref}`TELEMAC v8p3r0 <telemac-install>` (stand-alone installation with parallel libraries enabled)
@@ -380,19 +379,13 @@ Then install *OpenGL* with:
 sudo apt install libopengl0-glvnd-nvidia libglx0-glvnd-nvidia
 ```
 
-## Install Software and Update
+## Software Management
 
 ***Estimated duration: Variable.***
 
+### Install Software
 To install other software, preferably use the built-in software manager (*Activities* > *Shopping bag* symbol). The *Software* manager uses official releases in the stable Debian repository (read more about [lists of sources](https://wiki.debian.org/SourcesList)).
 
-To update repositories and upgrade installed packages, open *Terminal* and type:
-
-```
-sudo apt update
-sudo apt full-upgrade
-sudo apt autoremove
-```
 
 The last command removes files that are not needed anymore and reduces system garbage.
 
@@ -408,15 +401,22 @@ Still, you may need to use `apt-get` for some specific cases (e.g., if a package
 
 Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install *Anaconda* *Python* visit [docs.anaconda.com](https://docs.anaconda.com/anaconda/install/linux/) and follow the installation instructions for Debian Linux.
 
-```{admonition} Software minimalism
+```{admonition} Software minimalism: Less is better than more
 :class: attention
-If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.
+
+The more software there is on your computer, the slower it will be, and the less storage is available. So, if the main purpose of your VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model.
 ```
 
-(install-htop)=
-## System Monitoring with HTOP
+The most popular software manager of Debian-based Linux distributions is called [aptitude](https://salsa.debian.org/apt-team/apt), which is the thing that you invoke when typing `[sudo] apt [something]`. There are more standard package managers, such as `dpkg` or `synaptic` (see the full list in the [Debian package management faqs](https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html)). To install a wide range of proprietary software (e.g., video conferencing tools), package management tools like [snapd](https://github.com/snapcore/snapd) or [flatpak](https://flatpak.org/) can be useful. However, such third-party package managers are debated, and a more **robust approach** is to **use `apt` whenever possible**, **or**, if the software is not available through apt, look for [**AppImages**](https://appimage.org/).
 
-To get an overview of the system performance install *htop*, which enables visualizing *CPU* usage:
+### Useful software
+
+(install-htop)=
+#### System Monitoring
+
+There are multiple options to monitor system resource of a Debian distro, and this section presents two of them, namely, `htop` and `stacer`. [`htop`](https://htop.dev/) is a minimalistic tool that runs in Terminal. [`stacer`](https://github.com/oguzhaninan/Stacer) is a graphical user interface providing more options, including optimization of battery life or system performance.
+
+To install **htop** for visualizing *CPU* usage, type:
 
 ```
 sudo apt update
@@ -429,7 +429,17 @@ Start *htop*'s *CPU* monitor with:
 htop
 ```
 
-## Package & Software Management
+
+To install the more general [**stacer**](https://github.com/oguzhaninan/Stacer) tool, type:
+
+```
+sudo apt update
+sudo apt install stacer
+```
+
+After the installation, stacer can be opened from the system menu (search for *stacer*).
+
+
 
 ### Add Package Repositories
 
@@ -468,6 +478,19 @@ That means, to get the library file `libGLX.so.0`, the package `libglx0-glvnd-nv
 ```
 sudo apt install libglx0-glvnd-nvidia
 ```
+
+### Update Software
+
+To update repositories and upgrade installed packages through `apt`, that is the standard Debian package manager [aptitude](https://salsa.debian.org/apt-team/apt), open *Terminal* and type:
+
+```
+sudo apt update
+sudo apt full-upgrade
+sudo apt autoremove
+sudo apt autoclean
+```
+
+This will not update manually installed software, and packages installed through [snapd](https://github.com/snapcore/snapd) and [flatpak](https://flatpak.org/).
 
 (wine)=
 ## Windows Apps on Linux

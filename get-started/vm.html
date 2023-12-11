@@ -166,7 +166,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
 <li class="toctree-l2"><a class="reference internal" href="../python-basics/pyinstall.html">Python (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="git.html">Version Control : git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geo.html">Geospatial Software</a></li>
@@ -552,11 +551,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-opengl">Enable OpenGL</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-software-and-update">Install Software and Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-monitoring-with-htop">System Monitoring with HTOP</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-software-management">Package &amp; Software Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-management">Software Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-software">Install Software</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-software">Useful software</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-monitoring">System Monitoring</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-package-repositories">Add Package Repositories</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-packages">Find Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-software">Update Software</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-apps-on-linux">Windows Apps on Linux</a></li>
@@ -638,7 +641,6 @@ document.write(`
 <h3>About the Mint Hyfo VM<a class="headerlink" href="#about-the-mint-hyfo-vm" title="Permalink to this headline">#</a></h3>
 <p>To shorten the long path of installing many hydroinformatics applications, many tutorials in this eBook can be leveraged with a tailored virtual Linux Mint 20.3 (last updated on February, 2022) machine that is available upon email request. The Linux Mint VM comes with the following pre-installed software:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="ide.html#install-atom"><span class="std std-ref">Atom IDE</span></a> (all-in-one IDE for Python scripting and editing markdown, restructuredtext, or LaTeX files)</p></li>
 <li><p><a class="reference internal" href="ide.html#install-jupyter-linux"><span class="std std-ref">JupyterLab</span></a> (start in Terminal with <code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code>)</p></li>
 <li><p><a class="reference internal" href="geo.html#qgis-install"><span class="std std-ref">QGIS</span></a></p></li>
 <li><p><a class="reference internal" href="install-telemac.html#telemac-install"><span class="std std-ref">TELEMAC v8p3r0</span></a> (stand-alone installation with parallel libraries enabled)</p></li>
@@ -940,16 +942,12 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </div>
 </section>
 </section>
-<section id="install-software-and-update">
-<h2>Install Software and Update<a class="headerlink" href="#install-software-and-update" title="Permalink to this headline">#</a></h2>
+<section id="software-management">
+<h2>Software Management<a class="headerlink" href="#software-management" title="Permalink to this headline">#</a></h2>
 <p><em><strong>Estimated duration: Variable.</strong></em></p>
+<section id="install-software">
+<h3>Install Software<a class="headerlink" href="#install-software" title="Permalink to this headline">#</a></h3>
 <p>To install other software, preferably use the built-in software manager (<em>Activities</em> &gt; <em>Shopping bag</em> symbol). The <em>Software</em> manager uses official releases in the stable Debian repository (read more about <a class="reference external" href="https://wiki.debian.org/SourcesList">lists of sources</a>).</p>
-<p>To update repositories and upgrade installed packages, open <em>Terminal</em> and type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">full</span><span class="o">-</span><span class="n">upgrade</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
-</pre></div>
-</div>
 <p>The last command removes files that are not needed anymore and reduces system garbage.</p>
 <div class="note admonition">
 <p class="admonition-title">apt and apt-get</p>
@@ -962,13 +960,17 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </div>
 <p>Instructions for installing particular and Debian-compatible software (e.g., QGIS) can be found directly on the website of software developers. For example, to install <em>Anaconda</em> <em>Python</em> visit <a class="reference external" href="https://docs.anaconda.com/anaconda/install/linux/">docs.anaconda.com</a> and follow the installation instructions for Debian Linux.</p>
 <div class="attention admonition">
-<p class="admonition-title">Software minimalism</p>
-<p>If the main purpose of the VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model. Also, as a general rule of thumb: Less is better than more.</p>
+<p class="admonition-title">Software minimalism: Less is better than more</p>
+<p>The more software there is on your computer, the slower it will be, and the less storage is available. So, if the main purpose of your VM is to run resource-intensive simulations (e.g., with TELEMAC), avoid installing any other software than those required for running the model.</p>
 </div>
+<p>The most popular software manager of Debian-based Linux distributions is called <a class="reference external" href="https://salsa.debian.org/apt-team/apt">aptitude</a>, which is the thing that you invoke when typing <code class="docutils literal notranslate"><span class="pre">[sudo]</span> <span class="pre">apt</span> <span class="pre">[something]</span></code>. There are more standard package managers, such as <code class="docutils literal notranslate"><span class="pre">dpkg</span></code> or <code class="docutils literal notranslate"><span class="pre">synaptic</span></code> (see the full list in the <a class="reference external" href="https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html">Debian package management faqs</a>). To install a wide range of proprietary software (e.g., video conferencing tools), package management tools like <a class="reference external" href="https://github.com/snapcore/snapd">snapd</a> or <a class="reference external" href="https://flatpak.org/">flatpak</a> can be useful. However, such third-party package managers are debated, and a more <strong>robust approach</strong> is to <strong>use <code class="docutils literal notranslate"><span class="pre">apt</span></code> whenever possible</strong>, <strong>or</strong>, if the software is not available through apt, look for <a class="reference external" href="https://appimage.org/"><strong>AppImages</strong></a>.</p>
 </section>
-<section id="system-monitoring-with-htop">
-<span id="install-htop"></span><h2>System Monitoring with HTOP<a class="headerlink" href="#system-monitoring-with-htop" title="Permalink to this headline">#</a></h2>
-<p>To get an overview of the system performance install <em>htop</em>, which enables visualizing <em>CPU</em> usage:</p>
+<section id="useful-software">
+<h3>Useful software<a class="headerlink" href="#useful-software" title="Permalink to this headline">#</a></h3>
+<section id="system-monitoring">
+<span id="install-htop"></span><h4>System Monitoring<a class="headerlink" href="#system-monitoring" title="Permalink to this headline">#</a></h4>
+<p>There are multiple options to monitor system resource of a Debian distro, and this section presents two of them, namely, <code class="docutils literal notranslate"><span class="pre">htop</span></code> and <code class="docutils literal notranslate"><span class="pre">stacer</span></code>. <a class="reference external" href="https://htop.dev/"><code class="docutils literal notranslate"><span class="pre">htop</span></code></a> is a minimalistic tool that runs in Terminal. <a class="reference external" href="https://github.com/oguzhaninan/Stacer"><code class="docutils literal notranslate"><span class="pre">stacer</span></code></a> is a graphical user interface providing more options, including optimization of battery life or system performance.</p>
+<p>To install <strong>htop</strong> for visualizing <em>CPU</em> usage, type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">htop</span>
 </pre></div>
@@ -977,9 +979,14 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">htop</span>
 </pre></div>
 </div>
+<p>To install the more general <a class="reference external" href="https://github.com/oguzhaninan/Stacer"><strong>stacer</strong></a> tool, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">stacer</span>
+</pre></div>
+</div>
+<p>After the installation, stacer can be opened from the system menu (search for <em>stacer</em>).</p>
 </section>
-<section id="package-software-management">
-<h2>Package &amp; Software Management<a class="headerlink" href="#package-software-management" title="Permalink to this headline">#</a></h2>
+</section>
 <section id="add-package-repositories">
 <h3>Add Package Repositories<a class="headerlink" href="#add-package-repositories" title="Permalink to this headline">#</a></h3>
 <p>For adding (trusted) software (package) repositories use <em>software-properties-common</em>, which provides the <code class="docutils literal notranslate"><span class="pre">add-apt-repository</span></code> command:</p>
@@ -1009,6 +1016,17 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libglx0</span><span class="o">-</span><span class="n">glvnd</span><span class="o">-</span><span class="n">nvidia</span>
 </pre></div>
 </div>
+</section>
+<section id="update-software">
+<h3>Update Software<a class="headerlink" href="#update-software" title="Permalink to this headline">#</a></h3>
+<p>To update repositories and upgrade installed packages through <code class="docutils literal notranslate"><span class="pre">apt</span></code>, that is the standard Debian package manager <a class="reference external" href="https://salsa.debian.org/apt-team/apt">aptitude</a>, open <em>Terminal</em> and type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">full</span><span class="o">-</span><span class="n">upgrade</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoclean</span>
+</pre></div>
+</div>
+<p>This will not update manually installed software, and packages installed through <a class="reference external" href="https://github.com/snapcore/snapd">snapd</a> and <a class="reference external" href="https://flatpak.org/">flatpak</a>.</p>
 </section>
 </section>
 <section id="windows-apps-on-linux">
@@ -1185,11 +1203,15 @@ More information is available in the <a class="reference external" href="https:/
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enable-opengl">Enable OpenGL</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-software-and-update">Install Software and Update</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-monitoring-with-htop">System Monitoring with HTOP</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-software-management">Package &amp; Software Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-management">Software Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-software">Install Software</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-software">Useful software</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-monitoring">System Monitoring</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-package-repositories">Add Package Repositories</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-packages">Find Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-software">Update Software</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-apps-on-linux">Windows Apps on Linux</a></li>

@@ -30,8 +30,3 @@ This eBook builds on *Jupyter* notebooks that are linked to *mybinder.org*. Thus
 * Run the Jupyter notebooks locally on your own computer by cloning [https://github.com/hydro-informatics/jupyter-python-course](https://github.com/hydro-informatics/jupyter-python-course): <b> `git clone https://github.com/hydro-informatics/jupyter-python-course.git`<b>
 Note that this option requires a local installation of {ref}`Jupyter (Lab) <jupyter>`.
 
-
-
-```{note}
-The *Jupyter notebooks* are provided along with lectures at the University of Stuttgart and its [ILIAS portal](https://ilias3.uni-stuttgart.de/goto_Uni_Stuttgart_crs_2101155.html).
-```

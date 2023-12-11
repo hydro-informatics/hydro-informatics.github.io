@@ -166,7 +166,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
 <li class="toctree-l2"><a class="reference internal" href="../../python-basics/pyinstall.html">Python (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get-started/git.html">Version Control : git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get-started/geo.html">Geospatial Software</a></li>
@@ -552,56 +551,56 @@ document.write(`
 <figure class="align-default" id="of-channelopenfoam">
 <img alt="openfoam" src="../../_images/channelOpenFOAM.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 245 </span><span class="caption-text">Visualization of the case results in ParaView.</span><a class="headerlink" href="#of-channelopenfoam" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 241 </span><span class="caption-text">Visualization of the case results in ParaView.</span><a class="headerlink" href="#of-channelopenfoam" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In order to visualize the air and water phases, <em>alpha.water</em> should then be selected in the drop-down menu as shown in the image below.</p>
 <figure class="align-default" id="of-view-alphawater">
 <img alt="openfoam" src="../../_images/view-alpha-water.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 246 </span><span class="caption-text">Enabling the setting for viewing the air and water phases in ParaView.</span><a class="headerlink" href="#of-view-alphawater" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 242 </span><span class="caption-text">Enabling the setting for viewing the air and water phases in ParaView.</span><a class="headerlink" href="#of-view-alphawater" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To change the shown time step, the arrows that can be seen in the area highlighted in red can be used.</p>
 <figure class="align-default" id="of-final-time-step">
 <img alt="openfoam timestep time step" src="../../_images/final-time-step.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 247 </span><span class="caption-text">Options for changing the time step to be visualized.</span><a class="headerlink" href="#of-final-time-step" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 243 </span><span class="caption-text">Options for changing the time step to be visualized.</span><a class="headerlink" href="#of-final-time-step" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Next, to visualize only the water phase, the <em>Clip</em> filter is used. This can either be found in the <em>Filters</em> section in the menu, or alternatively, the shortcut can be used. The <em>Clip Type</em> should be set to <em>Scalar</em>, selecting <em>alpha.water</em> as scalar and setting the value to 0.5, which represents the interface between air and water. To view the air phase, the <em>Invert</em> option should be selected whereas for the water phase it should be deselected.</p>
 <figure class="align-default" id="of-clip-water">
 <img alt="openfoam clip water interFoam" src="../../_images/clip-water.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 248 </span><span class="caption-text">Clip filter used for viewing the water phase in ParaView.</span><a class="headerlink" href="#of-clip-water" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 244 </span><span class="caption-text">Clip filter used for viewing the water phase in ParaView.</span><a class="headerlink" href="#of-clip-water" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Finally, to also add the walls and patches to the view, the <em>Extract Block</em> filter can be implemented (click on the <em>channel.OpenFOAM</em> file before applying it).</p>
 <figure class="align-default" id="of-extract-block">
 <img alt="openfoam" src="../../_images/extract-block.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 249 </span><span class="caption-text">List of filters available in ParaView, highlighting ExtractBlock.</span><a class="headerlink" href="#of-extract-block" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 245 </span><span class="caption-text">List of filters available in ParaView, highlighting ExtractBlock.</span><a class="headerlink" href="#of-extract-block" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The patches of interest can then be either selected or deselected, and the <em>Coloring</em> can be set to Solid Color.</p>
 <figure class="align-default" id="of-choose-patches">
 <img alt="openfoam" src="../../_images/choose-patches.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 250 </span><span class="caption-text">Available options for selecting the patches and changing the color.</span><a class="headerlink" href="#of-choose-patches" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 246 </span><span class="caption-text">Available options for selecting the patches and changing the color.</span><a class="headerlink" href="#of-choose-patches" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The resulting view of the water phase and block extraction is shown below:</p>
 <figure class="align-default" id="of-alpha-water">
 <img alt="openfoam" src="../../_images/alpha-water.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 251 </span><span class="caption-text">Simulation results highlighting the water phase.</span><a class="headerlink" href="#of-alpha-water" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 247 </span><span class="caption-text">Simulation results highlighting the water phase.</span><a class="headerlink" href="#of-alpha-water" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Different parameters can also be viewed, such as the flow velocity, and this can be done in the <em>Coloring</em> section by selecting <em>U</em>. The <em>preset</em> can be modified to better view the results by selecting the corresponding icon (highlighted in green).</p>
 <figure class="align-default" id="of-flow-velocity">
 <img alt="openfoam" src="../../_images/flow-velocity.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 252 </span><span class="caption-text">Simulation results highlighting the flow velocity.</span><a class="headerlink" href="#of-flow-velocity" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 248 </span><span class="caption-text">Simulation results highlighting the flow velocity.</span><a class="headerlink" href="#of-flow-velocity" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>

@@ -166,7 +166,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Python (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/git.html">Version Control : git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
@@ -539,7 +538,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-interfaces-and-ides">Setup Interfaces and IDEs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atom-and-python">Atom and Python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm-python-projects">PyCharm Python Projects</a></li>
 </ul>
 </li>
@@ -845,7 +843,7 @@ Windows Command Prompt</label><div class="sd-tab-content docutils">
 <section id="create-and-install">
 <h3>Create and Install<a class="headerlink" href="#create-and-install" title="Permalink to this headline">#</a></h3>
 <p>To create a new <em>conda</em> environment from scratch, which differs from the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flussenv environment.yml</a>, open <em>Anaconda Prompt</em> and type (replace <code class="docutils literal notranslate"><span class="pre">ENV-NAME</span></code> for example with <code class="docutils literal notranslate"><span class="pre">flussenv</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">ENV</span><span class="o">-</span><span class="n">NAME</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span>
 </pre></div>
 </div>
 </section>
@@ -881,7 +879,7 @@ Windows Command Prompt</label><div class="sd-tab-content docutils">
 </section>
 <section id="setup-interfaces-and-ides">
 <span id="python-ide-setup"></span><h2>Setup Interfaces and IDEs<a class="headerlink" href="#setup-interfaces-and-ides" title="Permalink to this headline">#</a></h2>
-<p>To follow the contents of this eBook and run code cells, it is recommended to use <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>, which can be installed locally or run it remotely by clicking on <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - the batch is implemented at the top of all Jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (<em>IDE</em>), such as <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>.</p>
+<p>To follow the contents of this eBook and run code cells, it is recommended to use <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a>, which can be installed locally or run it remotely by clicking on <a class="reference external" href="https://mybinder.org/v2/gh/hydro-informatics/hydro-informatics.github.io/main?filepath=jupyter"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - the batch is implemented at the top of all Jupyter notebook-based sections. To create projects, develop programs, or simply complete course assignments, it is recommended to use an Integrated Development Environment (<em>IDE</em>), such as <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm</span></a>.</p>
 <section id="jupyterlab">
 <span id="ipython-config"></span><h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline">#</a></h3>
 <p>The following descriptions require that <a class="reference internal" href="../get-started/ide.html#jupyter"><span class="std std-ref">JupyterLab</span></a> is installed for locally editing <em>Jupyter</em> notebooks (<em>.ipynb</em> files), <em>Python</em> scripts (<em>.py</em> files), and folders.</p>
@@ -913,12 +911,6 @@ Windows</label><div class="sd-tab-content docutils">
 <dl class="simple myst">
 <dt>Setup Styles</dt><dd><p>The <em>Kernel</em> menu runs the defined programming language (<em>Python3</em> in the example below). The <em>Settings</em> menu provides options to configure styles (e.g., choose the <em>JupyterLab Dark</em> theme shown in the below figure).
 <em>JupyterLab</em> runs on a local server (typically on <code class="docutils literal notranslate"><span class="pre">localhost:XXPORTXX/lab</span></code>), which is why it is just like an interactive website in your browser. In the beginning, it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.</p>
-<figure class="align-default" id="id2">
-<img alt="pyc-prj-setup" src="../_images/jupyter-illu.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts (plots) and a Python3 cell).</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
 </dd>
 <dt>Package Controls</dt><dd><p><em>JupyterLab</em> runs an <a class="reference external" href="https://ipython.org/"><em>IPython</em></a> kernel, which refers to the currently activated <em>conda</em> environment. Thus, for installing a package for usage in <em>JupyterLab</em>, follow the above instructions for the chosen environment (learn more about packages in the <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a> section). It might be useful to define <strong>default imports</strong> for <em>IPython</em> and this works as follows:</p>
 <ol class="arabic simple">
@@ -955,121 +947,9 @@ Windows</label><div class="sd-tab-content docutils">
 </dd>
 </dl>
 </section>
-<section id="atom-and-python">
-<span id="atom-setup"></span><h3>Atom and Python<a class="headerlink" href="#atom-and-python" title="Permalink to this headline">#</a></h3>
-<p>Depending on your platform make sure that all requirements are installed to configure Atom’s <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package:</p>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-10">
-Linux</label><div class="sd-tab-content docutils">
-<div class="admonition-requirements admonition">
-<p class="admonition-title">Requirements</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code>:</p>
-<ul>
-<li><p>In <em>Linux Terminal</em> tap: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">clang</span></code> (optional)</p></li>
-<li><p>In <em>Atom</em> go to <strong>File</strong> &gt; <strong>Preferences</strong> &gt; <strong>+ Install</strong> and install the <code class="docutils literal notranslate"><span class="pre">platformio-ide</span></code> package (see also <a class="reference internal" href="../get-started/ide.html#atom-packages"><span class="std std-ref">Atom Packages</span></a>).</p></li>
-</ul>
-</li>
-<li><p>Install <em>flusstools</em> according to the <em>pip</em> <a class="reference internal" href="#pip-quick"><span class="std std-ref">Quick Guide</span></a>, preferably in a virtual environment.</p></li>
-</ul>
-<p><strong>Do not conda-install <em>flusstools</em> on <em>Linux</em> (use pip).</strong></p>
-</div>
-<p>When <em>flusstools</em> and its requirements are correctly installed launch <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (in <em>Atom</em> go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong>).</p>
-<p>In the opened Terminal take the following actions:</p>
-<ul class="simple">
-<li><p>Optionally activate the <em>vflussenv</em> environment (skip this step if you installed <em>flusstools</em> in your system Python interpreter):</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">where</span><span class="o">/</span><span class="n">vflussenv</span><span class="o">-</span><span class="n">lives</span>
-<span class="n">source</span> <span class="n">vflussenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Start Atom:</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>user:~$ atom
-</pre></div>
-</div>
-</div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-11">
-Windows</label><div class="sd-tab-content docutils">
-<div class="admonition-requirements admonition">
-<p class="admonition-title">Requirements</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code>: In <em>Atom</em> go to <strong>File</strong> &gt; <strong>Settings</strong> &gt; <strong>+ Install</strong> and install the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> package (see also <a class="reference internal" href="../get-started/ide.html#atom-packages"><span class="std std-ref">Atom Packages</span></a>).</p></li>
-<li><p><a class="reference internal" href="../get-started/ide.html#anaconda"><span class="std std-ref">Anaconda</span></a> must be installed.</p></li>
-<li><p>Make sure that the <a class="reference external" href="https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/main/environment.yml">flussenv environment.yml</a> (conda environment) is installed along with <a class="reference external" href="https://flusstools.readthedocs.io">flusstools</a> (see the conda <a class="reference internal" href="#conda-quick"><span class="std std-ref">Quick Guide</span></a>).</p></li>
-</ul>
-<p><strong>Do not try to <code class="docutils literal notranslate"><span class="pre">pip</span></code>-install <em>flusstools</em> outside of a conda environment on <em>Windows</em>.</strong></p>
-</div>
-<p>To set up a Python <em>Anaconda</em> terminal in <em>Atom</em> the following <strong>first-time-start steps</strong> are required:</p>
-<ul class="simple">
-<li><p>Launch <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (in <em>Atom</em> go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong>)</p></li>
-<li><p>Typically, <a class="reference external" href="https://aka.ms/pscore6">PowerShell</a> will open, where the following commands need to be entered:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Set-ExecutionPolicy</span> <span class="pre">-Scope</span> <span class="pre">CurrentUser</span> <span class="pre">RemoteSigned</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">init</span></code></p></li>
-</ul>
-</li>
-<li><p>Close the current PowerShell (<em>platformio-ide-terminal</em> window).</p></li>
-</ul>
-<p>Once this is done, the <em>flusstools</em> package <strong>can be activated and used for regular use in a <em>conda</em> environment</strong> in <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> as follows:</p>
-<ul class="simple">
-<li><p>Launch <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (in <em>Atom</em> go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong>)</p></li>
-<li><p>In the terminal activate the <em>flussenv</em> environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
-<li><p>In the activated environment launch python <code class="docutils literal notranslate"><span class="pre">atom</span></code></p></li>
-</ul>
-</div>
-</div>
-<p>Read more about the integration of Python and environments in Atom in the section on the <a class="reference internal" href="../get-started/ide.html#atom-python"><span class="std std-ref">installation of Atom (IDE)</span></a>.</p>
-</section>
 <section id="pycharm-python-projects">
 <span id="ide-setup"></span><h3>PyCharm Python Projects<a class="headerlink" href="#pycharm-python-projects" title="Permalink to this headline">#</a></h3>
-<p>After the successful installation of <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm with Anaconda</span></a>, use a <em>conda</em> (or <em>pip</em>) environment as interpreter. The following steps guide through the setup of PyCharm for using <em>conda</em> environments.</p>
-<ul class="simple">
-<li><p>Launch <em>PyCharm</em> and create a new project.</p></li>
-</ul>
-<figure class="align-default" id="id3">
-<img alt="pyc-prj&quot; max-width=&quot;500px" src="../_images/pyc-project.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Create a new project in PyCharm.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<ul class="simple">
-<li><p>Define The new <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment as <em>Pure Python</em> project interpreter:</p>
-<ul>
-<li><p>Select *New environment using <code class="docutils literal notranslate"><span class="pre">Conda</span></code></p></li>
-<li><p>In the <em>Location</em> box select the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> environment</p></li>
-<li><p>Click <em>Create</em> to create the new project.</p></li>
-</ul>
-</li>
-</ul>
-<figure class="align-default" id="id4">
-<img alt="pyc-prj-setup" src="../_images/pyc-prj-setup.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Setup the <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> conda environment for the new project.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<ul class="simple">
-<li><p>Verify that the project interpreter is correctly defined:</p>
-<ul>
-<li><p>Click on PyCharm’s <strong>File</strong> menu and select <strong>Settings…</strong></p></li>
-<li><p>In the <em>Settings</em> window go to <strong>Project: [NAME]</strong> &gt; <strong>Project Interpreter</strong></p></li>
-<li><p>Make sure that the above-created <code class="docutils literal notranslate"><span class="pre">flussenv</span></code> <em>conda</em> environment is defined as <em>Project Interpreter</em>.</p></li>
-</ul>
-</li>
-</ul>
-<figure class="align-default" id="id5">
-<img alt="pyc-prj-interp" src="../_images/pyc-prj-interp.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Verify the correct setup of the Project Interpreter.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Struggling with setting up PyCharm?</p>
-<p>PyCharm and Anaconda are designed for working hand-in-hand and the developers provide an <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/">up-to-date documentation</a> for setting up PyCharm to work with <em>conda</em> environments.</p>
-</div>
+<p>After the successful installation of <a class="reference internal" href="../get-started/ide.html#pycharm"><span class="std std-ref">PyCharm</span></a>, use a <em>conda</em> (or <em>pip</em>) environment as interpreter. PyCharm developers provide an <a class="reference external" href="https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html">up-to-date documentation</a> - just look for the tab <strong>Existing environment</strong>.</p>
 </section>
 </section>
 </section>
@@ -1157,7 +1037,6 @@ Windows</label><div class="sd-tab-content docutils">
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-interfaces-and-ides">Setup Interfaces and IDEs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atom-and-python">Atom and Python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm-python-projects">PyCharm Python Projects</a></li>
 </ul>
 </li>

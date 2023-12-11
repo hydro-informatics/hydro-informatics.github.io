@@ -363,7 +363,7 @@ When running Jupyter, the `fluss_kernel` will be available in the top menu **Ker
 To create a new *conda* environment from scratch, which differs from the {{ ft_env }}, open *Anaconda Prompt* and type (replace `ENV-NAME` for example with `flussenv`):
 
 ```
-conda create --name ENV-NAME python=3.8
+conda create --name ENV-NAME python=3.10
 ```
 
 ### Activate Environment
@@ -436,12 +436,6 @@ Setup Styles
 : The *Kernel* menu runs the defined programming language (*Python3* in the example below). The *Settings* menu provides options to configure styles (e.g., choose the *JupyterLab Dark* theme shown in the below figure).
   *JupyterLab* runs on a local server (typically on `localhost:XXPORTXX/lab`), which is why it is just like an interactive website in your browser. In the beginning, it takes some getting used to, but one gets quickly familiar with it and there are many advantages such as the inline use of online graphics.
 
-  ```{figure} ../img/jupyter-illu.png
-  :alt: pyc-prj-setup
-
-  JupyterLab in Dark theme appearance with a Jupyter notebook (xml.ipynb) opened showing the combination of a markdown cell (Charts (plots) and a Python3 cell).
-  ```
-
 Package Controls
 : *JupyterLab* runs an [*IPython*](https://ipython.org/) kernel, which refers to the currently activated *conda* environment. Thus, for installing a package for usage in *JupyterLab*, follow the above instructions for the chosen environment (learn more about packages in the {ref}`sec-pypckg` section). It might be useful to define **default imports** for *IPython* and this works as follows:
 
@@ -475,105 +469,8 @@ Package Controls
   The `default_profile` is part of the default *Jupyter* installation and it is normally not necessary to create it manually. The [IPython docs](https://ipython.org/ipython-doc/stable/config/intro.html) provide more detail about custom settings and modifying profiles on any platform.
   ```
 
-(atom-setup)=
-### Atom and Python
-
-Depending on your platform make sure that all requirements are installed to configure Atom's `platformio-ide-terminal` package:
-
-`````{tab-set}
-````{tab-item} Linux
-
-```{admonition} Requirements
-* `platformio-ide-terminal`:
-  * In *Linux Terminal* tap: `sudo apt install clang` (optional)
-  * In *Atom* go to **File** > **Preferences** > **+ Install** and install the `platformio-ide` package (see also {ref}`atom-packages`).
-* Install *flusstools* according to the *pip* {ref}`pip-quick`, preferably in a virtual environment.
-
-**Do not conda-install *flusstools* on *Linux* (use pip).**
-```
-
-When *flusstools* and its requirements are correctly installed launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**).
-
-In the opened Terminal take the following actions:
-
-* Optionally activate the *vflussenv* environment (skip this step if you installed *flusstools* in your system Python interpreter):
-```
-cd ~/where/vflussenv-lives
-source vflussenv/bin/activate
-```
-* Start Atom:
-
-```
-user:~$ atom
-```
-
-````
-
-````{tab-item} Windows
-
-```{admonition} Requirements
-* `platformio-ide-terminal`: In *Atom* go to **File** > **Settings** > **+ Install** and install the `platformio-ide-terminal` package (see also {ref}`atom-packages`).
-* {ref}`anaconda` must be installed.
-* Make sure that the {{ ft_env }} (conda environment) is installed along with {{ ft_url }} (see the conda {ref}`conda-quick`).
-
-**Do not try to `pip`-install *flusstools* outside of a conda environment on *Windows*.**
-```
-
-To set up a Python *Anaconda* terminal in *Atom* the following **first-time-start steps** are required:
-
-* Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
-* Typically, [PowerShell](https://aka.ms/pscore6) will open, where the following commands need to be entered:
-  * `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
-  * `conda init`
-* Close the current PowerShell (*platformio-ide-terminal* window).
-
-Once this is done, the *flusstools* package **can be activated and used for regular use in a *conda* environment** in `platformio-ide-terminal` as follows:
-
-* Launch `platformio-ide-terminal` (in *Atom* go to **Packages** (top menu) > **platformio-ide-terminal** > **New Terminal**)
-* In the terminal activate the *flussenv* environment: `conda activate flussenv`
-* In the activated environment launch python `atom`
-````
-`````
-
-Read more about the integration of Python and environments in Atom in the section on the {ref}`installation of Atom (IDE) <atom-python>`.
-
-
 (ide-setup)=
 ### PyCharm Python Projects
 
-After the successful installation of {ref}`pycharm`, use a *conda* (or *pip*) environment as interpreter. The following steps guide through the setup of PyCharm for using *conda* environments.
+After the successful installation of {ref}`pycharm`, use a *conda* (or *pip*) environment as interpreter. PyCharm developers provide an [up-to-date documentation](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html) - just look for the tab **Existing environment**.
 
-* Launch *PyCharm* and create a new project.
-
-```{figure} ../img/pyc-project.png
-:alt: pyc-prj" max-width="500px
-
-Create a new project in PyCharm.
-```
-
-* Define The new `flussenv` environment as *Pure Python* project interpreter:
-    * Select *New environment using `Conda`
-    * In the *Location* box select the `flussenv` environment
-    * Click *Create* to create the new project.
-
-```{figure} ../img/pyc-prj-setup.png
-:alt: pyc-prj-setup
-
-Setup the `flussenv` conda environment for the new project.
-```
-
-* Verify that the project interpreter is correctly defined:
-  * Click on PyCharm's **File** menu and select **Settings...**
-  * In the *Settings* window go to **Project: [NAME]** > **Project Interpreter**
-  * Make sure that the above-created `flussenv` *conda* environment is defined as *Project Interpreter*.
-
- ```{figure} ../img/pyc-prj-interp.png
-:alt: pyc-prj-interp
-
-Verify the correct setup of the Project Interpreter.
-```
-
-```{admonition} Struggling with setting up PyCharm?
-:class: tip, dropdown
-PyCharm and Anaconda are designed for working hand-in-hand and the developers provide an [up-to-date documentation](https://docs.anaconda.com/anaconda/user-guide/tasks/pycharm/) for setting up PyCharm to work with *conda* environments.
-```
