@@ -7,7 +7,7 @@ Use *git* and get familiar with writing markdown documents.
 
 ```{admonition} Requirements
 :class: attention
-Understand [git](../get-started/git) and [markdown](../documentation/documentation).
+Understand [git](../get-started/git) and [markdown](../documentation/how-to-document).
 ```
 
 Get ready by cloning the exercise repository:

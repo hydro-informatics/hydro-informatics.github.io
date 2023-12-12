@@ -546,7 +546,7 @@ The logfile should look similar to this:
 ```{admonition} Closing remarks
 :class: warning
 
-Sediment transport calculations based on local cross-section averaged hydraulics have extremely high error rates because of higher-order controls {cite:p}`schwindt2023metaanalysis`.
+Sediment transport calculations based on local cross-section averaged hydraulics have extremely high error rates because of higher-order controls {cite}`schwindt2023metaanalysis`.
 
 Finally, there are many possible solutions to this exercise and any solution that results in the same outcome (workbook and logfile) is valid. The key challenge is to use an object-oriented approach with at least one class inheriting from another class.
 ```

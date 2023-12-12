@@ -2,7 +2,7 @@
 
 (npp)=
 ## NotepadPlusPlus (Text Editor)
-[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo) more. Alternatives for *Notepad++* are, for example, {ref}`install-atom` (cross-platform), [Vim](https://www.vim.org/) (Linux) or [GNU Emacs](https://www.gnu.org/software/emacs/) (Linux).
+[*Notepad++*](https://notepad-plus-plus.org/) is an all-round text editor for basic coding (*R*, *Python*, *Java*, *C*, *Perl*, ...), markdown/html editing and many many (not a typo) more. Linux alternatives for *Notepad++* are, for example, [Sublime text](https://www.sublimetext.com/) (proprietary), [Kate](https://kate-editor.org/) (cross-platform), or [Gedit](https://help.gnome.org/users/gedit/stable/) (simplistic).
 
 (lo)=
 ## Office Applications

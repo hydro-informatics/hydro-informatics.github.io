@@ -19,7 +19,7 @@ The term hydroinformatics (or hydro-informatics) refers to a sub-discipline of h
 
 ## Contents
 
-This eBook features a {doc}`virtual classroom </lectures/classroom>` with open source/access materials for {doc}`lectures and exercises </lectures/lectures>`. Students at the [University of Stuttgart](https://www.uni-stuttgart.de/) can learn more about registering for courses in the {ref}`chpt-take-seat` chapter.
+This eBook features a {doc}`virtual classroom </lectures/classroom>` with open source/access materials for {doc}`lectures and exercises </lectures/overview>`. Students at the [University of Stuttgart](https://www.uni-stuttgart.de/) can learn more about registering for courses in the {ref}`chpt-take-seat` chapter.
 
 We provide tutorials for:
 
@@ -27,13 +27,13 @@ We provide tutorials for:
   * Collaborative development with version control through {doc}`git </get-started/git>`
   * Guidance to {ref}`install-python`
   * A general introduction to {doc}`Python programming and object orientation </python-basics/python>`)
-  * Guides for code and project {doc}`documentation </documentation/documentation>` (*Markdown* / *reStructuredText*)
+  * Guides for code and project {doc}`documentation </documentation/how-to-document>` (*Markdown* / *reStructuredText*)
 * Geospatial analyses with {ref}`QGIS <qgis-tutorial>` and {doc}`Python </geopy/geo-python>`
 * {doc}`Machine learning <datascience/machinelearning>` with illustrative exercises and Python implementations to dive into:
   * the fundamentals of {ref}`supervised learning <supervisedlearning>`
   * an introduction to {doc}`unsupervised learning <datascience/unsupervised-learning>`
   * a tutorial for {doc}`support vector machines (SVM) <datascience/morphology-predictor-svm>`
-* Numerical modeling with
+* Numerical modeling of rivers with
   * The {doc}`ETH Zurich's BASEMENT </numerics/basement/basement>` (v4) software (2d hydrodynamics)
   * {doc}`TELEMAC </numerics/telemac/telemac>` (2d, 3d, and morphodynamics)
   * {doc}`OpenFOAM </numerics/openfoam/of-intro>` (3d hydrodynamics)

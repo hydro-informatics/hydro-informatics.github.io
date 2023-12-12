@@ -155,8 +155,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/overview.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take-seat.html">Take a Seat</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -323,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/how-to-document.html">How to Markdown and Document</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
@@ -878,7 +878,7 @@ As featured in the <a class="reference internal" href="../geopy/use-qgis.html#qg
 </section>
 <section id="create-a-quality-mesh">
 <span id="qualm"></span><h3>Create a Quality Mesh<a class="headerlink" href="#create-a-quality-mesh" title="Permalink to this headline">#</a></h3>
-<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id1">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1340" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile ([see above section on <a class="reference internal" href="#regions"><span class="std std-ref">Region Markers</span></a>), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.</p>
+<p><em>BASEmesh</em>’s quality mesh tool creates a computationally efficient triangular mesh based on <span id="id1">Shewchuk [<a class="reference internal" href="../documentation/bibliography.html#id1341" title="Jonathan Richard Shewchuk. Triangle: Engineering a 2D quality mesh generator and Delaunay triangulator. In Ming C. Lin and Dinesh Manocha, editors, Applied Computational Geometry Towards Geometric Engineering, Lecture Notes in Computer Science, 203–222. Berlin, Heidelberg, 1996. Springer. URL: https://link.springer.com/chapter/10.1007/BFb0014497, doi:10.1007/BFb0014497.">She96</a>]</span> and within the above-defined model boundaries. The tool associates mesh properties with the regions shapefile ([see above section on <a class="reference internal" href="#regions"><span class="std std-ref">Region Markers</span></a>), but it does not include elevation data. Thus, after generating a quality mesh, elevation information needs to be added. This section explains the quality mesh generation and the next section features the interpolation of bottom elevations.</p>
 <p>In QGIS’ <strong>Plugins</strong> menu, click on <strong>BASEmesh 2</strong> &gt; <strong>QUALITY MESHING</strong> to open the quality mesh tool. Make the following settings in the popup window (see also <a class="reference internal" href="#qgis-qualm"><span class="std std-numref">Fig. 77</span></a>):</p>
 <ul class="simple">
 <li><p>Triangulation constraints frame:</p>

@@ -155,15 +155,14 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/overview.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take-seat.html">Take a Seat</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
-
 
 
 
@@ -324,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/how-to-document.html">How to Markdown and Document</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
@@ -657,16 +656,6 @@ document.write(`
 <li><p>Navigate to a local copy of this Jupyter notebook and run any code block (click on a code block and hit the run triangle button in the top menu).</p></li>
 </ul>
 </li>
-<li><p>With Atom (Windows / Linux / macOS - sunset software!):</p>
-<ul>
-<li><p>Make sure the <em>flusstools</em> environment is installed for your platform (read <a class="reference internal" href="../python-basics/pyinstall.html#install-python"><span class="std std-ref">how to get it</span></a> )</p></li>
-<li><p>In Atom, install and enable the <code class="docutils literal notranslate"><span class="pre">platformio-ide-terminal</span></code> (<a class="reference internal" href="../python-basics/pyinstall.html#atom-setup"><span class="std std-ref">read more</span></a>)</p></li>
-<li><p>In Atom, go to <strong>Packages</strong> (top menu) &gt; <strong>platformio-ide-terminal</strong> &gt; <strong>New Terminal</strong></p></li>
-<li><p>Windows + Anaconda users: enter <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">flussenv</span></code></p></li>
-<li><p>Linux + pip/venv users: make sure where your <code class="docutils literal notranslate"><span class="pre">vflussenv</span></code> lives and tap <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">vflussenv/bin/activate</span></code> (<a class="reference internal" href="../python-basics/pyinstall.html#pip-quick"><span class="std std-ref">read more</span></a>)</p></li>
-<li><p>All platforms: tap <code class="docutils literal notranslate"><span class="pre">python</span></code> - the console is now ready to use.</p></li>
-</ul>
-</li>
 </ul>
 </div>
 <p>Ultimately, <strong>you are ready to</strong> get the very first “feedback” (<em>callback</em>) from the <strong>Python</strong> console. Start with a simple call of the <code class="docutils literal notranslate"><span class="pre">print</span></code> function by entering:</p>
@@ -688,7 +677,7 @@ document.write(`
 <p>In any <strong>other (IDE) Terminal</strong>, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the Python file (<code class="docutils literal notranslate"><span class="pre">icecream_tutorial.py</span></code>) lives, then enter <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">icecream_tutorial.py</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the following, there will not be anymore the differentiation between using PyCharm or any other IDE and Jupyter. Thus, <strong>Run the script/code block</strong> means: run the script in your favorite IDE in the following.</p>
+<p>In the following, there will not be any more differentiation between using PyCharm or any other IDE and Jupyter. Thus, <strong>Run the script/code block</strong> means: run the script in your favorite IDE in the following.</p>
 </div>
 <p>With the <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> apostrophes in the <code class="docutils literal notranslate"><span class="pre">print</span></code> command, we pass a <em><strong>string</strong></em> variable to the <code class="docutils literal notranslate"><span class="pre">print</span></code> command. Instead of using <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>, one can also use <code class="docutils literal notranslate"><span class="pre">'</span></code>, but it is important to use the same type of apostrophe at the beginning and the end of the string (text) variable.</p>
 <div class="admonition warning">

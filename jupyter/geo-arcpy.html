@@ -157,15 +157,14 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/classroom.html">The Virtual Classroom</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/principles.html">Principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/lectures.html">Lectures and Exercises</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/take_seat.html">Take a Seat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/overview.html">Lectures and Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/take-seat.html">Take a Seat</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../get-started/software.html">Software Resources</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/vm.html">Virtual Machines and Linux</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../get-started/ide.html">Integrated Development Environments (IDEs)</a></li>
-
 
 
 
@@ -326,7 +325,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../documentation/documentation.html">How to Markdown and Document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/how-to-document.html">How to Markdown and Document</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/glossary.html">Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/bibliography.html">References</a></li>
@@ -823,7 +822,7 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
 <section id="shapefile-operations">
 <h2>Shapefile Operations<a class="headerlink" href="#shapefile-operations" title="Permalink to this headline">#</a></h2>
 <p>The geospatial <a class="reference internal" href="geo-shp.html#chpt-shp"><span class="std std-ref">shapefile</span></a> vector format is an Esri invention. No wonder, <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> is good at handling this vector data format. In hydraulic engineering, however, we usually create (draw) shapefiles manually either directly with ArcGIS or its open-source competitor <a class="reference external" href="https://www.qgis.org/">QGIS</a> to delineate, for example, particular flow regions. Examples can be found <a class="reference internal" href="../numerics/basement/basement.html#chpt-basement"><span class="std std-ref">in the BASEMENT tutorial</span></a> (explore the creation of elevation point, boundary polygon, and breakline polyline shapefiles). In codes, the processing of shapefiles only becomes important in the analysis of the output of numerical models (e.g., to classify morphological unit features, exactly calculate patch areas, or automatically place reinforcements in construction plans). At this stage, raster data (output of numerical models) must first be converted into shapefiles. This is why this tutorial starts with the conversion of raster data to shapefiles along with the illustration of other functions such as calculating patch area and accessing shapefile attribute tables.</p>
-<p>Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called <em>slackwater</em> (according to <span id="id1">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id962" title="J. R. Wyrick and G. B. Pasternack. Geospatial organization of fluvial landforms in a gravel-cobble river: Beyond the riffle-pool couplet. Geomorphology, 213(Supplement C):48–65, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0169555X14000099, doi:10.1016/j.geomorph.2013.12.040.">WP14</a>]</span>). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods:</p>
+<p>Rasters can be converted to polygon and other shapefile types (e.g., point). The following example features the conversion of a raster to a polygon shapefile. It uses an integer raster of all pixels where the flow depth and velocity are smaller than 1.4 m and 0.15 m/s, respectively. Such shallow and slow-flow regions are called <em>slackwater</em> (according to <span id="id1">Wyrick and Pasternack [<a class="reference internal" href="../documentation/bibliography.html#id963" title="J. R. Wyrick and G. B. Pasternack. Geospatial organization of fluvial landforms in a gravel-cobble river: Beyond the riffle-pool couplet. Geomorphology, 213(Supplement C):48–65, 2014. URL: http://www.sciencedirect.com/science/article/pii/S0169555X14000099, doi:10.1016/j.geomorph.2013.12.040.">WP14</a>]</span>). Because slackwater is designated preferred habitat of some aquatic species, we are wondering now how much slackwater area the numerical model predicts in the simulated river section. For this purpose, we convert the slackwater raster to a shapefile and calculate the surface area of the shapefile with the following <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods:</p>
 <ul class="simple">
 <li><p>Convert the raster to a shapefile with <a class="reference external" href="https://pro.arcgis.com/en/pro-app/tool-reference/conversion/raster-to-polygon.htm"><code class="docutils literal notranslate"><span class="pre">arcpy.RasterToPolygon_conversion()</span></code></a> with arguments:</p>
 <ul>
