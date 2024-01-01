@@ -409,7 +409,7 @@ The more software there is on your computer, the slower it will be, and the less
 
 The most popular software manager of Debian-based Linux distributions is called [aptitude](https://salsa.debian.org/apt-team/apt), which is the thing that you invoke when typing `[sudo] apt [something]`. There are more standard package managers, such as `dpkg` or `synaptic` (see the full list in the [Debian package management faqs](https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html)). To install a wide range of proprietary software (e.g., video conferencing tools), package management tools like [snapd](https://github.com/snapcore/snapd) or [flatpak](https://flatpak.org/) can be useful. However, such third-party package managers are debated, and a more **robust approach** is to **use `apt` whenever possible**, **or**, if the software is not available through apt, look for [**AppImages**](https://appimage.org/).
 
-### Useful software
+### Useful Software
 
 (install-htop)=
 #### System Monitoring
