@@ -25,7 +25,8 @@ Geospatial data can be retrieved for various purposes from different sources. He
 * Meteorological (e.g., temperature or precipitation) and real-time satellite data are available at [wunderground.com](https://www.wunderground.com/) and its [wundermap](https://www.wunderground.com/wundermap).
 * Climate and meteorological data and forecasts are available at [cds.climate.copernicus.eu](https://cds.climate.copernicus.eu), including, for example, ERA5 monthly averaged temperature data
 * Data on land use (including canopy cover), socioeconomic characteristics, and global change are available at the [FAO GeoNetwork](http://www.fao.org/geonetwork/srv/en/main.home) or the archived ISCGM Global Map portal ([go to their GitHub archive](https://globalmaps.github.io/)).
-* Topographical data from the state of Bavaria, Germany, can be found at [https://www.ldbv.bayern.de](https://www.ldbv.bayern.de/produkte/3dprodukte/gelaende.html).
+* Topographical data  (1 to 5-m resolution) from the state of Bavaria, Germany, can be found at [https://www.ldbv.bayern.de](https://www.ldbv.bayern.de/produkte/3dprodukte/gelaende.html).
+* Topographical data from EU countries can be found at [https://www.mapsforeurope.org](https://www.mapsforeurope.org/datasets/euro-dem).
 
 ## Visualization
 GIS software is needed to display geospatial data and many tools exist. This website primarily provides examples using {ref}`qgis-install`. Since the use of GIS software, especially *QGIS*, is necessary for several sections in this eBook, explanations on how to install *QGIS* are already included in the {ref}`chpt-geo-software`.

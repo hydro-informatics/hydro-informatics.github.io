@@ -210,7 +210,7 @@ Hyporheic zone
   The hyporheic zone is the space under and along rivers where surface water and groundwater exchange takes place. The exchange processes of a functional, non-{term}`clogged <Clogging>` hyporheic zone are important for the ecosystem, in particular for fish spawning {cite:p}`boulton_hyporheic_1998`.
 
 Kolmogorov microscales
-  The Russian mathematician Andrey Nikolaevich Kolmogorov the concept that the smallest scales of turbulence are similar for any turbulent flow (i.e. universal) {cite:p}`youschkevitch_kolmogorov_1983`. According to this concept, the so-called Kolmogorov microscales, the {term}`turbulent kinetic energy <Turbulent kinetic energy>` dissipates to heat when viscosity dominates. The Kolmogorov microscales can be calculated for length, time, and velocity units as a function of the kinematic viscosity $\nu$, and the dissipation rate $\epsilon$ of {term}`turbulent kinetic energy <Turbulent kinetic energy>` (per unit mass).
+  The Russian mathematician Andrey Nikolaevich Kolmogorov introduced the concept that the smallest scales of turbulence are similar for any turbulent flow (i.e. universal) {cite:p}`youschkevitch_kolmogorov_1983`. According to this concept, the so-called Kolmogorov microscales, the {term}`turbulent kinetic energy <Turbulent kinetic energy>` dissipates to heat when viscosity dominates. The Kolmogorov microscales can be calculated for length, time, and velocity units as a function of the kinematic viscosity $\nu$, and the dissipation rate $\epsilon$ of {term}`turbulent kinetic energy <Turbulent kinetic energy>` (per unit mass).
 
   The Kolmogorov length scale $\eta_L$ is calculated as follows, and typically is in the order of 0.1-10 m$^{-3}$ {cite:p}`dey_fluvial_2014`:
 

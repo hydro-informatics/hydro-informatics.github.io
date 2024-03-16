@@ -425,8 +425,7 @@ user@user123:~/OpenFOAM-9/channel/Mesh$ decomposePar
 user@user123:~/OpenFOAM-9/channel/Mesh$ mpirun -np x snappyHexMesh -parallel
 ```
 
-
-    * Alternatively:
+Alternatively:
 
 ```
 user@user123:~/OpenFOAM-9/channel/Mesh$ snappyHexMesh
