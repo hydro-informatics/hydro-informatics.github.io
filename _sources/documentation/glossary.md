@@ -40,12 +40,12 @@ Bedload
   *French: Charriage <br>German: Geschiebtransport*
 
 Boussinesq approximation
-  The Boussinesq approximation of the {term}`Continuity equation` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`boussinesq_essai_1877,spiegel1960`. Caution: not to be confused with the {term}`Boussinesq hypothesis`.
+  The Boussinesq approximation of the {term}`continuity equation <Continuity equation>` assumes that density variations can be neglected except for the gravity term (i.e., in the vertical momentum equations). In addition, the Boussinesq approximation assumes that a fluid is incompressible and that wave motion is inviscid {cite:p}`boussinesq_essai_1877,spiegel1960`. Caution: not to be confused with the {term}`Boussinesq hypothesis`.
 
   *French: approximation de Boussinesq<br>German: Boussinesq-Approximation*
 
 Boussinesq hypothesis
-  The Boussinesq hypothesis states that the turbulent stresses are related to the mean velocity gradients in a similar way as the viscous stresses are related to the total velocity gradients {cite:p}`glegg_chapter_2017`. In practice, the Boussinesq hypothesis corresponds to the assumption that the momentum transfer caused by turbulent eddies can be modeled with an eddy viscosity, which is important, for example, for turbulence terminations (e.g., in {term}`RANS` models) {cite:p}`boussinesq_essai_1877,schmitt_boussinesq_2007`. Caution: not to be confused with the {term}`Boussinesq approximation`.
+  The Boussinesq hypothesis states that the turbulent stresses are related to the mean velocity gradients in a similar way as the viscous stresses are related to the total velocity gradients {cite:p}`glegg_chapter_2017`. In practice, the Boussinesq hypothesis corresponds to the assumption that the momentum transfer caused by turbulent eddies can be modeled with an eddy viscosity, which is important, for example, for turbulence closures (e.g., in {term}`RANS` models) {cite:p}`boussinesq_essai_1877,schmitt_boussinesq_2007`. Caution: not to be confused with the {term}`Boussinesq approximation`.
 
   *French: hypothèse de Boussinesq<br>German: Näherung von Boussinesq*
 
@@ -210,7 +210,7 @@ Hyporheic zone
   The hyporheic zone is the space under and along rivers where surface water and groundwater exchange takes place. The exchange processes of a functional, non-{term}`clogged <Clogging>` hyporheic zone are important for the ecosystem, in particular for fish spawning {cite:p}`boulton_hyporheic_1998`.
 
 Kolmogorov microscales
-  The Russian mathematician Andrey Nikolaevich Kolmogorov introduced the concept that the smallest scales of turbulence are similar for any turbulent flow (i.e. universal) {cite:p}`youschkevitch_kolmogorov_1983`. According to this concept, the so-called Kolmogorov microscales, the {term}`turbulent kinetic energy <Turbulent kinetic energy>` dissipates to heat when viscosity dominates. The Kolmogorov microscales can be calculated for length, time, and velocity units as a function of the kinematic viscosity $\nu$, and the dissipation rate $\epsilon$ of {term}`turbulent kinetic energy <Turbulent kinetic energy>` (per unit mass).
+  The Russian mathematician Andrey Nikolaevich Kolmogorov introduced the concept that the smallest scales of turbulence are similar for any turbulent flow (i.e., universal) {cite:p}`youschkevitch_kolmogorov_1983`. According to this concept, the so-called Kolmogorov microscales, the {term}`turbulent kinetic energy <Turbulent kinetic energy>` dissipates to heat when viscosity dominates. The Kolmogorov microscales can be calculated for length, time, and velocity units as a function of the kinematic viscosity $\nu$, and the dissipation rate $\epsilon$ of {term}`turbulent kinetic energy <Turbulent kinetic energy>` (per unit mass).
 
   The Kolmogorov length scale $\eta_L$ is calculated as follows, and typically is in the order of 0.1-10 m$^{-3}$ {cite:p}`dey_fluvial_2014`:
 
