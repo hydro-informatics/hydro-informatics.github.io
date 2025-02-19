@@ -39,6 +39,9 @@ AI tools can make life a lot easier, and are particularly effective at improving
 * - genei
   - Automatically summarize background reading and produce blogs, articles, and reports.
   - [https://www.genei.io](https://www.genei.io/)
+* - Granola AI
+  - Takes meeting notes and structures them (Mac only!)
+  - [https://granola.ai](https://www.granola.ai/)
 * - IRIS
   - Research tool for literature analysis with automated summaries and systematic data checks.
   - [https://iris.ai](https://iris.ai/)

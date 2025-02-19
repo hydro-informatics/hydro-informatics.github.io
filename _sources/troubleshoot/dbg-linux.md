@@ -1,4 +1,4 @@
-# Debugging Linux
+# Debug & Improve Experience
 
 Debian Linux is documented in a comprehensive [wiki](https://wiki.debian.org/) with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).
 
@@ -33,7 +33,7 @@ sudo apt autoremove --purge
 sudo apt autoremove
 ```
 
-Subversion (*SVN*) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the *SVN* directory):
+Subversion (SVN) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the SVN directory):
 
 ```
 svn cleanup ~/telemac/v8p1 --non-interactive
@@ -122,7 +122,7 @@ sudo chmod -R 777 /directory/
 
  If the above comments do not work, make sure that the `tkinter` repository is available to your system: `sudo add-apt-repository ppa:deadsnakes/ppa` (the repository address may change and depends on your *Linux* and *Python* versions).
 
-## Wine
+## Wine (Windows Apps)
 
 ### General wine issues
 
@@ -291,5 +291,180 @@ sudo shutdown -r now
 * Verify the installation in Terminal:
 ```
 nvidia-smi
+```
+
+## Mac OS Apps (DMG file handling)
+
+MacOS applications are often distributed as DMG files. Although Linux does not support DMG files natively, they can be converted to a mountable IMG file to then create an ISO image, which is easier to mount and work with on Linux.
+
+### Convert the DMG to an IMG
+
+First, install the `dmg2img` tool:
+
+```bash
+sudo apt install dmg2img
+```
+
+Convert the DMG file by running:
+
+```bash
+dmg2img /path/to/file.dmg
+```
+
+This command creates an IMG file with the same basename as the DMG, formatted with Apple's HFS+ filesystem.
+
+### Mount the IMG file
+
+Since the IMG file uses the HFS+ filesystem, load the following kernel module:
+
+```bash
+sudo modprobe hfsplus
+```
+
+Create a mount point (tpyically, in `/media`):
+
+```bash
+sudo mkdir -p /media/user/appname
+```
+
+Mount the IMG file using a loop device:
+
+```bash
+sudo mount -t hfsplus -o loop /path/to/file.img /media/user/appname
+```
+
+### Create an ISO from the mounted IMG
+
+While it is possible to directly work with the mounted IMG, converting it to an ISO improves Linux compatibility. One way to do this is with Brasero, a graphical disc-burning tool for creating ISO images. Thus, first, install Brasero:
+
+```bash
+sudo apt install brasero
+```
+
+Then follow these steps:
+
+1. **Launch Brasero** by opening it from the system menu (typically under **Sound & Video**) or search for it.
+2. Start a new poject with a click on **Data project**.
+3. **Add files** with a click on the plus icon (typically at the top left) and select the folder where the IMG file is mounted (`/media/user/appname`).
+4. Click **Burn**, choose an output directory, and optionally change the output image name.
+5. Click **Create Image** to generate the ISO file.
+
+### Mount the ISO image
+
+ISO images are natively supported by Ubuntu. To mount the new ISO:
+
+1. **(Optional) load the HFS+ module:**  
+   If the ISO still uses HFS+ (this is uncommon for standard ISO images), run:
+   
+   ```bash
+   sudo modprobe hfsplus
+   ```
+
+2. **Create a mount point for the ISO:**
+
+   ```bash
+   sudo mkdir -p /media/user/appnameISO
+   ```
+
+3. **Mount the ISO:**  
+   If the ISO uses HFS+, mount it with:
+
+   ```bash
+   sudo mount -t hfsplus -o loop /path/to/file.iso /media/user/appnameISO
+   ```
+
+   Otherwise, for a standard ISO 9660 filesystem, simply use:
+
+   ```bash
+   sudo mount -o loop /path/to/file.iso /media/user/appnameISO
+   ```
+
+Now, all the contents of the ISO (originally from the DMG/IMG) are accessible in the `/media/user/appnameISO` directory.
+
+
+```{admonition} Uncertain filesystem and other ISO creation tools
+:class: note
+
+If you encounter issues or if the filesystem type is uncertain, you may want to try mounting without specifying a type to let Ubuntu auto-detect it.
+
+There are also command-line tools (like `mkisofs` or `genisoimage`) available for ISO creation if you prefer a non-GUI approach.
+```
+
+
+### Launching the application from the mounted ISO
+
+The contents of the mounted ISO can be explored to locate the application and launching it. Keep in mind that macOS applications are still not natively executable on Linux. A compatibility layer, such as [Darling](https://www.darlinghq.org/) may be needed.
+
+####  Locate the application bundle
+
+MacOS apps are typically packaged as `.app` bundles. Here is how to find them:
+
+- **Browse the mounted directory:**  
+  Open the file manager or use the terminal to navigate to the mount point (e.g., `/media/user/appnameISO`).
+
+- **Identify the `.app` bundle:**  
+  Look for directories ending with `.app` (for example, `MyApp.app`).
+
+#### Find the executable inside the bundle
+
+- **Open the app bundle:**  
+  Inside the `.app` directory, navigate to the `Contents` folder.
+  
+- **Locate the Binary:**  
+  Within `Contents`, the `MacOS` subdirectory typically stores the executable file. For isntance, the full path might be:
+  ```
+  /media/user/appnameISO/MyApp.app/Contents/MacOS/MyApp
+  ```
+
+#### Launch the Application
+
+`````{tab-set}
+````{tab-item} Use Darling (macOS Compatibility Layer)
+
+Since macOS binaries do not run natively on Linux, one option is to use [Darling](https://www.darlinghq.org/), which provides a translation layer for macOS apps.
+
+1. **Install Darling:**  
+   Follow the instructions on the [Darling website](https://www.darlinghq.org/) to install it on the system.
+
+2. **Launch a Darling shell and run the app:**
+
+   ```bash
+   darling shell
+   cd /media/user/appnameISO/MyApp.app/Contents/MacOS
+   ./MyApp
+   ```
+
+   Note that Darling still is experimental, so not all apps run flawlessly.
+````
+
+````{tab-item} Run a Cross-Platform App
+
+If the app is written in a cross-platform language (like Java) or includes a launch script:
+
+1. **Check for launch scripts or documentation:**  
+   Sometimes the ISO will contain a README or a script (e.g., `launch.sh`) that explains how to run the app on Linux.
+
+2. **Execute the script or command:**  
+   Follow the provided instructions to launch the application.
+
+````
+`````
+
+#### Verify and troubleshoot
+
+
+If the app starts, its GUI should open up or there should be a confirmation message in Terminal.
+
+f the application fails to launch, ensure that:
+* the necessary compatibility layers (e.g., Darling) are installed.
+* all required dependencies are available.
+* you have permission to execute the file (you might need to run `chmod +x /path/to/executable`).
+
+
+```{admonition} Read the docs!
+:class: tip
+
+Always consult any provided documentation in the ISO for application-specific instructions or additional dependencies. This can provide insight into whether the app is designed to run on macOS only or if a workaround exists for Linux.
+
 ```
 

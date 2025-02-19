@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Debugging Linux &#8212; Hydro-Informatics</title>
+    <title>Debug &amp; Improve Experience &#8212; Hydro-Informatics</title>
   
   
   
@@ -360,7 +360,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="dbg-os.html">Operating Systems (Linux and VMs)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Debugging Linux</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Debug &amp; Improve Experience</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dbg-vm.html">Debugging Virtual Machines</a></li>
 </ul>
 </details></li>
@@ -521,7 +521,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Debugging Linux</h1>
+    <h1>Debug & Improve Experience</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -542,7 +542,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-imports-fail-no-module-named-tkinter">tkinter Imports Fail (No Module Named Tkinter)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine">Wine</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine-windows-apps">Wine (Windows Apps)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-wine-issues">General wine issues</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-application-not-working">64-bit Application Not Working</a></li>
 </ul>
@@ -554,6 +554,20 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-graphics-drivers">3d Graphics Drivers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mac-os-apps-dmg-file-handling">Mac OS Apps (DMG file handling)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-dmg-to-an-img">Convert the DMG to an IMG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-the-img-file">Mount the IMG file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-iso-from-the-mounted-img">Create an ISO from the mounted IMG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-the-iso-image">Mount the ISO image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-the-application-from-the-mounted-iso">Launching the application from the mounted ISO</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-the-application-bundle">Locate the application bundle</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-executable-inside-the-bundle">Find the executable inside the bundle</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-the-application">Launch the Application</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-and-troubleshoot">Verify and troubleshoot</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -565,8 +579,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="debugging-linux">
-<h1>Debugging Linux<a class="headerlink" href="#debugging-linux" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="debug-improve-experience">
+<h1>Debug &amp; Improve Experience<a class="headerlink" href="#debug-improve-experience" title="Link to this heading">#</a></h1>
 <p>Debian Linux is documented in a comprehensive <a class="reference external" href="https://wiki.debian.org/">wiki</a> with descriptions for setting up the system, installing software (packages), and tutorials for trouble shooting. This page provides guidance for problems that may occur in particular when Debian Linux is installed on a Virtual Machine (VM).</p>
 <section id="power-management-battery-life">
 <h2>Power management (battery life)<a class="headerlink" href="#power-management-battery-life" title="Link to this heading">#</a></h2>
@@ -594,7 +608,7 @@
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">autoremove</span>
 </pre></div>
 </div>
-<p>Subversion (<em>SVN</em>) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the <em>SVN</em> directory):</p>
+<p>Subversion (SVN) repositories may also contain old and unnecessary chunks, which can be removed (e.g., from a local TELEMAC-MASCARET repository) with (the second argument is the SVN directory):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">svn</span> <span class="n">cleanup</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p1</span> <span class="o">--</span><span class="n">non</span><span class="o">-</span><span class="n">interactive</span>
 </pre></div>
 </div>
@@ -674,8 +688,8 @@
 <p>If the above comments do not work, make sure that the <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> repository is available to your system: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">add-apt-repository</span> <span class="pre">ppa:deadsnakes/ppa</span></code> (the repository address may change and depends on your <em>Linux</em> and <em>Python</em> versions).</p>
 </section>
 </section>
-<section id="wine">
-<h2>Wine<a class="headerlink" href="#wine" title="Link to this heading">#</a></h2>
+<section id="wine-windows-apps">
+<h2>Wine (Windows Apps)<a class="headerlink" href="#wine-windows-apps" title="Link to this heading">#</a></h2>
 <section id="general-wine-issues">
 <h3>General wine issues<a class="headerlink" href="#general-wine-issues" title="Link to this heading">#</a></h3>
 <p>If <em>wine</em> does not work as desired, remove the current installation via <em>Terminal</em>:</p>
@@ -835,6 +849,159 @@ line 188:         if (True):</p></li>
 </pre></div>
 </div>
 </section>
+<section id="mac-os-apps-dmg-file-handling">
+<h2>Mac OS Apps (DMG file handling)<a class="headerlink" href="#mac-os-apps-dmg-file-handling" title="Link to this heading">#</a></h2>
+<p>MacOS applications are often distributed as DMG files. Although Linux does not support DMG files natively, they can be converted to a mountable IMG file to then create an ISO image, which is easier to mount and work with on Linux.</p>
+<section id="convert-the-dmg-to-an-img">
+<h3>Convert the DMG to an IMG<a class="headerlink" href="#convert-the-dmg-to-an-img" title="Link to this heading">#</a></h3>
+<p>First, install the <code class="docutils literal notranslate"><span class="pre">dmg2img</span></code> tool:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>dmg2img
+</pre></div>
+</div>
+<p>Convert the DMG file by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dmg2img<span class="w"> </span>/path/to/file.dmg
+</pre></div>
+</div>
+<p>This command creates an IMG file with the same basename as the DMG, formatted with Apple’s HFS+ filesystem.</p>
+</section>
+<section id="mount-the-img-file">
+<h3>Mount the IMG file<a class="headerlink" href="#mount-the-img-file" title="Link to this heading">#</a></h3>
+<p>Since the IMG file uses the HFS+ filesystem, load the following kernel module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>modprobe<span class="w"> </span>hfsplus
+</pre></div>
+</div>
+<p>Create a mount point (tpyically, in <code class="docutils literal notranslate"><span class="pre">/media</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/media/user/appname
+</pre></div>
+</div>
+<p>Mount the IMG file using a loop device:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>hfsplus<span class="w"> </span>-o<span class="w"> </span>loop<span class="w"> </span>/path/to/file.img<span class="w"> </span>/media/user/appname
+</pre></div>
+</div>
+</section>
+<section id="create-an-iso-from-the-mounted-img">
+<h3>Create an ISO from the mounted IMG<a class="headerlink" href="#create-an-iso-from-the-mounted-img" title="Link to this heading">#</a></h3>
+<p>While it is possible to directly work with the mounted IMG, converting it to an ISO improves Linux compatibility. One way to do this is with Brasero, a graphical disc-burning tool for creating ISO images. Thus, first, install Brasero:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>brasero
+</pre></div>
+</div>
+<p>Then follow these steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Launch Brasero</strong> by opening it from the system menu (typically under <strong>Sound &amp; Video</strong>) or search for it.</p></li>
+<li><p>Start a new poject with a click on <strong>Data project</strong>.</p></li>
+<li><p><strong>Add files</strong> with a click on the plus icon (typically at the top left) and select the folder where the IMG file is mounted (<code class="docutils literal notranslate"><span class="pre">/media/user/appname</span></code>).</p></li>
+<li><p>Click <strong>Burn</strong>, choose an output directory, and optionally change the output image name.</p></li>
+<li><p>Click <strong>Create Image</strong> to generate the ISO file.</p></li>
+</ol>
+</section>
+<section id="mount-the-iso-image">
+<h3>Mount the ISO image<a class="headerlink" href="#mount-the-iso-image" title="Link to this heading">#</a></h3>
+<p>ISO images are natively supported by Ubuntu. To mount the new ISO:</p>
+<ol class="arabic">
+<li><p><strong>(Optional) load the HFS+ module:</strong><br />
+If the ISO still uses HFS+ (this is uncommon for standard ISO images), run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>modprobe<span class="w"> </span>hfsplus
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a mount point for the ISO:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/media/user/appnameISO
+</pre></div>
+</div>
+</li>
+<li><p><strong>Mount the ISO:</strong><br />
+If the ISO uses HFS+, mount it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>hfsplus<span class="w"> </span>-o<span class="w"> </span>loop<span class="w"> </span>/path/to/file.iso<span class="w"> </span>/media/user/appnameISO
+</pre></div>
+</div>
+<p>Otherwise, for a standard ISO 9660 filesystem, simply use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>loop<span class="w"> </span>/path/to/file.iso<span class="w"> </span>/media/user/appnameISO
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Now, all the contents of the ISO (originally from the DMG/IMG) are accessible in the <code class="docutils literal notranslate"><span class="pre">/media/user/appnameISO</span></code> directory.</p>
+<div class="note admonition">
+<p class="admonition-title">Uncertain filesystem and other ISO creation tools</p>
+<p>If you encounter issues or if the filesystem type is uncertain, you may want to try mounting without specifying a type to let Ubuntu auto-detect it.</p>
+<p>There are also command-line tools (like <code class="docutils literal notranslate"><span class="pre">mkisofs</span></code> or <code class="docutils literal notranslate"><span class="pre">genisoimage</span></code>) available for ISO creation if you prefer a non-GUI approach.</p>
+</div>
+</section>
+<section id="launching-the-application-from-the-mounted-iso">
+<h3>Launching the application from the mounted ISO<a class="headerlink" href="#launching-the-application-from-the-mounted-iso" title="Link to this heading">#</a></h3>
+<p>The contents of the mounted ISO can be explored to locate the application and launching it. Keep in mind that macOS applications are still not natively executable on Linux. A compatibility layer, such as <a class="reference external" href="https://www.darlinghq.org/">Darling</a> may be needed.</p>
+<section id="locate-the-application-bundle">
+<h4>Locate the application bundle<a class="headerlink" href="#locate-the-application-bundle" title="Link to this heading">#</a></h4>
+<p>MacOS apps are typically packaged as <code class="docutils literal notranslate"><span class="pre">.app</span></code> bundles. Here is how to find them:</p>
+<ul class="simple">
+<li><p><strong>Browse the mounted directory:</strong><br />
+Open the file manager or use the terminal to navigate to the mount point (e.g., <code class="docutils literal notranslate"><span class="pre">/media/user/appnameISO</span></code>).</p></li>
+<li><p><strong>Identify the <code class="docutils literal notranslate"><span class="pre">.app</span></code> bundle:</strong><br />
+Look for directories ending with <code class="docutils literal notranslate"><span class="pre">.app</span></code> (for example, <code class="docutils literal notranslate"><span class="pre">MyApp.app</span></code>).</p></li>
+</ul>
+</section>
+<section id="find-the-executable-inside-the-bundle">
+<h4>Find the executable inside the bundle<a class="headerlink" href="#find-the-executable-inside-the-bundle" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Open the app bundle:</strong><br />
+Inside the <code class="docutils literal notranslate"><span class="pre">.app</span></code> directory, navigate to the <code class="docutils literal notranslate"><span class="pre">Contents</span></code> folder.</p></li>
+<li><p><strong>Locate the Binary:</strong><br />
+Within <code class="docutils literal notranslate"><span class="pre">Contents</span></code>, the <code class="docutils literal notranslate"><span class="pre">MacOS</span></code> subdirectory typically stores the executable file. For isntance, the full path might be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">user</span><span class="o">/</span><span class="n">appnameISO</span><span class="o">/</span><span class="n">MyApp</span><span class="o">.</span><span class="n">app</span><span class="o">/</span><span class="n">Contents</span><span class="o">/</span><span class="n">MacOS</span><span class="o">/</span><span class="n">MyApp</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="launch-the-application">
+<h4>Launch the Application<a class="headerlink" href="#launch-the-application" title="Link to this heading">#</a></h4>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Use Darling (macOS Compatibility Layer)</label><div class="sd-tab-content docutils">
+<p>Since macOS binaries do not run natively on Linux, one option is to use <a class="reference external" href="https://www.darlinghq.org/">Darling</a>, which provides a translation layer for macOS apps.</p>
+<ol class="arabic">
+<li><p><strong>Install Darling:</strong><br />
+Follow the instructions on the <a class="reference external" href="https://www.darlinghq.org/">Darling website</a> to install it on the system.</p></li>
+<li><p><strong>Launch a Darling shell and run the app:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>darling<span class="w"> </span>shell
+<span class="nb">cd</span><span class="w"> </span>/media/user/appnameISO/MyApp.app/Contents/MacOS
+./MyApp
+</pre></div>
+</div>
+<p>Note that Darling still is experimental, so not all apps run flawlessly.</p>
+</li>
+</ol>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Run a Cross-Platform App</label><div class="sd-tab-content docutils">
+<p>If the app is written in a cross-platform language (like Java) or includes a launch script:</p>
+<ol class="arabic simple">
+<li><p><strong>Check for launch scripts or documentation:</strong><br />
+Sometimes the ISO will contain a README or a script (e.g., <code class="docutils literal notranslate"><span class="pre">launch.sh</span></code>) that explains how to run the app on Linux.</p></li>
+<li><p><strong>Execute the script or command:</strong><br />
+Follow the provided instructions to launch the application.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="verify-and-troubleshoot">
+<h4>Verify and troubleshoot<a class="headerlink" href="#verify-and-troubleshoot" title="Link to this heading">#</a></h4>
+<p>If the app starts, its GUI should open up or there should be a confirmation message in Terminal.</p>
+<p>f the application fails to launch, ensure that:</p>
+<ul class="simple">
+<li><p>the necessary compatibility layers (e.g., Darling) are installed.</p></li>
+<li><p>all required dependencies are available.</p></li>
+<li><p>you have permission to execute the file (you might need to run <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">/path/to/executable</span></code>).</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Read the docs!</p>
+<p>Always consult any provided documentation in the ISO for application-specific instructions or additional dependencies. This can provide insight into whether the app is designed to run on macOS only or if a workaround exists for Linux.</p>
+</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -913,7 +1080,7 @@ line 188:         if (True):</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tkinter-imports-fail-no-module-named-tkinter">tkinter Imports Fail (No Module Named Tkinter)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine">Wine</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine-windows-apps">Wine (Windows Apps)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-wine-issues">General wine issues</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-application-not-working">64-bit Application Not Working</a></li>
 </ul>
@@ -925,6 +1092,20 @@ line 188:         if (True):</p></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-graphics-drivers">3d Graphics Drivers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mac-os-apps-dmg-file-handling">Mac OS Apps (DMG file handling)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-the-dmg-to-an-img">Convert the DMG to an IMG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-the-img-file">Mount the IMG file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-iso-from-the-mounted-img">Create an ISO from the mounted IMG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mount-the-iso-image">Mount the ISO image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-the-application-from-the-mounted-iso">Launching the application from the mounted ISO</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#locate-the-application-bundle">Locate the application bundle</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-executable-inside-the-bundle">Find the executable inside the bundle</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-the-application">Launch the Application</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-and-troubleshoot">Verify and troubleshoot</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
