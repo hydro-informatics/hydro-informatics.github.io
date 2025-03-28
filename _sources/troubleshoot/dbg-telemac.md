@@ -7,6 +7,53 @@ Since its early development, TELEMAC has become a robust and reliable tool for t
 To look up the reference, implementation, and/or meaning of a variable, class, script, file, or module, visit the {{ tmdoxy }}.
 ```
 
+## Recover crashed simulation files
+
+When a Telemac run in parallel (using multiple cores) crashes, or if you need to recombine partial output files from each subdomain into a single file, Telemac’s postprocessing tools provide options for merging (or "stitching") the submesh results. There are two main tools available:
+
+1. **GRETEL (the dedicated merging tool)**  
+   - GRETEL takes the partial (subdomain) result files from each core and merges them back into a single SELAFIN/MED file for the entire domain.  
+   - This is generally the **go‐to approach** if your simulation crashed partway through, but you still want to visualize or analyze whatever partial results were saved.
+
+2. **PARTEL (in merge mode)**  
+   - PARTEL is typically used to partition meshes for parallel runs, but it also has a merge capability. Some versions or workflows use PARTEL for both partitioning and merging.  
+   - However, for most modern Telemac configurations, **GRETEL** tends to be the more streamlined or default merging tool.
+
+### How to use GRETEL
+
+1. If you ran your simulation in parallel and it crashed (or completed, but you just need to combine subdomains manually), locate the partial result files named something like:
+   ```
+   T3DRES00000-00001.slf
+   T3DRES00000-00002.slf
+   …
+   ```
+   or, for each subdomain, the corresponding files typically ending in `-0000X.slf`.
+
+2. You can merge them by running GRETEL from the command line, for example:
+   ```
+   runcode.py gretel -c <your_config> -f <your_config_file> --merge --ncsize <number_of_subdomains>
+   ```
+   
+   Adjust the flags and file names as needed. If you were running Telemac3d use:
+   
+   ```
+   runcode.py telemac3d <steering_file> --merge -w <folder_path>
+   ```
+
+   Replace `<folder_path>` with the directory that contains the output parts.   
+   
+
+The exact syntax can vary depending on your version of Telemac. Some installations have a dedicated Python script or launcher for GRETEL. 
+
+3. Once GRETEL finishes, it outputs a **single 3D SELAFIN** (or MED) file with all subdomains reassembled. You can then visualize or continue processing that merged file in your preferred post‐processing environment (e.g., Blue Kenue, Paraview, QGIS).
+
+### Additional notes and tips
+
+- **Checkpoint/Hotstart**: If you need to restart a run from a particular time step, you can often use the partial subdomain files directly as a hotstart by setting the proper keywords in the steering file (e.g., `RESTART FILE` / `RESTART = YES`). In that case, you do not necessarily need to merge first: Telemac can read the subdomain files in a parallel restart.  
+- **Partial Writes**: If the run crashed mid-write or there was a file corruption, GRETEL (or PARTEL) might fail to merge. You would typically have to remove or fix the corrupted file(s) or restart from an earlier valid checkpoint.  
+- **Batch/Automatic Merge**: In many Telemac scripts or workflows, merging happens automatically at the end of a simulation. If you need the merge to happen even if the simulation has crashed, running GRETEL or PARTEL in merge mode manually is usually the best solution.
+
+
 ## Traceback errors
 
 If a simulation crashes and it is not clear why debugging with the *GNU Project debugger* [GDB](http://www.gdbtutorial.com) is a good option. To do so, first install GDB:

@@ -186,6 +186,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-reef3d.html">REEF3D (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
 </ul>
 </details></li>
@@ -533,6 +534,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-crashed-simulation-files">Recover crashed simulation files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-gretel">How to use GRETEL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-notes-and-tips">Additional notes and tips</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traceback-errors">Traceback errors</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-message-quickfixes">Error Message Quickfixes</a></li>
 </ul>
@@ -577,6 +583,59 @@
 <p class="admonition-title">Keyword-research the TELEMAC docs</p>
 <p>To look up the reference, implementation, and/or meaning of a variable, class, script, file, or module, visit the <a class="reference external" href="http://docs.opentelemac.org/doxydocs/v8p2r0/html/briefs.html">TELEMAC doxydocs (stale!)</a>.</p>
 </div>
+<section id="recover-crashed-simulation-files">
+<h2>Recover crashed simulation files<a class="headerlink" href="#recover-crashed-simulation-files" title="Link to this heading">#</a></h2>
+<p>When a Telemac run in parallel (using multiple cores) crashes, or if you need to recombine partial output files from each subdomain into a single file, Telemac’s postprocessing tools provide options for merging (or “stitching”) the submesh results. There are two main tools available:</p>
+<ol class="arabic simple">
+<li><p><strong>GRETEL (the dedicated merging tool)</strong></p>
+<ul class="simple">
+<li><p>GRETEL takes the partial (subdomain) result files from each core and merges them back into a single SELAFIN/MED file for the entire domain.</p></li>
+<li><p>This is generally the <strong>go‐to approach</strong> if your simulation crashed partway through, but you still want to visualize or analyze whatever partial results were saved.</p></li>
+</ul>
+</li>
+<li><p><strong>PARTEL (in merge mode)</strong></p>
+<ul class="simple">
+<li><p>PARTEL is typically used to partition meshes for parallel runs, but it also has a merge capability. Some versions or workflows use PARTEL for both partitioning and merging.</p></li>
+<li><p>However, for most modern Telemac configurations, <strong>GRETEL</strong> tends to be the more streamlined or default merging tool.</p></li>
+</ul>
+</li>
+</ol>
+<section id="how-to-use-gretel">
+<h3>How to use GRETEL<a class="headerlink" href="#how-to-use-gretel" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>If you ran your simulation in parallel and it crashed (or completed, but you just need to combine subdomains manually), locate the partial result files named something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>T3DRES00000-00001.slf
+T3DRES00000-00002.slf
+…
+</pre></div>
+</div>
+<p>or, for each subdomain, the corresponding files typically ending in <code class="docutils literal notranslate"><span class="pre">-0000X.slf</span></code>.</p>
+</li>
+<li><p>You can merge them by running GRETEL from the command line, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runcode</span><span class="o">.</span><span class="n">py</span> <span class="n">gretel</span> <span class="o">-</span><span class="n">c</span> <span class="o">&lt;</span><span class="n">your_config</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">your_config_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">merge</span> <span class="o">--</span><span class="n">ncsize</span> <span class="o">&lt;</span><span class="n">number_of_subdomains</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Adjust the flags and file names as needed. If you were running Telemac3d use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runcode</span><span class="o">.</span><span class="n">py</span> <span class="n">telemac3d</span> <span class="o">&lt;</span><span class="n">steering_file</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">merge</span> <span class="o">-</span><span class="n">w</span> <span class="o">&lt;</span><span class="n">folder_path</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;folder_path&gt;</span></code> with the directory that contains the output parts.</p>
+</li>
+</ol>
+<p>The exact syntax can vary depending on your version of Telemac. Some installations have a dedicated Python script or launcher for GRETEL.</p>
+<ol class="arabic simple" start="3">
+<li><p>Once GRETEL finishes, it outputs a <strong>single 3D SELAFIN</strong> (or MED) file with all subdomains reassembled. You can then visualize or continue processing that merged file in your preferred post‐processing environment (e.g., Blue Kenue, Paraview, QGIS).</p></li>
+</ol>
+</section>
+<section id="additional-notes-and-tips">
+<h3>Additional notes and tips<a class="headerlink" href="#additional-notes-and-tips" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Checkpoint/Hotstart</strong>: If you need to restart a run from a particular time step, you can often use the partial subdomain files directly as a hotstart by setting the proper keywords in the steering file (e.g., <code class="docutils literal notranslate"><span class="pre">RESTART</span> <span class="pre">FILE</span></code> / <code class="docutils literal notranslate"><span class="pre">RESTART</span> <span class="pre">=</span> <span class="pre">YES</span></code>). In that case, you do not necessarily need to merge first: Telemac can read the subdomain files in a parallel restart.</p></li>
+<li><p><strong>Partial Writes</strong>: If the run crashed mid-write or there was a file corruption, GRETEL (or PARTEL) might fail to merge. You would typically have to remove or fix the corrupted file(s) or restart from an earlier valid checkpoint.</p></li>
+<li><p><strong>Batch/Automatic Merge</strong>: In many Telemac scripts or workflows, merging happens automatically at the end of a simulation. If you need the merge to happen even if the simulation has crashed, running GRETEL or PARTEL in merge mode manually is usually the best solution.</p></li>
+</ul>
+</section>
+</section>
 <section id="traceback-errors">
 <h2>Traceback errors<a class="headerlink" href="#traceback-errors" title="Link to this heading">#</a></h2>
 <p>If a simulation crashes and it is not clear why debugging with the <em>GNU Project debugger</em> <a class="reference external" href="http://www.gdbtutorial.com">GDB</a> is a good option. To do so, first install GDB:</p>
@@ -962,6 +1021,11 @@ Correct line break (good)</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-crashed-simulation-files">Recover crashed simulation files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-gretel">How to use GRETEL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-notes-and-tips">Additional notes and tips</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traceback-errors">Traceback errors</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-message-quickfixes">Error Message Quickfixes</a></li>
 </ul>

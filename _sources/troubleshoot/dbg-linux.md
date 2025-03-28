@@ -124,46 +124,120 @@ sudo chmod -R 777 /directory/
 
 ## Wine (Windows Apps)
 
-### General wine issues
+### General wine issues (reinstall)
 
 If *wine* does not work as desired, remove the current installation via *Terminal*:
 
-```
+```bash
 sudo apt remove wine wine32 wine64 libwine libwine:i386 fonts-wine
+sudo apt remove --purge wine* 
+sudo apt autoremove
 ```
 
-Then `cd` to your *Downloads* folder, then pull the latest *Wine* packages, and add the repository to your `/etc/apt/sources.list` (the following sequences of commands does all of that - consider to adapt the `cd` to your *Downloads* folder):
+Next, remove the wine prefix and any residual configuration files:
 
-```
-cd $HOME/Downloads
+```bash
+rm -rf ~/.wine
+rm -rf ~/.local/share/applications/wine
+``` 
+
+Now, prepare the system for a clean wine installation. Specifically, Wine often needs 32-bit libraries even when creating a 64-bit prefix:
+
+```bash
+sudo dpkg --add-architecture i386
 sudo apt update
-sudo apt -y install gnupg2 software-properties-common
-wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
 ```
 
-Install *wine* *stable* and *development* (and staging) on *Debian 10.x*:
+If not yet done, add the latest stable Wine version to use the WineHQ repository. First, download and add the repository key:
 
+```bash
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+sudo apt-key add winehq.key
 ```
-wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/Release.key | sudo apt-key add -
-echo "deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./" | sudo tee /etc/apt/sources.list.d/wine-obs.list
+
+
+Then, add the repository. For example, if your Linux Mint version is based on Ubuntu 20.04 (Focal):
+```bash
+sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
 sudo apt update
+```
+
+If your Linux Mint is based on a different Ubuntu release, adjust the repository accordingly.
+
+````{admonition} Fix Key Storage DEPRECATION Warning
+
+The warning message `https://dl.winehq.org/wine-builds/ubuntu/dists/focal/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.` can be fixed with the following workflow:
+
+1. Download and save the WineHQ Key in a new location: Run the following command to download the key, dearmor it, and save it into the recommended location (e.g., `/usr/share/keyrings/winehq-archive.key`):
+
+```bash
+wget -qO- https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor | sudo tee /usr/share/keyrings/winehq-archive.key
+```
+
+This command fetches the key and converts it into a format apt can use directly.
+
+2. Update the repository configuration
+
+Modify the WineHQ repository entry to reference the new key file. This is typically found in a file like `/etc/apt/sources.list.d/winehq.list` (sometimes also in `/etc/apt/sources.list.d/additional-repositories.list` or `/etc/apt/sources.list` if added manually). Open the file to edit it with your preferred text editor. First, locate the line that looks similar to:
+
+```bash
+deb https://dl.winehq.org/wine-builds/ubuntu/ focal main
+```
+
+Second, modify it by adding the `signed-by` option so it reads:
+```bash
+deb [signed-by=/usr/share/keyrings/winehq-archive.key] https://dl.winehq.org/wine-builds/ubuntu/ focal main
+```
+
+Save the file and exit the editor.
+
+3. Refresh the package lists: 
+
+```bash
+sudo apt update
+```
+
+If everything is configured correctly, the warning regarding the legacy trusted.gpg keyring should no longer appear.
+
+````
+
+Now install the stable Wine release:
+
+```bash
 sudo apt install --install-recommends winehq-stable
-sudo apt install --install-recommends winehq-devel
-sudo apt install winehq-staging
 ```
 
-```{tip}
-Add the above commands line-by-line (do not copy-paste entire code blocks).
+Also, consider to install Winetricks, which simplifies installing many runtime libraries and frameworks:
+```bash
+sudo apt install winetricks
 ```
 
 ### 64-bit Application Not Working
 
-If a 64-bit *msi* or other installer / application is not working as desired, try to adapt the `WINEPREFIX` for your user (note: this is not an elegant solution):
+If a 64-bit *msi* or other installer / application is not working as desired, try to adapt the `WINEPREFIX`. First, remove any old prefix if necessary:
 
+```bash
+rm -rf ~/.wine
 ```
-WINEARCH=win64 WINEPREFIX=/home/YOUR-USER-NAME/.wine64 wineboot -u
+Then force Wine to create a 64‑bit prefix:
+```bash
+WINEARCH=win64 winecfg
 ```
+The wine configuration window will appear. In the "Applications" tab, set the Windows version to **Windows 10**. Click **Apply** and **OK**.
+
+
+### Installing the .NET Framework
+
+Wine can use Winetricks to install various versions of the .NET Framework. Depending on the requirements of a Windows application, you might need a specific version. For example, to install .NET Framework 4.8, use Winetricks (see above) to create a new prefix:
+
+```bash
+WINEPREFIX=~/.wine winetricks dotnet48
+```
+
+The installation process can take a while and may require several restarts of Wine. Follow the on-screen instructions carefully.
+
+Some users find that certain .NET versions install more reliably in a 32‑bit prefix—even when targeting Windows 10 apps. If you encounter issues, you may try creating a 32‑bit prefix by omitting the `WINEARCH=win64` environment variable (or explicitly using `WINEARCH=win32`). However, note that truly 64‑bit Windows applications require a 64‑bit environment.
+
 
 ## QGIS 
 

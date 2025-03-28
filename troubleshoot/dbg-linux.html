@@ -184,6 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../get-started/geo.html">Geospatial Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/install-openfoam.html">OpenFOAM (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/install-telemac.html">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-started/install-reef3d.html">REEF3D (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-started/others.html">Other Software Resources</a></li>
 </ul>
 </details></li>
@@ -543,8 +544,9 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine-windows-apps">Wine (Windows Apps)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-wine-issues">General wine issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-wine-issues-reinstall">General wine issues (reinstall)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-application-not-working">64-bit Application Not Working</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-net-framework">Installing the .NET Framework</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a><ul class="nav section-nav flex-column">
@@ -690,40 +692,94 @@
 </section>
 <section id="wine-windows-apps">
 <h2>Wine (Windows Apps)<a class="headerlink" href="#wine-windows-apps" title="Link to this heading">#</a></h2>
-<section id="general-wine-issues">
-<h3>General wine issues<a class="headerlink" href="#general-wine-issues" title="Link to this heading">#</a></h3>
+<section id="general-wine-issues-reinstall">
+<h3>General wine issues (reinstall)<a class="headerlink" href="#general-wine-issues-reinstall" title="Link to this heading">#</a></h3>
 <p>If <em>wine</em> does not work as desired, remove the current installation via <em>Terminal</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">remove</span> <span class="n">wine</span> <span class="n">wine32</span> <span class="n">wine64</span> <span class="n">libwine</span> <span class="n">libwine</span><span class="p">:</span><span class="n">i386</span> <span class="n">fonts</span><span class="o">-</span><span class="n">wine</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>wine<span class="w"> </span>wine32<span class="w"> </span>wine64<span class="w"> </span>libwine<span class="w"> </span>libwine:i386<span class="w"> </span>fonts-wine
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>--purge<span class="w"> </span>wine*<span class="w"> </span>
+sudo<span class="w"> </span>apt<span class="w"> </span>autoremove
 </pre></div>
 </div>
-<p>Then <code class="docutils literal notranslate"><span class="pre">cd</span></code> to your <em>Downloads</em> folder, then pull the latest <em>Wine</em> packages, and add the repository to your <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list</span></code> (the following sequences of commands does all of that - consider to adapt the <code class="docutils literal notranslate"><span class="pre">cd</span></code> to your <em>Downloads</em> folder):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd $HOME/Downloads
-sudo apt update
-sudo apt -y install gnupg2 software-properties-common
-wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
+<p>Next, remove the wine prefix and any residual configuration files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.wine
+rm<span class="w"> </span>-rf<span class="w"> </span>~/.local/share/applications/wine
 </pre></div>
 </div>
-<p>Install <em>wine</em> <em>stable</em> and <em>development</em> (and staging) on <em>Debian 10.x</em>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span><span class="o">-</span> <span class="o">-</span><span class="n">q</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">opensuse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">repositories</span><span class="o">/</span><span class="n">Emulators</span><span class="p">:</span><span class="o">/</span><span class="n">Wine</span><span class="p">:</span><span class="o">/</span><span class="n">Debian</span><span class="o">/</span><span class="n">Debian_10</span><span class="o">/</span><span class="n">Release</span><span class="o">.</span><span class="n">key</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">key</span> <span class="n">add</span> <span class="o">-</span>
-<span class="n">echo</span> <span class="s2">&quot;deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10 ./&quot;</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">wine</span><span class="o">-</span><span class="n">obs</span><span class="o">.</span><span class="n">list</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">--</span><span class="n">install</span><span class="o">-</span><span class="n">recommends</span> <span class="n">winehq</span><span class="o">-</span><span class="n">stable</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="o">--</span><span class="n">install</span><span class="o">-</span><span class="n">recommends</span> <span class="n">winehq</span><span class="o">-</span><span class="n">devel</span>
-<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">winehq</span><span class="o">-</span><span class="n">staging</span>
+<p>Now, prepare the system for a clean wine installation. Specifically, Wine often needs 32-bit libraries even when creating a 64-bit prefix:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg<span class="w"> </span>--add-architecture<span class="w"> </span>i386
+sudo<span class="w"> </span>apt<span class="w"> </span>update
 </pre></div>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Add the above commands line-by-line (do not copy-paste entire code blocks).</p>
+<p>If not yet done, add the latest stable Wine version to use the WineHQ repository. First, download and add the repository key:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-nc<span class="w"> </span>https://dl.winehq.org/wine-builds/winehq.key
+sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>winehq.key
+</pre></div>
+</div>
+<p>Then, add the repository. For example, if your Linux Mint version is based on Ubuntu 20.04 (Focal):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-add-repository<span class="w"> </span><span class="s1">&#39;deb https://dl.winehq.org/wine-builds/ubuntu/ focal main&#39;</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+<p>If your Linux Mint is based on a different Ubuntu release, adjust the repository accordingly.</p>
+<div class="admonition-fix-key-storage-deprecation-warning admonition">
+<p class="admonition-title">Fix Key Storage DEPRECATION Warning</p>
+<p>The warning message <code class="docutils literal notranslate"><span class="pre">https://dl.winehq.org/wine-builds/ubuntu/dists/focal/InRelease:</span> <span class="pre">Key</span> <span class="pre">is</span> <span class="pre">stored</span> <span class="pre">in</span> <span class="pre">legacy</span> <span class="pre">trusted.gpg</span> <span class="pre">keyring</span> <span class="pre">(/etc/apt/trusted.gpg),</span> <span class="pre">see</span> <span class="pre">the</span> <span class="pre">DEPRECATION</span> <span class="pre">section</span> <span class="pre">in</span> <span class="pre">apt-key(8)</span> <span class="pre">for</span> <span class="pre">details.</span></code> can be fixed with the following workflow:</p>
+<ol class="arabic simple">
+<li><p>Download and save the WineHQ Key in a new location: Run the following command to download the key, dearmor it, and save it into the recommended location (e.g., <code class="docutils literal notranslate"><span class="pre">/usr/share/keyrings/winehq-archive.key</span></code>):</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://dl.winehq.org/wine-builds/winehq.key<span class="w"> </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/usr/share/keyrings/winehq-archive.key
+</pre></div>
+</div>
+<p>This command fetches the key and converts it into a format apt can use directly.</p>
+<ol class="arabic simple" start="2">
+<li><p>Update the repository configuration</p></li>
+</ol>
+<p>Modify the WineHQ repository entry to reference the new key file. This is typically found in a file like <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list.d/winehq.list</span></code> (sometimes also in <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list.d/additional-repositories.list</span></code> or <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list</span></code> if added manually). Open the file to edit it with your preferred text editor. First, locate the line that looks similar to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deb<span class="w"> </span>https://dl.winehq.org/wine-builds/ubuntu/<span class="w"> </span>focal<span class="w"> </span>main
+</pre></div>
+</div>
+<p>Second, modify it by adding the <code class="docutils literal notranslate"><span class="pre">signed-by</span></code> option so it reads:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deb<span class="w"> </span><span class="o">[</span>signed-by<span class="o">=</span>/usr/share/keyrings/winehq-archive.key<span class="o">]</span><span class="w"> </span>https://dl.winehq.org/wine-builds/ubuntu/<span class="w"> </span>focal<span class="w"> </span>main
+</pre></div>
+</div>
+<p>Save the file and exit the editor.</p>
+<ol class="arabic simple" start="3">
+<li><p>Refresh the package lists:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+<p>If everything is configured correctly, the warning regarding the legacy trusted.gpg keyring should no longer appear.</p>
+</div>
+<p>Now install the stable Wine release:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--install-recommends<span class="w"> </span>winehq-stable
+</pre></div>
+</div>
+<p>Also, consider to install Winetricks, which simplifies installing many runtime libraries and frameworks:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>winetricks
+</pre></div>
 </div>
 </section>
 <section id="bit-application-not-working">
 <h3>64-bit Application Not Working<a class="headerlink" href="#bit-application-not-working" title="Link to this heading">#</a></h3>
-<p>If a 64-bit <em>msi</em> or other installer / application is not working as desired, try to adapt the <code class="docutils literal notranslate"><span class="pre">WINEPREFIX</span></code> for your user (note: this is not an elegant solution):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WINEARCH</span><span class="o">=</span><span class="n">win64</span> <span class="n">WINEPREFIX</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">YOUR</span><span class="o">-</span><span class="n">USER</span><span class="o">-</span><span class="n">NAME</span><span class="o">/.</span><span class="n">wine64</span> <span class="n">wineboot</span> <span class="o">-</span><span class="n">u</span>
+<p>If a 64-bit <em>msi</em> or other installer / application is not working as desired, try to adapt the <code class="docutils literal notranslate"><span class="pre">WINEPREFIX</span></code>. First, remove any old prefix if necessary:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.wine
 </pre></div>
 </div>
+<p>Then force Wine to create a 64‑bit prefix:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">WINEARCH</span><span class="o">=</span>win64<span class="w"> </span>winecfg
+</pre></div>
+</div>
+<p>The wine configuration window will appear. In the “Applications” tab, set the Windows version to <strong>Windows 10</strong>. Click <strong>Apply</strong> and <strong>OK</strong>.</p>
+</section>
+<section id="installing-the-net-framework">
+<h3>Installing the .NET Framework<a class="headerlink" href="#installing-the-net-framework" title="Link to this heading">#</a></h3>
+<p>Wine can use Winetricks to install various versions of the .NET Framework. Depending on the requirements of a Windows application, you might need a specific version. For example, to install .NET Framework 4.8, use Winetricks (see above) to create a new prefix:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">WINEPREFIX</span><span class="o">=</span>~/.wine<span class="w"> </span>winetricks<span class="w"> </span>dotnet48
+</pre></div>
+</div>
+<p>The installation process can take a while and may require several restarts of Wine. Follow the on-screen instructions carefully.</p>
+<p>Some users find that certain .NET versions install more reliably in a 32‑bit prefix—even when targeting Windows 10 apps. If you encounter issues, you may try creating a 32‑bit prefix by omitting the <code class="docutils literal notranslate"><span class="pre">WINEARCH=win64</span></code> environment variable (or explicitly using <code class="docutils literal notranslate"><span class="pre">WINEARCH=win32</span></code>). However, note that truly 64‑bit Windows applications require a 64‑bit environment.</p>
 </section>
 </section>
 <section id="qgis">
@@ -1081,8 +1137,9 @@ Follow the provided instructions to launch the application.</p></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wine-windows-apps">Wine (Windows Apps)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-wine-issues">General wine issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-wine-issues-reinstall">General wine issues (reinstall)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-application-not-working">64-bit Application Not Working</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-net-framework">Installing the .NET Framework</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a><ul class="nav section-nav flex-column">
