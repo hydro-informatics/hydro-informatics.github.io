@@ -816,8 +816,6 @@ validate_telemac.py
 The `validate_telemac.py` essentially runs through all examples, but some of them are broken and will cause the script to crash. This may also happen if not all modules are installed (e.g., *Hermes* is missing).
 ```
 
-
-
 ## Utilities (Pre- & Post-processing)
 
 ```{admonition} More Pre- and Post-processing Software

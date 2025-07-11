@@ -2,14 +2,14 @@
 
 # Python (Installation)
 
-> "The zen of thriving Python projects in 2025 is *one interpreter per project* and *one tool‑chain per task*.  Master virtual environments first; the rest follows naturally."
+> "The zen of thriving Python projects in 2025 is *one interpreter per project* and *one tool‑chain per task*. Master virtual environments first; the rest follows naturally."
 
-Python 2 reached end‑of‑life in **January 2020** and is no longer shipped by mainstream Linux distributions or Windows installers.  Today every actively maintained package—scientific, geospatial, or otherwise—supports
-**CPython ≥ 3.9**, with most libraries now testing against **Python 3.13**.  Multiple interpreters can still coexist on the same machine (ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through *lightweight* virtual environments created by `venv`, **pipx**, or *conda/mamba*.
+Python 2 reached end‑of‑life in **January 2020** and is no longer shipped by mainstream Linux distributions or Windows installers. Today every actively maintained package—scientific, geospatial, or otherwise—supports
+**CPython ≥ 3.9**, with most libraries now testing against **Python 3.13**. Multiple interpreters can still coexist on the same machine (QGIS / ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through *lightweight* virtual environments created by `venv`, **pipx**, or *conda/mamba*.
 
-This chapter distils a workflow that reliably builds the computational stack used throughout this e‑book, regardless of platform.  It emphasises
+This chapter distils a workflow that reliably builds the computational stack used throughout this e‑book, regardless of platform. It emphasises
 
-* **`pip` + `venv`** on Linux/macOS (preferred),
+* **`pip` + `venv`** on Linux/macOS (preferred),
 * **`conda`/`mamba`** on Windows or when you need complex compiled dependencies,
 * recent improvements in binary wheels for GDAL/Fiona/Shapely (pip on Windows is finally painless!), and
 * sustainable ways to keep environments reproducible.
@@ -17,75 +17,80 @@ This chapter distils a workflow that reliably builds the computational stack use
 ---
 
 (pip-env)=
+## `pip` + `venv` recommended on Linux/macOS
 
-## `pip` + `venv` — recommended on Linux/macOS
-
-```{admonition} Why `venv` beats system‑wide Python
-:class: hint
-The *system interpreter* drives core desktop tools; changing it can break your OS.  A `venv` lives entirely in your home directory, weighs <50 MB, and vanishes with a single `rm -rf`.
-
+```{admonition} The advantage of virtual environments over system‑wide Python installations
+:class: tip
+The *system interpreter* drives core desktop tools; changing it can break your OS. A `venv` lives entirely in your home directory, weighs <50 MB, and vanishes with a single `rm -rf`. Also, newer OS, like Linux Mint 22.1 or younger, do not let a user `pip` install anything in the system-wide python environment.
+```
 
 
 (pip-quick)=
-### Quick start (Linux Mint/Ubuntu 22.04 LTS or later)
+### Quick start (Linux Mint/Ubuntu 22.04 LTS or later)
 
-`````{tab-set}
-````{tab-item} 1 — Install the newest interpreter
+#### Install newest interpreter
 ```
-$ sudo apt update && sudo apt install python3.13 python3.13-venv python3.13-dev build-essential libgdal-dev gdal-bin
+$ sudo apt update && sudo apt install python3 python3-venv python3-dev build-essential libgdal-dev gdal-bin
 ```
 
-Modern Debian/Ubuntu repositories already package CPython 3.13.  The extra *dev* headers are needed for wheels that still compile C‑extensions at install time.
-````
+Modern Debian/Ubuntu repositories already package CPython 3. The extra *dev* headers are needed for wheels that still compile C‑extensions at install time.
 
-````{tab-item} 2 — Create and activate an environment
-```
-$ python3.13 -m venv ~/venvs/vflussenv
-$ source ~/venvs/vflussenv/bin/activate       # shell prompt shows (vflussenv)
+#### Create & activate an environment
+
+```bash
+$ python3 -m venv ~/venvs/vflussenv
+$ source ~/venvs/vflussenv/bin/activate
 ```
 
 A `venv` inherits nothing from the system except the interpreter binary.
-````
 
-````{tab-item} 3 — Upgrade core tooling
-```
+
+#### Upgrade core tools
+
+```bash
 (vflussenv) $ python -m pip install --upgrade pip wheel setuptools
 ```
 
-`pip 24.x` bundles the new *repair wheel* feature that fixes many‑linux and macOS wheels on the fly.
-````
+`pip 24.x` bundles the new *repair wheel* feature that fixes many‑linux and macOS wheels on the fly.
 
-````{tab-item} 4 — Install project requirements
-```
-(vflussenv) $ pip install -r requirements.txt     # <— file provided in the previous section
+
+#### Install requirements
+
+For data analysis [without the geospatial GDAL library, download this requirements.txt file](https://github.com/sschwindt/sample-data/blob/main/python-env/requirements.txt). Otherwise, to [include libraries for geospatial data analysis, download this requirements.txt](https://github.com/Ecohydraulics/flusstools-pckg/raw/refs/heads/main/requirements.txt). Install the requirements.txt file into a new environment called `vflussenv' as follows.
+
+```bash
+(vflussenv) $ pip install -r requirements.txt
 ```
 
 Binary wheels for GDAL, Rasterio, Fiona, and Shapely have been available on PyPI since **2024‑10**, so no external PPA is required anymore.
 
-```{admonition} `python` vs `python3`
+```{admonition} python vs. python3
 :class: note
-All mainstream distros now point the `python` symlink to Python 3.  If `python --version` still prints *Python 2.x* you are on an outdated system; always call the full `python3.13` binary instead.
+All mainstream distros now point the `python` symlink to Python3. If `python --version` still prints *Python 2.x* you are on an outdated system; always call the full `python3` binary instead.
 ```
-````
-`````
 
-(ipython-config)=
-#### Jupyter kernel
+#### Install flusstools
+
 
 ```bash
-(vflussenv) pip install ipykernel jupyterlab
-(vflussenv) python -m ipykernel install --user --name vfluss_kernel
+(vflussenv) $ pip install flusstools
 ```
-Select **vfluss_kernel** from *Kernel > Change kernel* inside JupyterLab.
+
+Test it:
+
+```bash
+(vflussenv) $ python
+>>> import flusstools as ft
+```
 
 ---
 
 (conda-env)=
-## `conda` / `mamba` — recommended on Windows 11 & cross‑platform data science
+## `conda` / `mamba` - recommended on Windows 11 & cross‑platform data science
 
 ```{admonition} Choose *mamba* for speed
 :class: hint
-[`mamba`](https://github.com/mamba-org/mamba) is a drop‑in replacement for `conda` written in C++; it resolves environments 10–100 × faster.
+[`mamba`](https://github.com/mamba-org/mamba) is a drop‑in replacement for `conda` written in C++; it resolves environments 10–100 × faster.
 ```
 
 (pip-vs-conda)=
@@ -96,17 +101,19 @@ Select **vfluss_kernel** from *Kernel > Change kernel* inside JupyterLab.
 * Use `pip` only when you *must* keep the environment minimal.
 
 (conda-quick)=
-### Quick guide (Anaconda | Miniforge)
+### Quick guide (Anaconda / Miniforge)
 
-1.  Install **Miniforge 4** (lighter than Anaconda, defaults to conda‑forge).
-2.  ```bash
-    conda create -n flussenv python=3.13 geopandas rasterio laspy
+1. Install **Miniforge 4** (lighter than Anaconda, defaults to conda‑forge) -- refer to the installation instructions on the developer's [website](https://conda-forge.org/download/).
+2. Get the flusstools [environment.yml](https://raw.githubusercontent.com/Ecohydraulics/flusstools-pckg/refs/heads/main/environment.yml) and use it to create the conda `flussenv` (takes a couple of minutes):
+    ```bash
+    conda env create -f environment.yml
     ```
-3.  ```bash
+3. Activate `flussenv` and install flusstools, which is a purely PyPi-hosted package:
+    ```bash
     conda activate flussenv
-    pip install flusstools  # pure‑Python package hosted on PyPI
+    pip install flusstools
     ```
-4.  Add a Jupyter kernel:
+4. Add a Jupyter kernel:
     ```bash
     ipython kernel install --user --name fluss_kernel
     ```
@@ -116,13 +123,13 @@ Select **vfluss_kernel** from *Kernel > Change kernel* inside JupyterLab.
 (install-pckg)=
 ## Installing extra packages with `pip`
 
-More than **500 000** projects live on *PyPI* today.  Basic syntax:
+More than **500 000** projects live on *PyPI* today. Basic syntax:
 
 ````{tab-set}
-```{tab-item} Linux/macOS
+```{tab-item} Linux/macOS (venv)
 (vflussenv) $ pip install seaborn
 ```
-```{tab-item} Windows (inside conda env)
+```{tab-item} Windows (conda env)
 (flussen v) > pip install seaborn
 ```
 `````
@@ -147,7 +154,19 @@ Install them manually with:
 
 ---
 
-### Updating environments
+(ipython-config)=
+## Jupyter kernel
+
+```bash
+(vflussenv) pip install ipykernel jupyterlab
+(vflussenv) python -m ipykernel install --user --name vfluss_kernel
+```
+Select **vfluss_kernel** from *Kernel > Change kernel* inside JupyterLab.
+
+
+---
+
+## Updating environments
 
 ```bash
 (vflussenv) pip install -U pip setuptools wheel
@@ -176,9 +195,9 @@ If `pip` reports **ResolutionImpossible**, relax or delete the offending version
 (vflussenv) jupyter lab
 ```
 
-Point your browser to `http://localhost:8888/lab`.  Switch kernels via the *Kernel* menu.
+Point your browser to `http://localhost:8888/lab`. Switch kernels via the *Kernel* menu.
 
-### PyCharm Community 2024.3+
+### PyCharm
 
 * **File > Settings > Python Interpreter > Add > Existing** > pick `~/venvs/vflussenv/bin/python` (Linux) or `%USERPROFILE%\mambaforge\envs\flussenv\python.exe` (Windows).
 * Enable *Sync Python packaging tools* so that `pip install` inside PyCharm’s terminal updates the interpreter list.
@@ -186,7 +205,6 @@ Point your browser to `http://localhost:8888/lab`.  Switch kernels via the *Kern
 ---
 
 (remove-env)=
-
 ## Deleting environments
 
 * **venv**: `rm -rf ~/venvs/vflussenv`
@@ -197,7 +215,7 @@ Point your browser to `http://localhost:8888/lab`.  Switch kernels via the *Kern
 (install-python-summary)=
 ## Installation bottom line
 
-* Use **`python -m venv`** (`pipx` for CLI tools) unless a package *requires* C/C++ libraries that your OS can’t satisfy—then reach for **conda‑forge**.
+* Use **`python -m venv`** (`pipx` for CLI tools) unless a package *requires* C/C++ libraries that your OS can’t satisfy—then reach for **conda‑forge**.
 * Windows users no longer *need* conda for GDAL, but conda remains the easiest path for a full geospatial data‑science stack.
 * Pin exact package versions for archival projects; use `>=` pins for living research code.
 * Never install packages with `sudo pip`; always work inside an isolated environment.
