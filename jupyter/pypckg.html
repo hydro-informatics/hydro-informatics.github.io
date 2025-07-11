@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -71,7 +68,6 @@
     <link rel="prev" title="Functions" href="pyfun.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -566,16 +577,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -640,7 +659,7 @@
 </div>
 <section id="import-packages-or-modules">
 <h2>Import Packages or Modules<a class="headerlink" href="#import-packages-or-modules" title="Link to this heading">#</a></h2>
-<p>Importing a package or module in Python makes external functions and other elements (such as objects) of modules accessible in a script. The functions and other elements are stored within another Python file (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) in some <em>/site_packages/</em> folder (directory) of the interpreter environments. Thus, to use a non-standard package, it needs to be downloaded and installed first. Standard Python packages (e.g., <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">math</span></code>) are always accessible and other can be added with <em>conda</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">read more about conda-installing</span></a>) or <em>pip</em> (<a class="reference internal" href="../python-basics/pyinstall.html#pip-install-pckg"><span class="std std-ref">read more pip-installing</span></a>).</p>
+<p>Importing a package or module in Python makes external functions and other elements (such as objects) of modules accessible in a script. The functions and other elements are stored within another Python file (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) in some <em>/site_packages/</em> folder (directory) of the interpreter environments. Thus, to use a non-standard package, it needs to be downloaded and installed first. Standard Python packages (e.g., <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">math</span></code>) are always accessible and other can be added with <em>conda</em> or <em>pip</em> (<a class="reference internal" href="../python-basics/pyinstall.html#install-pckg"><span class="std std-ref">read more pip-installing</span></a>).</p>
 <div class="admonition-the-difference-between-a-module-and-a-package admonition">
 <p class="admonition-title">The Difference between a Module and a Package</p>
 <p>Modules are single or multiple files that can be imported independently (e.g. import a script named <code class="docutils literal notranslate"><span class="pre">a_module.py</span></code> with <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">a_module</span></code>). Packages are a collection of modules in a directory with a defined hierarchy, which also enables the import of individual modules (e.g. <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">a_package.module</span> <span class="pre">import</span> <span class="pre">a_function</span></code>). Packages are therefore also modules, but with a hierarchy definition (i.e., a <code class="docutils literal notranslate"><span class="pre">__path__</span></code> attribute and an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file). Sounds fuzzy? Read this section down to the bottom and come back here to re-read this note.</p>
@@ -648,7 +667,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">os</span></code> package provides basic system-terminal-like commands, for example, to manage folder directories. So let’s import this essential package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="c1"># print current working directory</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="c1"># print directory of script running</span>
 </pre></div>
@@ -690,8 +709,8 @@
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># import pyplot from the matplotlib module and alias it with plt</span>
-<span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1"># import pyplot from the matplotlib module and alias it with plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">m</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
@@ -714,7 +733,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi</span> <span class="o">=</span> <span class="mf">9.112</span> <span class="c1"># define a float called pi </span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pi is not </span><span class="si">%1.3f</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">pi</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span> <span class="c1"># this overwrites the before defined variable pi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span> <span class="c1"># this overwrites the before defined variable pi</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pi is </span><span class="si">%1.3f</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">pi</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -730,7 +749,7 @@
 <p>Sometimes we want to explore modules or check variable attributes. This is achieved with the <code class="docutils literal notranslate"><span class="pre">dir()</span></code> command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
 
@@ -758,7 +777,7 @@
 <p><a class="reference external" href="https://github.com/hydro-informatics/icecream/raw/master/single-scripts/icecreamdialogue.py"><code class="docutils literal notranslate"><span class="pre">icecreamdialogue.py</span></code></a> can now either be executed as a script (nothing will happen visibly) or imported as a module to access its variables (e.g., <code class="docutils literal notranslate"><span class="pre">icecreamdialogue.flavors</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">icecreamdialogue</span> <span class="k">as</span> <span class="nn">icd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">icecreamdialogue</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">icd</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">icd</span><span class="o">.</span><span class="n">welcome_msg</span><span class="p">)</span>
 <span class="n">scoops_wanted</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That makes </span><span class="si">{0}</span><span class="s2"> please&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">icd</span><span class="o">.</span><span class="n">price_scoops</span><span class="p">[</span><span class="n">scoops_wanted</span><span class="p">]))</span>
@@ -802,13 +821,13 @@
 <span class="n">price_scoops</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;two euros&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;three euros&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;your health&quot;</span><span class="p">}</span>
 <span class="n">welcome_msg</span> <span class="o">=</span> <span class="s2">&quot;Hi, I only have &quot;</span> <span class="o">+</span> <span class="n">flavors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;. How many scoops do you want?&quot;</span>
 
-<span class="k">def</span> <span class="nf">dialogue</span><span class="p">(</span><span class="n">scoops_wanted</span><span class="p">):</span> <span class="c1">#formerly in the __main__ statement</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dialogue</span><span class="p">(</span><span class="n">scoops_wanted</span><span class="p">):</span> <span class="c1">#formerly in the __main__ statement</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">welcome_msg</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;That makes </span><span class="si">{0}</span><span class="s2"> please&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">price_scoops</span><span class="p">[</span><span class="n">scoops_wanted</span><span class="p">]))</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># import the terminal function emulator sys</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># make sure input is provided</span>
         <span class="c1"># if true: call the dialogue function with the input argument</span>
         <span class="n">dialogue</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
@@ -836,7 +855,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># __init__.py</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invoking __init__.py for </span><span class="si">{</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># not absolutely needed ..</span>
-<span class="kn">import</span> <span class="nn">icecreamery.icecreamdialogue</span><span class="o">,</span> <span class="nn">icecreamery.icecream_maker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">icecreamery.icecreamdialogue</span><span class="o">,</span><span class="w"> </span><span class="nn">icecreamery.icecream_maker</span>
 </pre></div>
 </div>
 </div>
@@ -844,7 +863,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example usage of the icecreamery package</span>
-<span class="kn">import</span> <span class="nn">icecreamery</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">icecreamery</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">icecreamery</span><span class="o">.</span><span class="n">icecreamdialogue</span><span class="o">.</span><span class="n">welcome_msg</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -859,7 +878,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example usage of the icecreamery package</span>
-<span class="kn">from</span> <span class="nn">icecreamery_all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">icecreamery_all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">icecreamdialogue</span><span class="o">.</span><span class="n">welcome_msg</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -878,7 +897,7 @@
 <section id="reload-re-import-a-package-or-module">
 <h2>Reload (Re-import) a Package or Module<a class="headerlink" href="#reload-re-import-a-package-or-module" title="Link to this heading">#</a></h2>
 <p>Since Python3, reloading a module requires importing the <code class="docutils literal notranslate"><span class="pre">importlib</span></code> module first. Reloading makes only sense if you are actively writing a new module. To reload any module type:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
 <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">my</span><span class="o">-</span><span class="n">module</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -948,8 +967,7 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1022,8 +1040,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

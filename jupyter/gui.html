@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -71,7 +68,6 @@
     <link rel="prev" title="Code Style and Conventions" href="pystyle.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -566,16 +577,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -663,7 +682,7 @@
 <p>The very first step is to <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">tkinter</span></code>, usually using the alias <code class="docutils literal notranslate"><span class="pre">as</span> <span class="pre">tk</span></code>. With <code class="docutils literal notranslate"><span class="pre">tk.Tk()</span></code>, a so-called parent window (e.g., <code class="docutils literal notranslate"><span class="pre">top</span></code>) can be created, in which further elements will be accommodated. All further elements are created as <code class="docutils literal notranslate"><span class="pre">tk</span></code> child-objects of the parent window and placed (arranged) in the parent window using the <code class="docutils literal notranslate"><span class="pre">pack()</span></code> or <code class="docutils literal notranslate"><span class="pre">grid()</span></code> method. Here, we will use <code class="docutils literal notranslate"><span class="pre">pack</span></code> most of the time and <code class="docutils literal notranslate"><span class="pre">grid</span></code> will be useful to place elements at an exact position on the window (e.g., <code class="docutils literal notranslate"><span class="pre">tk.ELEMENT.grid(row=INT,</span> <span class="pre">column=INT)</span></code>). To display the GUI, the parent window <code class="docutils literal notranslate"><span class="pre">top</span></code> must be launched with <code class="docutils literal notranslate"><span class="pre">top.mainloop()</span></code> after arranging all elements. The following code block shows how to create a parent window with a label element (<code class="docutils literal notranslate"><span class="pre">tk.Label</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
 <span class="n">top</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
 <span class="n">a_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A label just shows some text.&quot;</span><span class="p">)</span>
 <span class="n">a_label</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -706,10 +725,10 @@
 <p>Currently, the window only shows a (boring) label and waits for events that do not exist. With a <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> we can add an event trigger, which still needs something to trigger. To this end, define a <code class="docutils literal notranslate"><span class="pre">call_back</span></code> function that creates an infobox, which is an object of <code class="docutils literal notranslate"><span class="pre">showinfo</span></code> from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code> (i.e., it needs to be imported).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showinfo</span>
 <span class="c1"># more message boxes: askokcancel, askyesno</span>
 
-<span class="k">def</span> <span class="nf">call_back</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">call_back</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
     <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;This is an Infobox&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 
 
@@ -742,8 +761,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the VanillaApp class</span>
-<span class="k">class</span> <span class="nc">VanillaApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VanillaApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         
@@ -754,7 +773,7 @@
         <span class="n">no_vanilla_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I want something else&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">call_back</span><span class="p">(</span><span class="s2">&quot;Here is bread!&quot;</span><span class="p">))</span>
         <span class="n">no_vanilla_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">call_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">call_back</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
         <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;This is an Infobox&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 
 
@@ -817,13 +836,13 @@
 <p>The next block features the code that creates the <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widgets in the figure (the <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/start_gui.py">script</a>, <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/sunny-image.gif">image</a> and <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/gui-icon.ico">icon</a> are available at the course repository):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
-<span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>
-<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showinfo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ttk</span>
 
 
-<span class="k">class</span> <span class="nc">MyApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Master Title&quot;</span><span class="p">)</span>
@@ -893,7 +912,7 @@
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;                                                    &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
         <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Got Message from ...&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 
 
@@ -917,11 +936,11 @@
 <p>How does Python know when to retrieve a user-defined value? Typically, we want to evaluate user-defined values when we call a function that receives user-defined values as input arguments. Default, predefined default values in a script can be set with <code class="docutils literal notranslate"><span class="pre">VARIABLE.set()</span></code> and the user settings can be retrieved with <code class="docutils literal notranslate"><span class="pre">VARIABLE.get()</span></code>. The following <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/variable_gui.py">script</a> and the <a class="reference external" href="https://raw.githubusercontent.com/hydro-informatics/jupyter-python-course/main/gui/sample-icon.ico">icon</a> are available at the course repository.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showinfo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
-<span class="k">class</span> <span class="nc">MyApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MyApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GUI with variables&quot;</span><span class="p">)</span>
@@ -954,13 +973,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">check_variable</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
         
-    <span class="k">def</span> <span class="nf">message_distributor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">message_distributor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_variable</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
             <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;User message&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Random message&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_message</span><span class="p">())</span>
         
-    <span class="k">def</span> <span class="nf">random_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">random_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">random_words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;summer&quot;</span><span class="p">,</span> <span class="s2">&quot;winter&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;cold&quot;</span><span class="p">,</span> <span class="s2">&quot;hot&quot;</span><span class="p">,</span> <span class="s2">&quot;will be&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">random_words</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
@@ -1009,8 +1028,8 @@
 <p>The simplest geometry manager is the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, which works even without any keyword provided (see the very first examples in this section). With the <code class="docutils literal notranslate"><span class="pre">pack</span></code> method, widgets can be placed relatively in the window (<code class="docutils literal notranslate"><span class="pre">relx</span></code> and <code class="docutils literal notranslate"><span class="pre">rely</span></code>, where both must be &lt; 1) or with absolute positions (<code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, where both should fit into the window dimensions defined through <code class="docutils literal notranslate"><span class="pre">self.config(width=INT,</span> <span class="pre">height=INT)</span></code>). The axis origin (zero positions of <em>x</em> and <em>y</em>) is determined with the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> keyword.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PlacedApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PlacedApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">628</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1042,10 +1061,10 @@
 <p>In <code class="docutils literal notranslate"><span class="pre">grid</span></code>-ed GUIs, the widget alignment can be controlled with the <code class="docutils literal notranslate"><span class="pre">sticky</span></code> argument that uses cardinal directions (e.g., <code class="docutils literal notranslate"><span class="pre">sticky=tk.W</span></code> aligns or “sticks” a widget at the west, meaning, left side, of a GUI). The <code class="docutils literal notranslate"><span class="pre">padx</span></code> and <code class="docutils literal notranslate"><span class="pre">pady</span></code> keywords arguments enable the implementation of pixel space around widgets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showinfo</span>
 
-<span class="k">class</span> <span class="nc">GriddedApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GriddedApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">628</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1074,10 +1093,10 @@
 <p>Upon user action (an event), we may want to modify previously defined widgets. For instance, we may want to change the text of a label or the layout of a button to indicate successful or failed operations. For this purpose, <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> objects can be modified with <code class="docutils literal notranslate"><span class="pre">tk.OBJECT.config(PARAMETER_TO_CONMFIGURE=NEW_CONFIG)</span></code>. Moreover, objects can be deleted (destroyed) with <code class="docutils literal notranslate"><span class="pre">tk.OBJECT.destroy()</span></code>, even though this is not an elegant method for any other widgets than pop-up windows (child frames of the master frame).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span><span class="p">,</span> <span class="n">showerror</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showinfo</span><span class="p">,</span> <span class="n">showerror</span>
 
-<span class="k">class</span> <span class="nc">ReConfigApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReConfigApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">628</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -1093,7 +1112,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">eval_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Estimate flow velocity&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;snow2&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;dark violet&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_estimator</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eval_button</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">call_estimator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">call_estimator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">flow_depth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_depth</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="k">except</span> <span class="n">tk</span><span class="o">.</span><span class="n">TclError</span><span class="p">:</span>
@@ -1101,7 +1120,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">eval_button</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">fg</span><span class="o">=</span><span class="s2">&quot;green4&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;DarkSeaGreen1&quot;</span><span class="p">)</span>
         <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Result&quot;</span><span class="p">,</span> <span class="s2">&quot;The estimated flow velocity is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimate_u</span><span class="p">(</span><span class="n">flow_depth</span><span class="p">)))</span>
         
-    <span class="k">def</span> <span class="nf">estimate_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kst</span> <span class="o">*</span> <span class="n">h</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">slope</span><span class="o">**</span><span class="mf">0.5</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
@@ -1159,10 +1178,10 @@
 <p>The default windows may not meet the needs for every application, for instance, to invite users to enter a custom value. In this case, a <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> object aids in producing a customized pop-up window, and the below example shows how a customized top-level pop-up window can be called within a method. With the <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code> widget and the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (master) widgets, the code block produces two frames, in which buttons, labels, or any other <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> object can be placed. The very first argument of any <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> widget-object created determines whether the object is placed in the master or the top-level frame. For example, <code class="docutils literal notranslate"><span class="pre">tk.Entry(self).pack()</span></code> creates an entry in the master <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>, and <code class="docutils literal notranslate"><span class="pre">tk.Entry(pop_up).pack()</span></code> creates an entry in the child <code class="docutils literal notranslate"><span class="pre">tk.Toplevel</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showwarning</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showwarning</span>
 
-<span class="k">class</span> <span class="nc">PopApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PopApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">628</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -1171,13 +1190,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pop_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Open pop-up window&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;cadet blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white smoke&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_window</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pop_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">destroy_buttons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">destroy_buttons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pop_button</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p_button1</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p_button2</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>        
         <span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Congratulations&quot;</span><span class="p">,</span> <span class="s2">&quot;This app is useless now. Don&#39;t press red-ish buttons ...&#39;&quot;</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">new_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">new_window</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">pop_up</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="n">master</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="c1"># add two buttons to the new pop_up Toplevel object (window)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p_button1</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">pop_up</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Destroy buttons (do not click here)&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;DarkOrchid4&quot;</span><span class="p">,</span>
@@ -1205,11 +1224,11 @@
 <p>When a custom function’s argument is a file or file name, we most likely want the user to be able to select the file type needed. The <a class="reference external" href="https://docs.python.org/3.10/library/dialog.html#module-tkinter.filedialog">tkinter.filedialog</a> library provides methods to let users choose general or specific file types. Specific file types can be defined with the <code class="docutils literal notranslate"><span class="pre">filetypes=(&quot;Name&quot;,</span> <span class="pre">&quot;*.ending&quot;)</span></code> (or <code class="docutils literal notranslate"><span class="pre">filetypes=(&quot;Name&quot;,</span> <span class="pre">&quot;*.ending1;*.ending2;...&quot;)</span></code> for multiple file types) keyword argument. The following example illustrates the usage of <code class="docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code>’s <code class="docutils literal notranslate"><span class="pre">askopenfilename</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tkinter.filedialog</span> <span class="kn">import</span> <span class="n">askopenfilename</span>
-<span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.filedialog</span><span class="w"> </span><span class="kn">import</span> <span class="n">askopenfilename</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">showinfo</span>
 
-<span class="k">class</span> <span class="nc">OpenFileApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenFileApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">628</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
@@ -1219,7 +1238,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pop_button</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Open a text file&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;light steel blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;dark slate gray&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">open_file</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pop_button</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">open_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">file_types</span> <span class="o">=</span> <span class="p">((</span><span class="s2">&quot;Text&quot;</span><span class="p">,</span> <span class="s2">&quot;*.txt;*.csv;*.asc&quot;</span><span class="p">),)</span>  <span class="c1"># equivalent to [(&quot;Text&quot;, &quot;*.txt;*.csv;*.asc&quot;)]</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">askopenfilename</span><span class="p">(</span><span class="n">initialdir</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select a text file&quot;</span><span class="p">,</span> <span class="n">filetypes</span><span class="o">=</span><span class="n">file_types</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;File info&quot;</span><span class="p">,</span> <span class="s2">&quot;You selected &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">file_name</span><span class="p">))</span>
@@ -1243,11 +1262,11 @@
 <h2>Quit<a class="headerlink" href="#quit" title="Link to this heading">#</a></h2>
 <p>To cleanly quit a GUI, use <code class="docutils literal notranslate"><span class="pre">tk.Frame.quit()</span></code> (i.e., in a custom class, write <code class="docutils literal notranslate"><span class="pre">self.quit()</span></code> or <code class="docutils literal notranslate"><span class="pre">master.quit()</span></code>). The above example of the <code class="docutils literal notranslate"><span class="pre">PopApp</span></code> class also features the <code class="docutils literal notranslate"><span class="pre">destroy()</span></code> method, which helps to remove particular widgets.</p>
 <p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> provides many more options such as the implementation of tabs with <code class="docutils literal notranslate"><span class="pre">ttk.Notebook()</span></code> (requires <a class="reference external" href="https://effbot.org/tkinterbook/tkinter-events-and-bindings.htm">binding</a> of tab objects), tables (<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">tkintertable</span> <span class="pre">import</span> <span class="pre">TableCanvas,</span> <span class="pre">TableModel</span></code>), or interactive graphic objects with <a class="reference internal" href="pyplot.html#matplotlib"><span class="std std-ref">matplotib</span></a>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;TkAgg&#39;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib.backends.backend_tkagg</span> <span class="kn">import</span> <span class="n">FigureCanvasTkAgg</span>
-<span class="kn">from</span> <span class="nn">matplotlib.figure</span> <span class="kn">import</span> <span class="n">Figure</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.backends.backend_tkagg</span><span class="w"> </span><span class="kn">import</span> <span class="n">FigureCanvasTkAgg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.figure</span><span class="w"> </span><span class="kn">import</span> <span class="n">Figure</span>
 </pre></div>
 </div>
 <p>Enjoy creating your custom apps!</p>
@@ -1321,8 +1340,7 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1401,8 +1419,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

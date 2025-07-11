@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -73,7 +70,6 @@
     <link rel="prev" title="Flood Return Periods" href="ex-floods.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -89,8 +85,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -98,6 +105,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -105,8 +113,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -122,8 +130,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -153,17 +160,21 @@
     
     
     <img src="../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -501,16 +512,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -689,18 +708,18 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </figure>
 <p>To start with the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script, add a <code class="docutils literal notranslate"><span class="pre">main</span></code> function as well as a <code class="docutils literal notranslate"><span class="pre">get_char_grain_size</span></code> and a <code class="docutils literal notranslate"><span class="pre">calculate_mpm</span></code> function. Moreover, make the script <em>stand-alone</em> executable:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is main.py</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 
-<span class="k">def</span> <span class="nf">get_char_grain_size</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_char_grain_size</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
     <span class="k">return</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">calculate_mpm</span><span class="p">(</span><span class="n">hec_df</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_mpm</span><span class="p">(</span><span class="n">hec_df</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
     <span class="k">return</span> <span class="kc">None</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="k">pass</span>
 
 
@@ -718,10 +737,10 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <li><p><code class="docutils literal notranslate"><span class="pre">log_actions</span></code>, which is a function wrapper for the <code class="docutils literal notranslate"><span class="pre">main()</span></code> (<code class="docutils literal notranslate"><span class="pre">main.py</span></code>) functions to log script execution messages.</p></li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">start_logging</span></code> function should look like this (change the log file name if desired):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 
-<span class="k">def</span> <span class="nf">start_logging</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">start_logging</span><span class="p">():</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;logfile.log&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">] </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
                         <span class="n">filemode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
@@ -729,8 +748,8 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrapper function follows the instructions from the <a class="reference internal" href="../jupyter/pyfun.html#wrappers"><span class="std std-ref">functions theory section</span></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_actions</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_actions</span><span class="p">(</span><span class="n">fun</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">start_logging</span><span class="p">()</span>
         <span class="n">fun</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
@@ -739,12 +758,12 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <p>To use the <code class="docutils literal notranslate"><span class="pre">log_actions</span></code> wrapper throughout the program, we will implement it at the highest level, which is the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
-<span class="kn">from</span> <span class="nn">fun</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fun</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="o">...</span>
 
 <span class="nd">@log_actions</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is a test message (do not keep in the function).&quot;</span><span class="p">)</span>
 
 
@@ -759,15 +778,15 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <h3>Read grain size data<a class="headerlink" href="#read-grain-size-data" title="Link to this heading">#</a></h3>
 <p>Sediment grain size classes (ranging from <span class="math notranslate nohighlight">\(D_{16}\)</span> to <span class="math notranslate nohighlight">\(D_{max}\)</span>) are provided in the file <a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport/raw/main/grains.csv"><code class="docutils literal notranslate"><span class="pre">grains.csv</span></code></a> (<code class="docutils literal notranslate"><span class="pre">delimiter=&quot;,&quot;</span></code>) and can be customized.</p>
 <p>Write a <code class="docutils literal notranslate"><span class="pre">GrainReader</span></code> class that uses the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> method from <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> to read the grain size distribution from <code class="docutils literal notranslate"><span class="pre">grains.csv</span></code>. Write the class in a separate <em>Python</em> script (e.g., <code class="docutils literal notranslate"><span class="pre">grains.py</span></code> as indicated in the above figure):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GrainReader</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="o">=</span><span class="s2">&quot;grains.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">GrainReader</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="o">=</span><span class="s2">&quot;grains.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sep</span> <span class="o">=</span> <span class="n">delimiter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size_classes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_grain_data</span><span class="p">(</span><span class="n">csv_file_name</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">get_grain_data</span></code> method should look like this for reading the provided grain size classes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_grain_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">get_grain_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size_classes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file_name</span><span class="p">,</span>
                                         <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">],</span>
                                         <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -781,17 +800,17 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <p>Implement the instantiation of a <code class="docutils literal notranslate"><span class="pre">GrainReader</span></code> object in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script in the <code class="docutils literal notranslate"><span class="pre">get_char_grain_size</span></code> function. The function should receive the <em>string</em>-type arguments <code class="docutils literal notranslate"><span class="pre">file_name</span></code> (here: <code class="docutils literal notranslate"><span class="pre">&quot;grains.csv&quot;</span></code>) and <code class="docutils literal notranslate"><span class="pre">D_char</span></code> (i.e., the characteristic grain size to use from <code class="docutils literal notranslate"><span class="pre">grains.csv</span></code>). The <code class="docutils literal notranslate"><span class="pre">main()</span></code> function calls the <code class="docutils literal notranslate"><span class="pre">get_char_grain_size</span></code> function with the arguments <code class="docutils literal notranslate"><span class="pre">file_name=os.path.abspath(&quot;..&quot;)</span> <span class="pre">+</span> <span class="pre">&quot;\\grains.csv&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">D_char=&quot;D84&quot;</span></code> (corresponds to the first column in <code class="docutils literal notranslate"><span class="pre">grains.csv</span></code>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">grains</span> <span class="kn">import</span> <span class="n">GrainReader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">grains</span><span class="w"> </span><span class="kn">import</span> <span class="n">GrainReader</span>
 
-<span class="k">def</span> <span class="nf">get_char_grain_size</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">D_char</span><span class="o">=</span><span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_char_grain_size</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">D_char</span><span class="o">=</span><span class="nb">str</span><span class="p">):</span>
     <span class="n">grain_info</span> <span class="o">=</span> <span class="n">GrainReader</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">grain_info</span><span class="o">.</span><span class="n">size_classes</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">][</span><span class="n">D_char</span><span class="p">]</span>
 
 <span class="o">...</span>
 
 <span class="nd">@log_actions</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="c1"># get characteristic grain size = D84</span>
     <span class="n">D_char</span> <span class="o">=</span> <span class="n">get_char_grain_size</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">grains.csv&quot;</span><span class="p">,</span>
                                  <span class="n">D_char</span><span class="o">=</span><span class="s2">&quot;D84&quot;</span><span class="p">)</span>
@@ -887,14 +906,14 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </table>
 </div>
 <p>To load <em>HEC-RAS</em> output data, write a custom class (in a separate script called <code class="docutils literal notranslate"><span class="pre">hec.py</span></code>) that takes the file name as input argument and reads the <em>HEC-RAS</em> file as <em>pandas</em> data frame:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HecSet</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xlsx_file_name</span><span class="o">=</span><span class="s2">&quot;output.xlsx&quot;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">HecSet</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xlsx_file_name</span><span class="o">=</span><span class="s2">&quot;output.xlsx&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hec_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_hec_data</span><span class="p">(</span><span class="n">xlsx_file_name</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">get_hec_data</span></code> method should look (something) like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_hec_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xlsx_file_name</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">get_hec_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xlsx_file_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hec_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xlsx_file_name</span><span class="p">,</span>
                                       <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                       <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -902,14 +921,14 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <p>To create a <code class="docutils literal notranslate"><span class="pre">HecSet</span></code> object in the <code class="docutils literal notranslate"><span class="pre">main()</span></code> (<code class="docutils literal notranslate"><span class="pre">main.py</span></code>) function, we need to import and instantiate it for example as <code class="docutils literal notranslate"><span class="pre">hec</span> <span class="pre">=</span> <span class="pre">HecSet(file_name)</span></code>. In addition, we can already implement passing the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> of the <em>HEC-RAS</em> data to the <code class="docutils literal notranslate"><span class="pre">calculate_mpm</span></code> function (also in <code class="docutils literal notranslate"><span class="pre">main.py</span></code>) that we will complete later on.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">...</span>
-<span class="kn">from</span> <span class="nn">hec</span> <span class="kn">import</span> <span class="n">HecSet</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">hec</span><span class="w"> </span><span class="kn">import</span> <span class="n">HecSet</span>
 
 <span class="o">...</span>
 
 <span class="nd">@log_actions</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">D_char</span> <span class="o">=</span> <span class="o">...</span>
 
     <span class="n">hec_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">HEC-RAS</span><span class="si">{0}</span><span class="s2">output.xlsx&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
@@ -920,12 +939,12 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <section id="create-a-bedload-core-class">
 <h3>Create a Bedload Core Class<a class="headerlink" href="#create-a-bedload-core-class" title="Link to this heading">#</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class written in the <code class="docutils literal notranslate"><span class="pre">bedload.py</span></code> script provides variables and methods, which are relevant to many <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> and <a class="reference internal" href="../documentation/glossary.html#term-Sediment-transport"><span class="xref std std-term">Sediment transport</span></a> calculation formulae, such as the <em>Parker-Wong</em> correction <span id="id9">[<a class="reference internal" href="../documentation/bibliography.html#id630" title="Miguel Wong and Gary Parker. Reanalysis and Correction of Bed-Load Relation of Meyer-Peter and Müller Using Their Own Database. Journal of Hydraulic Engineering, 132(11):1159–1168, 2006. doi:10.1061/(ASCE)0733-9429(2006)132:11(1159).">WP06</a>]</span> or the <span id="id10">Smart and Jaeggi [<a class="reference internal" href="../documentation/bibliography.html#id547" title="Graeme M Smart and Martin N R Jaeggi. Sedimenttransport in steilen Gerinnen [Sediment Transport on Steep Slopes]. Mitteilung Nr. 64 der Versuchsanstalt für Wasserbau, Hydrologie und Glaziologie an der Eidgenössischen Technischen Hochschule Zürich, Zürich, 1983. URL: https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf.">SJ83</a>]</span> (<a class="reference external" href="https://ethz.ch/content/dam/ethz/special-interest/baug/vaw/vaw-dam/documents/das-institut/mitteilungen/1980-1989/064.pdf">direct download</a> ). Moreover, the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class contains constants such as the gravitational acceleration <span class="math notranslate nohighlight">\(g\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.g=9.81</span></code>), the ratio of sediment grain and water density <span class="math notranslate nohighlight">\(s\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.s=2.68</span></code>), and the critical dimensionless bed shear stress <span class="math notranslate nohighlight">\(\tau_{x,cr}\)</span> (i.e., <code class="docutils literal notranslate"><span class="pre">self.tau_xcr=0.047</span></code>, which may be re-defined by users). The header of the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class should look (similar) like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fun</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fun</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
-<span class="k">class</span> <span class="nc">BedCore</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BedCore</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tau_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tau_xcr</span> <span class="o">=</span> <span class="mf">0.047</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>
@@ -946,7 +965,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <p>Import <code class="docutils literal notranslate"><span class="pre">fun</span></code> (the script with logging functions) to enable the usage of <code class="docutils literal notranslate"><span class="pre">logging.warning(...)</span></code> messages in the methods of <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> and its child classes.</p>
 </div>
 <p>Add a method to convert the dimensionless <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span> into a dimensional value (kg/s). In addition to the variables defined in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method, the <code class="docutils literal notranslate"><span class="pre">add_dimensions</span></code> method will require the effective channel width <span class="math notranslate nohighlight">\(b_{eff}\)</span> (<a class="reference internal" href="#qb"><span class="std std-ref">recall the above calculus</span></a>):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">add_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho_s</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
@@ -955,7 +974,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </pre></div>
 </div>
 <p>Many <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport formulae involve the dimensionless bed shear stress [<span class="math notranslate nohighlight">\(\tau_{x}\)</span> (see above <a class="reference internal" href="#taux"><span class="std std-ref">definitions</span></a>) associated with a set of cross-section averaged hydraulic parameters. Therefore, implement the calculation method <code class="docutils literal notranslate"><span class="pre">compute_tau_x</span></code> in <code class="docutils literal notranslate"><span class="pre">BedCore</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">compute_tau_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_tau_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Se</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rh</span> <span class="o">/</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
@@ -967,11 +986,11 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <section id="write-a-meyer-peter-muller-bedload-assessment-class">
 <h3>Write a Meyer-Peter &amp; Müller Bedload Assessment Class<a class="headerlink" href="#write-a-meyer-peter-muller-bedload-assessment-class" title="Link to this heading">#</a></h3>
 <p>Create a new script (e.g., <code class="docutils literal notranslate"><span class="pre">mpm.py</span></code>) and implement an <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class (<strong>M</strong>eyer-<strong>P</strong>eter &amp; <strong>M</strong>üller) that inherits from the <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> class. The <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method of <code class="docutils literal notranslate"><span class="pre">MPM</span></code> should initialize <code class="docutils literal notranslate"><span class="pre">BedCore</span></code> and overwrite (recall <a class="reference internal" href="../jupyter/classes.html#polymorphism"><span class="std std-ref">Polymorphism</span></a>) relevant parameters to the calculation of <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> according to Meyer-Peter &amp; Müller (1948). Moreover, the initialization of an <code class="docutils literal notranslate"><span class="pre">MPM</span></code> object should go along with a check of the validity and the calculation of the dimensionless <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span> (see above <a class="reference internal" href="#mpm"><span class="std std-ref">explanations of MPM</span></a>):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bedload</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bedload</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 
-<span class="k">class</span> <span class="nc">MPM</span><span class="p">(</span><span class="n">BedCore</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grain_size</span><span class="p">,</span> <span class="n">Froude</span><span class="p">,</span> <span class="n">water_depth</span><span class="p">,</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MPM</span><span class="p">(</span><span class="n">BedCore</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grain_size</span><span class="p">,</span> <span class="n">Froude</span><span class="p">,</span> <span class="n">water_depth</span><span class="p">,</span>
                  <span class="n">velocity</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">hydraulic_radius</span><span class="p">,</span> <span class="n">slope</span><span class="p">):</span>
         <span class="c1"># initialize parent class</span>
         <span class="n">BedCore</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -987,7 +1006,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </pre></div>
 </div>
 <p>Add the <code class="docutils literal notranslate"><span class="pre">check_validity</span></code> method to verify if the provided cross-section characteristics fall into the range of validity of the Meyer-Peter &amp; Müller formula (i.e., slope, grain size, ratio of discharge and water depth, and <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a>):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">check_validity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Fr</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">check_validity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Fr</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Se</span> <span class="o">&lt;</span> <span class="mf">0.0004</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Se</span> <span class="o">&gt;</span> <span class="mf">0.02</span><span class="p">):</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Warning: Slope out of validity range.&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">&lt;</span> <span class="mf">0.0004</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">&gt;</span> <span class="mf">0.0286</span><span class="p">):</span>
@@ -1005,7 +1024,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <p>The here shown <code class="docutils literal notranslate"><span class="pre">check_validity</span></code> method takes the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> as input argument. Alternatively, assign the <a class="reference internal" href="../documentation/glossary.html#term-Froude-number"><span class="xref std std-term">Froude number</span></a> already in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and use <code class="docutils literal notranslate"><span class="pre">self.Fr</span></code>.</p>
 </div>
 <p>To calculate dimensionless <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport <span class="math notranslate nohighlight">\(\Phi_b\)</span> according to Meyer-Peter &amp; Müller, implement a <code class="docutils literal notranslate"><span class="pre">compute_phi</span></code> method that uses the <code class="docutils literal notranslate"><span class="pre">compute_tau_x</span></code> method from <code class="docutils literal notranslate"><span class="pre">BedCore</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">compute_phi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span><span class="w"> </span><span class="nf">compute_phi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">tau_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_tau_x</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">tau_x</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_xcr</span><span class="p">:</span>
@@ -1020,13 +1039,13 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 <p>With the <code class="docutils literal notranslate"><span class="pre">MPM</span></code> class defined, we can now fill the <code class="docutils literal notranslate"><span class="pre">calculate_mpm</span></code> function in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> script. The function should create a <em>pandas</em> data frame with columns of dimensionless <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport <span class="math notranslate nohighlight">\( \Phi \)</span> and dimensional <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport <span class="math notranslate nohighlight">\(Q_{b}\)</span> associated with a channel profile (<code class="docutils literal notranslate"><span class="pre">&quot;River</span> <span class="pre">Sta&quot;</span></code>) and flow scenario (<code class="docutils literal notranslate"><span class="pre">&quot;Profile&quot;</span> <span class="pre">&gt;</span> <span class="pre">&quot;Scenario&quot;</span></code>).</p>
 <p>The following code block illustrates an example of the <code class="docutils literal notranslate"><span class="pre">calculate_mpm</span></code> function that creates the <em>pandas</em> data frame from a <a class="reference internal" href="../jupyter/pybase.html#dict"><span class="std std-ref">Dictionary</span></a> (<code class="docutils literal notranslate"><span class="pre">mpm_dict</span></code>). The illustrative function creates the <em>dictionary</em> with void value lists, extracts hydraulic data from the <em>HEC-RAS</em> data frame, and loops over the <code class="docutils literal notranslate"><span class="pre">&quot;River</span> <span class="pre">Sta&quot;</span></code> entries. The loop checks if the <code class="docutils literal notranslate"><span class="pre">&quot;River</span> <span class="pre">Sta&quot;</span></code> entries are valid (i.e., not <code class="docutils literal notranslate"><span class="pre">&quot;Nan&quot;</span></code>) because empty rows that <em>HEC-RAS</em> automatically adds between output profiles should not be analyzed. If the check was successful, the loop appends the profile, scenario, and discharge directly to <code class="docutils literal notranslate"><span class="pre">mpm_dict</span></code>. The section-wise <a class="reference internal" href="../documentation/glossary.html#term-Bedload"><span class="xref std std-term">bedload</span></a> transport results from <code class="docutils literal notranslate"><span class="pre">MPM</span></code> objects. After the loop, the function returns <code class="docutils literal notranslate"><span class="pre">mpm_dict</span></code> as a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> object.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
-<span class="kn">from</span> <span class="nn">...</span>
-<span class="kn">from</span> <span class="nn">...</span>
-<span class="kn">from</span> <span class="nn">mpm</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpm</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="o">...</span>
 
-<span class="k">def</span> <span class="nf">calculate_mpm</span><span class="p">(</span><span class="n">hec_df</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_mpm</span><span class="p">(</span><span class="n">hec_df</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
     <span class="c1"># create dictionary with relevant information about bedload transport with void lists</span>
     <span class="n">mpm_dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;River Sta&quot;</span><span class="p">:</span> <span class="p">[],</span>
@@ -1065,16 +1084,16 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
 </div>
 <p>Having defined the <code class="docutils literal notranslate"><span class="pre">calculate_mpm()</span></code> function, the call to that function from the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function should now assign a <a class="reference internal" href="../jupyter/pynum.html#pandas"><span class="std std-ref">Pandas</span></a> data frame to the <code class="docutils literal notranslate"><span class="pre">mpm_results</span></code> variable. To finalize the script, write <code class="docutils literal notranslate"><span class="pre">mpm_results</span></code> to a workbook (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;bed_load_mpm.xlsx&quot;</span></code>) in the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">...</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...</span>
 
 <span class="o">...</span>
 
-<span class="k">def</span> <span class="nf">calculate_mpm</span><span class="p">(</span><span class="n">hec_df</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_mpm</span><span class="p">(</span><span class="n">hec_df</span><span class="p">,</span> <span class="n">D_char</span><span class="p">):</span>
     <span class="o">...</span>
 
 <span class="nd">@log_actions</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="o">...</span>
 
     <span class="n">mpm_results</span> <span class="o">=</span> <span class="n">calculate_mpm</span><span class="p">(</span><span class="n">hec</span><span class="o">.</span><span class="n">hec_data</span><span class="p">,</span> <span class="n">D_char</span><span class="p">)</span>
@@ -1275,8 +1294,7 @@ Q_{b} = b_{eff} \cdot q_{b} = b_{eff} \cdot \Phi_b \cdot [(s-1) \cdot g \cdot D_
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1349,8 +1367,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

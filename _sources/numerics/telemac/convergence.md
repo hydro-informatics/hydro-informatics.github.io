@@ -306,7 +306,7 @@ To determine the timestep at which a steady simulation can be considered to have
 \iota(t) &=  \log_{\varepsilon_{t}\varepsilon_{t+1}} &
 \end{align}
 
-This equation can be implemented in a function Python as follows: 
+This equation can be implemented in a Python function as follows: 
 
 
 ```python

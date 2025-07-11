@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
@@ -73,7 +70,6 @@
     <link rel="prev" title="Boundary Conditions" href="boundaries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -89,8 +85,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -98,6 +105,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -105,8 +113,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -122,8 +130,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -153,17 +160,21 @@
     
     
     <img src="../../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -501,16 +512,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -629,22 +648,22 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># retrieve file paths - this script must be stored in the directory where the simulation lives</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="c1"># data processing</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="c1"># plotting</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
 <span class="c1"># Telemac stuff</span>
-<span class="kn">from</span> <span class="nn">parser_output</span> <span class="kn">import</span> <span class="n">get_latest_output_files</span>
-<span class="kn">from</span> <span class="nn">parser_output</span> <span class="kn">import</span> <span class="n">OutputFileData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">parser_output</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_latest_output_files</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">parser_output</span><span class="w"> </span><span class="kn">import</span> <span class="n">OutputFileData</span>
 
 
-<span class="k">def</span> <span class="nf">extract_fluxes</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_fluxes</span><span class="p">(</span>
         <span class="n">model_directory</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">cas_name</span><span class="o">=</span><span class="s2">&quot;steady2d.cas&quot;</span><span class="p">,</span>
         <span class="n">plotting</span><span class="o">=</span><span class="kc">True</span>
@@ -755,8 +774,8 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 <p>To use the functions defined in <code class="docutils literal notranslate"><span class="pre">pythomac</span></code>, copy the following code into a new Python script called, for instance, <code class="docutils literal notranslate"><span class="pre">example_flux_convergence.py</span></code> in the directory where the dry-initialized steady2d simulation ran (or <a class="reference external" href="https://github.com/hydro-informatics/pythomac/blob/main/example_flux_convergence.py">download example_flux_convergence.py</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># example_flux_convergence.py</span>
 
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">extract_fluxes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pythomac</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_fluxes</span>
 
 <span class="n">simulation_dir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">telemac_cas</span> <span class="o">=</span> <span class="s2">&quot;steady2d.cas&quot;</span>
@@ -812,19 +831,19 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 </div>
 </aside>
 <p>To determine the timestep at which a steady simulation can be considered to have reached a stable state, we want to observe when <span class="math notranslate nohighlight">\(\iota\)</span> = 1 and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 indicate sublinear convergence. That is, we look for the timestep <span class="math notranslate nohighlight">\(t\)</span> above which each additional timestep <span class="math notranslate nohighlight">\(t+1\)</span> only insignificantly improves the model precision (read more on the term <em>insignificant</em> in the <a class="reference internal" href="#tm-target-conv"><span class="std std-ref">below section</span></a>). Thus, assuming that the model convergences in any form, we can set <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 to compute <span class="math notranslate nohighlight">\(\iota (t)\)</span> as a function of <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3759439-3c18-4afd-877c-a33b4a0fe96c">
-<span class="eqno">(20)<a class="headerlink" href="#equation-f3759439-3c18-4afd-877c-a33b4a0fe96c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b6b32748-6758-48ad-9574-2e05560fb7a2">
+<span class="eqno">(20)<a class="headerlink" href="#equation-b6b32748-6758-48ad-9574-2e05560fb7a2" title="Permalink to this equation">#</a></span>\[\begin{align}
 \label{estimate_convergence}
 \frac{\varepsilon_{t+1}}{\varepsilon^{\iota(t)}_{t}} &amp;=c_{\varepsilon} &amp; \Leftrightarrow \\
 \iota(t) &amp;=  \frac{1}{c_{\varepsilon}} \cdot \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp; \overbrace{\Longleftrightarrow }^{c_{\varepsilon} = 1}\\
 \iota(t) &amp;=  \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp;
 \end{align}\]</div>
-<p>This equation can be implemented in a function Python as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<p>This equation can be implemented in a Python function as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 
-<span class="k">def</span> <span class="nf">calculate_convergence</span><span class="p">(</span><span class="n">Q_in</span><span class="p">,</span> <span class="n">Q_out</span><span class="p">,</span> <span class="n">conv_constant</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_convergence</span><span class="p">(</span><span class="n">Q_in</span><span class="p">,</span> <span class="n">Q_out</span><span class="p">,</span> <span class="n">conv_constant</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
     <span class="c1"># calculate the error epsilon between two flux series</span>
     <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Q_in</span> <span class="o">-</span> <span class="n">Q_out</span><span class="p">))</span>
     <span class="c1"># derive epsilon at t and t+1</span>
@@ -836,7 +855,7 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Also this function is available in pythomac</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">calculate_convergence</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pythomac</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_convergence</span>
 </pre></div>
 </div>
 </div>
@@ -845,7 +864,7 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 
 <span class="c1"># ...</span>
 <span class="c1"># add to header (alternatively copy-paste the above function into this script):</span>
-<span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">calculate_convergence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pythomac</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_convergence</span>
 
 <span class="c1"># calculate fluxes_df (see above code block)</span>
 <span class="n">fluxes_df</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
@@ -902,7 +921,7 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 <div class="tip admonition">
 <p class="admonition-title">Bolster your code</p>
 <p>The code for calculating the timestep at which a target convergence level was achieved is also implemented in the <code class="docutils literal notranslate"><span class="pre">get_convergence_time()</span></code> function in <code class="docutils literal notranslate"><span class="pre">pythomac</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pythomac</span> <span class="kn">import</span> <span class="n">get_convergence_time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pythomac</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_convergence_time</span>
 </pre></div>
 </div>
 <p>A full implementation with also a convenient way for retrieving the <code class="docutils literal notranslate"><span class="pre">printout_period_in_cas</span></code> variable can be found in <a class="reference external" href="https://github.com/hydro-informatics/pythomac/blob/main/example_flux_convergence.py">this version of example_flux_convergence.py</a> with documentation on <a class="reference external" href="https://pythomac.readthedocs.io/en/latest/convergence.html">https://pythomac.readthedocs.io</a>.</p>
@@ -977,8 +996,7 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1039,8 +1057,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

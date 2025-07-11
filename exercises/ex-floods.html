@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -73,7 +70,6 @@
     <link rel="prev" title="Reservoir Volume (Sequent Peak Algorithm)" href="ex-sp.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -89,8 +85,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -98,6 +105,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -105,8 +113,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -122,8 +130,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -153,17 +160,21 @@
     
     
     <img src="../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -501,16 +512,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -658,7 +677,7 @@ hf.draw_map()` # only runs in JupyterLab
 <p>Create a new <em>Python</em> file (e.g., <code class="docutils literal notranslate"><span class="pre">discharge_analysis.py</span></code>) and import <em>pandas</em> as <code class="docutils literal notranslate"><span class="pre">pd</span></code> at the beginning. Read the provided flow data series file <code class="docutils literal notranslate"><span class="pre">&quot;daily-flow-series.csv&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code>.
 The header (column names) is in row 36, but we do not use the column names from the <em>csv</em> file and overwrite them with the <code class="docutils literal notranslate"><span class="pre">names</span></code> argument (<code class="docutils literal notranslate"><span class="pre">&quot;Date&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Q</span> <span class="pre">(CMS)&quot;</span></code> (for Cubic Meters per Second)). Alternatively, we could use the <code class="docutils literal notranslate"><span class="pre">skiprows</span></code> argument to indicate where the data content starts in the file.
 With <code class="docutils literal notranslate"><span class="pre">sep=&quot;;&quot;</span></code>, we indicate that columns are separated by a semicolon. The <code class="docutils literal notranslate"><span class="pre">usecols=[0,</span> <span class="pre">2]</span></code> argument specifies that we only want to read columns 0 (date) and 2 (discharge) because the information content of column 1 (time) is not relevant for daily discharge. The <code class="docutils literal notranslate"><span class="pre">parse_dates=[0]</span></code> argument lets <em>pandas</em> know that column 0 contains date-formatted values. Alternatively, we could use a <code class="docutils literal notranslate"><span class="pre">dtype={&quot;Date&quot;:</span> <span class="pre">...</span> <span class="pre">}</span></code> dictionary to specify the data formats of columns. However, using <code class="docutils literal notranslate"><span class="pre">dtype</span></code> would require importing <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and induce unnecessary complexity. In addition, the <code class="docutils literal notranslate"><span class="pre">index_col</span></code> argument defines the column indices, which need to have a date format for the later analyses. In addition, use the optional keyword argument <code class="docutils literal notranslate"><span class="pre">encoding=&quot;latin1&quot;</span></code> because the provided data file contains some special characters that cannot be recognized with the standard <code class="docutils literal notranslate"><span class="pre">utf-8</span></code> encoding.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;flow-data/daily-flow-series.csv&quot;</span><span class="p">,</span>
                  <span class="n">header</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span>
                  <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span>
@@ -673,7 +692,7 @@ With <code class="docutils literal notranslate"><span class="pre">sep=&quot;;&qu
 <section id="plot-the-data">
 <h3>Plot the Data<a class="headerlink" href="#plot-the-data" title="Link to this heading">#</a></h3>
 <p>Plotting data is not the focus of this exercise and for this reason, there is a ready-to-use function available in the <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> script. Make sure that the <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> is in the same directory as the above <code class="docutils literal notranslate"><span class="pre">discharge_analysis.py</span></code> <em>Python</em> script (recall how to load <a class="reference internal" href="../jupyter/pypckg.html#sec-pypckg"><span class="std std-ref">Packages, Modules and Libraries</span></a>). Use the <code class="docutils literal notranslate"><span class="pre">plot_discharge</span></code> function in <code class="docutils literal notranslate"><span class="pre">plot_discharge.py</span></code> as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plot_discharge</span> <span class="kn">import</span> <span class="n">plot_discharge</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">plot_discharge</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_discharge</span>
 <span class="n">plot_discharge</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Q (CMS)&quot;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Daily Flows 1826 - 2016&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -811,8 +830,7 @@ Pr(i) = (N - i + 1) / (N + 1)
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -882,8 +900,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

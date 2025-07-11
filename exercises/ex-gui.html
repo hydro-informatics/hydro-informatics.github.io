@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -71,7 +68,6 @@
     <link rel="prev" title="1d Sediment Transport" href="ex-sediment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -499,16 +510,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -585,7 +604,7 @@
 <li><p>Modify the calls in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function:</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@log_actions</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">D_char</span><span class="p">,</span> <span class="n">hec_file</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">D_char</span><span class="p">,</span> <span class="n">hec_file</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">):</span>
     <span class="n">hec</span> <span class="o">=</span> <span class="n">HecSet</span><span class="p">(</span><span class="n">hec_file</span><span class="p">)</span>
 
     <span class="n">mpm_results</span> <span class="o">=</span> <span class="n">calculate_mpm</span><span class="p">(</span><span class="n">hec</span><span class="o">.</span><span class="n">hec_data</span><span class="p">,</span> <span class="n">D_char</span><span class="p">)</span>
@@ -595,28 +614,28 @@
 <section id="make-the-application-frame">
 <h2>Make the Application Frame<a class="headerlink" href="#make-the-application-frame" title="Link to this heading">#</a></h2>
 <p>Create a new Python file, call it <code class="docutils literal notranslate"><span class="pre">gui.py</span></code> and import the following libraries:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>  <span class="c1"># standard widgets (Label, Button, etc.)</span>
-<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>  <span class="c1"># for Combobox widget</span>
-<span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">askokcancel</span><span class="p">,</span> <span class="n">showinfo</span>  <span class="c1"># infoboxes</span>
-<span class="kn">from</span> <span class="nn">tkinter.filedialog</span> <span class="kn">import</span> <span class="n">askopenfilename</span><span class="p">,</span> <span class="n">askdirectory</span>  <span class="c1"># select files or folders</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>  <span class="c1"># open files or URLs from string-type directories</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>  <span class="c1"># standard widgets (Label, Button, etc.)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">ttk</span>  <span class="c1"># for Combobox widget</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.messagebox</span><span class="w"> </span><span class="kn">import</span> <span class="n">askokcancel</span><span class="p">,</span> <span class="n">showinfo</span>  <span class="c1"># infoboxes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter.filedialog</span><span class="w"> </span><span class="kn">import</span> <span class="n">askopenfilename</span><span class="p">,</span> <span class="n">askdirectory</span>  <span class="c1"># select files or folders</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">webbrowser</span>  <span class="c1"># open files or URLs from string-type directories</span>
 </pre></div>
 </div>
 <p>Moreover, we need to import the sediment transport code (converted to a module through the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code> folder):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sediment_transport</span> <span class="k">as</span> <span class="nn">sed</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sediment_transport</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sed</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">tkinter</span></code> is tailored for object-oriented applications and this is why we create a new class called <code class="docutils literal notranslate"><span class="pre">SediApp</span></code> as a child of <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SediApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SediApp</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="set-window-geometry">
 <h3>Set Window Geometry<a class="headerlink" href="#set-window-geometry" title="Link to this heading">#</a></h3>
 <p>The initialization of the <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> parent class is the first and most important step that we have already implemented above. Next, define a window title and a window icon (use for example the provided icon <code class="docutils literal notranslate"><span class="pre">graphs/icon.ico</span></code> in the exercise repository):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sedi App&quot;</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s2">&quot;graphs/icon.ico&quot;</span><span class="p">)</span>
@@ -627,7 +646,7 @@
 <p>If you get this error message or similar, make sure the icon path is correct. In addition, recall that some recent versions versions of <code class="docutils literal notranslate"><span class="pre">tkinter</span></code> cannot open icons because of an unknown error that might stem from relative path definitions in the library. Therefore, if you are sure the path is correct and the error message <code class="docutils literal notranslate"><span class="pre">TclError:</span> <span class="pre">bitmap</span> <span class="pre">&quot;graphs/icon.ico&quot;</span> <span class="pre">not</span> <span class="pre">defined</span></code> persists, the only solution might be to comment out the line <code class="docutils literal notranslate"><span class="pre">self.master.iconbitmap(&quot;graphs/icon.ico&quot;)</span></code>.</p>
 </div>
 <p>Assign a window geometry with window width and height, as well as <em>x</em> and <em>y</em> position on the screen in pixel units:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="n">ww</span> <span class="o">=</span> <span class="mi">628</span>  <span class="c1"># width</span>
       <span class="n">wh</span> <span class="o">=</span> <span class="mi">382</span>  <span class="c1"># height</span>
@@ -639,7 +658,7 @@
 </pre></div>
 </div>
 <p>To relax the layout, we will use x and y pads later for the widgets (buttons, labels, and combobox). For this purpose, create two <em>integer</em> variables that define a buffer of 5 pixels around the widgets.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">padx</span> <span class="o">=</span> <span class="mi">5</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">pady</span> <span class="o">=</span> <span class="mi">5</span>
@@ -658,7 +677,7 @@
 </ol>
 <p>Every button triggers a method of <code class="docutils literal notranslate"><span class="pre">SediApp</span></code>, which we will define later on. The methods to trigger are defined with the <code class="docutils literal notranslate"><span class="pre">command=self.METHOD()</span></code> keyword (recall the instructions for creating a <a class="reference internal" href="../jupyter/gui.html#add-button"><span class="std std-ref">button</span></a>).</p>
 <p>The file and folder directories need to be initialized before we can use them in the button texts. Therefore, add to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span> <span class="o">=</span> <span class="s2">&quot;SELECT&quot;</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># will be a sed.GrainReader object when the user defined grains.csv</span>
@@ -667,7 +686,7 @@
 </pre></div>
 </div>
 <p>The three buttons for selecting files and directories do not need to be modified or re-configured later and we can directly place them in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="c1"># grain file button</span>
       <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Select grain csv file&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
@@ -689,7 +708,7 @@
 </pre></div>
 </div>
 <p>To run the program (bed load transport calculation), we need another button, which we want to modify later on to communicate that the program ran successfully. Add the run button to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">b_run</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Compute&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
                              <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_program</span><span class="p">()</span>
@@ -701,7 +720,7 @@
 <p>There is a difference in the use of <code class="docutils literal notranslate"><span class="pre">.grid()</span></code> when it is attributed to a <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code> instance rather than directly with <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>.</p>
 </div>
 <p>To let the user know (approve) the selected files and directories, create <code class="docutils literal notranslate"><span class="pre">tk.Label</span></code> objects, which need to be configurable (the selected directories will change). Add the following labels to <code class="docutils literal notranslate"><span class="pre">__init__</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">grain_label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Grain file (csv): &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">grain_label</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
@@ -714,7 +733,7 @@
 </pre></div>
 </div>
 <p>Add a <code class="docutils literal notranslate"><span class="pre">ttk.Combobox</span></code> that lists grain sizes and lets the user choose which value to use for characteristic grain size. Place the combobox (with a void list) and put a label in front of the combobox (does not need to be modified) in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
       <span class="o">...</span>
       <span class="c1"># Label for Combobox</span>
       <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Select characteristic grain size:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padx</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pady</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">W</span><span class="p">)</span>
@@ -734,7 +753,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">select_file</span></code> function could also be extended to multiple file types (e.g., include multiple types of workbooks or text files with <code class="docutils literal notranslate"><span class="pre">filetypes=[('Workbook',</span> <span class="pre">'xlsx;</span> <span class="pre">xlsx;</span> <span class="pre">ods'),</span> <span class="pre">('Text</span> <span class="pre">file',</span> <span class="pre">'*.csv;</span> <span class="pre">*.txt')]</span></code>).</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">initialdir</span></code> keyword argument defines the directory that opens up in the file dialogue window. The <code class="docutils literal notranslate"><span class="pre">title</span></code> keyword argument sets the dialog window’s title and <code class="docutils literal notranslate"><span class="pre">parent</span></code> defines the parent window or <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> (important when working with multiple <code class="docutils literal notranslate"><span class="pre">tk.Frame</span></code> objects such as <a class="reference external" href="https://docs.python.org/3.1/library/tkinter.ttk.html#tkinter.ttk.Notebook"><code class="docutils literal notranslate"><span class="pre">ttk.Notebook</span></code></a> tabs).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">select_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">file_type</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">select_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">file_type</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">askopenfilename</span><span class="p">(</span><span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="n">description</span><span class="p">,</span> <span class="n">file_type</span><span class="p">)],</span>
                                <span class="n">initialdir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span>
                                <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select a </span><span class="si">%s</span><span class="s2"> file&quot;</span> <span class="o">%</span> <span class="n">file_type</span><span class="p">,</span>
@@ -742,7 +761,7 @@
 </pre></div>
 </div>
 <p>To enable the selection of a grain <code class="docutils literal notranslate"><span class="pre">csv</span></code> file, write a <code class="docutils literal notranslate"><span class="pre">set_grain_file</span></code> method as used with the above <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>. The <code class="docutils literal notranslate"><span class="pre">set_grain_file</span></code> method opens a file selection dialog and tries to open the file as a <code class="docutils literal notranslate"><span class="pre">GrainReader</span></code> object (<a class="reference external" href="https://github.com/Ecohydraulics/Exercise-SedimentTransport#read-grain-size-data">recall the sediment transport exercise</a>). If it cannot open the selected grain size <code class="docutils literal notranslate"><span class="pre">csv</span></code> file, the method falls into an <code class="docutils literal notranslate"><span class="pre">OSError</span></code> statement and opens a <code class="docutils literal notranslate"><span class="pre">showinfo</span></code> box (from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code>) that notifies the user about the error. Otherwise (if everything is OK), the method updates the grain label (<code class="docutils literal notranslate"><span class="pre">self.grain_label</span></code>) and the combobox (<code class="docutils literal notranslate"><span class="pre">self.cbx_D_char</span></code>) with the information read from the grain size <code class="docutils literal notranslate"><span class="pre">csv</span></code> file.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_grain_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">set_grain_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="s2">&quot;grain file&quot;</span><span class="p">,</span> <span class="s2">&quot;csv&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">grain_info</span> <span class="o">=</span> <span class="n">sed</span><span class="o">.</span><span class="n">GrainReader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">)</span>
@@ -761,14 +780,14 @@
 </pre></div>
 </div>
 <p>To enable the selection of a <em>HEC-RAS</em> <span id="id1">[<a class="reference internal" href="../documentation/bibliography.html#id582" title="U.S. Army Corps of Engineeers. Hydrologic Engineering Centers River Analysis System (HEC-RAS). U.S. Army Corps of Engineeers (USACE), Davis, CA, USA, 2016. URL: http://www.hec.usace.army.mil/software/hec-ras/.">USACoEngineeers16</a>]</span> output workbook, define a <code class="docutils literal notranslate"><span class="pre">set_hec_file</span></code> method as used in the above <code class="docutils literal notranslate"><span class="pre">tk.Button</span></code>. After the user’s file selection, the method needs to update the <em>hec</em>-label object (<code class="docutils literal notranslate"><span class="pre">self.hec_label</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_hec_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">set_hec_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_file</span><span class="p">(</span><span class="s2">&quot;HEC-RAS output file&quot;</span><span class="p">,</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">)</span>
         <span class="c1"># update hec label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hec_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;HEC-RAS output file (xlsx): &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hec_file</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The selection of an output directory uses <code class="docutils literal notranslate"><span class="pre">askdirectory</span></code>, which is another method from <code class="docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code>. After the user’s folder selection, the method needs to update the output folder label object (<code class="docutils literal notranslate"><span class="pre">self.out_label</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">select_out_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">select_out_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span> <span class="o">=</span> <span class="n">askdirectory</span><span class="p">()</span>
         <span class="c1"># update output folder label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out_label</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Output folder: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_folder</span><span class="p">)</span>
@@ -777,7 +796,7 @@
 <hr class="docutils" />
 <p><em><strong>Are all user inputs correctly defined?</strong></em></p>
 <p>Before running the bed load computation, we need to make sure that a grain size file, <em>HEC-RAS</em> workbook, and output directory are defined because the user can press the <code class="docutils literal notranslate"><span class="pre">self.b_run</span></code> button at any time. To ensure that the necessary inputs are provided, parse <code class="docutils literal notranslate"><span class="pre">self.grain_file</span></code>, <code class="docutils literal notranslate"><span class="pre">self.hec_file</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.out_folder</span></code> for the <em>string</em> <code class="docutils literal notranslate"><span class="pre">&quot;SELECT&quot;</span></code>, which is the default value of these variables (i.e., if the user did not make a choice, the variables contain the <em>string</em> <code class="docutils literal notranslate"><span class="pre">&quot;SELECT&quot;</span></code>). Implement the validity check in a method called <code class="docutils literal notranslate"><span class="pre">valid_selections</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span> <span class="nf">valid_selections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>   <span class="k">def</span><span class="w"> </span><span class="nf">valid_selections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
        <span class="k">if</span> <span class="s2">&quot;SELECT&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grain_file</span><span class="p">:</span>
            <span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="s2">&quot;Select grain size file.&quot;</span><span class="p">)</span>
            <span class="k">return</span> <span class="kc">False</span>
@@ -796,7 +815,7 @@
 <p>To finalize the app, add a <code class="docutils literal notranslate"><span class="pre">self.run_program</span></code> method corresponding to the <code class="docutils literal notranslate"><span class="pre">command</span></code> function of the <code class="docutils literal notranslate"><span class="pre">&quot;Compute&quot;</span></code> button (<code class="docutils literal notranslate"><span class="pre">self.b_run</span></code>) . The <code class="docutils literal notranslate"><span class="pre">run_program</span></code> method must ensure that the user has specified the necessary files and folders by calling the <code class="docutils literal notranslate"><span class="pre">valid_selections</span></code> method (and return <code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise). Then, the characteristic grain size selected by the user in the combobox is determined by <code class="docutils literal notranslate"><span class="pre">self.cbx_D_char.get()</span></code>. If the provided grain <code class="docutils literal notranslate"><span class="pre">csv</span></code> file has no valid numeric entry for the selected characteristic grain size, <code class="docutils literal notranslate"><span class="pre">run_program</span></code>  should fall into a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> statement and inform the user about the issue in a <code class="docutils literal notranslate"><span class="pre">showinfo</span></code> box.</p>
 <p>An <code class="docutils literal notranslate"><span class="pre">askokcancel</span></code> pop-up window (from <code class="docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code>) asks the user to press <em>OK</em>/<em>Cancel</em> to run/abort the program. If the user clicks <em>OK</em>, the pop-up window returns <code class="docutils literal notranslate"><span class="pre">True</span></code> and starts the bed load computation through the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of <code class="docutils literal notranslate"><span class="pre">sed</span></code> (see above import of the <code class="docutils literal notranslate"><span class="pre">sediment_transport</span></code> module).</p>
 <p>After the successful run of the program, the <code class="docutils literal notranslate"><span class="pre">run_program</span></code> method sets the foreground (text) color of the <code class="docutils literal notranslate"><span class="pre">self.b_run</span></code> button to <code class="docutils literal notranslate"><span class="pre">&quot;forest</span> <span class="pre">green&quot;</span></code> and adds the text <code class="docutils literal notranslate"><span class="pre">&quot;Success:</span> <span class="pre">Created</span> <span class="pre">%s&quot;</span> <span class="pre">%</span> <span class="pre">str(self.out_folder</span> <span class="pre">+</span> <span class="pre">&quot;/bed_load_mpm.xlsx&quot;)</span></code> to <code class="docutils literal notranslate"><span class="pre">self.run_label</span></code> (defined in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method). The <code class="docutils literal notranslate"><span class="pre">webbrowser</span></code> module’s <code class="docutils literal notranslate"><span class="pre">open</span></code> method opens the newly produced <span id="id2">Meyer-Peter and Müller [<a class="reference internal" href="../documentation/bibliography.html#id391" title="E Meyer-Peter and R Müller. Formulas for Bed-Load transport. IAHSR, appendix 2, 2nd meeting:39–65, 1948. URL: http://resolver.tudelft.nl/uuid:4fda9b61-be28-4703-ab06-43cdc2a21bd7.">MPM48</a>]</span> bed load transport workbook (result of <code class="docutils literal notranslate"><span class="pre">sed.main(...)</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run_program</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">run_program</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># ensure that user selected all necessary inputs</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">valid_selections</span><span class="p">():</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
@@ -893,8 +912,7 @@
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -960,8 +978,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

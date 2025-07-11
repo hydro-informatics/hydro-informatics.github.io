@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -39,14 +37,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -73,7 +70,6 @@
     <link rel="prev" title="Vectorize and Rasterize" href="geo-convert.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -89,8 +85,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -98,6 +105,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -105,8 +113,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -122,8 +130,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -153,17 +160,21 @@
     
     
     <img src="../_static/icon.jpg" class="logo__image only-light" alt="Hydro-Informatics - Home"/>
-    <img src="../_static/icon.jpg" class="logo__image only-dark pst-js-only" alt="Hydro-Informatics - Home"/>
+    <script>document.write(`<img src="../_static/icon.jpg" class="logo__image only-dark" alt="Hydro-Informatics - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Get Started</span></p>
@@ -568,16 +579,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -675,8 +694,8 @@
 <p><code class="docutils literal notranslate"><span class="pre">arcpy</span></code> comes with own classes for geospatial data objects (e.g., <code class="docutils literal notranslate"><span class="pre">arcpy.Raster</span></code> for gridded data) and modules for mapping (<code class="docutils literal notranslate"><span class="pre">arcpy.mp</span></code>), emulation of the <em>Spatial Analyst</em> (<code class="docutils literal notranslate"><span class="pre">arcpy.sa</span></code>), or accessing data (<code class="docutils literal notranslate"><span class="pre">arcpy.da</span></code>). A full list is provided on the <a class="reference external" href="https://pro.arcgis.com/en/pro-app/arcpy/get-started/importing-arcpy.htm">developer’s website</a>. This page features code blocks using <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> and <code class="docutils literal notranslate"><span class="pre">arcpy.sa</span></code>, where <em>Spatial Analyst</em> objects are imported using <code class="docutils literal notranslate"><span class="pre">*</span></code> to enable direct access to, for example, <code class="docutils literal notranslate"><span class="pre">Con()</span></code> (instead of <code class="docutils literal notranslate"><span class="pre">arcpy.sa.Con()</span></code>), which corresponds to <code class="docutils literal notranslate"><span class="pre">arcpy</span></code>’s conditional statement for rasters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">arcpy</span>
-<span class="kn">from</span> <span class="nn">arcpy.sa</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">arcpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">arcpy.sa</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
@@ -725,8 +744,8 @@
 <p>Many <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> methods need licenses such as <em>Spatial Analyst</em> or <em>3D</em>. In stand-alone scripts, licenses can be activate (<em>checked out</em>) with <code class="docutils literal notranslate"><span class="pre">arcpy.CheckOutExtension('NAME')</span></code> and deactivated (<em>checked in</em>) with <code class="docutils literal notranslate"><span class="pre">arcpy.CheckInExtension('NAME')</span></code>. In light of the object orientation, <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> operations should be embedded in functions or methods of classes. Therefore, it is recommended to wrap functions or methods using <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> with <a class="reference internal" href="pyfun.html#wrappers"><span class="std std-ref">decorators</span></a> that activate necessary licenses. The following code block provides a wrapper to activate a <em>Spatial Analyst</em> license for a function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spatial_license</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">spatial_license</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">arcpy</span><span class="o">.</span><span class="n">CheckOutExtension</span><span class="p">(</span><span class="s1">&#39;Spatial&#39;</span><span class="p">)</span>
         <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">arcpy</span><span class="o">.</span><span class="n">CheckInExtension</span><span class="p">(</span><span class="s1">&#39;Spatial&#39;</span><span class="p">)</span>
@@ -741,8 +760,8 @@
 <p>The <a class="reference internal" href="pyerror.html#sec-pyerror"><span class="std std-ref">Python Errors, Logging, and Debugging</span></a> section provides useful instructions for troubleshooting errors in code or code usage. To identify problems in object-oriented <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> scripts, an additional wrapper function is recommended, which writes <code class="docutils literal notranslate"><span class="pre">arcpy</span></code> errors to a log file (<code class="docutils literal notranslate"><span class="pre">logger</span></code>). The <code class="docutils literal notranslate"><span class="pre">logger.*(MESSAGE)</span></code> expressions can also be replaced with <code class="docutils literal notranslate"><span class="pre">print(MESSAGE)</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_info</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">err_info</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">arcpy</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">overwriteOutput</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;logfile&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -789,7 +808,7 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@err_info</span>
 <span class="nd">@spatial_license</span>
-<span class="k">def</span> <span class="nf">calculate_froude</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_froude</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">Con</span><span class="p">(</span><span class="o">~</span><span class="n">IsNull</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="n">Con</span><span class="p">(</span><span class="o">~</span><span class="n">IsNull</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">Float</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">/</span> <span class="n">SquareRoot</span><span class="p">(</span><span class="n">Float</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="n">Float</span><span class="p">(</span><span class="mf">9.81</span><span class="p">))))</span>
 
 <span class="n">froude</span> <span class="o">=</span> <span class="n">calculate_froude</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
@@ -953,8 +972,7 @@ In addition, we need a Spatial Analyst license to run this script. Therefore, it
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1028,8 +1046,8 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
