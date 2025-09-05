@@ -504,6 +504,260 @@ The installation examples feature the meshing tool BlueKenue, which enables us t
 
 
 `````{tab-set}
+````{tab-item} Steam Proton
+
+Proton is *Valve*'s *Steam*-focused compatibility layer that builds on Wine plus tools like DXVK and VKD3D-Proton to translate Windows game APIs to Linux, enabling most Windows games to run without modification.
+
+
+
+
+
+
+---
+
+**The short way (detailed steps below):**
+
+Install prerequisites (AMD/Intel):
+
+```
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install steam-installer vulkan-tools \
+  mesa-vulkan-drivers mesa-vulkan-drivers:i386 \
+  libgl1-mesa-dri libgl1-mesa-dri:i386 gamemode mangohud
+```
+
+Install prerequisites (NVIDIA, replace 5xx listed in *Driver Manager*):
+
+```
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install steam-installer vulkan-tools libvulkan1 libvulkan1:i386 \
+  libnvidia-gl-5xx libnvidia-gl-5xx:i386 gamemode mangohud
+```
+
+Flatpak Steam and ProtonUp-Qt:
+
+```
+flatpak install flathub com.valvesoftware.Steam
+flatpak install flathub net.davidotek.pupgui2
+flatpak run net.davidotek.pupgui2
+```
+
+Useful Steam Launch Options:
+
+```
+mangohud gamemoderun %command%
+PROTON_LOG=1 %command%
+PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 %command%
+PROTON_USE_WINED3D=1 %command%
+```
+
+---
+
+**DETAILED PROCEDURE -- Start with preparing the graphics stack and 32-bit support**:
+
+
+1. Enable 32-bit packages and update.
+
+   ```
+   sudo dpkg --add-architecture i386
+   sudo apt update
+   ```
+
+2. Install Vulkan tools and required 32-bit OpenGL/Vulkan userspace.
+
+   AMD or Intel iGPU (Mesa):
+
+   ```
+   sudo apt install vulkan-tools mesa-vulkan-drivers mesa-vulkan-drivers:i386 \
+       libgl1-mesa-dri libgl1-mesa-dri:i386
+   ```
+
+   NVIDIA:
+
+   1. In Linux Ubuntu/Mint, open *Driver Manager* and install the recommended proprietary NVIDIA driver, then reboot.
+   2. Add matching 32-bit userspace (replace 5xx with your actual driver series shown in Driver Manager; this ensures Proton's 32-bit games can load NVIDIA's libs):
+
+      ```
+      sudo apt install libnvidia-gl-5xx libnvidia-gl-5xx:i386
+      sudo apt install vulkan-tools libvulkan1 libvulkan1:i386
+      ```
+
+      If your Ubuntu/Mint release uses a different package naming, install the shown `libnvidia-gl` and its `\:i386` twin for your version.
+
+3. Verify Vulkan is actually working.
+
+   ```
+   vulkaninfo | less
+   ```
+
+   You should see a list of your GPU and Vulkan extensions. If this fails, fix drivers before proceeding.
+
+**Next, continue with installing *Steam***:
+
+1. Option -- APT (recommended for the fewest sandbox quirks):
+
+   ```
+   sudo apt install steam-installer
+   ```
+
+   Launch Steam once so it finishes self-updating.
+
+2. Option -- Flatpak (works fine; just know the paths differ):
+
+   ```
+   flatpak install flathub com.valvesoftware.Steam
+   flatpak run com.valvesoftware.Steam
+   ```
+
+**Now, turn on Proton:**
+
+1. Open Steam. Go to Settings > Compatibility
+2. Check *Enable Steam Play for supported titles*
+3. Also check *Enable Steam Play for all other titles*
+4. Set the default compatibility tool to *Proton Experimental* for the newest fixes (can be overridden per-game later)
+
+Steam will auto-download the chosen Proton build the first time you launch a Windows game.
+
+**Optional but recommended: Proton-GE (community build)**:
+
+Proton-GE (GloriousEggroll) often fixes issues before Valve ships them.
+
+1. Install ProtonUp-Qt (easiest manager).
+
+   * APT install of Steam
+   * ProtonUp-Qt AppImage: download and run it, or install via Flatpak:
+
+   ```
+   flatpak install flathub net.davidotek.pupgui2
+   flatpak run net.davidotek.pupgui2
+   ```
+
+   * Flatpak Steam users should also install ProtonUp-Qt via Flatpak as shown above.
+
+2. In ProtonUp-Qt, choose the Steam install you use, then install the latest *Proton-GE* release. It will land in the right directory automatically.
+
+3. In Steam, set a game's Properties > Compatibility > *Force the use of a specific Steam Play compatibility tool* and pick the Proton-GE version you just installed.
+
+**Launch a Windows game with Proton:**
+
+1. Install the game like normal from your Library.
+2. First run may show *Installing Microsoft VC++/DirectX* inside Proton. Let it finish.
+3. If you see issues (crashes, black screen), try:
+   * Switching Proton version: Properties > Compatibility > pick another Proton (Experimental, a stable major, or Proton-GE).
+   * Verifying files: Properties > Installed Files > Verify integrity.
+   * Deleting the game's Proton prefix (see *Manage prefixes* below) and relaunching.
+
+**Using Proton with non-Steam Windows games:**
+
+1. Steam > Add a Game > Add a Non-Steam Game > browse to the game's .exe.
+2. After adding, right-click the new entry > Properties > Compatibility > *Force the use of a specific Steam Play compatibility tool* > choose Proton Experimental or Proton-GE.
+3. If the game needs to run from its own folder, set *Shortcut* to the .exe and *Start in* to the game directory.
+4. Launch it from Steam like any other title.
+
+**Game overlays, performance tools, and launch options:**
+
+1. GameMode (lets the kernel and CPU governor favor a certain game):
+
+   ```
+   sudo apt install gamemode
+   ```
+
+   Add this to a game's Launch Options in Steam:
+
+   ```
+   gamemoderun %command%
+   ```
+
+2. MangoHud (lightweight FPS and frame-time overlay):
+
+   ```
+   sudo apt install mangohud
+   ```
+
+   Launch Options:
+
+   ```
+   mangohud %command%
+   ```
+
+   Combine with GameMode:
+
+   ```
+   mangohud gamemoderun %command%
+   ```
+
+3. Proton logging (captures a debug log in the game folder or home directory):
+
+   ```
+   PROTON_LOG=1 %command%
+   ```
+
+   The log filename is usually *steam-<appid>.log*.
+
+4. Common Proton environment toggles (use only when needed):
+   * Force DirectX 11 via DXVK instead of DirectX 12:
+
+   ```
+   DXVK_ENABLE_NVAPI=0 %command%
+   ```
+
+   * Force WineD3D (OpenGL) instead of DXVK/VKD3D if Vulkan is broken:
+
+   ```
+   PROTON_USE_WINED3D=1 %command%
+   ```
+
+   * Disable Esync/Fsync if you see weird hangs:
+
+   ```
+   PROTON_NO_ESYNC=1 PROTON_NO_FSYNC=1 %command%
+   ```
+
+**Where are the Proton files and saves?**
+
+Proton creates a Windows-like prefix per game.
+
+1. APT Steam paths:
+   * Proton prefixes:
+   `~/.steam/steam/steamapps/compatdata/<APPID>/pfx/`
+   Windows C: drive inside prefix:
+   `.../pfx/drive_c/`
+   * Custom Proton installs (Proton-GE):
+   `~/.steam/steam/compatibilitytools.d/`
+
+2. Flatpak Steam paths:
+   * Base Steam dir:
+   `~/.var/app/com.valvesoftware.Steam/.local/share/Steam/`
+   * Prefixes:
+   `.../steamapps/compatdata/<APPID>/pfx/`
+   * Custom Proton installs:
+   `.../compatibilitytools.d/`
+
+3. Managing prefixes:
+   * To *factory reset* a game's Proton environment, close Steam, then delete its folder at `compatdata/<APPID>/`. You will lose per-game Windows registry and wineprefix data (treat it like a fresh Windows install for that title).
+   * To browse the prefix quickly: right-click the game > Properties > Installed Files > *Browse* and navigate upward into `compatdata`.
+
+**Quick troubleshoot playbook:**
+
+1. Game fails to launch after an update:
+   * Switch Proton version.
+   * Verify game files.
+   * Delete the `compatdata/<APPID>` prefix and relaunch.
+
+2. Black screen with audio:
+   * Alt+Enter to toggle fullscreen.
+   * Add `PROTON_LOG=1` and inspect the log for missing 32-bit GL/Vulkan libs.
+   * Try a different Proton (or Proton-GE).
+
+3. Controller weirdness:
+   * Steam Settings > Controller > enable Steam Input for your device.
+   * Per-game > Controller > pick a community layout or *Gamepad with Mouse Trackpad* for KB/M-only titles.
+
+
+````
+
 ````{tab-item} PlayOnLinux
 :name: play-on-linux
 On top of wine, the currently maybe best available frameworks is [PlayOnLinux](https://www.playonlinux.com), which can be installed as follows:

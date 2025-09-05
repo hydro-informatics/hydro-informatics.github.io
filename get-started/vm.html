@@ -379,6 +379,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Science Life Hacks</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scilife/color-hacks.html">Perceptually-Uniform, Colorblind-Friendly Colormaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scilife/hack-gis.html">GIS, CRS and Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scilife/gpt-tools.html">Generative AI Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scilife/latex.html">LaTeX &amp; Citation Management (Zotero)</a></li>
@@ -1068,7 +1069,241 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 </aside>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-0" id="play-on-linux">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Steam Proton</label><div class="sd-tab-content docutils">
+<p>Proton is <em>Valve</em>’s <em>Steam</em>-focused compatibility layer that builds on Wine plus tools like DXVK and VKD3D-Proton to translate Windows game APIs to Linux, enabling most Windows games to run without modification.</p>
+<hr class="docutils" />
+<p><strong>The short way (detailed steps below):</strong></p>
+<p>Install prerequisites (AMD/Intel):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">steam</span><span class="o">-</span><span class="n">installer</span> <span class="n">vulkan</span><span class="o">-</span><span class="n">tools</span> \
+  <span class="n">mesa</span><span class="o">-</span><span class="n">vulkan</span><span class="o">-</span><span class="n">drivers</span> <span class="n">mesa</span><span class="o">-</span><span class="n">vulkan</span><span class="o">-</span><span class="n">drivers</span><span class="p">:</span><span class="n">i386</span> \
+  <span class="n">libgl1</span><span class="o">-</span><span class="n">mesa</span><span class="o">-</span><span class="n">dri</span> <span class="n">libgl1</span><span class="o">-</span><span class="n">mesa</span><span class="o">-</span><span class="n">dri</span><span class="p">:</span><span class="n">i386</span> <span class="n">gamemode</span> <span class="n">mangohud</span>
+</pre></div>
+</div>
+<p>Install prerequisites (NVIDIA, replace 5xx listed in <em>Driver Manager</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">steam</span><span class="o">-</span><span class="n">installer</span> <span class="n">vulkan</span><span class="o">-</span><span class="n">tools</span> <span class="n">libvulkan1</span> <span class="n">libvulkan1</span><span class="p">:</span><span class="n">i386</span> \
+  <span class="n">libnvidia</span><span class="o">-</span><span class="n">gl</span><span class="o">-</span><span class="mi">5</span><span class="n">xx</span> <span class="n">libnvidia</span><span class="o">-</span><span class="n">gl</span><span class="o">-</span><span class="mi">5</span><span class="n">xx</span><span class="p">:</span><span class="n">i386</span> <span class="n">gamemode</span> <span class="n">mangohud</span>
+</pre></div>
+</div>
+<p>Flatpak Steam and ProtonUp-Qt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">install</span> <span class="n">flathub</span> <span class="n">com</span><span class="o">.</span><span class="n">valvesoftware</span><span class="o">.</span><span class="n">Steam</span>
+<span class="n">flatpak</span> <span class="n">install</span> <span class="n">flathub</span> <span class="n">net</span><span class="o">.</span><span class="n">davidotek</span><span class="o">.</span><span class="n">pupgui2</span>
+<span class="n">flatpak</span> <span class="n">run</span> <span class="n">net</span><span class="o">.</span><span class="n">davidotek</span><span class="o">.</span><span class="n">pupgui2</span>
+</pre></div>
+</div>
+<p>Useful Steam Launch Options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mangohud</span> <span class="n">gamemoderun</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+<span class="n">PROTON_LOG</span><span class="o">=</span><span class="mi">1</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+<span class="n">PROTON_NO_ESYNC</span><span class="o">=</span><span class="mi">1</span> <span class="n">PROTON_NO_FSYNC</span><span class="o">=</span><span class="mi">1</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+<span class="n">PROTON_USE_WINED3D</span><span class="o">=</span><span class="mi">1</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>DETAILED PROCEDURE – Start with preparing the graphics stack and 32-bit support</strong>:</p>
+<ol class="arabic">
+<li><p>Enable 32-bit packages and update.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install Vulkan tools and required 32-bit OpenGL/Vulkan userspace.</p>
+<p>AMD or Intel iGPU (Mesa):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">vulkan</span><span class="o">-</span><span class="n">tools</span> <span class="n">mesa</span><span class="o">-</span><span class="n">vulkan</span><span class="o">-</span><span class="n">drivers</span> <span class="n">mesa</span><span class="o">-</span><span class="n">vulkan</span><span class="o">-</span><span class="n">drivers</span><span class="p">:</span><span class="n">i386</span> \
+    <span class="n">libgl1</span><span class="o">-</span><span class="n">mesa</span><span class="o">-</span><span class="n">dri</span> <span class="n">libgl1</span><span class="o">-</span><span class="n">mesa</span><span class="o">-</span><span class="n">dri</span><span class="p">:</span><span class="n">i386</span>
+</pre></div>
+</div>
+<p>NVIDIA:</p>
+<ol class="arabic">
+<li><p>In Linux Ubuntu/Mint, open <em>Driver Manager</em> and install the recommended proprietary NVIDIA driver, then reboot.</p></li>
+<li><p>Add matching 32-bit userspace (replace 5xx with your actual driver series shown in Driver Manager; this ensures Proton’s 32-bit games can load NVIDIA’s libs):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libnvidia</span><span class="o">-</span><span class="n">gl</span><span class="o">-</span><span class="mi">5</span><span class="n">xx</span> <span class="n">libnvidia</span><span class="o">-</span><span class="n">gl</span><span class="o">-</span><span class="mi">5</span><span class="n">xx</span><span class="p">:</span><span class="n">i386</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">vulkan</span><span class="o">-</span><span class="n">tools</span> <span class="n">libvulkan1</span> <span class="n">libvulkan1</span><span class="p">:</span><span class="n">i386</span>
+</pre></div>
+</div>
+<p>If your Ubuntu/Mint release uses a different package naming, install the shown <code class="docutils literal notranslate"><span class="pre">libnvidia-gl</span></code> and its <code class="docutils literal notranslate"><span class="pre">\:i386</span></code> twin for your version.</p>
+</li>
+</ol>
+</li>
+<li><p>Verify Vulkan is actually working.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vulkaninfo</span> <span class="o">|</span> <span class="n">less</span>
+</pre></div>
+</div>
+<p>You should see a list of your GPU and Vulkan extensions. If this fails, fix drivers before proceeding.</p>
+</li>
+</ol>
+<p><strong>Next, continue with installing <em>Steam</em></strong>:</p>
+<ol class="arabic">
+<li><p>Option – APT (recommended for the fewest sandbox quirks):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">steam</span><span class="o">-</span><span class="n">installer</span>
+</pre></div>
+</div>
+<p>Launch Steam once so it finishes self-updating.</p>
+</li>
+<li><p>Option – Flatpak (works fine; just know the paths differ):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">install</span> <span class="n">flathub</span> <span class="n">com</span><span class="o">.</span><span class="n">valvesoftware</span><span class="o">.</span><span class="n">Steam</span>
+<span class="n">flatpak</span> <span class="n">run</span> <span class="n">com</span><span class="o">.</span><span class="n">valvesoftware</span><span class="o">.</span><span class="n">Steam</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Now, turn on Proton:</strong></p>
+<ol class="arabic simple">
+<li><p>Open Steam. Go to Settings &gt; Compatibility</p></li>
+<li><p>Check <em>Enable Steam Play for supported titles</em></p></li>
+<li><p>Also check <em>Enable Steam Play for all other titles</em></p></li>
+<li><p>Set the default compatibility tool to <em>Proton Experimental</em> for the newest fixes (can be overridden per-game later)</p></li>
+</ol>
+<p>Steam will auto-download the chosen Proton build the first time you launch a Windows game.</p>
+<p><strong>Optional but recommended: Proton-GE (community build)</strong>:</p>
+<p>Proton-GE (GloriousEggroll) often fixes issues before Valve ships them.</p>
+<ol class="arabic">
+<li><p>Install ProtonUp-Qt (easiest manager).</p>
+<ul class="simple">
+<li><p>APT install of Steam</p></li>
+<li><p>ProtonUp-Qt AppImage: download and run it, or install via Flatpak:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flatpak</span> <span class="n">install</span> <span class="n">flathub</span> <span class="n">net</span><span class="o">.</span><span class="n">davidotek</span><span class="o">.</span><span class="n">pupgui2</span>
+<span class="n">flatpak</span> <span class="n">run</span> <span class="n">net</span><span class="o">.</span><span class="n">davidotek</span><span class="o">.</span><span class="n">pupgui2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Flatpak Steam users should also install ProtonUp-Qt via Flatpak as shown above.</p></li>
+</ul>
+</li>
+<li><p>In ProtonUp-Qt, choose the Steam install you use, then install the latest <em>Proton-GE</em> release. It will land in the right directory automatically.</p></li>
+<li><p>In Steam, set a game’s Properties &gt; Compatibility &gt; <em>Force the use of a specific Steam Play compatibility tool</em> and pick the Proton-GE version you just installed.</p></li>
+</ol>
+<p><strong>Launch a Windows game with Proton:</strong></p>
+<ol class="arabic simple">
+<li><p>Install the game like normal from your Library.</p></li>
+<li><p>First run may show <em>Installing Microsoft VC++/DirectX</em> inside Proton. Let it finish.</p></li>
+<li><p>If you see issues (crashes, black screen), try:</p>
+<ul class="simple">
+<li><p>Switching Proton version: Properties &gt; Compatibility &gt; pick another Proton (Experimental, a stable major, or Proton-GE).</p></li>
+<li><p>Verifying files: Properties &gt; Installed Files &gt; Verify integrity.</p></li>
+<li><p>Deleting the game’s Proton prefix (see <em>Manage prefixes</em> below) and relaunching.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Using Proton with non-Steam Windows games:</strong></p>
+<ol class="arabic simple">
+<li><p>Steam &gt; Add a Game &gt; Add a Non-Steam Game &gt; browse to the game’s .exe.</p></li>
+<li><p>After adding, right-click the new entry &gt; Properties &gt; Compatibility &gt; <em>Force the use of a specific Steam Play compatibility tool</em> &gt; choose Proton Experimental or Proton-GE.</p></li>
+<li><p>If the game needs to run from its own folder, set <em>Shortcut</em> to the .exe and <em>Start in</em> to the game directory.</p></li>
+<li><p>Launch it from Steam like any other title.</p></li>
+</ol>
+<p><strong>Game overlays, performance tools, and launch options:</strong></p>
+<ol class="arabic">
+<li><p>GameMode (lets the kernel and CPU governor favor a certain game):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">gamemode</span>
+</pre></div>
+</div>
+<p>Add this to a game’s Launch Options in Steam:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gamemoderun</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+</li>
+<li><p>MangoHud (lightweight FPS and frame-time overlay):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">mangohud</span>
+</pre></div>
+</div>
+<p>Launch Options:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mangohud</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+<p>Combine with GameMode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mangohud</span> <span class="n">gamemoderun</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+</li>
+<li><p>Proton logging (captures a debug log in the game folder or home directory):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROTON_LOG</span><span class="o">=</span><span class="mi">1</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+<p>The log filename is usually <em>steam-<appid>.log</em>.</p>
+</li>
+<li><p>Common Proton environment toggles (use only when needed):</p>
+<ul class="simple">
+<li><p>Force DirectX 11 via DXVK instead of DirectX 12:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DXVK_ENABLE_NVAPI</span><span class="o">=</span><span class="mi">0</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Force WineD3D (OpenGL) instead of DXVK/VKD3D if Vulkan is broken:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROTON_USE_WINED3D</span><span class="o">=</span><span class="mi">1</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Disable Esync/Fsync if you see weird hangs:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROTON_NO_ESYNC</span><span class="o">=</span><span class="mi">1</span> <span class="n">PROTON_NO_FSYNC</span><span class="o">=</span><span class="mi">1</span> <span class="o">%</span><span class="n">command</span><span class="o">%</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Where are the Proton files and saves?</strong></p>
+<p>Proton creates a Windows-like prefix per game.</p>
+<ol class="arabic simple">
+<li><p>APT Steam paths:</p>
+<ul class="simple">
+<li><p>Proton prefixes:
+<code class="docutils literal notranslate"><span class="pre">~/.steam/steam/steamapps/compatdata/&lt;APPID&gt;/pfx/</span></code>
+Windows C: drive inside prefix:
+<code class="docutils literal notranslate"><span class="pre">.../pfx/drive_c/</span></code></p></li>
+<li><p>Custom Proton installs (Proton-GE):
+<code class="docutils literal notranslate"><span class="pre">~/.steam/steam/compatibilitytools.d/</span></code></p></li>
+</ul>
+</li>
+<li><p>Flatpak Steam paths:</p>
+<ul class="simple">
+<li><p>Base Steam dir:
+<code class="docutils literal notranslate"><span class="pre">~/.var/app/com.valvesoftware.Steam/.local/share/Steam/</span></code></p></li>
+<li><p>Prefixes:
+<code class="docutils literal notranslate"><span class="pre">.../steamapps/compatdata/&lt;APPID&gt;/pfx/</span></code></p></li>
+<li><p>Custom Proton installs:
+<code class="docutils literal notranslate"><span class="pre">.../compatibilitytools.d/</span></code></p></li>
+</ul>
+</li>
+<li><p>Managing prefixes:</p>
+<ul class="simple">
+<li><p>To <em>factory reset</em> a game’s Proton environment, close Steam, then delete its folder at <code class="docutils literal notranslate"><span class="pre">compatdata/&lt;APPID&gt;/</span></code>. You will lose per-game Windows registry and wineprefix data (treat it like a fresh Windows install for that title).</p></li>
+<li><p>To browse the prefix quickly: right-click the game &gt; Properties &gt; Installed Files &gt; <em>Browse</em> and navigate upward into <code class="docutils literal notranslate"><span class="pre">compatdata</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Quick troubleshoot playbook:</strong></p>
+<ol class="arabic simple">
+<li><p>Game fails to launch after an update:</p>
+<ul class="simple">
+<li><p>Switch Proton version.</p></li>
+<li><p>Verify game files.</p></li>
+<li><p>Delete the <code class="docutils literal notranslate"><span class="pre">compatdata/&lt;APPID&gt;</span></code> prefix and relaunch.</p></li>
+</ul>
+</li>
+<li><p>Black screen with audio:</p>
+<ul class="simple">
+<li><p>Alt+Enter to toggle fullscreen.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">PROTON_LOG=1</span></code> and inspect the log for missing 32-bit GL/Vulkan libs.</p></li>
+<li><p>Try a different Proton (or Proton-GE).</p></li>
+</ul>
+</li>
+<li><p>Controller weirdness:</p>
+<ul class="simple">
+<li><p>Steam Settings &gt; Controller &gt; enable Steam Input for your device.</p></li>
+<li><p>Per-game &gt; Controller &gt; pick a community layout or <em>Gamepad with Mouse Trackpad</em> for KB/M-only titles.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1" id="play-on-linux">
 PlayOnLinux</label><div class="sd-tab-content docutils">
 <p>On top of wine, the currently maybe best available frameworks is <a class="reference external" href="https://www.playonlinux.com">PlayOnLinux</a>, which can be installed as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">winbind</span> <span class="n">playonlinux</span> <span class="n">winetricks</span> <span class="o">-</span><span class="n">y</span> 
@@ -1081,8 +1316,8 @@ PlayOnLinux</label><div class="sd-tab-content docutils">
 <p>In the pop-up window (after <em>Run a .exe file …</em>), go to your Linux user home folder (e.g., <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/</span></code>), then enable viewing of hidden files (press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> on your keyboard), which will make the hidden folder <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/</span></code> visible. Double-click on this hidden folder, then on <strong>wineprefix</strong> &gt; <strong>YOUR-ENVIRONMENT-NAME</strong> (e.g., <strong>HYINFO-ENVIRONMENT</strong>) &gt; <strong>drive_c</strong> and find the installed program either in the <strong>Program Files</strong> or <strong>Program Files (x86)</strong> directory.
 For instance, to open a 64-bit installation of BlueKenue, navigate to <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/wineprefix/HYINFO-ENVIRONMENT/drive_c/Program</span> <span class="pre">Files/CHC/BlueKenue64</span></code> and double-click on <strong>BlueKenue64.exe</strong> (replace <code class="docutils literal notranslate"><span class="pre">hydro-informatics</span></code> and <code class="docutils literal notranslate"><span class="pre">HYINFO-ENVIRONMENT</span></code> with your local directory names). The program should now open.</p>
 </div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-1">
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
 Wine (Direct Installation)</label><div class="sd-tab-content docutils">
 <p>The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>

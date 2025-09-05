@@ -90,7 +90,7 @@ Test it:
 
 ```{admonition} Choose *mamba* for speed
 :class: hint
-[`mamba`](https://github.com/mamba-org/mamba) is a drop‑in replacement for `conda` written in C++; it resolves environments 10–100 × faster.
+[`mamba`](https://github.com/mamba-org/mamba) is a drop‑in replacement for `conda` written in C++; it resolves environments 10-100x faster.
 ```
 
 (pip-vs-conda)=
