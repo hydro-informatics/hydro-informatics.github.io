@@ -1,11 +1,9 @@
 (install-python)=
-
 # Python (Installation)
 
 > "The zen of thriving Python projects in 2025 is *one interpreter per project* and *one tool‑chain per task*. Master virtual environments first; the rest follows naturally."
 
-Python 2 reached end‑of‑life in **January 2020** and is no longer shipped by mainstream Linux distributions or Windows installers. Today every actively maintained package—scientific, geospatial, or otherwise—supports
-**CPython ≥ 3.9**, with most libraries now testing against **Python 3.13**. Multiple interpreters can still coexist on the same machine (QGIS / ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through *lightweight* virtual environments created by `venv`, **pipx**, or *conda/mamba*.
+Python 2 reached end‑of‑life in **January 2020** and is no longer shipped by mainstream Linux distributions or Windows installers. Today every actively maintained package—scientific, geospatial, or otherwise—supports **CPython ≥ 3.9**, with most libraries now testing against **Python 3.13**. Multiple interpreters can still coexist on the same machine (QGIS / ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through *lightweight* virtual environments created by `venv`, **pipx**, or *conda/mamba*.
 
 This chapter distils a workflow that reliably builds the computational stack used throughout this e‑book, regardless of platform. It emphasises
 
@@ -13,6 +11,32 @@ This chapter distils a workflow that reliably builds the computational stack use
 * **`conda`/`mamba`** on Windows or when you need complex compiled dependencies,
 * recent improvements in binary wheels for GDAL/Fiona/Shapely (pip on Windows is finally painless!), and
 * sustainable ways to keep environments reproducible.
+
+---
+
+**Before you continue**, a fast-track, cross-platform workable Python installation including GDAL can be installed using our [project template](https://github.com/sschwindt/python-project-template/):
+
+1. Install [mamba](https://mamba.readthedocs.io) for your platform.
+2. Download our [environment.yml](https://github.com/sschwindt/python-project-template/blob/main/environment.yml).
+3. Open a terminal (command promptline), navigate to the directory where the downloaded *environment.yml* lives, and create the environment:
+   ```bash
+   mamba env create -f environment.yml
+   ```
+4. Activate the environment and run Python:
+   ```bash
+   mamba activate wrr-proj
+   (wrr-proj) user@computer:$ python
+   ```
+5. Check if the installation of geopackages worked (no error message should occur):
+   ```bash
+   >>> from osgeo import gdal
+   ```
+
+6. Optionnally, if the check succeeded worked, exit python and pip-install flusstools within this `wrr-project` environment:
+   ```bash
+   >>> exit()
+   (wrr-proj) user@computer:$ pip install flusstools
+   ```
 
 ---
 
@@ -170,7 +194,7 @@ Select **vfluss_kernel** from *Kernel > Change kernel* inside JupyterLab.
 
 ```bash
 (vflussenv) pip install -U pip setuptools wheel
-(vflussenv) pip list --outdated           # preview
+(vflussenv) pip list --outdated          # preview
 (vflussenv) pip install -U "numpy>=2.3"  # upgrade selectively
 ```
 

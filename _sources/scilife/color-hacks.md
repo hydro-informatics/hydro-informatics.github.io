@@ -84,6 +84,3 @@ A handy way to *simulate* common color-vision deficiencies directly on your scre
 * Ensure **contrast** and legible **colorbar ticks/labels**; set meaningful limits (`vmin/vmax`, centered diverging scales).
 * Verify **accessibility** with CVD simulation; don't rely on color alone—add contours, annotations, or varying line styles where helpful.
 * Be consistent across panels and publications; document the colormap choice in captions (e.g., "cmocean 'balance'").
-
-Using these practices yields figures that are more truthful (less distortion from the palette), more readable, and more inclusive.
-

@@ -597,8 +597,7 @@ document.write(`
 <blockquote>
 <div><p>“The zen of thriving Python projects in 2025 is <em>one interpreter per project</em> and <em>one tool‑chain per task</em>. Master virtual environments first; the rest follows naturally.”</p>
 </div></blockquote>
-<p>Python 2 reached end‑of‑life in <strong>January 2020</strong> and is no longer shipped by mainstream Linux distributions or Windows installers. Today every actively maintained package—scientific, geospatial, or otherwise—supports
-<strong>CPython ≥ 3.9</strong>, with most libraries now testing against <strong>Python 3.13</strong>. Multiple interpreters can still coexist on the same machine (QGIS / ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through <em>lightweight</em> virtual environments created by <code class="docutils literal notranslate"><span class="pre">venv</span></code>, <strong>pipx</strong>, or <em>conda/mamba</em>.</p>
+<p>Python 2 reached end‑of‑life in <strong>January 2020</strong> and is no longer shipped by mainstream Linux distributions or Windows installers. Today every actively maintained package—scientific, geospatial, or otherwise—supports <strong>CPython ≥ 3.9</strong>, with most libraries now testing against <strong>Python 3.13</strong>. Multiple interpreters can still coexist on the same machine (QGIS / ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through <em>lightweight</em> virtual environments created by <code class="docutils literal notranslate"><span class="pre">venv</span></code>, <strong>pipx</strong>, or <em>conda/mamba</em>.</p>
 <p>This chapter distils a workflow that reliably builds the computational stack used throughout this e‑book, regardless of platform. It emphasises</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code></strong> on Linux/macOS (preferred),</p></li>
@@ -606,6 +605,34 @@ document.write(`
 <li><p>recent improvements in binary wheels for GDAL/Fiona/Shapely (pip on Windows is finally painless!), and</p></li>
 <li><p>sustainable ways to keep environments reproducible.</p></li>
 </ul>
+<hr class="docutils" />
+<p><strong>Before you continue</strong>, a fast-track, cross-platform workable Python installation including GDAL can be installed using our <a class="reference external" href="https://github.com/sschwindt/python-project-template/">project template</a>:</p>
+<ol class="arabic">
+<li><p>Install <a class="reference external" href="https://mamba.readthedocs.io">mamba</a> for your platform.</p></li>
+<li><p>Download our <a class="reference external" href="https://github.com/sschwindt/python-project-template/blob/main/environment.yml">environment.yml</a>.</p></li>
+<li><p>Open a terminal (command promptline), navigate to the directory where the downloaded <em>environment.yml</em> lives, and create the environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+</li>
+<li><p>Activate the environment and run Python:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>activate<span class="w"> </span>wrr-proj
+<span class="o">(</span>wrr-proj<span class="o">)</span><span class="w"> </span>user@computer:$<span class="w"> </span>python
+</pre></div>
+</div>
+</li>
+<li><p>Check if the installation of geopackages worked (no error message should occur):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;<span class="w"> </span>from<span class="w"> </span>osgeo<span class="w"> </span>import<span class="w"> </span>gdal
+</pre></div>
+</div>
+</li>
+<li><p>Optionnally, if the check succeeded worked, exit python and pip-install flusstools within this <code class="docutils literal notranslate"><span class="pre">wrr-project</span></code> environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;<span class="w"> </span>exit<span class="o">()</span>
+<span class="o">(</span>wrr-proj<span class="o">)</span><span class="w"> </span>user@computer:$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>flusstools
+</pre></div>
+</div>
+</li>
+</ol>
 <hr class="docutils" />
 <section id="pip-venv-recommended-on-linux-macos">
 <span id="pip-env"></span><h2><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code> recommended on Linux/macOS<a class="headerlink" href="#pip-venv-recommended-on-linux-macos" title="Link to this heading">#</a></h2>
@@ -747,7 +774,7 @@ Windows (conda env)</label><div class="sd-tab-content docutils">
 <section id="updating-environments">
 <h2>Updating environments<a class="headerlink" href="#updating-environments" title="Link to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
-<span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span>--outdated<span class="w">           </span><span class="c1"># preview</span>
+<span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span>--outdated<span class="w">          </span><span class="c1"># preview</span>
 <span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;numpy&gt;=2.3&quot;</span><span class="w">  </span><span class="c1"># upgrade selectively</span>
 </pre></div>
 </div>
