@@ -1,3 +1,4 @@
+(friendly-colors)=
 # Perceptually-Uniform, Colorblind-Friendly Colormaps
 
 ## Avoid rainbow/jet

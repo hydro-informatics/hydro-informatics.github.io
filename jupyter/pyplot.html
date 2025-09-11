@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -54,7 +54,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -628,6 +628,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-recipe-for-1d-2d-line-plots">Step-by-step Recipe for 1d/2d (line) Plots</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-and-contour-plots">Surface and Contour Plots</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fonts-and-styles">Fonts and Styles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colors">Colors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#annotations">Annotations</a></li>
 </ul>
 </li>
@@ -896,6 +897,44 @@ axes.set_ylabel(str)`  # sets the y-axis label
 <span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
 <span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Oscillation (V)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="colors">
+<h3>Colors<a class="headerlink" href="#colors" title="Link to this heading">#</a></h3>
+<p>The use of color maps is a sensitive topic: often default-set rainbow palettes map distinct hues that many viewers with color-vision deficiencies (approx. 1 in 12 men) cannot reliably differentiate. Consider the following aspects to accommodate perceptually uniform, colorblind-friendly colormaps:</p>
+<ul class="simple">
+<li><p><strong>Sequential (low &gt; high):</strong> use Matplotlib’s <code class="docutils literal notranslate"><span class="pre">viridis</span></code>, <code class="docutils literal notranslate"><span class="pre">magma</span></code>, <code class="docutils literal notranslate"><span class="pre">plasma</span></code>, <code class="docutils literal notranslate"><span class="pre">inferno</span></code>; or domain-aware sequences from cmocean (see also below) to use, for instance, <code class="docutils literal notranslate"><span class="pre">cmo.thermal</span></code> for temperature, <code class="docutils literal notranslate"><span class="pre">cmo.haline</span></code> for salinity).</p></li>
+<li><p><strong>Diverging (midpoint emphasis):</strong> use when values deviate around a meaningful center (0, climatology, etc.). Examples: Matplotlib’s <code class="docutils literal notranslate"><span class="pre">seismic</span></code>-style but <em>perceptually tuned</em> options like <code class="docutils literal notranslate"><span class="pre">coolwarm</span></code> (still imperfect) or cmocean’s <code class="docutils literal notranslate"><span class="pre">balance</span></code>, <code class="docutils literal notranslate"><span class="pre">delta</span></code>, <code class="docutils literal notranslate"><span class="pre">curl</span></code>, which are engineered for symmetry and lightness control.</p></li>
+<li><p><strong>Cyclic (wrap-around variables):</strong> for phase/aspect (0°≡360°). Use cyclic maps such as cmocean’s <code class="docutils literal notranslate"><span class="pre">phase</span></code>.</p></li>
+<li><p><strong>Categorical (discrete classes):</strong> use distinct, desaturated palettes with good lightness separation; avoid “rainbow” categories for quantitative data.</p></li>
+<li><p><strong>Dynamic range:</strong> ensure the lightness ramp spans the range where your audience needs discrimination (you can trim/clip the colormap range if needed).</p></li>
+<li><p><strong>Background:</strong> pick a map whose lightness contrasts with the figure background (dark maps on dark backgrounds obscure low values).</p></li>
+</ul>
+<p>To ease working with such colormaps, consider installing <code class="docutils literal notranslate"><span class="pre">cmocean</span></code>:</p>
+<p>Below is an example of code for using perceptually uniform, colorblind-friendly colormaps. You can find this example in the <a class="reference internal" href="../scilife/color-hacks.html#friendly-colors"><span class="std std-ref">*Science Life Hacks*</span></a> chapter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmocean</span>
+
+<span class="c1"># Set a perceptually-uniform default</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;image.cmap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;viridis&quot;</span>
+
+<span class="c1"># Generate data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="c1"># Create sequential perceptually-uniform plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmocean</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">thermal</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperature-like quantity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sequential, perceptually-uniform&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1239,6 +1278,7 @@ axes.set_ylabel(str)`  # sets the y-axis label
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-recipe-for-1d-2d-line-plots">Step-by-step Recipe for 1d/2d (line) Plots</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-and-contour-plots">Surface and Contour Plots</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fonts-and-styles">Fonts and Styles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colors">Colors</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#annotations">Annotations</a></li>
 </ul>
 </li>

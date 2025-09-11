@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -54,7 +54,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -552,7 +552,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-venv-recommended-on-linux-macos"><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code> recommended on Linux/macOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-venv"><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-linux-mint-ubuntu-22-04-lts-or-later">Quick start (Linux Mint/Ubuntu 22.04 LTS or later)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-newest-interpreter">Install newest interpreter</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-activate-an-environment">Create &amp; activate an environment</a></li>
@@ -568,12 +568,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide-anaconda-miniforge">Quick guide (Anaconda / Miniforge)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-extra-packages-with-pip">Installing extra packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-extra-packages-with-pip">Install extra packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-install">Bulk install</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-environments">Updating environments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-jupyter-kernel">Install Jupyter kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-environments">Update environments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-virtual-environment-venv">Update virtual environment (venv)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-conda-env">Update conda env</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-environment-in-ides">Using the environment in IDEs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a></li>
@@ -634,8 +638,8 @@ document.write(`
 </li>
 </ol>
 <hr class="docutils" />
-<section id="pip-venv-recommended-on-linux-macos">
-<span id="pip-env"></span><h2><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code> recommended on Linux/macOS<a class="headerlink" href="#pip-venv-recommended-on-linux-macos" title="Link to this heading">#</a></h2>
+<section id="pip-venv">
+<span id="pip-env"></span><h2><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code><a class="headerlink" href="#pip-venv" title="Link to this heading">#</a></h2>
 <div class="tip admonition">
 <p class="admonition-title">The advantage of virtual environments over system‑wide Python installations</p>
 <p>The <em>system interpreter</em> drives core desktop tools; changing it can break your OS. A <code class="docutils literal notranslate"><span class="pre">venv</span></code> lives entirely in your home directory, weighs &lt;50 MB, and vanishes with a single <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span></code>. Also, newer OS, like Linux Mint 22.1 or younger, do not let a user <code class="docutils literal notranslate"><span class="pre">pip</span></code> install anything in the system-wide python environment.</p>
@@ -728,8 +732,8 @@ pip<span class="w"> </span>install<span class="w"> </span>flusstools
 <hr class="docutils" />
 </section>
 </section>
-<section id="installing-extra-packages-with-pip">
-<span id="install-pckg"></span><h2>Installing extra packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code><a class="headerlink" href="#installing-extra-packages-with-pip" title="Link to this heading">#</a></h2>
+<section id="install-extra-packages-with-pip">
+<span id="install-pckg"></span><h2>Install extra packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code><a class="headerlink" href="#install-extra-packages-with-pip" title="Link to this heading">#</a></h2>
 <p>More than <strong>500 000</strong> projects live on <em>PyPI</em> today. Basic syntax:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
@@ -762,8 +766,8 @@ Windows (conda env)</label><div class="sd-tab-content docutils">
 <hr class="docutils" />
 </section>
 </section>
-<section id="jupyter-kernel">
-<span id="ipython-config"></span><h2>Jupyter kernel<a class="headerlink" href="#jupyter-kernel" title="Link to this heading">#</a></h2>
+<section id="install-jupyter-kernel">
+<span id="ipython-config"></span><h2>Install Jupyter kernel<a class="headerlink" href="#install-jupyter-kernel" title="Link to this heading">#</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ipykernel<span class="w"> </span>jupyterlab
 <span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="w"> </span>vfluss_kernel
 </pre></div>
@@ -771,21 +775,174 @@ Windows (conda env)</label><div class="sd-tab-content docutils">
 <p>Select <strong>vfluss_kernel</strong> from <em>Kernel &gt; Change kernel</em> inside JupyterLab.</p>
 </section>
 <hr class="docutils" />
-<section id="updating-environments">
-<h2>Updating environments<a class="headerlink" href="#updating-environments" title="Link to this heading">#</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
-<span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span>--outdated<span class="w">          </span><span class="c1"># preview</span>
-<span class="o">(</span>vflussenv<span class="o">)</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;numpy&gt;=2.3&quot;</span><span class="w">  </span><span class="c1"># upgrade selectively</span>
+<section id="update-environments">
+<h2>Update environments<a class="headerlink" href="#update-environments" title="Link to this heading">#</a></h2>
+<section id="update-virtual-environment-venv">
+<h3>Update virtual environment (venv)<a class="headerlink" href="#update-virtual-environment-venv" title="Link to this heading">#</a></h3>
+<p>nice—virtualenv makes this straightforward. here’s a <strong>robust in-place upgrade</strong> flow that keeps your current venv (<code class="docutils literal notranslate"><span class="pre">vflussenv</span></code>) and focuses on <strong>JupyterLab</strong> + <strong>Jupyter Book</strong>. no conda, no YAML edits.</p>
+<p><strong>1. Activate &amp; snapshot for easy rollback</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># activate your venv if not already</span>
+<span class="nb">source</span><span class="w"> </span>vflussenv/bin/activate
+
+<span class="c1"># snapshot current state for rollback</span>
+pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.txt
 </pre></div>
 </div>
-<p>Full upgrade:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w">             </span><span class="c1"># pin current versions</span>
-sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/==/&gt;=/&#39;</span><span class="w"> </span>requirements.txt<span class="w">        </span><span class="c1"># allow newer releases (Linux), or edit manually</span>
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>--upgrade
+<p><strong>2. Make sure the build toolchain is current</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>setuptools<span class="w"> </span>wheel
 </pre></div>
 </div>
-<p>If <code class="docutils literal notranslate"><span class="pre">pip</span></code> reports <strong>ResolutionImpossible</strong>, relax or delete the offending version pins and rerun.</p>
-<hr class="docutils" />
+<p><strong>3. Preview outdated packages</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>list<span class="w"> </span>--outdated
+</pre></div>
+</div>
+<p><strong>4. Upgrade all packages (two options)</strong></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Option A – safe loop (exhaustive)</label><div class="sd-tab-content docutils">
+<p>Upgrades every <em>pip-managed</em> package except direct VCS/URL installs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-<span class="w"> </span>&lt;&lt;<span class="s1">&#39;PY&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<span class="c1"># get outdated packages in JSON</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;list&quot;</span><span class="p">,</span> <span class="s2">&quot;--outdated&quot;</span><span class="p">,</span> <span class="s2">&quot;--format=json&quot;</span><span class="p">],</span>
+    <span class="n">text</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="c1"># take just the package names</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">pkg</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">out</span><span class="p">)]</span>
+
+<span class="c1"># optional: don&#39;t re-upgrade the bootstrap tools every loop</span>
+<span class="n">skip</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;setuptools&quot;</span><span class="p">,</span> <span class="s2">&quot;wheel&quot;</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">skip</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;--upgrade&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">])</span>
+<span class="n">PY</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+Option B – “requirements with &gt;=”</label><div class="sd-tab-content docutils">
+<p>This option preserves a backup and handles macOS/Linux <code class="docutils literal notranslate"><span class="pre">sed</span></code> differences.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># start from a clean freeze</span>
+pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+
+<span class="c1"># Linux:</span>
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/==/&gt;=/&#39;</span><span class="w"> </span>requirements.txt
+<span class="c1"># macOS (BSD sed):</span>
+<span class="c1"># sed -i &#39;&#39; &#39;s/==/&gt;=/&#39; requirements.txt</span>
+
+<span class="c1"># upgrade per the relaxed pins</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>5. Optionally, pin the new set</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements-upgraded-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.txt
+</pre></div>
+</div>
+<p><strong>6. Verify</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab<span class="w"> </span>--version
+jupyter-book<span class="w"> </span>--version
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sys; print(sys.version)&quot;</span>
+</pre></div>
+</div>
+<p><strong>7. Clean up</strong></p>
+<p>Clean old build caches to save disk space:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>cache<span class="w"> </span>purge
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Conflicts / “ResolutionImpossible”</p>
+<ul>
+<li><p>Start by upgrading the <strong>roots</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">jupyterlab</span> <span class="pre">jupyter-book</span> <span class="pre">nbclient</span> <span class="pre">nbconvert</span></code>) and retry.</p></li>
+<li><p>If the error names a specific pin in your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, relax <strong>just that</strong> one (or delete the line) and rerun.</p></li>
+<li><p>If you mixed editable/VCS installs, upgrade them individually: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://...</span></code>.</p></li>
+<li><p>Worst case: roll back to your snapshot:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-YYYYMMDD.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="update-conda-env">
+<h3>Update conda env<a class="headerlink" href="#update-conda-env" title="Link to this heading">#</a></h3>
+<div class="note admonition">
+<p class="admonition-title">Conda vs. mamba</p>
+<p>I you used <code class="docutils literal notranslate"><span class="pre">mamba</span></code>, prefer the <code class="docutils literal notranslate"><span class="pre">mamba</span></code> commands – they are <em>drop-in</em>.</p>
+</div>
+<p><strong>1. Create a snapshot of the current state (easy rollback)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># exact conda specs</span>
+conda<span class="w"> </span>list<span class="w"> </span>--explicit<span class="w"> </span>&gt;<span class="w"> </span>conda-specs-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.txt
+<span class="c1"># pip packages (if any were installed via pip)</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>pip-freeze-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.txt
+</pre></div>
+</div>
+<p><strong>2. Optional but recommended: keep your current Python minor version</strong></p>
+<p>This prevents an unexpected Python jump that can cause conflicts. Adjust <code class="docutils literal notranslate"><span class="pre">3.11.*</span></code> to whatever <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> shows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
+<span class="c1"># pin to current minor while updating other deps</span>
+conda<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;python=3.11.*&quot;</span><span class="w"> </span>-c<span class="w"> </span>conda-forge
+</pre></div>
+</div>
+<p><strong>3. Make sure your solver is up-to-date</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># update conda itself (and mamba if you have it) in base</span>
+conda<span class="w"> </span>activate<span class="w"> </span>base
+conda<span class="w"> </span>update<span class="w"> </span>-n<span class="w"> </span>base<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>conda
+<span class="c1"># optional: if you use mamba</span>
+conda<span class="w"> </span>install<span class="w"> </span>-n<span class="w"> </span>base<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>mamba
+conda<span class="w"> </span>activate<span class="w"> </span>vflussenv
+</pre></div>
+</div>
+<p><strong>4. Update all conda packages</strong></p>
+<p>Use strict conda-forge for consistency (to not modify your YAML).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># with mamba (faster)</span>
+mamba<span class="w"> </span>update<span class="w"> </span>--all<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>--yes
+
+<span class="c1"># or with conda</span>
+conda<span class="w"> </span>update<span class="w"> </span>--all<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>--yes
+</pre></div>
+</div>
+<p><strong>5. If you used <em>pip</em> for some packages, upgrade those too</strong></p>
+<p>Only do this <strong>after</strong> the conda update. This keeps conda in charge of core libraries.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># show what’s outdated (pip-managed only)</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>list<span class="w"> </span>--outdated
+
+<span class="c1"># upgrade all pip-managed packages (safer loop than xargs)</span>
+python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;PY&#39;</span>
+<span class="s">import subprocess, sys</span>
+<span class="s">out = subprocess.check_output([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;list&quot;, &quot;--outdated&quot;, &quot;--format=freeze&quot;], text=True)</span>
+<span class="s">pkgs = [line.split(&quot;==&quot;)[0] for line in out.splitlines() if &quot;@&quot; not in line]</span>
+<span class="s">for p in pkgs:</span>
+<span class="s">    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, &quot;-U&quot;, p])</span>
+<span class="s">PY</span>
+</pre></div>
+</div>
+<p><strong>6. Clean caches</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>clean<span class="w"> </span>-a<span class="w"> </span>-y
+</pre></div>
+</div>
+<p><strong>7. Verify versions</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab<span class="w"> </span>--version
+jupyter-book<span class="w"> </span>--version
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import sys, jupyterlab; print(&#39;py&#39;, sys.version);&quot;</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">If the solver struggled…</p>
+<ul class="simple">
+<li><p>Try a targeted update first for big libraries (e.g., <code class="docutils literal notranslate"><span class="pre">mamba</span> <span class="pre">update</span> <span class="pre">pandas</span> <span class="pre">numpy</span> <span class="pre">scipy</span> <span class="pre">-c</span> <span class="pre">conda-forge</span></code>), then <code class="docutils literal notranslate"><span class="pre">--all</span></code>.</p></li>
+<li><p>If you really need to upgrade Python, do it explicitly (e.g., <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">python=3.12.*</span> <span class="pre">-c</span> <span class="pre">conda-forge</span></code>) and then <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">--all</span></code>.</p></li>
+<li><p>If you mixed pip/conda heavily and get conflicts, consider keeping scientific stack (NumPy/SciPy/PyTorch/etc.) on conda-forge and apps/utilities via pip.</p></li>
+</ul>
+</div>
+</section>
 </section>
 <section id="using-the-environment-in-ides">
 <span id="ide-setup"></span><h2>Using the environment in IDEs<a class="headerlink" href="#using-the-environment-in-ides" title="Link to this heading">#</a></h2>
@@ -888,7 +1045,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-venv-recommended-on-linux-macos"><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code> recommended on Linux/macOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-venv"><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start-linux-mint-ubuntu-22-04-lts-or-later">Quick start (Linux Mint/Ubuntu 22.04 LTS or later)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-newest-interpreter">Install newest interpreter</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-activate-an-environment">Create &amp; activate an environment</a></li>
@@ -904,12 +1061,16 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-guide-anaconda-miniforge">Quick guide (Anaconda / Miniforge)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-extra-packages-with-pip">Installing extra packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-extra-packages-with-pip">Install extra packages with <code class="docutils literal notranslate"><span class="pre">pip</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bulk-install">Bulk install</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-kernel">Jupyter kernel</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-environments">Updating environments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-jupyter-kernel">Install Jupyter kernel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-environments">Update environments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-virtual-environment-venv">Update virtual environment (venv)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-conda-env">Update conda env</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-environment-in-ides">Using the environment in IDEs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a></li>

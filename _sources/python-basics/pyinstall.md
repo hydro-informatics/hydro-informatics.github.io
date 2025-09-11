@@ -41,7 +41,7 @@ This chapter distils a workflow that reliably builds the computational stack use
 ---
 
 (pip-env)=
-## `pip` + `venv` recommended on Linux/macOS
+## `pip` + `venv` 
 
 ```{admonition} The advantage of virtual environments over system‑wide Python installations
 :class: tip
@@ -145,7 +145,7 @@ Test it:
 ---
 
 (install-pckg)=
-## Installing extra packages with `pip`
+## Install extra packages with `pip`
 
 More than **500 000** projects live on *PyPI* today. Basic syntax:
 
@@ -179,7 +179,7 @@ Install them manually with:
 ---
 
 (ipython-config)=
-## Jupyter kernel
+## Install Jupyter kernel
 
 ```bash
 (vflussenv) pip install ipykernel jupyterlab
@@ -190,25 +190,214 @@ Select **vfluss_kernel** from *Kernel > Change kernel* inside JupyterLab.
 
 ---
 
-## Updating environments
+## Update environments
+
+### Update virtual environment (venv)
+
+nice—virtualenv makes this straightforward. here’s a **robust in-place upgrade** flow that keeps your current venv (`vflussenv`) and focuses on **JupyterLab** + **Jupyter Book**. no conda, no YAML edits.
+
+**1. Activate & snapshot for easy rollback**
 
 ```bash
-(vflussenv) pip install -U pip setuptools wheel
-(vflussenv) pip list --outdated          # preview
-(vflussenv) pip install -U "numpy>=2.3"  # upgrade selectively
+# activate your venv if not already
+source vflussenv/bin/activate
+
+# snapshot current state for rollback
+pip freeze > requirements-$(date +%Y%m%d).txt
 ```
 
-Full upgrade:
+**2. Make sure the build toolchain is current**
 
 ```bash
-pip freeze > requirements.txt             # pin current versions
-sed -i 's/==/>=/' requirements.txt        # allow newer releases (Linux), or edit manually
-pip install -r requirements.txt --upgrade
+pip install -U pip setuptools wheel
 ```
 
-If `pip` reports **ResolutionImpossible**, relax or delete the offending version pins and rerun.
+**3. Preview outdated packages**
 
----
+```bash
+pip list --outdated
+```
+
+**4. Upgrade all packages (two options)**
+
+`````{tab-set}
+````{tab-item} Option A -- safe loop (exhaustive)
+
+Upgrades every *pip-managed* package except direct VCS/URL installs.
+
+```bash
+python - <<'PY'
+```
+
+```python
+import json, subprocess, sys
+# get outdated packages in JSON
+out = subprocess.check_output(
+    [sys.executable, "-m", "pip", "list", "--outdated", "--format=json"],
+    text=True
+)
+# take just the package names
+names = [pkg["name"] for pkg in json.loads(out)]
+
+# optional: don't re-upgrade the bootstrap tools every loop
+skip = {"pip", "setuptools", "wheel"}
+for name in names:
+    if name in skip:
+        continue
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", name])
+PY
+```
+
+````
+
+````{tab-item} Option B -- "requirements with >="
+
+This option preserves a backup and handles macOS/Linux `sed` differences.
+
+```bash
+# start from a clean freeze
+pip freeze > requirements.txt
+
+# Linux:
+sed -i 's/==/>=/' requirements.txt
+# macOS (BSD sed):
+# sed -i '' 's/==/>=/' requirements.txt
+
+# upgrade per the relaxed pins
+pip install --upgrade -r requirements.txt
+
+````
+`````
+
+
+**5. Optionally, pin the new set**
+
+```bash
+pip freeze > requirements-upgraded-$(date +%Y%m%d).txt
+```
+
+**6. Verify**
+
+```bash
+jupyter lab --version
+jupyter-book --version
+python -c "import sys; print(sys.version)"
+```
+
+**7. Clean up**
+
+Clean old build caches to save disk space:
+
+```bash
+pip cache purge
+```
+
+
+````{admonition} Conflicts / "ResolutionImpossible"
+:class: note
+
+* Start by upgrading the **roots** (e.g., `pip install -U jupyterlab jupyter-book nbclient nbconvert`) and retry.
+* If the error names a specific pin in your `requirements.txt`, relax **just that** one (or delete the line) and rerun.
+* If you mixed editable/VCS installs, upgrade them individually: `pip install -U git+https://...`.
+* Worst case: roll back to your snapshot:
+
+  ```bash
+  pip install -r requirements-YYYYMMDD.txt
+  ```
+````
+
+
+### Update conda env
+
+```{admonition} Conda vs. mamba
+:class: note
+
+I you used `mamba`, prefer the `mamba` commands -- they are *drop-in*.
+```
+
+**1. Create a snapshot of the current state (easy rollback)**
+
+```bash
+# exact conda specs
+conda list --explicit > conda-specs-$(date +%Y%m%d).txt
+# pip packages (if any were installed via pip)
+python -m pip freeze > pip-freeze-$(date +%Y%m%d).txt
+```
+
+**2. Optional but recommended: keep your current Python minor version**
+
+This prevents an unexpected Python jump that can cause conflicts. Adjust `3.11.*` to whatever `python --version` shows:
+
+```bash
+python --version
+# pin to current minor while updating other deps
+conda install "python=3.11.*" -c conda-forge
+```
+
+**3. Make sure your solver is up-to-date**
+
+```bash
+# update conda itself (and mamba if you have it) in base
+conda activate base
+conda update -n base -c conda-forge conda
+# optional: if you use mamba
+conda install -n base -c conda-forge mamba
+conda activate vflussenv
+```
+
+**4. Update all conda packages**
+
+Use strict conda-forge for consistency (to not modify your YAML).
+
+```bash
+# with mamba (faster)
+mamba update --all -c conda-forge --yes
+
+# or with conda
+conda update --all -c conda-forge --yes
+```
+
+**5. If you used *pip* for some packages, upgrade those too**
+
+Only do this **after** the conda update. This keeps conda in charge of core libraries.
+
+```bash
+# show what’s outdated (pip-managed only)
+python -m pip list --outdated
+
+# upgrade all pip-managed packages (safer loop than xargs)
+python - <<'PY'
+import subprocess, sys
+out = subprocess.check_output([sys.executable, "-m", "pip", "list", "--outdated", "--format=freeze"], text=True)
+pkgs = [line.split("==")[0] for line in out.splitlines() if "@" not in line]
+for p in pkgs:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", p])
+PY
+```
+
+**6. Clean caches**
+
+```bash
+conda clean -a -y
+```
+
+**7. Verify versions**
+
+```bash
+jupyter lab --version
+jupyter-book --version
+python -c "import sys, jupyterlab; print('py', sys.version);"
+```
+
+```{admonition} If the solver struggled...
+:class: tip
+
+* Try a targeted update first for big libraries (e.g., `mamba update pandas numpy scipy -c conda-forge`), then `--all`.
+* If you really need to upgrade Python, do it explicitly (e.g., `conda install python=3.12.* -c conda-forge`) and then `update --all`.
+* If you mixed pip/conda heavily and get conflicts, consider keeping scientific stack (NumPy/SciPy/PyTorch/etc.) on conda-forge and apps/utilities via pip.
+
+```
+
 
 (ide-setup)=
 ## Using the environment in IDEs

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -54,7 +54,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -832,8 +832,8 @@ download pythomac as zip</label><div class="sd-tab-content docutils">
 </div>
 </aside>
 <p>To determine the timestep at which a steady simulation can be considered to have reached a stable state, we want to observe when <span class="math notranslate nohighlight">\(\iota\)</span> = 1 and <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 indicate sublinear convergence. That is, we look for the timestep <span class="math notranslate nohighlight">\(t\)</span> above which each additional timestep <span class="math notranslate nohighlight">\(t+1\)</span> only insignificantly improves the model precision (read more on the term <em>insignificant</em> in the <a class="reference internal" href="#tm-target-conv"><span class="std std-ref">below section</span></a>). Thus, assuming that the model convergences in any form, we can set <span class="math notranslate nohighlight">\(c_{\varepsilon}\)</span> = 1 to compute <span class="math notranslate nohighlight">\(\iota (t)\)</span> as a function of <span class="math notranslate nohighlight">\(\varepsilon_{t}\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_{t+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-557d2cbd-34bb-4a85-8460-6bc56d69f157">
-<span class="eqno">(20)<a class="headerlink" href="#equation-557d2cbd-34bb-4a85-8460-6bc56d69f157" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3f44a0f8-76a2-4fd4-b91d-531734842e1f">
+<span class="eqno">(20)<a class="headerlink" href="#equation-3f44a0f8-76a2-4fd4-b91d-531734842e1f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \label{estimate_convergence}
 \frac{\varepsilon_{t+1}}{\varepsilon^{\iota(t)}_{t}} &amp;=c_{\varepsilon} &amp; \Leftrightarrow \\
 \iota(t) &amp;=  \frac{1}{c_{\varepsilon}} \cdot \log_{\varepsilon_{t}\varepsilon_{t+1}} &amp; \overbrace{\Longleftrightarrow }^{c_{\varepsilon} = 1}\\
