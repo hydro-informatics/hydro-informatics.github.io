@@ -7,8 +7,8 @@ Python 2 reached end‑of‑life in **January 2020** and is no longer shipped by
 
 This chapter distils a workflow that reliably builds the computational stack used throughout this e‑book, regardless of platform. It emphasises
 
-* **`pip` + `venv`** on Linux/macOS (preferred),
-* **`conda`/`mamba`** on Windows or when you need complex compiled dependencies,
+* **`conda`/`mamba`** as a smooth cross-platofrm default solution,
+* **`pip` + `venv`** for Linux/macOS (alternative; preferably use `mamba`),
 * recent improvements in binary wheels for GDAL/Fiona/Shapely (pip on Windows is finally painless!), and
 * sustainable ways to keep environments reproducible.
 

@@ -604,8 +604,8 @@ document.write(`
 <p>Python 2 reached end‑of‑life in <strong>January 2020</strong> and is no longer shipped by mainstream Linux distributions or Windows installers. Today every actively maintained package—scientific, geospatial, or otherwise—supports <strong>CPython ≥ 3.9</strong>, with most libraries now testing against <strong>Python 3.13</strong>. Multiple interpreters can still coexist on the same machine (QGIS / ArcGIS Pro embeds its own 3.11, Nvidia CUDA ships one for PyTorch, etc.), but the modern way to insulate projects is through <em>lightweight</em> virtual environments created by <code class="docutils literal notranslate"><span class="pre">venv</span></code>, <strong>pipx</strong>, or <em>conda/mamba</em>.</p>
 <p>This chapter distils a workflow that reliably builds the computational stack used throughout this e‑book, regardless of platform. It emphasises</p>
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code></strong> on Linux/macOS (preferred),</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">conda</span></code>/<code class="docutils literal notranslate"><span class="pre">mamba</span></code></strong> on Windows or when you need complex compiled dependencies,</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">conda</span></code>/<code class="docutils literal notranslate"><span class="pre">mamba</span></code></strong> as a smooth cross-platofrm default solution,</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pip</span></code> + <code class="docutils literal notranslate"><span class="pre">venv</span></code></strong> for Linux/macOS (alternative; preferably use <code class="docutils literal notranslate"><span class="pre">mamba</span></code>),</p></li>
 <li><p>recent improvements in binary wheels for GDAL/Fiona/Shapely (pip on Windows is finally painless!), and</p></li>
 <li><p>sustainable ways to keep environments reproducible.</p></li>
 </ul>
