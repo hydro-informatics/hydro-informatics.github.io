@@ -24,7 +24,9 @@ Choose colormaps designed for *uniform perceived change* (usually monotonic ligh
 * **Dynamic range:** ensure the lightness ramp spans the range where your audience needs discrimination (you can trim/clip the colormap range if needed).
 * **Background:** pick a map whose lightness contrasts with the figure background (dark maps on dark backgrounds obscure low values).
 
-## Quick recipes (Matplotlib + cmocean)
+## Quick recipes
+
+### Matplotlib + cmocean
 
 Install cmocean (Matplotlib port):
 
@@ -71,6 +73,76 @@ plt.show()
 
 More cmocean info: [matplotlib.org/cmocean](https://matplotlib.org/cmocean/)
 
+### Fabio Crameri's cm tools
+
+[Fabio Crameri](https://www.fabiocrameri.ch) developed a sophisticated toolset for scientific color maps that are universally readable by color-vision deficient and color-blind individuals, and when printed in black and white. For background information, refer to {cite:t}`crameri2020misuse` ([direct link](https://www.nature.com/articles/s41467-020-19160-7)) and Fabio Crameri's [EGU blogpost](https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map). The Python package `cmcrameri` is hosted at [https://pypi.org/project/cmcrameri ](https://pypi.org/project/cmcrameri).
+
+Here is a quick way to use the cmcrameri scientific colormaps in Python:
+
+1. Install
+
+```bash
+pip install cmcrameri
+```
+
+2. Basic usage with Matplotlib
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import cmcrameri.cm as cm
+
+x = np.linspace(-3, 3, 400)
+y = np.linspace(-3, 3, 400)
+X, Y = np.meshgrid(x, y)
+Z = np.hypot(X, Y)
+
+plt.imshow(Z, cmap=cm.batlow, origin="lower")
+plt.colorbar(label="value")
+plt.title("cmcrameri: batlow")
+plt.tight_layout()
+plt.show()
+```
+
+All colormaps are available under `cmcrameri.cm.<name>`.
+
+3. Reversed and categorical variants
+
+```python
+plt.imshow(Z, cmap=cm.batlow_r)
+```
+
+Categorical (discrete) versions use an "S" suffix, for example `cm.batlowS`.
+
+4. Quickly browse available maps
+
+```python
+from cmcrameri import show_cmaps
+show_cmaps()
+```
+
+This displays all installed cmcrameri colormaps in the Python session.
+
+5. Good defaults and tips
+   * Sequential data: start with `batlow` or `oslo`.
+   * Diverging data centered on zero: try `vik` or `broc`.
+
+These palettes are designed to be perceptually ordered and fair, and to remain readable for many forms of color-vision deficiency.
+
+6. Set a project-wide default (optional)
+
+```python
+import matplotlib as mpl
+import cmcrameri.cm as cm
+mpl.rcParams["image.cmap"] = cm.batlow
+```
+
+Matplotlib accepts a Colormap object for `image.cmap`. See Matplotlib’s colormap docs for general behavior. ([Matplotlib][4])
+
+Use `cm.<name>`, add `_r` for reversed, `S` for categorical, and `show_cmaps()` to explore.
+
+
+
 ## Make figures colorblind-safe (Linux + GNOME)
 
 A handy way to *simulate* common color-vision deficiencies directly on your screen is the GNOME Shell extension **Colorblind Filters**. It applies real-time filters so you can preview how your plots look under Deuteranopia, Protanopia, Tritanopia, etc.
@@ -85,3 +157,5 @@ A handy way to *simulate* common color-vision deficiencies directly on your scre
 * Ensure **contrast** and legible **colorbar ticks/labels**; set meaningful limits (`vmin/vmax`, centered diverging scales).
 * Verify **accessibility** with CVD simulation; don't rely on color alone—add contours, annotations, or varying line styles where helpful.
 * Be consistent across panels and publications; document the colormap choice in captions (e.g., "cmocean 'balance'").
+
+

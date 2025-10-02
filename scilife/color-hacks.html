@@ -555,7 +555,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-rainbow-jet">Avoid rainbow/jet</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-use-instead">What to use instead</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#picking-the-right-map-for-your-data">Picking the right map for your data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-recipes-matplotlib-cmocean">Quick recipes (Matplotlib + cmocean)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-recipes">Quick recipes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-cmocean">Matplotlib + cmocean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fabio-crameris-cm-tools">Fabio Crameri’s cm tools</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-figures-colorblind-safe-linux-gnome">Make figures colorblind-safe (Linux + GNOME)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practice-checklist">Best-practice checklist</a></li>
 </ul>
@@ -599,8 +603,10 @@ document.write(`
 <li><p><strong>Background:</strong> pick a map whose lightness contrasts with the figure background (dark maps on dark backgrounds obscure low values).</p></li>
 </ul>
 </section>
-<section id="quick-recipes-matplotlib-cmocean">
-<h2>Quick recipes (Matplotlib + cmocean)<a class="headerlink" href="#quick-recipes-matplotlib-cmocean" title="Link to this heading">#</a></h2>
+<section id="quick-recipes">
+<h2>Quick recipes<a class="headerlink" href="#quick-recipes" title="Link to this heading">#</a></h2>
+<section id="matplotlib-cmocean">
+<h3>Matplotlib + cmocean<a class="headerlink" href="#matplotlib-cmocean" title="Link to this heading">#</a></h3>
 <p>Install cmocean (Matplotlib port):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cmocean</span>
 </pre></div>
@@ -641,6 +647,72 @@ document.write(`
 </pre></div>
 </div>
 <p>More cmocean info: <a class="reference external" href="https://matplotlib.org/cmocean/">matplotlib.org/cmocean</a></p>
+</section>
+<section id="fabio-crameris-cm-tools">
+<h3>Fabio Crameri’s cm tools<a class="headerlink" href="#fabio-crameris-cm-tools" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.fabiocrameri.ch">Fabio Crameri</a> developed a sophisticated toolset for scientific color maps that are universally readable by color-vision deficient and color-blind individuals, and when printed in black and white. For background information, refer to <span id="id1">Crameri <em>et al.</em> [<a class="reference internal" href="../documentation/bibliography.html#id2" title="Fabio Crameri, Grace E. Shephard, and Philip J. Heron. The misuse of colour in science communication. Nature Communications, 11(1):5444, October 2020. URL: https://www.nature.com/articles/s41467-020-19160-7 (visited on 2025-10-02), doi:10.1038/s41467-020-19160-7.">CSH20</a>]</span> (<a class="reference external" href="https://www.nature.com/articles/s41467-020-19160-7">direct link</a>) and Fabio Crameri’s <a class="reference external" href="https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map">EGU blogpost</a>. The Python package <code class="docutils literal notranslate"><span class="pre">cmcrameri</span></code> is hosted at <a class="reference external" href="https://pypi.org/project/cmcrameri">https://pypi.org/project/cmcrameri </a>.</p>
+<p>Here is a quick way to use the cmcrameri scientific colormaps in Python:</p>
+<ol class="arabic simple">
+<li><p>Install</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cmcrameri
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Basic usage with Matplotlib</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmcrameri.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">batlow</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;cmcrameri: batlow&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>All colormaps are available under <code class="docutils literal notranslate"><span class="pre">cmcrameri.cm.&lt;name&gt;</span></code>.</p>
+<ol class="arabic simple" start="3">
+<li><p>Reversed and categorical variants</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">batlow_r</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Categorical (discrete) versions use an “S” suffix, for example <code class="docutils literal notranslate"><span class="pre">cm.batlowS</span></code>.</p>
+<ol class="arabic simple" start="4">
+<li><p>Quickly browse available maps</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">cmcrameri</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_cmaps</span>
+<span class="n">show_cmaps</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This displays all installed cmcrameri colormaps in the Python session.</p>
+<ol class="arabic simple" start="5">
+<li><p>Good defaults and tips</p>
+<ul class="simple">
+<li><p>Sequential data: start with <code class="docutils literal notranslate"><span class="pre">batlow</span></code> or <code class="docutils literal notranslate"><span class="pre">oslo</span></code>.</p></li>
+<li><p>Diverging data centered on zero: try <code class="docutils literal notranslate"><span class="pre">vik</span></code> or <code class="docutils literal notranslate"><span class="pre">broc</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<p>These palettes are designed to be perceptually ordered and fair, and to remain readable for many forms of color-vision deficiency.</p>
+<ol class="arabic simple" start="6">
+<li><p>Set a project-wide default (optional)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cmcrameri.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;image.cmap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">batlow</span>
+</pre></div>
+</div>
+<p>Matplotlib accepts a Colormap object for <code class="docutils literal notranslate"><span class="pre">image.cmap</span></code>. See Matplotlib’s colormap docs for general behavior. ([Matplotlib][4])</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">cm.&lt;name&gt;</span></code>, add <code class="docutils literal notranslate"><span class="pre">_r</span></code> for reversed, <code class="docutils literal notranslate"><span class="pre">S</span></code> for categorical, and <code class="docutils literal notranslate"><span class="pre">show_cmaps()</span></code> to explore.</p>
+</section>
 </section>
 <section id="make-figures-colorblind-safe-linux-gnome">
 <h2>Make figures colorblind-safe (Linux + GNOME)<a class="headerlink" href="#make-figures-colorblind-safe-linux-gnome" title="Link to this heading">#</a></h2>
@@ -729,7 +801,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-rainbow-jet">Avoid rainbow/jet</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-use-instead">What to use instead</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#picking-the-right-map-for-your-data">Picking the right map for your data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-recipes-matplotlib-cmocean">Quick recipes (Matplotlib + cmocean)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-recipes">Quick recipes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-cmocean">Matplotlib + cmocean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fabio-crameris-cm-tools">Fabio Crameri’s cm tools</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-figures-colorblind-safe-linux-gnome">Make figures colorblind-safe (Linux + GNOME)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practice-checklist">Best-practice checklist</a></li>
 </ul>
