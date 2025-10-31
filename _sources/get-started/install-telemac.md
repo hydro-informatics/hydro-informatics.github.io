@@ -846,6 +846,29 @@ The plugin requires at least QGIS version 3.26. If your QGIS version is older, t
 
 After the installation, Q4TS enables MED to SLF conversion (and vice versa), mesh refinements, boundary creation, friction table editing, and many more options (in the QGIS Toolbox).
 
+To work with the Q4TS plugin, check out {numref}`Fig. %s <q4ts-ubuntu>` (Windows: {numref}`Fig. %s <q4ts-windows>`) and the developer's documentation on GitLab at [https://gitlab.pam-retd.fr/otm/q4ts/](https://gitlab.pam-retd.fr/otm/q4ts/-/blob/develop/docs/user_manual/user_manual.md).
+
+`````{tab-set}
+````{tab-item} Linux (Ubuntu)
+```{figure} https://gitlab.pam-retd.fr/otm/q4ts/-/raw/develop/docs/images/conf_ubuntu.png
+:alt: configure Q4TS on Ubuntu Linux
+:name: q4ts-ubuntu
+
+The configuration of the Q4TS on Ubuntu Linux (links to https://gitlab.pam-retd.fr).
+```
+````
+````{tab-item} Windows
+```{figure} https://gitlab.pam-retd.fr/otm/q4ts/-/raw/develop/docs/images/conf_windows.png
+:alt: configure Q4TS on Windows
+:name: q4ts-windows
+
+The configuration of the Q4TS on Windows (links to https://gitlab.pam-retd.fr).
+```
+````
+`````
+
+
+
 ```{admonition} Other (stale) plugins
 :class: note, dropdown
 
