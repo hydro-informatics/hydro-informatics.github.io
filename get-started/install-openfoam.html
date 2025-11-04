@@ -756,55 +756,8 @@ cp -r $FOAM_TUTORIALS/incompressible/simpleFoam/pitzDaily .
 <section id="utilities-pre-post-processors">
 <h2>Utilities (Pre- &amp; Post Processors)<a class="headerlink" href="#utilities-pre-post-processors" title="Link to this heading">#</a></h2>
 <section id="salome">
-<span id="salome-install"></span><h3>SALOME<a class="headerlink" href="#salome" title="Link to this heading">#</a></h3>
-<p>Similar to <em>TELEMAC</em>, the SALOME platform represents a powerful toolkit for generating computational meshes for OpenFOAM. Download SALOME from <a class="reference external" href="https://www.salome-platform.org/downloads/current-version">salome-platform.org</a> for your distribution (here: <em>Linux Ubuntu</em>).</p>
-<p>Unpack the SALOME package in a convenient folder (replace the <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> file name with the one you downloaded):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xfz</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-</pre></div>
-</div>
-<p>Install dependencies:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">net</span><span class="o">-</span><span class="n">tools</span> <span class="n">libopengl0</span> <span class="n">libtbb</span><span class="o">-</span><span class="n">dev</span> <span class="n">libcdt5</span> <span class="n">libcgraph6</span> <span class="n">libgvc6</span> <span class="n">libgdal32</span> <span class="n">libnlopt</span><span class="o">-</span><span class="n">cxx</span><span class="o">-</span><span class="n">dev</span> <span class="n">libcminpack1</span> <span class="n">libfreeimage3</span>
-</pre></div>
-</div>
-<p>To run SALOME, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory where the unpacked package is located and type <code class="docutils literal notranslate"><span class="pre">salome</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span><span class="o">-</span><span class="n">UB20</span><span class="mf">.04</span><span class="o">-</span><span class="n">SRC</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">source</span> <span class="n">env_launch</span><span class="o">.</span><span class="n">sh</span>
-<span class="o">./</span><span class="n">salome</span>
-</pre></div>
-</div>
-<p>If <code class="docutils literal notranslate"><span class="pre">./salome</span></code> does not work (in particular on a virtual machine), try to run <code class="docutils literal notranslate"><span class="pre">./mesa_salome</span></code> (prevents problems with <em>openGL</em> in the <em>Mesh</em> module), or re-compile SALOME:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">sat</span> <span class="n">prepare</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
-<span class="o">./</span><span class="n">sat</span> <span class="o">-</span><span class="n">t</span> <span class="nb">compile</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
-<span class="o">./</span><span class="n">sat</span> <span class="n">environ</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
-<span class="o">./</span><span class="n">sat</span> <span class="n">launcher</span> <span class="n">SALOME</span><span class="o">-</span><span class="mf">9.6.0</span>
-<span class="o">./</span><span class="n">salome</span>
-</pre></div>
-</div>
-<p>If there is an error such as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>HyMo@HydroDebian:~/Downloads/SALOME-9.6.0-UB20.04-SRC$ ./salome
-runSalome running on HydroDebian
-Searching for a free port for naming service: 2811 - OK
-Searching Naming Service  +omniNames: (0) 20XX-XX-XX 12:34:13.123745: -ORBendPoint option overriding default endpoint.
- found in 0.1 seconds
-Searching /Kernel/Session in Naming Service  +SALOME_Session_Server: error while loading shared libraries: libtbb.so.2: cannot open shared object file: No such file or directory
-Warning, no type found for resource &quot;localhost&quot;, using default value &quot;single_machine&quot;
-Traceback (most recent call last):
-  File &quot;/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-UB20.04/KERNEL/bin/salome/orbmodule.py&quot;, line 181, in waitNSPID
-    os.kill(thePID,0)
-ProcessLookupError: [Errno 3] No such process
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &quot;/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-DEB10/KERNEL/bin/salome/runSalome.py&quot;, line 679, in useSalome
-    clt = [...]
-  File &quot;/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py&quot;, line 183, in waitNSPID
-    raise RuntimeError(&quot;Process %d for %s not found&quot; % (thePID,theName)
-RuntimeError: Process 29241 for /Kernel/Session not found
---- Error during Salome launch ---
-</pre></div>
-</div>
-<p>Then look for the missing libraries indicated in the above block with <code class="docutils literal notranslate"><span class="pre">error</span> <span class="pre">while</span> <span class="pre">loading</span> <span class="pre">shared</span> <span class="pre">libraries:</span> <span class="pre">libtbb.so.2:</span> <span class="pre">cannot</span> <span class="pre">open</span> <span class="pre">shared</span> <span class="pre">object</span> <span class="pre">file</span></code>. In this case, <code class="docutils literal notranslate"><span class="pre">libtbb</span></code> is missing, which can be installed with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libtbb-dev</span></code>.</p>
+<h3>SALOME<a class="headerlink" href="#salome" title="Link to this heading">#</a></h3>
+<p>To install SALOME, please refer to the TELEMAC installation instruction <a class="reference internal" href="install-telemac.html#salome-install"><span class="std std-ref">here</span></a>.</p>
 </section>
 <section id="freecad">
 <span id="freecad-install"></span><h3>FreeCAD<a class="headerlink" href="#freecad" title="Link to this heading">#</a></h3>

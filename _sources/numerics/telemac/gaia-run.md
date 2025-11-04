@@ -118,7 +118,7 @@ telemac2d.py steady2d-gaia.cas
 ```
 
 ````{admonition} Speed up
-With {ref}`parallelism <mpi>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple cores through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=4` cores:
+With {ref}`parallelism <tm-system-wide-opts>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple cores through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=4` cores:
 
 ```
 telemac2d.py steady2d-gaia.cas --ncsize=4

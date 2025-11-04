@@ -213,68 +213,10 @@ To get started with OpenFOAM, refer to the *User Guide* provided by [*CFD Direct
 
 ## Utilities (Pre- & Post Processors)
 
-(salome-install)=
+
 ### SALOME
 
-Similar to *TELEMAC*, the SALOME platform represents a powerful toolkit for generating computational meshes for OpenFOAM. Download SALOME from [salome-platform.org](https://www.salome-platform.org/downloads/current-version) for your distribution (here: *Linux Ubuntu*).
-
-Unpack the SALOME package in a convenient folder (replace the `.tar.gz` file name with the one you downloaded):
-
-```
-tar xfz SALOME-9.6.0-UB20.04-SRC.tar.gz
-```
-
-Install dependencies:
-```
-sudo apt install net-tools libopengl0 libtbb-dev libcdt5 libcgraph6 libgvc6 libgdal32 libnlopt-cxx-dev libcminpack1 libfreeimage3
-```
-
-To run SALOME, `cd` to the directory where the unpacked package is located and type `salome`:
-
-```
-cd SALOME-9.6.0-UB20.04-SRC.tar.gz
-source env_launch.sh
-./salome
-```
-
-If `./salome` does not work (in particular on a virtual machine), try to run `./mesa_salome` (prevents problems with *openGL* in the *Mesh* module), or re-compile SALOME:
-
-```
-./sat prepare SALOME-9.6.0
-./sat -t compile SALOME-9.6.0
-./sat environ SALOME-9.6.0
-./sat launcher SALOME-9.6.0
-./salome
-```
-
-If there is an error such as:
-
-```
-HyMo@HydroDebian:~/Downloads/SALOME-9.6.0-UB20.04-SRC$ ./salome
-runSalome running on HydroDebian
-Searching for a free port for naming service: 2811 - OK
-Searching Naming Service  +omniNames: (0) 20XX-XX-XX 12:34:13.123745: -ORBendPoint option overriding default endpoint.
- found in 0.1 seconds
-Searching /Kernel/Session in Naming Service  +SALOME_Session_Server: error while loading shared libraries: libtbb.so.2: cannot open shared object file: No such file or directory
-Warning, no type found for resource "localhost", using default value "single_machine"
-Traceback (most recent call last):
-  File "/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-UB20.04/KERNEL/bin/salome/orbmodule.py", line 181, in waitNSPID
-    os.kill(thePID,0)
-ProcessLookupError: [Errno 3] No such process
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-DEB10/KERNEL/bin/salome/runSalome.py", line 679, in useSalome
-    clt = [...]
-  File "/home/HyMo/Downloads/SALOME-9.6.0-UB20.04-SRC/BINARIES-DEB10/KERNEL/bin/salome/orbmodule.py", line 183, in waitNSPID
-    raise RuntimeError("Process %d for %s not found" % (thePID,theName)
-RuntimeError: Process 29241 for /Kernel/Session not found
---- Error during Salome launch ---
-```
-
-Then look for the missing libraries indicated in the above block with `error while loading shared libraries: libtbb.so.2: cannot open shared object file`. In this case, `libtbb` is missing, which can be installed with `sudo apt install libtbb-dev`.
-
+To install SALOME, please refer to the TELEMAC installation instruction {ref}`here <salome-install>`.
 
 (freecad-install)=
 ### FreeCAD

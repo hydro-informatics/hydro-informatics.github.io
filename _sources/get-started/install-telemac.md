@@ -5,35 +5,30 @@
 ## Preface
 
 
-This tutorial guides through the installation of [open TELEMAC-MASCARET](http://www.opentelemac.org/) on [Debian Linux](https://www.debian.org/) based platforms (i.e., also works with Ubuntu and its derivatives, such as Mint or Lubuntu). **Account for approximately 1-2 hours for installing TELEMAC and make sure to have a stable internet connection (>1.4 GB file download).**
+This tutorial walks you through installing [open TELEMAC-MASCARET](http://www.opentelemac.org/) on [Debian Linux](https://www.debian.org/)-based systems (including Ubuntu and derivatives like Linux Mint). **Plan for roughly 1-2 hours and a stable internet connection; the downloads exceed 1.4 GB.**
 
+```{admonition} Developer instructions
+:class: note
+
+The TELEMAC developers provide up-to-date build guidance at [https://gitlab.pam-retd.fr/otm/telemac-mascaret/ > BUILDING.md](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/main/BUILDING.md), though documentation for optional components remains limited.
+```
 
 ***
 
-This section only guides through the **installation** of TELEMAC. A tutorial for running hydro(-morpho)dynamic models with TELEMAC is currently under construction for this eBook.
 
-```{admonition} Before you start
-:class: important
-
-* This tutorial guides through the local installation of TELEMAC in a user folder on Debian Linux, which is **OK for practicing, but not good for setting up a computing server**. For installing TELEMAC on a server, or globally on a computer, check with your Admin: **TELEMAC should be installed in the `ROOT/opt/` directory.**
-* Installing TELEMAC on a {ref}`Virtual Machine (VM) <chpt-vm-linux>` is useful for getting started with TELEMAC and its sample cases, but not recommended for running a real-world numerical model (limited performance of VMs).
-* Familiarize with the {ref}`Linux Terminal <linux-terminal>` to understand the underpinnings for compiling TELEMAC.
-* This tutorial refers to the software package *open TELEMAC-MASCARET* as TELEMAC because *MASCARET* is a one-dimensional (1d) model and the numerical simulation schemes in this eBook focus on two-dimensional (2d) and three-dimensional (3d) modeling.
-
-```
-
+This section covers only the **installation** of TELEMAC. For tutorials on running hydro(-morpho)dynamic models with TELEMAC, see the {ref}`TELEMAC tutorials section <chpt-telemac>`.
 
 A couple of installation options are available:
+
 
 `````{tab-set}
 ````{tab-item} Custom Installation (Recommended)
 Continue to read and walk through the following sections.
-
 ````
 
 ````{tab-item} Mint Hyfo VM
 
-If you are working with the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`, skip the tutorials on this website because TELEMAC v8p3 is already preinstalled and you are good to go for completing the {ref}`TELEMAC tutorials <chpt-telemac>`.
+If you are using the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`, you can skip the setup tutorials here. TELEMAC v8p3 is already installed and configured, so you can proceed directly to the {ref}`TELEMAC tutorials <chpt-telemac>`. Treat this VM as a training environment: it is great for learning and running sample cases, but it is not intended for performance-critical, application-scale modeling.
 
 Load the TELEMAC environment and check if it works with:
 
@@ -57,34 +52,36 @@ The Austrian engineering office *Flussplan* provides a Docker container of TELEM
 (modular-install)=
 ## Basic Requirements
 
-```{admonition} Old SVN has been replaced by GIT (since v8p3)
-:class: note, dropdown
+```{admonition} Good to know
+:class: tip
 
-The newest release of TELEMAC (v8p4) is provided on [gitlab](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/tree/main) with the version control system {ref}`git <chpt-git>` rather than the previously used `svn` version control.
+* Installing TELEMAC on a {ref}`Virtual Machine (VM) <chpt-vm-linux>` is a convenient way to get started and to run sample cases, but it is not recommended for application-scale models due to the performance overhead of VMs.
+* Get comfortable with the {ref}`Linux Terminal <linux-terminal>`; you will need it to compile and potentially troubleshoot TELEMAC's build workflow.
+* Throughout this tutorial, we refer to the package *open TELEMAC-MASCARET* as TELEMAC. *MASCARET* is a one-dimensional (1D) module, while the methods emphasized here focus on two-dimensional (2d) and three-dimensional (3d) modeling.
 ```
-```{admonition} Admin (sudo) rights required
+
+```{admonition} Admin (sudo) rights required for basic requirements
 :class: attention, dropdown
-Superuser (`sudo` for **su**per **do**ers list) rights are required for many actions described in this workflow. Read more about how to set up and grant `sudo` rights for a user account on *Debian Linux* in the tutorial for setting up {ref}`Debian Linux <user-rights>`.
+
+Superuser privileges (`sudo` for **su**per **do**ers list) are required for many steps in this workflow, such as installing packages, editing system configuration, and writing to system directories. On Debian, sudo access is typically granted by installing `sudo`, adding your account to the `sudo` group, and managing permissions safely with `visudo` (which edits `/etc/sudoers`). For detailed setup instructions, see the tutorial {ref}`Debian Linux <user-rights>` and talk to your system administrator.
 ```
 
-Working with TELEMAC requires some software for downloading source files, compiling, and running the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are:
-
-* Python 3.7 (and more recent) with {ref}`NumPy >=1.15 <numpy>`
-* GNU Fortran 95 compiler (*gfortran*)
+Working with TELEMAC requires software to download source files, compile them, and run the program. The mandatory software prerequisites for installing TELEMAC on [Debian Linux](https://www.debian.org/) are explained in the following sections.
 
 
 ### Python3
 
 ***Estimated duration: 5-8 minutes.***
 
-The high-level programing language *Python3* is pre-installed on Debian Linux 10.x and needed to launch the compiler script for TELEMAC. To launch *Python3*, open Terminal and type `python3`. To exit Python, type `exit()`.
+Python3 has been installed by default on Debian since version 10 (Buster), and it is required to run TELEMAC's compiler/launcher scripts. To start Python3, open a Terminal and run `python3`; to exit, use `exit()` or press `Ctrl+D`.
 
-TELEMAC requires the [NumPy](https://numpy.org/) Python library that comes along with [SciPy](https://scipy.org/) and [matplotlib](https://matplotlib.org/).
+TELEMAC needs the [NumPy](https://numpy.org/) library; most workflows also rely on [SciPy](https://scipy.org/) and [Matplotlib](https://matplotlib.org/). Because TELEMAC is non-standard, having Python headers and a clean environment helps.
 
-To install NumPy libraries, open Terminal and type (hit `Enter` after every line):
+To install the common system packages, run:
 
-```
-sudo apt install python3-numpy python3-scipy python3-matplotlib python3-distutils python3-dev python3-pip
+```bash
+sudo apt update
+sudo apt install python3-numpy python3-scipy python3-matplotlib python3-pip python3-dev python3-venv
 ```
 
 ````{admonition} Got Qt Errors?
@@ -98,10 +95,12 @@ sudo apt install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libx
 Then re-try to install the libraries.
 ````
 
+If you are on an older Debian release that does not include `distutils` in the default Python, also install `python3-distutils`.
+
 To test if the installation was successful, type `python3` in Terminal and import the three libraries:
 
-```
-Python 3.9.1 (default, Jul  25 2030, 13:03:44) [GCC 9.3.0] on linux
+```bash
+Python 3.11.1 (default, Jul  25 2030, 13:03:44) [GCC 9.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import numpy
 >>> a = numpy.array((1, 1))
@@ -113,71 +112,77 @@ Type "help", "copyright", "credits" or "license" for more information.
 None of the three library imports should return an `ImportError` message. To learn more about Python read the section on {ref}`sec-pypckg`.
 
 (tm-git-requirements)=
-### GIT
+### Git
 
-***Estimated duration: Less than 5 minutes.***
+***Estimated duration: <5 minutes.***
 
-The installation of the git version control system and its usage is extensively described in the {ref}`git section of this eBook <dl>`. In addition to the git functionalities described in the git section, the following are needed to manage large files that come along with TELEMAC:
+Installation and usage of Git are covered in the {ref}`git section of this eBook <chpt-git>`. In addition to what is described there, you will need Git Large File Storage (Git LFS) to handle large assets if a TELEMAC-related repository uses it. On Debian, you usually only need `git` (not `git-all`, which pulls many extras), plus `git-lfs`. Install and initialize:
 
+```bash
+sudo apt update
+sudo apt install git git-lfs
+git lfs install
 ```
-sudo apt install git-all git-lfs
-```
+
+`git lfs install` sets up LFS for your user account; so it is harmless even if a given repository does not use LFS.
+
 
 ### GNU Fortran 95 Compiler (gfortran)
 
 ***Estimated duration: 3-10 minutes.***
 
-The Fortran 95 compiler is needed to compile TELEMAC through a Python3 script, which requires that `gfortran` is installed. The Debian Linux retrieves `gfortran` from the standard package repositories. Thus, to install the Fortran 95 compiler, open Terminal and type:
+TELEMAC's Python-based build system requires a Fortran compiler; the common choice on Debian is the GNU Fortran compiler (`gfortran`), which is backward-compatible with GNU Fortran 95 and supports newer standards. Debian provides `gfortran` from its standard repositories. To install it, open a terminal and run:
 
-```
-sudo apt install gfortran
-```
-
-````{admonition} If the gfortran installation fails...
-:class: attention, dropdown
-Add the [buster repository](https://packages.debian.org/buster/gfortran) for *amd64* to the Linux sources file (`/etc/apt/sources.list`). To open the file, go to *Activities* > *Files* (file container symbol)> *Other Locations* > *etc* > *apt* and right-click in the free space to open Terminal (you need to be root). In Terminal type:
-
-```
-sudo editor sources.list
-```
-
-If not defined otherwise, the [GNU nano](https://www.nano-editor.org/) text editor will open. Add the follow following line at the bottom of the file:
-
-```
-deb http://ftp.de.debian.org/debian buster main
-```
-
-*Note:* This tutorial was written in Stuttgart (Germany) where `http://ftp.de.debian.org/debian` is one of the closest mirrors. Depending on where you are at the time of installing the Fortran 95 compiler replace the mirror address. A full list of repositories can be found at [https://packages.debian.org](https://packages.debian.org/buster/amd64/gfortran-multilib/download).
-
-Then, save the edits with `CTRL` + `O` keys and exit *Nano* with `CTRL` + `X` keys. Next, update the repository information by typing (in Terminal):
-
-```
+```bash
 sudo apt update
 sudo apt install gfortran
+
 ```
-````
+
+After installation, verify your setup with `gfortran --version`; the compiler must be on your `PATH` for TELEMAC's scripts to find it.
+
+```{admonition} If the gfortran installation fails...
+:class: attention, dropdown
+
+
+Ensure the standard Debian "main" component is enabled in your APT sources so the `gfortran` package is available. Edit `/etc/apt/sources.list` as root (or add a file in `/etc/apt/sources.list.d/`), then run `sudo apt update`. Verify availability with `apt-cache policy gfortran` or `apt search gfortran`; note that `gfortran` is a metapackage that installs the current default version (for example, `gfortran-12` or `gfortran-13`). Package details are listed here: [https://packages.debian.org/search?keywords=gfortran](https://packages.debian.org/search?keywords=gfortran).
+```
 
 ### More Compilers and Essentials
 
 ***Estimated duration: 2-5 minutes.***
-To enable parallelism, a *C* compiler is required for recognition of the command `cmake` in Terminal. Moreover, we will need `build-essential` for building packages and create a comfortable environment for `dialog`ues. [VIM](https://www.vim.org/) is a text editor that we will use for bash file editing. Alternatively to VIM, consider [gedit](https://wiki.gnome.org/Apps/Gedit) or [Nano](https://www.nano-editor.org/) (remove not-wanted editors from the below list). Therefore, open Terminal (as root/superuser, i.e., type `su`) and type:
 
+For building TELEMAC and its dependencies, you need C/C++ and CMake. Install Debian's `build-essential` (which provides `gcc`, `g++`, and `make`) and `cmake`; these are required to compile sources, including parallel (MPI) builds, though MPI itself is provided by packages like OpenMPI that you will install later. The `dialog` package is optional but useful because some helper scripts use simple text interfaces. For editing shell scripts you can use `gedit` ([read more](https://wiki.gnome.org/Apps/Gedit), or alternatives such as Nano or Vim). Run:
+
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake dialog gedit gedit-plugins
 ```
-sudo apt install -y cmake build-essential dialog vim gedit gedit-plugins
-```
+
+
+### Set Up Installation Path
+
+Up to this point, software has been installed via Debian's package manager (APTITUDE, `apt`). In contrast, TELEMAC is downloaded (i.e., git-cloned) from its GitLab repository into a directory you choose. Its build/install workflow is notably non-standard, so path choices matter. Select one of the following setups:
+
+* Single user without admin rights: `ROOT=/home/<USERNAME>/opt`  (that is, `ROOT=$HOME/opt`)  (XDG-conformant alternative: `ROOT=$HOME/.local`)
+* Shared use without root: only if a group-writable location already exists, for example an NFS share like `ROOT=/srv/shared/telemac`
+* System-wide (admin required) on Debian-based systems: preferred `ROOT=/usr/local` (binaries in `/usr/local/bin`, libraries in `/usr/local/lib`); `ROOT=/opt` is also acceptable for a self-contained tree
+
+In the sections that follow, we demonstrate a single-user installation of TELEMAC (including SALOME) with `ROOT=/home/HyInfo/opt`.
 
 
 ### Get the TELEMAC Repo
 
 ***Estimated duration: 25-40 minutes (large downloads).***
 
-Before getting more packages to enable parallelism and compiling, download the latest version of TELEMAC with git in which additional packages will be embedded. To download (i.e., `git clone`) TELEMAC, open Terminal, which will by default start in your home directory (`/home/USERNAME/`). The following instructions assume you want to install TELEMAC directly in your home directory. However, it might make sense to create a new sub-folder (e.g., called `/modeling`) to better organize your file system (`mkdir ~/modeling/` > `cd ~/modeling`). To download TELEMAC into the home (or a new) directory, type (enter `no` when asked for password encryption):
+Fetch the TELEMAC sources with Git-LFS. In terminal, create or choose your working directory (here: `/home/HyInfo/opt` - see above), and change (`cd`) into it; for example:
 
-```
+```bash
+cd /home/HyInfo/opt
 git clone https://gitlab.pam-retd.fr/otm/telemac-mascaret.git
 ```
 
-This will have downloaded TELEMAC to a sub-directory called `/telemac-mascaret`.
+This clones the repository into a subdirectory named `telemac-mascaret`. For faster downloads you may use a shallow clone with `--depth=1`, understanding that this limits history.
 
 ````{admonition} There are many (experimental) branches of TELEMAC available
 :class: tip, dropdown
@@ -191,82 +196,72 @@ git clone -b upwind_gaia --single-branch https://gitlab.pam-retd.fr/otm/telemac-
 Read more about cloning single TELEMAC branches in the [TELEMAC wiki](http://wiki.opentelemac.org/doku.php?id=telemac-mascaret_git_repository).
 ````
 
-After downloading (cloning) the TELEMAC repository, verify which is the latest version:
+After cloning the repository, identify the latest tagged release. First update your tag list and display available versions:
 
-```
+```bash
 cd telemac-mascaret
-git branch --list
+git fetch --tags
+git tag -l
 ```
 
-At the time of writing these lines, the latest version is `v9.0.0`. Check out the last version as follows:
+As of November 2025, the most recent official release published in the GitLab "Releases" page is `v9.0.0`. Check out that exact tag (detached HEAD), or create a branch from it:
 
-```
+```bash
 git checkout tags/v9.0.0
 ```
+
+If a newer tag appears later, substitute its name accordingly.
 
 
 ## Optional Requirements (Parallelism and Others)
 
-This section guides through the installation of additional packages required for parallelism. Make sure that Terminal recognizes `gcc`, which should be included in the *Debian* base installation (verify with `gcc --help`). This section includes installation for packages enabling parallelism, which provides substantial acceleration of simulations:
+This section walks you through installing additional packages required for parallel execution and working with {ref}`SALOME <salome-install>`'s `.med` files. Confirm that the Terminal finds `gcc` (typically installed via `build-essential`) by running `gcc --version`. The packages below enable parallelism and provide substantial speedups for simulations:
 
 * Message Passing Interface (MPI)
 * Metis
 
-In addition, the MED file format for input meshes (e.g., created with {ref}` SALOME <salome-install>`) and computation results can be installed with TELEMAC, but versioning is tricky. To work with MED files, also check out the {ref}`Q4TS QGIS plugin<qgis-telemac>`. Also, AED2
+(tm-system-wide-opts)=
+### System-wide installation
+Install prerequisites for MPI, Metis, HDF5, MED, and MUMPS. Package names differ slightly between Debian and Ubuntu derivatives (Mint), so use the matching set below.
 
-
-(mpi)=
-### Parallelism: Install MPI
-
-***Estimated duration: 5 minutes.***
-
-TELEMAC's parallelism modules require that the *Message Passing Interface* ({term}`MPI`) standard is installed either through the *MPICH* or the *Open MPI* library. Here, we opt for *Open MPI*, which can be installed via Terminal:
-
-```
-sudo apt install libopenmpi-dev openmpi-bin
+**Debian (current stable and testing):**
+```bash
+sudo apt update
+sudo apt install -y libopenmpi-dev openmpi-bin libhdf5-dev hdf5-tools libmetis-dev libmetis5 libmumps-dev libmumps-seq-dev libscalapack-openmpi-dev libmedc-dev libmed-tools
 ```
 
-To test if the installation was successful type:
-
-```
-mpif90 --help
-```
-
-The Terminal should prompt option flags for processing a *gfortran* file. The installation of MPI on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_mpi).
-
-```{admonition}  How to use MPICH in lieu of Open MPI
-:class: note
-
-This tutorial uses the configuration file `systel.edfHy.cfg`, which includes parallelism compiling options that build on *Open MPI*. Other configuration files (e.g., `systel.cis-ubuntu.cfg`) use *MPICH* instead of *Open MPI*. To use those configuration files, install *MPICH* with `sudo apt install mpich`.
+**Ubuntu and derivatives (enable Universe first if not yet done):**
+```bash
+sudo add-apt-repository -y universe
+sudo apt update
+sudo apt install -y sudo apt install -y libmedc11t64 libmedc-dev libmed-tools libmed11 libmed-dev libmedimport0v5 libmedimport-dev libopenmpi-dev openmpi-bin libhdf5-dev hdf5-tools libmetis-dev libmumps-seq-dev libmumps-dev libscalapack-openmpi-dev
 ```
 
-(metis)=
-### Parallelism: Install Metis
+Notes:
 
-***Estimated duration: 10-15 minutes.***
+* `libopenmpi-dev` and `openmpi-bin` provide MPI headers and `mpirun/mpiexec`.
+* `libmetis-dev` supplies the partitioner TELEMAC’s `partel` can use.
+* `libhdf5-dev` is required by MED; `libmedc-dev` and `libmed-tools` provide MED I/O support used by SALOME-generated meshes.
+* `libmumps-dev` and `libscalapack-openmpi-dev` are common solver backends for large, parallel runs.
 
-Metis is a software package for partitioning unstructured graphs, partitioning meshes, and computing fill-reducing orderings of sparse matrices by George Karypis. TELEMAC uses *Metis* as a part of *Partel* to split the mesh into multiple parts for parallel runs. *Metis* is developed by the Karypis Lab at the [University of Minnesota](https://umn.edu/).
+If your release uses "t64" suffixed packages (for example, `libmedc11t64`), accept those names as offered by `apt`. 
 
+````{admonition} What is behind this (for the blue detail lovers)?
+:class: tip, dropdown
 
-Download the *Metis* archive and unpack it in a temporary (`temp`) directory. The following code block changes to the `optionals` directory (`cd`) of TELEMAC, creates the `temp` folder with `mkdir`, downloads, and unzips the *Metis* archive (run in Terminal as ***normal user*** - ***not as root***):
+***Parallelism: MPI and Metis***
 
-```{margin}
-The [Telemac installation wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_metis) points to a software repository containing Metis-v5.1.0 that is hosted on the website of the [Karypis Lab](http://glaros.dtc.umn.edu/gkhome/metis/metis/download), which, however, was not available anymore upon our last update. This is why this eBook provides a Metis v5.1.1 fork from the Karypis Lab's [METIS Github repository](https://github.com/KarypisLab/GKlib.git) at [hydro-informatics/metis](https://github.com/hydro-informatics/metis).
-```
+To not rely on distro packages, the following commands fetch a maintained fork of METIS prepared for TELEMAC builds. Run as a normal user:
 
-To install Metis, use the [hydro-informatics/metis](https://github.com/hydro-informatics/metis) v5.1.1 fork from the Karypis Lab's [METIS Github repository](https://github.com/KarypisLab/METIS), which is tweaked for the Telemac installation:
-
-
-```
+```bash
 cd ~/telemac/optionals
-mkdir metis
 git clone https://github.com/hydro-informatics/metis.git
 cd metis
 ```
 
-This repository also embraces a fork from the Karypis Labs' [GKlib](https://github.com/KarypisLab/GKlib), which still needs to be compiled (starting from the `~/telemac/optionals/metis` folder):
+This repository includes a fork of Karypis Lab’s *GKlib*, which must be built first:
 
-```
+```bash
 cd GKlib
 make config cc=gcc prefix=~/telemac/optionals/metis/GKlib openmp=set
 make
@@ -274,208 +269,145 @@ make install
 cd ..
 ```
 
-Next, adapt the Metis' `Makefile` either with any text editor or the *VIM* text editor (installed earlier through `sudo apt install vim`):
+Edit `~/telemac/optionals/metis/Makefile` and set at the top:
 
-`````{tab-set}
-````{tab-item} Any text editor
-Open the metis `Makefile` (i.e., `~/telemac/optionals/metis/Makefile`) by navigating through your system browser (also known as *Explorer* on Windows) and double-clicking on the *Makefile* (opens, for example, [gedit](https://wiki.gnome.org/Apps/Gedit)). At the top of the Makefile, find `prefix  = not-set` and `cc = not-set` to replace them with:
-
-```
+```bash
 prefix = ~/telemac/optionals/metis/build/
 cc = gcc
 ```
 
-Save and close the Makefile.
+Then build and install Metis:
 
-````
-
-````{tab-item} VIM
-
-```
-vim Makefile
-```
-
-*VIM* opens in the Terminal window and the program may be a little bit confusing to use for someone who is used to *Windows* or *mac OS*. If *VIM*/Terminal asks if you want to continue {**E**}diting, confirm with the `E` key. Then click in the file and enable editing through pressing the `i` key. Now, `-- INSERT --` should be prompted on the bottom of the window. Look for the `prefix  = not-set` and the `cc = not-set` definitions. Click in the corresponding lines and press the `i` key to enable editing (recall: `-- INSERT --` will appear at the bottom of the window). Change both variables to:
-
-```
-prefix = ~/telemac/optionals/metis/build/
-cc = gcc
-```
-
-Press `Esc` to leave the *INSERT* mode and then type `:wq` (the letters are visible on the bottom of the window) to save (write-quit) the file. Hit `Enter` to return to the Terminal.
-
-```{admonition} Troubleshoot typical VIM issues
-:class: dropdown
-
-* **VIM freezes**: Did you hit the `CTRL` + `S` keys, which is intuitive for *Windows* users to save a file, but in *Linux*, it has a different effect? So, you have freezed the window. To unfreeze, simply hit `CTRL` + `Q`
-* **IS `:wq` not working?** Maybe you enabled the *easy mode*. Disable *easy mode* by hitting the `CTRL` + `O` keys.
-* **Are you on a virtual machine or remote desktop?** Check if another keyboard layout is installed on the VM guest / remote machine the host machine /your computer uses.
-```
-
-````
-`````
-
-Back in Terminal, install Metis (make sure to be in the right directory, that is, `~/telemac/optionals/metis/`):
-
-```
+```bash
 make config
 make
 make install
 ```
 
-To verify the successful installation, make sure that the file `~/telemac/optionals/metis/build/lib/libmetis.a` exists (i.e., `<install_path>/lib/libmetis.a` ).
+***HDF5 for MED format handlers***
 
-````{admonition} Debian alternative: apt install libmetis-dev
-:class: tip, dropdown
+**HDF5** is the underlying I/O library used by MED. To compile a specific HDF5 release, configure it to install under a non-system prefix and export paths in your shell profile. Example (adjust version and prefix as needed):
 
-Alternatively, on Debian-based systems, install `libmetis-dev` with: 
-
-```
-sudo apt install libmetis-dev
-```
-
-This package currently provides Metis v5.1.0, but verify the version on [https://packages.debian.org](https://packages.debian.org/sid/libmetis-dev) to be sure having a workable version of Metis available. However, we did not test the integration of Metis in the Telemac installation.
-````
-
-
-(med-hdf)=
-### Hdf5 and MED Format Handlers
-
-***Estimated duration: 15-25 minutes (building libraries takes time).***
-
-**HDF5** is a portable file format that incorporates metadata and communicates efficiently with *C/C++* and *Fortran* on small laptops as well as massively parallel systems. The *hdf5* file library is provided by the [HDFgroup.org](https://portal.hdfgroup.org/). To install it, the manual installation of v1.10.6 is recommended, as the installation with `apt`  installs an incompatible HDF version with Telemac
-use the system package manger `apt`: 
-
-
-`````{tab-set}
-````{tab-item} HDF installation from source
-
-Retrieve the package and install it (Terminal):
-
-```
-wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.6/src/hdf5-1.10.6.tar.gz
-tar -xvf hdf5-1.10.6.tar.gz
-cd hdf5-1.10.6
-./configure --prefix=/usr/local/hdf5 
+```bash
+# build as a normal user
+./configure --prefix=$HOME/opt/hdf5
 make
 make install
-```
 
-To add this installation to the system paths, open your (hidden) user `.bashrc` file (`/home/<user>/.bashrc`) and add the following (text editor):
-
-```
-export PATH=/usr/local/hdf5-1.10.6/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/hdf5-1.10.6/lib:$LD_LIBRARY_PATH
-```
-
-To use these paths immediately, enter (Terminal):
-
-```
+# add to your environment
+echo 'export PATH=$HOME/opt/hdf5/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=$HOME/opt/hdf5/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
 source ~/.bashrc
-```
 
-Test with (Terminal):
-
-```
+# verify
 h5cc -showconfig
 ```
-````
 
-````{tab-item} HDF installtion with apt (not tested)
+***MED file library***
 
-```{admonition} Untested workflow!
-:class: warning
+The MED library (from the {ref}`SALOME <salome-install>` ecosystem) provides mesh/result I/O used by many TELEMAC workflows. To build MED yourself, ensure its HDF5 version matches the one used at compile time and disable Python bindings unless you also satisfy the required SWIG/Python headers. Then build it:
 
-We could not yet verify the integrity of this installation step. So this might be incompatible with Telemac.
-```
-
-Install the following packages, binding them to v1.10.6 (Terminal):
-
-```
-sudo apt install libhdf5-dev=1.10.6 hdf5-tools=1.10.6
-```
-````
-`````
-
-***MED FILE LIBRARY:*** The *med file* library is provided by [salome-platform.org](https://salome-platform.org/) and since recently, there is an option install MED through `apt` although we could not yet test how this works with Telemac.
-
-
-`````{tab-set}
-
-````{tab-item} MED installation from source
-and we need to use the file ([med-4.1.1.tar.gz](http://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz) to ensure compatibility with *hdf5*. So do not try to use any other *med file* library version because those will not work properly with hdf5. Moreover, the *med file* library requires that *zlib* is installed. To install *zlib* open Terminal and type:
-
-```
-sudo apt-cache search zlib | grep -i zlib
-sudo apt install zlib1g zlib1g-dev
-```
-
-The following command block, switches to the above-created `temp` folder, downloads, and unzips the *med-4.1.1* archive (run in Terminal as ***normal user*** - ***not as root***):
-
-
-```
-cd ~/telemac/optionals/temp
-wget --referer'https://www.salome-platform.org/?page_id=2768''https://files.salome-platform.org/Salome/medfile/med-4.1.1.tar.gz'
-gunzip med-4.1.1.tar.gz
-tar -xvf med-4.1.1.tar
-cd med-4.1.1
-```
-
-To compile the *med file* library type:
-
-```
-./configure --prefix=/home/USERNAME/telemac/optionals/med-4.1.1 --disable-python
+```bash
+./configure --prefix=$HOME/telemac/optionals/med-4.1.1 --disable-python
 make
 make install
 ```
 
-The flag `--prefix` sets the installation directory defines where the med library should be installed.
+Notes:
+* `--disable-python` avoids SWIG version conflicts; enabling Python requires matching `python3-dev` headers and a compatible SWIG release.
+* MED version compatibility with your HDF5 build is critical; mixing system HDF5 with a custom-built MED (or vice versa) frequently breaks TELEMAC I/O.
 
+If you created temporary build directories, you can remove them:
 
-```{admonition} Why *--disable-python*?
-:class: note, dropdown
-We need to disable Python for the *med file* library because this feature would require *SWIG* version 2.0 and it is not compatible with the current versions of *SWIG* (4.x). Because *SWIG* has no full backward compatibility, the only option is to disable Python integrity for the *med file* library. Otherwise, Python integrity could be implemented by installing Python developer kits ( `sudo apt install python3-dev`  and  `sudo apt install python3.7-dev` ) and using the configuration `./configure --with-hdf5=/home/USERNAME/Telemac/hdf5 PYTHON_LDFLAGS='-lpython3.7m' --with-swig=yes`. To find out what version of Python is installed, type `python -V`.
-```
-
-
-The installation of the *med file* library on Linux is also documented in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_med).
-
-```{admonition} Permission denied?
-:class: attention, dropdown
-If you consistently get ***permission denied*** messages, you are probably installing Telemac in a directory where you should not install it. If your are sure about the ownership of the installation directory, you may unlock all read and write rights for the `telemac` directory with the following command: `sudo -R 777  /home/USERNAME/telemac` (replace `USERNAME` with the user for whom TELEMAC is installed).
-```
-
-````
-
-````{tab-item} MED installation with apt (not tested)
-
-```{admonition} Untested workflow!
-:class: warning
-
-We could not yet verify the integrity of this installation step. So this might be incompatible with Telemac.
-```
-
-The following packages are available through `apt`, and can potentiall work with Telemac:
-
-* `libmed1v5`: MED file library runtime
-* `libmed-dev`: development files for the MED library
-* `libmedc1v5` and `libmedc-dev`: C bindings for the MED library
-
-To install them, enter (Terminal):
-
-```
-sudo apt install libmed1v5 libmed-dev libmedc1v5 libmedc-dev
-```
-````
-
-`````
-
-If created, **remove the `temp` folder** to avoid storing garbage:
-
-```
+```bash
 cd ~/telemac/optionals
-sudo rm -r temp
+rm -rf temp
 ```
+````
+
+````{admonition} Verify installations
+:class: tip
+
+Test headers (Ubuntu/Mint):
+
+```bash
+test -d /usr/lib/x86_64-linux-gnu/openmpi/include && echo "OK: Open MPI headers"
+test -d /usr/include/hdf5/openmpi && echo "OK: HDF5 (OpenMPI) headers"
+```
+
+Test that libraries resolve:
+
+```bash
+ldconfig -p | grep -E 'libmpi\.so|libmedC\.so|libmed\.so|libmetis\.so|libhdf5_openmpi\.so|libhdf5_serial\.so|libhdf5\.so'
+```
+
+Test MPI compiler wrappers:
+
+```bash
+mpif90 --help || true
+mpifort --showme:compile --showme:link
+```
+
+You should see Fortran options reported by the MPI wrappers. For a quick runtime check:
+
+```bash
+mpirun -n 2 /bin/true && echo "OK: mpirun executes"
+```
+
+Additional MPI installation notes are available in the [opentelemac wiki](http://wiki.opentelemac.org/doku.php?id=installation_linux_mpi).
+````
+
+
+(salome-install)=
+### SALOME
+
+This workflow explains the installation of SALOME on Linux Mint / Ubuntu.
+
+1. Confirm your Ubuntu version: 
+   * Mint: `lsb_release -a`
+   * Ubuntu: `inxi -Sx` (also works on Mint)
+
+2. Download the SALOME build
+   * Go to the [official SALOME download form](https://www.salome-platform.org/?page_id=2430) 
+   * Pick the latest version with the Ubuntu build (that matches the Mint base); or pick the less frequently updated "Linux Universal"
+
+3. Verify the checksum: from SALOME's md5 page, fetch the matching `.md5` file for your archive and verify locally
+   * Example for the 9.15 tarball: `md5sum SALOME-9.15.0.tar.gz`
+   * Compare with "SALOME-9.15.0.tar.gz.md5" from the [md5 page](https://www.salome-platform.org/?page_id=2818) - **don't skip this**
+
+4. Extract somewhere clean and sane; for example as `sudo` for the entire system (adjust name if you chose a different archive), or following this workflow fow installing TELEMAC in `/home/HyInfo/opt/`:
+  
+    ```bash
+    mkdir -p /home/HyInfo/opt/salome
+    tar -xzf ~/Downloads/SALOME-9.15.0.tar.gz -C /opt/salome-9.15 --strip-components=1
+    chown -R "$USER":"$USER" /home/HyInfo/opt/salome
+    ```
+
+5. Let SALOME check your system and install what it asks for
+   * From inside the extracted SALOME directory, identify the application name
+   ```bash
+   cd /home/HyInfo/opt/salome/sat
+   ./sat config SALOME-9.15.0 config --list
+   ```
+   * Use the provided application name; the following descriptions assume the application name is `SALOME-9.15.0-native`
+   * Run the built-in checker; it prints what packages might be missing:
+   ```bash
+   cd /home/HyInfo/opt/salome/sat
+   ./sat config SALOME-9.15.0-native --check_system
+   ```
+   * Install the packages it lists via `apt`, then rerun the check until it is clean.
+
+6. Make sure 3D/OpenGL is OK: verify the proper driver stack (especially for NVIDIA) before launching; read more on [SALOME PLATFORM FAQ](https://www.salome-platform.org/?page_id=428)
+
+7. Launch SALOME from the SALOME folder:
+  * if in the `/sat` subfolder first type `cd ..`
+  * run salome: `./salome`
+
+If you hit permission errors, make sure you extracted to a location you own or fix ownership. Some users ran into issues trying odd locations or WSL; stick to a normal filesystem path you control.
+
+There is also a container option: one can run SALOME via Docker/Apptainer, but ParaViS/ParaView acceleration inside containers is notoriously buggy and often breaks; the SALOME forum documents rendering issues in Docker.
+
+
 
 (compile-tm)=
 ## Compile TELEMAC
@@ -485,90 +417,307 @@ sudo rm -r temp
 ***Estimated duration: 2-20 minutes.***
 
 
-Two options are described in this section for setting up a configuration file: (i) a modification (reduced module availability) of the default-available `~/telemac/configs/systel.edf.cgf` configuration file, and (ii) extended descriptions for setting up a custom configuration file. Option (i) provides a powerful HPC environment, but does not include the installation of the excludes [AED2 (waqtel)](http://wiki.opentelemac.org/doku.php?id=installation_linux_aed), [MUMPS](http://mumps.enseeiht.fr/), and [GOTM (general ocean)](http://wiki.opentelemac.org/doku.php?id=installation_linux_gotm) modules.
+The `systel.x.cfg` file tells TELEMAC how to compile and launch its modules on your computer. More specifically, it is TELEMAC's central configuration that defines builds and runtime environments, including compilers, compiler flags, MPI and related options, external libraries, and paths. In practice we use this file to declare flags and to point TELEMAC to optional dependencies. By default, TELEMAC looks for configuration files under `./configs/` (for example `configs/systel.cfg`), and one can override the path with the `SYSTELCFG` environment variable or the `-f` option of the Python launcher.
+
+This section describes the setup of `systel.x.cfg` for:
+
+* Linux Mint 22 (tested) and Ubuntu 24.04 (expected to be identical, not yet tested)
+* Debian 12 (testing in progress)
+
+Recall that we describe the single-user installation of TELEMAC under the local home directory `/home/HyInfo/opt/telemac-mascaret` and that we installed SALOME in `/home/HyInfo/opt/salome`. 
+
+Note that we did not enable the API, nor the [AED2 (waqtel)](http://wiki.opentelemac.org/doku.php?id=installation_linux_aed) and [GOTM (general ocean)](http://wiki.opentelemac.org/doku.php?id=installation_linux_gotm) modules.
+
+Our `cfg` and `pysource` files define a single build (e.g., `hyinfompiubu` on Mint / Ubuntu) for {{ tm }}, enabling `mpi` and `dyn` options and using GNU compilers (`cc=mpicc`, `fc=mpifort` backed by `gfortran`). External libraries are linked via include and library blocks for **OpenMPI, HDF5, MED** (via {ref}`SALOME <salome-install>`), **METIS, and MUMPS** with ScaLAPACK, BLAS, and LAPACK. RPATH entries are added so the runtime can locate HDF5 and related libraries, using paths that match typical Debian and Ubuntu layouts.
+
 
 `````{tab-set}
-````{tab-item} EDF Template
+````{tab-item} Mint 22 / Ubuntu 24
 
-To facilitate setting up the `systel` file, use our edf-based template: right-click on [this download of systel.edfHy.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/edf/systel.edfHy.cfg) > *Save Link As...* > `~/telemac/configs/systel.edfHy.cfg`, which was tested on Debian 10, Debian 11, and Linux Mint 21.3.
+The following configuration provides a TELEMAC configuration called **hyinfompiubu**. It  enables optimized core flags, position-independent builds, and big-endian unformatted I/O with modified record markers, plus MPI settings on Linux Mint 22 / Ubuntu 24.04. Executables are launched with `mpirun -np <ncsize>`, and meshes are partitioned using `partel`. Build artifacts are placed under `<root>/builds/hyinfompiubu/{bin,lib,obj}`, and the file also defines suffixes, validation paths, and Python F2PY settings (`f2py`, `gnu95`).
 
-The `systel.edfHy.cfg` is designed to be used with the `S10.gfortran.dyn` configuration, for which we removed all dependencies of AED2, MUMPS, and GOTM. That is, none of the flags `[flags_mumps] [flags_aed] [flags_gotm]` is enabled and they were removed from the `S10.gfortran.dyn` configuration, which is fully sufficient for running the {ref}`Telemac tutorials <chpt-telemac>` in this eBook.
+To use it for compiling TELEMAC:
 
-```{admonition} How to add AED2, MUMPS, and GOTM
-:class: warning
+1. Download [systel.mint22.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/ubuntu24-mint22/systel.mint22.cfg) from our GitHub repository, or copy the file contents below into the TELEMAC `/configs` folder, here: `/home/HyInfo/opt/telemac-mascaret/configs`.
+2. Open `systel.mint22.cfg` in a text editor (e.g., gedit) and replace the two `/home/HyInfo/opt/salome` path intances with your SALOME installation path.
+3. Verify installation paths of optionals, especially HDF5, MED, and Mumps.
+4. Save `systel.mint22.cfg` and close the text editor.
 
-To add AED2, MUMPS, and GOTM functionality install the corresponding modules in the `optionals/` directory and use the default `systel.edf.cfg` configuration file. The installation of AED2, MUMPS, and GOTM is described in the [Telemac installation wiki](http://wiki.opentelemac.org/doku.php?id=installation_on_linux), though not straight forward because multiple links and additional dependencies are outdated.
+
+```bash
+# _____                              _______________________________
+# ____/ TELEMAC Project Definitions /______________________________/
+#
+[Configurations]
+configs: hyinfompiubu
+#
+# _____          _________________________________________________
+# ____/ General /_________________________________________________/
+#
+[general]
+language: 2
+modules:  system
+version:  9.0
+options:  mpi dyn
+hash_char: #
+# Suffixes
+sfx_zip:  .tar.gz
+sfx_lib:  .a
+sfx_obj:  .o
+sfx_exe:
+sfx_mod:  .mod
+# Validation paths
+val_root:      <root>/examples
+val_rank:      all
+# Compilers
+cc:      mpicc
+cflags:  -fPIC -O3
+fc:      mpifort
+# Core Fortran flags; TELEMAC expects big-endian unformatted files
+fflags:  -cpp -O3 -fPIC -fconvert=big-endian -frecord-marker=4 -DHAVE_MPI
+# Build commands
+cmd_obj_c: [cc] [cflags] -c <srcName> -o <objName>
+cmd_obj:   [fc] [fflags] -c <mods> <incs> <f95name>
+cmd_lib:   ar cru <libname> <objs>
+cmd_exe:   [fc] [fflags] -o <exename> <objs> <libs>
+# Splitter and MPI run
+par_cmdexec:   <config>/partel < <partel.par> >> <partel.log>
+mpi_cmdexec:   mpirun -np <ncsize> <exename>
+mpi_hosts:
+# ----- Optional library blocks merged in libs_all / incs_all -----
+# OpenMPI include dir (Ubuntu 24.04)
+inc_mpi:       -I /usr/lib/x86_64-linux-gnu/openmpi/include
+# HDF5 (Ubuntu serial headers; change to /usr/include/hdf5/openmpi if using libhdf5-openmpi-dev)
+inc_hdf5:  -I /usr/include/hdf5/openmpi
+libs_hdf5: -L /usr/lib/x86_64-linux-gnu/hdf5/openmpi -lhdf5_fortran -lhdf5hl_fortran -lhdf5_hl -lhdf5
+ldflags_opt:   -Wl,-rpath,/usr/lib/x86_64-linux-gnu/hdf5/openmpi
+ldflags_debug: -Wl,-rpath,/usr/lib/x86_64-linux-gnu/hdf5/openmpi
+
+# MED (from SALOME packages)
+inc_med:       -I /home/HyInfo/opt/salome/BINARIES-UB24.04/medfile/include
+libs_med:      -L /home/HyInfo/opt/salome/BINARIES-UB24.04/medfile/lib -lmedC -lmed -lmedimport
+# METIS
+inc_metis:     -I /usr/include
+libs_metis:    -L /usr/lib/x86_64-linux-gnu -lmetis
+# MUMPS + ScaLAPACK (MPI build)
+inc_mumps:     -I /usr/include
+libs_mumps:    -L /usr/lib/x86_64-linux-gnu -ldmumps -lmumps_common -lpord -lscalapack-openmpi -lblas -llapack
+# Aggregate include and library flags
+incs_all: [inc_mpi] [inc_hdf5] [inc_med] [inc_metis] [inc_mumps]
+libs_all: [libs_hdf5] [libs_med] [libs_metis] [libs_mumps]
+
+# ===== Build section =====
+[hyinfompiubu]
+brief: Ubuntu 24.04 gfortran + OpenMPI + MED/HDF5 + METIS + MUMPS/ScaLAPACK
+system: linux
+mpi:   openmpi
+compiler: gfortran
+pyd_fcompiler: gnu95
+f2py_name: f2py
+# build tree under <root>=HOMETEL
+bin_dir: <root>/builds/hyinfompiubu/bin
+lib_dir: <root>/builds/hyinfompiubu/lib
+obj_dir: <root>/builds/hyinfompiubu/obj
+# override/extend general flags if needed
+options: mpi dyn
+cmd_obj:   [fc] [fflags] -c <mods> <incs> <f95name>
+cmd_lib:   ar cru <libname> <objs>
+cmd_exe:   [fc] [fflags] -o <exename> <objs> <libs>
+# inherit mods_all/incs_all/libs_all from [general]
+mods_all:  -I <config>
 ```
 ````
 
-````{tab-item} Custom Setup
+````{tab-item} Debian 12
 
-```{admonition} Python API Not Set Up
-:class: warning
+The following configuration provides a TELEMAC configuration called **hyinfompideb12**. It enables optimized core flags, position-independent builds, and big-endian unformatted I/O with modified record markers, plus MPI settings on Debian 12. Executables are launched with `mpirun -np <ncsize>`, and meshes are partitioned using `partel`. Build artifacts are placed under `<root>/builds/hyinfompideb12/{bin,lib,obj}`, and the file also defines suffixes, validation paths, and Python F2PY settings (`f2py`, `gnu95`).
 
-The following descriptions for setting up a custom `systel.X.cfg` configuration file do not enable Telemac's Python API. For enabling the Python API, follow the template-based installation instructions, or use `systel.edf.cfg`.
+To use it for compiling TELEMAC:
+
+1. Download [systel.debian12.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian12/systel.debian12.cfg) from our GitHub repository, or copy the file contents below into the TELEMAC `/configs` folder, here: `/home/HyInfo/opt/telemac-mascaret/configs`.
+2. Open `systel.debian12.cfg` in a text editor (e.g., gedit) and replace the two `/home/HyInfo/opt/salome` path intances with your SALOME installation path.
+3. Verify installation paths of optionals, especially HDF5, MED, and Mumps.
+4. Save `systel.debian12.cfg` and close the text editor.
+
+Where packages typically live on Debian 12:
+
+* OpenMPI wrappers and launcher: `/usr/bin/mpifort`, `/usr/bin/mpicc`, `/usr/bin/mpirun` or `/usr/bin/mpiexec`. 
+* Parallel HDF5: headers are in `/usr/include/hdf5/openmpi`, libs in `/usr/lib/x86_64-linux-gnu/hdf5/openmpi` via `libhdf5-openmpi-dev`. 
+* METIS/ParMETIS: headers are in `/usr/include`; libs in `/usr/lib/x86_64-linux-gnu`.
+
+```bash
+# _____                              _______________________________
+# ____/ TELEMAC Project Definitions /______________________________/
+#
+[Configurations]
+configs: hyinfompideb12
+#
+# _____          _________________________________________________
+# ____/ General /_________________________________________________/
+#
+[general]
+language: 2
+modules:  system
+version:  9.0
+options:  mpi dyn
+hash_char: #
+# Suffixes
+sfx_zip:  .tar.gz
+sfx_lib:  .a
+sfx_obj:  .o
+sfx_exe:
+sfx_mod:  .mod
+# Validation paths
+val_root:      <root>/examples
+val_rank:      all
+# Compilers (use MPI wrappers on Debian 12/OpenMPI)
+cc:      mpicc
+cflags:  -fPIC -O3
+fc:      mpifort
+# Core Fortran flags; TELEMAC expects big-endian unformatted files
+fflags:  -cpp -O3 -fPIC -fconvert=big-endian -frecord-marker=4 -DHAVE_MPI
+# Build commands
+cmd_obj_c: [cc] [cflags] -c <srcName> -o <objName>
+cmd_obj:   [fc] [fflags] -c <mods> <incs> <f95name>
+cmd_lib:   ar cru <libname> <objs>
+cmd_exe:   [fc] [fflags] -o <exename> <objs> <libs>
+# Splitter and MPI run
+par_cmdexec:   <config>/partel < <partel.par> >> <partel.log>
+mpi_cmdexec:   mpirun -np <ncsize> <exename>
+
+# ===== Common includes/libs for Debian 12 (OpenMPI / HDF5-openmpi / MED / METIS / MUMPS / ScaLAPACK) =====
+# MPI headers (OpenMPI)
+inc_mpi:       -I /usr/lib/x86_64-linux-gnu/openmpi/include
+
+# HDF5 parallel (from libhdf5-openmpi-dev)
+inc_hdf5:      -I /usr/include/hdf5/openmpi
+libs_hdf5:     -L /usr/lib/x86_64-linux-gnu/hdf5/openmpi -lhdf5_fortran -lhdf5hl_fortran -lhdf5_hl -lhdf5
+
+# MED-fichier (from SALOME)
+inc_med:       -I /home/HyInfo/opt/salome/BINARIES-UB24.04/medfile/include
+libs_med:      -L /home/HyInfo/opt/salome/BINARIES-UB24.04/medfile/lib -lmedC -lmed -lmedimport
+
+# METIS (from libmetis-dev)
+inc_metis:     -I /usr/include
+libs_metis:    -L /usr/lib/x86_64-linux-gnu -lmetis
+
+# MUMPS + ScaLAPACK (OpenMPI build)
+inc_mumps:     -I /usr/include
+libs_mumps:    -L /usr/lib/x86_64-linux-gnu -ldmumps -lmumps_common -lpord -lscalapack-openmpi -lblas -llapack
+
+# Aggregate libraries used by TELEMAC link step
+libs_all: [libs_hdf5] [libs_med] [libs_metis] [libs_mumps]
+
+# ===== Build section =====
+[hyinfompideb12]
+brief: Debian 12 gfortran + OpenMPI + MED/HDF5 + METIS + MUMPS/ScaLAPACK
+system: linux
+mpi:   openmpi
+compiler: gfortran
+pyd_fcompiler: gnu95
+f2py_name: f2py
+# Build tree under <root>=HOMETEL
+bin_dir: <root>/builds/hyinfompideb12/bin
+lib_dir: <root>/builds/hyinfompideb12/lib
+obj_dir: <root>/builds/hyinfompideb12/obj
+# Override/extend general flags if needed
+options: mpi dyn
+cmd_obj:   [fc] [fflags] -c <mods> <incs> <f95name>
+cmd_lib:   ar cru <libname> <objs>
+cmd_exe:   [fc] [fflags] -o <exename> <objs> <libs>
+# Inherit mods_all/incs_all/libs_all from [general]
+mods_all:  -I <config>
+incs_all:  [inc_mpi] [inc_hdf5] [inc_med] [inc_metis] [inc_mumps]
+libs_all:  [libs_hdf5] [libs_med] [libs_metis] [libs_mumps]
+# rpath for HDF5-openmpi so executables run without extra env
+ldflags_opt:   -Wl,-rpath,/usr/lib/x86_64-linux-gnu/hdf5/openmpi
+ldflags_debug: -Wl,-rpath,/usr/lib/x86_64-linux-gnu/hdf5/openmpi
 ```
+````
 
-The configuration file will tell the compiler how flags are defined and where optional software lives. Here, we use the configuration file `systel.cis-debian.cfg`, which lives in `~/telemac/configs/`. In particular, we are interested in the following section of the file:
+````{tab-item} Customization
 
-```fortran
+The following explanations provide guidance on customizing a `cfg` file and reference available templates in TELEMAC's `/configs` folder. These instructions are intended for users who did not use apt-installations of OpenMPI, MUMPS, Metis, and HDF5 (see info box in the {ref}`installation instructions for optionals <tm-system-wide-opts>`.
+
+A typical `systel.*.cfg` file has:
+1. An optional `[Configurations]` list enumerating available build sections.
+2. A `[general]` section with defaults.
+3. One or more build sections like `[debgfopenmpi]` that inherit from `[general]` and override specifics. TELEMAC ships example configs such as `systel.edf.cfg` with these patterns.
+
+**Finding and selecting the right config template:**
+* TELEMAC ships example config files in `<root>/configs` (e.g., `systel.edf.cfg`) with parallel/debug sections for GNU/Intel; copy and adapt one for Debian 12. 
+* The Python launcher reads the active section from your `systel.*.cfg`; ensure `USETELCFG` points to `[debgfopenmpi]` (or your chosen section). 
+
+A raw OpenMPI/gfortran section in the `cfg` file might look like this for a newly defined configuration called `debgfopenmpi`:
+
+```bash
 # _____                          ___________________________________
-# ____/ Debian gfortran openMPI /__________________________________/
+# ____/ Debian gfortran OpenMPI /__________________________________/
 [debgfopenmpi]
-#
-par_cmdexec:   <config>/partel < partel.par >> <partel.log>
-#
-mpi_cmdexec:   /usr/bin/mpiexec -wdir <wdir> -n <ncsize> <exename>
-mpi_hosts:
-#
-cmd_obj:    /usr/bin/mpif90 -c -O3 -DHAVE_MPI -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>
+
+par_cmdexec:   <config>/partel < <partel.par> >> <partel.log>
+mpi_cmdexec:   /usr/bin/mpirun -wdir <wdir> -np <ncsize> <exename>
+
+cmd_obj:    /usr/bin/mpifort -cpp -c -O3 -DHAVE_MPI -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>
 cmd_lib:    ar cru <libname> <objs>
-cmd_exe:    /usr/bin/mpif90 -fconvert=big-endian -frecord-marker=4 -lpthread -v -lm -o <exename> <objs> <libs>
-#
+cmd_exe:    /usr/bin/mpifort -fconvert=big-endian -frecord-marker=4 -lpthread -v -lm -o <exename> <objs> <libs>
+
 mods_all:   -I <config>
-#
-libs_all:   /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so /home/telemac/metis/build/lib/libmetis.a
+
+incs_all:   -I /usr/include/hdf5/openmpi -I /usr/include
+libs_all:   -L /usr/lib/x86_64-linux-gnu/hdf5/openmpi -lhdf5_fortran -lhdf5hl_fortran -lhdf5_hl -lhdf5 \
+            -L /usr/lib/x86_64-linux-gnu -lmetis
 ```
 
+The Debian 12 OpenMPI + gfortran section still uses OpenMPI's wrapper compilers and do not hard-code MPI include or library paths into `libs_all` unless you have an unusual local build. The wrappers inject the right headers and libraries.
 
-The configuration file contains other configurations such as a *scalar* or a *debug* configuration for compiling TELEMAC. Here, we only use the *Debian gfortran open MPI* section that has the configuration name `[debgfopenmpi]`. To verify if this section if correctly defined, check where the following libraries live on your system (use Terminal and `cd` + `ls` commands or Debian's *File* browser):
+**Important keys:**:
+ 
+* `par_cmdexec` tells TELEMAC which command to use to split your mesh for a parallel run. `partel` is the splitter; the redirection `< <partel.par>` feeds it its parameter file and the `>> <partel.log>` collects its output. You keep this line to enable parallel execution; removing it breaks splitting and yields "PARTEL.PAR not found" or similar errors. The official Linux install notes require a partitioner for parallel builds. 
+* `mpi_cmdexec` is the runtime launcher. On Debian 12 both `/usr/bin/mpirun` and `/usr/bin/mpiexec` are provided by OpenMPI packages and are equivalent for our purposes. The `<wdir>` placeholder is the working directory; `<ncsize>` is the number of MPI ranks; `<exename>` is the produced solver. 
+* `cmd_obj`, `cmd_lib`, `cmd_exe` define the exact compile, archive, and link commands. One can call `mpifort` rather than `gfortran`; the wrapper inserts the correct MPI headers and libs for the OpenMPI you have installed. This avoids brittle hardcoding of `-I/usr/lib/.../openmpi/include` or `-lmpi` with a specific SONAME. Open MPI strongly encourages this practice because the flags vary by build and package.
+* `mods_all` appends include paths for module files that TELEMAC generates during compilation; pointing it at `<config>` exposes interfaces between components.
+* `incs_all` and `libs_all` are where you add non-MPI optionals you actually enabled such as AED2, MED, METIS, HDF5. Leave pure MPI out of these; let the wrapper handle MPI.
 
-* *Open MPI*'s *include* folder is typically located in `/usr/lib/x86_64-linux-gnu/openmpi/include`
-* *Open MPI* library typically lives in `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so`<br>The number **40.20.3** may need to be added after **libmpi.so** when your system is based on Debian 10.
-* *mpiexec* is typically installed in `/usr/bin/mpiexec`
-* *mpif90* is typically installed in `/usr/bin/mpif90`
-* If installed, *AED2* typically lives in `~/telemac/optionals/aed2/`, which should contain the file `libaed2.a` (among others) and the folders *include*, *obj*, and *src*.
+**Important compiler flags:**
+* `-cpp` enables preprocessing of Fortran sources so `#include`, `#if`, and `#define` work. TELEMAC sources use conditional compilation; without preprocessing those directives are ignored and compilation may fail. Any modern Fortran compiler with a C-like preprocessor accepts this form.
+* `-DNAME` macros such as `-DHAVE_MPI` or `-DHAVE_AED2` define preprocessor symbols that the source checks in `#ifdef` blocks to compile the correct code paths. You only add `-DHAVE_AED2` if AED2 is present. The `-D` mechanism is standard across compilers. 
+* `-fconvert=big-endian` and `-frecord-marker=4` control unformatted file byte order and record markers so binaries from different compilers and platforms remain compatible with TELEMAC’s I/O expectations and legacy files. GNU Fortran documents these options; the default record marker is 4 bytes and the `-fconvert` setting affects the representation of unformatted records. Use these flags consistently across compile and run for reproducible unformatted I/O.
+* `-O3` is a standard high optimization for release builds. Safe with gfortran and TELEMAC's code base.
 
-Then open the configuration file in *VIM* (or any other text editor) to verify and adapt the *Debian gfortran open MPI* section:
 
-```
-cd ~/telemac/configs
-vim systel.edfHy.cfg
-```
+**General notes:**
+* Use `mpifort` (or `mpif90` symlink) and avoid hard-coding `libmpi.so` or MPI include paths. Open MPI's wrapper compilers inject the correct `-I`/`-L`/`-l` automatically; avoid adding MPI headers/libs to `incs_all`/`libs_all`.
+* `mpirun` and `mpiexec` are valid launchers on Debian 12; use whichever you prefer.
+* METIS/ParMETIS: use shared libs (`-lmetis`, `-lparmetis`) instead of hard-coding a static `.a` in your home directory, where headers are in `/usr/include`; libs in `/usr/lib/x86_64-linux-gnu`.
 
-```{admonition} Enable Parallelism
-:name: parcmd
-Make the following adaptations in *Debian gfortran open MPI* section to enable parallelism:
+**Common pitfalls:**
+* Do not remove `par_cmdexec` to "fix" PARTEL errors. Check that `<partel.par>` is produced and that METIS is available if you requested parallel runs. TELEMAC's docs emphasize a partitioner is required for parallelism.
+* Do not pin `libs_all` to a literal `.../openmpi/libmpi.so` or to a SONAME. Wrapper compilers exist precisely to avoid this; SONAMEs and link lines differ by OpenMPI build.
+* Add optional libraries only when you actually enabled the feature and know the headers and libs exist. Example for AED2 built under your home directory:  
+   `incs_all: [..existing..] -I $HOME/telemac/optionals/aed2/include`  
+   `libs_all: [..existing..] -L $HOME/telemac/optionals/aed2 -laed2`  
+   Leave MPI out of those lists; the wrapper adds MPI. 
 
-* Remove `par_cmdexec` from the configuration file; that means delete the line (otherwise, parallel processing will crash with a message that says *cannot find PARTEL.PAR*):<br>`par_cmdexec:   <config>/partel < PARTEL.PAR >> <partel.log>`
-* Find `libs_all` to add and adapt the following items:
-    + *metis* (all *metis*-related directories to `/home/USERNAME/telemac/optionals/metis/build/lib/libmetis.a`).
-    + *openmpi* (correct the library file to `/usr/lib/x86_64-linux-gnu/openmpi/libmpi.so` or wherever `libmpi.so.xx.xx.x` lives on your machine).
-    + *aed2* (`~/telemac/optionals/aed2/libaed2.a`).
 
-`libs_all:    /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so /home/USERNAME/telemac/optionals/metis/build/lib/libmetis.a /home/USERNAME/telemac/optionals/aed2/libaed2.a`
+If you enable optionals, add only those to `incs_all`/`libs_all` (use specific links for manually installed packages):
+* METIS (for PARTEL mesh partitioning)  
+   `incs_all: [inc_metis]` with `inc_metis: -I /usr/include`  
+   `libs_all: [libs_metis]` with `libs_metis: -L /usr/lib/x86_64-linux-gnu -lmetis` 
+* AED2 (if you built it under `~/telemac/optionals/aed2/`)  
+   Add `-DHAVE_AED2` to `cmd_obj` and include/lib paths to your AED2 install, for example:  
+   `incs_all: -I <config> -I $HOME/telemac/optionals/aed2/include`  
+   `libs_all: -L $HOME/telemac/optionals/aed2 -laed2`  
+   Leave MPI out of these lists; the wrapper adds MPI.
+* Parallel HDF5 and MED (if you use Serafin/SELAFIN MED I/O in your build)  
+   Example flags:  
+   `incs_all: [..existing..] -I /usr/include/hdf5/openmpi -I /usr/include`  
+   `libs_all: [..existing..] -L /usr/lib/x86_64-linux-gnu/hdf5/openmpi -lhdf5_fortran -lhdf5hl_fortran -lhdf5_hl -lhdf5 -L /usr/lib/x86_64-linux-gnu -lmedC -lmed`
 
-* Add the `incs_all` variable to point include *openmpi* and *aed2*:
-
-`incs_all: -I /usr/lib/x86_64-linux-gnu/openmpi/include -I /home/USERNAME/telemac/optionals/aed2 -I /home/USERNAME/telemac/optionals/aed2/include`
-
-* Search for *openmpi* in `libs_all` and
-* Search for `cmd_obj:` definitions, add `-cpp` in front of the `-c` flags, and `-DHAVE_AED2`. For example:
-
-`cmd_obj:    /usr/bin/mpif90 -cpp -c -O3 -DHAVE_AED2 -DHAVE_MPI -fconvert=big-endian -frecord-marker=4 <mods> <incs> <f95name>`
-
-An additional keyword in the configurations is `options:` that accepts multiple keywords including `mpi`, `api` (*TelApy* - *TELEMAC's Python API*), `hpc`, and `dyn` or `static`. The provided `cfg` file primarily uses the `mpi` keyword. To use other installation options (e.g., HPC or dynamic), read the instructions for HPC installation on [opentelemac.org](http://wiki.opentelemac.org/doku.php?id=installation_on_linux) and have a look at the most advanced default config file from EDF (`~/telemac/configs/systel.edf.cfg`).
-```
+**Checklist before compiling:**
+1. `mpifort -show` prints a `gfortran` link line that already contains MPI libs. If it does not, OpenMPI dev packages are missing.
+2. If using parallel HDF5, `h5pfc -show` exists and shows `.../hdf5/openmpi` in its output; otherwise install `libhdf5-openmpi-dev`.
+3. The chosen `.cfg` section name is the one exported in `USETELCFG`. The TELEMAC Python scripts will refuse to build if that section is absent. 
 ````
 `````
 
@@ -577,116 +726,346 @@ An additional keyword in the configurations is `options:` that accepts multiple 
 
 ***Estimated duration: 4-20 minutes.***
 
-A Python source file lives in `~/telemac/configs`, where also a template called `pysource.template.sh` is available. This section guides through either using our `pysource.gfortranHPC.sh` (without AED2 and MUMPS), or a custom source file.
+The Python source file also lives in TELEMAC's `/configs` folder, where a template called `pysource.template.sh` is available. Specifically, the pysource file is a shell "env" script that one can `source` in every terminal before building or running TELEMAC. It sets four anchors the Python launcher uses: `HOMETEL`, `SYSTELCFG`, `USETELCFG`, and `SOURCEFILE`. TELEMAC's Python scripts look up `SYSTELCFG` and selects the section named in `USETELCFG`. This section guides through either using our `pysource.mint22.sh` / `pysource.debian12.sh` (without AED2), or a customized source file.
 
 `````{tab-set}
-````{tab-item} Template Usage
+````{tab-item} Mint 22 / Ubuntu 24
 
-To facilitate setting up the `pysource.gfortranHPC.sh` file, our template is designed for use with the above-described `systel.edfHy.cfg` configuration file, and it is  based on the default-provided `pysource.template.sh`. Either [download pysource.gfortranHPC.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/edf/pysource.gfortranHPC.sh) > *Save Link As...* > `~/telemac/configs/pysource.gfortranHPC.sh` or create a new pysource file with the following contents:
+To facilitate setting up the `pysource.mint22.sh` file on Linux Mint 22 / Ubuntu 24, our template is designed for use with the above-described `systel.mint22.cfg` configuration file, and it is  based on the default-provided `pysource.template.sh`. To use it for compiling TELEMAC:
 
+1. Download [pysource.mint22.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/ubuntu24-mint22/pysource.mint22.sh) from our GitHub repository, or copy the file contents below into the TELEMAC `/configs` folder, here: `/home/HyInfo/opt/telemac-mascaret/configs` and save as `pysource.mint22.sh`.
+2. Open `pysource.mint22.sh` in a text editor (e.g., gedit) and verify installation paths. Note that the file contains the following definition, which makes it almost independent of the definition of your installation path, as long as salome lives in the same directory relative to where you downloaded TELEMAC:
+   `_THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"`
+3. Verify installation paths of optionals, especially HDF5, MED (especially SALOME), and Mumps.
+4. Save `pysource.mint22.sh` and close the text editor.
+
+Our `pysource.mint22.sh` file looks like this:
+
+```bash
+#!/usr/bin/env bash
+# TELEMAC environment for Linux Mint 22 (Ubuntu 24.04 base) with MPI/HDF5/METIS/MED/MUMPS/ScaLAPACK
+
+# Resolve this script's directory and HOMETEL from it so it works no matter where you cloned TELEMAC
+# Expected layout: ~/opt/telemac/{configs, scripts, sources, ...}
+_THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export HOMETEL="$(cd "${_THIS_DIR}/.." && pwd)"
+export SOURCEFILE="${_THIS_DIR}"
+
+# Configuration file and config name used by telemac.py
+# Adjust USETELCFG to match a section present in your systel.mint22.cfg
+export SYSTELCFG="${HOMETEL}/configs/systel.mint22.cfg"
+export USETELCFG="hyinfompiubu"
+
+# Make TELEMAC Python utilities available
+# (Both python3 helpers and legacy unix scripts are often useful)
+if [ -d "${HOMETEL}/scripts/python3" ]; then
+  export PATH="${HOMETEL}/scripts/python3:${PATH}"
+fi
+if [ -d "${HOMETEL}/scripts/unix" ]; then
+  export PATH="${HOMETEL}/scripts/unix:${PATH}"
+fi
+
+# Compilers and MPI (OpenMPI from APT)
+export MPI_ROOT="/usr"
+export CC="mpicc"
+export FC="mpifort"
+export MPIRUN="mpirun"
+
+# Library/include roots from Ubuntu 24.04 packages
+# OpenMPI libraries
+_OMPI_LIB="/usr/lib/x86_64-linux-gnu/openmpi/lib"
+_OMPI_INC="/usr/lib/x86_64-linux-gnu/openmpi/include"
+
+# HDF5 (serial headers via libhdf5-dev; libs in the multiarch lib dir)
+# If you later install parallel HDF5 (libhdf5-openmpi-dev), set _HDF5_INC="$_OMPI_INC"
+_HDF5_INC="/usr/include/hdf5/openmpi/"
+_HDF5_LIB="/usr/lib/x86_64-linux-gnu/hdf5/openmpi"
+
+# MED (optional - not actively used in the corrent setup)
+_MED_INC="/usr/include/med"
+_MED_LIB="/usr/lib/x86_64-linux-gnu"
+
+# METIS
+_METIS_INC="/usr/include"
+_METIS_LIB="/usr/lib/x86_64-linux-gnu"
+
+# MUMPS (both seq and mpi dev packages provide headers+libs under multiarch dir)
+_MUMPS_INC="/usr/include"
+_MUMPS_LIB="/usr/lib/x86_64-linux-gnu"
+
+# ScaLAPACK (OpenMPI build)
+_SCALAPACK_LIB="/usr/lib/x86_64-linux-gnu"
+
+# Expose common hints some TELEMAC configs look for (non-fatal if unused)
+export MPI_INCLUDE="${_OMPI_INC}"
+export MPI_LIBDIR="${_OMPI_LIB}"
+
+export HDF5_ROOT="/usr"
+export HDF5_INCLUDE_PATH="${_HDF5_INC}"
+export HDF5_LIBDIR="${_HDF5_LIB}"
+
+export MED_ROOT="$HOME/opt/salome/BINARIES-UB24.04/medfile/"
+export MED_INCLUDE_PATH="$HOME/opt/salome/BINARIES-UB24.04/medfile/include"
+export MED_LIBDIR="$HOME/opt/salome/BINARIES-UB24.04/medfile/lib"
+
+export METIS_ROOT="/usr"
+export METIS_INCLUDE_PATH="${_METIS_INC}"
+export METIS_LIBDIR="${_METIS_LIB}"
+
+export MUMPS_ROOT="/usr"
+export MUMPS_INCLUDE_PATH="${_MUMPS_INC}"
+export MUMPS_LIBDIR="${_MUMPS_LIB}"
+
+export SCALAPACK_LIBDIR="${_SCALAPACK_LIB}"
+
+# Build and wrapped API locations (created after you compile)
+# Keep these early in the path so Python can import the TELEMAC modules and extensions
+if [ -d "${HOMETEL}/builds/${USETELCFG}/wrap_api/lib" ]; then
+  export PYTHONPATH="${HOMETEL}/builds/${USETELCFG}/wrap_api/lib:${PYTHONPATH}"
+fi
+
+# TELEMAC Python helpers
+if [ -d "${HOMETEL}/scripts/python3" ]; then
+  export PYTHONPATH="${HOMETEL}/scripts/python3:${PYTHONPATH}"
+fi
+
+# Runtime search paths
+# Put OpenMPI first to avoid picking up non-MPI BLAS/LAPACK accidentally
+# The standard multiarch directory is added as a safety net
+for _libdir in \
+  "${_OMPI_LIB}" \
+  "${_MED_LIB}" \
+  "${_METIS_LIB}" \
+  "${_MUMPS_LIB}" \
+  "${_SCALAPACK_LIB}" \
+  "/usr/lib/x86_64-linux-gnu"
+do
+  case ":${LD_LIBRARY_PATH}:" in
+    *:"${_libdir}":*) ;;
+    *) export LD_LIBRARY_PATH="${_libdir}:${LD_LIBRARY_PATH}";;
+  esac
+done
+
+# Add include directories to CPATH so builds find headers without extra flags
+for _incdir in \
+  "${_OMPI_INC}" \
+  "${_HDF5_INC}" \
+  "${_MED_INC}" \
+  "${_METIS_INC}" \
+  "${_MUMPS_INC}"
+do
+  case ":${CPATH}:" in
+    *:"${_incdir}":*) ;;
+    *) export CPATH="${_incdir}:${CPATH}";;
+  esac
+done
+
+# Convenience: print a one-line summary so you know which config is active
+echo "TELEMAC set: HOMETEL='${HOMETEL}', SYSTELCFG='${SYSTELCFG}', USETELCFG='${USETELCFG}'"
+
+# Make Python unbuffered for clearer build logs
+export PYTHONUNBUFFERED="1"
 ```
-### TELEMAC settings -----------------------------------------------------------
-###
-# Path to telemac root dir
-export HOMETEL=/home/USER-NAME/telemac/v9.0.0
-# Adding python scripts to PATH
-export PATH=$HOMETEL/scripts/python3:.:$PATH
-# Configuration file
-export SYSTELCFG=$HOMETEL/configs/systel.edfHy.cfg
-# Name of the configuration to use
-export USETELCFG=S10.gfortran.dyn
-# Path to this file
-export SOURCEFILE=$HOMETEL/configs/pysource.gfortranHPC.sh
-### Python
-# To force python to flush its output
-export PYTHONUNBUFFERED='true'
-### API
-export PYTHONPATH=$HOMETEL/scripts/python3:$PYTHONPATH
-export LD_LIBRARY_PATH=$HOMETEL/builds/$USETELCFG/lib:$HOMETEL/builds/$USETELCFG/wrap_api/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$PYTHONPATH
-###
-### EXTERNAL LIBRARIES -----------------------------------------------------------
-###
-### METIS ----------------------------
-###
-### COMPILERS -----------------------------------------------------------
-###
-# Here are a few examples for external libraries
-export SYSTEL=$HOMETEL/optionals
+````
 
-### MPI -----------------------------------------------------------
-export MPIHOME=/usr/bin/mpifort.openmpi
-export PATH=/usr/lib/x86_64-linux-gnu/openmpi:$PATH
-export LD_LIBRARY_PATH=$PATH/lib:$LD_LIBRARY_PATH
-###
-### EXTERNAL LIBRARIES -----------------------------------------------------------
-###
-### MUMPS -------------------------------------------------------------
-#export MUMPSHOME=$SYSTEL/LIBRARY/mumps/gnu
-#export SCALAPACKHOME=$SYSTEL/LIBRARY/scalapack/gnu
-#export BLACSHOME=$SYSTEL/LIBRARY/blacs/gnu
-### METIS -------------------------------------------------------------
-export METISHOME=$SYSTEL/metis/build/
-export LD_LIBRARY_PATH=$METISHOME/lib:$LD_LIBRARY_PATH
-```
+````{tab-item} Debian 12
 
-**Make sure do adapt the variable `HOMETEL=/home/USER-NAME/telemac/v9.0.0`.**
+To facilitate setting up the `pysource.debian12.sh` file on Debian 12, our template is designed for use with the above-described `systel.debian12.cfg` configuration file, and it is  based on the default-provided `pysource.template.sh`. To use it for compiling TELEMAC:
 
-```{admonition} AED2, MUMPS, and GOTM deactivated
-:class: note
+1. Download [pysource.debian12.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian12/pysource.debian12.sh) from our GitHub repository, or copy the file contents below into the TELEMAC `/configs` folder, here: `/home/HyInfo/opt/telemac-mascaret/configs` and save as `pysource.debian12.sh`.
+2. Open `pysource.debian12.sh` in a text editor (e.g., gedit) and verify installation paths. Note that the file contains the following definition, which makes it almost independent of the definition of your installation path, as long as salome lives in the same directory relative to where you downloaded TELEMAC:
+   `_THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"`
+3. Verify installation paths of optionals, especially HDF5, MED (especially SALOME), and Mumps.
+4. Save `pysource.debian12.sh` and close the text editor.
 
-[AED2 (waqtel)](http://wiki.opentelemac.org/doku.php?id=installation_linux_aed), [MUMPS](http://mumps.enseeiht.fr/), and [GOTM (general ocean)](http://wiki.opentelemac.org/doku.php?id=installation_linux_gotm) are deactivated in our template. To activate them, uncomment (i.e., remove `#`) before the MUMPS variables, add AED2 and GOTM variables, and use the `systel.edf.cfg` configuration file.
+Our `pysource.debian12.sh` file looks like this:
 
+```bash
+#!/usr/bin/env bash
+# TELEMAC environment for Debian 12 with MPI/HDF5/MED/METIS/MUMPS/ScaLAPACK
+# Assumes you installed optional dependencies from apt on Debian 12
+# Only SALOME is user-installed
+
+# Resolve this script's directory and HOMETEL from it
+_THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export HOMETEL="$(cd "${_THIS_DIR}/.." && pwd)"
+export SOURCEFILE="${_THIS_DIR}"
+
+# Configuration file and config name used by telemac.py
+# Adjust USETELCFG to match a section present in configs/systel.debian12.cfg
+export SYSTELCFG="${HOMETEL}/configs/systel.debian12.cfg"
+export USETELCFG="hyinfompideb12"
+
+# Make TELEMAC Python utilities available
+if [ -d "${HOMETEL}/scripts/python3" ]; then
+  case ":${PYTHONPATH}:" in *:"${HOMETEL}/scripts/python3":*) ;; *) export PYTHONPATH="${HOMETEL}/scripts/python3:${PYTHONPATH}";; esac
+fi
+if [ -d "${HOMETEL}/scripts/unix" ]; then
+  case ":${PATH}:" in *:"${HOMETEL}/scripts/unix":*) ;; *) export PATH="${HOMETEL}/scripts/unix:${PATH}";; esac
+fi
+
+# Detect Debian multiarch lib directory and common include roots
+_arch="$(gcc -dumpmachine 2>/dev/null || echo x86_64-linux-gnu)"
+_archlib="/usr/lib/${_arch}"
+
+# Helper to pick the first existing directory
+_first_dir() {
+  for _d in "$@"; do
+    [ -d "$_d" ] && { printf '%s' "$_d"; return 0; }
+  done
+  return 1
+}
+
+# SALOME layout remains user-installed and identical to Mint setup
+# Change SALOME_ROOT only if you used a different location
+: "${SALOME_ROOT:=${HOME}/opt/salome}"
+: "${SALOME_APPLI:=${SALOME_ROOT}/appli_V9}"
+_salome_lib="$(_first_dir \
+  "${SALOME_APPLI}/V9_*/lib/salome" \
+  "${SALOME_APPLI}/lib/salome" \
+  "${SALOME_ROOT}/lib/salome")"
+
+# MPI. Prefer OpenMPI wrappers if present
+_MPI_BIN="$(dirname "$(command -v mpif90 2>/dev/null || command -v mpifort 2>/dev/null || command -v mpicc 2>/dev/null || echo /usr/bin/mpif90)")"
+_MPI_INC="$(_first_dir \
+  "${_archlib}/openmpi/include" \
+  "/usr/include/openmpi" \
+  "/usr/include/mpi" \
+  "${_archlib}/mpi/include")"
+_MPI_LIB="$(_first_dir \
+  "${_archlib}/openmpi/lib" \
+  "${_archlib}" \
+  "/usr/lib")"
+
+# HDF5 parallel. Debian installs OpenMPI-flavored headers in /usr/include/hdf5/openmpi
+_HDF5_INC="$(_first_dir \
+  "/usr/include/hdf5/openmpi" \
+  "/usr/include/hdf5/serial")"
+_HDF5_LIB="$(_first_dir \
+  "${_archlib}/hdf5/openmpi" \
+  "${_archlib}/hdf5/serial" \
+  "${_archlib}")"
+
+# MED-fichier
+_MED_INC="$(_first_dir \
+  "/usr/include" \
+  "/usr/include/med")"
+_MED_LIB="$(_first_dir \
+  "${_archlib}" \
+  "${_archlib}/med")"
+
+# METIS and ParMETIS
+_METIS_INC="$(_first_dir "/usr/include")"
+_METIS_LIB="$(_first_dir "${_archlib}")"
+_PARMETIS_INC="$(_first_dir "/usr/include")"
+_PARMETIS_LIB="$(_first_dir "${_archlib}")"
+
+# MUMPS and ScaLAPACK
+_MUMPS_INC="$(_first_dir "/usr/include/mumps" "/usr/include")"
+_MUMPS_LIB="$(_first_dir "${_archlib}")"
+_SCALAPACK_LIB="$(_first_dir "${_archlib}")"
+
+# Add useful binaries to PATH
+for _bindir in \
+  "${_MPI_BIN}" \
+  "/usr/bin"
+do
+  case ":${PATH}:" in *:"${_bindir}":*) ;; *) export PATH="${_bindir}:${PATH}";; esac
+done
+
+# Library search path
+for _libdir in \
+  "${_MPI_LIB}" \
+  "${_HDF5_LIB}" \
+  "${_SCALAPACK_LIB}" \
+  "${_MUMPS_LIB}" \
+  "${_METIS_LIB}" \
+  "${_PARMETIS_LIB}" \
+  "${_MED_LIB}" \
+  "${_salome_lib}"
+do
+  [ -n "${_libdir}" ] || continue
+  case ":${LD_LIBRARY_PATH}:" in *:"${_libdir}":*) ;; *) export LD_LIBRARY_PATH="${_libdir}:${LD_LIBRARY_PATH}";; esac
+done
+
+# Include search path for some build helpers that honor CPATH
+for _incdir in \
+  "${_MPI_INC}" \
+  "${_HDF5_INC}" \
+  "${_MED_INC}" \
+  "${_METIS_INC}" \
+  "${_PARMETIS_INC}" \
+  "${_MUMPS_INC}"
+do
+  [ -n "${_incdir}" ] || continue
+  case ":${CPATH}:" in *:"${_incdir}":*) ;; *) export CPATH="${_incdir}:${CPATH}";; esac
+done
+
+# Convenience: print a one-line summary
+echo "TELEMAC set: HOMETEL='${HOMETEL}', SYSTELCFG='${SYSTELCFG}', USETELCFG='${USETELCFG}'"
+echo "MPI bin='${_MPI_BIN}', MPI inc='${_MPI_INC}', MPI lib='${_MPI_LIB}'"
+echo "HDF5 inc='${_HDF5_INC}', HDF5 lib='${_HDF5_LIB}'"
+echo "MED inc='${_MED_INC}', MED lib='${_MED_LIB}'"
+
+# Unbuffered Python for clearer build logs
+export PYTHONUNBUFFERED="1"
 ```
 
 ````
-````{tab-item} Custom Bash File
+````{tab-item} Customization
 
-Here, we use the template to create our own Python source file called `pysource.gfortranHPC.sh` tailored for compiling the parallel version of TELEMAC on Debian Linux with the *Open MPI* library. The Python source file starts with the definition of the following variables:
+As a general note, one should expose TELEMAC's Python utilities on `PATH` and `PYTHONPATH` so `telemac2d.py` etc. are found. Prefer OpenMPI wrapper compilers (`mpifort`, `mpicc`) instead of hardcoding MPI headers and libraries. OpenMPI explicitly recommends this; the wrappers inject the right `-I`/`-L`/`-l` for your installation. For optional features like TelApy, TELEMAC builds a small "wrap_api" tree in the build directory; adding that to `PYTHONPATH` and `LD_LIBRARY_PATH` is the correct way to make the Python API importable. Use the following as a starting point; replace `USERNAME` and adjust `SYSTELCFG` and `USETELCFG`:
 
-* `HOMETEL`: The path to the `telemac/VERSION` folder (`<root>`).
-* `SYSTELCFG`: The path to the above-modified configuration file  (`systel.edfHy.cfg`) relative to `HOMETEL`.
-* `USETELCFG`: The name of the configuration to be used (`debgfopenmpi`). Configurations enabled are defined in the `systel.*.cfg` file, in the brackets (`[debgfopenmpi]`) directly below the header of every configuration section.
-* `SOURCEFILE`: The path to this file and its name relative to `HOMETEL`.
+```bash
+#!/usr/bin/env bash
+# TELEMAC environment for Debian 12 + OpenMPI
 
-More definitions are required to define TELEMAC's *Application Programming Interface* (*API*), (parallel) compilers to build TELEMAC with *Open MPI*, and external libraries located in the `optionals` folder. The following code block shows how the Python source file `pysource.gfortranHPC.sh` should look like. Make sure to **verify every directory on your local file system**, use your *USERNAME*, and take your time to get all directories right, without typos (critical task).
+# 1) Core paths
+export HOMETEL="/home/USERNAME/telemac-mascaret"
+export SYSTELCFG="${HOMETEL}/configs/systel.cis-debian.cfg"
+export USETELCFG="debgfopenmpi"
+export SOURCEFILE="${HOMETEL}/configs/pysource.gfortranHPC.sh"
 
+# 2) Make TELEMAC tools available
+case ":$PATH:" in *:"${HOMETEL}/scripts/python3":*) ;; *) export PATH="${HOMETEL}/scripts/python3:${PATH}";; esac
+case ":$PATH:" in *:"${HOMETEL}/scripts/unix":*)   ;; *) export PATH="${HOMETEL}/scripts/unix:${PATH}";; esac
+case ":$PYTHONPATH:" in *:"${HOMETEL}/scripts/python3":*) ;; *) export PYTHONPATH="${HOMETEL}/scripts/python3:${PYTHONPATH}";; esac
+
+# 3) Unbuffered Python for clearer build logs
+export PYTHONUNBUFFERED="1"
+
+# 4) TelApy (Python API) - populated after a build; harmless if absent
+_wrap_api_lib="${HOMETEL}/builds/${USETELCFG}/wrap_api/lib"
+[ -d "$_wrap_api_lib" ] && export LD_LIBRARY_PATH="${_wrap_api_lib}:${LD_LIBRARY_PATH}"
+[ -d "$_wrap_api_lib" ] && export PYTHONPATH="${_wrap_api_lib}:${PYTHONPATH}"
+
+# 5) MPI - use OpenMPI wrappers; do NOT point to MPICH
+# on Debian 12, mpifort/mpirun live in /usr/bin via openmpi-bin/libopenmpi-dev
+command -v mpifort >/dev/null 2>&1 || echo "Warning: mpifort not found; install openmpi-bin libopenmpi-dev"
+command -v mpirun  >/dev/null 2>&1 || echo "Warning: mpirun not found; install openmpi-bin"
+
+# 6) Optional libs installed from Debian packages need no path tweaks - otherwise,
+# if you compiled optionals under $HOMETEL/optionals (e.g., AED2), add them explicitly:
+# export LD_LIBRARY_PATH="${HOMETEL}/optionals/aed2:${LD_LIBRARY_PATH}"
+# export PYTHONPATH="${HOMETEL}/optionals/aed2:${PYTHONPATH}"
+
+echo "TELEMAC env set: HOMETEL=${HOMETEL}, USETELCFG=${USETELCFG}"
 ```
-### TELEMAC settings -----------------------------------------------
-###
-# Path to Telemac s root dir
-export HOMETEL=/home/USERNAME/telemac-mascaret
-# Add Python scripts to PATH
-export PATH=$HOMETEL/scripts/python3:.:$PATH
-# Configuration file
-export SYSTELCFG=$HOMETEL/configs/systel.edfHy.cfg
-# Name of the configuration to use
-export USETELCFG=debgfopenmpi
-# Path to this Python source file
-export SOURCEFILE=$HOMETEL/configs/pysource.openmpi.sh
-# Force python to flush its output
-export PYTHONUNBUFFERED='true'
-### API
-export PYTHONPATH=$HOMETEL/scripts/python3:$PYTHONPATH
-export LD_LIBRARY_PATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$HOMETEL/builds/$USETELCFG/wrap_api/lib:$PYTHONPATH
-###
-### COMPILERS -----------------------------------------------------
-export SYSTEL=$HOMETEL/optionals
-### MPI -----------------------------------------------------------
-export MPIHOME=/usr/bin/mpifort.mpich
-export PATH=lib/x86_64-linux-gnu/openmpi:$PATH
-export LD_LIBRARY_PATH=$PATH/lib:$LD_LIBRARY_PATH
-###
-### EXTERNAL LIBRARIES ---------------------------------------------
-###
-### METIS ----------------------------------------------------------
-export METISHOME=$SYSTEL/metis/build/
-export LD_LIBRARY_PATH=$METISHOME/lib:$LD_LIBRARY_PATH
-### AED ------------------------------------------------------------
-export AEDHOME=$SYSTEL/aed2
-export LD_LIBRARY_PATH=$AEDHOME/obj:$LD_LIBRARY_PATH
-```
+
+**Notes:**
+* `SYSTELCFG` points at your `.cfg` file; `USETELCFG` must match the section header you intend to use, for example `[debgfopenmpi]`. This is how TELEMAC's Python launcher discovers the "build recipe".
+* `PATH` includes both `scripts/python3` and `scripts/unix` so you can run `telemac.py`, `compile.py`, `runcode.py`, and shell helpers directly. 
+* `mpifort` and `mpirun` are the correct OpenMPI entry points on Debian 12. `mpif90` exists but is a legacy alias; OpenMPI recommends `mpifort`. `mpirun` and `mpiexec` are synonyms and ship in `/usr/bin`.
+* No `MPIHOME` and no `LD_LIBRARY_PATH` hacking for OpenMPI. Wrapper compilers remove the need to export OpenMPI include/lib paths; exporting `LD_LIBRARY_PATH` to point at OpenMPI libraries is both unnecessary and fragile on Debian
+* `wrap_api/lib` on both `PYTHONPATH` and `LD_LIBRARY_PATH` is the correct way to make TelApy importable after you build it. This matches where TELEMAC emits the API artifacts.
+* Do not set `MPIHOME=/usr/bin/mpifort.mpich` if you are building with OpenMPI. That value points to an MPICH binary and will cause mismatched headers and libraries at compile or run time. Use OpenMPI consistently or switch the whole stack to MPICH. OpenMPI’s own docs emphasize wrapper consistency.
+* Do not add `LD_LIBRARY_PATH=$PATH/lib` or point it to `lib/x86_64-linux-gnu/openmpi`. `$PATH` is not a library directory, and hardcoding OpenMPI’s library dir in the env file is unnecessary when you compile and link with `mpifort`.
+* Do not hard-code `libmpi.so` anywhere in `pysource` or in your `.cfg` if you are already using wrapper compilers. Let `mpifort` drive the link line. 
+
+If you use distro packages, you typically do not need to set any paths in `pysource`:
+* OpenMPI tools: `/usr/bin/mpifort`, `/usr/bin/mpicc`, `/usr/bin/mpirun` or `/usr/bin/mpiexec`.
+* Parallel HDF5 (if enabled in your cfg): headers under `/usr/include/hdf5/openmpi`, libs under `/usr/lib/x86_64-linux-gnu/hdf5/openmpi` via `libhdf5-openmpi-dev`.
+* METIS from Debian: link as `-lmetis` from `libmetis-dev`; headers in `/usr/include`, libs in `/usr/lib/x86_64-linux-gnu`. Prefer this over a hand-built `libmetis.a` under `~/telemac/optionals`.
 ````
 `````
 
@@ -695,26 +1074,37 @@ export LD_LIBRARY_PATH=$AEDHOME/obj:$LD_LIBRARY_PATH
 
 ***Estimated duration: 20-30 minutes (compiling takes time).***
 
-The compiler is called through Python and the above-created bash script ( `pysource.gfortranHPC.sh` or `pysource.openmpi.sh`). Thus, the Python source file `pysource.gfortranHPC.sh` knows where helper programs and libraries are located, and it knows the configuration to be used. With the Python source file, compiling TELEMAC becomes an easy task in Terminal. First, load the Python source file `pysource.gfortranHPC.sh` as source in Terminal, and then, test if it is correctly configured by running `config.py`:
+The compiler is invoked by TELEMAC's Python tools using the shell environment set by your `pysource` script (`pysource.mint22.sh` or `pysource.debian12.sh`). That script tells TELEMAC where helper programs and libraries live and which configuration to use. With it in place, compiling becomes straightforward from Terminal. First, source the appropriate `pysource` file and then verify the setup by running `config.py`:
 
-```
-cd ~/telemac/configs
-source pysource.gfortranHPC.sh
+```bash
+cd /home/HyInfo/opt/telemac-mascaret/configs    # adjust this path to your install
+source pysource.mint22.sh                       # or: source pysource.debian12.sh
 config.py
 ```
 
-Running `config.py` should produce a character-based image in Terminal and end with `My work is done`. If that is not the case and error messages occur, *attentively read the error messages* to identify the issue (e.g., there might be a typo in a directory or file name, or a misplaced character somewhere in `pysource.gfortranHPC.sh` or `systel.edfHy.cfg`).
-When `config.py` ran successfully, start compiling TELEMAC with the `--clean` flag to avoid any interference with earlier installations:
+Sourcing the our `pysource.mint22.sh` or `pysource.debian12.sh` scripts should echo the TELEMAC paths and the configuration name. Running `config.py` should display the ASCII banner and finish with `My work is done`. If not, read the error output carefully; typical causes are typos in paths or filenames, or mistakes inside `pysource.x.sh` or your `systel.*.cfg`.
 
+
+```{admonition} Quick health checks after sourcing
+:class: tip
+
+* `mpifort -show` should print a `gfortran` command line with MPI `-I` and `-L` flags injected. This verifies wrapper compilers are in place.
+* If you enabled parallel HDF5 in your `.cfg`, `h5pfc -show` should succeed and display `.../hdf5/openmpi` in its flags. If it is missing, install `libhdf5-openmpi-dev`.
+* Running `telemac.py` or `compile.py` without a full path should work because `scripts/python3` and `scripts/unix` are on `PATH`. The TELEMAC Linux install notes follow this approach.
 ```
+
+After `config.py` completes successfully, compile TELEMAC. Use the `--clean` flag to remove any artifacts from prior builds and avoid conflicts:
+
+```bash
 compile_telemac.py --clean
 ```
 
-The compilation should run for a while (can take more than 30 minutes) and successfully end with the phrase `My work is done`.
+The build will run for a while and should finish with the message `My work is done`. If it stops with errors, scroll up to the first error and fix the reported issue before re-running the command.
 
-```{admonition} Troubleshoot errors in the compiling process
+```{admonition} How to troubleshoot errors in the compiling process
 :class: attention
-If an error occurred in the compiling process, traceback error messages and identify the component that did not work. Revise setting up the concerned component in this workflow very thoroughly. Do not try to re-invent the wheel - the most likely problem is a tiny little detail in the files that you created on your own. Troubleshooting may be a tough task, in particular, because you need to put into question your own work.
+
+If compilation fails, read the traceback carefully and identify the exact component that broke. Revisit the setup steps for that component and verify paths, library names, environment variables, and file edits against this guide. **Do not reinvent the wheel:** most failures come from small typos or mismatched versions in files you created yourself. Troubleshooting can be frustrating, so challenge your own assumptions, fix the first error in the log, and then rebuild from a clean state.
 ```
 
 (testrun)=
@@ -722,131 +1112,139 @@ If an error occurred in the compiling process, traceback error messages and iden
 
 ***Estimated duration: 5-10 minutes.***
 
-Once Terminal was closed or any clean system start-up requires to load the TELEMAC source environment in Terminal before running TELEMAC:
 
-```
-cd ~/telemac/configs
-source pysource.gfortranHPC.sh
-config.py
+After closing the terminal or on a fresh system startup, you will ned to re-load the TELEMAC environment before running it:
+
+```bash
+cd ~/opt/telemac-mascaret/configs    # adjust if you installed elsewhere
+source pysource.mint22.sh            # or: source pysource.debian12.sh
 ```
 
-To run and test if TELEMAC works, use a pre-defined case from the provided `examples` folder:
+To test the installation, run a predefined case from the `examples` folder:
 
-```
-cd ~/telemac/examples/telemac2d/gouttedo
+```bash
+cd ~/opt/telemac-mascaret/examples/telemac2d/gouttedo
 telemac2d.py t2d_gouttedo.cas
 ```
 
-```{admonition} Examples are not working?
+```{admonition} Examples not working?
 :class: error, dropdown
 
-If running any test case provided in the `/examples/` folder crashes, **worry not!**. Your installation is most likely OK if the installation finished without errors and the `config.py` runs smoothly. However, for being able to run the examples, you will need to install {ref}`all git requirements (cf. above descriptions) <tm-git-requirements>`, re-download the TELEMAC git repository, and re-compile TELEMAC (basically: start over, beginning with the {ref}`git section <tm-git-requirements>`).
+Do not panic. If `config.py` succeeded and the build ended with "My work is done", your installation is usually fine. Most example failures come from environment issues or missing large files. Ensure you have sourced the correct `pysource.*.sh`, installed all Git requirements **including Git LFS, checked out the right version,** and pulled the full repository. If needed, re-clone with Git LFS enabled and recompile TELEMAC, starting from the {ref}`git section <tm-git-requirements>`.
 ```
 
+To verify parallelism, install *htop* to visualize CPU usage:
 
-To test if parallelism works, install *htop* to visualize CPU usage:
-
-```
+```bash
 sudo apt update
 sudo apt install htop
 ```
 
-Start htop's CPU monitor with:
+Start the CPU monitor:
 
-```
+```bash
 htop
 ```
 
-In a new Terminal tab run the above TELEMAC example with the flag `--ncsize=N` (NCSIZE), where `N` is the number of processors (CPUs) to use for parallel computation (make sure that `N` CPUs are also available on your machine):
+In a new terminal tab, run a TELEMAC example with the `--ncsize=N` flag, where `N` is the number of logical CPUs to use (ensure at least `N` are available):
 
-```
-cd ~/telemac/examples/telemac2d/gouttedo
+```bash
+cd ~/opt/telemac-mascaret/examples/telemac2d/gouttedo
 telemac2d.py t2d_gouttedo.cas --ncsize=4
 ```
 
-Alternatively, the `--nctile` and `--ncnode` flags can be used to define a number of core per node (NCTILE) and a number of nodes (NCNODE), respectively. The relationship between these flags is `NCSIZE = NCTILE * NCNODE`. Thus, the following two lines yield the same result (run in `cd ~/telemac/examples/telemac2d/donau`):
+Alternatively, use `--nctile` and `--ncnode` to specify cores per node (NCTILE) and number of nodes (NCNODE), respectively, with `NCSIZE = NCTILE * NCNODE`. The following two commands are equivalent (from `~/opt/telemac-mascaret/examples/telemac2d/donau`):
 
-```
+```bash
 telemac2d.py t2d_donau.cas --nctile=4 --ncnode=2
 telemac2d.py t2d_donau.cas --ncsize=8
 ```
 
-
 ```{admonition} Cannot find <<PARTEL.PAR>>?
 :class: error, dropdown
-If there is an error message such as **`Cannot find << PARTEL.PAR >>`** ... **`TypeError: can only concatenate str (not ...) to str`**, make sure that `par_cmdexec` is removed from the configuration file ({ref}`see above <parcmd>`).
+If you see `Cannot find << PARTEL.PAR >>` or `TypeError: can only concatenate str (not ...) to str`, ensure `par_cmdexec` is removed from your configuration file.
 ```
 
-When the computation is running, observe the CPU charge. If the CPUs are all working with different percentages, the parallel version is working well.
+While the computation runs, watch overall CPU usage. If multiple cores show sustained activity at varying percentages, the parallel run is functioning.
 
-TELEMAC should startup, run the example case, and again end with the phrase `My work is done`. To assess the efficiency of the number of CPUs used, vary `ncsize`. For instance, the *donau* example (`cd ~/telemac/examples/telemac2d/donau`) ran with `telemac2d.py t2d_donau.cas --ncsize=4` may take approximately 1.5 minutes, while `telemac2d.py t2d_donau.cas --ncsize=2` (i.e., half the number of CPUs) takes approximately 2.5 minutes. The computing time may differ depending on your hardware, but note that doubling the number of CPUs does not cut the calculation time by a factor of two. So to optimize system resources, it can be reasonable to start several simulation cases on fewer cores than one simulation on multiple cores.
+TELEMAC should start, run the example, and finish with `My work is done`. To gauge efficiency, vary `--ncsize`. For instance, on a contemporary laptop the `donau` case often runs in approx. 1 minute with `--ncsize=4` and approx. 2-3 minutes with `--ncsize=2`; exact timings depend on hardware, mesh size, and I/O. **Scaling is not linear** due to domain-partition overhead, memory bandwidth limits, and hyperthreading, so launching several smaller jobs on fewer cores can be more efficient than one job on many cores.
 
-```{admonition} Troubleshoot *No such file or directory*
+````{admonition} Troubleshoot 'No such file or directory'
 :class: attention, dropdown
-If you interrupted the Terminal session and get an error message such as `No such file or directory`, you may need to re-define (re-load) the Python source file: In Terminal go (`cd`) to `~/telemac/configs`, type `source pysource.gfortranHPC.sh` > `config.py`, and then go back to the `examples` folder to re-run the example.
+If you interrupted the terminal session and see `No such file or directory`, re-load the TELEMAC environment before rerunning examples:
+
+```bash
+cd ~/opt/telemac-mascaret/configs
+source pysource.mint22.sh      # or: source pysource.debian12.sh
+config.py
 ```
 
-### Generate Telemac Docs
+Then return to the `examples` folder and run the case again.
+````
 
-TELEMAC comes with many application examples in the subdirectory `~/telemac/examples/` and the documentation plus reference manuals can be generated locally. To this end, make sure to source the TELEMAC environment: 
+### Generate TELEMAC Documentation
 
+TELEMAC includes many application examples under `/telemac-mascaret/examples/`, and you can build the user and reference manuals locally. First, load the TELEMAC environment:
+
+```bash
+source ~/opt/telemac-mascaret/configs/pysource.mint22.sh
 ```
-source ~/telemac/configs/pysource.gfortranHPC.sh
-```
 
-To generate the user manual type (takes a while):
+To generate the user manual (this can take a while and requires latex, that is, `texlive` on Debian/Ubuntu):
 
-```
+```bash
 doc_telemac.py
 ```
 
-To generate the reference manual type:
+To generate the reference manual:
 
-```
+```bash
 doc_telemac.py --reference
 ```
 
-To create the documentation of all example causes use:
+To create documentation and validation reports for all example cases:
 
-```
+```bash
 validate_telemac.py
 ```
 
 ```{note}
-The `validate_telemac.py` essentially runs through all examples, but some of them are broken and will cause the script to crash. This may also happen if not all modules are installed (e.g., *Hermes* is missing).
+`validate_telemac.py` iterates through many examples. Some may fail if optional modules are not installed (e.g., HERMES) or if an example is outdated. Building PDFs typically requires a LaTeX toolchain (for example, `texlive` on Debian/Ubuntu); install it if the documentation step reports missing LaTeX executables.
 ```
+
+
 
 ## Utilities (Pre- & Post-processing)
 
 ```{admonition} More Pre- and Post-processing Software
 :class: note
 
-More software for dealing with Telemac pre- and post-processing is available in the form of {ref}`SALOME <salome-install>` and ParaView.
+More software for dealing with TELEMAC pre- and post-processing is available in the form of {ref}`SALOME <salome-install>` and ParaView.
 ```
 
 (qgis-telemac)=
-### QGIS (Linux and Windows)
+### QGIS and the Q4TS Plugin (Linux and Windows)
 
 ***Estimated duration: 5-10 minutes (depends on connection speed).***
 
-QGIS is a powerful tool for viewing, creating, and editing geospatial data, which is useful for pre and post-processing. Detailed installation guidelines are provided in the {ref}`qgis-install` installation instructions and the {ref}`QGIS tutorial <qgis-tutorial>` in this eBook. The **Q4TS** plugin enables pre and post-processing of files for running simulations with TELEMAC, and it can also be linked with {ref}`SALOME <salome-install>` for running TELEMAC directly with a GUI.
+QGIS is a powerful tool for viewing, creating, and editing geospatial data and is useful for both pre- and post-processing. Installation guidance appears in the {ref}`qgis-install` instructions and the {ref}`QGIS tutorial <qgis-tutorial>` in this eBook. The **Q4TS** plugin supports preparing and post-processing files for TELEMAC and can be linked with {ref}`SALOME <salome-install>` to launch TELEMAC from a GUI.
 
-To get the Q4TS, follow the developer's instructions at [https://gitlab.pam-retd.fr/otm/q4ts](https://gitlab.pam-retd.fr/otm/q4ts):
+To install Q4TS, follow the developers’ instructions at [https://gitlab.pam-retd.fr/otm/q4ts](https://gitlab.pam-retd.fr/otm/q4ts):
 
-* In QGIS, open the **Plugin Manager** (*Plugins* > *Manage and Install Plugins...*).
-* Go to **Settings** > **Add...** and enter `https://otm.gitlab-pages.pam-retd.fr/q4ts/plugins.xml` in the URL field. Enter a **Name** (e.g., *q4ts*), and leave all other fields as they are. Click **OK**.
-* Click on **Reload all Repositories**.
-* Go to the **All** tab, enter `Q4TS` and install the plugin.
+* In QGIS, open the **Plugin Manager** (Plugins > Manage and Install Plugins…).
+* Go to **Settings** > **Add…**, set the URL to `https://otm.gitlab-pages.pam-retd.fr/q4ts/plugins.xml`, choose a **Name** (for example, `q4ts`), and leave the other fields unchanged. Click **OK**.
+* Click **Reload all Repositories**.
+* In the **All** tab, search for `Q4TS` and install the plugin.
 
 ```{admonition} Plugin not found?
 :class: warning, dropdown
 
-The plugin requires at least QGIS version 3.26. If your QGIS version is older, the Plugin Manager cannot find the Q4TS plugin. The robust workaround is to upgrade QGIS. A ramshackle, that is, not-recommended workaround is to download the plugin as a zip file from [https://otm.gitlab-pages.pam-retd.fr/q4ts/q4ts.0.7.0.zip](https://otm.gitlab-pages.pam-retd.fr/q4ts/q4ts.0.7.0.zip), and zip-install it in the Plugin Manager (**Install from ZIP**).
+Q4TS requires QGIS 3.26 or newer. If your QGIS is older, the Plugin Manager will not list it. The reliable fix is to upgrade QGIS. As a temporary workaround, you can download the ZIP from [https://otm.gitlab-pages.pam-retd.fr/q4ts/q4ts.0.7.0.zip](https://otm.gitlab-pages.pam-retd.fr/q4ts/q4ts.0.7.0.zip) and use **Install from ZIP**, but upgrading QGIS is highly recommended.
 ```
 
-After the installation, Q4TS enables MED to SLF conversion (and vice versa), mesh refinements, boundary creation, friction table editing, and many more options (in the QGIS Toolbox).
+After installation, Q4TS adds tools in the QGIS Processing Toolbox for MED -- SLF conversion, mesh refinement, boundary creation, friction table editing, and more.
 
-To work with the Q4TS plugin, check out {numref}`Fig. %s <q4ts-ubuntu>` (Windows: {numref}`Fig. %s <q4ts-windows>`) and the developer's documentation on GitLab at [https://gitlab.pam-retd.fr/otm/q4ts/](https://gitlab.pam-retd.fr/otm/q4ts/-/blob/develop/docs/user_manual/user_manual.md).
+To get started with the Q4TS plugin, see {numref}`Fig. %s <q4ts-ubuntu>` (Windows: {numref}`Fig. %s <q4ts-windows>`) and consult the developers' user manual on GitLab: [https://gitlab.pam-retd.fr/otm/q4ts/](https://gitlab.pam-retd.fr/otm/q4ts/-/blob/develop/docs/user_manual/user_manual.md).
 
 `````{tab-set}
 ````{tab-item} Linux (Ubuntu)
@@ -867,69 +1265,71 @@ The configuration of the Q4TS on Windows (links to https://gitlab.pam-retd.fr).
 ````
 `````
 
-
-
 ```{admonition} Other (stale) plugins
 :class: note, dropdown
 
-Older, partially non-working TELEMAC plugins for QGIS are: 
+Older, partially non-working TELEMAC-related plugins for QGIS include:
 
-* [Telemac Tools](https://plugins.qgis.org/plugins/telemac_tools/) is an experimental mesh generator plugin for `*.slf` files developed by *Artelia*. Make sure to check the **experimental plugins** box in the **Settings** of QGIS' plugins window.
-* {ref}`BASEmesh <get-basemesh>` enables to create a {term}`SMS 2dm` file that can be converted to a selafin geometry for TELEMAC (read more in the {ref}`QGIS pre-processing tutorial for TELEMAC <tm-qgis-prepro>`).
-* *PostTelemac* visualizes `*.slf` (and others such as `*.res`) geometry files at different time steps.
-* *DEMto3D* enables to export *STL* geometry files for working with *SALOME* and creating 3D meshes.
+* [Telemac Tools](https://plugins.qgis.org/plugins/telemac_tools/), an experimental mesh generator for `*.slf` files developed by *Artelia*. In QGIS, enable **experimental plugins** in the Plugin Manager **Settings** before searching.
+* {ref}`BASEmesh <get-basemesh>`, which can create an {term}`SMS 2dm` mesh that you can convert to a SELAFIN geometry for TELEMAC (see the {ref}`QGIS pre-processing tutorial for TELEMAC <tm-qgis-prepro>`).
+* *PostTelemac*, which visualizes `*.slf` and related result formats (for example, `*.res`) over time.
+* *DEMto3D*, which exports *STL* geometry suitable for use in *SALOME* and for creating 3D meshes.
 
-Note that *DEMto3D* will be available in the *Raster* menu: *DEMto3D* > *DEM 3D printing*.
+Note that *DEMto3D* appears under the **Raster** menu: **DEMto3D** > **DEM 3D printing**. These plugins may be outdated or incompatible with current QGIS releases; prefer Q4TS for actively maintained TELEMAC workflows when possible.
 ```
 
 (artelia-mesh)=
 ### Artelia Mesh Tools
 
-Artelia provides a Python-based meshing tool on their Github repository at [https://github.com/Artelia/Mesh_tools](https://github.com/Artelia/Mesh_tools). Hydro-informatics.com has not had a chance to test Mesh Tools, but it sounds promising (see [this entry](https://www.opentelemac.org/index.php/kunena/qgis-for-otm/14662-meshtools) in the Telemac Forum).
+Artelia provides a Python-based analysis toolkit on GitHub: [https://github.com/Artelia/Mesh_tools](https://github.com/Artelia/Mesh_tools). Hydro-informatics.com has not yet tested Mesh Tools, but it appears promising for inspecting and analyzing existing meshes rather than generating new ones; see the related discussion in the [TELEMAC forum](https://www.opentelemac.org/index.php/kunena/qgis-for-otm/14662-meshtools).
+
+After installing the plugin via the QGIS Plugin Manager, access it from **Mesh** > **Mesh Tools**.
+
 
 (bluekenue)=
 ### BlueKenue (Windows or Linux+Wine)
 
 ***Estimated duration: 10 minutes.***
 
-[BlueKenue](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers)<sup>TM</sup> is a pre- and post-processing software provided by the [National Research Council Canada](https://nrc.canada.ca/en), which is compatible with TELEMAC. It provides similar functions as the [Fudaa](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) software featured by the TELEMAC developers and additionally comes with a powerful mesh generator. It is particularly for the mesh generator that you want to install BlueKenue<sup>TM</sup> after [downloading the latest version](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (login details in the [Telemac Forum](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue)). Next, there are two options for installing BlueKenue<sup>TM</sup> depending on your platform:
+[BlueKenue](https://nrc.canada.ca/en/research-development/products-services/software-applications/blue-kenuetm-software-tool-hydraulic-modellers)<sup>TM</sup> is a Windows-based pre- and post-processing tool from the [National Research Council Canada](https://nrc.canada.ca/en), which is designed for TELEMAC. It offers functionality similar to [Fudaa](http://www.opentelemac.org/index.php/latest-news-development-and-distribution/240-fudaa-mascaret-3-6) and includes a capable mesh generator, which is the main reason to install BlueKenue<sup>TM</sup>. Download the installer from the developer site: [https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (credentials are noted in the [Telemac Forum](http://www.opentelemac.org/index.php/assistance/forum5/blue-kenue)). Then choose the install method for your platform:
 
-1. On Windows: directly use the BLueKenue (`.msi`) installer.
-1. On Linux: use [Wine amd64](https://wiki.debian.org/Wine) through {ref}`PlayOneLinux <play-on-linux>` to install BlueKenue<sup>TM</sup> on *Linux*. For Ubuntu (Debian) - based Linux, the {ref}`PlayOnLinux <play-on-linux>` section in this eBook provides detailed instructions. Direct installation of BlueKenue through Wine only is discouraged because of severe compatibility issues.
+1. On Windows: run the BlueKenue `.msi` installer directly.
+2. On Linux: use [Wine amd64](https://wiki.debian.org/Wine) through {ref}`PlayOnLinux <play-on-linux>` to install BlueKenue<sup>TM</sup>. For Ubuntu/Debian systems, see the {ref}`PlayOnLinux <play-on-linux>` section in this eBook. Installing with plain Wine only is discouraged due to common compatibility issues.
 
-Note the typical installation directories of BlueKenue<sup>TM</sup> executable are:
+Typical BlueKenue<sup>TM</sup> executable locations are:
 
-* 32-bit version is typically installed in `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`
-* 64-bit version is typically installed in `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`
+* 32-bit: `"C:\\Program Files (x86)\\CHC\\BlueKenue\\BlueKenue.exe"`
+* 64-bit: `"C:\\Program Files\\CHC\\BlueKenue\\BlueKenue.exe"`
 
-Additionally, the Canadian Hydrological Model Stewardship (CHyMS) provides more guidance for installing BlueKenue<sup>TM</sup> on other platforms than *Windows* on their [FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html) page in the troubleshooting section ([direct link to *how to run Blue Kenue on another operating system*](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os)).
+For additional cross-platform guidance, see the [CHyMS FAQ](https://chyms.nrc.gc.ca/docs/FAQ.html), especially the section on running Blue Kenue on [other operating systems](https://chyms.nrc.gc.ca/docs/FAQ.html#troubleshooting-how-run-on-another-os).
+
 
 (fudaa)=
 ### Fudaa-PrePro (Linux and Windows)
 
 ***Estimated duration: 5-15 minutes (upper time limit if java needs to be installed).***
 
-Get ready with the pre- and post-processing software Fudaa-PrePro:
+Fudaa-PrePro is a Java-based graphical front end for the TELEMAC system that helps you set up models by defining meshes, boundary and initial conditions, and steering (`.cas`) files, and it can also launch simulations and assist with basic post-processing. It is maintained by the Fudaa project and distributed with documentation and downloads on their site, and it is referenced by the TELEMAC developers as a user-friendly pre-processor for configuring computations. Get ready with the pre- and post-processing software Fudaa-PrePro:
 
-* Install *java*:
-    + On Linux: `sudo apt install default-jdk`
-    + On Windows: Get java from [java.com](https://java.com/)
-* Download the latest version from the [Fudaa-PrePro repository](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/237993985/Fudaa-Prepro+Downloads)
-* Un-zip the downloaded file an proceed depending on what platform you are working with (see below)
-* `cd` to the directory where you un-zipped the Fudaa-PrePro program files
-* Start Fudaa-PrePro from Terminal or *Prompt*
-    + On *Linux*: tap `sh supervisor.sh`
-    + On *Windows*: tap `supervisor.bat`
+* Install *Java*:
+    + On Linux: `sudo apt install default-jdk`  (the JRE alone works for running; the JDK is safe for both running and tools)
+    + On Windows: get Java from [java.com](https://java.com/)
+* Download the latest version from the [Fudaa-PrePro repository](https://fudaa-project.atlassian.net/wiki/spaces/PREPRO/pages/237993985/Fudaa-Prepro+Downloads).
+* Unzip the downloaded file and proceed depending on your platform (see below).
+* `cd` to the directory where you unzipped the Fudaa-PrePro program files.
+* Start Fudaa-PrePro from Terminal or Command Prompt:
+    + On *Linux*: run `sh supervisor.sh`
+    + On *Windows*: run `supervisor.bat`
 
-There might be an error message such as:
-```
+If you see an error such as:
+
+```bash
 Error: Could not find or load main class org.fudaa.fudaa.tr.TrSupervisor
 ```
-In this case, open *supervisor.sh* in a text editor and correct `$PWD Fudaa` to `$(pwd)/Fudaa`. In addition, you can edit the default random-access memory (RAM) allocation in the *supervisor.sh* (or*bat*) file. Fudaa-PrePro starts with a default RAM allocation of 6 GB, which might be too small for grid files with more than 3·10<sup>6</sup> nodes, or too large if your system's RAM is small. To adapt the RAM allocation and7or fix the above error message, right-click on *supervisor.sh* (or on *Windows*: *supervisor.bat*), and find the tag `-Xmx6144m`, where `6144` defines the RAM allocation. Modify this values an even-number multiple of 512. For example, set it to 4·512=2048 and correct `$PWD Fudaa` to `$(pwd)/Fudaa`:
+edit `supervisor.sh` and replace `$PWD Fudaa` with `$(pwd)/Fudaa` so the classpath resolves correctly. You can also adjust the default RAM setting in `supervisor.sh` (or `supervisor.bat`). Fudaa-PrePro often ships with `-Xmx6144m` (≈6 GB); increase it for very large meshes (millions of nodes) or decrease it on low-RAM systems. Set `-Xmx` to a sensible multiple of 512 MB. For example, to use 2 GB and fix the classpath:
 
-```
+```bash
 #!/bin/bash
-cd `dirname $0`
-java -Xmx2048m -Xms512m -cp "$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar"
-org.fudaa.fudaa.tr.TrSupervisor $1 $2 $3 $4 $5 $6 $7 $8 $9
+cd "$(dirname "$0")"
+java -Xmx2048m -Xms512m -cp "$(pwd)/Fudaa-Prepro-1.4.2-SNAPSHOT.jar" org.fudaa.fudaa.tr.TrSupervisor "$@"
 ```

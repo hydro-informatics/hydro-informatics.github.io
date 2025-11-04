@@ -558,7 +558,7 @@ The Export mesh to MED file context menu.
 In the **Export mesh** popup window ({numref}`Fig. %s <export-mesh>`), define:
 
 * **File name** `Mesh_Hn_1` (or whatever you prefer)
-* **Files of type** `MED 4.1 files` <br>*Note: The installation of TELEMAC described in the {ref}`TELEMAC installation chapter <med-hdf>` requires to use **`MED 3.2 files`**.*
+* **Files of type** `MED 4.1 files` <br>*Note: The installation of TELEMAC described in the {ref}`TELEMAC installation chapter <tm-system-wide-opts>` requires to use `MED files`.*
 * Choose a convenient directory (*Quick path*) for saving the *MED* file
 * Leave all other default settings.
 * Click on **Save** to save the *MED* file.
