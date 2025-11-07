@@ -60,7 +60,7 @@ The Austrian engineering office *Flussplan* provides a Docker container of TELEM
 * Throughout this tutorial, we refer to the package *open TELEMAC-MASCARET* as TELEMAC. *MASCARET* is a one-dimensional (1D) module, while the methods emphasized here focus on two-dimensional (2d) and three-dimensional (3d) modeling.
 ```
 
-```{admonition} Admin (sudo) rights required for basic requirements
+```{admonition} Admin (sudo) rights required for installing basic and optional requirements
 :class: attention, dropdown
 
 Superuser privileges (`sudo` for **su**per **do**ers list) are required for many steps in this workflow, such as installing packages, editing system configuration, and writing to system directories. On Debian, sudo access is typically granted by installing `sudo`, adding your account to the `sudo` group, and managing permissions safely with `visudo` (which edits `/etc/sudoers`). For detailed setup instructions, see the tutorial {ref}`Debian Linux <user-rights>` and talk to your system administrator.
@@ -361,7 +361,19 @@ Additional MPI installation notes are available in the [opentelemac wiki](http:/
 (salome-install)=
 ### SALOME
 
-This workflow explains the installation of SALOME on Linux Mint / Ubuntu.
+This workflow explains the installation of SALOME on Linux Mint / Ubuntu. The minimum runtime dependencies require (at least) the following installations:
+
+```bash
+sudo apt update
+sudo apt install python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils libfreeimage3 python3-h5py          python3-imagesize liblapacke clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil libtbb12        libxml++2.6-2v5 liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml 
+```
+
+The minimum compile dependencies require the following installations:
+
+```bash
+sudo apt update
+sudo apt install pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libcppunit-dev doxygen libeigen3-dev libfreeimage-dev libgraphviz-dev libjsoncpp-dev liblapacke-dev libxml2-dev llvm-dev libnlopt-dev libnlopt-cxx-dev python3-patsy libqwt-qt5-dev libfontconfig1-dev libglu1-mesa-dev libxcb-dri2-0-dev libxkbcommon-dev libxkbcommon-x11-dev libxi-dev libxmu-dev libxpm-dev libxft-dev libicu-dev libsqlite3-dev libxcursor-dev libtbb-dev libqt5svg5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libpng-dev libtiff5-dev libgeotiff-dev libgif-dev libgeos-dev libgdal-dev texlive-latex-base libxml++2.6-dev libfreetype6-dev libgmp-dev libmpfr-dev libxinerama-dev python3-sip-dev python3-statsmodels tcl-dev tk-dev 
+```
 
 1. Confirm your Ubuntu version: 
    * Mint: `lsb_release -a`
@@ -594,8 +606,8 @@ inc_hdf5:      -I /usr/include/hdf5/openmpi
 libs_hdf5:     -L /usr/lib/x86_64-linux-gnu/hdf5/openmpi -lhdf5_fortran -lhdf5hl_fortran -lhdf5_hl -lhdf5
 
 # MED-fichier (from SALOME)
-inc_med:       -I /home/HyInfo/opt/salome/BINARIES-UB24.04/medfile/include
-libs_med:      -L /home/HyInfo/opt/salome/BINARIES-UB24.04/medfile/lib -lmedC -lmed -lmedimport
+inc_med:       -I /home/HyInfo/opt/salome/BINARIES-DB12/medfile/include
+libs_med:      -L /home/HyInfo/opt/salome/BINARIES-DB12/medfile/lib -lmedC -lmed -lmedimport
 
 # METIS (from libmetis-dev)
 inc_metis:     -I /usr/include
@@ -883,10 +895,10 @@ Our `pysource.debian12.sh` file looks like this:
 ```bash
 #!/usr/bin/env bash
 # TELEMAC environment for Debian 12 with MPI/HDF5/MED/METIS/MUMPS/ScaLAPACK
-# Assumes you installed optional dependencies from apt on Debian 12
+# Assumes all optional dependencies are installed from from apt on Debian 12
 # Only SALOME is user-installed
 
-# Resolve this script's directory and HOMETEL from it
+# Resolve script directory and HOMETEL from it
 _THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export HOMETEL="$(cd "${_THIS_DIR}/.." && pwd)"
 export SOURCEFILE="${_THIS_DIR}"
@@ -898,7 +910,7 @@ export USETELCFG="hyinfompideb12"
 
 # Make TELEMAC Python utilities available
 if [ -d "${HOMETEL}/scripts/python3" ]; then
-  case ":${PYTHONPATH}:" in *:"${HOMETEL}/scripts/python3":*) ;; *) export PYTHONPATH="${HOMETEL}/scripts/python3:${PYTHONPATH}";; esac
+    case ":${PATH}:" in *:"${HOMETEL}/scripts/python3":*) ;; *) export PATH="${HOMETEL}/scripts/python3:${PATH}";; esac
 fi
 if [ -d "${HOMETEL}/scripts/unix" ]; then
   case ":${PATH}:" in *:"${HOMETEL}/scripts/unix":*) ;; *) export PATH="${HOMETEL}/scripts/unix:${PATH}";; esac
@@ -915,15 +927,6 @@ _first_dir() {
   done
   return 1
 }
-
-# SALOME layout remains user-installed and identical to Mint setup
-# Change SALOME_ROOT only if you used a different location
-: "${SALOME_ROOT:=${HOME}/opt/salome}"
-: "${SALOME_APPLI:=${SALOME_ROOT}/appli_V9}"
-_salome_lib="$(_first_dir \
-  "${SALOME_APPLI}/V9_*/lib/salome" \
-  "${SALOME_APPLI}/lib/salome" \
-  "${SALOME_ROOT}/lib/salome")"
 
 # MPI. Prefer OpenMPI wrappers if present
 _MPI_BIN="$(dirname "$(command -v mpif90 2>/dev/null || command -v mpifort 2>/dev/null || command -v mpicc 2>/dev/null || echo /usr/bin/mpif90)")"
@@ -947,12 +950,9 @@ _HDF5_LIB="$(_first_dir \
   "${_archlib}")"
 
 # MED-fichier
-_MED_INC="$(_first_dir \
-  "/usr/include" \
-  "/usr/include/med")"
-_MED_LIB="$(_first_dir \
-  "${_archlib}" \
-  "${_archlib}/med")"
+export _MED_ROOT="$HOME/opt/salome/BINARIES-DB12/medfile/"
+export _MED_INC="$HOME/opt/salome/BINARIES-DB12/medfile/include"
+export _MED_LIB="$HOME/opt/salome/BINARIES-DB12/medfile/lib"
 
 # METIS and ParMETIS
 _METIS_INC="$(_first_dir "/usr/include")"
@@ -981,8 +981,7 @@ for _libdir in \
   "${_MUMPS_LIB}" \
   "${_METIS_LIB}" \
   "${_PARMETIS_LIB}" \
-  "${_MED_LIB}" \
-  "${_salome_lib}"
+  "${_MED_LIB}"
 do
   [ -n "${_libdir}" ] || continue
   case ":${LD_LIBRARY_PATH}:" in *:"${_libdir}":*) ;; *) export LD_LIBRARY_PATH="${_libdir}:${LD_LIBRARY_PATH}";; esac
