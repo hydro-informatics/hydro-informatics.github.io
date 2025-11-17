@@ -1251,7 +1251,7 @@ To get started with the Q4TS plugin, see {numref}`Fig. %s <q4ts-ubuntu>` (Window
 :alt: configure Q4TS on Ubuntu Linux
 :name: q4ts-ubuntu
 
-The configuration of the Q4TS on Ubuntu Linux (links to https://gitlab.pam-retd.fr).
+The configuration of the Q4TS on Ubuntu Linux (links to https://gitlab.pam-retd.fr). To set these paths in QGIS, go to **Settings** (top menu) > **Options...** > **Processing** > **Providers** > **Q4TS**.
 ```
 ````
 ````{tab-item} Windows
@@ -1259,7 +1259,7 @@ The configuration of the Q4TS on Ubuntu Linux (links to https://gitlab.pam-retd.
 :alt: configure Q4TS on Windows
 :name: q4ts-windows
 
-The configuration of the Q4TS on Windows (links to https://gitlab.pam-retd.fr).
+The configuration of the Q4TS on Windows (links to https://gitlab.pam-retd.fr). To set these paths in QGIS, go to **Settings** (top menu) > **Options...** > **Processing** > **Providers** > **Q4TS**.
 ```
 ````
 `````
