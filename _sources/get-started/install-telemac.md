@@ -1247,7 +1247,7 @@ To get started with the Q4TS plugin, see {numref}`Fig. %s <q4ts-ubuntu>` (Window
 
 `````{tab-set}
 ````{tab-item} Linux (Ubuntu)
-```{figure} https://gitlab.pam-retd.fr/otm/q4ts/-/raw/develop/docs/images/conf_ubuntu.png
+```{figure} ../img/telemac/conf-mint22.jpg
 :alt: configure Q4TS on Ubuntu Linux
 :name: q4ts-ubuntu
 
