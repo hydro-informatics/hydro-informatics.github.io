@@ -365,7 +365,8 @@ This workflow explains the installation of SALOME on Linux Mint / Ubuntu. The mi
 
 ```bash
 sudo apt update
-sudo apt install python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils libfreeimage3 python3-h5py          python3-imagesize liblapacke clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil libtbb12        libxml++2.6-2v5 liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml 
+sudo apt install python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils libfreeimage3 python3-h5py          python3-imagesize liblapacke clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil libtbb12        libxml++2.6-2v5 liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml python-is-python3
+
 ```
 
 The minimum compile dependencies require the following installations:
@@ -391,15 +392,40 @@ sudo apt install pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libc
   
     ```bash
     mkdir -p /home/HyInfo/opt/salome
-    tar -xzf ~/Downloads/SALOME-9.15.0.tar.gz -C /opt/salome-9.15 --strip-components=1
+    tar -xzf ~/Downloads/SALOME-9.15.0.tar.gz -C /opt/salome --strip-components=1
     chown -R "$USER":"$USER" /home/HyInfo/opt/salome
     ```
+
+````{admonition} Troubleshoot "chown: invalid group: ..."
+:class: error, dropdown
+
+If you are receiving a message like `chown: invalid group: myuser:myuser`, that means `chown` is complaining because there is no group named `myuser` on the computer. The owner `myuser` exists, but the group myuser does not. To fix that, first check your actual primary group:
+
+```bash
+id
+```
+
+This should return something like `uid=1234(myuser) gid=100(users) groups=100(users),123(othergroup)`. Now you have two options for troubleshooting:
+
+Option 1: Replace the second `$USER` with your primary group from `id`:
+
+```bash
+chown -R "$USER":"$(id -gn "$USER")" /home/HyInfo/opt/salome
+```
+
+Option 2 (more robust): use auto-detection of your primary group:
+
+```bash
+chown -R "$USER":"$(id -gn "$USER")" /home/HyInfo/opt/salome
+```
+````
+
 
 5. Let SALOME check your system and install what it asks for
    * From inside the extracted SALOME directory, identify the application name
    ```bash
    cd /home/HyInfo/opt/salome/sat
-   ./sat config SALOME-9.15.0 config --list
+   ./sat config --list
    ```
    * Use the provided application name; the following descriptions assume the application name is `SALOME-9.15.0-native`
    * Run the built-in checker; it prints what packages might be missing:

@@ -872,7 +872,7 @@ mpifort<span class="w"> </span>--showme:compile<span class="w"> </span>--showme:
 <span id="salome-install"></span><h3>SALOME<a class="headerlink" href="#salome" title="Link to this heading">#</a></h3>
 <p>This workflow explains the installation of SALOME on Linux Mint / Ubuntu. The minimum runtime dependencies require (at least) the following installations:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pytest-cython<span class="w"> </span>python3-sphinx<span class="w"> </span>python3-alabaster<span class="w"> </span>python3-cftime<span class="w"> </span>libcminpack1<span class="w"> </span>python3-docutils<span class="w"> </span>libfreeimage3<span class="w"> </span>python3-h5py<span class="w">          </span>python3-imagesize<span class="w"> </span>liblapacke<span class="w"> </span>clang<span class="w"> </span>python3-netcdf4<span class="w"> </span>libnlopt0<span class="w"> </span>libnlopt-cxx0<span class="w"> </span>python3-nlopt<span class="w"> </span>python3-nose<span class="w"> </span>python3-numpydoc<span class="w"> </span>python3-patsy<span class="w"> </span>python3-psutil<span class="w"> </span>libtbb12<span class="w">        </span>libxml++2.6-2v5<span class="w"> </span>liblzf1<span class="w"> </span>python3-stemmer<span class="w"> </span>python3-sphinx-rtd-theme<span class="w"> </span>python3-sphinxcontrib.websupport<span class="w"> </span>sphinx-intl<span class="w"> </span>python3-statsmodels<span class="w"> </span>python3-toml<span class="w"> </span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pytest-cython<span class="w"> </span>python3-sphinx<span class="w"> </span>python3-alabaster<span class="w"> </span>python3-cftime<span class="w"> </span>libcminpack1<span class="w"> </span>python3-docutils<span class="w"> </span>libfreeimage3<span class="w"> </span>python3-h5py<span class="w">          </span>python3-imagesize<span class="w"> </span>liblapacke<span class="w"> </span>clang<span class="w"> </span>python3-netcdf4<span class="w"> </span>libnlopt0<span class="w"> </span>libnlopt-cxx0<span class="w"> </span>python3-nlopt<span class="w"> </span>python3-nose<span class="w"> </span>python3-numpydoc<span class="w"> </span>python3-patsy<span class="w"> </span>python3-psutil<span class="w"> </span>libtbb12<span class="w">        </span>libxml++2.6-2v5<span class="w"> </span>liblzf1<span class="w"> </span>python3-stemmer<span class="w"> </span>python3-sphinx-rtd-theme<span class="w"> </span>python3-sphinxcontrib.websupport<span class="w"> </span>sphinx-intl<span class="w"> </span>python3-statsmodels<span class="w"> </span>python3-toml<span class="w"> </span>python-is-python3
 </pre></div>
 </div>
 <p>The minimum compile dependencies require the following installations:</p>
@@ -901,17 +901,35 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </li>
 <li><p>Extract somewhere clean and sane; for example as <code class="docutils literal notranslate"><span class="pre">sudo</span></code> for the entire system (adjust name if you chose a different archive), or following this workflow fow installing TELEMAC in <code class="docutils literal notranslate"><span class="pre">/home/HyInfo/opt/</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/home/HyInfo/opt/salome
-tar<span class="w"> </span>-xzf<span class="w"> </span>~/Downloads/SALOME-9.15.0.tar.gz<span class="w"> </span>-C<span class="w"> </span>/opt/salome-9.15<span class="w"> </span>--strip-components<span class="o">=</span><span class="m">1</span>
+tar<span class="w"> </span>-xzf<span class="w"> </span>~/Downloads/SALOME-9.15.0.tar.gz<span class="w"> </span>-C<span class="w"> </span>/opt/salome<span class="w"> </span>--strip-components<span class="o">=</span><span class="m">1</span>
 chown<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span>:<span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span><span class="w"> </span>/home/HyInfo/opt/salome
 </pre></div>
 </div>
 </li>
+</ol>
+<div class="error dropdown admonition">
+<p class="admonition-title">Troubleshoot “chown: invalid group: …”</p>
+<p>If you are receiving a message like <code class="docutils literal notranslate"><span class="pre">chown:</span> <span class="pre">invalid</span> <span class="pre">group:</span> <span class="pre">myuser:myuser</span></code>, that means <code class="docutils literal notranslate"><span class="pre">chown</span></code> is complaining because there is no group named <code class="docutils literal notranslate"><span class="pre">myuser</span></code> on the computer. The owner <code class="docutils literal notranslate"><span class="pre">myuser</span></code> exists, but the group myuser does not. To fix that, first check your actual primary group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>id
+</pre></div>
+</div>
+<p>This should return something like <code class="docutils literal notranslate"><span class="pre">uid=1234(myuser)</span> <span class="pre">gid=100(users)</span> <span class="pre">groups=100(users),123(othergroup)</span></code>. Now you have two options for troubleshooting:</p>
+<p>Option 1: Replace the second <code class="docutils literal notranslate"><span class="pre">$USER</span></code> with your primary group from <code class="docutils literal notranslate"><span class="pre">id</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chown<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span>:<span class="s2">&quot;</span><span class="k">$(</span>id<span class="w"> </span>-gn<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>/home/HyInfo/opt/salome
+</pre></div>
+</div>
+<p>Option 2 (more robust): use auto-detection of your primary group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chown<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span>:<span class="s2">&quot;</span><span class="k">$(</span>id<span class="w"> </span>-gn<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>/home/HyInfo/opt/salome
+</pre></div>
+</div>
+</div>
+<ol class="arabic" start="5">
 <li><p>Let SALOME check your system and install what it asks for</p>
 <ul class="simple">
 <li><p>From inside the extracted SALOME directory, identify the application name</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/HyInfo/opt/salome/sat
-./sat<span class="w"> </span>config<span class="w"> </span>SALOME-9.15.0<span class="w"> </span>config<span class="w"> </span>--list
+./sat<span class="w"> </span>config<span class="w"> </span>--list
 </pre></div>
 </div>
 <ul class="simple">
