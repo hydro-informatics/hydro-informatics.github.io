@@ -365,7 +365,7 @@ This workflow explains the installation of SALOME on Linux Mint / Ubuntu. The mi
 
 ```bash
 sudo apt update
-sudo apt install python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils libfreeimage3 python3-h5py          python3-imagesize liblapacke clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil libtbb12        libxml++2.6-2v5 liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml python-is-python3
+sudo apt install python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils libfreeimage3 python3-h5py python3-imagesize liblapacke clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil libtbb12 libxml++2.6-2v5 liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml python-is-python3
 
 ```
 
@@ -376,7 +376,8 @@ sudo apt update
 sudo apt install pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libcppunit-dev doxygen libeigen3-dev libfreeimage-dev libgraphviz-dev libjsoncpp-dev liblapacke-dev libxml2-dev llvm-dev libnlopt-dev libnlopt-cxx-dev python3-patsy libqwt-qt5-dev libfontconfig1-dev libglu1-mesa-dev libxcb-dri2-0-dev libxkbcommon-dev libxkbcommon-x11-dev libxi-dev libxmu-dev libxpm-dev libxft-dev libicu-dev libsqlite3-dev libxcursor-dev libtbb-dev libqt5svg5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libpng-dev libtiff5-dev libgeotiff-dev libgif-dev libgeos-dev libgdal-dev texlive-latex-base libxml++2.6-dev libfreetype6-dev libgmp-dev libmpfr-dev libxinerama-dev python3-sip-dev python3-statsmodels tcl-dev tk-dev 
 ```
 
-1. Confirm your Ubuntu version: 
+1. Confirm your Linux version: 
+   * Debian: cat /etc/os-release
    * Mint: `lsb_release -a`
    * Ubuntu: `inxi -Sx` (also works on Mint)
 
@@ -1145,7 +1146,7 @@ cd ~/opt/telemac-mascaret/configs    # adjust if you installed elsewhere
 source pysource.mint22.sh            # or: source pysource.debian12.sh
 ```
 
-To test the installation, run a predefined case from the `examples` folder:
+Run a predefined case from the `examples` folder:
 
 ```bash
 cd ~/opt/telemac-mascaret/examples/telemac2d/gouttedo
@@ -1238,7 +1239,7 @@ validate_telemac.py
 ```
 
 
-
+(install-telemac-utilities)=
 ## Utilities (Pre- & Post-processing)
 
 ```{admonition} More Pre- and Post-processing Software
@@ -1257,7 +1258,7 @@ QGIS is a powerful tool for viewing, creating, and editing geospatial data and i
 To install Q4TS, follow the developers’ instructions at [https://gitlab.pam-retd.fr/otm/q4ts](https://gitlab.pam-retd.fr/otm/q4ts):
 
 * In QGIS, open the **Plugin Manager** (Plugins > Manage and Install Plugins…).
-* Go to **Settings** > **Add…**, set the URL to `https://otm.gitlab-pages.pam-retd.fr/q4ts/plugins.xml`, choose a **Name** (for example, `q4ts`), and leave the other fields unchanged. Click **OK**.
+* Go to **Settings** > **Add...**, set the URL to `https://otm.gitlab-pages.pam-retd.fr/q4ts/plugins.xml`, choose a **Name** (for example, `q4ts`), and leave the other fields unchanged. Click **OK**.
 * Click **Reload all Repositories**.
 * In the **All** tab, search for `Q4TS` and install the plugin.
 
@@ -1277,7 +1278,7 @@ To get started with the Q4TS plugin, see {numref}`Fig. %s <q4ts-ubuntu>` (Window
 :alt: configure Q4TS on Ubuntu Linux
 :name: q4ts-ubuntu
 
-The configuration of the Q4TS on Ubuntu Linux (links to https://gitlab.pam-retd.fr). To set these paths in QGIS, go to **Settings** (top menu) > **Options...** > **Processing** > **Providers** > **Q4TS**.
+The configuration of the Q4TS on Ubuntu Linux. To set these paths in QGIS, go to **Settings** (top menu) > **Options...** > **Processing** > **Providers** > **Q4TS**.
 ```
 ````
 ````{tab-item} Windows

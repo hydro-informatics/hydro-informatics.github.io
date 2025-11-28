@@ -64,7 +64,7 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="REEF3D (Installation)" href="install-reef3d.html" />
+    <link rel="next" title="TELEMAC (Auto-Installation)" href="install-telemac-autoinstaller.html" />
     <link rel="prev" title="OpenFOAM (Installation)" href="install-openfoam.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,6 +195,7 @@
 <li class="toctree-l2"><a class="reference internal" href="geo.html">Geospatial Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-openfoam.html">OpenFOAM (Installation)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">TELEMAC (Installation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-telemac-autoinstaller.html">TELEMAC (Auto-Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install-reef3d.html">REEF3D (Installation)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="others.html">Other Software Resources</a></li>
 </ul>
@@ -237,7 +238,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../exercises/ex-floods.html">Flood Return Periods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../exercises/ex-sediment.html">1d Sediment Transport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../exercises/ex-gui.html">Create a GUI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../jupyter/schwimmstabilitaet.html">Schwimmstabilität von Körpern</a></li>
 </ul>
 </details></li>
 </ul>
@@ -872,7 +872,7 @@ mpifort<span class="w"> </span>--showme:compile<span class="w"> </span>--showme:
 <span id="salome-install"></span><h3>SALOME<a class="headerlink" href="#salome" title="Link to this heading">#</a></h3>
 <p>This workflow explains the installation of SALOME on Linux Mint / Ubuntu. The minimum runtime dependencies require (at least) the following installations:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pytest-cython<span class="w"> </span>python3-sphinx<span class="w"> </span>python3-alabaster<span class="w"> </span>python3-cftime<span class="w"> </span>libcminpack1<span class="w"> </span>python3-docutils<span class="w"> </span>libfreeimage3<span class="w"> </span>python3-h5py<span class="w">          </span>python3-imagesize<span class="w"> </span>liblapacke<span class="w"> </span>clang<span class="w"> </span>python3-netcdf4<span class="w"> </span>libnlopt0<span class="w"> </span>libnlopt-cxx0<span class="w"> </span>python3-nlopt<span class="w"> </span>python3-nose<span class="w"> </span>python3-numpydoc<span class="w"> </span>python3-patsy<span class="w"> </span>python3-psutil<span class="w"> </span>libtbb12<span class="w">        </span>libxml++2.6-2v5<span class="w"> </span>liblzf1<span class="w"> </span>python3-stemmer<span class="w"> </span>python3-sphinx-rtd-theme<span class="w"> </span>python3-sphinxcontrib.websupport<span class="w"> </span>sphinx-intl<span class="w"> </span>python3-statsmodels<span class="w"> </span>python3-toml<span class="w"> </span>python-is-python3
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pytest-cython<span class="w"> </span>python3-sphinx<span class="w"> </span>python3-alabaster<span class="w"> </span>python3-cftime<span class="w"> </span>libcminpack1<span class="w"> </span>python3-docutils<span class="w"> </span>libfreeimage3<span class="w"> </span>python3-h5py<span class="w"> </span>python3-imagesize<span class="w"> </span>liblapacke<span class="w"> </span>clang<span class="w"> </span>python3-netcdf4<span class="w"> </span>libnlopt0<span class="w"> </span>libnlopt-cxx0<span class="w"> </span>python3-nlopt<span class="w"> </span>python3-nose<span class="w"> </span>python3-numpydoc<span class="w"> </span>python3-patsy<span class="w"> </span>python3-psutil<span class="w"> </span>libtbb12<span class="w"> </span>libxml++2.6-2v5<span class="w"> </span>liblzf1<span class="w"> </span>python3-stemmer<span class="w"> </span>python3-sphinx-rtd-theme<span class="w"> </span>python3-sphinxcontrib.websupport<span class="w"> </span>sphinx-intl<span class="w"> </span>python3-statsmodels<span class="w"> </span>python3-toml<span class="w"> </span>python-is-python3
 </pre></div>
 </div>
 <p>The minimum compile dependencies require the following installations:</p>
@@ -881,8 +881,9 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </pre></div>
 </div>
 <ol class="arabic">
-<li><p>Confirm your Ubuntu version:</p>
+<li><p>Confirm your Linux version:</p>
 <ul class="simple">
+<li><p>Debian: cat /etc/os-release</p></li>
 <li><p>Mint: <code class="docutils literal notranslate"><span class="pre">lsb_release</span> <span class="pre">-a</span></code></p></li>
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">inxi</span> <span class="pre">-Sx</span></code> (also works on Mint)</p></li>
 </ul>
@@ -1627,7 +1628,7 @@ config.py
 <span class="nb">source</span><span class="w"> </span>pysource.mint22.sh<span class="w">            </span><span class="c1"># or: source pysource.debian12.sh</span>
 </pre></div>
 </div>
-<p>To test the installation, run a predefined case from the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder:</p>
+<p>Run a predefined case from the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/opt/telemac-mascaret/examples/telemac2d/gouttedo
 telemac2d.py<span class="w"> </span>t2d_gouttedo.cas
 </pre></div>
@@ -1697,7 +1698,7 @@ config.py
 </section>
 </section>
 <section id="utilities-pre-post-processing">
-<h2>Utilities (Pre- &amp; Post-processing)<a class="headerlink" href="#utilities-pre-post-processing" title="Link to this heading">#</a></h2>
+<span id="install-telemac-utilities"></span><h2>Utilities (Pre- &amp; Post-processing)<a class="headerlink" href="#utilities-pre-post-processing" title="Link to this heading">#</a></h2>
 <div class="note admonition">
 <p class="admonition-title">More Pre- and Post-processing Software</p>
 <p>More software for dealing with TELEMAC pre- and post-processing is available in the form of <a class="reference internal" href="#salome-install"><span class="std std-ref">SALOME</span></a> and ParaView.</p>
@@ -1726,7 +1727,7 @@ Linux (Ubuntu)</label><div class="sd-tab-content docutils">
 <figure class="align-default" id="q4ts-ubuntu">
 <img alt="configure Q4TS on Ubuntu Linux" src="../_images/conf-mint22.jpg" />
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The configuration of the Q4TS on Ubuntu Linux (links to <a class="reference external" href="https://gitlab.pam-retd.fr">https://gitlab.pam-retd.fr</a>). To set these paths in QGIS, go to <strong>Settings</strong> (top menu) &gt; <strong>Options…</strong> &gt; <strong>Processing</strong> &gt; <strong>Providers</strong> &gt; <strong>Q4TS</strong>.</span><a class="headerlink" href="#q4ts-ubuntu" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">The configuration of the Q4TS on Ubuntu Linux. To set these paths in QGIS, go to <strong>Settings</strong> (top menu) &gt; <strong>Options…</strong> &gt; <strong>Processing</strong> &gt; <strong>Providers</strong> &gt; <strong>Q4TS</strong>.</span><a class="headerlink" href="#q4ts-ubuntu" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </div>
@@ -1848,11 +1849,11 @@ java<span class="w"> </span>-Xmx2048m<span class="w"> </span>-Xms512m<span class
       </div>
     </a>
     <a class="right-next"
-       href="install-reef3d.html"
+       href="install-telemac-autoinstaller.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">REEF3D (Installation)</p>
+        <p class="prev-next-title">TELEMAC (Auto-Installation)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
