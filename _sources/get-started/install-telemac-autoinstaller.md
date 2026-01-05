@@ -191,12 +191,6 @@ cd ~/opt/telemac-mascaret/examples/telemac2d/gouttedo
 telemac2d.py t2d_gouttedo.cas
 ```
 
-```{admonition} Examples not working?
-:class: error, dropdown
-
-Do not panic. If `config.py` succeeded and the build ended with "My work is done", your installation is usually fine. Most example failures come from environment issues or missing large files. Ensure you have sourced the correct `pysource.*.sh`, installed all Git requirements **including Git LFS, checked out the right version,** and pulled the full repository. If needed, re-clone with Git LFS enabled and recompile TELEMAC, starting from the {ref}`git section <tm-git-requirements>`.
-```
-
 To verify parallelism, install *htop* to visualize CPU usage:
 
 ```bash

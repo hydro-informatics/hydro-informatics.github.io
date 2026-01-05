@@ -622,7 +622,7 @@ document.write(`
 </div>
 <section id="roughness-xyz-with-qgis-recommended">
 <span id="tm-friction-qgis"></span><h2>Roughness.XYZ with QGIS (recommended)<a class="headerlink" href="#roughness-xyz-with-qgis-recommended" title="Link to this heading">#</a></h2>
-<p>The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the <code class="docutils literal notranslate"><span class="pre">QGIS</span> <span class="pre">pre-processing</span> <span class="pre">tutorial</span> <span class="pre">&lt;tm-qgis-prepro&gt;</span></code>:</p>
+<p>The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the <a class="reference internal" href="../pre-slf-tm.html#tm-qgis-prepro"><span class="std std-ref">QGIS pre-processing tutorial</span></a>:</p>
 <ul class="simple">
 <li><p>Open QGIS, and in the top menu go to <strong>Project</strong> &gt; <strong>Properties</strong>.</p></li>
 <li><p>Activate the <strong>CRS</strong> tab.</p></li>
@@ -644,7 +644,7 @@ document.write(`
 </ul>
 <p>This tutorial picks up the example from the <a class="reference internal" href="../pre-slf-tm.html#slf-prepro-tm"><span class="std std-ref">Telemac QGIS pre-processing tutorial</span></a> to draw polygons along the <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip">breaklines</a> and <a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip">liquid-boundaries</a> shapefiles. The friction zones are inferred from a <a class="reference internal" href="../../geopy/use-qgis.html#basemap"><span class="std std-ref">Google Satellite basemap</span></a> and friction attributes are qualitatively estimated, which is just fine for a tutorial. In practice, we strongly recommend performing field surveys on grain size distributions with high-precision differential GPS (DGPS) systems to delineate roughness zones on-site supported by drone imagery.</p>
 <div class="tip admonition" id="ai-image-recognition-numerics">
-<p class="admonition-title">AI can do a better job</p>
+<p class="admonition-title">AI can be more efficient (though less effective)</p>
 <p>This tutorial shows how to manually draw polygons delineating particular roughness zones, such as <em>sand</em>, <em>gravel</em>, or <em>vegetation</em>. However, artificial intelligence (AI) has already been proven to do a great job in automatically recognizing similar terrain patches for consistent recognition of roughness zones. Examples can be found in <span id="id1">Díaz Gómez <em>et al.</em> [<a class="reference internal" href="../../documentation/bibliography.html#id1425" title="Romina Díaz Gómez, Gregory B. Pasternack, Hervé Guillon, Colin F. Byrne, Sebastian Schwindt, Kenneth G. Larrieu, and Samuel Sandoval Solis. Mapping subaerial sand-gravel-cobble fluvial sediment facies using airborne lidar and machine learning. Geomorphology, 401:108106, March 2022. URL: https://www.sciencedirect.com/science/article/pii/S0169555X21005146.">DiazGomezPG+22</a>]</span> or <a class="reference external" href="https://github.com/klarrieu/segment-anything-eo">Kenny Larrieu’s implementation of Segment Anything EO tools</a>.</p>
 <p>What you need is:</p>
 <ul class="simple">
@@ -1172,7 +1172,7 @@ Old (Manning from steady 2d)</label><div class="sd-tab-content docutils">
 </div>
 <p>The successful simulation run will have finished with something like this:</p>
 <div class="note dropdown admonition">
-<p class="admonition-title">Unfold to see the correct Terminal output</p>
+<p class="admonition-title">Unfold to see the expected Terminal output</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">================================================================================</span>
  <span class="n">ITERATION</span>    <span class="mi">10000</span>    <span class="n">TIME</span><span class="p">:</span>  <span class="mi">6</span> <span class="n">H</span> <span class="mi">56</span> <span class="n">MIN</span>  <span class="mf">40.0000</span> <span class="n">S</span>   <span class="p">(</span>    <span class="mf">25000.0000</span> <span class="n">S</span><span class="p">)</span>
 <span class="o">--------------------------------------------------------------------------------</span>
@@ -1330,7 +1330,7 @@ Convergence rate</label><div class="sd-tab-content docutils">
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-8">
-Activation keywords</label><div class="sd-tab-content docutils">
+Keywords to activate</label><div class="sd-tab-content docutils">
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ks</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
 <span class="o">/</span><span class="w"> </span><span class="p">...</span>
 <span class="o">/</span><span class="w"> </span><span class="n">ACTIVATE</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">keywords</span>
@@ -1342,7 +1342,7 @@ Activation keywords</label><div class="sd-tab-content docutils">
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-9">
-Deactivation keywords</label><div class="sd-tab-content docutils">
+Keywords to deactivate</label><div class="sd-tab-content docutils">
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="w"> </span><span class="n">steady2d</span><span class="o">-</span><span class="n">zonal</span><span class="o">-</span><span class="n">ks</span><span class="p">.</span><span class="n">cas</span><span class="w"> </span><span class="n">steering</span><span class="w"> </span><span class="k">file</span>
 <span class="o">/</span><span class="w"> </span><span class="p">...</span>
 <span class="o">/</span><span class="w"> </span><span class="n">DEACTIVATE</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">keywords</span>
@@ -1513,7 +1513,7 @@ By Sebastian Schwindt, Beatriz Negreiros, Federica Scolari
 
   <p class="copyright">
     
-      © Copyright 2025.
+      © Copyright 2026.
       <br/>
     
   </p>

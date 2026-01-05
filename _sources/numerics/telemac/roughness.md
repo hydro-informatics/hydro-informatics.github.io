@@ -25,7 +25,7 @@ Roughness describes the unevenness or ruggedness of solid surfaces, like riverbe
 (tm-friction-qgis)=
 ## Roughness.XYZ with QGIS (recommended)
 
-The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the `QGIS pre-processing tutorial <tm-qgis-prepro>`: 
+The first step for delineating roughness zones in QGIS is to set up the coordinate reference system and save the project, analogous to the {ref}`QGIS pre-processing tutorial <tm-qgis-prepro>`: 
 
 * Open QGIS, and in the top menu go to **Project** > **Properties**.
 * Activate the **CRS** tab.
@@ -44,7 +44,7 @@ It will be important to avoid overlapping that would lead to ambiguous or missin
 
 This tutorial picks up the example from the {ref}`Telemac QGIS pre-processing tutorial <slf-prepro-tm>` to draw polygons along the [breaklines](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip) and [liquid-boundaries](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) shapefiles. The friction zones are inferred from a {ref}`Google Satellite basemap <basemap>` and friction attributes are qualitatively estimated, which is just fine for a tutorial. In practice, we strongly recommend performing field surveys on grain size distributions with high-precision differential GPS (DGPS) systems to delineate roughness zones on-site supported by drone imagery.
 
-```{admonition} AI can do a better job
+```{admonition} AI can be more efficient (though less effective)
 :class: tip
 :name: ai-image-recognition-numerics
 
@@ -650,7 +650,7 @@ telemac2d.py steady2d-zonal-ks.cas -s
 
 The successful simulation run will have finished with something like this:
 
-````{admonition} Unfold to see the correct Terminal output
+````{admonition} Unfold to see the expected Terminal output
 :class: note, dropdown
 
 ```
@@ -819,7 +819,7 @@ To activate the friction data, add the following keywords to the `.cas` steering
 
 
 `````{tab-set}
-````{tab-item} Activation keywords
+````{tab-item} Keywords to activate
 ```fortran
 / steady2d-zonal-ks.cas steering file
 / ...
@@ -829,7 +829,7 @@ FRICTION DATA FILE : 'friction.tbl'
 MAXIMUM NUMBER OF FRICTION DOMAINS : 20 / consider to increase (default is 10)
 ```
 ````
-````{tab-item} Deactivation keywords
+````{tab-item} Keywords to deactivate
 ```fortran
 / steady2d-zonal-ks.cas steering file
 / ...
