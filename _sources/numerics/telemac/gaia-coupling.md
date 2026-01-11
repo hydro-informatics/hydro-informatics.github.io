@@ -5,9 +5,9 @@ This tutorial is designed for **advanced modelers** and before diving into this 
 
 The case featured in this tutorial was established with the following software:
 * {ref}`Notepad++ <npp>` text editor (any other text editor will do just as well.)
-* TELEMAC v8p2r0 ({ref}`stand-alone installation <modular-install>`) - earlier versions will not recognize some of the keywords used in this eBook.
+* TELEMAC v9.0.0 ({ref}`stand-alone installation <modular-install>`) - earlier versions may not recognize some of the keywords used in this eBook.
 * {ref}`QGIS <qgis-install>`.
-* Debian Linux 10 (Buster) installed on a Virtual Machine (read more in the {ref}`software chapter <chpt-vm-linux>`).
+* Debian Linux / Ubuntu 24.04 (read more in the {ref}`software chapter <chpt-vm-linux>`).
 ```
 
 ## Terminology
@@ -16,7 +16,7 @@ A hydro-morphodynamic simulation implies modeling runoff-driven **{term}`Sedimen
 (gaia-seditrans)=
 ## Sediment Transport Modes
 
-TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., {term}`Topographic change`) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of **{term}`Bedload` (coarse sediment)** and/or **{term}`Suspended load` (fine sediment)**. {term}`Bedload` is calculated by solving semi-empiric equations, such as the {cite:t}`meyer-peter_formulas_1948` formula (read more later in this tutorial). {term}`Suspended load` is modeled by solving the {term}`Advection`-{term}`Diffusion` equations (typically, the {term}`RANS` form), require closures for sediment erosion and deposition fluxes. {numref}`Figure %s <bl-vs-sl>` qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload. Whether a particle is transported in suspension or as bedload can also be determined by calculating of the {term}`Rouse number`.
+TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia enables modeling sediment transport and morphological evolution (i.e., {term}`Topographic change`) in rivers, lakes, and estuaries. It comes with particular routines to consider a spatio-temporal variation of grain sizes, grading curves, and riverbed layering for simulating sediment transport in the form of **{term}`Bedload` (coarse sediment)** and/or **{term}`Suspended load` (fine sediment)**. {term}`Bedload` is calculated by solving semi-empiric equations, such as the {cite:t}`meyer-peter_formulas_1948` formula (read more later in this tutorial). {term}`Suspended load` is modeled by solving the {term}`Advection`-{term}`Diffusion` equations (typically, the {term}`RANS` form), which require closures for sediment erosion and deposition fluxes. {numref}`Figure %s <bl-vs-sl>` qualitatively illustrates the two basic modes of sediment transport in the form of suspended load and bedload. Whether a particle is transported in suspension or as bedload can also be determined by calculating of the {term}`Rouse number`.
 
 ```{figure} https://github.com/Ecohydraulics/media/raw/main/png/sediment-transport.png
 :alt: sediment transport bedload suspended load
@@ -25,7 +25,7 @@ TELEMAC has a dedicated module called Gaia for modeling morphodynamics. Gaia ena
 Qualitative representation of two modes of sediment transport. On the left: suspended load in the form of fine particles moving with the bulk flow; on the right: bedload in the form of particles rolling, jumping, or sliding on the riverbed.
 ```
 
-Sediment is further distinguished between very fine, **cohesive** sediment and coarser, **non-cohesive** sediment. In addition, Gaia accounts for bed evolution through an iterative solution of the {term}`Exner equation` {cite:p}`exner_uber_1925` for mass conversation.
+Sediment is further distinguished between very fine, **cohesive** sediment and coarser, **non-cohesive** sediment. In addition, Gaia accounts for bed evolution through an iterative solution of the {term}`Exner equation` {cite:p}`exner_uber_1925` for mass conservation.
 
 The recruitment of sediment for both suspended load and bedload transport requires a detailed look at the riverbed, which will be provided later in the section on the definition of {ref}`the riverbed composition and the active layer <gaia-active-lyr>`.
 
@@ -37,7 +37,7 @@ The morphodynamics module Gaia can be internally **coupled** with the hydrodynam
 
 ### From Sisyphe to Gaia
 
-Sisyphe is the traditional sediment transport module in TELEMAC, which has already largely been replaced by the more logical Gaia module. To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know that there has been a predecessor module of Gaia called SISYPHE. SISYPHE and its routines are still available in recent TELEMAC versions in addition to and through Gaia. Although the use of SISYPHE routines through Gaia with functional enhancements require adjustments of some keywords. Read more in the {{ gaia }} in Appendix 8.1 and in the gaia.dico (`telemac/v9.0.0/sources/gaia/gaia.dico`).
+Sisyphe is the traditional sediment transport module in TELEMAC, which has largely been replaced by the more unified Gaia module. Gaia is based on the historical module SISYPHE, with a large number of improvements, corrections, and optimizations implemented. Gaia's unified framework efficiently manages different sediment classes, sand-mud mixtures, and both 2D and 3D spatial dimensions. To get specifications beyond the features presented here in the TELEMAC documentation and the TELEMAC forum, it is useful to know the SISYPHE heritage. SISYPHE routines are still available in recent TELEMAC versions through Gaia, though some keywords require adjustments. Read more in the {{ gaia }} in Appendix 8.1 and in the gaia.dico (`telemac/v9.0.0/sources/gaia/gaia.dico`).
 
 ### Coupling Hydrodynamics (Telemac2d/3d) and Morphodynamics (Gaia)
 
@@ -51,19 +51,16 @@ Fully coupled model
 
 
 Decoupled model
-: A decoupled model solves morphodynamic (i.e., the {term}`Exner equation`) not iteratively with, and optionally, not for every hydrodynamic timestep. Thus, a user-defined frequency calculation frequency for morphodynamics can be set, such as every 2$^{nd}$ or 10$^{th}$ hydrodynamic timestep. Therefore, the active channel bottom is considered fixed when hydrodynamic variables are solved and bed elevation (or {term}`Topographic change`) is calculated at a user-defined frequency and separately (i.e., *decoupled* or *asynchronous*) from hydrodynamics.
+: A decoupled model alternates between solving hydrodynamics and morphodynamics (i.e., the {term}`Exner equation`). The riverbed is considered fixed when hydrodynamic variables are computed, and then bed elevation changes are calculated separately based on the computed flow field. This *asynchronous* approach is computationally more efficient than full coupling.
 
-  *Application range:* Most river models, and in particular, lake or oceanic models.
+  *Application range:* Most river models, and in particular, lake or oceanic models where morphodynamic timescales are much longer than hydrodynamic timescales.
 
-Gaia is designed as a de-coupled model where the morphodynamic calculation frequency is a function of a *coupling period* parameter (read more in section 5.1.2 in the {{ gaia }}). Note that the {{ gaia }} (section 1.1.3) says that Gaia is decoupled, though it successively solves hydrodynamics and morphodynamics for every timestep. Moreover, the coupling period is currently only a user-defined parameter with reference to SISYPHE, which can be modified in the hydrodynamic steering file with:
+Gaia follows the **decoupled** approach. The time step used for morphodynamic computation is the same as for hydrodynamics (specified in the Telemac2d or Telemac3d steering file). At each time step, hydrodynamics are solved first with the bed frozen, then the sediment transport equations and bed evolution (Exner equation) are solved based on the computed flow field.
 
-```fortran
-/steady2d-gaia.cas
-/...
-COUPLING PERIOD FOR SISYPHE : 1 / integer
+```{admonition} Coupling period for wave-current-sediment interactions
+:class: note
+When coupling Gaia with the wave module TOMAWAC, a **coupling period** can be specified to control how frequently wave fields are updated. This is relevant because wave computations can be expensive and wave conditions may not change as rapidly as currents. For basic Telemac2d/3d-Gaia coupling without waves, the morphodynamics are computed at every hydrodynamic time step. Read more about wave coupling in section 5.1 of the {{ gaia }}.
 ```
-
-To get updates on the coupling period and modes of Gaia, follow the [discussion in the TELEMAC Forum](http://www.opentelemac.org/index.php/kunena/17-sisyphe/13413-coupling-period-for-gaia#38974).
 
 ### File Requirements for Coupling Gaia
 
@@ -105,15 +102,19 @@ GAIA STEERING FILE : gaia-morphodynamics.cas
 (gaia-hotstart)=
 ### Hotstart
 
-This tutorial builds on the results of the {ref}`dry-initialized steady2d model <tm2d-init-dry>` because Gaia is designed as a decoupled model (see the {ref}`above definitions <tm-coupling>`). Using a former simulation result for model initialization is called **hotstart** for which TELEMAC requires, of course, a results file from a previous simulation. For this purpose, make sure that the dry-initialized steady2d results file in the simulation folder ([download r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf)). Then **define the hotstart in the Telemac2d steering file** with the following keywords:
+This tutorial builds on the results of the {ref}`dry-initialized steady2d model <tm2d-init-dry>` because Gaia simulations typically require a well-developed flow field as initial condition (see the {ref}`above definitions <tm-coupling>`). Using a former simulation result for model initialization is called **hotstart**, which requires a results file from a previous simulation. For this purpose, make sure that the dry-initialized steady2d results file is in the simulation folder ([download r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady.slf)). Then **define the hotstart in the Telemac2d steering file** with the following keywords:
 
 
 ```fortran
 / steady2d-gaia.cas
 / ...
-COMPUTATION CONTINUED : YES
 PREVIOUS COMPUTATION FILE : r2dsteady.slf / results of 35 CMS steady simulation
 INITIAL TIME SET TO ZERO : YES / avoid restarting at 15000
+```
+
+```{admonition} COMPUTATION CONTINUED is obsolete in TELEMAC v9.0
+:class: warning
+Since TELEMAC v9.0, the keyword `COMPUTATION CONTINUED` has been **deleted**. The continuation step is now **automatically activated** when `PREVIOUS COMPUTATION FILE` is specified in the steering file. Simply providing the previous computation file triggers the hotstart behavior.
 ```
 
 The **INITIAL TIME SET TO ZERO** keyword resets the simulation time to `0`. Next, make sure that all **INITIAL CONDITIONS** keywords are commented out with a **/** (alternatively delete these lines from steady2d-gaia.cas):
@@ -130,6 +131,11 @@ The **INITIAL TIME SET TO ZERO** keyword resets the simulation time to `0`. Next
 ```{admonition} Bottom elevation must be available in the hotstart geometry (SLF)
 :class: warning
 The bottom elevation must be printed out in the results file of the simulation used for the hotstart. To this end, make sure that the list of values for the **VARIABLES FOR GRAPHIC PRINTOUTS** keyword contains `B` as indicated in the {ref}`explanations for the setup of the dry-initialized model <tm2d-init-dry>`.
+```
+
+```{admonition} Continuing a Gaia computation (sedimentological hotstart)
+:class: tip
+To continue a Gaia simulation from a previous sedimentological computation (i.e., to restart with existing bed composition and layer data), use the **PREVIOUS SEDIMENTOLOGICAL COMPUTATION FILE** keyword in the Gaia steering file. Since v9.0, specifying this file automatically activates continuation without needing any additional keyword. The previous file should contain the bottom elevation (`B`), layer thicknesses (`*ES`), and ideally the sediment masses (`*S*` or `*M*`) or ratios (`*A*`, `*R*`) for proper continuation.
 ```
 
 The dry-initialized steering file prescribes flowrates and elevations, which requires **modifications in steady2d-gaia.cas** to **prescribed Q only**. The reason for the Q-only prescription is that with Gaia, we want to model-predict changes in water depths and riverbed elevation, which means that the water surface elevation must not be constrained (i.e., not prescribed) as a boundary condition. Thus, the setup of boundary conditions for Gaia also requires slight modifications of the boundary (`*.cli`) file(s), which will be explained in the next section on the {ref}`Basic Setup of Gaia <gaia-bc>`. To this end, make sure that in the hydrodynamics steering file **only the flowrate prescription keyword is activated** and the elevation prescription is deactivated (comment out with `/`):
@@ -170,14 +176,14 @@ Thus, re-running the simulation will write the fluxes across the two defined con
 
 ### Hydrodynamic Steering Summary
 
-With the above adaptions and using a simulation length of `30000` timesteps (to observed morphodynamic evolution) with a graphical printout period of every `5000` timesteps (to reduce the output file size), the final hydrodynamic steering file should look like this:
+With the above adaptions and using a simulation length of `30000` timesteps (to observe morphodynamic evolution) with a graphical printout period of every `5000` timesteps (to reduce the output file size), the final hydrodynamic steering file should look like this:
 
 ```fortran
 / steady2d-gaia.cas
 /
 TITLE : 'gaia2d steady'
 /
-COMPUTATION CONTINUED : YES / build on top of a steady flow initialization
+/ HOTSTART - continuation is automatic when PREVIOUS COMPUTATION FILE is specified (v9.0+)
 PREVIOUS COMPUTATION FILE : r2dsteady.slf / here - 35 CMS initialization after t 15000
 INITIAL TIME SET TO ZERO : YES / avoid restarting at 15000
 /
@@ -187,7 +193,7 @@ GAIA STEERING FILE : gaia-morphodynamics.cas
 / DEFAULTS FROM STEADY2D
 /
 /------------------------------------------------------------------/
-/			COMPUTATION ENVIRONMENT
+/     COMPUTATION ENVIRONMENT
 /------------------------------------------------------------------/
 /
 BOUNDARY CONDITIONS FILE : boundaries.cli
@@ -202,7 +208,7 @@ SECTIONS INPUT FILE :  control-sections.txt
 SECTIONS OUTPUT FILE : r-control-flows.txt
 /
 /------------------------------------------------------------------/
-/			GENERAL PARAMETERS
+/     GENERAL PARAMETERS
 /------------------------------------------------------------------/
 TIME STEP : 1.
 NUMBER OF TIME STEPS : 30000
@@ -210,7 +216,7 @@ GRAPHIC PRINTOUT PERIOD : 5000
 LISTING PRINTOUT PERIOD : 5000
 /
 /------------------------------------------------------------------/
-/			NUMERICAL PARAMETERS
+/     NUMERICAL PARAMETERS
 /------------------------------------------------------------------/
 / General solver parameters from section 7.1
 DISCRETIZATIONS IN SPACE : 11;11
@@ -225,8 +231,8 @@ SCHEME FOR ADVECTION OF TRACERS : 5
 SCHEME FOR ADVECTION OF K-EPSILON : 14
 IMPLICITATION FOR DEPTH : 0.55 / should be between 0.55 and 0.6
 IMPLICITATION FOR VELOCITY : 0.55 / should be between 0.55 and 0.6
-IMPLICITATION FOR DIFFUSION OF VELOCITY : 1. / v8p2 default
-IMPLICITATION COEFFICIENT OF TRACERS : 0.6 / v8p2 default
+IMPLICITATION FOR DIFFUSION OF VELOCITY : 1. / v9p0 default
+IMPLICITATION COEFFICIENT OF TRACERS : 0.6 / v9p0 default
 MASS-LUMPING ON H : 1.
 MASS-LUMPING ON VELOCITY : 1.
 MASS-LUMPING ON TRACERS : 1.
@@ -270,7 +276,7 @@ VELOCITY PROFILES : 4;1
 PRINTING CUMULATED FLOWRATES : YES
 /
 /------------------------------------------------------------------/
-/			TURBULENCE
+/     TURBULENCE
 /------------------------------------------------------------------/
 /
 DIFFUSION OF VELOCITY : YES / default is YES

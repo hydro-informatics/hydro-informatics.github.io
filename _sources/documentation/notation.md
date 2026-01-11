@@ -37,7 +37,7 @@ The consistent use of parameters and symbols for parameters is summarized in a n
 
 * - $C_{D}$
   - $-$
-  - drag coefficient (cf. Equation {eq}`eq-cd-stokes`)
+  - drag coefficient (cf. Equation {eq}`eq-ws`)
 
 * - $c_{f}$
   - $-$

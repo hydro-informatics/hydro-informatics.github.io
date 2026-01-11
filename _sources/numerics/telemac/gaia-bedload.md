@@ -24,17 +24,17 @@ The placement of coarser sediment for the restoration of bedload transport can t
 The calculation of {term}`bedload <Bedload>` transport requires expert knowledge about the modeled ecosystem for judging whether the system is sediment supply-limited or transport capacity-limited {cite:p}`church_morphodynamics_2015`.
 
 Sediment supply-limited rivers
-: A sediment supply-limited river is characterized by clearly visible incision trends indicating that the river's runoff could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an insurmountable barrier for sediment. Thus, in a supply-limited river, the **flow competence** (hydrodynamic force or **transport capacity**) is insufficient to mobilize a typically coarse riverbed, but it is sufficient for transporting external sediment supply.
+: A sediment supply-limited river is characterized by clearly visible incision trends indicating that the flow could potentially transport more sediment than is available in the river. Sediment-supply limited river sections typically occur downstream of dams, which represent an insurmountable barrier for sediment. Thus, in a supply-limited river, the **flow competence** (hydrodynamic force or **transport capacity**) is insufficient to mobilize a typically coarse riverbed, but it is sufficient for transporting external sediment supply.
 
 Transport capacity-limited (alluvial) rivers
-: A transport capacity-limited river is characterized by sediment abundance where the river's runoff is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel tends to braid into {term}`anabranches <Anabranch>`. Thus, the **flow competence** (or **transport capacity**) is insufficient to transport the entire amount of available sediment (external supply and riverbed).
+: A transport capacity-limited river is characterized by sediment abundance where the flow is too small to transport all available sediment during a flood. Sediment accumulations (i.e., the alluvium) are present and the channel tends to braid into {term}`anabranches <Anabranch>` (or to anastomose in fine/sand-dominated environments). Thus, the **flow competence** (or **transport capacity**) is insufficient to transport the entire amount of available sediment (external supply and riverbed).
 
 ```{admonition} Limitation types vary in space and in time
 :class: important
 The channel types may strongly vary in space between river sections or segments and in time. For instance, the same river section that appears to be supply-limited because of insufficient flow competence may turn into a transport capacity-limited section during a flood when high discharges exert high shear stresses on the riverbed. The spatio-temporal variation of transport limitation types is particularly pronounced in near-census, healthy river ecosystems that are perpetually adjusting to a morphodynamic equilibrium.
 ```
 
-The following figures feature sediment supply-limited river sections and a transport capacity-limited river section.
+The following figures illustrate sediment supply-limited river reaches and a transport capacity-limited river reach.
 
 `````{tab-set}
 ````{tab-item} Artificially sediment supply-limited
@@ -83,6 +83,11 @@ $$ (eq-phi-gaia)
 
 where $\rho_{s}$ is the density of sediment grains; $s$ is the ratio of sediment grain and water density (typically 2.68) {cite:p}`schwindt_hydro-morphological_2017`; $g$ is gravitational acceleration; and $D_{pq}$ is the characteristic grain diameter of the sediment class (cf. {ref}`gaia-sed`). Note that the dimensionless expression $\Phi$ and the dimensional expression $q_{b}$ represent unit bedload (i.e., bedload normalized by a unit of width). **Gaia outputs are dimensional and correspond to $q_{b}$** (recall the **VARIABLES FOR GRAPHIC PRINTOUTS** definitions in the {ref}`General Parameters section <gaia-gen>`) where the unit of width corresponds to the edge length of a numerical mesh cell over which the mass fluxes are calculated.
 
+```{admonition} Gaia computes bedload in mass transport rate
+:class: note
+In contrast to SISYPHE, Gaia computes bedload fluxes in terms of (dry) mass transport rate per unit width, without pores. The numerical computation of sediment fluxes in terms of dry mass minimizes roundoff error, particularly for the mass transfer algorithms used for the bed layer model.
+```
+
 ```{admonition} Comment on the Original Einstein (1950) Expression
 :class: dropdown
 The original equation for $\Phi_b$ can be found on page 34 (Equation 42) in {cite:t}`einstein_bed-load_1950`. This formula involves an additional division by the gravitational acceleration $g$, which does not appear in later references to the Einstein expression of $\Phi_b$ and would also not result in a dimensionless term. For this reason, Equation {eq}`eq-phi-gaia` is adapted here.
@@ -90,19 +95,21 @@ The original equation for $\Phi_b$ can be found on page 34 (Equation 42) in {cit
 
 Equation {eq}`eq-phi-gaia` expresses only the dimensional conversion for bedload transport (i.e., the way how dimensions are removed or added to sediment transport). In fact, this is only the first step to solve the other side of a bedload equation using a (semi-) empirical formula. To calculate $\Phi_{b}$, Gaia provides a set of (semi-) empirical formulae, which can be modified with user Fortran files and defined in the Gaia steering file with the **BED-LOAD TRANSPORT FORMULA FOR ALL SANDS** `integer` keyword. {numref}`Table %s <tab-gaia-bl-formulae>` lists possible integers for the keyword to define a bedload transport formulae, including references to original publications, formula application ranges, and the names of the Fortran source files for modifications.
 
-```{csv-table} *Bedload transport formulae implemented in Gaia with application limits regarding the grain diameter $D$, **cross section-averaged** Froude number $Fr$, slope $S$, water depth $h$, and flow velocity $u$. The Fortran files live in the TELEMAC source/gaia directory.*
+```{csv-table} *Bedload transport formulae implemented in Gaia with application limits regarding the grain diameter $D$, **cross section-averaged** Froude number $Fr$, slope $S$, water depth $h$, and flow velocity $u$. The Fortran files live in the /telemac/sources/gaia/ directory.*
 :header: Gaia, Author(s), $D$, "*{term}`Fr <Froude number>`*; $S$; $h$; and $u$", User Fortran
 :header-rows: 1
 :widths: 10, 50, 30, 35, 15
 :name: tab-gaia-bl-formulae
-"(no.)", "(ref.)", "(10$^{-3}$m)", "(-); (-); (m); (m/s)", "(file name)"
-`1`, "{cite:t}`meyer-peter_formulas_1948`", 0.4 $<D_{50}<$28.6, "10$^{-4}<Fr<$639<br> 0.0004$<S<$0.02<br>0.01$<h<$1.2<br>0.2$<u$", [bedload_meyer_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__meyer__gaia_8f.html)
-`2`, "{cite:t}`einstein_bed-load_1950`-{cite:t}`brown1949`", 0.25$<D_{35}<$32, "", [bedload_einst.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html)
- `3`, {cite:t}`engelund_monograph_1967`, 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", [bedload_engel_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__gaia_8f.html)
- `30`, "{cite:t}`engelund_monograph_1967,chollet1979`", 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", [bedload_engel_cc_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__engel__cc__gaia_8f.html)
- `7`, {cite:t}`van_rijn_sediment_1984`, 0.6$<D_{50}<$2.0, "0.5$<h$<br>0.2$<u$", [bedload_vanrijn_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__vanrijn__gaia_8f.html)
- `10`, {cite:t}`wilcock2003`,"0.063 $\lesssim D_{pq}$", "", [bedload_wilcock_crowe_gaia.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__wilcock__crowe__gaia_8f.html)
+ "(no.)", "(ref.)", "(10$^{-3}$m)", "(-); (-); (m); (m/s)", "(file name)"
+ `1`, "{cite:t}`meyer-peter_formulas_1948`", 0.4 $<D_{50}<$28.6, "10$^{-4}<Fr<$639<br> 0.0004$<S<$0.02<br>0.01$<h<$1.2<br>0.2$<u$", bedload_meyer_gaia.f
+ `2`, "{cite:t}`einstein_bed-load_1950`-{cite:t}`brown1949`", 0.25$<D_{35}<$32, "", bedload_einst_gaia.f
+ `3`, "{cite:t}`engelund_monograph_1967` + {cite:t}`chollet1979`", 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", bedload_engel_cc_gaia.f
+ `7`, {cite:t}`van_rijn_sediment_1984`, 0.6$<D_{50}<$2.0, "0.5$<h$<br>0.2$<u$", bedload_vanrijn_gaia.f
+ `10`, {cite:t}`wilcock2003`,"0.063 $\lesssim D_{pq}$", "", bedload_wilcock_crowe_gaia.f
+ `30`, "{cite:t}`engelund_monograph_1967`", 0.15$<D_{50}<$5.0, "0.1$<Fr<$10", bedload_engel_gaia.f
 ```
+
+**Note** that the Engelund-Hansen formulae (options `3` and `30`) compute **total sediment transport**, that is, the some of bedload and suspended load. So when using these formulae, do not additionally activate suspended load modeling to avoid double-counting.
 
 To use the {cite:t}`meyer-peter_formulas_1948` formula (`1` according to  {numref}`Tab. %s <tab-gaia-bl-formulae>`) in this tutorial, **add the following line to the gaia-morphdynamics.cas steering file**:
 
@@ -124,7 +131,7 @@ Users can add more bedload transport formulae by adding a modified copy of a FOR
 
 ```{admonition} User Fortran Files
 :class: note, dropdown
-To implement a user Fortran file, copy the original TELEMAC Fortran file from the `/telemac/v9.0.0/sources/` directory (e.g., `/telemac/v9.0.0/sources/gaia/bedload_einst_gaia.f`) to the project directory (e.g., `/telemac/v9.0.0/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f`). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in `gaia-morphodynamics.cas`):
+To implement a user Fortran file, copy the original TELEMAC Fortran file from the `/telemac/sources/` directory (e.g., `/telemac/sources/gaia/bedload_einst_gaia.f`) to the project directory (e.g., `/telemac/simulations/gaia-tutorial/user_fortran/bedload_einst_gaia.f`). Finally, tell TELEMAC where to look for user fortran files by defining the following keyword in a steering file (e.g., in `gaia-morphodynamics.cas`):
 
 `FORTRAN FILE : 'user_fortran'`
 ```
@@ -180,7 +187,7 @@ Hans Albert Einstein, son of the famous Albert Einstein, was a pioneer of probab
 The Einstein formula differs from any {cite:t}`meyer-peter_formulas_1948`-based formula in that it does not imply a threshold for incipient motion of sediment. However, despite or because Einstein's sediment transport theory is more complex than many other bedload transport formulae, it did not become very popular in engineering applications. Today, Gaia enables the user-friendly application of Einstein's formula, which was similarly presented by {cite:t}`brown1949` at an engineering hydraulic conference in 1949. According to {cite:t}`einstein1942`-{cite:t}`brown1949`, the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) is calculated as follows:
 
 $$
-\Phi_b = \begin{cases} 0 & \mbox{ if } \tau_{x} < 0.0025 \\ F_{eb}\cdot 2.15 \cdot \exp{(-0.391/\tau_{x})} & \mbox{ if } 0.0025 \leq \tau_{x} \leq 0.2\\ F_{eb} \cdot  40 \cdot \tau_{x}^{3} & \mbox{ if } \tau_{x} > 0.2  \tau_{x}\end{cases}
+\Phi_b = \begin{cases} 0 & \mbox{ if } \tau_{x} < 0.0025 \\ F_{eb}\cdot 2.15 \cdot \exp{(-0.391/\tau_{x})} & \mbox{ if } 0.0025 \leq \tau_{x} \leq 0.2\\ F_{eb} \cdot  40 \cdot \tau_{x}^{3} & \mbox{ if } \tau_{x} > 0.2\end{cases}
 $$ (eq-einstein-brown)
 
 where
@@ -203,8 +210,8 @@ To use the {cite:t}`einstein1942`-{cite:t}`brown1949` formulae in Gaia use:
 BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 2
 ```
 
-```{admonition} Consider adapting bedload_einst.f
-The application thresholds as a function of $\tau_{x}$ stem from the Gaia Fortran file [bedload_einst.f](http://docs.opentelemac.org/doxydocs/v8p2r0/html/bedload__einst__gaia_8f.html). However, the original {cite:t}`einstein1942`-{cite:t}`brown1949` publications suggest a threshold of $\tau_{x}$=0.182 (rather than 0.2) for switching the formula cases.
+```{admonition} Consider adapting bedload_einst_gaia.f
+The application thresholds as a function of $\tau_{x}$ stem from the Gaia Fortran file `bedload_einst_gaia.f` in `/telemac/sources/gaia/`. However, the original {cite:t}`einstein1942`-{cite:t}`brown1949` publications suggest a threshold of $\tau_{x}$=0.182 (rather than 0.2) for switching the formula cases.
 ```
 
 
@@ -213,28 +220,28 @@ The application thresholds as a function of $\tau_{x}$ stem from the Gaia Fortra
 
 ```{admonition} Recall the validity range for the Engelund-Hansen formulae (3 and 30)
 :class: warning
-Revise {numref}`Tab. %s <tab-gaia-bl-formulae>` to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed.
+Revise {numref}`Tab. %s <tab-gaia-bl-formulae>` to ensure that the application is in the applicable range of parameters corresponding to the conditions under which the formula has been developed. Note that these formulae compute **total sediment transport** (bedload + suspended load).
 ```
 
 The {cite:t}`engelund_monograph_1967` formula accounts for total sediment transport including {term}`Bedload` and {term}`Suspended load`. Starting from the Bagnold power-approach {cite:p}`bagnold_approach_1966,bagnold_empirical_1980`, the {cite:t}`engelund_monograph_1967` formula was developed for sediment transport calculations over dune channel beds. The approach accounts for energy losses required to drive particles uphill on dunes of the riverbed. The {cite:t}`bagnold_approach_1966` theory considers the total shear as the sum of the shear transmitted between grains and the fluid, and the shear transmitted by momentum changes caused by intergranular collisions. Thus, erosion takes place as long as the {term}`Dimensionless bed shear stress` is greater or equal to its critical value (i.e., the {term}`Shields parameter`). Gaia implements the {cite:t}`engelund_monograph_1967` by calculating the left side of Equation {eq}`eq-phi-gaia` ($\Phi_b$) as follows:
 
 $$
-\Phi_b = 0.05\cdot \frac{f^{2.5}_{eh}}{c_f}
+\Phi_b = 0.1\cdot \frac{\tau_{x}^{2.5}}{c_f}
 $$ (eq-engelund)
 
-where $c_f$ is a friction coefficient that accounts for form drag and skin friction (calculated with the hydrodynamics in Telemac2d/3d). Read more about skin friction in the {ref}`correction factors <c-friction>` section. The $f_{eh}$ factor is a function of the {term}`Dimensionless bed shear stress` $\tau_{x}$. To use the {cite:t}`engelund_monograph_1967` formula in Gaia use:
+where $c_f$ is an adimensional friction coefficient and $\tau_x$ is the Shields number without the skin friction correction factor. Read more about skin friction in the {ref}`correction factors <c-friction>` section. To use the original {cite:t}`engelund_monograph_1967` formula in Gaia use:
 
 ```fortran
 BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 30
 ```
 
-In addition, {cite:t}`chollet1979` introduced a step-wise function for the calculation of $f_{eh}$:
+In addition, {cite:t}`chollet1979` introduced a step-wise function for the calculation of a modified Shields parameter $\tau^*_x$ that accounts for different transport regimes:
 
 $$
-f_{eh} = \begin{cases} 0 & \mbox{ if } \tau_{x} \leq 0.06 & \mbox{ (no transport)}\\ [2.5 (\tau_{x} - 0.06)]^{0.5} & \mbox{ if } 0.06 < \tau_{x} < 0.384  & \mbox{ (dunes)} \\ 1.066\cdot \tau_{x}^{0.176} & \mbox{ if } 0.384 < \tau_{x} < 1.08  & \mbox{ (transitional)} \\ \tau_{x} & \mbox{ if } 1.08 \leq \tau_{x}  & \mbox{ (sheet flow)} \end{cases}
+\tau^*_x = \begin{cases} 0 & \mbox{ if } \tau_{x} \leq 0.06 & \mbox{ (no transport)}\\ [2.5 (\tau_{x} - 0.06)]^{0.5} & \mbox{ if } 0.06 < \tau_{x} < 0.384  & \mbox{ (dune regime)} \\ 1.066\cdot \tau_{x}^{0.176} & \mbox{ if } 0.384 < \tau_{x} < 1.08  & \mbox{ (transition regime)} \\ \tau_{x} & \mbox{ if } 1.08 \leq \tau_{x}  & \mbox{ (sheet flow)} \end{cases}
 $$ (eq-f-eh)
 
-To apply the correction {cite:t}`chollet1979` adaption of the {cite:t}`engelund_monograph_1967` formula use:
+To apply the {cite:t}`chollet1979` modification of the {cite:t}`engelund_monograph_1967` formula use:
 
 ```fortran
 BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 3
@@ -267,18 +274,18 @@ BED-LOAD TRANSPORT FORMULA FOR ALL SANDS : 7
 (gaia-wilcock)=
 ### Wilcock-Crowe (2003)
 
-```{admonition} Applicability of the Wilcock-Crow formula (10)
+```{admonition} Applicability of the Wilcock-Crowe formula (10)
 :class: warning
 The multi-fraction bedload transport formula from {cite:t}`wilcock2003` does not state particular validity ranges, but the authors restrict their approach to sand-gravel-cobble sediments with a minimum grain diameter of 0.063 mm. The explanations in this section limit to the application background of the {cite:t}`wilcock2003` approach. The complex set of equations is explained in detail in the {{ gaia }} (section 3.1.2) and by {cite:t}`cordier2019,cordier2020`.
 ```
 
-The {cite:t}`wilcock2003` approach is a multi-fraction sediment transport model that is primarily applicable in armored river sections for modeling bed aggradation or degradation. The approach takes up the idea of {cite:t}`parker1990` on applying a reference shear stress at which little but constant solid transport rate can be observed. The reference shear stress is close to, but a little bit larger than the {term}`Shields parameter` $\tau_{x,cr}$. To this end, {cite:t}`wilcock2003` implement a reference transport rate of 0.002 as proposed by {cite:t}`parker1990`.
+The {cite:t}`wilcock2003` approach is a multi-fraction sediment transport model that is primarily applicable in armored river sections for modeling bed aggradation or degradation. The model is based on surface investigations and is particularly adapted for predicting transient conditions of bed armoring. It considers the full size distribution of the bed surface (from finest sands to coarsest gravels) and was calibrated using a total of 49 flume experiments with small-to-high water discharges and five different sediment mixtures.
 
-Moreover, the multi-fraction {cite:t}`wilcock2003` model uses the complete sediment grain size distribution of the riverbed surface and calculates bedload transport for each of the specified grain size classes (starting with the smallest grain size). The sediment transport model builds on flume experiments from {cite:t}`proffitt1983` and {cite:t}`parker1990`, and it accounts for hiding/exposure effects on gravel transport as a function of the sand fraction in the riverbed.
+The approach takes up the idea of {cite:t}`parker1990` on applying a reference shear stress at which little but constant solid transport rate can be observed. The reference shear stress is close to, but a little bit larger than the {term}`Shields parameter` $\tau_{x,cr}$. To this end, {cite:t}`wilcock2003` implement a reference transport rate of 0.002 as proposed by {cite:t}`parker1990`.
+
+Moreover, the multi-fraction {cite:t}`wilcock2003` model uses the complete sediment grain size distribution of the riverbed surface and calculates bedload transport for each of the specified grain size classes. The sediment transport model builds on flume experiments from {cite:t}`proffitt1983` and {cite:t}`parker1990`, and it accounts for hiding/exposure effects on gravel transport as a function of the sand fraction in the riverbed. The hiding-exposure function is designed to resolve discrepancies observed from previous experiments, including the hiding-exposure effect of sand content on gravel transport for weak to high values of sand content in the bulk.
 
 In a nutshell, the {cite:t}`wilcock2003` model represents a further development of the {cite:t}`meyer-peter_formulas_1948` formula, takes up the implementation of a reference transport rate {cite:p}`parker1990`, and it is calibrated to hiding/exposure effects as a function of the sand fraction.
-
-The calculation of {term}`Bedload` transport according to {cite:t}`wilcock2003` starts with a definition of a dimensionless transport capacity $\Phi_i$ per sediment fraction that removes dimensions from the bedload transport rate computed with a third-party formula for that fraction only (e.g., the {cite:t}`meyer-peter_formulas_1948` formula).
 
 To use the {cite:t}`wilcock2003` formula in Gaia, define multiple {ref}`sediment classes <gaia-sed>` and use:
 
@@ -294,39 +301,45 @@ Correction factors for sediment transport may be needed to account for transvers
 (c-friction)=
 ### Friction Correctors
 
-Friction is often considered with simplified approaches lumping together skin friction and form drag, but in a two-dimensional model, only skin friction affects bedload. {cite:t}`einstein_bed-load_1950` accounts for skin friction with a correction factor $f_{fr}$ for (dimensional) bed shear stress $\tau$:
+Friction is often considered with simplified approaches lumping together skin friction and form drag, but in a two-dimensional model, only skin friction affects bedload. {cite:t}`einstein_bed-load_1950` accounts for skin friction with a correction factor $\mu$ for (dimensional) bed shear stress $\tau$:
 
 $$
-\tau' = f_{fr} \cdot \tau
+\tau' = \mu \cdot \tau
 $$ (eq-tau-fr)
 
 ```{admonition} How Telemac2d calculates $\tau$
 Telemac2d uses the length of the $x$-$y$ velocity vectors to calculate $\tau$ with the user-defined `FRICTION COEFFICIENT` $c_{f}$: $\tau = 0.5\cdot \rho_{w}\cdot c_{f}\cdot (U^2 + V^2)$.
 ```
 
-The correction factor $f_{fr}$ is defined as the ratio of the global friction coefficient $c_{f}$ (i.e., lumped skin friction and form drag) and the skin friction-only coefficient $c'_{f}$:
+The correction factor $\mu$ is defined as the ratio of the skin friction-only coefficient $c'_{f}$ and the global friction coefficient $c_{f}$ (i.e., lumped skin friction and form drag):
 
 $$
-f_{fr} = \frac{c'_{f}}{c_{f}}
+\mu = \frac{c'_{f}}{c_{f}}
 $$ (eq-f-fr)
 
 The skin friction-only coefficient is calculated as:
 
 $$
-c'_{f} = 2\cdot \left(\frac{\kappa}{log(12 h/ k'_{s})}\right)^{2}
+c'_{f} = 2\cdot \left(\frac{\kappa}{\log(12 h/ k'_{s})}\right)^{2}
 $$ (eq-cf-skin)
 
-where $\kappa$ is the {cite:t}`von_karman_mechanische_1930` constant (0.4), $h$ is water depth, and $k'_{s}$ is the representative roughness length, which is often assumed as a multiple of the characteristic grain size (read more in the section on {ref}`bedload calibration <bl-calibration>`).
+where $\kappa$ is the {cite:t}`von_karman_mechanische_1930` constant (0.4), $h$ is water depth, and $k'_{s}$ is the representative roughness length calculated as $k'_s = \alpha_{ks} \cdot D_{50}$, where $\alpha_{ks}$ is a calibration parameter (read more in the section on {ref}`bedload calibration <bl-calibration>`).
 
 `````{tab-set}
 ````{tab-item} Skin Friction
-Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the **SKIN FRICTION CORRECTION** (integer on-off, default is `1`) keyword can be defined in Gaia to disable the correction factor calculation and setting $f_{fr}$ to 1. To disable skin friction correction (i.e., set $f_{fr}$ to 1), add the following to the Gaia steering file (not used in this tutorial):
+Gaia uses by default the skin friction correction coefficient that it derives from the hydrodynamic solver (i.e., Telemac2d/3d). In very shallow waters, this behavior might cause instabilities. Therefore, the **SKIN FRICTION CORRECTION** keyword can be set in Gaia to control the correction factor calculation:
+
+* `0`: disables correction, setting $\mu = 1$ (total bed shear stress from hydrodynamics is used directly)
+* `1`: enables skin friction correction (**default**), computing $\mu$ according to Equations {eq}`eq-f-fr` and {eq}`eq-cf-skin`
+* `2`: enables a bedform predictor that accounts for ripples when computing $\mu$
+
+To disable skin friction correction (i.e., set $\mu$ to 1), add the following to the Gaia steering file (not used in this tutorial):
 
 ```fortran
 SKIN FRICTION CORRECTION : 0 / default is 1 to enable skin friction correction
 ```
 
-On ripple riverbeds (i.e., fine sandy hills as typically observed at ocean beaches during low tides), the skin friction correction should be set to `2` for enabling a bedform predictor. Read more in section 3.1.8 of the {{ gaia }}.
+The coefficient $\alpha_{ks}$ (ratio between skin friction roughness and mean diameter) can be modified with the **RATIO BETWEEN SKIN FRICTION AND MEAN DIAMETER** keyword (default is 3.0). Read more in section 3.1.8 of the {{ gaia }}.
 ````
 
 ````{tab-item} Bedform Roughness
@@ -337,9 +350,9 @@ The finer the sediment of the riverbed, the more important turbulence created by
 
 By default, Gaia does not account for turbulence (i.e., roughness effects) of bedforms, but it can be enabled by setting the **COMPUTE BED ROUGHNESS AT SEDIMENT SCALE** keyword to `YES` (default is `NO`). Then, one of the following options for the **BED ROUGHNESS PREDICTOR OPTION** keyword can be defined:
 
-* `1` for using the default approach of using a multiple of the characteristic grain diameter for calculating $k'_{s}$ in Equation {eq}`eq-cf-skin`.
-* `2` for ripple bedforms with waves and currents as a function of flow velocity and the characteristics grain size {cite:p}`rijn2007,wiberg1994`.
-* `3` for ripple bedforms with currents only as a function of flow velocity, water depth, the characteristic grain size, and an additional sand grain diameter {cite:p}`rijn2007,huybrechts2010`.
+* `1` for a flat bed assumption using the default approach of $k_s = \alpha_{ks} \cdot D_{50}$ (modified with **RATIO BETWEEN SKIN FRICTION AND MEAN DIAMETER**).
+* `2` for ripple bedforms. For currents only, the ripple roughness is a function of the mobility number. For waves and combined waves-currents, bedform dimensions are calculated as a function of wave parameters following {cite:t}`wiberg1994`.
+* `3` for {cite:t}`rijn2007` total bed roughness predictor (currents only). The total roughness is decomposed into grain roughness, small-scale ripple roughness, mega-ripple component, and dune roughness.
 
 The {{ gaia }} (section 3.1.9) summarizes the set of equations that go into the calculation of the **BED ROUGHNESS PREDICTOR OPTION**.
 
@@ -357,12 +370,13 @@ $$ (eq-qb-corr)
 
 where $\alpha$ is the angle between the longitudinal channel ($x$) axis and the bedload transport vector (see also the {term}`Exner equation`), $\beta$ is an empiric bedload intensity correction factor from {cite:t}`koch1980`, and $z_{b}$ is the riverbed elevation.
 
-The degree of bedload deviation (through $\alpha$) and the $\beta$ factor can be defined in Gaia with the **FORMULA FOR DEVIATION** and **FORMULA FOR SLOPE EFFECT** (horizontal) keywords. To use one or both keywords, the **SLOPE EFFECT** keyword must be set to `YES` (disable by setting it to `NO`).
+The degree of bedload deviation (through $\alpha$) and the $\beta$ factor can be defined in Gaia with the **FORMULA FOR DEVIATION** and **FORMULA FOR SLOPE EFFECT** (horizontal) keywords. To use one or both keywords, the **SLOPE EFFECT** keyword must be set to `YES` (default is `YES`).
 
 The **FORMULA FOR DEVIATION** keyword can take the following integer values to define a particular formula for the sediment shape function (cf. section 3.1.4 in {{ gaia }}):
 
 * `1` for bed level computation according to {cite:t}`koch1980` (**default**).
 * `2` for the {cite:t}`talmon1995` approach based on laboratory experiments, which should be used with the **PARAMETER FOR DEVIATION** keyword for setting the `BETA2` parameter (its default is `PARAMETER FOR DEVIATION : 0.85`, but an optimum was found with `1.6` {cite:p}`mendoza2017`).
+* `3` for the {cite:t}`apsley2008bedload` approach based on the critical Shields parameter and the friction angle of the sediment, which should be used with the **FRICTION ANGLE OF THE SEDIMENT** keyword (default is `40.`).
 
 The  **FORMULA FOR SLOPE EFFECT** keyword affects not only the direction of sediment transport but also the bedload magnitude (or intensity) and it can take the following values:
 
@@ -370,13 +384,29 @@ The  **FORMULA FOR SLOPE EFFECT** keyword affects not only the direction of sedi
   - To increase bed elevation change, increase **BETA**.
   - To decrease bed elevation change, decrease **BETA**.
 * `2` for slope correction in sand-bed rivers based on an approach from {cite:t}`soulsby1997`, which applies a correction of the {term}`Shields parameter` as a function of the friction angle of the sediment and the riverbed slope. The friction angle can be defined with the additional **FRICTION ANGLE OF THE SEDIMENT** keyword (default is `40.`).
+* `3` for the {cite:t}`apsley2008bedload` approach, which modifies both the critical Shields parameter and the effective dimensionless shear stress. Use with the **FRICTION ANGLE OF THE SEDIMENT** keyword.
+
+```{admonition} Sediment sliding
+:class: tip
+If the bottom slope exceeds a critical slope (typically the angle of repose), sediments can be moved due to geomechanical processes. Gaia implements sediment sliding with the **SEDIMENT SLIDE** keyword:
+* `0`: no sliding (**default**)
+* `1`: simple mass-conservative smoothing of bottom slopes up to the angle of repose
+* `2`: avalanching formula from {cite:t}`apsley2008bedload`
+
+Use with the **FRICTION ANGLE OF THE SEDIMENT** keyword.
+```
 
 (gaia-secondary)=
 ### Secondary Currents
 
 Secondary currents may occur in curved channels (i.e., in most near-census natural rivers) where water moves like a gyroscope through river bends. More specifically, secondary flows are helical motions in which water near the surface is driven toward the outer bend, while water near the riverbed is driven toward the inner bend. Thus, secondary flows are a 3d phenomenon that can be represented in 2d models only with auxiliary approaches. For {term}`Bedload` transport, the near-bed current toward the inner bend is especially important, because it promotes erosion at the outer bend and may lead to deposition at the inner bend.
 
-By default, Telemac2d and Gaia do not consider secondary currents, but an approach based on {cite:t}`engelund1974` can be enabled by setting the **SECONDARY CURRENTS** keyword to `YES` (default is `NO`). In addition, the **SECONDARY CURRENTS ALPHA COEFFICIENT** keyword can be used to adapt the roughness length as a function of channel bottom roughness (i.e., smooth or rough riverbeds). For instance, use `SECONDARY CURRENTS ALPHA COEFFICIENT : 0.75` for a very rough riverbed, or `SECONDARY CURRENTS ALPHA COEFFICIENT : 1.` (default) for a smooth riverbed. For **this tutorial use**:
+By default, Telemac2d and Gaia do not consider secondary currents, but an approach based on {cite:t}`engelund1974` can be enabled by setting the **SECONDARY CURRENTS** keyword to `YES` (default is `NO`). In Gaia, the spiral flow coefficient $A$ is set to 7 (Engelund's value). The **SECONDARY CURRENTS ALPHA COEFFICIENT** keyword can be used to modify this coefficient as a function of channel bottom roughness:
+
+* `SECONDARY CURRENTS ALPHA COEFFICIENT : 0.75` for a very rough riverbed
+* `SECONDARY CURRENTS ALPHA COEFFICIENT : 1.0` for a smooth riverbed (**default**)
+
+For **this tutorial use**:
 
 ```fortran
 / continued: gaia-morphodynamics.cas
@@ -388,7 +418,7 @@ SECONDARY CURRENTS ALPHA COEFFICIENT : 0.8
 (gaia-bc-bl)=
 ## Boundary Conditions
 
-The {ref}`Gaia Basis section on boundary conditions <gaia-bc>` explains the geometric definition of open liquid boundaries in the `*.cli` files. To prescribe a bedload transport of **10 kg$^3\cdot$s$^{-1}$** across the upstream (`LIEBOR=5`) boundary and free outflow at the downstream (`LIEBOR=4`) boundary, **add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)**:
+The {ref}`Gaia Basis section on boundary conditions <gaia-bc>` explains the geometric definition of open liquid boundaries in the `*.cli` files. To prescribe a bedload transport of **10 kg$\cdot$s$^{-1}$** (total solid discharge without pores) across the upstream (`LIEBOR=5`) boundary and free outflow at the downstream (`LIEBOR=4`) boundary, **add the PRESCRIBED SOLID DISCHARGES keyword to the Gaia steering file (gaia-morphodynamics.cas)**:
 
 ```fortran
 / continued: gaia-morphodynamics.cas
@@ -398,16 +428,21 @@ PRESCRIBED SOLID DISCHARGES : 10.;0.
 
 Recall that the first and second values in the list of prescribed solid discharges refer to the first and second open boundary listed in the `boundaries-gaia.cli`, respectively (i.e., upstream and downstream in that order).
 
-```{admonition} Porosity and PRESCRIBED SOLID DISCHARGES
+```{admonition} Units for PRESCRIBED SOLID DISCHARGES
 :class: important
-The **PRESCRIBED SOLID DISCHARGES** keyword makes TELEMAC calculate sediment mass balances accounting for the riverbed porosity $\epsilon$. Thus, the solid mass flux printouts correspond to $q_{b}/(1-\epsilon)$.
+The **PRESCRIBED SOLID DISCHARGES** keyword specifies the total solid discharge in **kg/s** (mass per time, not per unit width). This is the dry mass flux without accounting for pores. When a value is given through this keyword, the `Q2BOR` column in the boundary conditions file serves only as a profile shape (values should be > 0 for a constant profile, typically set to 1.0).
 ```
 
-Gaia can be run with liquid boundary files for assigning time-dependent solid discharges (the outflow should be kept in equilibrium). Solid discharge time series can be implemented using `455`-`5` boundary definitions, analogous to the descriptions of the {ref}`Telemac2d unsteady boundary setup <tm2d-liq-file>`. For more guidance, have a look at the *yen-2d* example (`telemac/v9.0.0/examples/gaia/yen-2d`) featuring a quasi-steady bedload simulation at the Rhine River. In addition, more background information about the definition of bedload boundary conditions can be found in section 3.1.11 in the {{ gaia }}.
+```{admonition} Distributing solid discharge among sediment classes
+:class: tip
+When multiple sediment classes are defined, the solid discharge can be distributed among them using the **CLASSES IMPOSED SOLID DISCHARGES DISTRIBUTION** keyword (sequence of real values separated by semicolons, one per class, summing to 1.0). If this keyword is not used, the discharge is distributed according to the sand ratios computed by Gaia.
+```
+
+Gaia can be run with liquid boundary files for assigning time-dependent solid discharges (the outflow should be kept in equilibrium). Solid discharge time series can be implemented using `455`-`5` boundary definitions, analogous to the descriptions of the {ref}`Telemac2d unsteady boundary setup <tm2d-liq-file>`. For more guidance, have a look at the *yen-2d* example (`telemac/examples/gaia/yen-2d`) featuring a quasi-steady bedload simulation at the Rhine River. In addition, more background information about the definition of bedload boundary conditions can be found in sections 3.1.10-3.1.12 in the {{ gaia }}.
 
 ## Example Applications
 
-Examples for the implementation of bedload come along with the TELEMAC installation (in the `/telemac/v9.0.0/examples/gaia/` directory). The following examples in the `gaia/` folder feature (pure) bedload calculations:
+Examples for the implementation of bedload come along with the TELEMAC installation (in the `/telemac/examples/gaia/` directory). The following examples in the `gaia/` folder feature (pure) bedload calculations:
 
 * Application of the {ref}`Wilcock-Crowe formula <gaia-wilcock>` (multiple sediment classes): **wilcock_crowe-t2d/**
 * Bedload in a bend of the Rhine River with quasi steady (unsteady) flow conditions: **yen-2d/**

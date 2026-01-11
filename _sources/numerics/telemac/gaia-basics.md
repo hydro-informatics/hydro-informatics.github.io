@@ -29,7 +29,7 @@ Graphical output variables related to sediment transport can be defined with the
 * `N` for unit bedload transport in $x$-direction $\boldsymbol{q_b}\cdot\cos\alpha$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$) where  $\alpha$ is the angle between the longitudinal channel ($x$) axis and the solid transport vector $\boldsymbol{q_b}$.
 * `P` for unit bedload transport in $y$-direction $\boldsymbol{q_b}\cdot\sin\alpha$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
 * `QSBL` for the magnitude (length) of the bi-directional (i.e., $x$ and $y$ directions) unit **bedload (only)** transport $\boldsymbol{q_b}$ in (kg$\cdot$m$^{-1}\cdot$s$^{-1}$)
-* `R` for the non-erodible bottom (?)
+* `R` for the non-erodible bottom (m a.s.l.)
 * `S` for water surface elevation in (m a.s.l.)
 * `TOB` for bed shear stress in (N$\cdot$m$^{-2}$)
 
@@ -61,227 +61,111 @@ Recall the structure of the hydrodynamics [boundaries.cli](https://github.com/hy
 2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9828           6   #
 ...
 ```
+The columns (1) to (7) are the same as those in the hydrodynamics [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli) file and the column/value meanings are:
 
-**The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance<foc-mass-bc>`.**
+* (1) `LIHBOR`: boundary code for the flow depth
+* (2) `LIUBOR`: boundary code for the $u$ velocity component
+* (3) `LIVBOR`: boundary code for the $v$ velocity component
+* (4) `HBOR`: flow depth value (in m) *-not used in this tutorial*
+* (5) `UBOR`: $u$ velocity (m$\cdot$s$^{-1}$) *-not used in this tutorial*
+* (6) `VBOR`: $v$ velocity (m$\cdot$s$^{-1}$) *-not used in this tutorial*
+* (7) `AUBOR`: friction coefficient *-not used in this tutorial*
+* (8) `LIEBOR`: **Gaia-specific** boundary code for the riverbed evolution (or concentration for cohesive sediment)
+* (9) `Q2BOR`: **Gaia-specific** solid discharge (used for bedload, in kg$\cdot$m$^{-1}\cdot$s$^{-1}$) or near-bed sediment concentration (in g$\cdot$L$^{-1}$) in case of suspended load (or cohesive sediment)
+* (10) `EBOR`: **Gaia-specific** riverbed elevation (m a.s.l.)
+* (11) `CBOR`: **Gaia-specific** equilibrium suspended sediment concentration (in g$\cdot$L$^{-1}$) for suspended load modeling (read more in the {ref}`section on suspended load <gaia-sl>`)
+* (12) Point number
+* (13) Boundary point order number
 
+**The structure of the boundary conditions file varies between Telemac2d-coupled and Telemac3d-coupled Gaia models. Thus, when moving from 2d to 3d models, create new boundary condition files.**
+
+The Gaia-specific boundary type (column 8: `LIEBOR`) of the Gaia boundaries condition can be defined with the following `integer` values:
+
+* `1` defines incident wave or Thompson boundaries
+* `2` defines wall boundaries
+* `4` defines free (Neumann) boundaries
+* `5` defines an imposed value (Dirichlet) boundary
+
+Similar to the hydrodynamics, solid (sediment) discharges (Dirichlet condition: `LIEBOR=5`) can either be defined directly in the boundaries file (i.e., with the `Q2BOR` columns 9), through the keywords **PRESCRIBED SOLID DISCHARGES** or `CLASSES IMPOSED SOLID DISCHARGES DISTRIBUTION`, or as time-series in a liquid boundaries file. The sediment (bedload or suspended load) will adapt to Neumann-type outflow (i.e., `LIEBOR=4`) or equilibrium inflow boundaries. The below box provides more details and for more guidance go to sections 2.3 and 3.1.10-3.1.12 in the {{ gaia }}.
+
+For this tutorial, start with **creating a copy of the hydrodynamics boundaries.cli file**, name it **boundaries-gaia.cli** and **replace column (8)** (i.e., all `LIHBOR` occurrences) with the following values:
+
+* Closed wall boundaries (formerly `LIHBOR=2`): `LIEBOR=2`
+* Open outflow boundaries (formerly `LIHBOR=4`): `LIEBOR=4`
+* Open inflow boundaries (formerly `LIHBOR=5`): `LIEBOR=5` and set equilibrium inflow in the steering file (see below)
+
+**Both the mass of the solid discharge through open boundaries and the bed evolution within the model domain should be coherent.** When the model boundaries have a static bed, they may cause mass balance errors. An appropriate approach for prescribing a dynamic bed with mass-conserving morphodynamics is to prescribe an equilibrium bed at the inflow boundary. If the inflow boundary is in an area where erosion can be expected, it is important to have more riverbed erodibility. Thus, in this tutorial, the inflow boundary is implemented with the equilibrium condition through the steering file (see below), and the outflow boundary with Neumann-type (i.e., `LIEBOR=4`).
+
+To define equilibrium solid (bedload) discharge and suspended sediment concentration at inflow boundaries, **add the following** to the Gaia steering file:
+
+```fortran
+/ gaia-morphodynamics.cas
+/
+/ BOUNDARY CONDITIONS
+EQUILIBRIUM INFLOW CONCENTRATION : YES / use an equilibrium approach at inflow nodes
+```
+The `EQUILIBRIUM INFLOW CONCENTRATION` keyword corresponds to the hydrodynamics **TREATMENT OF FLUXES AT THE BOUNDARIES** keyword and it computes the near-bed suspended sediment concentration with empirical formulae (read more in the {ref}`section on suspended load <gaia-sl>`).
 ````
 
+```{admonition} Neumann vs. Dirichlet sediment inflow boundaries
+:class: dropdown
 
-A boundaries `*.cli` file is divided into 13 space (tab) - separated colons corresponding to 13 boundary type (variables) and value prescriptions. The cross-comparison {numref}`Table %s <tab-gaia-bc>` holds the 13 type/value prescription names of a hydrodynamic Telemac2d/3d (e.g., [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli)) boundary conditions file up side by side with those of a Gaia boundary conditions file.
-
-````{dropdown} View the cross-comparison Table of Boundary variables and types in Telemac2d/3d and Gaia
-```{list-table} Boundary variables and types in Telemac2d/3d and Gaia.
-:header-rows: 1
-:name: tab-gaia-bc
-
-* - Variable no.<br>
-  - Flag<br>
-  - Telemac2d/3d<br>
-    <small>*parameter*</small>
-  - Gaia<br>
-    <small>*parameter*</small>
-
-* - 1
-  - boundary type
-  - LIHBOR<br>
-    <small>*water depth*</small>
-  - LIHBOR<br>
-    <small>*water depth*</small>
-
-* - 2
-  - boundary type
-  - LIUBOR<br>
-    <small>*$x$-flowrate or $u$*</small>
-  - LIQBOR<br>
-    <small>*sediment load*</small>
-
-* - 3
-  - boundary type
-  - LIVBOR<br>
-    <small>*$y$-flowrate or $v$*</small>
-  - LIVBOR<br>
-    <small>*velocity*</small>
-
-* - 4
-  - Prescription
-  - HBOR<br>
-    <small>*water depth*</small>
-  - Q2BOR<br>
-    <small>*sediment load*</small>
-
-* - 5
-  - Prescription
-  - UBOR<br>
-    <small>*$x$-flowrate or $u$*</small>
-  - UBOR<br>
-    <small>*$x$-flowrate or $u$*</small>
-
-* - 6
-  - Prescription
-  - VBOR<br>
-    <small>*$y$-flowrate or $v$*</small>
-  - VBOR<br>
-    <small>*$y$-flowrate or $v$*</small>
-
-* - 7
-  - Prescription
-  - AUBOR<br>
-    <small>*wall friction*</small>
-  - AUBOR<br>
-    <small>*wall friction*</small>
-
-* - 8
-  - boundary type
-  - LITBOR<br>
-    <small>*tracer*</small>
-  - LIEBOR (LICBOR)<br>
-    <small>*flowrate* (*concentration*)</small>
-
-* - 9
-  - Prescription
-  - TBOR<br>
-    <small>*tracer*</small>
-  - EBOR (CBOR)<br>
-    <small>*bottom elevation*</small>
-
-* - 10
-  - Prescription
-  - ATBOR<br>
-    <small>*heat fluxes*</small>
-  - ATBOR<br>
-    <small>*heat fluxes*</small>
-
-* - 11
-  - Prescription
-  - BTBOR<br>
-    <small>*heat fluxes*</small>
-  - BTBOR<br>
-    <small>*heat fluxes*</small>
-
-* - 12
-  - Global Node ID
-  - N<br>
-    <small>*Selafin mesh*</small>
-  - N<br>
-    <small>*Selafin mesh*</small>
-
-* - 13
-  - Local Node ID
-  - K <br><small>*boundary file*</small>
-  - K <br><small>*boundary file*</small>
-
+If the model contains clearly defined sediment sources, with known sediment amounts, Dirichlet-type (imposed value) sediment inflow boundary conditions are preferable. For instance, if a watershed soil loss model such as the Revised Universal Soil Loss Equation (RUSLE) {cite:p}`renard1997` is available, sediment supply with fine (cohesive) sediment can be more precisely defined. In contrast, if sediment input and transport are driven by the bulk flow, equilibrium boundaries may be more appropriate.
 ```
-````
-
-The boundary type variables (no. 1, 2, 3, and 8) listed in {numref}`Tab. %s <tab-gaia-bc>` can take the integer values `2` (closed wall), `4` (free Neumann-type boundary), `5` (Dirichlet-type prescribed boundary), or `6` (Dirichlet-type velocity). It is important for a Gaia simulation that the eighth entry (**LIEBOR**) is set to `4` or `5` for open-type boundaries, but **not to `2`**, which would correspond to a closed wall for tracers (suspended load).
-
-To this end, create a sediment transport boundaries file (`*.cli`) for Gaia by **creating a copy of [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli)** and calling the copy **boundaries-gaia.cli**. In the context of Gaia, the hydrodynamic boundary types can be kept, though their flags are differently interpreted according to the list in {numref}`Tab. %s <tab-gaia-bc>`.
-
-```{admonition} Why two boundary condition files?
-Most examples of the TELEMAC installation (`/telemac/v9.0.0/examples/gaia/`) use a single boundary conditions file, which works fine because the numerical values are identical. However, the flags of a Gaia `*.cli` and a Telemac2d/3d `*.cli` file are not the same and for this reason, this eBook features good practice by using two (identical) boundary condition files. Thus, we could use a single `*.cli` file, but we do use `*.cli` two files to be prepared for more complex and physically correct simulations in the future. For instance, a more complex future simulation may require prescribing bedload fluxes in the `*.cli` file, where the extra Gaia boundary file is not just an option.
-```
-
-To verify the correct setup of the boundary conditions files, open **boundaries.cli** and **boundaries-gaia.cli**  with a {ref}`text editor <npp>` and check on the liquid boundary definitions. Both the **boundaries.cli** and the **boundaries-gaia.cli** files are similarly organized according to {numref}`Tab. %s <tab-gaia-bc>`.
-
-* The first three entries of the upstream boundary are (according to {numref}`Tab. %s <tab-gaia-bc>`):
-  * `4` for **LIHBOR** for water depth, which was set to `5` in the {ref}`dry-initialized steady2d simulation <tm2d-init-dry>`;
-  * `5` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity) corresponding to the hydrodynamics boundary file ({ref}`dry-initialized steady2d simulation <tm2d-init-dry>`).
-  *  In summary, make sure to **prescribe Q only** (i.e., with `4 5 5`) at the upstream boundary.
-
-```{admonition} Why not prescribe water depth (elevation) at the upstream boundary?
-The riverbed elevation is expected to change in a morphodynamic simulation. Thus, with a movable bed, we are interested in how the water depth and the riverbed elevation change as a function of water runoff (e.g., important in the case of floods). Prescribing the water depth/elevation at the inflow boundary would fail to meet this objective.
-```
-
-* The first three entries of the downstream boundary are (according to {numref}`Tab. %s <tab-gaia-bc>`):
-  * `5` for **LIHBOR** for prescribed water depth, in line with the {ref}`dry-initialized steady2d simulation <tm2d-init-dry>`;
-  * `4` for **LIQBOR** for (solid) discharge, and **LIVBOR** (flow velocity).
-  *  In summary, make sure to **prescribe Q only** (i.e., with `5 4 4`) at the downstream boundary.
-
-```{admonition} Why not prescribe discharge at the downstream boundary?
-The sediment outflow is mostly unknown and prescribing fluxes at the downstream boundary would force the model to deposit any sediment inflow in the model, too. Thus, the model must have the option to vary outflow as a function of eroded (or deposited) sediment, which may lead to different fluxes at the upstream and downstream boundaries.
-```
-
-* The following four entries (4-7 in {numref}`Tab. %s <tab-gaia-bc>`) are `0.000` (for the Q2BOR, UBOR, VBOR, and AUBOR values) and would prescribe (assign) float values directly in the boundary file (deactivated through the `0.000` setting).
-* The eighth entry is the **LIEBOR** type, which must bet set to `4` or `5` for enabling solid discharge fluxes and may not be `2` (closed wall). To enable solid flux modeling with Gaia from any existing purely hydrodynamic Telemac2d/3d simulation `*.cli`, make the following modifications (already done in *boundaries.cli*/*boundaries-gaia.cli* for this tutorial):
-  - the **upstream LIEBOR to `5`** (prescribed -equilibrium- flowrate), which also requires that EBOR is set to `0.0` (no change of bottom elevation), and
-  - **downstream LIEBOR to `4`** (free).
-
-The prescription of time-dependent solid flowrates with a liquid boundaries file can be achieved with `LIEBOR=5` and following the descriptions in the {ref}`unsteady (quasi-steady) tutorial <tm2d-liq-file>`.
-
-The below boxes feature the setup of the **boundaries.cli** and **boundaries-gaia.cli** files for this tutorial according to the above descriptions.
-
-`````{tab-set}
-````{tab-item} Upstream boundary
-```
-[go to line 7]
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         144           7   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        9824           8   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        9831           9   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          89          10   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        9817          11   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        9818          12   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         109          13   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000       10011          14   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        9820          15   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000         105          16   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        7936          17   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          93          18   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        7940          19   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000        7555          20   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000       11484          21   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          73          22   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000       11481          23   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          77          24   # upstream (144 - 32)
-4 5 5  0.000 0.000 0.000 0.000  5  0.000 0.000 0.000          32          25   # upstream (144 - 32)
-```
-````
-
-````{tab-item} Downstream boundary
-```
-[go to line 312]
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          34         312   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         113         313   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         765         314   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         116         315   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000       11242         316   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          81         317   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         769         318   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          85         319   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000          97         320   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5293         321   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000         101         322   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000        5294         323   # downstream (34 - 5)
-5 4 4  0.000 0.000 0.000 0.000  4  0.000 0.000 0.000           5         324   # downstream (34 - 5)
-```
-````
-`````
-
-This section only explains the **geometric** assignment of boundary types in the `*.cli` files. In addition, (sediment) **fluxes** across these open boundaries are to be **defined in the (Gaia) steering file**. The prescription (and initialization) of sediment fluxes differs for bedload (discharge per boundary) and suspended load (concentration per sediment class fraction) and this is why the implementation of sediment flux prescriptions is defined in separate sections (i.e., {ref}`boundary prescriptions for bedload <gaia-bc-bl>` and {ref}`concentration prescriptions for suspended load <gaia-bc-sl>`).
-
-
-## Riverbed Composition
 
 (gaia-sed)=
-### Sediment Classes
+## Sediment Classes
 
-The essential physical parameters embrace sediment type, grain sizes, and definitions of
-transport mechanisms that apply to the simulation. This tutorial deals with non-cohesive sediment only, which is defined through the keywords setting `TYPE OF SEDIMENT : NCO`.
+The sediment classes used for Gaia are defined through the steering file and represent initial values. During a simulation, erosion, transport, and deposition change the spatial and temporal sediment class distribution within the model's computational mesh. This section introduces the basic sediment class setup to define one or more particle size classes with specific characteristics, such as sediment density. The later sections on {ref}`bedload <gaia-bl>` and {ref}`suspended load <gaia-sl>` go beyond these basic definitions and explain how to define bedload transport equations or suspended sediment concentrations.
 
-```{admonition} Cohesive sediment transport
-Gaia considers sediment with grain diameters of less than 60$\cdot$10$^{-6}$m to 100$\cdot$10$^{-6}$m being cohesive. To model such fine sediment, where capillary forces may have significant effects on erosion, adaptations in the boundary conditions file and types are required. In the cohesive sediment case, the **TYPE OF SEDIMENT** keyword is `CO`. Read more about modeling cohesive sediment in section 3.3.3 of the {{ gaia }}.
-```
+Gaia distinguishes between non-cohesive and cohesive sediments through the **CLASSES TYPE OF SEDIMENT** keyword, where the following values apply:
 
-Gaia enables the differentiation between classes of sediment diameters with the **CLASSES SEDIMENT DIAMETERS** keyword (same keyword for both bedload and suspended load). This tutorial features the implementation of three sediment classes in the form of sand (0.0005 m), gravel (0.02 m), and cobble (0.1 m) and assigns a grain density (**CLASSES SEDIMENT DENSITY**) of 2680 kg m$^{-3}$ to the three classes. The grain sizes correspond to representative mean (average) diameters for every class. The **CLASSES INITIAL FRACTION** keyword is a list assigning a fraction (i.e., the share of the total sediment) to each of the three classes. Make sure that the **sum of all fractions is exactly 1.0**. Moreover, as *INITIAL* already suggests, the here defined fractions correspond to the initial state and Gaia will re-mix the sediment fractions as a function of erosion and deposition of sediment size classes.
+* `NCO` defines **n**on-**co**hesive sediment
+* `CO` defines **co**hesive sediment
+
+Multiple sediment types can be assigned, separated by a semicolon (`;`). To keep the tutorial simple, only non-cohesive sediment is used (the implementation of cohesive sediment is similar though):
 
 ```fortran
 / continued: gaia-morphodynamics.cas
 /
-/ PHYSICAL PARAMETERS FOR SEDIMENT
-/
+/ ...
+/ SEDIMENT
 CLASSES TYPE OF SEDIMENT : NCO;NCO;NCO
-CLASSES SEDIMENT DIAMETERS : 0.0005;0.02;0.1 / in m
-CLASSES SEDIMENT DENSITY : 2680;2680;2680 / in kg per m3
-CLASSES INITIAL FRACTION : 0.1;0.65;0.25 / must sum up to 1.0
+```
+
+```{admonition} Cohesive sediment
+:class: dropdown
+
+For cohesive sediment, additional parameters can be defined, such as:
+
+* **MUD CONCENTRATION PER LAYER** defines the mass concentrations in each layer (up to 20) for the consolidation model in ($g\cdot L^{-1}$).
+* **LAYERS PARTHENIADES CONSTANT** defines erosion fluxes in (kg$\cdot$m$^{-2}\cdot$s$^{-1}$) for each layer (up to 20 layers).
+* **LAYERS CRITICAL EROSION SHEAR STRESS OF THE MUD** defines the critical erosion shear stress in (N$\cdot$m$^{-2}$) for each layer (up to 20 layers).
+* **LAYERS MUD CONCENTRATION** defines the mass concentrations in (g$\cdot$L$^{-1}$) for each layer (up to 20 layers) of the consolidation model.
+* Many more are listed in {{ gaia_ref }}.
+```
+
+The number of values assigned to the subsequent keywords must correspond to the above-defined number (here: three) of sediment classes. Other mandatory sediment characteristics refer to the grain size (**CLASSES SEDIMENT DIAMETERS** in meters) and the density (**CLASSES SEDIMENT DENSITY** in kg$\cdot$m$^{-3}$) of a sediment class. To define gravel, cobble, and sand classes, update the steering file as follows:
+
+```fortran
+/ continued: gaia-morphodynamics.cas
+/
+/ ...
+/ SEDIMENT
+CLASSES TYPE OF SEDIMENT : NCO;NCO;NCO
+CLASSES SEDIMENT DIAMETERS : 0.05;0.1;0.0005
+CLASSES SEDIMENT DENSITY : 2680;2680;2680
+```
+
+This tutorial uses three grain size classes and the sediment density is here assumed to be the same for all three classes. In the real world, heavier particles (higher density) tend to be coarser and are less likely to travel far downstream in a given river. This phenomenon should be kept in mind when assuming a characteristic sediment density.
+
+In graded sediment, an **initial fraction** of the bed material is assigned to every particle size class with the **CLASSES INITIAL FRACTION** keyword. The sum of all class fractions must be equal to one. The fraction can be estimated from sieving curves, for example, by determining the percent that each sediment class constitutes of the $D_{84}$ particle diameter. In this tutorial, the sediment classes have the following initial fractions:
+
+```fortran
+/ continued: gaia-morphodynamics.cas
+/
+/ ...
+CLASSES INITIAL FRACTION : 0.45;0.45;0.1
 ```
 
 The particle size classes can also be assigned specific {term}`Shields parameter` values (**CLASSES CRITICAL SHEAR STRESS**) or settling velocities (**CLASSES SETTLING VELOCITIES**), for example, to impose no-erosion or no-deposition conditions. Note that the SISYPHE keyword NUMBER OF SIZE-CLASSES OF BED MATERIAL is obsolete in Gaia.
@@ -296,28 +180,38 @@ Sediment size classes can be declared for particular zones of a model, similar t
 (gaia-active-lyr)=
 ### Active Layer
 
-The {ref}`boundary conditions <gaia-bc>` of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) {cite:p}`renard1997`. Sediment that just passes through the model and merely settles from time to time before being mobilized again (by {cite:t}`einstein_bed-load_1950`s theory) is referred to as wash load or traveling bedload {cite:p}`piton_concept_2017`. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), active layers can be defined. In addition, multiple active layers can be defined, for example, to implement sediment stratification in the riverbed with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers {cite:p}`hirano1971`. **Above the active layer** of the riverbed **is the mixing layer**, which is in direct contact with the bulk water flow. {numref}`Figure %s <active-layers>` qualitatively illustrates this concept, where the uppermost layer corresponds to the mixing layer and the lower sublayers constitute the active layer of the riverbed.
+The {ref}`boundary conditions <gaia-bc>` of a model define sediment supply (inflow) and outflow rates, which may stem from gauging stations, measurements, or watershed soil loss models, such as the Revised Universal Soil Loss Equation (RUSLE) {cite:p}`renard1997`. Sediment that just passes through the model and merely settles from time to time before being mobilized again (by {cite:t}`einstein_bed-load_1950`s theory) is referred to as wash load or traveling bedload {cite:p}`piton_concept_2017`. However, sediment can also be recruited (eroded) from the riverbed or deposited on the riverbed within the model boundaries. To tell a morphodynamic model to what depths it can erode (e.g., because bedrock or concrete is present below), an active layer can be defined. In addition, multiple bed layers can be defined below the active layer, for example, to implement sediment stratification in the riverbed with respect to grain sizes. Grain size stratification plays a role especially when the riverbed is armored, which means that the uppermost sediment layer is significantly coarser than deeper sediment layers {cite:p}`hirano1971`. {numref}`Figure %s <active-layers>` qualitatively illustrates this concept, where the uppermost layer is the active layer (also referred to as the mixing layer in Gaia) and the lower sublayers constitute the substratum of the riverbed.
 
 ```{figure} ../../img/telemac/active-layers-web.jpg
 :alt: active mixing layer riverbed hyporheic zone
 :name: active-layers
 
-Qualitative illustration of the active layer in the form of multiple sublayers of the riverbed. In this illustration, the uppermost layer corresponds to the mixing layer (Figure conceptually adapted from {cite:t}`du_boys_etudes_1879` and {cite:t}`church_what_2017`).
+Qualitative illustration of the active layer (mixing layer) and the substratum layers of the riverbed. The active layer is at the surface, in direct contact with the water column (Figure conceptually adapted from {cite:t}`du_boys_etudes_1879` and {cite:t}`church_what_2017`).
 ```
 
-The active layer concept was initially introduced by {cite:t}`du_boys_etudes_1879` as a sequence of layers of the riverbed, which are moving at different speeds (the deeper the layer, the slower). {cite:t}`du_boys_etudes_1879` described that the thickness of every layer was equal to the diameter of representative grain size and that the active bed (i.e., the sum of all moving layers) can be up to 10 times the representative grain size (i.e., approximately 10 grain diameters) {cite:p}`frey2011,ravelet2013`. {cite:t}`hirano1971` picked up on this concept and characterized the active layer as an exchange layer with a thickness of multiple times the $D_{50}$, between an immobile sublayer and a fully mobile layer in the bulk flow along the riverbed. Several processes (e.g., hydraulic shear, grain collision, or sorting) dominate within the exchange layer and the thickness of the exchange layer has been defined differently by several authors. One reason for the different definitions of the active layer thickness is that it also depends on the proportion of fine sediment contents. The difference between coarse and fine sediment is that it might build up bedforms such as ripples or dunes. Thus, in the presence of fine sediments, such as sand (diameter smaller than 1-2 mm), only models accounting for bedforms in the active layer can reproduce bed aggradation or degradation and grain sorting effects {cite:p}`blom2008`. However, a model considering bedforms composed of fine sediments describes the active layer as a function of (0.5 times) the height of dunes (i.e., mega ripples) {cite:p}`kleinhans2005`, which contrasts with the definition of the active layer thickness as a multiple of a grain diameter (e.g., 3$\cdot D_{50}$). Thus, there are **two** competing parametric and **conceptual definitions of the active layer**, which is why {cite:t}`church_what_2017` propose the following terminology that is adapted in this eBook:
+The active layer concept was initially introduced by {cite:t}`du_boys_etudes_1879` as a sequence of layers of the riverbed, which are moving at different speeds (the deeper the layer, the slower). {cite:t}`du_boys_etudes_1879` described that the thickness of every layer was equal to the diameter of representative grain size and that the active bed (i.e., the sum of all moving layers) can be up to 10 times the representative grain size (i.e., approximately 10 grain diameters) {cite:p}`frey2011,ravelet2013`. {cite:t}`hirano1971` picked up on this concept and characterized the active layer as an exchange layer with a thickness of multiple times the $D_{50}$, between an immobile sublayer and a fully mobile layer in the bulk flow along the riverbed. Several processes (e.g., hydraulic shear, grain collision, or sorting) dominate within the exchange layer and the thickness of the exchange layer has been defined differently by several authors. One reason for the different definitions of the active layer thickness is that it also depends on the proportion of fine sediment contents. The difference between coarse and fine sediment is that fine sediment might build up bedforms such as ripples or dunes. Thus, in the presence of fine sediments, such as sand (diameter smaller than 1-2 mm), only models accounting for bedforms in the active layer can reproduce bed aggradation or degradation and grain sorting effects {cite:p}`blom2008`. However, a model considering bedforms composed of fine sediments describes the active layer as a function of (0.5 times) the height of dunes (i.e., mega ripples) {cite:p}`kleinhans2005`, which contrasts with the definition of the active layer thickness as a multiple of a grain diameter (e.g., 3$\cdot D_{50}$). Thus, there are **two** competing parametric and **conceptual definitions of the active layer**, which is why {cite:t}`church_what_2017` propose the following terminology that is adapted in this eBook:
 
 * The **active layer describes the immediately mobile riverbed** where **real-time**, **dynamic** particle displacement happens. Its thickness is a multiple of the characteristic grain diameter.
 * The **disturbance layer encompasses sand wave progression** in the form of **scour and fill** on an **event scale**. Its thickness is 0.5 times the dune (or ripple) height.
 
-Though Gaia accepts only an **ACTIVE LAYER THICKNESS** keyword, it may refer to the *active layer* as a multiple of the representative grain size, or when fine sediment is present ($\geq$ 20%), to the *disturbance layer* with a thickness of 0.5 times the dune height. When the riverbed is composed not of cobble and gravel and a small share of fine sediment (approximately between 1% and 20%), the active layer thickness should be generously assumed with a multiple (2-3 times) of the cobble size.
+Though Gaia accepts only an **ACTIVE LAYER THICKNESS** keyword, it may refer to the *active layer* as a multiple of the representative grain size, or when fine sediment is present ($\geq$ 20%), to the *disturbance layer* with a thickness of 0.5 times the dune height. When the riverbed is composed of cobble and gravel with a small share of fine sediment (approximately between 1% and 20%), the active layer thickness should be generously assumed with a multiple (2-3 times) of the cobble size.
 
-Moreover, the thickness of the active layer is a user-defined **target** value in Gaia. Thus, Gaia will iterate based on hydrodynamics and sediment characteristics toward the user-defined active layer thickness. In particular, Gaia erodes the user-defined {ref}`sediment size classes <gaia-sed>` from the active layer as a function of hydrodynamics computed with Telemac2d/3d. The eroded sediment is then transported in the form of {ref}`bedload <gaia-bl>` or {ref}`suspended load <gaia-sl>`. To this end, Gaia creates the active layer with the user-defined sediment classes at the surface of the riverbed at the beginning of a simulation. During the simulation, Gaia not only erodes the sediment but also redeposits it depending on hydrodynamics and sediment characteristics, and it modifies the user-defined initial values of sediment class fractions. Thus, Gaia changes the active layer during the simulation in space and in time and it uses the **ACTIVE LAYER THICKNESS** as target value (not as a forced constant).
+```{admonition} Gaia's active layer terminology
+:class: note
+In Gaia, the terms **active layer** and **mixing layer** are synonymous: both refer to the uppermost sediment layer that is in direct contact with the water column. This layer supplies material that can be transported as bedload or suspended load, and it receives deposited sediment. The layers below the active layer are called the **substratum**.
+```
 
-The riverbed can be stratified into several sublayers (cf. {numref}`Fig. %s <active-layers>`) by defining the **NUMBER OF LAYERS FOR INITIAL STRATIFICATION** keyword (integer). Gaia then vertically divides the riverbed into the number of user-defined layers plus one, where the plus-one layer corresponds to the active layer. In addition, the thickness of the riverbed layers can be defined with the **LAYERS INITIAL THICKNESS** keyword. If the **ACTIVE LAYER THICKNESS** is larger than the riverbed's **LAYERS INITIAL THICKNESS**, Gaia will mix the stratified layers down to the **ACTIVE LAYER THICKNESS**. However, the active layer thickness is not a forced value in Gaia. Thus, if the active layer thickness is larger than the riverbed layer thickness, Gaia will not erode beyond the riverbed layer thickness.
+The thickness of the active layer is a user-defined **target** value in Gaia (default: 10,000 m, which effectively mixes the entire bed). The active layer is automatically created at the surface of the sediment bed at the beginning of a simulation when more than one sediment class is defined. During the simulation, Gaia maintains the target active layer thickness through exchanges with the substratum:
 
-```{admonition} What happens when Gaia has to deposit sediment?
-Sediment deposition at a grid node corresponds to a mass flux into the active layer. Because Gaia is programmed to conserve the mass of the active layer, a portion corresponding to the volume of deposition is passed to the riverbed. Thus, Gaia changes the composition of the active layer and the riverbed layers below the active layer when sediment deposits.
+* **During erosion**: Sediment mass is removed from the active layer for bedload transport or suspension. To maintain the target thickness, Gaia transfers mass from the substratum (the first non-empty layer below the active layer) into the active layer. The transferred material has the composition of the substratum, which may change the active layer's composition over time.
+* **During deposition**: Sediment mass is added to the active layer. To maintain the target thickness, Gaia transfers excess mass from the active layer to the substratum. The transferred material has the composition of the active layer.
+
+If the available sediment thickness is less than the target active layer thickness at any node, the actual active layer thickness equals the available sediment. This behavior implements Gaia's rigid bed (non-erodible bottom) algorithm, where erosion cannot exceed the available sediment mass in the active layer during any time step.
+
+The riverbed can be stratified into several sublayers (cf. {numref}`Fig. %s <active-layers>`) by defining the **NUMBER OF LAYERS FOR INITIAL STRATIFICATION** keyword (integer, default: 1). Gaia then vertically divides the riverbed into the number of user-defined layers plus one, where the plus-one layer corresponds to the active layer that is added at the top. The thickness of the initial riverbed layers can be defined with the **LAYERS INITIAL THICKNESS** keyword (default: 100 m). If the **ACTIVE LAYER THICKNESS** is larger than the first layer of the initial stratification, Gaia merges the first layer into the active layer and takes additional sediment from deeper layers as needed to reach the target thickness. The initial composition of the active layer then becomes a mix of sediment from these merged layers.
+
+```{admonition} What happens when Gaia deposits sediment?
+Sediment deposition at a grid node adds mass to the active layer. Because Gaia maintains the target active layer thickness, an equivalent portion of sediment is transferred from the active layer to the substratum (the first layer below). This flux has the composition of the active layer, so deposition changes the composition of the substratum while the active layer's composition changes according to what was deposited.
 ```
 
 In this tutorial, a sand, gravel, and cobble sediment mix is used with an **ACTIVE LAYER THICKNESS** of 3 $\cdot D_{90}$ (of cobble). The riverbed is initially stratified into three sublayers (plus the 0.3-m thick active layer) and the initial thickness of the riverbed layers is assumed with 1.5 m with the following keyword definitions in the Gaia steering file:
@@ -332,7 +226,7 @@ NUMBER OF LAYERS FOR INITIAL STRATIFICATION : 3 / default is 1
 LAYERS INITIAL THICKNESS : 1.5 / m - default is 100
 ```
 
-Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. Non-cohesive sediment in the form of gravel and cobble is transported as bedload and sand is transported in suspension. Cohesive sediment is purely transported as suspended load. The {{ gaia }} provides more information on the transport of mixed (cohesive and non-cohesive) sediment in section 3.2.1. In addition, riverbed consolidation can be simulated by defining the **BED MODEL** keyword with `2` (cf. {{ gaia }}, section 3.3).
+Gaia derives mixed cohesive and non-cohesive sediment beds from the composition of the active layer. For mixed sediment, Gaia computes bedload transport only when the mass fraction of cohesive sediment in the active layer is less than 30%. Above this threshold, non-cohesive sediment can still be transported in suspension. The {{ gaia }} provides more information on the transport of mixed (cohesive and non-cohesive) sediment in section 3.2.1. In addition, riverbed consolidation can be simulated by defining the **BED MODEL** keyword with `2` (cf. {{ gaia }}, section 3.3).
 
 ## Bedload vs. Suspended Load
 

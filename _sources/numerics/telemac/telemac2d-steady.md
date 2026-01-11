@@ -772,96 +772,77 @@ Thus, Telemac2d produced the file *r2dsteady.slf* that can now be analyzed in th
 
 The post-processing of the steady 2d scenario uses QGIS and the {ref}`PostTelemac plugin <tm-qgis-plugins>`. Alternatively, Telemac results can also be visualized with [ParaView](https://www.paraview.org) or BlueKenue.
 
-## Load Results
+(tm-use-q4ts)=
+## Load results and the Q4TS Plugin
 
 Launch QGIS, {ref}`create a new QGIS project <qgis-project>`, set the project {term}`CRS` to `UTM zone 33N`, add a satellite imagery {ref}`basemap <basemap>`, and save the project (e.g., as `tm2d-postpro.qgis`) in the same folder where the Telemac2d simulation results file (*r2dsteady.slf* is located), similar to the descriptions in the {ref}`pre-processing tutorial <tm-qgis-prepro>`.
 
 Load the `r2dsteady.slf` geometry file as mesh layer with drag and drop from the Browser panel to the Layers panel. Make sure to import it with its correct georeference: **EPSG:32633** (ETRS 89 / UTM zone 33N).
 
+To continue with this section, make sure the Q4TS plugin is installed (see instructions in the `Software Requirements section <qgis-telemac>`). To explore results without the Q4TS plugin, directly `jump to the next section <tm2d-post-export`. Q4TS is helpful to perform SALOME/ParaVis-like analysis (e.g., advanced probing, post-processing pipelines, MED-centric workflows) through conversion processing:
 
-````{admonition} The PostTelemac Plugin
-:class: tip, dropdown
+* In **Processing > Toolbox**, run **slf2med** (Q4TS provider):
+  * **Input .slf**: `r2dsteady.slf`
+  * **Input .cli** (optional): your boundary file if you want it carried along
+  * **Output .med**: save `r2dsteady.med`
 
-The PostTelemac plugin provides useful routines for mesh analysis, in particular, for older QGIS versions. However, QGIS now has powerful mesh analysis tools that enable insights into Telemac results. To work with the PostTelemac plugin, open it as indicated in {numref}`Fig. %s <open-post-tm>`.
+Then open the `*.med` file in your preferred MED-capable post-processing workflow (ParaVis/SALOME). This is the one Q4TS feature that meaningfully bridges into "real post-processing" outside QGIS.
 
-```{figure} ../../img/telemac/load-tm-plugin.png
-:alt: qgis load open PostTelemac plugin
-:name: open-post-tm
+## Cross-section analysis (extract values along section lines)
 
-Open the PostTelemac plugin in QGIS.
-```
+This replaces the old "draw a line and inspect/export" routine from PostTelemac, but it’s cleaner because it produces a reproducible CSV from a line layer.
 
-The PostTelemac plugin typically opens as a frame at the bottom-right of the QGIS window (maybe hard to find the first time). Detach the PostTelemac plugin from the main QGIS window by clicking on the resize window button in the top-right corner of the PostTelemac plugin frame (next to the *close* cross). In the detached window load the model results as follows (also indicated in {numref}`Fig. %s <post-tm>`):
+1. Create a cross-section line layer:
+  * Create a new line layer (GeoPackage recommended) called, for example, `control_sections`.
+  * Digitize one or multiple cross-section lines across the channel (upstream, downstream, control sections, etc.).
 
-* Click on the **File ...** button, navigate to the location where the simulation lives and select `r2dsteady.slf`.
-* **Move the Time slider** to the last timestep (e.g., `15000`) and observe the main window, which will show by default the VELOCITY U parameter in this tutorial (depends on the variables defined with the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword).
-* Familiarize with the PostTelemac plugin by modifying the display **Parameter** and the **Color gradient**.
+2. Export cross-section values from the mesh to CSV
+  * Open **Processing > Toolbox** and run **Export cross section dataset values on lines from mesh**
+  * Configure:
+    * **Input mesh layer**: `r2dsteady`
+    * **Dataset groups**: choose what you want to analyze (examples)
+      * `WATER DEPTH` (stability / wetting-drying behavior)
+      * velocity components or magnitude (hydraulics + stability hotspots)
+      * any diagnostic variable you wrote to the results (if available)
+    * **Dataset time**:
+      * use **Current canvas time** for "snapshot" checks, or
+      * run multiple times for specific timestamps you care about.
+    * **Lines for data export**: `control_sections`
+    * **Line segmentation resolution**: set this to something that makes sense for your mesh resolution (don’t oversample).
+    * **Output**: save as `*.csv`
 
-```{figure} ../../img/telemac/post-telemac.png
-:alt: qgis load simulation results slf PostTelemac plugin
-:name: post-tm
+Open the exported CSV in {ref}`Libre Office <lo>` and plot section profiles (e.g., depth vs. chainage, velocity vs. chainage). Repeat for upstream/downstream sections and compare.
 
-Load the Telemac2d simulation results file in the detached PostTelemac plugin window.
-```
+**What this tells you (model performance angle):**
+* section-by-section sanity checks (e.g., depth/velocity patterns where you expect them),
+* hotspot detection (unphysical spikes near boundaries, around steep bathymetry gradients, etc.),
+* "is it steady yet?" checks by comparing the same section at multiple timesteps.
 
-Once imported, the *r2dsteady* layer is listed in the *Layers* panel of QGIS (typically in the bottom-left of the window). Double-clicking on the *r2dsteady* layer will re-open the PostTelemac plugin when it was closed (e.g., after restarting QGIS). Structurally, the *r2dsteady* layer is a mesh with a particular format.
+## Node analysis (time series at control points)
 
-***
+For convergence / stability checks, point time series are usually the fastest signal.
 
-To export a flow velocity raster at the simulation end time (in this example `8000`). For this purpose, click on the **RasterCreation** entry of the **Export** menu in the **Tools** tab. Then:
+1. Create a control-point layer:
+  * Create a point layer called `control_points`.
+  * Add points at locations you care about:
+    * near inflow/outflow boundaries,
+    * near hydraulic controls,
+    * in zones where instability is likely (shallow areas, strong gradients, wetting/drying front).
+2. Export time series from the mesh to CSV:
+  * Open **Processing > Toolbox** and run **Export time series values from points of a mesh dataset**
+  * Configure:
+    * **Input mesh layer**: `r2dsteady`
+    * **Dataset groups**: pick the key variables you want to monitor (depth, velocity, and any diagnostic fields you output)
+    * **Points for data export**: `control_points`
+    * **Output**: save as `*.csv`
 
-* Set the **time step** to the maximum (use the field indicated in {numref}`Fig. %s <posttm-export-tif>`).
-* Select `6 : VITESSE` for **Parameter**.
-  * *Vitesse* is French for *velocity* and it is calculated as $VITESSE = \sqrt{(VELOCITY\ U)^2 + (VELOCITY\ V)^2}$
-  * Note that `VELOCITY U` and `VELOCITY V` are the flow velocities in $x$ and $y$ directions, respectively.
-* In the **Group** frame set:
-  * **Cell size** to `1`, and
-  * **Extent** to `Full Extent`.
-* Start the export by clicking on **Create raster**.
+Plot the time series in {ref}`Libre Office <lo>` and use it as a quick performance dashboard:
 
-The processing frame can be found at the bottom of the window (scroll down by clicking on the dotted circle indicated in {numref}`Fig. %s <posttm-export-tif>`) and informs about the progress.
+* Does depth/velocity settle to a stable value (steady state)?
+* Do you see oscillations or spikes (numerical issues, boundary-condition problems)?
+* Do shallow nodes flip wet/dry unrealistically (wetting/drying tuning issue)?
 
-```{figure} ../../img/telemac/posttm-export-tif.png
-:alt: qgis export simulation results slf PostTelemac raster geotiff tif
-:name: posttm-export-tif
-
-Export a flow velocity raster of simulation results with the PostTelemac plugin (the screenshot uses a maximum time of 8000).
-```
-
-The successful raster creation results in a new layer called **r2dsteady_raster_VITESSE**, which is automatically saved as a {term}`GeoTIFF` raster in the same folder where the QGIS project (`*.qgz`) and the `r2dsteady.slf` files are located. {numref}`Figure %s <exported-tif>` in the {ref}`below-shown wet initialization exercise <tm2d-init-wet>` displays the exported flow velocity raster in QGIS with a *Magma* color map (select in the layer symbology).
-
-
-```{admonition} Export to shapefile or mesh
-:class: tip
-The PostTelemac plugin also enables exporting to other geodata types such as vector shapefiles or meshes.
-```
-
-***
-
-In addition, the evolution of a parameter over the simulation time can be exported to a video with the PostTelemac plugin. For this purpose, go to the **Tools** tab (light blue box in {numref}`Fig. %s <post-tm>`) and follow the descriptions in the following paragraphs.
-
-For example, to export flow rates (fluxes) along any line or at any node of the mesh, make sure that `Q` is in the list of the `VARIABLES FOR GRAPHIC PRINTOUTS` keyword. Then, go to the **Tools** tab of the PostTelemac plugin in QGIS and:
-
-* Click on the **Flow** ribbon.
-* In the **Selection** frame select **Temporary polyline** and move the mouse cursor on the map viewport where the cursor should turn into a black cross that enables drawing a (green) thick line anywhere in the mesh layer (*r2dsteady*). If the cursor does not enable drawing, go somewhere else in the PostTelemac plugin (e.g., to the *Samplingtool* ribbon), then go back to the *Flow* ribbon, click in the *Selection* frame, and re-try. To draw a line for exporting associated flows:
-  * left-click with the mouse cursor somewhere on the *r2dsteady* mesh on the map (e.g., the left bank at the inflow open boundary), and
-  * double left-click on another point on the *r2dsteady* mesh (e.g., the right bank at the inflow open boundary indicated in {numref}`Fig. %s <draw-flow-controls-pt>`).
-  * The PostTelemac plugin then automatically draws the shortest path between the two points along the mesh nodes.
-* The flowrate across the green line is now plotted in the graph of the PostTelemac plugin for the simulation time (e.g., timesteps `0` to `8000`).
-* To save the values for comparison at another line, click on **Copy to clipboard** and paste the values into a spreadsheet (office software,  such as {ref}`Libre Office <lo>`).
-
-**Repeat** the procedure **at the downstream open boundary** and paste the values in another column of the spreadsheet used for the upstream open boundary.
-
-```{figure} ../../img/telemac/flow-control-us-pt.png
-:alt: qgis flow rate discharge control section Post Telemac convergence
-:name: draw-flow-controls-pt
-
-Draw polylines along mesh nodes and export associated flows (Copy to clipboard; background map: {cite:t}`googlesat` satellite imagery).
-```
-
-The extracted data with the PostTelemac plugin were used in the {ref}`wet initialization exercise below <tm2d-init-wet>`.
-
-````
+These extracted series are directly usable in the {ref}`wet initialization exercise below <tm2d-init-wet>`.
 
 (tm2d-post-export)=
 ## Export to GeoTIFF

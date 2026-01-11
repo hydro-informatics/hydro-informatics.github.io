@@ -1268,7 +1268,7 @@ To install Q4TS, follow the developers’ instructions at [https://gitlab.pam-re
 Q4TS requires QGIS 3.26 or newer. If your QGIS is older, the Plugin Manager will not list it. The reliable fix is to upgrade QGIS. As a temporary workaround, you can download the ZIP from [https://otm.gitlab-pages.pam-retd.fr/q4ts/q4ts.0.7.0.zip](https://otm.gitlab-pages.pam-retd.fr/q4ts/q4ts.0.7.0.zip) and use **Install from ZIP**, but upgrading QGIS is highly recommended.
 ```
 
-After installation, Q4TS adds tools in the QGIS Processing Toolbox for MED -- SLF conversion, mesh refinement, boundary creation, friction table editing, and more.
+After installation, Q4TS adds tools in the QGIS Processing Toolbox for MED -- SLF conversion, mesh refinement, boundary creation, friction table editing, and more. Basic utility for post-processing is described in the `steady-flow simulation tutorial <tm-use-q4ts>` with Telemac2d.
 
 To get started with the Q4TS plugin, see {numref}`Fig. %s <q4ts-ubuntu>` (Windows: {numref}`Fig. %s <q4ts-windows>`) and consult the developers' user manual on GitLab: [https://gitlab.pam-retd.fr/otm/q4ts/](https://gitlab.pam-retd.fr/otm/q4ts/-/blob/develop/docs/user_manual/user_manual.md).
 

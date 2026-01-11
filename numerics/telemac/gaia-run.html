@@ -596,10 +596,10 @@ document.write(`
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span><span class="w"> </span><span class="n">Gaia</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">TELEMAC</span>
 <span class="o">/</span><span class="w"> </span><span class="n">GAIA</span><span class="w"> </span><span class="n">STEERING</span><span class="w"> </span><span class="k">FILE</span>
-<span class="o">/</span><span class="w"> </span><span class="k">file </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphdynamics</span><span class="p">.</span><span class="n">cas</span>
+<span class="o">/</span><span class="w"> </span><span class="k">file </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="n">gaia</span><span class="o">-</span><span class="n">morphodynamics</span><span class="p">.</span><span class="n">cas</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
-<span class="o">/</span><span class="w">			</span><span class="n">COMPUTATION</span><span class="w"> </span><span class="n">ENVIRONMENT</span>
+<span class="o">/</span><span class="w">                    </span><span class="n">COMPUTATION</span><span class="w"> </span><span class="n">ENVIRONMENT</span>
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span>
 <span class="n">BOUNDARY</span><span class="w"> </span><span class="n">CONDITIONS</span><span class="w"> </span><span class="k">FILE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">boundaries</span><span class="p">.</span><span class="n">cli</span>
@@ -640,18 +640,18 @@ document.write(`
 <span class="n">MPM</span><span class="w"> </span><span class="n">COEFFICIENT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
 <span class="o">/</span>
 <span class="o">/</span><span class="w"> </span><span class="n">BEDLOAD</span><span class="w"> </span><span class="n">DIRECTION</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">manual</span><span class="w"> </span><span class="n">sec</span><span class="p">.</span><span class="w"> </span><span class="mf">3.1</span><span class="p">.</span><span class="mi">4</span><span class="o">-</span><span class="mf">3.1</span><span class="p">.</span><span class="mi">7</span>
-<span class="n">SLOPE</span><span class="w"> </span><span class="n">EFFECT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">enabled</span>
+<span class="n">SLOPE</span><span class="w"> </span><span class="n">EFFECT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="n">YES</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">NO</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">disable</span>
 <span class="n">FORMULA</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">DEVIATION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">use </span><span class="mi">2</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">talmon</span><span class="o">-</span><span class="mi">1995</span><span class="w"> </span><span class="n">approach</span>
 <span class="n">FORMULA</span><span class="w"> </span><span class="n">FOR</span><span class="w"> </span><span class="n">SLOPE</span><span class="w"> </span><span class="n">EFFECT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">koch</span><span class="o">-</span><span class="n">flokstra</span><span class="p">)</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">soulsby</span>
 <span class="n">BETA</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">only </span><span class="n">with</span><span class="w"> </span><span class="n">koch</span><span class="o">-</span><span class="n">flokstra</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">1.3</span>
 <span class="o">/</span>
 <span class="o">/</span><span class="w"> </span><span class="n">SECONDARY</span><span class="w"> </span><span class="n">CURRENTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">manual</span><span class="w"> </span><span class="n">sec</span><span class="p">.</span><span class="w"> </span><span class="mf">3.1</span><span class="p">.</span><span class="mi">7</span>
-<span class="n">SECONDARY</span><span class="w"> </span><span class="n">CURRENTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="n">no</span>
+<span class="n">SECONDARY</span><span class="w"> </span><span class="n">CURRENTS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="n">NO</span>
 <span class="n">SECONDARY</span><span class="w"> </span><span class="n">CURRENTS</span><span class="w"> </span><span class="n">ALPHA</span><span class="w"> </span><span class="n">COEFFICIENT</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">1.</span>
 <span class="o">/</span>
 <span class="o">/</span><span class="w"> </span><span class="n">FRICTION</span>
 <span class="n">SKIN</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="n">CORRECTION</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="n">correction</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">shallow</span><span class="w"> </span><span class="n">waters</span>
-<span class="n">RATIO</span><span class="w"> </span><span class="n">BETWEEN</span><span class="w"> </span><span class="n">SKIN</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="nb">AND </span><span class="n">MEAN</span><span class="w"> </span><span class="n">DIAMETER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span>
+<span class="n">RATIO</span><span class="w"> </span><span class="n">BETWEEN</span><span class="w"> </span><span class="n">SKIN</span><span class="w"> </span><span class="n">FRICTION</span><span class="w"> </span><span class="nb">AND </span><span class="n">MEAN</span><span class="w"> </span><span class="n">DIAMETER</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="k">is </span><span class="mf">3.</span>
 <span class="o">/</span>
 <span class="o">/------------------------------------------------------------------/</span>
 <span class="o">/</span><span class="w"> </span><span class="n">SUSPENDED</span><span class="w"> </span><span class="n">LOAD</span>
@@ -677,24 +677,69 @@ document.write(`
 </pre></div>
 </div>
 <div class="note dropdown admonition">
-<p class="admonition-title">If you are using the Hydro-Informatics (Hyfo) Mint VM</p>
-<p>If you are working with the <a class="reference internal" href="../../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo VM</span></a>, load the TELEMAC environment as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v8p2</span><span class="o">/</span><span class="n">configs</span>
-<span class="n">source</span> <span class="n">pysource</span><span class="o">.</span><span class="n">hyfo</span><span class="o">-</span><span class="n">dyn</span><span class="o">.</span><span class="n">sh</span>
-</pre></div>
-</div>
+<p class="admonition-title">Environment loading varies by installation</p>
+<p>The exact command to load the TELEMAC environment depends on your installation configuration. Common variations include:</p>
+<ul class="simple">
+<li><p><strong>Standard installation</strong>: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">pysource.openmpi.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">pysource.gfortran.sh</span></code></p></li>
+<li><p><strong>Intel compilers</strong>: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">pysource.intel.sh</span></code></p></li>
+<li><p><strong>Custom configurations</strong>: Check your <code class="docutils literal notranslate"><span class="pre">configs/</span></code> folder for available <code class="docutils literal notranslate"><span class="pre">pysource.*.sh</span></code> files</p></li>
+</ul>
+<p>If you encounter module loading errors, verify that all required dependencies (Python, MPI, compilers) are properly installed and configured. Refer to the <a class="reference internal" href="../../get-started/install-telemac.html#modular-install"><span class="std std-ref">TELEMAC installation guide</span></a> for troubleshooting.</p>
 </div>
 <p>With the TELEMAC environment loaded, change to the directory where the TELEMAC Gaia simulation lives (e.g., <code class="docutils literal notranslate"><span class="pre">/home/telemac/v9.0.0/mysimulations/gaia2d-tutorial/</span></code>) and run the <code class="docutils literal notranslate"><span class="pre">*.cas</span></code> file by calling it with the <strong><a class="reference external" href="http://telemac2d.py">telemac2d.py</a></strong> script (it will automatically know that it needs to use Gaia when it reads the line <code class="docutils literal notranslate"><span class="pre">COUPLING</span> <span class="pre">WITH</span> <span class="pre">:</span> <span class="pre">'GAIA'</span></code>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">telemac</span><span class="o">/</span><span class="n">v9</span><span class="mf">.0.0</span><span class="o">/</span><span class="n">mysimulations</span><span class="o">/</span><span class="n">gaia2d</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span>
 <span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span>
 </pre></div>
 </div>
-<div class="admonition-speed-up admonition">
-<p class="admonition-title">Speed up</p>
-<p>With <a class="reference internal" href="../../get-started/install-telemac.html#tm-system-wide-opts"><span class="std std-ref">parallelism</span></a> enabled (e.g., in the <a class="reference internal" href="../../get-started/vm.html#hyfo-vm"><span class="std std-ref">Mint Hyfo Virtual Machine</span></a>), speed up the calculation by using multiple cores through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the unsteady simulation on <code class="docutils literal notranslate"><span class="pre">N=4</span></code> cores:</p>
+<div class="admonition-speed-up-with-parallel-computing admonition">
+<p class="admonition-title">Speed up with parallel computing</p>
+<p>With <a class="reference internal" href="../../get-started/install-telemac.html#tm-system-wide-opts"><span class="std std-ref">parallelism</span></a> enabled, speed up the calculation by using multiple cores through the <code class="docutils literal notranslate"><span class="pre">--ncsize=N</span></code> flag. For instance, the following line runs the simulation on <code class="docutils literal notranslate"><span class="pre">N=4</span></code> cores:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">telemac2d</span><span class="o">.</span><span class="n">py</span> <span class="n">steady2d</span><span class="o">-</span><span class="n">gaia</span><span class="o">.</span><span class="n">cas</span> <span class="o">--</span><span class="n">ncsize</span><span class="o">=</span><span class="mi">4</span>
 </pre></div>
 </div>
+<p><strong>Guidelines for selecting <code class="docutils literal notranslate"><span class="pre">ncsize</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Start with <code class="docutils literal notranslate"><span class="pre">ncsize</span></code> equal to the number of physical CPU cores (not hyperthreads)</p></li>
+<li><p>For small meshes (&lt; 10,000 nodes), parallelization overhead may outweigh benefits</p></li>
+<li><p>For large meshes (&gt; 100,000 nodes), significant speedups are achievable</p></li>
+<li><p>Monitor CPU usage during runs to optimize <code class="docutils literal notranslate"><span class="pre">ncsize</span></code> for your system</p></li>
+</ul>
+<p><strong>Additional useful flags:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--nctile=N</span></code>: Number of sub-domains for domain decomposition (default equals <code class="docutils literal notranslate"><span class="pre">ncsize</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ncnode=N</span></code>: Number of compute nodes for cluster runs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> or <code class="docutils literal notranslate"><span class="pre">--sortie</span></code>: Only re-run the merging step (useful if simulation completed but merging failed)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--compileonly</span></code>: Only compile user Fortran files without running</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--clean</span></code>: Remove temporary files before starting</p></li>
+</ul>
+</div>
+<div class="warning dropdown admonition">
+<p class="admonition-title">Common runtime errors and solutions</p>
+<p><strong>Error: “STOP CALLED - INCREASE ARRAY SIZE”</strong></p>
+<ul class="simple">
+<li><p>Cause: Insufficient memory allocation for the mesh or variables</p></li>
+<li><p>Solution: Reduce mesh size or increase available memory; check for mesh quality issues</p></li>
+</ul>
+<p><strong>Error: “NEGATIVE WATER DEPTH”</strong></p>
+<ul class="simple">
+<li><p>Cause: Numerical instabilities, often from too large time step or poor mesh quality</p></li>
+<li><p>Solution: Reduce <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">STEP</span></code>, enable <code class="docutils literal notranslate"><span class="pre">TREATMENT</span> <span class="pre">OF</span> <span class="pre">NEGATIVE</span> <span class="pre">DEPTHS</span> <span class="pre">:</span> <span class="pre">2</span></code>, improve mesh quality in problem areas</p></li>
+</ul>
+<p><strong>Error: “SOLVER NOT CONVERGED”</strong></p>
+<ul class="simple">
+<li><p>Cause: Linear solver failed to reach convergence criterion</p></li>
+<li><p>Solution: Increase <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span> <span class="pre">NUMBER</span> <span class="pre">OF</span> <span class="pre">ITERATIONS</span> <span class="pre">FOR</span> <span class="pre">SOLVER</span></code>, relax <code class="docutils literal notranslate"><span class="pre">SOLVER</span> <span class="pre">ACCURACY</span></code>, or check boundary conditions</p></li>
+</ul>
+<p><strong>Error: “FLOATING POINT EXCEPTION”</strong></p>
+<ul class="simple">
+<li><p>Cause: Division by zero or overflow, often from very small water depths</p></li>
+<li><p>Solution: Increase <code class="docutils literal notranslate"><span class="pre">MINIMAL</span> <span class="pre">VALUE</span> <span class="pre">OF</span> <span class="pre">THE</span> <span class="pre">WATER</span> <span class="pre">HEIGHT</span></code>, check initial conditions</p></li>
+</ul>
+<p><strong>Gaia-specific: “NEGATIVE CONCENTRATION”</strong></p>
+<ul class="simple">
+<li><p>Cause: Numerical instabilities in advection scheme</p></li>
+<li><p>Solution: Use scheme <code class="docutils literal notranslate"><span class="pre">14</span></code> or <code class="docutils literal notranslate"><span class="pre">15</span></code> for suspended sediments, reduce time step, check boundary conditions for suspended load</p></li>
+</ul>
 </div>
 <p>A successful computation should end with the following lines (or similar) in <em>Terminal</em>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">[...]</span>
@@ -721,42 +766,117 @@ document.write(`
 </div>
 <p>TELEMAC will write the files <em>r2dsteady-gaia.slf</em>, <em>rGaia-steady2d.slf</em>, and <em>r-control-sections.txt</em> in the simulation folder. These result files are also available in this eBook’s modeling repository for accomplishing the post-processing tutorial:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady-gaia.slf">Download r2dunsteady.slf</a>,</p></li>
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/rGaia-steady2d.slf">Download rGaia-steady2d.slf</a>, and</p></li>
-<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/rGaia-steady2d.txt">Download r-control-sections.txt</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r2dsteady-gaia.slf">Download r2dsteady-gaia.slf</a> (hydrodynamics results)</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/rGaia-steady2d.slf">Download rGaia-steady2d.slf</a> (morphodynamics results)</p></li>
+<li><p><a class="reference external" href="https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/r-control-sections.txt">Download r-control-sections.txt</a> (control section fluxes)</p></li>
 </ul>
+<div class="note admonition">
+<p class="admonition-title">Understanding the output files</p>
+<p><strong>r2dsteady-gaia.slf</strong> contains the hydrodynamic variables defined in the Telemac2d steering file (e.g., velocity, water depth, free surface elevation). These are computed by Telemac2d with the bed evolution feedback from Gaia.</p>
+<p><strong>rGaia-steady2d.slf</strong> contains the morphodynamic variables defined in the Gaia steering file (e.g., bottom elevation, bedload transport rates, sediment concentrations). The variables correspond to the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keyword in <code class="docutils literal notranslate"><span class="pre">gaia-morphodynamics.cas</span></code>.</p>
+<p><strong>r-control-sections.txt</strong> contains time series of fluxes across the defined control sections. Each row represents a time step with columns for each section’s integrated flux.</p>
+</div>
 </section>
 <section id="post-processing">
 <h2>Post-processing<a class="headerlink" href="#post-processing" title="Link to this heading">#</a></h2>
 <section id="control-section-fluxes">
 <h3>Control Section Fluxes<a class="headerlink" href="#control-section-fluxes" title="Link to this heading">#</a></h3>
-<p>The <a class="reference internal" href="telemac2d-unsteady.html#tm-control-sections"><span class="std std-ref">control sections</span></a> enable insights into the correct adaptation of the flow at the upstream and downstream boundaries (prescribed Q only). <a class="reference internal" href="#gaia-hydrograph"><span class="std std-numref">Figure 198</span></a> shows the modeled flow rates where the <em>Inflow_boundary</em> and <em>Outflow_boundary</em> curves converge after approximately 10000 timesteps. Note that the graph shows absolute numbers while the original output in <em>r-control-sections.txt</em> is negative because of the order of node definitions in <em>control-sections.txt</em>. The <a class="reference internal" href="gaia-coupling.html#gaia-hotstart"><span class="std std-ref">hotstart</span></a> initialization makes that the fluxes fluctuate around the prescribed inflow of 35 m<span class="math notranslate nohighlight">\(^{3}\)</span>/s from the beginning. The <em>Outflow_boundary</em> flowrate increase toward the end of the simulation can be attributed to sediment erosion and the free flux downstream boundary type (<code class="docutils literal notranslate"><span class="pre">544-4</span></code>).</p>
+<p>The <a class="reference internal" href="telemac2d-unsteady.html#tm-control-sections"><span class="std std-ref">control sections</span></a> enable insights into the correct adaptation of the flow at the upstream and downstream boundaries (prescribed Q only). <a class="reference internal" href="#gaia-hydrograph"><span class="std std-numref">Figure 194</span></a> shows the modeled flow rates where the <em>Inflow_boundary</em> and <em>Outflow_boundary</em> curves converge after approximately 10000 timesteps. Note that the graph shows absolute numbers while the original output in <em>r-control-sections.txt</em> is negative because of the order of node definitions in <em>control-sections.txt</em>. The <a class="reference internal" href="gaia-coupling.html#gaia-hotstart"><span class="std std-ref">hotstart</span></a> initialization makes that the fluxes fluctuate around the prescribed inflow of 35 m<span class="math notranslate nohighlight">\(^{3}\)</span>/s from the beginning. The <em>Outflow_boundary</em> flowrate increase toward the end of the simulation can be attributed to sediment erosion and the free flux downstream boundary type (<code class="docutils literal notranslate"><span class="pre">544-4</span></code>).</p>
 <figure class="align-default" id="gaia-hydrograph">
 <img alt="result flow discharge telemac2d morphodynamic gaia inflow outflow control sections" src="../../_images/gaia-hydrograph.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 198 </span><span class="caption-text">The simulated flows over the upstream <em>Inflow_boundary</em> and the downstream <em>Outflow_boundary</em> control sections.</span><a class="headerlink" href="#gaia-hydrograph" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 194 </span><span class="caption-text">The simulated flows over the upstream <em>Inflow_boundary</em> and the downstream <em>Outflow_boundary</em> control sections.</span><a class="headerlink" href="#gaia-hydrograph" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-how-to-distinguish-water-fluxes-at-inflow-and-outflow-control-sections-from-sediment-transport-rates admonition">
 <p class="admonition-title">How to distinguish water fluxes at inflow and outflow control sections from sediment transport rates?</p>
 <p>With the two <a class="reference internal" href="gaia-basics.html#gaia-bc"><span class="std std-ref">boundary files for Telemac2d and Gaia</span></a>, it is possible to use different boundary types in the hydrodynamic (<em>steady2d-gaia.cas</em>) and morphodynamic (<em>gaia-morphodynamics.cas</em>) steering files. Thus, water volume fluxes can be prescribed at the inflow and the outflow sections through <code class="docutils literal notranslate"><span class="pre">455</span></code>-type boundaries (prescribed Q only) in the hydrodynamic steering and/or boundaries files. For instance, with <code class="docutils literal notranslate"><span class="pre">455</span></code>-type upstream and downstream hydrodynamic boundaries, adapt the <strong>PRESCRIBED FLOWRATES</strong> keyword to <code class="docutils literal notranslate"><span class="pre">35.;35</span></code> in the hydrodynamics steering file (<em>steady2d-gaia.cas</em>) without changing the morphodynamics (Gaia) boundary and steering files.</p>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Sediment mass balance verification</p>
+<p>To verify sediment mass conservation, enable <code class="docutils literal notranslate"><span class="pre">MASS-BALANCE</span> <span class="pre">:</span> <span class="pre">YES</span></code> in the Gaia steering file. The listing output will then include sediment mass balance information at each printout period:</p>
+<ul class="simple">
+<li><p><strong>Initial mass</strong>: Total sediment mass at simulation start</p></li>
+<li><p><strong>Final mass</strong>: Total sediment mass at current time step</p></li>
+<li><p><strong>Mass fluxes</strong>: Sediment entering/leaving through boundaries</p></li>
+<li><p><strong>Error</strong>: Relative mass balance error (should be &lt; 1% for well-configured simulations)</p></li>
+</ul>
+<p>Large mass balance errors (&gt; 5%) indicate potential issues with boundary conditions, advection schemes, or numerical instabilities.</p>
+</div>
 </section>
 <section id="visualization-with-qgis">
 <h3>Visualization with QGIS<a class="headerlink" href="#visualization-with-qgis" title="Link to this heading">#</a></h3>
 <p>The results of the Gaia simulation can be visualized and time snapshots exported to raster (e.g., <a class="reference internal" href="../../documentation/glossary.html#term-GeoTIFF"><span class="xref std std-term">GeoTIFF</span></a>) or shapefile formats by using the PostTelemac plugin in QGIS the same way as explained in the <a class="reference internal" href="telemac2d-steady.html#tm2d-post-export"><span class="std std-ref">steady2d tutorial</span></a>. The latest QGIS releases additionally enable loading of a Selafin (results) mesh file (here: <em>r2dsteady-gaia.slf</em>) as QGIS mesh layer, which can then be visualized in the viewport and exported to a video with the Crayfish plugin. To this end, <strong>launch QGIS</strong>, <strong>set the <a class="reference internal" href="../../geopy/use-qgis.html#qgis-project"><span class="std std-ref">project CRS</span></a> to EPSG:25833</strong> (ETRS89 / UTM zone 33N), and save the new project in the <code class="docutils literal notranslate"><span class="pre">gaia2d-tutorial/</span></code> folder (or where ever the Gaia simulation files live). In QGIS’ <strong>Browser</strong> panel, find the <strong>Project Home</strong> folder, expand it, and drag-and-drop the two simulation results meshes (<em>r2dsteady-gaia.slf</em> and <em>rGaia-steady2d.slf</em>) to the <strong>Layers</strong> panel.</p>
-<p>Double-click on <em>r2dsteady-gaia.slf</em> or <em>rGaia-steady2d.slf</em> to open their <strong>Mesh Layer Properties</strong>, then go to the <strong>Source</strong> tab to toggle hydrodynamic (e.g., <em>water depth</em> or <em>scalar flowrate m2s</em>) or morphodynamic Gaia (e.g., <em>qs bedload kg(ms)</em>) simulation parameters, respectively, at different timesteps. <a class="reference internal" href="#qgis-gaia-mesh-properties"><span class="std std-numref">Figure 199</span></a> shows the QGIS mesh Layer Properties window of the <em>rGaia-steady2d.slf</em> simulation results geometry where red boxes highlight steps for toggling output variables and visualization timesteps. In addition, the <strong>Symbology</strong> tab provides options for value color scales or vector representations (e.g., for velocity vectors in <em>r2dsteady-gaia.slf</em>).</p>
+<p>Double-click on <em>r2dsteady-gaia.slf</em> or <em>rGaia-steady2d.slf</em> to open their <strong>Mesh Layer Properties</strong>, then go to the <strong>Source</strong> tab to toggle hydrodynamic (e.g., <em>water depth</em> or <em>scalar flowrate m2s</em>) or morphodynamic Gaia (e.g., <em>qs bedload kg(ms)</em>) simulation parameters, respectively, at different timesteps. <a class="reference internal" href="#qgis-gaia-mesh-properties"><span class="std std-numref">Figure 195</span></a> shows the QGIS mesh Layer Properties window of the <em>rGaia-steady2d.slf</em> simulation results geometry where red boxes highlight steps for toggling output variables and visualization timesteps. In addition, the <strong>Symbology</strong> tab provides options for value color scales or vector representations (e.g., for velocity vectors in <em>r2dsteady-gaia.slf</em>).</p>
 <figure class="align-default" id="qgis-gaia-mesh-properties">
 <img alt="qgis telemac2d gaia morphodynamics solid discharge bedload results slf" src="../../_images/qgis-gaia-mesh-properties.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 199 </span><span class="caption-text">The mesh Layer Properties window with the Source tab for selecting Gaia output variables. The screenshot indicates steps for visualization of <em>qs bedload</em> at the simulation end time (red boxes). In addition, plot color ranges can be adapted in the Symbology tab (dashed red box).</span><a class="headerlink" href="#qgis-gaia-mesh-properties" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 195 </span><span class="caption-text">The mesh Layer Properties window with the Source tab for selecting Gaia output variables. The screenshot indicates steps for visualization of <em>qs bedload</em> at the simulation end time (red boxes). In addition, plot color ranges can be adapted in the Symbology tab (dashed red box).</span><a class="headerlink" href="#qgis-gaia-mesh-properties" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="error dropdown admonition">
 <p class="admonition-title">rGaia-steady2d.slf (results file) not correctly showing in QGIS</p>
-<p>Is the results file <code class="docutils literal notranslate"><span class="pre">rGaia-steady2d.slf</span></code> not showing up in QGIS? Make sure to import it with its correct georeference: <strong>EPSG:6173</strong> (ETRS 89 / UTM zone 33N).</p>
+<p>Is the results file <code class="docutils literal notranslate"><span class="pre">rGaia-steady2d.slf</span></code> not showing up in QGIS? Make sure to import it with its correct georeference: <strong>EPSG:25833</strong> (ETRS 89 / UTM zone 33N). If the mesh appears in the wrong location or with distorted geometry, check that:</p>
+<ol class="arabic simple">
+<li><p>The project CRS matches the mesh CRS (EPSG:25833)</p></li>
+<li><p>On-the-fly reprojection is enabled if using a different project CRS</p></li>
+<li><p>The original geometry file used the correct coordinate reference system</p></li>
+</ol>
+<p>To set the layer CRS manually: Right-click the layer → <strong>Set CRS</strong> → <strong>Set Layer CRS…</strong> → search for EPSG:25833.</p>
 </div>
 <p>Note that only parameters defined with the <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> keywords in the hydrodynamic (<a class="reference internal" href="telemac2d-steady.html#tm2d-gen"><span class="std std-ref">steady2d-gaia.cas</span></a>) and morphodynamic (<a class="reference internal" href="gaia-basics.html#gaia-gen"><span class="std std-ref">gaia-morphodynamics.cas</span></a>) steering files can be plotted in QGIS.</p>
+<div class="tip admonition">
+<p class="admonition-title">Key Gaia output variables for visualization</p>
+<p>The following variables are particularly useful for analyzing morphodynamic simulations:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">B</span></code></p></td>
+<td><p>Bottom elevation</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">E</span></code></p></td>
+<td><p>Bottom evolution (change from initial)</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QSBL</span></code></p></td>
+<td><p>Bedload transport rate (per unit width)</p></td>
+<td><p>kg/(m·s)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QS</span></code></p></td>
+<td><p>Total solid discharge</p></td>
+<td><p>kg/s</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TOB</span></code></p></td>
+<td><p>Bed shear stress</p></td>
+<td><p>N/m²</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MU</span></code></p></td>
+<td><p>Skin friction correction factor</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CS*</span></code></p></td>
+<td><p>Suspended sediment concentration (per class)</p></td>
+<td><p>kg/m³</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ES*</span></code></p></td>
+<td><p>Layer thickness (per layer)</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A*</span></code>, <code class="docutils literal notranslate"><span class="pre">R*</span></code></p></td>
+<td><p>Sediment class fractions in active layer</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Include these in <strong>VARIABLES FOR GRAPHIC PRINTOUTS</strong> to enable visualization.</p>
+</div>
 <p>To export a video of the simulation results, use the <em>Crayfish</em> plugin:</p>
 <ul class="simple">
 <li><p>In QGIS, make sure the Crayfish plugin is installed (recall the <a class="reference internal" href="../../geopy/use-qgis.html#qgis-tbx-install"><span class="std std-ref">QGIS instructions</span></a>).</p></li>
@@ -768,19 +888,45 @@ document.write(`
 </ul>
 <p>The first time that a video is exported, Crayfish will require the definition of an <strong>FFmpeg video encoder</strong> and guide through the installation (if required). Follow the instructions and re-start exporting the video. The following video was exported with Crayfish to visualize velocity vectors:</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/jFgwiAsElH0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Video: Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
-<p>Note how the velocity vectors evolve over time and that high flow velocities occur at ramps/sills in the river section (e.g., the two transversal maxima close to the upstream boundary or the transversal maximum close to the downstream boundary). Accordingly, the bedload transport at the ramps should also be pronounced. The following video shows <em>qs bedload</em> and to verify whether the model got the physical link between flow velocity and bedload right.</p>
+<p>Note how the velocity vectors evolve over time and that high flow velocities occur at ramps/sills in the river section (e.g., the two transversal maxima close to the upstream boundary or the transversal maximum close to the downstream boundary). Accordingly, the bedload transport at the ramps should also be pronounced. The following video shows <em>qs bedload</em> to verify whether the model got the physical link between flow velocity and bedload right.</p>
 <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/BUaqvWZ_AVk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Video: Sebastian Schwindt <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
-<p>After watching the video, it can be concluded that the relationship between flow velocities and bedload is approximately correct, but the model may require some correction by adapting  <a class="reference internal" href="gaia-bedload.html#gaia-dir"><span class="std std-ref">magnitude and direction parameters</span></a>. The next section exemplarily illustrates how the physical soundness of the model can be analyzed and improved.</p>
+<p>After watching the video, it can be concluded that the relationship between flow velocities and bedload is approximately correct, but the model may require some correction by adapting <a class="reference internal" href="gaia-bedload.html#gaia-dir"><span class="std std-ref">magnitude and direction parameters</span></a>. The next section exemplarily illustrates how the physical soundness of the model can be analyzed and improved.</p>
 </section>
 </section>
 <section id="plausibility">
 <span id="bl-plausability"></span><h2>Plausibility<a class="headerlink" href="#plausibility" title="Link to this heading">#</a></h2>
-<p>The above-shown results feature steady-state bedload and suspended load transport in an armored-bed river section at a low baseflow discharge of 35 m<span class="math notranslate nohighlight">\(^{3}\)</span>/s. The comparison of the flow velocity and the sediment transport videos suggests that the highest sediment transport rates occur where the flow velocity is high, too. Three sediment size classes were defined in the <a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">Basic Setup of Gaia</span></a> with average grain diameters of 0.0005 m, 0.02 m, and 0.1 m. The simulation predicts that only the finest grain size class will move at baseflow (e.g., in the console output during the simulation). This fine sediment class of 0.5-mm diameters (sand) is transported in the form of bedload and in suspension with no measurable effect on bed elevation. Thus, the model can be assumed to be basically physically reasonable, in particular, considering that nearby no change of the riverbed elevation is modeled despite the local sediment transport peak for fine sediment. Still, to verify the physical plausibility of a morphodynamic model, higher (flood) discharges should be test-simulated. Then the coarser grain sizes of 0.02 m (gravel) and 0.1 m (cobble) should also move.</p>
+<p>The above-shown results feature steady-state bedload and suspended load transport in an armored-bed river section at a low baseflow discharge of 35 m<span class="math notranslate nohighlight">\(^{3}\)</span>/s. The comparison of the flow velocity and the sediment transport videos suggests that the highest sediment transport rates occur where the flow velocity is high, too. Three sediment size classes were defined in the <a class="reference internal" href="gaia-basics.html#gaia-sed"><span class="std std-ref">Basic Setup of Gaia</span></a> with average grain diameters of 0.0005 m, 0.02 m, and 0.1 m. The simulation predicts that only the finest grain size class will move at baseflow (e.g., in the console output during the simulation). This fine sediment class of 0.5-mm diameters (sand) is transported in the form of bedload and in suspension with no measurable effect on bed elevation. Thus, the model can be assumed to be basically physically reasonable, in particular, considering that nearly no change of the riverbed elevation is modeled despite the local sediment transport peak for fine sediment. Still, to verify the physical plausibility of a morphodynamic model, higher (flood) discharges should be test-simulated. Then the coarser grain sizes of 0.02 m (gravel) and 0.1 m (cobble) should also move.</p>
 <div class="admonition-a-physical-plausibility-check-is-not-a-model-validation admonition">
 <p class="admonition-title">A physical plausibility check is not a model validation</p>
 <p>The physical plausibility check serves for verification of whether the simulation results are physically sound. Physically non-meaningful results would be, for instance, when the water depth permanently increases in a steady simulation, when water flows over floodplains at baseflow or leaves the model at undefined boundary nodes, or when no sediment moves at a high discharge (e.g., a 100-years flood) over an alluvial riverbed. The model validation comes after the calibration (see next section).</p>
 </div>
 <p>Also water depth, flow velocity (vectors), and <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> should be analyzed (in QGIS or BlueKenue) since Gaia modifies riverbed elevations. For instance, if the model predicts <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> in the form of 10-m deep erosion (scour) at baseflow, the keyword definitions for the <a class="reference internal" href="gaia-basics.html#gaia-active-lyr"><span class="std std-ref">riverbed</span></a> should be revised. Likewise, hydro-morphodynamically relevant parameters such as <a class="reference internal" href="gaia-bedload.html#c-friction"><span class="std std-ref">friction</span></a>, or <a class="reference internal" href="gaia-bedload.html#gaia-dir"><span class="std std-ref">direction and magnitude (bedload)</span></a> correctors should be verified.</p>
+<div class="tip admonition">
+<p class="admonition-title">Plausibility checklist for morphodynamic simulations</p>
+<p>Before proceeding to calibration, verify the following:</p>
+<p><strong>Hydrodynamics:</strong></p>
+<ul class="simple">
+<li><p>[ ] Water depths are physically reasonable (no negative depths, no unrealistic flooding)</p></li>
+<li><p>[ ] Flow velocities match expected ranges for the discharge</p></li>
+<li><p>[ ] Inflow and outflow mass balance is closed (check control sections)</p></li>
+<li><p>[ ] No spurious oscillations or instabilities in velocity field</p></li>
+</ul>
+<p><strong>Morphodynamics:</strong></p>
+<ul class="simple">
+<li><p>[ ] Sediment transport occurs where shear stress exceeds critical values</p></li>
+<li><p>[ ] Bedload direction aligns with main flow direction (with expected deviations in curves)</p></li>
+<li><p>[ ] Bed evolution magnitude is plausible (no 10-m scour holes at baseflow)</p></li>
+<li><p>[ ] Sediment mass balance is closed (check Gaia mass balance output)</p></li>
+<li><p>[ ] Only mobile sediment classes move (coarse fractions stable at low flows)</p></li>
+</ul>
+<p><strong>Suspended load (if activated):</strong></p>
+<ul class="simple">
+<li><p>[ ] Concentrations are within physically reasonable ranges (typically &lt; 10 g/l for rivers)</p></li>
+<li><p>[ ] Vertical distribution follows expected Rouse profile (for 3D simulations)</p></li>
+<li><p>[ ] Deposition occurs in low-velocity zones</p></li>
+<li><p>[ ] No negative concentrations</p></li>
+</ul>
+</div>
 <p>When a model is finally and approximately physically meaningful, the model can be <a class="reference internal" href="#bl-calibration"><span class="std std-ref">calibrated</span></a> with observation data. The next section provides a list of keywords that may be used for calibrating <a class="reference internal" href="../../documentation/glossary.html#term-Bedload"><span class="xref std std-term">Bedload</span></a> and/or <a class="reference internal" href="../../documentation/glossary.html#term-Suspended-load"><span class="xref std std-term">Suspended load</span></a> simulations with Gaia.</p>
 </section>
 <section id="calibration">
@@ -792,31 +938,78 @@ document.write(`
 <p class="sd-card-text">Moreover, a sensitivity analysis compares step-wise modifications of multiple parameters (still: one at a time) and their effects on model results. For instance, if a 10-% variation of <strong>BETA</strong> yields a 5-% change in global water depth while a 10-% variation of a friction coefficient yields a 20-% change in global water depth, it may be concluded that the model sensitivity with respect to the friction coefficient is higher than with respect to <strong>BETA</strong>. However, such conclusions require careful considerations in multi-parametric, complex models of river ecosystems.</p>
 </div>
 </details><p>This section assumes that the model is already hydrodynamically calibrated (e.g., regarding friction) as described in the <a class="reference internal" href="telemac2d-steady.html#tm2d-calibration"><span class="std std-ref">steady modeling section</span></a>. Gaia can then be used to model a flood hydrograph with an <a class="reference internal" href="telemac2d-unsteady.html#chpt-unsteady"><span class="std std-ref">unsteady (quasi-steady) simulation</span></a>. The calibration requires that riverbed elevation measurements from before and after the flood are available (i.e., an event-specific <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> map).</p>
+<div class="note admonition">
+<p class="admonition-title">Calibration data requirements</p>
+<p>Ideal calibration data for morphodynamic models includes:</p>
+<ul class="simple">
+<li><p><strong>Pre-event DEM</strong>: High-resolution bathymetry/topography before the modeled event</p></li>
+<li><p><strong>Post-event DEM</strong>: High-resolution bathymetry/topography after the modeled event</p></li>
+<li><p><strong>Hydrograph</strong>: Time series of discharge during the event</p></li>
+<li><p><strong>Suspended sediment concentrations</strong>: Measured SSC time series at gauging stations (if available)</p></li>
+<li><p><strong>Bedload measurements</strong>: Sampler or trap data (rare but valuable)</p></li>
+</ul>
+<p>The difference between pre- and post-event DEMs yields the <strong>topographic change map</strong> (or DoD - DEM of Difference), which serves as the primary calibration target for morphodynamic models.</p>
+</div>
 <section id="bedload-calibration-parameters">
 <span id="bl-calibration"></span><h3>Bedload Calibration Parameters<a class="headerlink" href="#bedload-calibration-parameters" title="Link to this heading">#</a></h3>
 <p>The following list of parameters can be considered for calibrating bedload in Gaia:</p>
 <ul class="simple">
-<li><p>Representative roughness length <span class="math notranslate nohighlight">\(k'_{s}\)</span> (cf. Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-cf-skin">(12)</a>) with the keyword <strong>RATIO BETWEEN SKIN FRICTION AND MEAN DIAMETER</strong> <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span> (default: <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.</span></code>). Note that this keyword is a multiplier of the characteristic grain size <span class="math notranslate nohighlight">\(D_{50}\)</span>; thus: <span class="math notranslate nohighlight">\(k'_{s}= f_{k'_{s}} \cdot D_{50}\)</span> (goes into Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-cf-skin">(12)</a>):</p>
+<li><p><strong>Representative roughness length</strong> <span class="math notranslate nohighlight">\(k'_{s}\)</span> (cf. Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-cf-skin">(12)</a>) with the keyword <strong>RATIO BETWEEN SKIN FRICTION AND MEAN DIAMETER</strong> <span class="math notranslate nohighlight">\(\alpha_{ks}\)</span> (default: <span class="math notranslate nohighlight">\(\alpha_{ks}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.</span></code>). Note that this keyword is a multiplier of the mean grain diameter <span class="math notranslate nohighlight">\(D_{50}\)</span>; thus: <span class="math notranslate nohighlight">\(k'_{s}= \alpha_{ks} \cdot D_{50}\)</span> (goes into Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-cf-skin">(12)</a>):</p>
 <ul>
 <li><p>To use this calibration parameter, make sure that <code class="docutils literal notranslate"><span class="pre">SKIN</span> <span class="pre">FRICTION</span> <span class="pre">CORRECTION</span> <span class="pre">:</span> <span class="pre">1</span></code>.</p></li>
-<li><p>On dune-form sand riverbeds, start with <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">37.</span></code> <span id="id1">[<a class="reference internal" href="../../documentation/bibliography.html#id1383" title="Alejandro Mendoza, Jorge D. Abad, Eddy J. Langendoen, Dongchen Wang, Pablo Tassi, and Kamal El Kadi Abderrezzak. Effect of Sediment Transport Boundary Conditions on the Numerical Modeling of Bed Morphodynamics. Journal of Hydraulic Engineering, 143(4):04016099, 2017. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%29HY.1943-7900.0001208 (visited on 2021-08-04), doi:10.1061/(ASCE)HY.1943-7900.0001208.">MAL+17</a>]</span>.</p></li>
-<li><p>In alternating bar riverbeds, start with <span class="math notranslate nohighlight">\(f_{k'_{s}}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.6</span></code> <span id="id2">[<a class="reference internal" href="../../documentation/bibliography.html#id1383" title="Alejandro Mendoza, Jorge D. Abad, Eddy J. Langendoen, Dongchen Wang, Pablo Tassi, and Kamal El Kadi Abderrezzak. Effect of Sediment Transport Boundary Conditions on the Numerical Modeling of Bed Morphodynamics. Journal of Hydraulic Engineering, 143(4):04016099, 2017. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%29HY.1943-7900.0001208 (visited on 2021-08-04), doi:10.1061/(ASCE)HY.1943-7900.0001208.">MAL+17</a>]</span>.</p></li>
+<li><p>On dune-form sand riverbeds, start with <span class="math notranslate nohighlight">\(\alpha_{ks}\)</span>=<code class="docutils literal notranslate"><span class="pre">37.</span></code> <span id="id1">[<a class="reference internal" href="../../documentation/bibliography.html#id1386" title="Alejandro Mendoza, Jorge D. Abad, Eddy J. Langendoen, Dongchen Wang, Pablo Tassi, and Kamal El Kadi Abderrezzak. Effect of Sediment Transport Boundary Conditions on the Numerical Modeling of Bed Morphodynamics. Journal of Hydraulic Engineering, 143(4):04016099, 2017. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%29HY.1943-7900.0001208 (visited on 2021-08-04), doi:10.1061/(ASCE)HY.1943-7900.0001208.">MAL+17</a>]</span>.</p></li>
+<li><p>In alternating bar riverbeds, start with <span class="math notranslate nohighlight">\(\alpha_{ks}\)</span>=<code class="docutils literal notranslate"><span class="pre">3.6</span></code> <span id="id2">[<a class="reference internal" href="../../documentation/bibliography.html#id1386" title="Alejandro Mendoza, Jorge D. Abad, Eddy J. Langendoen, Dongchen Wang, Pablo Tassi, and Kamal El Kadi Abderrezzak. Effect of Sediment Transport Boundary Conditions on the Numerical Modeling of Bed Morphodynamics. Journal of Hydraulic Engineering, 143(4):04016099, 2017. Publisher: American Society of Civil Engineers. URL: https://ascelibrary.org/doi/abs/10.1061/%28ASCE%29HY.1943-7900.0001208 (visited on 2021-08-04), doi:10.1061/(ASCE)HY.1943-7900.0001208.">MAL+17</a>]</span>.</p></li>
+<li><p>Increasing <span class="math notranslate nohighlight">\(\alpha_{ks}\)</span> increases the skin friction and thus bedload transport rates.</p></li>
 </ul>
 </li>
-<li><p>For models based on the <a class="reference internal" href="gaia-bedload.html#gaia-mpm"><span class="std std-ref">Meyer-Peter and Müller</span></a> formula (i.e., using a <a class="reference internal" href="../../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> for incipient sediment motion), the <strong>SHIELDS PARAMETERS</strong> keyword may be modified:</p>
+<li><p>For models based on the <a class="reference internal" href="gaia-bedload.html#gaia-mpm"><span class="std std-ref">Meyer-Peter and Müller</span></a> formula (i.e., using a <a class="reference internal" href="../../documentation/glossary.html#term-Shields-parameter"><span class="xref std std-term">Shields parameter</span></a> for incipient sediment motion), the <strong>CLASSES SHIELDS PARAMETERS</strong> keyword may be modified:</p>
 <ul>
-<li><p>If erosion is overpredicted, increase <strong>SHIELDS PARAMETERS</strong>.</p></li>
-<li><p>If erosion is underestimated, reduce <strong>SHIELDS PARAMETERS</strong>.</p></li>
+<li><p>If erosion is overpredicted, increase <strong>CLASSES SHIELDS PARAMETERS</strong>.</p></li>
+<li><p>If erosion is underestimated, reduce <strong>CLASSES SHIELDS PARAMETERS</strong>.</p></li>
+<li><p>Typical range: 0.03-0.06 for uniform sediments, up to 0.07 for armored beds.</p></li>
 </ul>
 </li>
-<li><p>With slope correction enabled and using the <span id="id3">Koch and Flokstra [<a class="reference internal" href="../../documentation/bibliography.html#id1387" title="F.G. Koch and C. Flokstra. Bed level computations for curved alluvial channels. In Proceedings of the XIXth Congress of the Int. Ass. for Hydr. Res. New Delhi, India, 1980.">KF80</a>]</span> correction formulae, adapt the <strong>BETA</strong> keyword from Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-qb-corr">(13)</a> (default is <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span> <span class="pre">1.3</span></code>).</p>
+<li><p>The <strong>MPM COEFFICIENT</strong> can be adjusted (default: <code class="docutils literal notranslate"><span class="pre">8</span></code>):</p>
+<ul>
+<li><p>Original Meyer-Peter and Müller value: <code class="docutils literal notranslate"><span class="pre">8</span></code></p></li>
+<li><p>Wong-Parker correction for plane beds: <code class="docutils literal notranslate"><span class="pre">3.97</span></code> (with <code class="docutils literal notranslate"><span class="pre">CLASSES</span> <span class="pre">SHIELDS</span> <span class="pre">PARAMETERS</span> <span class="pre">:</span> <span class="pre">0.0495</span></code>)</p></li>
+<li><p>Reduce to decrease overall bedload transport rates.</p></li>
+</ul>
+</li>
+<li><p>With slope correction enabled and using the <span id="id3">Koch and Flokstra [<a class="reference internal" href="../../documentation/bibliography.html#id1390" title="F.G. Koch and C. Flokstra. Bed level computations for curved alluvial channels. In Proceedings of the XIXth Congress of the Int. Ass. for Hydr. Res. New Delhi, India, 1980.">KF80</a>]</span> correction formulae, adapt the <strong>BETA</strong> keyword from Equation <a class="reference internal" href="gaia-bedload.html#equation-eq-qb-corr">(13)</a> (default is <code class="docutils literal notranslate"><span class="pre">BETA</span> <span class="pre">:</span> <span class="pre">1.3</span></code>):</p>
 <ul>
 <li><p>If erosion in curved channel sections is overpredicted, decrease <strong>BETA</strong>.</p></li>
 <li><p>If erosion in curved channel sections is underpredicted, increase <strong>BETA</strong>.</p></li>
+<li><p>Typical range: 1.0-2.0.</p></li>
 </ul>
 </li>
-<li><p>To adjust deposition and erosion pattern in curves (riverbends), enable the <strong>SECONDARY CURRENTS</strong> keyword and modify the <strong>SECONDARY CURRENTS ALPHA COEFFICIENT</strong> value (cf. <a class="reference internal" href="gaia-bedload.html#gaia-secondary"><span class="std std-ref">Secondary Currents</span></a>).</p></li>
+<li><p>To adjust deposition and erosion pattern in curves (riverbends), enable the <strong>SECONDARY CURRENTS</strong> keyword and modify the <strong>SECONDARY CURRENTS ALPHA COEFFICIENT</strong> value (cf. <a class="reference internal" href="gaia-bedload.html#gaia-secondary"><span class="std std-ref">Secondary Currents</span></a>):</p>
+<ul>
+<li><p>Default: <code class="docutils literal notranslate"><span class="pre">1.0</span></code> (smooth bed)</p></li>
+<li><p>For rough beds: <code class="docutils literal notranslate"><span class="pre">0.75</span></code></p></li>
+<li><p>Affects helical flow intensity and thus lateral sediment redistribution.</p></li>
 </ul>
+</li>
+<li><p>The <strong>HIDING FACTOR FORMULA</strong> keyword (for multi-class sediment) controls how finer particles are hidden by coarser ones:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: No hiding (each class independent)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: Egiazaroff formula (<strong>default</strong>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: Ashida &amp; Michiue formula</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code>: Karim, Holly &amp; Yang formula</p></li>
+<li><p>Affects relative mobility of different sediment classes.</p></li>
+</ul>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Recommended calibration sequence for bedload</p>
+<ol class="arabic simple">
+<li><p><strong>First</strong>: Calibrate overall transport magnitude using <strong>CLASSES SHIELDS PARAMETERS</strong> or <strong>MPM COEFFICIENT</strong></p></li>
+<li><p><strong>Second</strong>: Adjust spatial distribution using <strong>BETA</strong> and <strong>SECONDARY CURRENTS ALPHA COEFFICIENT</strong></p></li>
+<li><p><strong>Third</strong>: Fine-tune using <strong>RATIO BETWEEN SKIN FRICTION AND MEAN DIAMETER</strong></p></li>
+<li><p><strong>Last</strong>: Adjust hiding/exposure effects for multi-class models using <strong>HIDING FACTOR FORMULA</strong></p></li>
+</ol>
+<p>Compare simulated topographic change with measured DoD (DEM of Difference) using statistical metrics such as RMSE, Nash-Sutcliffe efficiency, or Brier Skill Score.</p>
+</div>
 </section>
 <section id="suspended-load-calibration-parameters">
 <h3>Suspended Load Calibration Parameters<a class="headerlink" href="#suspended-load-calibration-parameters" title="Link to this heading">#</a></h3>
@@ -826,14 +1019,63 @@ document.write(`
 <ul>
 <li><p>Reduce to enhance transport length and reduce deposition rates</p></li>
 <li><p>Increase to shorten transport trajectories and enhance deposition</p></li>
+<li><p>Set to <code class="docutils literal notranslate"><span class="pre">-9</span></code> to use Gaia’s automatic calculation based on grain size</p></li>
 </ul>
 </li>
-<li><p><strong><a class="reference internal" href="gaia-suspended.html#gaia-sl-sed"><span class="std std-ref">CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION</span></a></strong>: Reduce to keep sediment in suspension (or vice versa).</p></li>
+<li><p><strong><a class="reference internal" href="gaia-suspended.html#gaia-sl-sed"><span class="std std-ref">CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION</span></a></strong>:</p>
+<ul>
+<li><p>Reduce to keep sediment in suspension longer (deposition only at lower shear stresses)</p></li>
+<li><p>Increase to allow deposition at higher shear stresses</p></li>
+<li><p>Default of <code class="docutils literal notranslate"><span class="pre">1000</span></code> N/m² effectively disables the deposition threshold</p></li>
 </ul>
+</li>
+<li><p><strong>LAYERS PARTHENIADES CONSTANT</strong> (erosion rate constant <span class="math notranslate nohighlight">\(M\)</span>):</p>
+<ul>
+<li><p>Increase to enhance erosion rates</p></li>
+<li><p>Decrease to reduce erosion rates</p></li>
+<li><p>Typical range: 1.E-04 to 1.E-02 kg/(m²·s)</p></li>
+</ul>
+</li>
+<li><p><strong>LAYERS CRITICAL EROSION SHEAR STRESS OF THE MUD</strong>:</p>
+<ul>
+<li><p>Increase to reduce erosion (higher threshold)</p></li>
+<li><p>Decrease to enhance erosion (lower threshold)</p></li>
+<li><p>Varies with sediment consolidation; typical range: 0.01-1.0 N/m²</p></li>
+</ul>
+</li>
+<li><p><strong>DIFFUSION COEFFICIENT</strong> (or rely on turbulence model):</p>
+<ul>
+<li><p>Higher values increase lateral spreading of suspended sediment</p></li>
+<li><p>Lower values concentrate sediment plumes</p></li>
+</ul>
+</li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Recommended calibration sequence for suspended load</p>
+<ol class="arabic simple">
+<li><p><strong>First</strong>: Match suspended sediment concentrations at measurement stations by adjusting <strong>LAYERS PARTHENIADES CONSTANT</strong> (erosion) and <strong>CLASSES SETTLING VELOCITIES</strong> (deposition)</p></li>
+<li><p><strong>Second</strong>: Adjust <strong>LAYERS CRITICAL EROSION SHEAR STRESS OF THE MUD</strong> to control where erosion initiates</p></li>
+<li><p><strong>Third</strong>: Fine-tune <strong>CLASSES CRITICAL SHEAR STRESS FOR MUD DEPOSITION</strong> to match deposition patterns</p></li>
+<li><p><strong>Last</strong>: Adjust <strong>DIFFUSION COEFFICIENT</strong> if plume spreading appears incorrect</p></li>
+</ol>
+<p>Compare simulated SSC time series with measurements using RMSE or Nash-Sutcliffe efficiency.</p>
+</div>
 <dl class="simple myst">
 <dt><strong>What next?</strong></dt><dd><p>The calibrated model will also require validation. The validation requires another set of riverbed elevation measurements from before and after another flood (i.e., an additional event-specific <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> map). Alas, <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> maps are expensive and it is rare to have at least three <a class="reference internal" href="../../documentation/glossary.html#term-DEM"><span class="xref std std-term">DEM</span></a>s from different points in time for a river section, which would enable the creation of two <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> maps. For this reason, the calibration dataset is often split in practice. For instance, 2/3 of a <a class="reference internal" href="../../documentation/glossary.html#term-Topographic-change"><span class="xref std std-term">Topographic change</span></a> map may be used for model calibration and 1/3 for model validation. However, such splitting makes that the two datasets are not statistically independent and the validation quality figures will be biased.</p>
 </dd>
 </dl>
+<div class="note admonition">
+<p class="admonition-title">Model validation approaches</p>
+<p>When independent validation datasets are unavailable, consider:</p>
+<ul class="simple">
+<li><p><strong>Spatial split</strong>: Calibrate on upstream portion, validate on downstream (or vice versa)</p></li>
+<li><p><strong>Temporal split</strong>: Calibrate on first half of event, validate on second half</p></li>
+<li><p><strong>Cross-validation</strong>: k-fold splitting of available data</p></li>
+<li><p><strong>Process-based validation</strong>: Verify that the model correctly reproduces known physical behaviors (e.g., point bar formation in meanders, pool-riffle sequences)</p></li>
+<li><p><strong>Sensitivity analysis</strong>: Document model response to parameter variations to characterize uncertainty</p></li>
+</ul>
+<p>Always report validation limitations transparently when publishing or applying model results.</p>
+</div>
 </section>
 </section>
 </section>
