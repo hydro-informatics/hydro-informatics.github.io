@@ -346,7 +346,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../datascience/neural-networks.html">Neural Networks (Supervised)</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../datascience/unsupervised-learning.html">Unsupervised Learning (Coming soon)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="nav bd-sidenav">
@@ -565,6 +564,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-pattern">Installation pattern</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-example">Installation example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-example-with-another-version">Installation example with another version</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-install">Re-Install</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-telemac">Test TELEMAC</a><ul class="nav section-nav flex-column">
@@ -641,7 +641,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </ol>
 <ul class="simple">
 <li><p>Go to the <a class="reference external" href="https://www.salome-platform.org/?page_id=2430">official SALOME download form</a></p></li>
-<li><p>Pick the latest version with the Ubuntu build (that matches the Mint base); or pick the less frequently updated “Linux Universal”</p></li>
+<li><p>Pick the latest version with the Debian/Ubuntu build (that matches the Ubuntu/Mint base); or pick the less frequently updated “Linux Universal”</p></li>
 </ul>
 <ol class="arabic simple" start="3">
 <li><p>Verify the checksum: from SALOME’s md5 page, fetch the matching <code class="docutils literal notranslate"><span class="pre">.md5</span></code> file for your archive and verify locally</p></li>
@@ -674,11 +674,13 @@ chmod<span class="w"> </span>+x<span class="w"> </span>telemac_debian12_installe
 ./telemac_debian12_installer.sh<span class="w"> </span>--root<span class="w"> </span><span class="s2">&quot;ROOT&quot;</span><span class="w"> </span>--salome-tar<span class="w"> </span><span class="s2">&quot;ROOT/SALOME-x.xx.xSRC.tar.gz&quot;</span>
 </pre></div>
 </div>
-<p>After finishing the installation, the Telemac environment can be loaded as follows:</p>
+<p>After finishing the installation, the Telemac environment can be loaded and compiled as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ROOT/telemac-mascaret/configs/
 <span class="nb">source</span><span class="w"> </span>pysource.debian12.sh
+compile_telemac.py<span class="w"> </span>--clean
 </pre></div>
 </div>
+<p>Note that recompiling is necessary in the case of the Debian12 installer (not required for Ubuntu/Mint).</p>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-3">
@@ -717,9 +719,10 @@ chmod<span class="w"> </span>+x<span class="w"> </span>telemac_debian12_installe
 ./telemac_debian12_installer.sh<span class="w"> </span>--root<span class="w"> </span><span class="s2">&quot;/home/HyInfo/opt&quot;</span><span class="w"> </span>--salome-tar<span class="w"> </span><span class="s2">&quot;/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz&quot;</span>
 </pre></div>
 </div>
-<p>Now, you can activate the Telemac environment as follows:</p>
+<p>Now, activate the Telemac environment and compile as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/HyInfo/opt/telemac-mascaret/configs/
 <span class="nb">source</span><span class="w"> </span>pysource.debian12.sh
+compile_telemac.py<span class="w"> </span>--clean
 </pre></div>
 </div>
 </section>
@@ -731,9 +734,34 @@ chmod<span class="w"> </span>+x<span class="w"> </span>telemac_debian12_installe
 ./telemac_debian12_installer.sh<span class="w"> </span>--root<span class="w"> </span><span class="s2">&quot;/home/HyInfo/opt&quot;</span><span class="w"> </span>--tag<span class="o">=</span><span class="s2">&quot;v9.5.0&quot;</span><span class="w"> </span>--salome-tar<span class="w"> </span><span class="s2">&quot;/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz&quot;</span>
 </pre></div>
 </div>
-<p>Now, you can activate the Telemac environment as follows:</p>
+<p>Now, activate the Telemac environment and compile Telemac as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/HyInfo/opt/telemac-mascaret/configs/
 <span class="nb">source</span><span class="w"> </span>pysource.debian12.sh
+compile_telemac.py<span class="w"> </span>--clean
+</pre></div>
+</div>
+</section>
+<section id="re-install">
+<h3>Re-Install<a class="headerlink" href="#re-install" title="Link to this heading">#</a></h3>
+<p>To fix/reinstall an an existing installation:</p>
+<ol class="arabic simple">
+<li><p>Navigate to your TELEMAC directory:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/opt/telemac-mascaret
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Re-run the installer with <code class="docutils literal notranslate"><span class="pre">--skip-apt</span></code> to regenerate config files (assumes you are using a newer version of the installer script)</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>+x<span class="w"> </span>./telemac_debian12_installer.sh
+./telemac_debian12_installer.sh<span class="w"> </span>--skip-apt<span class="w"> </span>--root<span class="w"> </span><span class="s2">&quot;/ROOTDIR&quot;</span><span class="w"> </span>--salome-tar<span class="w"> </span><span class="s2">&quot;ROOT/SALOME-x.xx.xSRC.tar.gz&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Regenerate by re-running config and compile:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>configs/pysource.debian12.sh
+compile_telemac.py<span class="w"> </span>--clean
 </pre></div>
 </div>
 </section>
@@ -894,6 +922,7 @@ telemac2d.py<span class="w"> </span>t2d_donau.cas<span class="w"> </span>--ncsiz
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-pattern">Installation pattern</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-example">Installation example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-example-with-another-version">Installation example with another version</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-install">Re-Install</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-telemac">Test TELEMAC</a><ul class="nav section-nav flex-column">

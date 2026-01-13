@@ -57,7 +57,7 @@ Choosing the right version of SALOME cannot be reasonably automated, so find and
 
 2. Download the SALOME build
   * Go to the [official SALOME download form](https://www.salome-platform.org/?page_id=2430) 
-  * Pick the latest version with the Ubuntu build (that matches the Mint base); or pick the less frequently updated "Linux Universal"
+  * Pick the latest version with the Debian/Ubuntu build (that matches the Ubuntu/Mint base); or pick the less frequently updated "Linux Universal"
 
 3. Verify the checksum: from SALOME's md5 page, fetch the matching `.md5` file for your archive and verify locally
   * Example for the 9.15 tarball: `md5sum SALOME-9.15.0.tar.gz`
@@ -83,11 +83,15 @@ chmod +x telemac_debian12_installer.sh
 ./telemac_debian12_installer.sh --root "ROOT" --salome-tar "ROOT/SALOME-x.xx.xSRC.tar.gz"
 ```
 
-After finishing the installation, the Telemac environment can be loaded as follows:
+After finishing the installation, the Telemac environment can be loaded and compiled as follows:
 ```bash
 cd ROOT/telemac-mascaret/configs/
 source pysource.debian12.sh
+compile_telemac.py --clean
 ```
+
+Note that recompiling is necessary in the case of the Debian12 installer (not required for Ubuntu/Mint).
+
 ````
 
 ````{tab-item} Ubuntu 24 / Mint 22
@@ -135,11 +139,12 @@ chmod +x telemac_debian12_installer.sh
 ./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
 ```
 
-Now, you can activate the Telemac environment as follows:
+Now, activate the Telemac environment and compile as follows:
 
 ```bash
 cd /home/HyInfo/opt/telemac-mascaret/configs/
 source pysource.debian12.sh
+compile_telemac.py --clean
 ```
 
 ### Installation example with another version
@@ -152,12 +157,37 @@ chmod +x telemac_debian12_installer.sh
 ./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --tag="v9.5.0" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
 ```
 
-Now, you can activate the Telemac environment as follows:
+Now, activate the Telemac environment and compile Telemac as follows:
 
 ```bash
 cd /home/HyInfo/opt/telemac-mascaret/configs/
 source pysource.debian12.sh
+compile_telemac.py --clean
 ```
+
+### Re-Install
+
+To fix/reinstall an an existing installation:
+
+1. Navigate to your TELEMAC directory: 
+
+  ```bash
+  cd ~/opt/telemac-mascaret
+  ```
+
+2. Re-run the installer with `--skip-apt` to regenerate config files (assumes you are using a newer version of the installer script)
+  
+  ```bash
+  chmod +x ./telemac_debian12_installer.sh
+  ./telemac_debian12_installer.sh --skip-apt --root "/ROOTDIR" --salome-tar "ROOT/SALOME-x.xx.xSRC.tar.gz"
+  ```
+
+3. Regenerate by re-running config and compile:
+
+  ```bash
+  source configs/pysource.debian12.sh
+  compile_telemac.py --clean
+  ```
 
 
 (testrun-autoinstaller)=
@@ -224,6 +254,7 @@ telemac2d.py t2d_donau.cas --ncsize=8
 If there are severe errors, the automatic installer might not have worked for your system (or subversion). In this case, it is safest, to start over and {ref}`install Telemac manually <telemac-install>`.
 
 ````
+
 
 ### Generate TELEMAC Documentation
 

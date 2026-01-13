@@ -25,10 +25,9 @@ We provide tutorials for:
   * A general introduction to {doc}`Python programming and object orientation </python-basics/python>`)
   * Guides for code and project {doc}`documentation </documentation/how-to-document>` (*Markdown* / *reStructuredText*)
 * Geospatial analyses with {ref}`QGIS <qgis-tutorial>` and {doc}`Python </geopy/geo-python>`
-* {doc}`Machine learning <datascience/machinelearning>` with illustrative exercises and Python implementations:
-  * Fundamentals of {ref}`supervised learning <supervisedlearning>`
-  * Introduction to {doc}`unsupervised learning <datascience/unsupervised-learning>`
-  * Tutorial for {doc}`support vector machines (SVM) <datascience/morphology-predictor-svm>`
+* {doc}`Machine learning <datascience/machinelearning>` fundamentals with illustrative exercises and Python implementations:
+  * Introduction to {ref}`supervised learning <supervisedlearning>`
+  * Tutorial for {doc}`support vector machines (SVM) <datascience/morphology-predictor-svm>` for classification of fluvial morphological patterns
 * Numerical modeling of rivers with;
   * The {doc}`ETH Zurich's BASEMENT </numerics/basement/basement>` (v4) software (2d hydrodynamics)
   * {doc}`TELEMAC </numerics/telemac/telemac>` (2d, 3d, and morphodynamics)
