@@ -136,7 +136,7 @@ Assume you are working on Debian 12, accordingly you downloaded `SALOME-9.15.0-n
 ```bash
 cd /home/HyInfo/opt
 chmod +x telemac_debian12_installer.sh
-./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
+./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz" --salome-md5 "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
 ```
 
 Now, activate the Telemac environment and compile as follows:
@@ -154,7 +154,7 @@ Assume you are working on Debian 12, accordingly you downloaded `SALOME-9.15.0-n
 ```bash
 cd /home/HyInfo/opt
 chmod +x telemac_debian12_installer.sh
-./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --tag="v9.5.0" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
+./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --tag="v9.5.0" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz" --salome-md5 "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
 ```
 
 Now, activate the Telemac environment and compile Telemac as follows:

@@ -632,7 +632,22 @@ document.write(`
 </section>
 <section id="contents-and-debian-linux">
 <h3>Contents and Debian Linux<a class="headerlink" href="#contents-and-debian-linux" title="Link to this heading">#</a></h3>
-<p>This page guides through the installation of a <a class="reference external" href="https://www.debian.org/">Debian Linux</a> virtual machine. The host hypervisor is assumed to be Oracle’s <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a> on <em>Windows 10</em>. If you are not using <em>Windows 10</em>, just download the <em>VirtualBox</em> installer that suits your system.</p>
+<p>This page guides through the installation of a <a class="reference external" href="https://www.debian.org/">Debian Linux</a> virtual machine. The host hypervisor is assumed to be Oracle’s <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a> on <em>Windows</em>. If you are not using Windows, just download the <em>VirtualBox</em> installer that suits your system. While VirtualBox works x-platform, there are other, more powerful platform specific utilities for creating VMs:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+GNOME boxes(Linux)</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnome-boxes
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>virt-manager<span class="w"> </span>qemu-kvm<span class="w"> </span>libvirt-daemon-system
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+UTM app (mac / iOS)</label><div class="sd-tab-content docutils">
+<p><a class="reference external" href="https://getutm.app">UTM</a> is a free, open-source VM application for macOS (and iOS) that lets you run Windows, Linux, and other operating systems on a Mac. It uses Apple’s Hypervisor framework to run ARM64 systems on <em>Apple Silicon</em> at near-native speeds, while also supporting emulation for x86/x64 and over 30 other processor architectures via its QEMU backend. UTM is completely free with no feature restrictions, making it an accessible choice for anyone who needs to test software across different platforms.</p>
+</div>
+</div>
 <p>The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than <em>the best option</em>.</p>
 <p>There are a couple of Debian Linux spin-offs, such as <a class="reference external" href="https://ubuntu.com"><em>Ubuntu</em></a> with some other derivatives that are more lightweight (and faster). New Linux users will have an easy start with the <em>Ubuntu</em> variants <a class="reference external" href="https://www.linuxmint.com"><em>Linux Mint</em> (<em>Xfce</em>)</a> or <a class="reference external" href="https://lubuntu.me/downloads/"><em>Lubuntu</em></a>. Most versions <em>Ubuntu</em> can be used instead of the Debian Linux presented here to complete the tutorials on this website.</p>
 </section>
@@ -1062,14 +1077,127 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <section id="windows-apps-on-linux">
 <span id="wine"></span><h2>Windows Apps on Linux<a class="headerlink" href="#windows-apps-on-linux" title="Link to this heading">#</a></h2>
 <p><em><strong>Estimated duration: 10-15 minutes.</strong></em></p>
-<p>The <a class="reference external" href="https://wiki.debian.org/Wine">Wine</a> application provides a Windows-like environment on any <em>Linux</em> system, which enables installing and running Windows applications. Wine can be either used through the convenient PlayOnLinux app or directly installed on Linux.</p>
-<aside class="margin sidebar">
-<p class="sidebar-title">What is BlueKenue?</p>
-<p>The installation examples feature the meshing tool BlueKenue, which enables us to create a computational mesh for the TELEMAC software. Find out more about the installation of BlueKenue as a pre-processor in the <a class="reference internal" href="install-telemac.html#bluekenue"><span class="std std-ref">TELEMAC installation</span></a> section and the <a class="reference internal" href="../numerics/telemac/telemac.html#chpt-telemac"><span class="std std-ref">TELEMAC tutorials</span></a> in this eBook.</p>
-</aside>
+<p>The <a class="reference external" href="https://wiki.debian.org/Wine">Wine</a> application provides a Windows-like environment on Linux systems, which enables installing and running Windows applications. Wine can be either used through the convenient <a class="reference external" href="https://flathub.org/en/apps/com.usebottles.bottles">bottles</a> (via flatpak) or PlayOnLinux apps, or directly installed on Linux.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-0">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+Bottles (flatpak)</label><div class="sd-tab-content docutils">
+<p>Some software, such as HEC-RAS, requirer Microsoft’s .NET framework and other dependencies that can be tricky to install on Linux.</p>
+<p>To install bottles including relevant Vulkan libraries, fire up Terminal and tap:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>com.usebottles.bottles
+flatpak<span class="w"> </span>run<span class="w"> </span>com.usebottles.bottles
+flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>com.obsproject.Studio.Plugin.OBSVkCapture
+flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.freedesktop.Platform.VulkanLayer.MangoHud
+flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.freedesktop.Platform.VulkanLayer.vkBasalt
+flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.freedesktop.Platform.VulkanLayer.gamescope
+</pre></div>
+</div>
+<p>Dependencies (listed in 2026 – check for updates):</p>
+<ul class="simple">
+<li><p><strong>Core fonts</strong>: <code class="docutils literal notranslate"><span class="pre">allfonts</span></code></p></li>
+<li><p><strong>.NET framework</strong>: <code class="docutils literal notranslate"><span class="pre">dotnet481</span></code>, <code class="docutils literal notranslate"><span class="pre">dotnet472</span></code> (for HEC-RAS)</p></li>
+<li><p><strong>Visual C++ 2015–2022 Redistributable (x64)</strong>: <code class="docutils literal notranslate"><span class="pre">vcredist2022</span></code>, <code class="docutils literal notranslate"><span class="pre">vcredit6sp6</span></code>, and <code class="docutils literal notranslate"><span class="pre">vcredit6</span></code></p></li>
+</ul>
+<p>Note that we tested bottles with a Windows 10 environment, so things might fail if you switch to Windows 11.</p>
+<div class="tip admonition">
+<p class="admonition-title">Useful fixes</p>
+<p>In a fresh bottle, before installing software:</p>
+<ol class="arabic simple">
+<li><p>Expose installer directory to Flatpak Bottles</p></li>
+<li><p>Enable <strong>DXVK ON</strong></p></li>
+</ol>
+</div>
+<p><strong>Test with a HEC-RAS installation:</strong></p>
+<ol class="arabic simple">
+<li><p>Create a folder for Windows installers, like <code class="docutils literal notranslate"><span class="pre">~/Installers/HECRAS/</span></code></p></li>
+<li><p>Grant Bottles access to it (pick one method), either with Bottles’ “Expose directories” guide (Flatseal &gt; Bottles &gt; Filesystem &gt; add folder, or <code class="docutils literal notranslate"><span class="pre">flatpak</span> <span class="pre">override</span> <span class="pre">com.usebottles.bottles</span> <span class="pre">--filesystem=$HOME/Installers</span></code></p></li>
+<li><p>Go to the HEC-RAS <a class="reference external" href="https://www.hec.usace.army.mil/software/hec-ras/download.aspx">download page</a> and download the latest Windows x64 installer into: <code class="docutils literal notranslate"><span class="pre">~/Installers/HECRAS/</span></code></p></li>
+<li><p>Create a new Bottle: Open <strong>Bottles</strong> &gt; Click <strong>+ New Bottle</strong> &gt; Choose:</p>
+<ul class="simple">
+<li><p><strong>Environment:</strong> <strong>Application</strong></p></li>
+<li><p><strong>Name:</strong> <code class="docutils literal notranslate"><span class="pre">HEC-RAS</span></code></p></li>
+<li><p>Keep it <strong>64-bit</strong> (critical; HEC-RAS v6+ is 64-bit-only)</p></li>
+</ul>
+</li>
+<li><p>After creation, open the bottle’s <strong>Settings</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>DXVK: ON</strong> (Direct3D 9/10/11 &gt; Vulkan)</p></li>
+<li><p><strong>VKD3D: ON</strong></p></li>
+<li><p><strong>Discrete GPU: ON</strong></p></li>
+<li><p>Optional stability move: <strong>Virtual Desktop ON</strong></p></li>
+</ul>
+<ol class="arabic simple" start="6">
+<li><p>Install dependencies before installing HEC-RAS:</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Core fonts</strong>: <code class="docutils literal notranslate"><span class="pre">allfonts</span></code></p></li>
+<li><p><strong>.NET framework</strong>: <code class="docutils literal notranslate"><span class="pre">dotnet481</span></code>, <code class="docutils literal notranslate"><span class="pre">dotnet472</span></code> (for HEC-RAS)</p></li>
+<li><p><strong>Visual C++ 2015–2022 Redistributable (x64)</strong>: <code class="docutils literal notranslate"><span class="pre">vcredist2022</span></code>, <code class="docutils literal notranslate"><span class="pre">vcredit6sp6</span></code>, and <code class="docutils literal notranslate"><span class="pre">vcredit6</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="7">
+<li><p>Install HEC-RAS inside the bottle</p></li>
+</ol>
+<ul class="simple">
+<li><p>Open your bottle &gt; <strong>Run Executable</strong></p></li>
+<li><p>Select the downloaded <strong>HEC-RASinstaller</strong> from <code class="docutils literal notranslate"><span class="pre">~/Installers/HECRAS/</span></code></p></li>
+<li><p>Install path: default is OK (e.g., <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\HEC\...</span></code>)</p></li>
+<li><p>Finish installer</p></li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p>First launch + RasMapper.exe validation:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Start <strong>HEC-RAS main UI</strong></p></li>
+<li><p>Then open <strong>RAS Mapper</strong> from within HEC-RAS (so it inherits the same environment) – the Mapper window should open now</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">RasMapper.exe troubleshooting</p>
+<ul>
+<li><p>Missing DLL errors (<code class="docutils literal notranslate"><span class="pre">mfc140u.dll</span></code>, <code class="docutils literal notranslate"><span class="pre">vcruntime140.dll</span></code>, etc.)</p>
+<blockquote>
+<div><blockquote>
+<div><p>Install <strong>VC++ 2015-2022 redist</strong> in Dependencies.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>Mapper opens but is blank / rendering is broken</p>
+<blockquote>
+<div><blockquote>
+<div><p>This is usually <strong>graphics backend</strong> mismatch, so:</p>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p><strong>Toggle DXVK</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>If DXVK is ON and Mapper is blank, try OFF (wined3d path)</p></li>
+<li><p>If DXVK is OFF and Mapper is unusably slow/buggy, try ON</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Switch Mapper rendering mode</strong>
+Because Mapper supports <strong>GDI+ and Direct2D</strong>, and <strong>GDI+ tends to work on more drivers</strong> while Direct2D is faster.</p></li>
+</ol>
+</li>
+<li><p>Crash dialog mentions <strong>.NET Framework</strong></p>
+<blockquote>
+<div><blockquote>
+<div><p>Install <code class="docutils literal notranslate"><span class="pre">dotnet48</span></code>.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>Mapper is very slow:</p>
+<ul class="simple">
+<li><p>Confirm your Linux GPU drivers are correct (Mesa for AMD/Intel; proprietary driver for NVIDIA if needed)</p></li>
+<li><p>DXVK generally helps performance if Vulkan is solid</p></li>
+<li><p>Consider switching to GDI+ mode if Direct2D path is unstable</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
 Steam Proton</label><div class="sd-tab-content docutils">
 <p>Proton is <em>Valve</em>’s <em>Steam</em>-focused compatibility layer that builds on Wine plus tools like DXVK and VKD3D-Proton to translate Windows game APIs to Linux, enabling most Windows games to run without modification.</p>
 <hr class="docutils" />
@@ -1302,8 +1430,8 @@ Windows C: drive inside prefix:
 </li>
 </ol>
 </div>
-<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-1" id="play-on-linux">
+<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4" id="play-on-linux">
 PlayOnLinux</label><div class="sd-tab-content docutils">
 <p>On top of wine, the currently maybe best available frameworks is <a class="reference external" href="https://www.playonlinux.com">PlayOnLinux</a>, which can be installed as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">winbind</span> <span class="n">playonlinux</span> <span class="n">winetricks</span> <span class="o">-</span><span class="n">y</span> 
@@ -1316,8 +1444,8 @@ PlayOnLinux</label><div class="sd-tab-content docutils">
 <p>In the pop-up window (after <em>Run a .exe file …</em>), go to your Linux user home folder (e.g., <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/</span></code>), then enable viewing of hidden files (press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> on your keyboard), which will make the hidden folder <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/</span></code> visible. Double-click on this hidden folder, then on <strong>wineprefix</strong> &gt; <strong>YOUR-ENVIRONMENT-NAME</strong> (e.g., <strong>HYINFO-ENVIRONMENT</strong>) &gt; <strong>drive_c</strong> and find the installed program either in the <strong>Program Files</strong> or <strong>Program Files (x86)</strong> directory.
 For instance, to open a 64-bit installation of BlueKenue, navigate to <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/wineprefix/HYINFO-ENVIRONMENT/drive_c/Program</span> <span class="pre">Files/CHC/BlueKenue64</span></code> and double-click on <strong>BlueKenue64.exe</strong> (replace <code class="docutils literal notranslate"><span class="pre">hydro-informatics</span></code> and <code class="docutils literal notranslate"><span class="pre">HYINFO-ENVIRONMENT</span></code> with your local directory names). The program should now open.</p>
 </div>
-<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-2">
+<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
 Wine (Direct Installation)</label><div class="sd-tab-content docutils">
 <p>The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>

@@ -27,7 +27,20 @@ In the context of hydro-informatics for water resources management, a VM can ser
 
 ### Contents and Debian Linux
 
-This page guides through the installation of a [Debian Linux](https://www.debian.org/) virtual machine. The host hypervisor is assumed to be Oracle's [VirtualBox](https://www.virtualbox.org/) on *Windows 10*. If you are not using *Windows 10*, just download the *VirtualBox* installer that suits your system.
+This page guides through the installation of a [Debian Linux](https://www.debian.org/) virtual machine. The host hypervisor is assumed to be Oracle's [VirtualBox](https://www.virtualbox.org/) on *Windows*. If you are not using Windows, just download the *VirtualBox* installer that suits your system. While VirtualBox works x-platform, there are other, more powerful platform specific utilities for creating VMs:
+
+`````{tab-set}
+````{tab-item} GNOME boxes(Linux)
+```bash
+sudo apt install gnome-boxes
+sudo apt install virt-manager qemu-kvm libvirt-daemon-system
+```
+````
+
+````{tab-item} UTM app (mac / iOS)
+[UTM](https://getutm.app) is a free, open-source VM application for macOS (and iOS) that lets you run Windows, Linux, and other operating systems on a Mac. It uses Apple's Hypervisor framework to run ARM64 systems on *Apple Silicon* at near-native speeds, while also supporting emulation for x86/x64 and over 30 other processor architectures via its QEMU backend. UTM is completely free with no feature restrictions, making it an accessible choice for anyone who needs to test software across different platforms.
+````
+`````
 
 The guest machine will run Debian Linux, which is one of the most stable Linux distributions, and it is freely available. Because of its stability, Debian is an ideal baseline for running numerical simulations that may last for days or even weeks. Of course, there are other options, and Debian is rather one of the best options than *the best option*.
 
@@ -496,22 +509,115 @@ This will not update manually installed software, and packages installed through
 ## Windows Apps on Linux
 ***Estimated duration: 10-15 minutes.***
 
-The [Wine](https://wiki.debian.org/Wine) application provides a Windows-like environment on any *Linux* system, which enables installing and running Windows applications. Wine can be either used through the convenient PlayOnLinux app or directly installed on Linux.
+The [Wine](https://wiki.debian.org/Wine) application provides a Windows-like environment on Linux systems, which enables installing and running Windows applications. Wine can be either used through the convenient [bottles](https://flathub.org/en/apps/com.usebottles.bottles) (via flatpak) or PlayOnLinux apps, or directly installed on Linux.
 
-```{margin} What is BlueKenue?
-The installation examples feature the meshing tool BlueKenue, which enables us to create a computational mesh for the TELEMAC software. Find out more about the installation of BlueKenue as a pre-processor in the {ref}`TELEMAC installation <bluekenue>` section and the {ref}`TELEMAC tutorials <chpt-telemac>` in this eBook.
-```
 
 
 `````{tab-set}
+````{tab-item} Bottles (flatpak)
+
+Some software, such as HEC-RAS, requirer Microsoft's .NET framework and other dependencies that can be tricky to install on Linux.
+
+To install bottles including relevant Vulkan libraries, fire up Terminal and tap:
+
+```bash
+flatpak install flathub com.usebottles.bottles
+flatpak run com.usebottles.bottles
+flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture
+flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
+flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt
+flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope
+```
+
+Dependencies (listed in 2026 -- check for updates):
+* **Core fonts**: `allfonts`
+* **.NET framework**: `dotnet481`, `dotnet472` (for HEC-RAS)
+* **Visual C++ 2015–2022 Redistributable (x64)**: `vcredist2022`, `vcredit6sp6`, and `vcredit6`
+
+Note that we tested bottles with a Windows 10 environment, so things might fail if you switch to Windows 11.
+
+```{admonition} Useful fixes
+:class: tip
+
+In a fresh bottle, before installing software:
+
+1. Expose installer directory to Flatpak Bottles
+2. Enable **DXVK ON**
+```
+
+**Test with a HEC-RAS installation:**
+
+1. Create a folder for Windows installers, like `~/Installers/HECRAS/`
+
+2. Grant Bottles access to it (pick one method), either with Bottles' "Expose directories" guide (Flatseal > Bottles > Filesystem > add folder, or `flatpak override com.usebottles.bottles --filesystem=$HOME/Installers`
+
+3. Go to the HEC-RAS [download page](https://www.hec.usace.army.mil/software/hec-ras/download.aspx) and download the latest Windows x64 installer into: `~/Installers/HECRAS/`
+
+4. Create a new Bottle: Open **Bottles** > Click **+ New Bottle** > Choose:
+
+   * **Environment:** **Application**
+   * **Name:** `HEC-RAS`
+   * Keep it **64-bit** (critical; HEC-RAS v6+ is 64-bit-only)
+
+5. After creation, open the bottle’s **Settings**: 
+
+  * **DXVK: ON** (Direct3D 9/10/11 > Vulkan)
+  * **VKD3D: ON**
+  * **Discrete GPU: ON**
+  * Optional stability move: **Virtual Desktop ON**
+
+6. Install dependencies before installing HEC-RAS:
+
+  * **Core fonts**: `allfonts`
+  * **.NET framework**: `dotnet481`, `dotnet472` (for HEC-RAS)
+  * **Visual C++ 2015–2022 Redistributable (x64)**: `vcredist2022`, `vcredit6sp6`, and `vcredit6`
+
+7. Install HEC-RAS inside the bottle
+
+  * Open your bottle > **Run Executable**
+  * Select the downloaded **HEC-RASinstaller** from `~/Installers/HECRAS/`
+  * Install path: default is OK (e.g., `C:\Program Files\HEC\...`)
+  * Finish installer
+
+8. First launch + RasMapper.exe validation:
+
+  * Start **HEC-RAS main UI**
+  * Then open **RAS Mapper** from within HEC-RAS (so it inherits the same environment) -- the Mapper window should open now
+
+
+```{admonition} RasMapper.exe troubleshooting
+:class: tip
+
+* Missing DLL errors (`mfc140u.dll`, `vcruntime140.dll`, etc.)
+
+  >> Install **VC++ 2015-2022 redist** in Dependencies.
+
+* Mapper opens but is blank / rendering is broken
+
+  >> This is usually **graphics backend** mismatch, so:
+
+  1. **Toggle DXVK**
+
+    * If DXVK is ON and Mapper is blank, try OFF (wined3d path)
+    * If DXVK is OFF and Mapper is unusably slow/buggy, try ON
+
+  2. **Switch Mapper rendering mode**
+     Because Mapper supports **GDI+ and Direct2D**, and **GDI+ tends to work on more drivers** while Direct2D is faster.
+
+* Crash dialog mentions **.NET Framework**
+
+  >> Install `dotnet48`.
+
+* Mapper is very slow:
+
+  * Confirm your Linux GPU drivers are correct (Mesa for AMD/Intel; proprietary driver for NVIDIA if needed)
+  * DXVK generally helps performance if Vulkan is solid
+  * Consider switching to GDI+ mode if Direct2D path is unstable
+```
+````
 ````{tab-item} Steam Proton
 
 Proton is *Valve*'s *Steam*-focused compatibility layer that builds on Wine plus tools like DXVK and VKD3D-Proton to translate Windows game APIs to Linux, enabling most Windows games to run without modification.
-
-
-
-
-
 
 ---
 
