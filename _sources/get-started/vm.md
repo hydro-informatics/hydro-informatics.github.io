@@ -509,112 +509,105 @@ This will not update manually installed software, and packages installed through
 ## Windows Apps on Linux
 ***Estimated duration: 10-15 minutes.***
 
-The [Wine](https://wiki.debian.org/Wine) application provides a Windows-like environment on Linux systems, which enables installing and running Windows applications. Wine can be either used through the convenient [bottles](https://flathub.org/en/apps/com.usebottles.bottles) (via flatpak) or PlayOnLinux apps, or directly installed on Linux.
+The [Wine](https://wiki.debian.org/Wine) application provides a Windows-like environment on Linux systems, which enables installing and running Windows applications. Wine can be either used through the convenient sandboxes like [Bottles](https://flathub.org/en/apps/com.usebottles.bottles) or directly installed on your Linux system.
 
 
 
 `````{tab-set}
 ````{tab-item} Bottles (flatpak)
-
-Some software, such as HEC-RAS, requirer Microsoft's .NET framework and other dependencies that can be tricky to install on Linux.
-
-To install bottles including relevant Vulkan libraries, fire up Terminal and tap:
+[Bottles](https://usebottles.com/) is a powerful tool that provides isolated sandboxes for running Windows software, even if your system's wine installation is buggy. To install Bottles (via Flatpak - recommended) including relevant Vulkan libraries, fire up Terminal and tap:
 
 ```bash
 flatpak install flathub com.usebottles.bottles
-flatpak run com.usebottles.bottles
 flatpak install flathub com.obsproject.Studio.Plugin.OBSVkCapture
 flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud
 flatpak install flathub org.freedesktop.Platform.VulkanLayer.vkBasalt
 flatpak install flathub org.freedesktop.Platform.VulkanLayer.gamescope
 ```
 
-Dependencies (listed in 2026 -- check for updates):
-* **Core fonts**: `allfonts`
-* **.NET framework**: `dotnet481`, `dotnet472` (for HEC-RAS)
-* **Visual C++ 2015–2022 Redistributable (x64)**: `vcredist2022`, `vcredit6sp6`, and `vcredit6`
+Then run bottles:
 
-Note that we tested bottles with a Windows 10 environment, so things might fail if you switch to Windows 11.
-
-```{admonition} Useful fixes
-:class: tip
-
-In a fresh bottle, before installing software:
-
-1. Expose installer directory to Flatpak Bottles
-2. Enable **DXVK ON**
+```bash
+flatpak run com.usebottles.bottles
 ```
 
-**Test with a HEC-RAS installation:**
+**Test with relevant software for numerical simulation (e.g., BlueKenue and HEC-RAS):**
 
-1. Create a folder for Windows installers, like `~/Installers/HECRAS/`
+1. Create a folder for Windows installers, like `~/installers/WindowsSoftware/`
 
-2. Grant Bottles access to it (pick one method), either with Bottles' "Expose directories" guide (Flatseal > Bottles > Filesystem > add folder, or `flatpak override com.usebottles.bottles --filesystem=$HOME/Installers`
-
-3. Go to the HEC-RAS [download page](https://www.hec.usace.army.mil/software/hec-ras/download.aspx) and download the latest Windows x64 installer into: `~/Installers/HECRAS/`
-
-4. Create a new Bottle: Open **Bottles** > Click **+ New Bottle** > Choose:
+2. Create a new Bottle: Open **Bottles** > Click **+ New Bottle** > Choose:
 
    * **Environment:** **Application**
-   * **Name:** `HEC-RAS`
-   * Keep it **64-bit** (critical; HEC-RAS v6+ is 64-bit-only)
+   * **Name:** `HydroSoftware`
+   * Keep it **64-bit**
 
-5. After creation, open the bottle’s **Settings**: 
-
-  * **DXVK: ON** (Direct3D 9/10/11 > Vulkan)
-  * **VKD3D: ON**
-  * **Discrete GPU: ON**
-  * Optional stability move: **Virtual Desktop ON**
-
-6. Install dependencies before installing HEC-RAS:
+3. Install core dependencies before you do anything else:
 
   * **Core fonts**: `allfonts`
-  * **.NET framework**: `dotnet481`, `dotnet472` (for HEC-RAS)
-  * **Visual C++ 2015–2022 Redistributable (x64)**: `vcredist2022`, `vcredit6sp6`, and `vcredit6`
+  * **.NET framework**: `dotnet472` (for HEC-RAS - installation may take a while)
+  * **Visual C++ 2013 and 2015-2022 Redistributables (x64)**: `vcredist2022` and `vcredist2012`
 
-7. Install HEC-RAS inside the bottle
+4. Go back to the bottle and open the **Settings** of the bottle: 
 
-  * Open your bottle > **Run Executable**
-  * Select the downloaded **HEC-RASinstaller** from `~/Installers/HECRAS/`
+  * In the **Components** section, make sure the Runner (`soda`), DXVK, VKD3D, and DXVK NVAPI are enabled; LatencyFleX can be enabled, but no need for it; if things are **buggy** later, try **switching off DXVK** (and therefore VKD3D, too)
+  * In the **Display** section, enable *Discrete Graphics*
+  * In the **Display** section > Advanced Settings, disable *Virtual Desktop* (for stability); only enable *Fullscreen Mouse Capture*, *Mouse Warp*, and *Window Manager Decorations*; you may want to switch the *Renderer* -- this setting had no influence in our testing but GDI is said to perform best and stablest
+  * In the **Performance** section, disable everything
+  * In the **Compatibility** section, make sure *Windows 10* in set (11 was still buggy during testing) and everything else is disabled
+  * In the **Snapshots** section, disable everything
+
+5. Download relevant installers:
+
+  * For BlueKenue, get the latest installer as described in the [Telemac Forum](https://www.opentelemac.org/index.php/assistance/forum5/blue-kenue/12464-how-to-download-the-latest-blue-kenue-and-report-bugs-and-suggestions) and save it in `~/installers/WindowsSoftware/`
+  * For HEC-RAS, go to the HEC-RAS [download page](https://www.hec.usace.army.mil/software/hec-ras/download.aspx) and download and installer into `~/installers/WindowsSoftware/`; **note: in our testing, we only succeeded with running HEC-RAS 5.0.7 (or earlier) -- newer versions sooner or later caused errors**
+
+6. Install software inside the bottle
+
+  * Open the bottle > **Run Executable**
+  * Select the downloaded **BlueKenue** or **HEC-RAS** installer from `~installers/WindowsSoftware/`
   * Install path: default is OK (e.g., `C:\Program Files\HEC\...`)
-  * Finish installer
+  * Finish installers
 
-8. First launch + RasMapper.exe validation:
+7. Launch software:
 
-  * Start **HEC-RAS main UI**
-  * Then open **RAS Mapper** from within HEC-RAS (so it inherits the same environment) -- the Mapper window should open now
-
-
-```{admonition} RasMapper.exe troubleshooting
-:class: tip
-
-* Missing DLL errors (`mfc140u.dll`, `vcruntime140.dll`, etc.)
-
-  >> Install **VC++ 2015-2022 redist** in Dependencies.
-
-* Mapper opens but is blank / rendering is broken
-
-  >> This is usually **graphics backend** mismatch, so:
-
-  1. **Toggle DXVK**
-
-    * If DXVK is ON and Mapper is blank, try OFF (wined3d path)
-    * If DXVK is OFF and Mapper is unusably slow/buggy, try ON
-
-  2. **Switch Mapper rendering mode**
-     Because Mapper supports **GDI+ and Direct2D**, and **GDI+ tends to work on more drivers** while Direct2D is faster.
-
-* Crash dialog mentions **.NET Framework**
-
-  >> Install `dotnet48`.
-
-* Mapper is very slow:
-
-  * Confirm your Linux GPU drivers are correct (Mesa for AMD/Intel; proprietary driver for NVIDIA if needed)
-  * DXVK generally helps performance if Vulkan is solid
-  * Consider switching to GDI+ mode if Direct2D path is unstable
-```
+  * After successful installation, new software should occur in the Bottle's **Programs** section
+  * If not, scroll down to the **Tools** section, expand **Legacy Wine Tools**, and click on **Explorer** to navigate through the sandbox system
 ````
+````{tab-item} Lutris
+
+[Lutris](https://lutris.net/) is a game/application launcher for Linux that manages wine installations and configurations of your system. It provides pre-configured install scripts and handles different wine versions to run Windows software on Linux. It not only handles games but also external installers, which makes it a useful tool for installing Windows-based modeling software on Linux. However, in contrast to Bottles, it is tied to your system's wine installation. Here are three options to install Lutris:
+
+**Option 1: Use Debian repositories (most stable version)**
+
+```bash
+sudo apt update
+sudo apt install lutris
+```
+
+**Option 2: Flatpak (latest version)**
+
+```bash
+flatpak install flathub net.lutris.Lutris
+# run it
+flatpak run net.lutris.Lutris
+```
+
+**Option 3: From Lutris repository (newest features)**
+
+```bash
+# add Lutris repository
+echo "deb [signed-by=/usr/share/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list
+# add GPG key
+wget -qO- https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/lutris.gpg > /dev/null
+# install it
+sudo apt update
+sudo apt install lutris
+```
+
+Afterward, installing software through Lutris is straightforward: find the **+** sign to **Install a Windows game from media** and follow the workflow.
+
+````
+
 ````{tab-item} Steam Proton
 
 Proton is *Valve*'s *Steam*-focused compatibility layer that builds on Wine plus tools like DXVK and VKD3D-Proton to translate Windows game APIs to Linux, enabling most Windows games to run without modification.

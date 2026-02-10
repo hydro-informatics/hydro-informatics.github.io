@@ -1077,127 +1077,104 @@ To shutdown Debian Linux (i.e., the VM), click on the top-right corner arrow and
 <section id="windows-apps-on-linux">
 <span id="wine"></span><h2>Windows Apps on Linux<a class="headerlink" href="#windows-apps-on-linux" title="Link to this heading">#</a></h2>
 <p><em><strong>Estimated duration: 10-15 minutes.</strong></em></p>
-<p>The <a class="reference external" href="https://wiki.debian.org/Wine">Wine</a> application provides a Windows-like environment on Linux systems, which enables installing and running Windows applications. Wine can be either used through the convenient <a class="reference external" href="https://flathub.org/en/apps/com.usebottles.bottles">bottles</a> (via flatpak) or PlayOnLinux apps, or directly installed on Linux.</p>
+<p>The <a class="reference external" href="https://wiki.debian.org/Wine">Wine</a> application provides a Windows-like environment on Linux systems, which enables installing and running Windows applications. Wine can be either used through the convenient sandboxes like <a class="reference external" href="https://flathub.org/en/apps/com.usebottles.bottles">Bottles</a> or directly installed on your Linux system.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-2">
 Bottles (flatpak)</label><div class="sd-tab-content docutils">
-<p>Some software, such as HEC-RAS, requirer Microsoft’s .NET framework and other dependencies that can be tricky to install on Linux.</p>
-<p>To install bottles including relevant Vulkan libraries, fire up Terminal and tap:</p>
+<p><a class="reference external" href="https://usebottles.com/">Bottles</a> is a powerful tool that provides isolated sandboxes for running Windows software, even if your system’s wine installation is buggy. To install Bottles (via Flatpak - recommended) including relevant Vulkan libraries, fire up Terminal and tap:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>com.usebottles.bottles
-flatpak<span class="w"> </span>run<span class="w"> </span>com.usebottles.bottles
 flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>com.obsproject.Studio.Plugin.OBSVkCapture
 flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.freedesktop.Platform.VulkanLayer.MangoHud
 flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.freedesktop.Platform.VulkanLayer.vkBasalt
 flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.freedesktop.Platform.VulkanLayer.gamescope
 </pre></div>
 </div>
-<p>Dependencies (listed in 2026 – check for updates):</p>
-<ul class="simple">
-<li><p><strong>Core fonts</strong>: <code class="docutils literal notranslate"><span class="pre">allfonts</span></code></p></li>
-<li><p><strong>.NET framework</strong>: <code class="docutils literal notranslate"><span class="pre">dotnet481</span></code>, <code class="docutils literal notranslate"><span class="pre">dotnet472</span></code> (for HEC-RAS)</p></li>
-<li><p><strong>Visual C++ 2015–2022 Redistributable (x64)</strong>: <code class="docutils literal notranslate"><span class="pre">vcredist2022</span></code>, <code class="docutils literal notranslate"><span class="pre">vcredit6sp6</span></code>, and <code class="docutils literal notranslate"><span class="pre">vcredit6</span></code></p></li>
-</ul>
-<p>Note that we tested bottles with a Windows 10 environment, so things might fail if you switch to Windows 11.</p>
-<div class="tip admonition">
-<p class="admonition-title">Useful fixes</p>
-<p>In a fresh bottle, before installing software:</p>
-<ol class="arabic simple">
-<li><p>Expose installer directory to Flatpak Bottles</p></li>
-<li><p>Enable <strong>DXVK ON</strong></p></li>
-</ol>
+<p>Then run bottles:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>run<span class="w"> </span>com.usebottles.bottles
+</pre></div>
 </div>
-<p><strong>Test with a HEC-RAS installation:</strong></p>
+<p><strong>Test with relevant software for numerical simulation (e.g., BlueKenue and HEC-RAS):</strong></p>
 <ol class="arabic simple">
-<li><p>Create a folder for Windows installers, like <code class="docutils literal notranslate"><span class="pre">~/Installers/HECRAS/</span></code></p></li>
-<li><p>Grant Bottles access to it (pick one method), either with Bottles’ “Expose directories” guide (Flatseal &gt; Bottles &gt; Filesystem &gt; add folder, or <code class="docutils literal notranslate"><span class="pre">flatpak</span> <span class="pre">override</span> <span class="pre">com.usebottles.bottles</span> <span class="pre">--filesystem=$HOME/Installers</span></code></p></li>
-<li><p>Go to the HEC-RAS <a class="reference external" href="https://www.hec.usace.army.mil/software/hec-ras/download.aspx">download page</a> and download the latest Windows x64 installer into: <code class="docutils literal notranslate"><span class="pre">~/Installers/HECRAS/</span></code></p></li>
+<li><p>Create a folder for Windows installers, like <code class="docutils literal notranslate"><span class="pre">~/installers/WindowsSoftware/</span></code></p></li>
 <li><p>Create a new Bottle: Open <strong>Bottles</strong> &gt; Click <strong>+ New Bottle</strong> &gt; Choose:</p>
 <ul class="simple">
 <li><p><strong>Environment:</strong> <strong>Application</strong></p></li>
-<li><p><strong>Name:</strong> <code class="docutils literal notranslate"><span class="pre">HEC-RAS</span></code></p></li>
-<li><p>Keep it <strong>64-bit</strong> (critical; HEC-RAS v6+ is 64-bit-only)</p></li>
+<li><p><strong>Name:</strong> <code class="docutils literal notranslate"><span class="pre">HydroSoftware</span></code></p></li>
+<li><p>Keep it <strong>64-bit</strong></p></li>
 </ul>
 </li>
-<li><p>After creation, open the bottle’s <strong>Settings</strong>:</p></li>
-</ol>
-<ul class="simple">
-<li><p><strong>DXVK: ON</strong> (Direct3D 9/10/11 &gt; Vulkan)</p></li>
-<li><p><strong>VKD3D: ON</strong></p></li>
-<li><p><strong>Discrete GPU: ON</strong></p></li>
-<li><p>Optional stability move: <strong>Virtual Desktop ON</strong></p></li>
-</ul>
-<ol class="arabic simple" start="6">
-<li><p>Install dependencies before installing HEC-RAS:</p></li>
+<li><p>Install core dependencies before you do anything else:</p></li>
 </ol>
 <ul class="simple">
 <li><p><strong>Core fonts</strong>: <code class="docutils literal notranslate"><span class="pre">allfonts</span></code></p></li>
-<li><p><strong>.NET framework</strong>: <code class="docutils literal notranslate"><span class="pre">dotnet481</span></code>, <code class="docutils literal notranslate"><span class="pre">dotnet472</span></code> (for HEC-RAS)</p></li>
-<li><p><strong>Visual C++ 2015–2022 Redistributable (x64)</strong>: <code class="docutils literal notranslate"><span class="pre">vcredist2022</span></code>, <code class="docutils literal notranslate"><span class="pre">vcredit6sp6</span></code>, and <code class="docutils literal notranslate"><span class="pre">vcredit6</span></code></p></li>
+<li><p><strong>.NET framework</strong>: <code class="docutils literal notranslate"><span class="pre">dotnet472</span></code> (for HEC-RAS - installation may take a while)</p></li>
+<li><p><strong>Visual C++ 2013 and 2015-2022 Redistributables (x64)</strong>: <code class="docutils literal notranslate"><span class="pre">vcredist2022</span></code> and <code class="docutils literal notranslate"><span class="pre">vcredist2012</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Go back to the bottle and open the <strong>Settings</strong> of the bottle:</p></li>
+</ol>
+<ul class="simple">
+<li><p>In the <strong>Components</strong> section, make sure the Runner (<code class="docutils literal notranslate"><span class="pre">soda</span></code>), DXVK, VKD3D, and DXVK NVAPI are enabled; LatencyFleX can be enabled, but no need for it; if things are <strong>buggy</strong> later, try <strong>switching off DXVK</strong> (and therefore VKD3D, too)</p></li>
+<li><p>In the <strong>Display</strong> section, enable <em>Discrete Graphics</em></p></li>
+<li><p>In the <strong>Display</strong> section &gt; Advanced Settings, disable <em>Virtual Desktop</em> (for stability); only enable <em>Fullscreen Mouse Capture</em>, <em>Mouse Warp</em>, and <em>Window Manager Decorations</em>; you may want to switch the <em>Renderer</em> – this setting had no influence in our testing but GDI is said to perform best and stablest</p></li>
+<li><p>In the <strong>Performance</strong> section, disable everything</p></li>
+<li><p>In the <strong>Compatibility</strong> section, make sure <em>Windows 10</em> in set (11 was still buggy during testing) and everything else is disabled</p></li>
+<li><p>In the <strong>Snapshots</strong> section, disable everything</p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p>Download relevant installers:</p></li>
+</ol>
+<ul class="simple">
+<li><p>For BlueKenue, get the latest installer as described in the <a class="reference external" href="https://www.opentelemac.org/index.php/assistance/forum5/blue-kenue/12464-how-to-download-the-latest-blue-kenue-and-report-bugs-and-suggestions">Telemac Forum</a> and save it in <code class="docutils literal notranslate"><span class="pre">~/installers/WindowsSoftware/</span></code></p></li>
+<li><p>For HEC-RAS, go to the HEC-RAS <a class="reference external" href="https://www.hec.usace.army.mil/software/hec-ras/download.aspx">download page</a> and download and installer into <code class="docutils literal notranslate"><span class="pre">~/installers/WindowsSoftware/</span></code>; <strong>note: in our testing, we only succeeded with running HEC-RAS 5.0.7 (or earlier) – newer versions sooner or later caused errors</strong></p></li>
+</ul>
+<ol class="arabic simple" start="6">
+<li><p>Install software inside the bottle</p></li>
+</ol>
+<ul class="simple">
+<li><p>Open the bottle &gt; <strong>Run Executable</strong></p></li>
+<li><p>Select the downloaded <strong>BlueKenue</strong> or <strong>HEC-RAS</strong> installer from <code class="docutils literal notranslate"><span class="pre">~installers/WindowsSoftware/</span></code></p></li>
+<li><p>Install path: default is OK (e.g., <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\HEC\...</span></code>)</p></li>
+<li><p>Finish installers</p></li>
 </ul>
 <ol class="arabic simple" start="7">
-<li><p>Install HEC-RAS inside the bottle</p></li>
+<li><p>Launch software:</p></li>
 </ol>
 <ul class="simple">
-<li><p>Open your bottle &gt; <strong>Run Executable</strong></p></li>
-<li><p>Select the downloaded <strong>HEC-RASinstaller</strong> from <code class="docutils literal notranslate"><span class="pre">~/Installers/HECRAS/</span></code></p></li>
-<li><p>Install path: default is OK (e.g., <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\HEC\...</span></code>)</p></li>
-<li><p>Finish installer</p></li>
+<li><p>After successful installation, new software should occur in the Bottle’s <strong>Programs</strong> section</p></li>
+<li><p>If not, scroll down to the <strong>Tools</strong> section, expand <strong>Legacy Wine Tools</strong>, and click on <strong>Explorer</strong> to navigate through the sandbox system</p></li>
 </ul>
-<ol class="arabic simple" start="8">
-<li><p>First launch + RasMapper.exe validation:</p></li>
-</ol>
-<ul class="simple">
-<li><p>Start <strong>HEC-RAS main UI</strong></p></li>
-<li><p>Then open <strong>RAS Mapper</strong> from within HEC-RAS (so it inherits the same environment) – the Mapper window should open now</p></li>
-</ul>
-<div class="tip admonition">
-<p class="admonition-title">RasMapper.exe troubleshooting</p>
-<ul>
-<li><p>Missing DLL errors (<code class="docutils literal notranslate"><span class="pre">mfc140u.dll</span></code>, <code class="docutils literal notranslate"><span class="pre">vcruntime140.dll</span></code>, etc.)</p>
-<blockquote>
-<div><blockquote>
-<div><p>Install <strong>VC++ 2015-2022 redist</strong> in Dependencies.</p>
-</div></blockquote>
-</div></blockquote>
-</li>
-<li><p>Mapper opens but is blank / rendering is broken</p>
-<blockquote>
-<div><blockquote>
-<div><p>This is usually <strong>graphics backend</strong> mismatch, so:</p>
-</div></blockquote>
-</div></blockquote>
-<ol class="arabic simple">
-<li><p><strong>Toggle DXVK</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>If DXVK is ON and Mapper is blank, try OFF (wined3d path)</p></li>
-<li><p>If DXVK is OFF and Mapper is unusably slow/buggy, try ON</p></li>
-</ul>
-<ol class="arabic simple" start="2">
-<li><p><strong>Switch Mapper rendering mode</strong>
-Because Mapper supports <strong>GDI+ and Direct2D</strong>, and <strong>GDI+ tends to work on more drivers</strong> while Direct2D is faster.</p></li>
-</ol>
-</li>
-<li><p>Crash dialog mentions <strong>.NET Framework</strong></p>
-<blockquote>
-<div><blockquote>
-<div><p>Install <code class="docutils literal notranslate"><span class="pre">dotnet48</span></code>.</p>
-</div></blockquote>
-</div></blockquote>
-</li>
-<li><p>Mapper is very slow:</p>
-<ul class="simple">
-<li><p>Confirm your Linux GPU drivers are correct (Mesa for AMD/Intel; proprietary driver for NVIDIA if needed)</p></li>
-<li><p>DXVK generally helps performance if Vulkan is solid</p></li>
-<li><p>Consider switching to GDI+ mode if Direct2D path is unstable</p></li>
-</ul>
-</li>
-</ul>
-</div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-3">
+Lutris</label><div class="sd-tab-content docutils">
+<p><a class="reference external" href="https://lutris.net/">Lutris</a> is a game/application launcher for Linux that manages wine installations and configurations of your system. It provides pre-configured install scripts and handles different wine versions to run Windows software on Linux. It not only handles games but also external installers, which makes it a useful tool for installing Windows-based modeling software on Linux. However, in contrast to Bottles, it is tied to your system’s wine installation. Here are three options to install Lutris:</p>
+<p><strong>Option 1: Use Debian repositories (most stable version)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lutris
+</pre></div>
+</div>
+<p><strong>Option 2: Flatpak (latest version)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>net.lutris.Lutris
+<span class="c1"># run it</span>
+flatpak<span class="w"> </span>run<span class="w"> </span>net.lutris.Lutris
+</pre></div>
+</div>
+<p><strong>Option 3: From Lutris repository (newest features)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># add Lutris repository</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/usr/share/keyrings/lutris.gpg] https://download.opensuse.org/repositories/home:/strycore/Debian_12/ ./&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/lutris.list
+<span class="c1"># add GPG key</span>
+wget<span class="w"> </span>-qO-<span class="w"> </span>https://download.opensuse.org/repositories/home:/strycore/Debian_12/Release.key<span class="w"> </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/usr/share/keyrings/lutris.gpg<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="c1"># install it</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>lutris
+</pre></div>
+</div>
+<p>Afterward, installing software through Lutris is straightforward: find the <strong>+</strong> sign to <strong>Install a Windows game from media</strong> and follow the workflow.</p>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
 Steam Proton</label><div class="sd-tab-content docutils">
 <p>Proton is <em>Valve</em>’s <em>Steam</em>-focused compatibility layer that builds on Wine plus tools like DXVK and VKD3D-Proton to translate Windows game APIs to Linux, enabling most Windows games to run without modification.</p>
 <hr class="docutils" />
@@ -1430,8 +1407,8 @@ Windows C: drive inside prefix:
 </li>
 </ol>
 </div>
-<input id="sd-tab-item-4" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-4" id="play-on-linux">
+<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5" id="play-on-linux">
 PlayOnLinux</label><div class="sd-tab-content docutils">
 <p>On top of wine, the currently maybe best available frameworks is <a class="reference external" href="https://www.playonlinux.com">PlayOnLinux</a>, which can be installed as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">winbind</span> <span class="n">playonlinux</span> <span class="n">winetricks</span> <span class="o">-</span><span class="n">y</span> 
@@ -1444,8 +1421,8 @@ PlayOnLinux</label><div class="sd-tab-content docutils">
 <p>In the pop-up window (after <em>Run a .exe file …</em>), go to your Linux user home folder (e.g., <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/</span></code>), then enable viewing of hidden files (press <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">H</span></code> on your keyboard), which will make the hidden folder <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/</span></code> visible. Double-click on this hidden folder, then on <strong>wineprefix</strong> &gt; <strong>YOUR-ENVIRONMENT-NAME</strong> (e.g., <strong>HYINFO-ENVIRONMENT</strong>) &gt; <strong>drive_c</strong> and find the installed program either in the <strong>Program Files</strong> or <strong>Program Files (x86)</strong> directory.
 For instance, to open a 64-bit installation of BlueKenue, navigate to <code class="docutils literal notranslate"><span class="pre">/home/hydro-informatics/.PlayOnLinux/wineprefix/HYINFO-ENVIRONMENT/drive_c/Program</span> <span class="pre">Files/CHC/BlueKenue64</span></code> and double-click on <strong>BlueKenue64.exe</strong> (replace <code class="docutils literal notranslate"><span class="pre">hydro-informatics</span></code> and <code class="docutils literal notranslate"><span class="pre">HYINFO-ENVIRONMENT</span></code> with your local directory names). The program should now open.</p>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-5">
+<input id="sd-tab-item-6" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
 Wine (Direct Installation)</label><div class="sd-tab-content docutils">
 <p>The above-described installation of Debian Linux creates a 64-bit VM and to enable program compatibility with 32-bit architectures, add 32-bit architectures through <em>Terminal</em>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">--</span><span class="n">add</span><span class="o">-</span><span class="n">architecture</span> <span class="n">i386</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
