@@ -779,7 +779,7 @@ Launch QGIS, {ref}`create a new QGIS project <qgis-project>`, set the project {t
 
 Load the `r2dsteady.slf` geometry file as mesh layer with drag and drop from the Browser panel to the Layers panel. Make sure to import it with its correct georeference: **EPSG:32633** (ETRS 89 / UTM zone 33N).
 
-To continue with this section, make sure the Q4TS plugin is installed (see instructions in the `Software Requirements section <qgis-telemac>`). To explore results without the Q4TS plugin, directly `jump to the next section <tm2d-post-export`. Q4TS is helpful to perform SALOME/ParaVis-like analysis (e.g., advanced probing, post-processing pipelines, MED-centric workflows) through conversion processing:
+To continue with this section, make sure the Q4TS plugin is installed (see instructions in the {ref}`Software Requirements section <qgis-telemac>`). To explore results without the Q4TS plugin, directly {ref}`jump to the next section <tm2d-post-export>`. Q4TS is helpful to perform SALOME/ParaVis-like analysis (e.g., advanced probing, post-processing pipelines, MED-centric workflows) through conversion processing:
 
 * In **Processing > Toolbox**, run **slf2med** (Q4TS provider):
   * **Input .slf**: `r2dsteady.slf`
