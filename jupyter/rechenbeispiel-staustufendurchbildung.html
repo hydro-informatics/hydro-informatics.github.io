@@ -723,22 +723,25 @@ b_{\text{eff}} = n \cdot \left(b_F - 2\,\xi_{\text{pf}}\,h_{\text{ü}}\right)
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\mu\)</span></p></td>
 <td><p>Abflussbeiwert (–)</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(z_H\)</span></p></td>
-<td><p>höchster zulässiger Aufstau des OW bei BHQ₁ (m)</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{\text{ü,zul}}\)</span></p></td>
+<td><p>zulässige Überfallhöhe bei BHQ₁ (m über Wehrkrone)</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(z_H\)</span></p></td>
+<td><p>höchster zulässiger Oberwasserstand bei BHQ₁ <strong>(m ü. NHN)</strong>; <span class="math notranslate nohighlight">\(h_{\text{ü,zul}} = z_H - z_{\text{Kr}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
 <td><p>erforderlicher Freibord (m)</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(n\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(n\)</span></p></td>
 <td><p>Anzahl Wehrfelder</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(b_F\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(b_F\)</span></p></td>
 <td><p>Breite eines Wehrfelds (m)</p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(b_{\text{pf}}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(b_{\text{pf}}\)</span></p></td>
 <td><p>Breite eines Pfeilers (m)</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\xi_{\text{pf}}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\xi_{\text{pf}}\)</span></p></td>
 <td><p>Einschnürungsbeiwert (–)</p></td>
 </tr>
 </tbody>
@@ -752,8 +755,10 @@ b_{\text{eff}} = n \cdot \left(b_F - 2\,\xi_{\text{pf}}\,h_{\text{ü}}\right)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BHQ1</span> <span class="o">=</span> <span class="mf">65.0</span>    <span class="c1"># m³/s  Bemessungshochwasser 1 (Regelfall)</span>
 <span class="n">BHQ2</span> <span class="o">=</span> <span class="mf">85.0</span>    <span class="c1"># m³/s  Bemessungshochwasser 2 (Kontrollfall)</span>
 
-<span class="n">z_H</span>  <span class="o">=</span> <span class="mf">1.10</span>    <span class="c1"># m     höchster zulässiger OW-Aufstau bei BHQ1</span>
-<span class="n">f</span>    <span class="o">=</span> <span class="mf">0.50</span>    <span class="c1"># m     Freibord (DIN 19700: f geq 0,5 m bei BHQ1)</span>
+<span class="c1"># h_ue_zul: zulässige Überfallhöhe über Wehrkrone bei BHQ1 (= z_H - z_Kr, relativ)</span>
+<span class="c1"># Nicht zu verwechseln mit z_H (absolutem Oberwasserstand in m ü. NHN, vgl. Notation)</span>
+<span class="n">h_ue_zul</span> <span class="o">=</span> <span class="mf">1.10</span>  <span class="c1"># m</span>
+<span class="n">f</span>        <span class="o">=</span> <span class="mf">0.50</span>  <span class="c1"># m  Freibord (DIN 19700: f ≥ 0,5 m bei BHQ1)</span>
 
 <span class="n">mu</span>      <span class="o">=</span> <span class="mf">0.64</span>  <span class="c1"># Abflussbeiwert (bewegliches Wehr, scharfkantig)</span>
 <span class="n">c</span>       <span class="o">=</span> <span class="mf">1.0</span>   <span class="c1"># Abminderungsbeiwert (vollkommener Überfall, Anfangswert)</span>
@@ -778,11 +783,11 @@ b_{\text{eff}} = n \cdot \left(b_F - 2\,\xi_{\text{pf}}\,h_{\text{ü}}\right)
 <section id="poleni-erforderliche-wehrbreite">
 <h2>Poleni &amp; erforderliche Wehrbreite<a class="headerlink" href="#poleni-erforderliche-wehrbreite" title="Link to this heading">#</a></h2>
 <p><strong>Entwurfsziel (DIN 19700, (n‑1)‑Regel):</strong><br />
-Mit <span class="math notranslate nohighlight">\((n-1)\)</span> aktiven Wehrfeldern muss BHQ₁ abgeführt werden, ohne dass <span class="math notranslate nohighlight">\(h_{\text{ü}} &gt; z_H\)</span>.</p>
+Mit <span class="math notranslate nohighlight">\((n-1)\)</span> aktiven Wehrfeldern muss BHQ₁ abgeführt werden, ohne dass <span class="math notranslate nohighlight">\(h_{\text{ü}} &gt; h_{\text{ü,zul}}\)</span>.</p>
 <p>Auflösung der Poleni-Gleichung nach <span class="math notranslate nohighlight">\(b_{\text{eff}}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-b_{\text{eff,erf}} = \frac{Q_{\text{BHQ}_1}}{c \cdot \frac{2}{3} \cdot \mu \cdot \sqrt{2g} \cdot z_H^{3/2}}
+b_{\text{eff,erf}} = \frac{Q_{\text{BHQ}_1}}{c \cdot \frac{2}{3} \cdot \mu \cdot \sqrt{2g} \cdot h_{\text{ü,zul}}^{3/2}}
 \]</div>
 <p>Auflösung nach <span class="math notranslate nohighlight">\(h_{\text{ü}}\)</span> (für gegebene Breite):</p>
 <div class="math notranslate nohighlight">
@@ -816,9 +821,9 @@ h_{\text{ü}} = \left(\frac{Q}{c \cdot \frac{2}{3} \cdot \mu \cdot \sqrt{2g} \cd
 <h2>Erforderliche Breite und Anzahl Wehrfelder<a class="headerlink" href="#erforderliche-breite-und-anzahl-wehrfelder" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gesamte b_eff für (n-1)-Fall muss b_eff_erf &gt;= b_eff_von_Q(BHQ1, z_H) erfüllen</span>
-<span class="n">b_eff_erf</span> <span class="o">=</span> <span class="n">b_eff_von_Q</span><span class="p">(</span><span class="n">BHQ1</span><span class="p">,</span> <span class="n">z_H</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-<span class="n">b_F_eff</span>   <span class="o">=</span> <span class="n">b_F</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xi_pf</span> <span class="o">*</span> <span class="n">z_H</span>          <span class="c1"># wirksame Feldbreite je Feld</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gesamte b_eff für (n-1)-Fall muss b_eff_erf &gt;= b_eff_von_Q(BHQ1, h_ue_zul) erfüllen</span>
+<span class="n">b_eff_erf</span> <span class="o">=</span> <span class="n">b_eff_von_Q</span><span class="p">(</span><span class="n">BHQ1</span><span class="p">,</span> <span class="n">h_ue_zul</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="n">b_F_eff</span>   <span class="o">=</span> <span class="n">b_F</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xi_pf</span> <span class="o">*</span> <span class="n">h_ue_zul</span>     <span class="c1"># wirksame Feldbreite je Feld</span>
 
 <span class="n">n_minus1</span>  <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">b_eff_erf</span> <span class="o">/</span> <span class="n">b_F_eff</span><span class="p">)</span>  <span class="c1"># benötigte Anzahl (n-1)-Felder</span>
 <span class="n">n</span>         <span class="o">=</span> <span class="n">n_minus1</span> <span class="o">+</span> <span class="mi">1</span>                     <span class="c1"># Gesamtanzahl Wehrfelder</span>
@@ -870,7 +875,7 @@ Bauwerksbreite gesamt  : 70.12 m
 </section>
 <section id="n1-nachweis">
 <h2>(n‑1) – Nachweis<a class="headerlink" href="#n1-nachweis" title="Link to this heading">#</a></h2>
-<p><strong>Bedingung:</strong> Mit <span class="math notranslate nohighlight">\((n-1)\)</span> aktiven Feldern muss gelten: <span class="math notranslate nohighlight">\(h_{\text{ü}} \leq z_H\)</span></p>
+<p><strong>Bedingung:</strong> Mit <span class="math notranslate nohighlight">\((n-1)\)</span> aktiven Feldern muss gelten: <span class="math notranslate nohighlight">\(h_{\text{ü}} \leq h_{\text{ü,zul}}\)</span></p>
 <p>Zusätzlich werden BHQ₁ und BHQ₂ mit allen <span class="math notranslate nohighlight">\(n\)</span> Feldern geprüft.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -880,32 +885,31 @@ Bauwerksbreite gesamt  : 70.12 m
     <span class="p">(</span><span class="s2">&quot;BHQ2, alle n Felder&quot;</span><span class="p">,</span>   <span class="n">BHQ2</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Fall&#39;</span><span class="si">:</span><span class="s2">&lt;28</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;n_akt&#39;</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;b_eff&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;h_ü&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;≤ z_H?&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Fall&#39;</span><span class="si">:</span><span class="s2">&lt;28</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;n_akt&#39;</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;b_eff&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;h_ü&#39;</span><span class="si">:</span><span class="s2">&gt;7</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;≤ h_ü,zul?&#39;</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">62</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">n_akt</span> <span class="ow">in</span> <span class="n">faelle</span><span class="p">:</span>
-    <span class="c1"># iterativ: b_eff hängt von h_ue ab, h_ue von b_eff &gt;&gt;&gt; einmal fixpoint</span>
-    <span class="n">h_ue_iter</span> <span class="o">=</span> <span class="n">z_H</span>
+    <span class="n">h_ue_iter</span> <span class="o">=</span> <span class="n">h_ue_zul</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
         <span class="n">beff</span> <span class="o">=</span> <span class="n">b_eff_n_felder</span><span class="p">(</span><span class="n">n_akt</span><span class="p">,</span> <span class="n">h_ue_iter</span><span class="p">)</span>
         <span class="n">h_ue_neu</span> <span class="o">=</span> <span class="n">h_ue_von_Q</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">beff</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">h_ue_neu</span> <span class="o">-</span> <span class="n">h_ue_iter</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
             <span class="k">break</span>
         <span class="n">h_ue_iter</span> <span class="o">=</span> <span class="n">h_ue_neu</span>
-    <span class="n">ok</span> <span class="o">=</span> <span class="s2">&quot;OK&quot;</span> <span class="k">if</span> <span class="n">h_ue_iter</span> <span class="o">&lt;=</span> <span class="n">z_H</span> <span class="k">else</span> <span class="s2">&quot;!!&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;28</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n_akt</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">beff</span><span class="si">:</span><span class="s2">&gt;8.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h_ue_iter</span><span class="si">:</span><span class="s2">&gt;7.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">ok</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="s2">&quot;OK&quot;</span> <span class="k">if</span> <span class="n">h_ue_iter</span> <span class="o">&lt;=</span> <span class="n">h_ue_zul</span> <span class="k">else</span> <span class="s2">&quot;!!&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">:</span><span class="s2">&lt;28</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">n_akt</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">beff</span><span class="si">:</span><span class="s2">&gt;8.2f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">h_ue_iter</span><span class="si">:</span><span class="s2">&gt;7.3f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">ok</span><span class="si">:</span><span class="s2">&gt;10</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  z_H = </span><span class="si">{</span><span class="n">z_H</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m  (max. zulässiger OW-Aufstau)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  h_ü,zul = </span><span class="si">{</span><span class="n">h_ue_zul</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m  (max. zulässige Überfallhöhe bei BHQ1)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fall                         n_akt    b_eff     h_ü   ≤ z_H?
-------------------------------------------------------------
-BHQ1, alle n Felder              4    59.44   0.694       OK
-BHQ1, (n-1) Felder               3    44.49   0.842       OK
-BHQ2, alle n Felder              4    59.33   0.831       OK
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fall                         n_akt    b_eff     h_ü ≤ h_ü,zul?
+--------------------------------------------------------------
+BHQ1, alle n Felder              4    59.44   0.694         OK
+BHQ1, (n-1) Felder               3    44.49   0.842         OK
+BHQ2, alle n Felder              4    59.33   0.831         OK
 
-  z_H = 1.10 m  (max. zulässiger OW-Aufstau)
+  h_ü,zul = 1.10 m  (max. zulässige Überfallhöhe bei BHQ1)
 </pre></div>
 </div>
 </div>
@@ -913,29 +917,29 @@ BHQ2, alle n Felder              4    59.33   0.831       OK
 </section>
 <section id="freibord-check">
 <h2>Freibord-Check<a class="headerlink" href="#freibord-check" title="Link to this heading">#</a></h2>
-<p>Kronenhöhe = <span class="math notranslate nohighlight">\(z_H + f \quad \text{mit} \quad f \geq 0{,}5\,\text{m (BHQ}_1\text{)}\)</span></p>
+<p>Kronenhöhe = <span class="math notranslate nohighlight">\(h_{\text{ü,zul}} + f \quad \text{mit} \quad f \geq 0{,}5\,\text{m (BHQ}_1\text{)}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># h_ue bei BHQ1, (n-1)-Felder (konservativster Fall)</span>
-<span class="n">h_ue_n1</span> <span class="o">=</span> <span class="n">z_H</span>
+<span class="n">h_ue_n1</span> <span class="o">=</span> <span class="n">h_ue_zul</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-    <span class="n">beff_n1</span>   <span class="o">=</span> <span class="n">b_eff_n_felder</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h_ue_n1</span><span class="p">)</span>
-    <span class="n">h_ue_n1</span>   <span class="o">=</span> <span class="n">h_ue_von_Q</span><span class="p">(</span><span class="n">BHQ1</span><span class="p">,</span> <span class="n">beff_n1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">beff_n1</span> <span class="o">=</span> <span class="n">b_eff_n_felder</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">h_ue_n1</span><span class="p">)</span>
+    <span class="n">h_ue_n1</span> <span class="o">=</span> <span class="n">h_ue_von_Q</span><span class="p">(</span><span class="n">BHQ1</span><span class="p">,</span> <span class="n">beff_n1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 
-<span class="n">freibord_vorhanden</span> <span class="o">=</span> <span class="n">z_H</span> <span class="o">-</span> <span class="n">h_ue_n1</span>
-<span class="n">kronenhoehe</span>        <span class="o">=</span> <span class="n">z_H</span> <span class="o">+</span> <span class="n">f</span>
+<span class="n">freibord_vorhanden</span> <span class="o">=</span> <span class="n">h_ue_zul</span> <span class="o">-</span> <span class="n">h_ue_n1</span>
+<span class="n">kronenhoehe</span>        <span class="o">=</span> <span class="n">h_ue_zul</span> <span class="o">+</span> <span class="n">f</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;h_ü bei BHQ1, (n-1)-Felder : </span><span class="si">{</span><span class="n">h_ue_n1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Freibord über h_ü bis z_H  : </span><span class="si">{</span><span class="n">freibord_vorhanden</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kronenhöhe (= z_H + f)     : </span><span class="si">{</span><span class="n">kronenhoehe</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m über Wehrschwelle&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;h_ü bei BHQ1, (n-1)-Felder       : </span><span class="si">{</span><span class="n">h_ue_n1</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Freibord über h_ü bis h_ü,zul    : </span><span class="si">{</span><span class="n">freibord_vorhanden</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kronenhöhe (= h_ü,zul + f)       : </span><span class="si">{</span><span class="n">kronenhoehe</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m über Wehrschwelle&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Freibordanforderung ≥ 0,5 m: </span><span class="si">{</span><span class="s1">&#39;OK&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Nicht erfüllt&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h_ü bei BHQ1, (n-1)-Felder : 0.842 m
-Freibord über h_ü bis z_H  : 0.258 m
-Kronenhöhe (= z_H + f)     : 1.60 m über Wehrschwelle
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h_ü bei BHQ1, (n-1)-Felder       : 0.842 m
+Freibord über h_ü bis h_ü,zul    : 0.258 m
+Kronenhöhe (= h_ü,zul + f)       : 1.60 m über Wehrschwelle
 Freibordanforderung ≥ 0,5 m: OK
 </pre></div>
 </div>
@@ -1012,7 +1016,7 @@ $<span class="math notranslate nohighlight">\(
 <td><p>Breite der UW-Strecke (m)</p></td>
 </tr>
 <tr class="row-even"><td><p><span class="math notranslate nohighlight">\(H_{\text{ges}}\)</span></p></td>
-<td><p>Gesamtenergielinie über Tosbeckensohle: <span class="math notranslate nohighlight">\(H_{\text{ges}} = z_H + w + e\)</span></p></td>
+<td><p>Gesamtenergielinie über Tosbeckensohle: <span class="math notranslate nohighlight">\(H_{\text{ges}} = h_{\text{ü,zul}} + w + e\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -1025,7 +1029,7 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">b_u</span>    <span class="o">=</span> <span class="mf">40.0</span>  <span class="c1"># m       Breite UW-Strecke (Rechteckprofil)</span>
 
 <span class="c1"># Einheitsdurchfluss für Tosbeckenbemessung (alle n Felder aktiv)</span>
-<span class="n">h_ue_n</span> <span class="o">=</span> <span class="n">z_H</span>
+<span class="n">h_ue_n</span> <span class="o">=</span> <span class="n">h_ue_zul</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
     <span class="n">beff_n</span>  <span class="o">=</span> <span class="n">b_eff_n_felder</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">h_ue_n</span><span class="p">)</span>
     <span class="n">h_ue_n</span>  <span class="o">=</span> <span class="n">h_ue_von_Q</span><span class="p">(</span><span class="n">BHQ1</span><span class="p">,</span> <span class="n">beff_n</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
@@ -1056,7 +1060,7 @@ Q = k_{St} \cdot A \cdot R^{2/3} \cdot I_E^{1/2}
 <p class="admonition-title">Rechteckprofilannahme ist fehleranfällig</p>
 <p>Natürliche Flüsse sind komplex und die Annahme eines Rechteckprofils ist ungenau. Es empfiehlt sich bessere Aussagen durch Messungen, numerische Modellierung oder aus digitalen Höhenmodellen bzw. Lidar-Daten abzuleiten.</p>
 </div>
-<p>Ein numerischer 1D Gleichungslöser für die Manning kann mittels folgender Funktion definiert und in der Folge aufgerufen werden:</p>
+<p>Ein numerischer 1D-Gleichungslöser für die Manning kann mittels folgender Funktion definiert und in der Folge aufgerufen werden:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">Q_manning</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
@@ -1086,7 +1090,7 @@ Probe: Q_Manning = 65.00 m³/s  (Soll: 65.0 m³/s)
 <h3>Schritt B Herleitung von <span class="math notranslate nohighlight">\(h_1\)</span> und <span class="math notranslate nohighlight">\(v_1\)</span><a class="headerlink" href="#schritt-b-herleitung-von-h-1-und-v-1" title="Link to this heading">#</a></h3>
 <p>Energiehöhe über Tosbeckensohle (Bernoulli, vernachlässige <span class="math notranslate nohighlight">\(v_0\)</span> da <span class="math notranslate nohighlight">\(v_0 &lt; \)</span> 1,0 m/s):
 $<span class="math notranslate nohighlight">\(
-H_{\text{ges}} = z_H + w + e
+H_{\text{ges}} = h_{\text{ü,zul}} + w + e
 \)</span>$</p>
 <p>Am schießenden Querschnitt 1 (Tosbeckeneinlauf):
 $<span class="math notranslate nohighlight">\(
@@ -1104,7 +1108,7 @@ H_{\text{ges}} = h_1 + \frac{v_1^2}{2g} = h_1 + \frac{q^2}{2g\,h_1^2}
 <span class="sd">    Gibt (Fr1, epsilon, h1, h2, ok_Fr, ok_eps) zurück.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Schritt B: h1 aus Bernoulli (kleine, schießende Wurzel)</span>
-    <span class="n">H_ges</span> <span class="o">=</span> <span class="n">z_H</span> <span class="o">+</span> <span class="n">w_wehr</span> <span class="o">+</span> <span class="n">e</span>
+    <span class="n">H_ges</span> <span class="o">=</span> <span class="n">h_ue_zul</span> <span class="o">+</span> <span class="n">w_wehr</span> <span class="o">+</span> <span class="n">e</span>
     <span class="c1"># Suche h1 &lt; h_grenz (kritische Tiefe) = (q**2/g)^(1/3)</span>
     <span class="n">h_krit</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">g</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">h1</span> <span class="o">=</span> <span class="n">brentq</span><span class="p">(</span><span class="k">lambda</span> <span class="n">h</span><span class="p">:</span> <span class="n">h</span> <span class="o">+</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">H_ges</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">,</span> <span class="n">h_krit</span><span class="p">)</span>
@@ -1126,7 +1130,7 @@ H_{\text{ges}} = h_1 + \frac{v_1^2}{2g} = h_1 + \frac{q^2}{2g\,h_1^2}
     <span class="k">return</span> <span class="n">Fr1</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">ok_Fr</span><span class="p">,</span> <span class="n">ok_eps</span>
 
 
-<span class="c1"># k-Faktor für Tosbeckenlänge (vgl. Peterka 1984 / USBR) </span>
+<span class="c1"># k-Faktor für Tosbeckenlänge (vgl. Peterka 1984 / USBR)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">k_faktor</span><span class="p">(</span><span class="n">Fr1</span><span class="p">):</span>
     <span class="k">if</span>   <span class="n">Fr1</span> <span class="o">&lt;</span> <span class="mf">2.4</span><span class="p">:</span>  <span class="k">return</span> <span class="mf">4.8</span>
     <span class="k">elif</span> <span class="n">Fr1</span> <span class="o">&lt;</span> <span class="mf">4.0</span><span class="p">:</span>  <span class="k">return</span> <span class="mf">4.8</span> <span class="o">+</span> <span class="p">(</span><span class="n">Fr1</span> <span class="o">-</span> <span class="mf">2.4</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">-</span> <span class="mf">2.4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">5.8</span> <span class="o">-</span> <span class="mf">4.8</span><span class="p">)</span>
@@ -1272,28 +1276,28 @@ Kolkschutzlänge         l_K = 27.85 m
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Hydraulik_Wehr&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;BHQ1 (m3/s)&quot;</span><span class="p">:</span>              <span class="n">BHQ1</span><span class="p">,</span>
-        <span class="s2">&quot;BHQ2 (m3/s)&quot;</span><span class="p">:</span>              <span class="n">BHQ2</span><span class="p">,</span>
-        <span class="s2">&quot;zH (m)&quot;</span><span class="p">:</span>                 <span class="n">z_H</span><span class="p">,</span>
-        <span class="s2">&quot;Freibord (m)&quot;</span><span class="p">:</span>            <span class="n">f</span><span class="p">,</span>
-        <span class="s2">&quot;n (Wehrfelder)&quot;</span><span class="p">:</span>          <span class="n">n</span><span class="p">,</span>
-        <span class="s2">&quot;bF (m)&quot;</span><span class="p">:</span>                 <span class="n">b_F</span><span class="p">,</span>
-        <span class="s2">&quot;Lichte Breite (m)&quot;</span><span class="p">:</span>             <span class="nb">round</span><span class="p">(</span><span class="n">b_licht</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="s2">&quot;Gesamtbreite (m)&quot;</span><span class="p">:</span>            <span class="nb">round</span><span class="p">(</span><span class="n">b_gesamt</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="s2">&quot;hü bei BHQ1 mit n Feldern (m)&quot;</span><span class="p">:</span>   <span class="nb">round</span><span class="p">(</span><span class="n">h_ue_n</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="s2">&quot;hü bei BHQ1 mit (n-1) Feldern (m)&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">h_ue_n1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="s2">&quot;Kronenhöhe (m)&quot;</span><span class="p">:</span>          <span class="nb">round</span><span class="p">(</span><span class="n">kronenhoehe</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s2">&quot;BHQ1 (m3/s)&quot;</span><span class="p">:</span>                       <span class="n">BHQ1</span><span class="p">,</span>
+        <span class="s2">&quot;BHQ2 (m3/s)&quot;</span><span class="p">:</span>                       <span class="n">BHQ2</span><span class="p">,</span>
+        <span class="s2">&quot;h_ue_zul (m)&quot;</span><span class="p">:</span>                      <span class="n">h_ue_zul</span><span class="p">,</span>
+        <span class="s2">&quot;Freibord (m)&quot;</span><span class="p">:</span>                       <span class="n">f</span><span class="p">,</span>
+        <span class="s2">&quot;n (Wehrfelder)&quot;</span><span class="p">:</span>                     <span class="n">n</span><span class="p">,</span>
+        <span class="s2">&quot;bF (m)&quot;</span><span class="p">:</span>                            <span class="n">b_F</span><span class="p">,</span>
+        <span class="s2">&quot;Lichte Breite (m)&quot;</span><span class="p">:</span>                  <span class="nb">round</span><span class="p">(</span><span class="n">b_licht</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s2">&quot;Gesamtbreite (m)&quot;</span><span class="p">:</span>                   <span class="nb">round</span><span class="p">(</span><span class="n">b_gesamt</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s2">&quot;hü bei BHQ1 mit n Feldern (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">h_ue_n</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s2">&quot;hü bei BHQ1 mit (n-1) Feldern (m)&quot;</span><span class="p">:</span>  <span class="nb">round</span><span class="p">(</span><span class="n">h_ue_n1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s2">&quot;Kronenhöhe (m)&quot;</span><span class="p">:</span>                     <span class="nb">round</span><span class="p">(</span><span class="n">kronenhoehe</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
     <span class="p">},</span>
     <span class="s2">&quot;Tosbecken&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;Wehrhöhe w (m)&quot;</span><span class="p">:</span>   <span class="n">w_wehr</span><span class="p">,</span>
-        <span class="s2">&quot;Abfluss je Meter Wehrbreite (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s2">&quot;Wehrhöhe w (m)&quot;</span><span class="p">:</span>                <span class="n">w_wehr</span><span class="p">,</span>
+        <span class="s2">&quot;Abfluss je Meter Wehrbreite (m²/s)&quot;</span><span class="p">:</span>  <span class="nb">round</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
         <span class="s2">&quot;hu (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">h_u</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
         <span class="s2">&quot;eopt (m)&quot;</span><span class="p">:</span>    <span class="nb">round</span><span class="p">(</span><span class="n">e_opt</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="s2">&quot;h1 (m)&quot;</span><span class="p">:</span>       <span class="nb">round</span><span class="p">(</span><span class="n">h1_opt</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-        <span class="s2">&quot;h2 (m)&quot;</span><span class="p">:</span>       <span class="nb">round</span><span class="p">(</span><span class="n">h2_opt</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="s2">&quot;Fr1&quot;</span><span class="p">:</span>        <span class="nb">round</span><span class="p">(</span><span class="n">Fr1_opt</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span>    <span class="nb">round</span><span class="p">(</span><span class="n">eps_opt</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="s2">&quot;k&quot;</span><span class="p">:</span>          <span class="nb">round</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s2">&quot;h1 (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">h1_opt</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="s2">&quot;h2 (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">h2_opt</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s2">&quot;Fr1&quot;</span><span class="p">:</span>         <span class="nb">round</span><span class="p">(</span><span class="n">Fr1_opt</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span>     <span class="nb">round</span><span class="p">(</span><span class="n">eps_opt</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s2">&quot;k&quot;</span><span class="p">:</span>           <span class="nb">round</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
         <span class="s2">&quot;lT (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">l_T</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
         <span class="s2">&quot;lK (m)&quot;</span><span class="p">:</span>      <span class="nb">round</span><span class="p">(</span><span class="n">l_K</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
     <span class="p">},</span>
@@ -1310,11 +1314,11 @@ Kolkschutzlänge         l_K = 27.85 m
                     &#39;Kronenhöhe (m)&#39;: 1.6,
                     &#39;Lichte Breite (m)&#39;: 60.0,
                     &#39;bF (m)&#39;: 15.0,
+                    &#39;h_ue_zul (m)&#39;: 1.1,
                     &#39;hü bei BHQ1 mit (n-1) Feldern (m)&#39;: 0.842,
                     &#39;hü bei BHQ1 mit n Feldern (m)&#39;: 0.694,
-                    &#39;n (Wehrfelder)&#39;: 4,
-                    &#39;zH (m)&#39;: 1.1},
- &#39;Tosbecken&#39;: {&#39;Abfluss je Meter Wehrbreite (m)&#39;: 1.093,
+                    &#39;n (Wehrfelder)&#39;: 4},
+ &#39;Tosbecken&#39;: {&#39;Abfluss je Meter Wehrbreite (m²/s)&#39;: 1.093,
                &#39;Fr1&#39;: 7.33,
                &#39;Wehrhöhe w (m)&#39;: 2.5,
                &#39;eopt (m)&#39;: 0.062,
