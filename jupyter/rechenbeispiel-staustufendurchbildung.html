@@ -1054,9 +1054,9 @@ Q = k_{St} \cdot A \cdot R^{2/3} \cdot I_E^{1/2}
 \)</span>$</p>
 <div class="important admonition">
 <p class="admonition-title">Rechteckprofilannahme ist fehleranfällig</p>
-<p>Natürliche Flüsse sind komplex und die Annahme eines Rechteckprofils ungenau. Es empfiehlt sich bessere Aussagen durch Messungen, numerische Modellierung oder aus digitalen Höhenmodellen bzw. Lidar-Daten abzuleiten.</p>
+<p>Natürliche Flüsse sind komplex und die Annahme eines Rechteckprofils ist ungenau. Es empfiehlt sich bessere Aussagen durch Messungen, numerische Modellierung oder aus digitalen Höhenmodellen bzw. Lidar-Daten abzuleiten.</p>
 </div>
-<p>Implizite Gleichung &gt; numerische Lösung mittels folgender Funktion (und deren Aufrufen):</p>
+<p>Ein numerischer 1D Gleichungslöser für die Manning kann mittels folgender Funktion definiert und in der Folge aufgerufen werden:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">Q_manning</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
