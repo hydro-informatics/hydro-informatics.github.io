@@ -1,8 +1,0 @@
----
-description: Spotlight topics for advanced TELEMAC modeling challenges including mass balance issues, long computing times, and multizone model configurations.
----
-
-(chpt-tm-focii)=
-# Spotlight Topics 
-
-Poor mass balance, extremely long computing times, multizone models - there are many small challenges (not say pitfalls) that are addressed in this chapter.
