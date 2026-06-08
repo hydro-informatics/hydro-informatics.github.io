@@ -1,0 +1,49 @@
+/* Language switcher control — styled to sit beside the theme toggle button
+ * in the book-theme navbar (top-right), in both light and dark mode. */
+.hy-lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.75rem;
+}
+
+.hy-lang-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 2.5rem;            /* matches the 40px (h-10) theme button */
+  padding: 0 1.5rem 0 0.6rem;
+  border: 1px solid #44403c; /* stone-700 */
+  border-radius: 9999px;
+  background-color: transparent;
+  color: #44403c;            /* stone-700 */
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  /* caret */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2378716c'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.4rem center;
+  background-size: 1rem;
+}
+
+.hy-lang-select:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hy-lang-select:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Dark mode (book-theme toggles the `dark` class on <html>). */
+.dark .hy-lang-select {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.dark .hy-lang-select:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+.hy-lang-select option {
+  color: #1c1917;
+}

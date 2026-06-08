@@ -1,0 +1,716 @@
+---
+description: Tutoriel pré-traitement pour TELEMAC utilisant QGIS et BlueKenue pour générer un maillage calculable SELAFIN (SLF) à partir d'un modèle d'élévation numérique (Modèle numérique de terrain (MNT)) pour les simulations hydrodynamiques.
+---
+
+(slf-prepro-tm)=
+# Prétraitement
+
+```{admonition} Requirements
+:class: attention
+Ce tutoriel est conçu pour les débutants ** avancés** et avant de plonger dans ce tutoriel assurez-vous de:
+
+* Suivez les instructions d'installation pour {ref}`qgis-install` dans ce livre électronique.
+* Lisez (ou regardez) et comprenez ce livre électronique {ref}`qgis-tutorial`.
+* Installer {ref}`BlueKenue <bluekenue>`.
+```
+
+Les premières étapes de la modélisation numérique d'une rivière avec TELEMAC consistent en la conversion d'un modèle d'élévation numérique (**{term}`DEM`**) en maillage informatique. Ce tutoriel guide la création de:
+
+* Un projet QGIS pour la création d'un maillage informatique (similaire au prétraitement {ref}`BASEMENT <qgis-prepro-bm>`).
+* En option, la génération de mailles avec le logiciel BlueKenue<sup>TM</sup> est présentée.
+* A {ref}`BlueKenue <bluekenue>` espace de travail pour interpoler les élévations de terrain à partir d'un {term}`DEM`, y compris l'exportation d'un maillage vers le format de géométrie SELAFIN/SERAFIN (`.slf`) pour Telemac, et les limites de définition.
+
+À la fin de ce tutoriel, les utilisateurs {ref}`chpt-telemac` auront généré un maillage de calcul dans le format de fichier `*.slf`, qui est prêt à utiliser pour le tutoriel de simulation {ref}`Telemac2d steady <telemac2d-steady>`. Des documents supplémentaires et des produits de données intermédiaires sont fournis dans le dépôt de données de ce livre électronique [telemac](https://github.com/hydro-informatics/telemac).
+
+```{admonition} Platform compatibility
+:class: tip
+Toutes les applications logicielles présentées dans ce tutoriel peuvent être exécutées sur des plateformes *Linux*, *Windows*, et potentiellement *macOS* (non testées).
+```
+
+(tm-qgis-prepro)=
+# QGIS
+
+## Créer et configurer un nouveau projet
+Lancez QGIS et {ref}`create a new QGIS project <qgis-project>` pour commencer avec ce tutoriel. Comme indiqué dans le {ref}`qgis-tutorial`, mettre en place un système de référence de coordonnées ({term}`CRS`) pour le projet. Cet exemple utilise les données d'une rivière en Bavière (Allemagne, zone UTM 33N), qui nécessite le {term}`CRS`:
+
+* Dans le menu supérieur QGIS allez à **Project** > **Propriétés**.
+* Activez l'onglet **Système de coordonnées**.
+* Entrez `UTM zone 33N` et sélectionnez le CS Ex affiché à {numref}`Fig. %s <qgis-crs-utm33n>`: EPSG 32633.
+* Cliquez sur **Appliquer** et **OK**.
+
+Notez que le CS Ex utilisé avec TELEMAC diffère de celui utilisé avec BASE pour permettre la compatibilité des produits de données géospatiales de QGIS avec {ref}`BlueKenue <bluekenue>`. En outre, EPSG 32633 n'est pas un grand choix en raison de sa faible précision (au mieux 2 m), mais il fera le travail pour ce tutoriel.
+
+```{figure} ../img/qgis/crs-utm-33n.png
+:alt: qgis set coordinate reference system crs germany utm zone 33n Inn river
+:name: qgis-crs-utm33n
+
+Définir la zone UTM 33N (WGS84) comme projet Système de coordonnées.
+```
+
+```{admonition} Save the project...
+:class: tip
+Enregistrer le projet QGIS (**Projet** > **Enregistrer sous...**), par exemple, avec le nom **prépro-tutorial.qgz**.
+```
+
+(tm-qgis-plugins)=
+## Plugins tiers
+
+Les tutoriels TELEMAC s'appuient sur le plugin BASEmesh et le plugin *PostTelemac*. À cette fin, **ouvrir** le gestionnaire de plugins **QGIS** (** Menu Plugins** > ** Gérer et installer des plugins**) pour ouvrir la fenêtre **Plugins** ({numref}`Fig. %s <open-qgis-plugin-manager>`).
+
+```{figure} ../img/qgis/plugin-manager-open.png
+:alt: qgis basement telemac plugins manager
+:name: open-qgis-plugin-manager
+
+Ouvrez QGIS' Plugins Manager.
+```
+
+Dans la fenêtre **Plugins**, ajoutez les deux plugins comme suit:
+
+* BASEmesh requires to add the developer's plugin repository (more details are available in the {ref}`BASEMENT pre-processing <get-basemesh>` tutorial):
+  * Go to the **Settings** tab.
+  * Scroll to the bottom (**Plugin Repositories** listbox in {numref}`Fig. %s <qgis-plugins2>`), click on **Add...**.
+  * In the popup window enter:
+    * a name for the new repository, for instance, `BASEmesh Plugin Repository`;
+    * the repository address: [https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml](https://people.ee.ethz.ch/~basement/qgis_plugins/qgis_plugins.xml).
+  * Click **OK**. The new repository should now be visible in the **Plugin Repositories** listbox.
+* Install the BASEmesh plugin:
+  * Go to the **All** tab (still in the *Plugins* window) and enter `basemesh` in the search field.
+  * Find the **newest BASEmesh** (i.e., **Available version** >= 2.0.0) plugin and click on **Install Plugin**.
+* To install the [**PostTelemac** plugin](https://github.com/Artelia/PostTelemac/wiki#T45) type `posttelemac` in the **All** tab and click on **Install Plugin**.
+* After the successful installation **Close** the **Plugins** window.
+
+Now, the *BASEmesh 2* plugin should be available in QGIS' *Plugins* menu and the [PostTelemac](https://github.com/Artelia/PostTelemac/wiki#T45) <img src="../img/qgis/sym-posttm.png"> symbol should be visible in QGIS' menu bar.
+
+```{admonition} Why use BASEmesh for TELEMAC?
+En utilisant BASEmesh, ce tutoriel utilise le générateur de mailles efficace de BASEMENT pour minimiser le nombre d'étapes de travail à effectuer dans BlueKenue<sup>TM</sup>. La raison d'être de cette approche est que le QGIS est plus stable et convivial que BlueKenue<sup>TM</sup>, par exemple, pour corriger les erreurs de dessin des lignes limites.
+```
+
+(get-dem-xyz)=
+## Charger Modèle numérique de terrain (MNT)
+
+Ce tutoriel utilise des informations de hauteur qui sont stockées dans un {term}`DEM`. Pour la section QGIS, utiliser de préférence le {term}`GeoTIFF` {term}`DEM` avec la zone UTM 33N comme {term}`CRS` comme suit:
+
+* [**Télécharger le GeoTIFF Modèle numérique de terrain (MNT)**](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem-utm33n.tif) et enregistrez-le dans le même dossier (`/ProjectHome/` ou un sous-répertoire) que le projet ci-dessus **qgz**.
+* Ajouter le Modèle numérique de terrain (MNT) téléchargé comme nouveau calque raster dans *QGIS*:
+* Dans *QGIS*' **Browser** panneau trouver le répertoire **ProjectHome** où vous avez téléchargé le Modèle numérique de terrain (MNT) *tif*.
+* Faites glisser le Modèle numérique de terrain (MNT) *tif* du dossier **ProjectHome** dans le panneau **Layer** de QGIS.
+* Pour faciliter la délimitation des régions spécifiques de l'écosystème de la rivière plus tard, ajoutez un {ref}`satellite imagery basemap <basemap>` (carrelage XYZ) sous le {term}`DEM` et personnalisez la symbolique du calque.
+
+```{admonition} What are QGIS panels, what is a basemap, and how can I re-order layers?
+:class: tip
+En savoir plus dans le tutoriel *QGIS* sur {ref}`qgis-tbx-install`.
+```
+
+La couche **dem-utm33n** devrait maintenant être visible dans le port de vue et indiquée dans le panneau **Layers**. **Cliquez-droit** sur le calque **dem-utm33n** et sélectionnez **Zoom to Layer(s)** pour afficher le calque.
+
+````{admonition} Alternatively work with a .xyz DEM pointcloud
+:class: note, dropdown
+Ce tutoriel utilise plus loin dans la section sur BlueKenue<sup>TM</sup> a `*.xyz` fichier comme {term}`DEM`, qui a été dérivé de {term}`GeoTIFF` en utilisant le workflow décrit dans le {ref}`QGIS tutorial <make-xyz>`. Le fichier `*.xyz` peut également être utilisé avec QGIS et il peut être téléchargé ici](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz). Pour **import** le fichier **dem.xyz** dans QGIS, ouvrez le *Data Source Manager* dans le menu supérieur **Layer**, sélectionnez **Ajouter un calque** et **Ajouter un calque de texte...**. Dans la fenêtre d'ouverture **Data Source Manager** (voir {numref}`Fig. %s <qgis-import-xyz>`) prendre les mesures suivantes:
+
+* Select the downloaded `dem.xyz` file in the **file name** field.
+* In the **File Format** frame, make sure to select **Custom delimiters** and check the **Space** delimiter box.
+* In the **Record and Fields Options** frame, set the **Number of header lines to discard** to `13` and check the **First record has field names** box.
+* In the **Geometry Definition** frame, select `:EndHeader` as **X field**, `field_2` as **Y field**, and `field_3` as **Z field**. Select `Project CRS: ESRI:32633 - WGS 84 / UTM zone 33N` as **Geometry CRS**.
+* Click **Add** and **Close** the *Data Source Manager* window.
+
+```{figure} ../img/qgis/import-dem-xyz.png
+:alt: qgis import XYZ point cloud file dem
+:name: qgis-import-xyz
+
+Importer le nuage `*.xyz` point en tant que couche QGIS.
+```
+````
+
+
+## Activer Snapping
+Il est important que les lignes ne se chevauchent pas pour éviter les définitions ambiguës ou manquantes des régions et pour s'assurer que les lignes limites sont fermées. Par conséquent, activez le snapping:
+
+* Activate the *Snapping Toolbar*: **View** > **Toolbars** > **Snapping Toolbar**
+* In the **Snapping toolbar** > **Enable Snapping** <img src="../img/qgis/snapping-horseshoe.png">
+* Enable snapping for
+  * **Vertex**, **Segment**, and **Middle of Segments** <img src="../img/qgis/snapping-vertex-segments.png">.
+  * **Snapping on Intersections** <img src="../img/qgis/snapping-intersection.png">.
+  * **Self Snapping** <img src="../img/qgis/sym-self-snapping.png">.
+
+(make-tm-shp)=
+## Limites et lignes de rupture du modèle
+
+Cette section ressemble aux instructions du tutoriel {ref}`BASEMENT pre-processing <make-2dm>` pour générer un fichier de maille {term}`SMS 2dm`. Les différences sont que les fichiers de forme pour le pré-traitement TELEMAC utilisent la zone *UTM 33N* {term}`CRS` et que l'interpolation de hauteur (élévation) doit être faite avec le logiciel BlueKenue<sup>TM</sup> pour générer des lignes limites liquides et un fichier de géométrie `*.slf` pour TELEMAC. La génération du maillage {term}`SMS 2dm` repose sur le maillage {ref}`QGIS BASEmesh plugin <get-basemesh>` et nécessite de dessiner un
+
+* {ref}`Line Shapefile <create-line-shp>` appelé *breaklines.shp* qui contient les limites du modèle et les lignes de rupture internes entre les régions modèles ayant des caractéristiques différentes;
+* {ref}`Line Shapefile <create-line-shp>` appelé *liquide-boundaries.shp* qui contient les limites du modèle pour l'attribution des conditions d'entrée et de sortie;
+* {ref}`Point Shapefile <create-point-shp>` appelé *region-pts.shp* qui contient des marqueurs pour la définition des caractéristiques des régions modèles.
+
+{numref}`Figure %s <tm-shapefiles>` fournit un aperçu des shapefiles à dessiner pour générer un maillage de qualité avec le plugin BASEmesh.
+
+```{figure} ../img/telemac/tm-prepro-illu.png
+:alt: qgis telemac basemesh point line shapefiles
+:name: tm-shapefiles
+
+Les lignes de rupture, les limites liquides et les points de région shapefile à dessiner pour créer un maillage de qualité 2dm avec le plugin BASEmesh (plan d'arrière-plan : {cite:t}`googlesat` imagerie satellite).
+```
+
+(tm-bm-breaklines)=
+### Brèves et aperçu du modèle
+
+La limite du modèle définit l'étendue du modèle et peut être divisée en régions présentant des caractéristiques différentes (p. ex., valeurs de rugosité) au moyen de **lignes de rupture**. Les lignes d'arrêt indiquent, par exemple, les berges du chenal et le lit du fleuve (le chenal principal) et doivent être à l'intérieur des limites du Modèle numérique de terrain (MNT). Les lignes de démarcation et les lignes de rupture sont stockées dans un {ref}`Line Shapefile <create-line-shp>` que BASEmesh utilise pour trouver les limites du modèle et les lignes de rupture internes entre les régions modèles. À cette fin, {ref}`create-line-shp` et appelez-le **breaklines.shp** (**Layer** > **Créer un calque** > **Nouveau calque de Shapefile**). Cliquez sur QGIS' **Layers** menu > **Créer un calque** > **Nouveau calque de fichier de forme...** (voir {numref}`Fig. %s <tm-qgis-new-lyr>`). Assurez-vous de sélectionner `EPSG: 32633 - WGS 84 / UTM zone 33N` comme {term}`CRS` <img src="../img/qgis/sym-crs.png">. Ne pas ajouter de champ.
+
+```{figure} ../img/qgis/create-shp-layer.png
+:alt: qgis new layer basemesh
+:name: tm-qgis-new-lyr
+
+Créez un nouveau shapefile à partir du menu Calques de QGIS.
+```
+
+Commencez à éditer **breaklines.shp** en cliquant sur le stylo jaune <img src="../img/qgis/yellow-pen.png"> et dessinez les lignes indiquées à {numref}`Fig. %s <tm-shapefiles>` en activant **Ajouter la fonctionnalité de ligne** <img src="../img/qgis/sym-add-line.png">, ce qui implique :
+
+* Les limites ** du modèle** à gauche et à droite ** Limites des plaines d'inondation** :
+* Délimitez les limites extérieures des plaines inondables.
+* Assurez-vous que tous les points et lignes sont à l'intérieur de {ref}`DEM layer <get-dem>`.
+* Ne pas traverser la rivière (zone humide indiquée par la carte de base des images satellite).
+* ** Finalisez** chaque ligne avec un ** clic droit**.
+* Les lignes d'arrêt de la rive gauche (LB) et de la rive droite (RB)** :
+* Dessinez des lignes le long du canal principal mouillé indiqué dans l'imagerie satellite (carte de base).
+* Assurez-vous que la ligne s'achève parfaitement avec les lignes de limite de la plaine inondable avant la création (il est nécessaire de s'enrouler); ainsi, les lignes de rupture du chenal principal et les lignes de limite de la plaine inondable doivent enfermer les plaines inondables sans aucun écart entre les lignes.
+* **Breaklines of gravillons**:
+* Dessinez des lignes le long des berges de gravier qui sont visibles dans la carte de base de l'imagerie satellite dans le canal principal.
+* Assurez-vous que les extrémités de la ligne coïncident parfaitement avec les lignes de rupture du chenal principal avant la création; ainsi, les lignes de rupture du chenal principal et les lignes de rupture du banc de gravier doivent enfermer les berges de gravier sans écart entre les lignes.
+* Facultatif : **Breaklines of block rampes**:
+* Trouvez les rampes de blocs rugueux (eaux de dérivation) dans la carte de base des images satellitaires et délimitez-les en dessinant des lignes à travers le canal principal mouillé.
+* Assurez-vous que la ligne se termine parfaitement avec les lignes de rupture du canal principal; ainsi, les lignes de rupture du canal principal et les lignes de rupture du bloc doivent enfermer les rampes du bloc sans aucun écart entre les lignes.
+
+Pour ** corriger les erreurs de dessin** utilisez l'outil ** Vertex** <img src="../img/qgis/sym-vertex-tool.png">. Enfin, enregistrez les nouvelles lignes (édits de **breaklines.shp**) en cliquant sur le symbole **Save Layer Edits** <img src="../img/qgis/sym-save-edits.png">. **Arrêtez (Toggle) Édition** en cliquant à nouveau sur le stylo jaune <img src="../img/qgis/yellow-pen.png"> symbole.
+
+
+```{admonition} Troubles with drawing boundaries and breaklines?
+:class: tip
+Téléchargez le [shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/breaklines.zip)] montré dans la figure ci-dessus et déballer dans le dossier du projet, par exemple `/ProjectHome/shapefiles/breaklines.[SHP]`.
+```
+
+```{admonition} Draw boundaries of complex DEMs...
+:class: tip
+Dessiner des limites manuellement autour de grand {term}`DEM`s peut être très long, en particulier, si les données brutes sont un nuage de point et pas encore converti en {ref}`raster`.
+
+Si vous avez affaire à un nuage de points, envisagez d'utiliser QGIS [Convex Hull tool](https://docs.qgis.org/3.16/en/docs/training_manual/vector_analysis/spatial_statistics.html?highlight=convex%20hull#basic-fa-create-a-test-dataset) qui dessine un polygone étroit autour de points.
+
+Si vous avez affaire à un grand {term}`GeoTIFF`, envisagez d'utiliser QGIS [Raster à Vector](https://docs.qgis.org/3.16/en/docs/training_manual/complete_analysis/raster_to_vector.html) outil.
+```
+
+(tm-bm-liquid-boundaries)=
+### Limites des liquides
+
+Les limites **liquides** définissent les conditions hydrauliques, telles qu'une relation de décharge ou d'écoulement par étape, qui s'appliquent aux limites d'écoulement (en amont) et d'écoulement (en aval) du modèle. Ainsi, un modèle de rivière fonctionnel nécessite au moins une limite d'entrée (ligne) où les flux de masse entrent dans le modèle et une limite d'écoulement (ligne) où les flux de masse quittent le modèle. À cette fin, {ref}`create-line-shp` appelé **liquid-boundarys.shp**, sélectionnez `EPSG: 32633 - WGS 84 / UTM zone 33N` comme {term}`CRS` <img src="../img/qgis/sym-crs.png">, et définir **deux champs de données texte** nommés **type** et **stringdef**. Assurez-vous que **snacping** est toujours **enabled** et **Toggle (Start) Editing** <img src="../img/qgis/yellow-pen.png"> the new **liquide-boundaries.shp**. Puis dessinez deux lignes :
+
+* Activer **Ajouter une ligne** <img src="../img/qgis/sym-add-line.png">.
+* Dessiner une ligne limite d'entrée (ligne bleue légère à gauche de {numref}`Fig. %s <tm-shapefiles>`):
+* Zoomez sur la zone d'entrée des limites de Modèle numérique de terrain (MNT), où il y a un écart entre** les lignes de rupture de la limite de la plaine d'inondation**.
+* Commencez à tracer une ligne sur une rive (en haut de la figure ci-dessous) et passez à l'autre rive pour faire environ sept points de plus à travers la rivière.
+* Le **dernier point** doit **coïncide** avec la fin de la ligne de démarcation de l'autre banque**.
+* ** Finalisez** la ligne avec un ** clic droit**, et entrez `Inflow` dans le champ **type** et `inflow` dans le champ **stringdef** (l'affaire est importante).
+* Dessiner une ligne de limite de sortie (ligne bleue légère à droite de {numref}`Fig. %s <tm-shapefiles>`):
+* Zoom sur la zone de sortie des limites de Modèle numérique de terrain (MNT), où il y a un écart entre** les lignes de rupture de la limite de la plaine d'inondation**.
+* Commencez à tracer une ligne sur une rive (en haut de la figure ci-dessous) et passez à l'autre rive pour faire environ sept points de plus à travers la rivière.
+* Le **dernier point** doit **coïncide** avec la fin de la ligne de démarcation de l'autre banque**.
+* ** Finalisez** la ligne avec un ** clic droit**, et entrez `Outflow` dans le champ **type** et `outflow` dans le champ **stringdef** (l'affaire est importante).
+
+
+Pour ** corriger les erreurs de dessin** utilisez l'outil ** Vertex** <img src="../img/qgis/sym-vertex-tool.png">.
+
+Enfin, enregistrez les lignes limites de liquide (édits de **liquide-boundarys.shp**) en cliquant sur le symbole **Save Layer Edits** <img src="../img/qgis/sym-save-edits.png">. **Arrêter (Toggle) Édition** en cliquant à nouveau sur le stylo jaune <img src="../img/qgis/yellow-pen.png"> symbole.
+
+```{admonition} Troubles with drawing the liquid boundary lines?
+:class: tip
+Téléchargez le [shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/liquid-boundaries.zip) et déballer dans le dossier du projet, par exemple `/ProjectHome/shapefiles/liquid-boundaries.[SHP]`.
+```
+
+### Marqueurs régionaux
+
+**Point régional** Les marqueurs sont placés à l'intérieur de régions définies par les lignes limites et les lignes de rupture. Chaque marqueur régional (c.-à-d. un point quelque part dans la région) attribue, par exemple, un identifiant matériel (MATIDs) et une zone cellulaire maillage maximale. Le MATID n'est (actuellement) pas nécessaire pour TELEMAC (BASEMENT seulement), mais les entrées dans le champ **max area** détermineront la taille des cellules des régions de mailles et auront des effets majeurs sur la qualité et l'efficacité de la simulation TELEMAC. Pour dessiner des points de région, {ref}`create a new point shapefile <create-point-shp>` nommé **raster-points.shp** avec les définitions suivantes (similaire à {numref}`Fig. %s <qgis-reg-lyr>` dans le tutoriel de pré-traitement de BASE):
+
+* Define the **File name** as **region-points.shp** (or similar)
+* Ensure the **Geometry type** is **Point**
+* Select `EPSG: 32633 - WGS 84 / UTM zone 33N` as {term}`CRS` <img src="../img/qgis/sym-crs.png">
+* Add three **New Field**s (in addition to the default **Integer** type **ID** field):
+  * **max_area** = **Decimal number** (**length** = 10, **precision** = 3)
+  * **MATID** = **Whole number** (**length** = 3)
+  * **type** = **Text data** (**length** = 20)
+* Click **OK** to create the new point shapefile.
+
+Considérez comme **désactiver le snapping** pour dessiner les marqueurs de région parce que les points ne devraient coïncider avec aucune ligne. Puis, **Toggle (Démarrer) Édition** <img src="../img/qgis/yellow-pen.png"> le nouveau fichier **region-points.shp** et activer **Ajouter Point Feature** <img src="../img/qgis/sym-add-point.png">. Dessinez un point dans chaque section de secteur qui est fermée par des lignes de rupture et des lignes limites (liquides) (voir les points ronds et triangulaires dans {numref}`Fig. %s <tm-shapefiles>`). Selon le type de zone apparent à partir de la carte de base de l'imagerie satellitaire, assignez une des quatre régions énumérées à {numref}`Tab. %s <tab-tm-region-defs>` à chaque point.
+
+```{list-table} Region names and their **max_area**, **MATID**, and **type** field values.
+:header-rows: 1
+:name: tab-tm-region-defs
+
+* - Région
+- Lit de rivière
+- Rampes de blocs
+- Banques de gravier
+- Plaines inondables
+* - ** zone maximale**
+- 25,0
+- 20,0
+- 25,0
+- 80,0
+* - **MATIDE**
+- 1
+- 2
+- 3
+- 4
+* - ** Type**
+- lit de rivière
+- block ramp
+- banc de gravier
+- plaine inondable
+```
+
+Après avoir dessiné un point dans chaque zone fermée, enregistrez les marqueurs de point de la région (modificateurs de **region-points.shp**) en cliquant sur le symbole **Save Layer Edits** <img src="../img/qgis/sym-save-edits.png">. **Arrêter (Toggle) Édition** en cliquant à nouveau sur le stylo jaune <img src="../img/qgis/yellow-pen.png"> symbole.
+
+```{admonition} Troubles with drawing the region marker points?
+:class: tip
+Download the [zipped region-points shapefile](https://github.com/hydro-informatics/telemac/raw/main/shapefiles/region-points.zip) and unpack it into the project folder, for instance, `/ProjectHome/shapefiles/region-points.[SHP]`.
+```
+
+(tm-qualm)=
+## Meshing de qualité (2 dm)
+
+*L'outil de maillage de qualité de BASEmesh* crée un maillage triangulaire efficace par calcul basé sur {cite:t}`shewchuk1996` et à l'intérieur des limites du modèle. L'outil associe les propriétés du maillage aux régions shapefile, mais il n'inclut pas les données d'élévation. Ainsi, après avoir généré un maillage de qualité au format {term}`SMS 2dm`, l'information sur l'altitude doit être ajoutée avec le logiciel BlueKenue<sup>TM</sup>. Pour générer le maillage de qualité, ouvrez l'outil **QUALITY MESHING** (QGIS' **Plugins** > **BASEmesh 2** > ** Meshing de la qualité**). Faites les paramètres suivants dans la fenêtre contextuelle (voir aussi {numref}`Fig. %s <fig-tm-qualm>`):
+
+* Cadre des contraintes de triangulation :
+* **Breaklines** = **Breaklines** (voir {ref}`make-tm-shp`).
+* Gardez toutes les autres valeurs par défaut.
+* Cadre régional:
+* **Activer la case Régions**.
+* **Couche de marqueur de la région** = **régions-points** (voir {ref}`make-tm-shp`).
+* **Activer le champ MATID** et sélectionner le champ *regions-points* shapefile **MATID**.
+* **Activez le champ Zone maximale** et sélectionnez le champ *régions-points* du fichier de formes **max area**.
+* Mesh domain frame : gardez les valeurs par défaut.
+* Cadre de définitions des chaînes :
+* **Activer les définitions de la chaîne**.
+* **Couche de définitions de l'établissement** = **limites liquides**.
+* **Champ d'identification des définitions de la chaîne** = **stringdef**.
+* **Activer la case Inclure dans les chaînes de nœuds 2DM (BASEMENT 3)**.
+* Ignorez toutes les options de base 2.8.
+* Cadre de paramètres : gardez les valeurs par défaut.
+* Cadre de sortie :
+* Cliquez sur le bouton **Parcourir...** et définissez un nom de fichier **2dm** dans le répertoire `/ProjectHome/`, comme **prepro-tutorial quality-mesh.2dm**.
+* Cliquez sur le bouton **Run** pour créer le maillage de qualité.
+
+
+```{figure} ../img/qgis/bm-quality-meshing-success.png
+:alt: basement qgis quality mesh tin
+:name: fig-tm-qualm
+
+Définitions à faire dans l'outil de maillage Qualité de BASEmesh.
+```
+
+Le maillage de qualité peut prendre un court moment. Après une génération réussie de maillage, le fichier **prepro-tutorial quality-mesh-interp.2dm** aura été généré et il apparaît automatiquement dans QGIS comme une surface monocolore avec `0-0` **Bed Elevation**. La section suivante montre l'interpolation des données d'élévation avec le logiciel BlueKenue<sup>TM</sup>.
+
+```{admonition} Troubles with running the quality mesh generator?
+:class: tip
+Téléchargez le fichier maillage de qualité [tutoriel](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) et enregistrez-le dans le dossier du projet, par exemple `/ProjectHome/meshes/prepro-tutorial_quality-mesh-utm33n.2dm`.
+```
+
+(bk-tutorial)=
+# BlueKenue
+
+(bk-intro)=
+## Commencez
+This section features the {ref}`BlueKenue <bluekenue>` software to interpolate terrain elevations from a {term}`DEM`.xyz file on an {term}`SMS 2dm` mesh, export the mesh to the SELAFIN/SERAFIN (`*.slf`) geometry format for TELEMAC, and define boundary lines.
+
+En outre, la section {ref}`Meshing with BlueKenue <bk-meshing>` explique la génération de mailles avec BlueKenue<sup>TM</sup>, qui pourrait être instable en raison des pannes de programme et inflexible pour corriger les erreurs de dessin de ligne. Néanmoins, le maillage avec BlueKenue<sup>TM</sup> pourrait être souhaitable pour créer un maillage computationnel avec de longues cellules triangulaires qui suivent approximativement la fluidité de la rivière (c.-à-d. en utilisant un sous-mesh canal).
+
+Pour vous familiariser avec BlueKenue<sup>TM</sup>, lancez le logiciel (plus de détails dans {ref}`installation chapter <bluekenue>`) et localisez
+
+* le navigateur **WorkSpace** (à gauche de la fenêtre),
+* l'entrée **Data Items** dans le **WorkSpace**, où les objets de fichier seront listés,
+* l'entrée **Views** dans le **WorkSpace**, où une entrée **2D View (1)** apparaît par défaut et une vue *3D* peut être ajoutée dans le menu supérieur **Window** > **Nouvelle vue 3D**.
+
+Consultez le menu **Fichier**, qui permet :
+
+* Créer **Nouveau** BlueKenue<sup>TM</sup> des objets tels que SELAFIN, Conlim Boundary Condition, T3 Mesh Generator, ou des objets Interpolator 2D.
+* **Open** types de fichiers tels que `*.slf` fichiers géométriques ou `*.xyz` points nuages.
+* **Importer** des fichiers tels que:
+* un **ArcView Shapefile** (en savoir plus sur {ref}`shapefiles <shp>`),
+* un {term}`SMS 2dm` Mesh comme celui créé dans la section {ref}`pre-processing with QGIS <tm-qualm>`, ou
+* a {term}`GeoTIFF` raster, qui ne fonctionnera pas avec de nombreux rasters GeoTIFF en pratique parce que BlueKenue<sup>TM</sup> ne peut pas gérer les données Float32 ou Float64 dans un GeoTIFF.
+
+Le menu **Edit** permet d'éditer des objets BlueKenue<sup>TM</sup>, comme des lignes, des ensembles de points ou des maillages.
+
+Le menu **Tools** fournit des routines qui peuvent être appliquées à des objets particuliers BlueKenue<sup>TM</sup> ou pour combiner des objets. En particulier, ce tutoriel fera usage de l'outil **Map Objects...**.
+
+(bk-files)=
+## Fichiers et objets
+
+BlueKenue<sup>TM</sup> Enregistre chaque objet dans des formats de fichiers spécifiques au logiciel et ce livre électronique fait référence aux objets suivants de fichier BlueKenue<sup>TM</sup> (ordre alphabétique des terminaisons de fichiers):
+
+* Les fichiers `*.bc2` contiennent les conditions de frontière de Conlim.
+* Les fichiers `*.cli` contiennent des conditions de limite prêtes à utiliser pour TELEMAC et peuvent être produits avec un objet `*.bc2`.
+* Les fichiers `*.i2s` contiennent des lignes fermées ou ouvertes.
+* Les fichiers `*.in2` contiennent des interpolateurs 2D pour la cartographie des données d'altitude (ou autres) sur un maillage.
+* Les fichiers `*.slf` contiennent des maillages TELEMAC prêts à l'emploi qui proviennent d'un objet BlueKenue<sup>TM</sup> SELAFIN et d'un fichier maillage `*.t3s`.
+* Les fichiers `*.t3c` contiennent des objets du générateur de mailles de canal BlueKenue<sup>TM</sup>.
+* Les fichiers `*.t3m` contiennent des objets BlueKenue<sup>TM</sup> générateur de mailles pour créer un objet de mailles `*.t3s`.
+* Les fichiers `*.t3s` contiennent des objets BlueKenue<sup>TM</sup> mesh qui peuvent être importés (par exemple, à partir d'un fichier {term}`SMS 2dm`) ou créés avec un générateur de mesh `*.t3m`.
+
+Tous les fichiers créés avec BlueKenue<sup>TM</sup> sont basés sur la norme de type de fichier ASCII EnSim 1.0. L'EnSim Core s'appuie sur {term}`HDF` et il est documenté à BlueKenue<sup>TM</sup>'s [manuel de l'utilisateur PDF](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/2011_UserManual.pdf) qui vient avec l'installateur de BlueKenue](https://chyms.nrc.gc.ca/download_public/KenueClub/BlueKenue/Installer/BlueKenue_3.12.0-alpha+20201006_64bit.msi) (à BlueKenue<sup>TM</sup> appuyez sur la touche `F1` pour ouvrir le manuel). Notez que la compréhension du noyau EnSim peut grandement faciliter le dépannage des erreurs structurelles de BlueKenue<sup>TM</sup> fichiers.
+
+(bk-xyz)=
+## Charger les points XYZ
+
+Téléchargez le cloud fourni [dem.xyz](https://github.com/hydro-informatics/telemac/raw/main/rasters/dem.xyz) point qui contient les coordonnées 3d formatées par EnSim de l'écosystème fluvial {term}`DEM` qui sera modélisé dans ce tutoriel. Le fichier `*.xyz` est dérivé du fichier {term}`GeoTIFF` {term}`DEM` utilisé dans le fichier {ref}`QGIS pre-processing <get-dem-xyz>`.
+
+ ```{aside} The .xyz file is not an XYZ tile
+Le nuage de points dans le fichier `*.xyz` est différent du raster de carreaux XYZ qui constitue le {ref}`satellite imagery basemap <basemap>`.
+ ```
+
+Pour charger le fichier **dem.xyz** dans BlueKenue<sup>TM</sup>, ouvrez-le depuis le menu **Fichier** (**Fichier** > **Ouvrir...**) et prenez les mesures suivantes dans la fenêtre contextuelle :
+
+* Naviguez dans le dossier de téléchargement.
+* À côté du champ **Nom du fichier :**, localisez le menu déroulant du type de fichier et ** changez le fichier par défaut de Télémac Selafin (`*.slf`) à Point Sets (`*.pt2`, `*.xyz`, `*.pcl`)**.
+* Cliquez sur **Ouvrir** pour finaliser l'importation.
+
+Pour vérifier si le cloud point a été correctement importé, **drag** les nouveaux éléments de données **dem (Z)** à l'entrée **2D View (1)**. {numref}`Figure %s <bk-import-xyz>` montre le nuage de points XYZ importé à BlueKenue<sup>TM</sup>.
+
+```{figure} ../img/telemac/bk-imported-pts.png
+:alt: bluekenue import xyz point cloud DEM
+:name: bk-import-xyz
+
+Le dem.xyz fourni importé à BlueKenue<sup>TM</sup>.
+```
+
+To verify the {term}`CRS` of the point dataset, right-click on **dem (Z)**, select properties, go to the **Spatial** tab, and make sure that BlueKenue<sup>TM</sup> correctly identified **UTM Zone 33** in the **Coordinate System** frame and **WGS 84** as **Ellipsoid**.
+
+
+(bk-meshing)=
+## BlueKenue Meshing (facultatif)
+
+```{admonition} Skip this section if you created a *.2dm* quality mesh with BASEMESH
+C'est une section optionnelle pour les utilisateurs qui ne veulent pas utiliser QGIS et le plugin BASEmesh pour le maillage. La production d'un maillage avec BlueKenue<sup>TM</sup> peut être utile, par exemple, pour produire une grille de calcul avec des cellules triangulaires orientées parallèlement aux berges (c.-à-d. un sous-mesh canal). Sinon, **si le fichier `*.2dm` mesh a été créé** avec QGIS, **jette à la section sur la création d'un {ref}`Selafin Object <bk-create-slf>`**.
+```
+
+Cette section présente la génération de mailles de base avec BlueKenue<sup>TM</sup>, qui fonctionne également en douceur sur Linux via l'application {ref}`PlayOnLinux <play-on-linux>`. Additionnel, le tutoriel de Baxter {cite:p}`baxter2013` fournit plus de détails pour commencer avec BlueKenue ainsi que des captures d'écran détaillées.
+
+### Dessiner la limite du modèle (ligne fermée)
+
+Délimiter la limite du modèle (ligne extérieure) avec un objet en ligne fermée (voir aussi {numref}`Fig. %s <bk-model-outline>`):
+
+* Créez une nouvelle ligne **Fermée** en cliquant sur le symbole <img src="../img/telemac/bk-sym-cl.png"> dans le menu BlueKenue<sup>TM</sup>.
+* **Draw** la nouvelle ligne fermée:
+* Faites des points en cliquant près de l'étendue extérieure du calque **dem (Z)** dans la fenêtre **2D Vues (1)**. S'assurer qu'aucun point ne se trouve à l'extérieur de la région où l'on dispose de données sur l'altitude (c.-à-d. bien délimiter **dem (Z)**).
+* Finaliser la ligne fermée en appuyant sur **Esc**.
+* Nommez la ligne fermée, par exemple, `model-outline`.
+* **Passer** **Ajouter un nouvel Attribut** en cliquant simplement sur **OK**.
+
+```{figure} ../img/telemac/bk-model-outline.png
+:alt: bluekenue draw closed line model boundary outline
+:name: bk-model-outline
+
+La ligne fermée des limites du modèle à BlueKenue<sup>TM</sup>'s 2D View fenêtre.
+```
+
+Pour **enregistrer le schéma du modèle**, mettre en évidence le nouvel objet de la ligne fermée dans le navigateur **WorkSpace** et cliquer sur le symbole du disque <img src="../img/telemac/bk-sym-save.png">. Envisager de créer un nouveau dossier appelé `bk-mesh` qui contiendra tous les objets BlueKenue<sup>TM</sup> requis pour le maillage. Ainsi, enregistrez l'esquisse du modèle (ligne fermée), par exemple, comme **/bk-mesh/model-outline.i2s**.
+
+```{admonition} Troubles with drawing the model outline?
+:class: tip
+Le plan peut également être téléchargé à partir du dépôt de matériaux supplémentaires ([télécharger model-outline.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/model-outline.i2s)). Pour ouvrir la ligne fermée à partir du dépôt à BlueKenue<sup>TM</sup>, allez à **Fichier** > **Ouvrir...** > sélectionnez **Line Sets (`*.i2s`, `*.i3s`)** comme type de fichier et naviguez vers le répertoire de téléchargement.
+```
+
+L'état actuel de BlueKenue<sup>TM</sup> peut être sauvegardé sous la forme d'un fichier **workspace.ews** (**Fichier** > **Save WorkSpace...** > définir un nom). Enregistrer l'espace de travail exige que tous les objets BlueKenue<sup>TM</sup> soient enregistrés sur le disque. En option, téléchargez le [meshing-workspace.ews](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/meshing-workspace.ews) du dépôt de matériaux supplémentaires.
+
+```{admonition} Loading a WorkSpace
+:class: attention
+En théorie, l'espace de travail sauvegardé peut être chargé après avoir fermé BlueKenue<sup>TM</sup>, mais l'opération **Load WorkSpace...** souvent **fails** pour des raisons apparemment arbitraires. Cette question est l'une des raisons qui font de QGIS une meilleure option pour le maillage.
+```
+
+(bk-draw-ol)=
+### Dessiner les lignes ouvertes des banques de canaux
+
+Comme pour le {ref}`above-created breaklines in QGIS <make-tm-shp>`, les banques de canaux peuvent être délimitées avec des objets Open Line. À cette fin, créer deux objets Open Line comme suit:
+
+* Créez une nouvelle ligne ouverte** en cliquant sur le symbole <img src="../img/telemac/bk-sym-ol.png"> dans le menu BlueKenue<sup>TM</sup>.
+* **Draw** la nouvelle ligne ouverte:
+* Faites des points en suivant les zones bleu-vert comme indiqué dans la fenêtre {numref}`Fig. %s <bk-lines-all>` **2D Views (1)** (direction de flux de gauche à droite).
+* Finaliser la ligne ouverte en appuyant sur **Esc**.
+* Nommez une ligne ouverte `LeftBank` et l'autre `RightBank`.
+* **Passer** **Ajouter un nouvel Attribut à :** en cliquant simplement sur **OK**.
+
+```{figure} ../img/telemac/bk-lines-all.png
+:alt: bluekenue draw open line channel river banks
+:name: bk-lines-all
+
+Les objets en ligne ouverte et fermée finalisés délimitent les limites du modèle et les berges du canal. La ligne ouverte de la banque droite est représentée par la ligne noire en tirets et la ligne ouverte de la banque gauche est représentée en rouge.
+```
+
+```{admonition} Troubles with drawing the open lines of the channel banks?
+:class: tip
+Téléchargez les lignes du dépôt de matériaux supplémentaires. Notamment télécharger [LeftBank.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/LeftBank.i2s) et [RightBank.i2s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/RightBank.i2s). Pour ouvrir les objets Open Line du dépôt dans BlueKenue<sup>TM</sup>, allez à **Fichier** > **Ouvrir...** > sélectionner **Line Sets (`*.i2s`, `*.i3s`)** comme type de fichier et naviguez vers le répertoire de téléchargement.
+```
+
+### Générer Mesh(es)
+
+BlueKenue<sup>TM</sup> fournit des générateurs de mailles pour créer des grilles de calcul régulières ou non structurées (meshes). Cet exemple comprend le Mesher **T3 Channel** pour générer un maillage triangulaire, qui consiste d'abord à créer un maillage de canal (sous-mesh) et ensuite à générer un maillage composé qui intègre le maillage de canal dans un maillage plus grossier des plaines inondables. À cette fin, commencez par créer un nouvel objet **T3 Channel Mesher** (**File** > **New** > **T3 Channel Mesher**). Dans la fenêtre contextuelle :
+
+* **ChannelNodeCount** à `20` et
+* **AlongChannelInterval** à `15`.
+
+Cliquez sur **OK** (**not Run**) pour fermer la nouvelle fenêtre T3 Channel Mesh. Ensuite, faites glisser et déposez le fichier ci-dessus **LeftBank** et **RightBank** Objets Open Line sur leurs attributs équivalents du nouveau T3 Channel Mesh** dans le navigateur WorkSpace comme indiqué dans {numref}`Fig. %s <bk-channel-mesh>`. Ensuite, générer le maillage du canal en double-cliquant sur l'objet **new T3 Channel Mesh** et cliquer sur **Run**. Pour visualiser le résultat **Mesh**, faites-le glisser sur l'objet **2D View (1)**.
+
+```{figure} ../img/telemac/bk-channel-mesh.png
+:alt: bluekenue create channel mesh
+:name: bk-channel-mesh
+
+Créez et visualisez le maillage du canal après avoir traîné les objets Open Line LeftBank et RightBank sur leurs équivalents de noms de l'objet Mesh Channel T3.
+```
+
+```{admonition} Troubles with creating the channel mesh?
+:class: tip
+Téléchargez le [canal-mesh.t3c](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/channel-mesh.t3c) générateur de mailles et le [canal-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/channel-mesh.t3) objets de mailles du dépôt de matériaux supplémentaires. Pour ouvrir l'objet T3 Mesh depuis le dépôt dans BlueKenue<sup>TM</sup>, allez à **Fichier** > **Ouvrir...** > sélectionnez **2D T3 Mesh (`*.t...`)** comme type de fichier et naviguez vers le répertoire de téléchargement.
+```
+
+Ensuite, intégrer le maillage du canal dans un maillage plus grossier de la plaine inondable en créant un nouvel objet T3 Mesh Generator** (**File** > **New** > **T3 Mesh Generator**). Dans la fenêtre contextuelle **T3 Mesh**, les paramètres sont les suivants (voir aussi {numref}`Fig. %s <bk-t3-mesher>`):
+
+* **Activer** la case à cocher **Résample Outline**.
+* Réglez la longueur du bord de la faille** à `20`.
+* Gardez toutes les autres valeurs par défaut.
+* Appuyez sur **OK** (**pas courir**).
+
+```{figure} ../img/telemac/bk-t3-mesher.png
+:alt: bluekenue create combined mesh generator
+:name: bk-t3-mesher
+
+Configuration des propriétés du nouvel objet T3 Mesh Generator.
+```
+
+Définir le **Outline (Value)** en faisant glisser (voir aussi {numref}`Fig. %s <bk-mesh-compound>`):
+
+* l'objet **model-outline** sur le **Outline (Value)** du **nouveau T3 Mesh**, et
+* Le canal **Mesh** sur l'attribut **SubMesh** du nouveau T3 Mesh**.
+
+Générer le maillage composé en double-cliquant sur le nouvel objet T3 Mesh** et en un seul clic sur **Run**. Confirmez la boîte de questions (* Continuer?* > **Oui**) et appuyez sur **OK** après la fin du générateur de mailles (*Done...*). Pour visualiser le résultat **Mesh**, faites-le glisser sur la vue **2D (1)**.
+
+```{figure} ../img/telemac/bk-mesh-compound.png
+:alt: bluekenue generate combined mesh drag and drop
+:name: bk-mesh-compound
+
+Le maillage composé après avoir fait glisser le contour du modèle sur le Outline (Value) et le canal Mesh sur l'attribut SubMeshes du nouvel objet générateur Mesh T3.
+```
+
+```{admonition} What is the difference between the channel mesher and the mesh generator?
+:class: note
+{numref}`Figure %s <bk-mesh-compound>` montre que le maillage du canal est ajusté en fonction des banques de canaux. Ce type de maillage est connu pour être avantageux pour la vitesse de calcul et la stabilité du modèle. Ainsi, la disponibilité du maillage de canal dans BlueKenue<sup>TM</sup> est une force et le meilleur argument pour ne pas utiliser BASEmesh** dans QGIS pour la génération de maillage.
+```
+
+```{admonition} Troubles with creating the compound mesh?
+:class: tip
+Téléchargez les objets [compound-mesher.t3m](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesher.t3m) et [compound-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s) du dépôt de matériaux supplémentaires. Pour ouvrir l'objet T3 Mesh depuis le dépôt dans BlueKenue<sup>TM</sup>, allez à **Fichier** > **Ouvrir...** > sélectionnez **2D T3 Mesh (`*.t...`)** comme type de fichier et naviguez vers le répertoire de téléchargement.
+```
+
+(bk-slf)=
+## SELAFIN
+
+### Ingrédients ouverts et importés
+Whether the mesh was created with BlueKenue<sup>TM</sup> or QGIS (and the BASEmesh plugin), make sure to have now a BlueKenue<sup>TM</sup> workspace with only the XYZ point cloud loaded (see the {ref}`bk-xyz` section). Before a SELAFIN object can be created, the previously created mesh (i.e., either the [quality-mesh.2dm](https://github.com/hydro-informatics/telemac/raw/main/meshes/prepro-tutorial_quality-mesh-utm33n.2dm) or the [compound-mesh.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-mesh/compound-mesh.t3s)) needs to be imported into the WorkSpace in addition to the point cloud. The following instructions show the import and use of the `*.2dm` file:
+
+* À BlueKenue<sup>TM</sup> allez à **File** > **Import** > **SMS 2DM Mesh**.
+* Dans la fenêtre d'importation, accédez au dossier où vit le fichier `*.2dm`, sélectionnez le fichier `*.2dm` et cliquez sur **Ouvrir**.
+* Quand le processus *Reading SMS 2d Mesh File* est *Fait...*, cliquez sur **OK**.
+
+```{admonition} How to load a BlueKenue .T3S mesh file?
+:class: note, dropdown
+Contrairement à un fichier {term}`SMS 2dm` (`*.2dm`) qui doit être *importé*, un fichier `*.t3s` doit être **ouvert** à BlueKenue<sup>TM</sup>. À cette fin, **ouvrir** le T3 Mesh (`*.t3s`) de **Fichier** > **Ouvrir...** > sélectionner **2D T3 Mesh (`*.t...`)** comme type de fichier et naviguer vers le répertoire de téléchargement. Sélectionnez le fichier `*.t3s` mesh et cliquez sur **Ouvrir**.
+```
+
+Ignorez les messages d'avertissement concernant la projection, mais assurez-vous que BlueKenue<sup>TM</sup> lisez correctement les coordonnées du maillage par **dragage** le maillage importé (ou ouvert) sur la vue **2D (1)**. Le BlueKenue<sup>TM</sup> window devrait maintenant ressembler à {numref}`Fig. %s <bk-imported-mesh>`.
+
+```{figure} ../img/telemac/bk-imported-mesh.png
+:alt: bluekenue import open 2dm t3s mesh drag
+:name: bk-imported-mesh
+
+Le maillage importé dans la vue 2D (1).
+```
+
+(bk-create-slf)=
+### Créer un objet SELAFIN
+
+Avec les mailles ouvertes *dem.xyz* et importées (ou ouvertes), tous les ingrédients requis par un objet BlueKenue<sup>TM</sup> SELAFIN sont disponibles. Maintenant, créez un nouvel objet SELAFIN :
+
+* Aller à **Fichier** > **Nouveau** > **SELAFIN Objet...**
+
+```{image} ../img/telemac/bk-create-selafin-object.png
+```
+
+* Dans la fenêtre contextuelle (*Propriétés de:new Selafin*) cliquez sur **OK** et un nouvel objet Selafin** apparaîtra dans le **Data Items** de WorkSpace.
+* **Clic droit** sur le nouvel objet Selafin** et sélectionnez **Ajouter une variable...**
+* Prendre les mesures suivantes dans la fenêtre **Ajouter une nouvelle variable SELAFIN** :
+* Dans le champ **Mesh**, sélectionnez le maillage ci-dessus importé (ou ouvert) (par exemple, `prepro-tutorial_quality-mesh-utm33n.2dm`).
+* Dans le champ **Nom**, sélectionnez **BOTTOM**.
+* Dans le champ **Unités**, sélectionnez **M** (c.-à-d. mètres).
+* Gardez toutes les autres valeurs par défaut et cliquez sur **OK**.
+* Enregistrer le nouvel objet Selafin en le mettant en évidence dans l'arborescence **Data Item** de l'Espace de travail et en cliquant sur le disque <img src="../img/telemac/bk-sym-save.png"> symbole. Donnez à la maille un nom significatif et court, comme `qgismesh.slf`.
+
+(bk-2dinterp)=
+### Créer un interpolateur 2D
+
+Un objet Interpolateur 2D est nécessaire pour cartographier les informations d'élévation sur le maillage Selafin. À cette fin, créez un nouvel objet Interpolateur 2D et des élévations de carte sur le maillage BOTTOM :
+
+* Allez à **File** > **New** > **2D Interpolator...** et un nouvel objet 2D Interpolator** apparaîtra dans le **Data Items** du WorkSpace.
+
+```{image} ../img/telemac/bk-create-2Dinterpolator.png
+```
+
+* **Drag dem (Z)** (i.e., the above-opened *dem.xyz* pointcloud) onto the **new 2D Interpolator** object (red arrow in {numref}`Fig. %s <bk-mesh-interpolated>`).
+* **Highlight** (click on) the **BOTTOM (Anonymous Attribute)** mesh attribute of the above-created SELAFIN object (e.g., called `qgismesh`).
+* With the mesh highlighted, go to the **Tools** top menu > **Map Object...**.
+* In the opening **Available Objects** window select the **new 2D Interpolator** and click **OK**.
+* Once the *Processing...* finished, click **OK**.
+* Save the final meshes:
+  * The BOTTOM mesh is a BlueKenue<sup>TM</sup> `*.t3s` mesh object; to save it, highlight it in the **Data Items** tree and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. Then, save the mesh, for instance, as `BOTTOM.t3s` file.
+  * To save the Selafin mesh in its current (with interpolated elevations) state, highlight the Selafin object (e.g., `qgismesh`) and click on the disk <img src="../img/telemac/bk-sym-save.png"> symbol. This action overwrites the above-saved `*.slf` file (click **Yes** to confirm replacing it).
+
+Pour vérifier si l'interpolateur 2D a correctement interpolé les élévations sur le maillage BOTTOM, faites glisser le maillage BOTTOM sur la vue **2D (1)**. Décochez la visibilité de dem (Z) et du maillage importé (ou ouvert) avec un clic droit sur ces éléments dans l'arborescence 2D View (1) et **désélectionner** l'entrée **Visible**. Ainsi, seule la maille interpolée en hauteur doit être visible maintenant, comme indiqué dans {numref}`Fig. %s <bk-mesh-interpolated>`. Si l'interpolation ** a été réussie, le maillage est affiché dans une variété de couleurs (rainbow)**. Autrement, **si le maillage est** complètement, monotone **monochrome (rouge)**, l'altitude **interpolation** n'a pas été **succès** et doit être répétée (le modèle numérique ne peut fonctionner correctement sans information d'altitude).
+
+```{figure} ../img/telemac/bk-mesh-interpolated.png
+:alt: bluekenue 2dm t3s mesh interpolate height elevation 2D interpolator map object
+:name: bk-mesh-interpolated
+
+Le maillage interpolé en hauteur dans la vue 2D (1) avec indication d'actions de glisser-déposer pour exécuter la cartographie d'objet avec un nouvel objet interpolateur 2D.
+```
+
+```{admonition} Troubles with creating the Selafin mesh and or the height interpolation?
+:class: tip
+Téléchargez le maillage BOTTOM et l'objet SELAFIN du dépôt de matériaux supplémentaires:
+
+* [Download BOTTOM.t3s](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/BOTTOM.t3s);
+* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (**EPSG:6173** - ETRS 89 / UTM zone 33N).
+```
+
+```{admonition} Roughness zone interpolation.
+:class: tip
+
+Comme pour l'élévation, les valeurs de frottement peuvent être attribuées à des zones créées avec une rugosité différente dans le domaine étudié. En savoir plus sur {ref}`roughness (friction) zones <tm-friction-zones>`.
+```
+
+(bk-bc)=
+## Conditions limites (Conlim - CLI)
+
+### Créer un objet Conlim
+TELEMAC doit savoir traiter les bords extérieurs du modèle (mesh). À cette fin, les conditions limites doivent être attribuées à tous les nœuds qui constituent le contour `*.slf`mesh :
+
+* Aller à **Fichier** > **Nouveau** > **Conditions limites (Conlim )...** et un nouvel objet 2D Interpolator** apparaîtra dans le **Data Items** du WorkSpace.
+
+```{image} ../img/telemac/bk-create-bc.png
+```
+
+* Dans la fenêtre contextuelle d'ouverture (**Disponible t3s Objets**), sélectionnez le maillage BOTTOM** (c.-à-d. le maillage avec information d'élévation) et cliquez sur **OK**. Un nouvel objet **BOTTOM BC** se produira dans l'arborescence **Data Items** de l'espace de travail.
+* Faites glisser le nouvel objet **BOTTOM BC** sur la vue **2D (1)**, qui sera **enable à la *prescription* des types de conditions limites** (détails dans la section suivante).
+
+{numref}`Figure %s <bk-bc-types>` illustre le nouvel objet BOTTOM BC dans la vue 2D (1) et indique où les limites en amont et en aval seront appliquées dans la section suivante.
+
+```{figure} ../img/telemac/bk-bc-types.png
+:alt: bluekenue boundary conditions conlim create upstream downstream
+:name: bk-bc-types
+
+Le nouvel objet Conditions des limites (Conlim) (BOTTOM BC) dans la vue 2D (1) avec un aperçu qualitatif de la position des limites en amont et en aval où le débit prescrit (Q) et le débit prescrit (Q) et la profondeur (H) seront appliqués plus tard dans la configuration TELEMAC.
+```
+
+Pour **enregistrer le nouvel objet BOTTOM BC**, mettez-le en évidence dans l'arborescence **Data Items** et cliquez sur le disque <img src="../img/telemac/bk-sym-save.png"> symbole. Définir un nom de fichier comme **`boundaries.bc2`**. À la suite de l'enregistrement de l'objet, l'objet BOTTOM BC prend le nouveau nom de fichier (par exemple, **borderies**).
+
+(bk-liquid-bc)=
+### Définir les limites des liquides
+
+Le type de limite par défaut de l'objet **boundaires** est **Fermé la limite (mur)**. Pour permettre les flux de masse (c.-à-d. l'eau, les sédiments et/ou le traceur) à travers le modèle, au moins deux ouvertures doivent être tirées dans la limite fermée. À cette fin, il faut définir au moins un écoulement et une limite ouverte pour les liquides. Ce tutoriel utilise ce nombre minimum de limites ouvertes requises (c.-à-d. une entrée en amont et une sortie en aval), qui sont indiquées à {numref}`Fig. %s <bk-bc-types>`.
+
+```{admonition} Liquid boundaries must be defined in BlueKenue
+Même si les limites de liquide sont déjà définies dans QGIS (voir {ref}`QGIS section on Liquid Boundaries <tm-bm-liquid-boundaries>`), il est toujours nécessaire de définir les limites de liquide dans BlueKenue<sup>TM</sup> pour s'adapter aux numéros de noeud (ID) du maillage Selafin.
+```
+
+La limite en amont (entrée) du liquide constituera une limite **Open avec Q et H** prescrits (décharge et profondeur d'eau correspondant à un {term}`stage-discharge relation <Stage-discharge relation>`) avec le code `5 5 5` et la limite en aval (liquide) constituera une limite **Open avec H** prescrit avec le code `5 4 4` (c.-à-d., profondeur d'eau prescrite). Ces types de conditions limites sont nécessaires pour une initialisation sèche du modèle. Dans la pratique, la limite en aval devrait être située à une station de mesure où un {term}`stage-discharge relation <Stage-discharge relation>` a été étalonné avec des données historiques. Pour calculer en retour la rugosité moyenne transversale à partir d'un {term}`stage-discharge relation <Stage-discharge relation>`, jetez un oeil à la formule {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>`.
+
+````{admonition} Drawing boundary conditions for mass balance
+
+Les paramètres des conditions limites affectent le bilan massique, qui est un critère crucial pour un modèle numérique sonore. En savoir plus sur la mise en place {ref}`boundary conditions for mass balance<foc-mass-bc>`. Aussi, pour éviter les problèmes de calcul, définir les limites de liquide uniquement le long du bas du canal comme illustré dans le {numref}`Fig. %s <draw-inflow-pre-slf>` ci-dessous.
+
+```{figure} ../img/telemac/cross-section-sx.png
+:alt: draw bluekenue liquid boundary conditions conlim upstream inflow
+:name: draw-inflow-pre-slf
+:width: 75%
+
+La partie rouge soulignée de cette section transversale qualitative devrait être définie comme étant la condition limite d'entrée (en amont). Il ne faut pas inclure les nœuds de mesh sur les rives et sur les plaines inondables.
+```
+````
+
+
+Pour assigner les deux lignes limites liquides, zoomez dans les régions en aval et en amont indiquées à {numref}`Fig. %s <bk-bc-types>` et créez les deux limites comme suit (votre onglet) :
+
+`````{tab-set}
+````{tab-item} Upstream boundary
+* Zoom dans la région **en amont** indiquée à {numref}`Fig. %s <bk-bc-types>`.
+* Localiser les banques de canaux principaux correspondant aux lignes d'arrêt tracées dans QGIS ({ref}`see above <tm-bm-breaklines>`) ou BlueKenue<sup>TM</sup> ({ref}`see above <bk-draw-ol>`).
+* ** Double-clic** sur un **node à une banque** de l'esquisse du modèle (quelle que soit la banque), puis **Hold** la touche **Shift** et **double-clic** sur un **node à l'autre banque** pour mettre en évidence la ligne d'entrée (pourpre) (voir {numref}`Fig. %s <bk-boundary-us>`).
+* **Cliquez-droit** sur la ligne d'entrée pourpre et sélectionnez **Ajouter le segment de bordure**.
+* Dans la fenêtre d'ouverture (**CONLIM Boundary Segment Editor**) faire les paramètres suivants:
+* Définissez **Nom frontières** comme `upstream`.
+* Dans le champ **Code frontières**, sélectionnez `Open boundary with prescribed Q and H` (`5 5 5`).
+* Gardez toutes les autres valeurs par défaut et cliquez sur **OK**.
+* **Enregistrer** l'objet **boundaires** en cliquant sur le disque <img src="../img/telemac/bk-sym-save.png"> et confirmer l'écrasement `boundaries.bc2` (i.e., cliquez **Oui**).
+
+**Transférer à** l'onglet des limites **Downstream** pour définir les conditions de sortie selon {numref}`Fig. %s <bk-boundary-ds>`.
+
+```{figure} ../img/telemac/bk-bm-boundary-us.png
+:alt: bluekenue boundary conditions conlim create upstream prescribed discharge flow
+:name: bk-boundary-us
+
+La définition de la limite en amont. Double-cliquez sur un nœud à une banque, puis maintenez la touche **Shift** et double-cliquez sur un nœud à l'autre banque pour mettre en évidence la ligne d'entrée (pure). Notez que BOTTOM BC pourrait apparaître avec le nom *boundaries* si l'objet était enregistré sous *boundaries.bc2*.
+```
+````
+
+````{tab-item} Downstream boundary
+* Zoom dans la région **en aval** indiquée à {numref}`Fig. %s <bk-bc-types>`.
+* Localiser les banques de canaux principaux correspondant aux lignes d'arrêt tracées dans QGIS ({ref}`see above <tm-bm-breaklines>`) ou BlueKenue<sup>TM</sup> ({ref}`see above <bk-draw-ol>`), qui sont indiquées par les lignes à points rouges dans {numref}`Fig. %s <bk-boundary-ds>`.
+* ** Double-clic** sur un **noeud à une banque** de l'esquisse du modèle (quelle que soit la banque), puis **Hold** la touche **Shift** et **double-clic** sur un **noeud à l'autre banque** pour mettre en évidence la ligne de sortie (pourpre) (voir {numref}`Fig. %s <bk-boundary-ds>`).
+* **Cliquez-droit** sur la ligne de sortie pourpre et sélectionnez **Ajouter le segment de bordure**.
+* Dans la fenêtre d'ouverture (**CONLIM Boundary Segment Editor**) faire les paramètres suivants:
+* Définissez **Nom frontières** comme `downstream`.
+* Dans le champ **Code frontières**, sélectionnez `Open boundary with prescribed H` (`5 4 4`).
+* Gardez toutes les autres valeurs par défaut et cliquez sur **OK**.
+* **Enregistrer** l'objet **boundaires** en cliquant sur le disque <img src="../img/telemac/bk-sym-save.png"> et confirmer l'écrasement `boundaries.bc2` (c.-à-d., cliquer **Oui**).
+
+```{figure} ../img/telemac/bk-bm-boundary-ds.png
+:alt: bluekenue boundary conditions conlim create upstream prescribed discharge depth flow
+:name: bk-boundary-ds
+
+Définition de la limite en aval. Double-cliquez sur un noeud à une banque, puis maintenez la touche **Shift** et double-cliquez sur un noeud à l'autre banque pour mettre en évidence la ligne de sortie (pure). Notez que BOTTOM BC pourrait apparaître avec le nom *boundaries* si l'objet était enregistré sous *boundaries.bc2*.
+```
+````
+`````
+
+```{admonition} Number of nodes
+:class: important
+
+Assurez-vous que chaque limite liquide a au moins 5-10 nœuds et que chaque nombre de nœuds entrants est approximativement égal au nombre de nœuds sortants (en somme), également lors de la définition de multiples limites d'entrée/sortie. Lisez d'autres conseils sur le dessin des limites à l'honneur sur {ref}`boundary conditions <tm-foc-draw-bc>`.
+```
+
+
+En fin de compte, TELEMAC aura besoin d'un fichier **`.cli` (*Table Conlim*)** qui peut être créé par
+* mettant en évidence l'entrée **boundaires (LIHBOR)** de l'objet **boundaires** (ou BOTTOM BC) dans l'arborescence **Data Items** et
+* appuyer sur le disque <img src="../img/telemac/bk-sym-save.png"> (voir {numref}`Fig. %s <bk-bc-fin>`).
+
+Enregistrer le fichier de limites, par exemple, sous **boundarys.cli**.
+
+```{figure} ../img/telemac/bk-bc-fin.png
+:alt: bluekenue liquid boundary conditions conlim upstream inflow outflow downstream cli
+:name: bk-bc-fin
+
+Les conditions de limite finalisées sont enregistrées dans un fichier `.cli` en mettant en évidence l'entrée **boundaires (LIHBOR)** de l'objet **boundaires** (ou BOTTOM BC) dans l'arborescence **Data Items**.
+```
+
+```{admonition} Troubles with creating and defining the liquid boundaries?
+:class: tip
+Téléchargez les **boundaires** (BOTTOM BC) BlueKenue<sup>TM</sup> et les limites TELEMAC (LIHBOR)-CLI du dépôt de matériaux supplémentaires :
+
+* [Download boundaries.bc2](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.bc2);
+* [Download boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli).
+```
+
+Les fichiers Selafin/Serafin (`*.slf`) et les conditions limites (`*.cli`) sont les principaux produits nécessaires à l'exécution de tout autre tutoriel TELEMAC basé sur SELAFIN dans ce livre électronique. Le tutoriel {ref}`steady 2d <telemac2d-steady>` assigne une décharge constante à l'entrée en amont et une décharge constante plus profondeur constante aux limites en aval (sortie). Pour effectuer un calcul instable, les débits stables peuvent être remplacés par un fichier texte `*.qsl` ASCII. À cette fin, le fichier `.cli` peut être facilement adapté à tout moment plus tard avec une base {ref}`text editor <npp>`.

@@ -1,0 +1,1 @@
+import{a as o,b as e}from"/fr/build/_shared/chunk-D4I4FMU3.js";import"/fr/build/_shared/chunk-ILONG3JM.js";import"/fr/build/_shared/chunk-JMV5HLZN.js";import"/fr/build/_shared/chunk-FZ2S7OYD.js";import"/fr/build/_shared/chunk-JEM6JXYA.js";import"/fr/build/_shared/chunk-34XIY2DH.js";import"/fr/build/_shared/chunk-OZE3FFNP.js";export{o as InfoModule,e as createInfoServices};

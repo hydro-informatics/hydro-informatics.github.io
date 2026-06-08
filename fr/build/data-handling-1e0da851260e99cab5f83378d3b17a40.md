@@ -1,0 +1,7 @@
+---
+description: Import and export data from text files in Python, and handle numeric, tabular, and datetime data using the NumPy and pandas libraries.
+---
+
+# Data and File Handling
+
+ Import data from basic text files and write files with Python. Handle numeric, tabular and date-time formatted data with the NumPy and pandas packages.
