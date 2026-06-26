@@ -24,7 +24,7 @@ On Debian 12, ask your system administrator to sudo-install the following packag
 ```bash
 sudo apt update
 
-sudo apt install -y python3-numpy python3-scipy python3-matplotlib python3-pip python3-dev python3-venv libgl1-mesa-glx libegl1-mesa libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6 python-is-python3 git git-lfs gfortran build-essential cmake dialog gedit gedit-plugins libopenmpi-dev openmpi-bin libhdf5-dev hdf5-tools libmetis-dev libmumps-dev libmumps-seq-dev libscalapack-openmpi-dev libmedc-dev libmed-tools python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils python3-h5py python3-imagesize clang python3-netcdf4 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libcppunit-dev doxygen libeigen3-dev libfreeimage-dev libgraphviz-dev libjsoncpp-dev liblapacke-dev libxml2-dev llvm-dev libnlopt-dev libnlopt-cxx-dev libqwt-qt5-dev libfontconfig1-dev libglu1-mesa-dev libxcb-dri2-0-dev libxkbcommon-dev libxkbcommon-x11-dev libxi-dev libxmu-dev libxpm-dev libxft-dev libicu-dev libsqlite3-dev libxcursor-dev libtbb-dev libqt5svg5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libpng-dev libtiff-dev libgeotiff-dev libgif-dev libgeos-dev libgdal-dev texlive-latex-base libxml++2.6-dev libfreetype6-dev libgmp-dev libmpfr-dev libxinerama-dev python3-sip-dev tcl-dev tk-dev
+sudo apt install -y python3-numpy python3-scipy python3-matplotlib python3-pip python3-dev python3-venv libgl1-mesa-glx libegl1-mesa libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6 python-is-python3 git git-lfs gfortran build-essential cmake dialog gedit gedit-plugins libopenmpi-dev openmpi-bin libhdf5-dev hdf5-tools libmetis-dev libmumps-dev libmumps-seq-dev libscalapack-openmpi-dev libmedc-dev libmed-dev libmedimport-dev libmed-tools python3-pytest-cython python3-sphinx python3-alabaster python3-cftime libcminpack1 python3-docutils python3-h5py python3-imagesize clang python3-netcdf4 python3-nlopt python3-nose python3-numpydoc python3-patsy python3-psutil liblzf1 python3-stemmer python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels python3-toml pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libcppunit-dev doxygen libeigen3-dev libfreeimage-dev libgraphviz-dev libjsoncpp-dev liblapacke-dev libxml2-dev llvm-dev libnlopt-dev libnlopt-cxx-dev libqwt-qt5-dev libfontconfig1-dev libglu1-mesa-dev libxcb-dri2-0-dev libxkbcommon-dev libxkbcommon-x11-dev libxi-dev libxmu-dev libxpm-dev libxft-dev libicu-dev libsqlite3-dev libxcursor-dev libtbb-dev libqt5svg5-dev libqt5x11extras5-dev qtxmlpatterns5-dev-tools libpng-dev libtiff-dev libgeotiff-dev libgif-dev libgeos-dev libgdal-dev texlive-latex-base libxml++2.6-dev libfreetype6-dev libgmp-dev libmpfr-dev libxinerama-dev python3-sip-dev tcl-dev tk-dev
 ```
 
 ````
@@ -34,7 +34,7 @@ On Ubuntu 24 (or Mint 22), ask your system administrator to sudo-install the fol
 
 ```bash
 sudo apt update
-sudo apt install -y --no-install-recommends  python3-numpy python3-scipy python3-matplotlib python3-pip python3-dev python3-venv libgl1 libegl1 libxrandr2 libxss1 libxcursor1 libxcomposite1 alsa-base libxi6 libxtst6  python-is-python3 git git-lfs gfortran build-essential cmake dialog gedit gedit-plugins  libmedc11t64 libmedc-dev libmed-tools libmed11 libmed-dev libmedimport0v5 libmedimport-dev  libopenmpi-dev openmpi-bin libhdf5-dev hdf5-tools libmetis-dev libmumps-seq-dev libmumps-dev  libscalapack-openmpi-dev python3-pytest-cython python3-sphinx python3-alabaster python3-cftime  libcminpack1 python3-docutils libfreeimage3 python3-h5py python3-imagesize liblapacke  clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc  python3-patsy python3-psutil libtbb12 libxml++2.6-2v5 liblzf1 python3-stemmer  python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels  python3-toml pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libcppunit-dev  doxygen libeigen3-dev libfreeimage-dev libgraphviz-dev libjsoncpp-dev libxml2-dev  llvm-dev libnlopt-dev libnlopt-cxx-dev libqwt-qt5-dev libfontconfig1-dev libglu1-mesa-dev  libxcb-dri2-0-dev libxkbcommon-dev libxkbcommon-x11-dev libxi-dev libxmu-dev libxpm-dev  libxft-dev libicu-dev libsqlite3-dev libxcursor-dev libtbb-dev libqt5svg5-dev  libqt5x11extras5-dev qtxmlpatterns5-dev-tools libpng-dev libtiff5-dev libgeotiff-dev  libgif-dev libgeos-dev libgdal-dev texlive-latex-base libxml++2.6-dev libfreetype6-dev  libgmp-dev libmpfr-dev libxinerama-dev python3-sip-dev tcl-dev tk-dev
+sudo apt install -y --no-install-recommends  python3-numpy python3-scipy python3-matplotlib python3-pip python3-dev python3-venv libgl1 libegl1 libxrandr2 libxss1 libxcursor1 libxcomposite1 alsa-base libxi6 libxtst6  python-is-python3 git git-lfs gfortran build-essential cmake dialog gedit gedit-plugins  libmedc11t64 libmedc-dev libmed-tools libmed11 libmed-dev libmedimport0v5 libmedimport-dev  libopenmpi-dev openmpi-bin libhdf5-dev libhdf5-openmpi-dev hdf5-tools libmetis-dev libmumps-seq-dev libmumps-dev  libscalapack-openmpi-dev python3-pytest-cython python3-sphinx python3-alabaster python3-cftime  libcminpack1 python3-docutils libfreeimage3 python3-h5py python3-imagesize liblapacke  clang python3-netcdf4 libnlopt0 libnlopt-cxx0 python3-nlopt python3-nose python3-numpydoc  python3-patsy python3-psutil libtbb12 libxml++2.6-2v5 liblzf1 python3-stemmer  python3-sphinx-rtd-theme python3-sphinxcontrib.websupport sphinx-intl python3-statsmodels  python3-toml pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libcppunit-dev  doxygen libeigen3-dev libfreeimage-dev libgraphviz-dev libjsoncpp-dev libxml2-dev  llvm-dev libnlopt-dev libnlopt-cxx-dev libqwt-qt5-dev libfontconfig1-dev libglu1-mesa-dev  libxcb-dri2-0-dev libxkbcommon-dev libxkbcommon-x11-dev libxi-dev libxmu-dev libxpm-dev  libxft-dev libicu-dev libsqlite3-dev libxcursor-dev libtbb-dev libqt5svg5-dev  libqt5x11extras5-dev qtxmlpatterns5-dev-tools libpng-dev libtiff5-dev libgeotiff-dev  libgif-dev libgeos-dev libgdal-dev texlive-latex-base libxml++2.6-dev libfreetype6-dev  libgmp-dev libmpfr-dev libxinerama-dev python3-sip-dev tcl-dev tk-dev
 ```
 ````
 `````
@@ -53,6 +53,14 @@ TELEMAC will be downloaded (git-cloned) from its GitLab repository into a direct
 ### SALOME
 
 Choosing the right version of SALOME cannot be reasonably automated, so find and download the latest version of SALOME, and save it in the ROOT directory where you want to install Telemac.
+
+```{admonition} How TELEMAC binds to MED files and SALOME
+:class: important
+
+TELEMAC reads and writes `.med` meshes through its HERMES layer, which is compiled against the **system MED libraries** (the `libmedc-dev` / `libmed-dev` / `libmedimport-dev` packages) - **not** against the MED libraries bundled inside SALOME. SALOME ships its own MED built with a different ABI (64-bit `med_int` and a different HDF5 build), and linking or loading it together with TELEMAC triggers `size of symbol 'med_' changed` link warnings and the runtime error `HERMES_WRONG_MED_FORMAT_ERR`.
+
+SALOME is therefore used only for the GUI and mesh tools. The single piece the installer borrows from SALOME is the Fortran header `med_parameter.hf`, which Debian/Ubuntu omit from `libmed-dev` (a packaging gap); it contains constants only and is ABI-neutral. For this reason, **install SALOME (i.e., provide `--salome-tar`) before running the installer if you want MED support** - otherwise the installer cannot find `med_parameter.hf` and MED I/O is disabled in the generated config. The generated `pysource.*.sh` additionally removes any SALOME MED/HDF5 directories from `LD_LIBRARY_PATH` at runtime, so the system MED is always the one that gets loaded.
+```
 
 1. Confirm your Linux version: 
   * Debian: cat /etc/os-release
@@ -75,7 +83,7 @@ Choosing the right version of SALOME cannot be reasonably automated, so find and
 ## Run installers
 
 ### Installation pattern
-Note that you might need **admin (sudo) rights** for installing additional system packages and that the installation can take a while because the script downloads Telemac. The script installs by default Telemac v9.0.0. To install another version, use the `--tag "TAG"` option when running the scripts; latest tags can be found at [https://gitlab.pam-retd.fr/otm/telemac-mascaret.git](https://gitlab.pam-retd.fr/otm/telemac-mascaret.git).
+Note that you might need **admin (sudo) rights** for installing additional system packages and that the installation can take a while because the script downloads Telemac. The script installs by default Telemac v9.1.1. To install another version, use the `--tag "TAG"` option when running the scripts; latest tags can be found at [https://gitlab.pam-retd.fr/otm/telemac-mascaret.git](https://gitlab.pam-retd.fr/otm/telemac-mascaret.git). Both installers also install the system MED packages and compile TELEMAC automatically at the end of the run (unless you pass `--skip-compile`).
 
 To run the installer, tap (replace `ROOT` with your ROOT directory and `SALOME-x.xx.xSRC.tar.gz` with the name of the SALOME tarball that you downloaded):
 
@@ -87,14 +95,12 @@ chmod +x telemac_debian12_installer.sh
 ./telemac_debian12_installer.sh --root "ROOT" --salome-tar "ROOT/SALOME-x.xx.xSRC.tar.gz"
 ```
 
-After finishing the installation, the Telemac environment can be loaded and compiled as follows:
+The installer already compiled TELEMAC at the end of its run (unless you passed `--skip-compile`). To load the environment - and optionally rebuild from scratch - run:
 ```bash
 cd ROOT/telemac-mascaret/configs/
 source pysource.debian12.sh
-compile_telemac.py --clean
+compile_telemac.py --clean   # only needed for a fresh rebuild
 ```
-
-Note that recompiling is necessary in the case of the Debian12 installer (not required for Ubuntu/Mint).
 
 ````
 
@@ -140,7 +146,7 @@ Assume you are working on Debian 12, accordingly you downloaded `SALOME-9.15.0-n
 ```bash
 cd /home/HyInfo/opt
 chmod +x telemac_debian12_installer.sh
-./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz" --salome-md5 "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
+./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz" --salome-md5 "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz.md5"
 ```
 
 Now, activate the Telemac environment and compile as follows:
@@ -158,7 +164,7 @@ Assume you are working on Debian 12, accordingly you downloaded `SALOME-9.15.0-n
 ```bash
 cd /home/HyInfo/opt
 chmod +x telemac_debian12_installer.sh
-./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --tag="v9.5.0" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz" --salome-md5 "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz"
+./telemac_debian12_installer.sh --root "/home/HyInfo/opt" --tag "v9.5.0" --salome-tar "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz" --salome-md5 "/home/HyInfo/opt/SALOME-9.15.0-native-DB12-SRC.tar.gz.md5"
 ```
 
 Now, activate the Telemac environment and compile Telemac as follows:
