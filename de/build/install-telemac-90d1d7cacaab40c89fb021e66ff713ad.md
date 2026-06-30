@@ -390,8 +390,9 @@ sudo apt install pyqt5-dev pyqt5-dev-tools libboost-all-dev libcminpack-dev libc
    * Wählen Sie die neueste Version mit dem Ubuntu Build (das entspricht der Mint-Basis); oder wählen Sie die weniger häufig aktualisierte "Linux Universal"
 
 3. Überprüfen Sie die Prüfsumme: von SALOMEs md5-Seite, holen Sie die passende `.md5`-Datei für Ihr Archiv und überprüfen Sie lokal
-   * Beispiel für den 9.15-Terball: `md5sum SALOME-9.15.0.tar.gz`
-   * Vergleiche mit "SALOME-9.15.0.tar.gz.md5" aus der [md5 page](https://www.salome-platform.org/?page_id=2818) - **nicht überspringen**
+   * Beispiel für den 9.15-Terball: Im Download-Verzeichnis des Tarballs laufen Sie `md5sum SALOME-9.15.0.tar.gz` (terminal)
+   * Gehen Sie zu SALOMEs [md5 page](https://www.salome-platform.org/?page_id=2818), wählen Sie die entsprechende md5-Datei und überprüfen Sie, ob deren Inhalte genau der Terminalantwort entsprechen
+   * ** Nicht überspringen!**
 
 4. Extrahieren Sie irgendwo sauber und gesund; zum Beispiel als `sudo` für das gesamte System (Anpassen Sie den Namen, wenn Sie ein anderes Archiv gewählt haben), oder folgen Sie diesem Workflow fow Installation TELEMAC in `/home/HyInfo/opt/`:
   

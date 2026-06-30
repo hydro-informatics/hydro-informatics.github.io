@@ -72,13 +72,22 @@ SALOME wird daher nur für die GUI- und Netzwerkzeuge verwendet. Das Einzelstüc
   * Wählen Sie die neueste Version mit dem Debian/Ubuntu Build (das entspricht der Ubuntu/Mint-Basis); oder wählen Sie die weniger häufig aktualisierte "Linux Universal"
 
 3. Überprüfen Sie die Prüfsumme: von SALOMEs md5-Seite, holen Sie die passende `.md5`-Datei für Ihr Archiv und überprüfen Sie lokal
-  * Beispiel für den 9.15-Terball: `md5sum SALOME-9.15.0.tar.gz`
-  * Vergleiche mit "SALOME-9.15.0.tar.gz.md5" aus der [md5 page](https://www.salome-platform.org/?page_id=2818) - **nicht überspringen!**
+  * Beispiel für den 9.15-Terball: Im Download-Verzeichnis des Tarballs laufen Sie `md5sum SALOME-9.15.0.tar.gz` (terminal)
+  * Gehen Sie zu SALOMEs [md5 page](https://www.salome-platform.org/?page_id=2818), wählen Sie die entsprechende md5-Datei und überprüfen Sie, ob deren Inhalte genau der Terminalantwort entsprechen
+  * ** Nicht überspringen!**
 
 ### Die Installationsskripte erhalten
 
-* Debian 12-Benutzer herunterladen [telemac debian12 installer.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian12/telemac_debian12_installer.sh) und speichern es im ROOT-Verzeichnis.
-* Mint 22 / Ubuntu 24 Benutzer herunterladen [telemac ubuntu24 installer.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/ubuntu24-mint22/telemac_ubuntu24_installer.sh) und speichern es im ROOT-Verzeichnis.
+* Debian 12-Benutzer herunterladen:
+  * [telemac debian12 installer.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian12/telemac_debian12_installer.sh) und speichern es im ROOT-Verzeichnis.
+  * [systel.debian12.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian12/systel.debian12.cfg) und speichern es im ROOT-Verzeichnis.
+  * [pysource.debian12.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/debian12/pysource.debian12.sh) und speichern es im ROOT-Verzeichnis.
+* Mint 22 / Ubuntu 24 Benutzer herunterladen:
+  * [telemac ubuntu24 installer.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/ubuntu24-mint22/telemac_ubuntu24_installer.sh) und speichern es im ROOT-Verzeichnis.
+  * [systel.mint22.cfg](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/ubuntu24-mint22/systel.mint22.cfg) und speichern es im ROOT-Verzeichnis.
+  * [pysource.mint22.sh](https://raw.githubusercontent.com/Ecohydraulics/telemac-helpers/main/ubuntu24-mint22/pysource.mint22.sh) und speichern es im ROOT-Verzeichnis.
+
+Stellen Sie sicher, dass alle Dateien im gleichen (ROOT Installation) Verzeichnis auf Ihrem Computer sind.
 
 ## Installateure ausführen
 
