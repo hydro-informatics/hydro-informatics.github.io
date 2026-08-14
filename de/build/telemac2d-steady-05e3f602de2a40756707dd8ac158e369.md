@@ -967,6 +967,9 @@ python -m pip install numpy
 
 Danach `cd` in Ihr TELEMAC-Modellverzeichnis (wo die `.slf`-Datei lebt) und erstellen Sie ein neues Python-Skript namens `slf2vtk.py` mit den folgenden Inhalten. Achten Sie darauf, `PPUTILS_DIR` an das klonierte pputils-Verzeichnis zu setzen und `input_slf="results.slf"` und `output_template="vtk/results.vtk"` an Ihre Bedürfnisse zu ändern:
 
+````{admonition} Click to unroll Python code
+:class: note, dropdown
+
 ```python
 """slf2vtk.py"""
 from pathlib import Path
@@ -1058,6 +1061,7 @@ if __name__ == "__main__":
     for path in generated_files:
         print(path)
 ```
+````
 
 Führen Sie es dann in einem Terminal aus Ihrem TELEMAC-Modellverzeichnis aus:
 
@@ -1068,6 +1072,39 @@ python slf2vtk.py
 The value given as `output_template` is a filename template rather than the name of one final file. For instance, `vtk/results.vtk` produces `vtk/results00000.vtk`, `vtk/results00001.vtk`, and so on; one file for each time step in the `.slf` file.
 
 Standardmäßig verwendet das Skript `sel2vtk_bin.py`, um binäre VTK-Dateien zu schreiben. Setzen Sie `binary=False`, um ASCII VTK-Dateien zu schreiben. Um nur einen Teil der Ergebnisreihe zu konvertieren, uncomment `start` und `end`; diese Werte sind Null-basierte, inklusive Zeitschritt-Indizes anstatt Simulationszeiten.
+
+### Belastung TELEMAC-3D Geschwindigkeiten in ParaView
+
+Die im vorhergehenden Workflow erzeugten VTK-Dateien enthalten die TELEMAC-3D Geschwindigkeitskomponenten \(u\), \(v\) und \(w\). Diese Größen stellen die unterschriebenen Geschwindigkeiten in der \(x\)-, \(y\)- bzw. \(z\)-Richtung dar. Die entsprechende dreidimensionale Geschwindigkeitsgröße ist
+
+$$
+|\mathbf{u}| = \sqrt{u^2 + v^2 + w^2}.
+$$
+
+Installieren Sie auf einem Debian-Computer ParaView aus dem Debian-Repository, wenn es nicht bereits verfügbar ist, und öffnen Sie dann die konvertierte Dateireihe aus dem Modellverzeichnis:
+
+```bash
+sudo apt update
+sudo apt install paraview
+
+cd /path/to/telemac/model/vtk
+paraview --data="$PWD/results..vtk"
+```
+
+Im letzten Befehl ersetzen die beiden aufeinanderfolgenden Perioden den nummerierten Teil von Dateien wie `results00000.vtk`, `results00001.vtk` und `results00002.vtk`. ParaView erkennt dieses Namensmuster normalerweise als zeitliche Dateiserie an. Nachdem der Leser im **Pipeline Browser* erscheint, wählen Sie es aus und klicken Sie auf **Apply***.
+
+Wenn `sel2vtk_bin.py` oder `sel2vtk.py` die TELEMAC-Variablen `VELOCITY U`, `VELOCITY V` und `VELOCITY W` erfasst, [pputils](https://codeberg.org/pprodano/pputils) kombiniert sie in den Punkt-Datenvektor `Velocity`. Um die Gesamtgeschwindigkeit direkt anzuzeigen, wählen Sie **Velocity** aus dem **Coloring**-Menü und wählen Sie dann **Magnitude***. Die Vektorkomponenten **X*, **Y* und **Z* entsprechen \(u\), \(v\) bzw. \(w\). Die Original-Scalar-Arrays sind auch als `VELOCITY_U`, `VELOCITY_V` und `VELOCITY_W` erhältlich.
+
+Wenn die Geschwindigkeitsgröße als separates Array für Clipping, Schwellung, Probing oder Export benötigt wird, wählen Sie den VTK-Reader im **Pipeline Browser*, dann wählen Sie **Filter > Common Calculator***. Setzen Sie **Erwachsener Array Name* an `VELOCITY_MAGNITUDE`, bestätigen Sie, dass der Datenverband **Point Data** ist und geben Sie Folgendes ein:
+
+```text
+mag(Velocity)
+```
+
+Klicken Sie auf **Apply**, dann färben Sie den Calculator von `VELOCITY_MAGNITUDE`. Für eine Animation verwenden Sie **Rescale to Data Range over All Timesteps**, so dass eine Farbskala während der Simulation konsequent angewendet wird. Diese Operation liest jeden Zeitschritt und kann daher zusätzliche Zeit für einen großen TELEMAC-3D-Ergebnissatz benötigen.
+
+Die Datei-Serie Syntax, Vektor Färbung und Calculator-Expression folgen der [ParaView data-loading](https://docs.paraview.org/en/latest/UsersGuide/dataIngestion.html), [color-mapping](https://docs.paraview.org/en/latest/ReferenceManual/colorMapping.html) und [Calculator](https://docs.paraview.org/en/latest/UsersGuide/filteringData.html#calculator)Dokumentation. ParaView ist als offizielles [Debian Package](https://packages.debian.org/stable/paraview).
+
 
 
 (tm2d-init-wet)=

@@ -967,6 +967,9 @@ python -m pip install numpy
 
 After that, `cd` into your TELEMAC model directory (where the `.slf` file lives) and create a new Python script named `slf2vtk.py` with the following contents. Make sure to set `PPUTILS_DIR` to the cloned pputils directory and modify `input_slf="results.slf"` and `output_template="vtk/results.vtk"` to your needs:
 
+````{admonition} Click to unroll Python code
+:class: note, dropdown
+
 ```python
 """slf2vtk.py"""
 from pathlib import Path
@@ -1058,6 +1061,7 @@ if __name__ == "__main__":
     for path in generated_files:
         print(path)
 ```
+````
 
 Then run it in a terminal from your TELEMAC model directory:
 
@@ -1068,6 +1072,39 @@ python slf2vtk.py
 The value given as `output_template` is a filename template rather than the name of one final file. For instance, `vtk/results.vtk` produces `vtk/results00000.vtk`, `vtk/results00001.vtk`, and so on; one file for each time step in the `.slf` file.
 
 By default, the script uses `sel2vtk_bin.py` to write binary VTK files. Set `binary=False` to write ASCII VTK files instead. To convert only part of the result series, uncomment `start` and `end`; these values are zero-based, inclusive time-step indices rather than simulation times.
+
+### Load TELEMAC-3D Velocities in ParaView
+
+The VTK files generated in the preceding workflow contain the TELEMAC-3D velocity components \(u\), \(v\), and \(w\). These quantities represent the signed velocities in the \(x\)-, \(y\)-, and \(z\)-directions, respectively. The corresponding three-dimensional velocity magnitude is
+
+$$
+|\mathbf{u}| = \sqrt{u^2 + v^2 + w^2}.
+$$
+
+On a Debian computer, install ParaView from the Debian repository if it is not already available, then open the converted file series from the model directory:
+
+```bash
+sudo apt update
+sudo apt install paraview
+
+cd /path/to/telemac/model/vtk
+paraview --data="$PWD/results..vtk"
+```
+
+In the final command, the two consecutive periods replace the numbered part of files such as `results00000.vtk`, `results00001.vtk`, and `results00002.vtk`. ParaView normally recognizes this naming pattern as a temporal file series. After the reader appears in the **Pipeline Browser**, select it and click **Apply**.
+
+When `sel2vtk_bin.py` or `sel2vtk.py` detects the TELEMAC variables `VELOCITY U`, `VELOCITY V`, and `VELOCITY W`, [pputils](https://codeberg.org/pprodano/pputils) combines them into the point-data vector `Velocity`. To display the total speed directly, select **Velocity** from the **Coloring** menu and then select **Magnitude**. The vector components **X**, **Y**, and **Z** correspond to \(u\), \(v\), and \(w\), respectively. The original scalar arrays also remain available as `VELOCITY_U`, `VELOCITY_V`, and `VELOCITY_W`.
+
+If the velocity magnitude is required as a separate array for clipping, thresholding, probing, or export, select the VTK reader in the **Pipeline Browser**, then choose **Filters > Common > Calculator**. Set **Result Array Name** to `VELOCITY_MAGNITUDE`, confirm that the data association is **Point Data**, and enter:
+
+```text
+mag(Velocity)
+```
+
+Click **Apply**, then color the Calculator output by `VELOCITY_MAGNITUDE`. For an animation, use **Rescale to Data Range over All Timesteps** so that one color scale is applied consistently throughout the simulation. This operation reads every time step and may therefore require additional time for a large TELEMAC-3D result set.
+
+The file-series syntax, vector coloring, and Calculator expression follow the [ParaView data-loading](https://docs.paraview.org/en/latest/UsersGuide/dataIngestion.html), [color-mapping](https://docs.paraview.org/en/latest/ReferenceManual/colorMapping.html), and [Calculator](https://docs.paraview.org/en/latest/UsersGuide/filteringData.html#calculator) documentation. ParaView is available as an official [Debian package](https://packages.debian.org/stable/paraview).
+
 
 
 (tm2d-init-wet)=

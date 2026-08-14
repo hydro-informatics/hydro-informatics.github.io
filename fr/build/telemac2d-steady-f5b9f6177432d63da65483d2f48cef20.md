@@ -967,6 +967,9 @@ python -m pip install numpy
 
 Après cela, `cd` dans votre répertoire modèle TELEMAC (où vit le fichier `.slf`) et créer un nouveau script Python nommé `slf2vtk.py` avec le contenu suivant. Assurez-vous de définir `PPUTILS_DIR` dans le répertoire des pputils clonés et de modifier `input_slf="results.slf"` et `output_template="vtk/results.vtk"` selon vos besoins :
 
+````{admonition} Click to unroll Python code
+:class: note, dropdown
+
 ```python
 """slf2vtk.py"""
 from pathlib import Path
@@ -1058,6 +1061,7 @@ if __name__ == "__main__":
     for path in generated_files:
         print(path)
 ```
+````
 
 Ensuite, lancez-le dans un terminal à partir de votre répertoire modèle TELEMAC:
 
@@ -1068,6 +1072,39 @@ python slf2vtk.py
 La valeur donnée sous `output_template` est un modèle de nom de fichier plutôt que le nom d'un fichier final. Par exemple, `vtk/results.vtk` produit `vtk/results00000.vtk`, `vtk/results00001.vtk`, et ainsi de suite; un fichier pour chaque étape dans le fichier `.slf`.
 
 Par défaut, le script utilise `sel2vtk_bin.py` pour écrire des fichiers binaires VTK. Définir `binary=False` pour écrire des fichiers ASCII VTK à la place. Pour ne convertir qu'une partie de la série de résultats, décommenter `start` et `end`; ces valeurs sont des indices temps-étape inclusifs basés sur zéro plutôt que des temps de simulation.
+
+### Charger les vitesses TELEMAC-3D dans ParaView
+
+Les fichiers VTK générés dans le workflow précédent contiennent les composants de vitesse TELEMAC-3D \(u\), \(v\) et \(w\). Ces quantités représentent les vitesses signées dans les directions \(x\)-, \(y\)- et \(z\)-, respectivement. La vitesse en trois dimensions correspondante est
+
+$$
+|\mathbf{u}| = \sqrt{u^2 + v^2 + w^2}.
+$$
+
+Sur un ordinateur Debian, installer ParaView à partir du dépôt Debian s'il n'est pas déjà disponible, puis ouvrir la série de fichiers convertis à partir du répertoire modèle:
+
+```bash
+sudo apt update
+sudo apt install paraview
+
+cd /path/to/telemac/model/vtk
+paraview --data="$PWD/results..vtk"
+```
+
+Dans la commande finale, les deux périodes consécutives remplacent la partie numérotée des fichiers comme `results00000.vtk`, `results00001.vtk`, et `results00002.vtk`. ParaView reconnaît normalement ce motif de nommage comme une série de fichiers temporels. Après que le lecteur apparaît dans le **Pipeline Browser**, sélectionnez-le et cliquez sur **Appliquer**.
+
+Lorsque `sel2vtk_bin.py` ou `sel2vtk.py` détecte les variables TELEMAC `VELOCITY U`, `VELOCITY V` et `VELOCITY W`, [pputils](https://codeberg.org/pprodano/pputils) les combine dans le vecteur de données point `Velocity`. Pour afficher directement la vitesse totale, sélectionnez **Vélocity** dans le menu **Coloring**, puis sélectionnez **Magnitude**. Les composants vectoriels **X**, **Y** et **Z** correspondent respectivement à \(u\), \(v\) et \(w\). Les tableaux scalaires originaux sont également disponibles sous la forme de `VELOCITY_U`, `VELOCITY_V` et `VELOCITY_W`.
+
+Si l'amplitude de la vitesse est requise comme tableau séparé pour le découpage, le seuil, l'étude ou l'exportation, sélectionnez le lecteur VTK dans le **Pipeline Browser**, puis choisissez **Filters > Common > Calculatrice**. Définir **Result Array Nom** à `VELOCITY_MAGNITUDE`, confirmer que l'association de données est **Point Data**, et entrer:
+
+```text
+mag(Velocity)
+```
+
+Cliquez sur **Appliquer**, puis colorez la sortie Calculatrice par `VELOCITY_MAGNITUDE`. Pour une animation, utilisez **Rescale to Data Range over All Timesteps** de façon à ce qu'une échelle de couleur soit appliquée de façon uniforme tout au long de la simulation. Cette opération lit à chaque étape et peut donc nécessiter un délai supplémentaire pour un grand ensemble de résultats TELEMAC-3D.
+
+La syntaxe de la série de fichiers, la coloration vectorielle et l'expression Calculatrice suivent la documentation [ParaView data-loading](https://docs.paraview.org/en/latest/UsersGuide/dataIngestion.html), [color-mapping](https://docs.paraview.org/en/latest/ReferenceManual/colorMapping.html), et [Calculator](https://docs.paraview.org/en/latest/UsersGuide/filteringData.html#calculator). ParaView est disponible en tant que [Paquet Debian](https://packages.debian.org/stable/paraview).
+
 
 
 (tm2d-init-wet)=
