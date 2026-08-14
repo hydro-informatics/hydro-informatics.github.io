@@ -955,6 +955,120 @@ The animated figure below features an exported GIF with water depth in the backg
 Mass balance is a crucial criterion for a sound numerical model. Read more in the spotlight chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
 ```
 
+(vtk2slf)=
+### Convert to VTK (ParaView)
+
+ParaView is great for 3D analysis. A straightforward way to load TELEMAC `.slf` result files is to convert them to the `.vtk` format. One quick way to get this conversion done is by using [pputils](https://codeberg.org/pprodano/pputils). To this end, first clone pputils, then make sure the `numpy` dependency is installed in the same Python environment that you will use for the conversion. Remember where you downloaded pputils:
+
+```bash
+git clone https://codeberg.org/pprodano/pputils.git
+python -m pip install numpy
+```
+
+After that, `cd` into your TELEMAC model directory (where the `.slf` file lives) and create a new Python script named `slf2vtk.py` with the following contents. Make sure to set `PPUTILS_DIR` to the cloned pputils directory and modify `input_slf="results.slf"` and `output_template="vtk/results.vtk"` to your needs:
+
+```python
+"""slf2vtk.py"""
+from pathlib import Path
+import subprocess
+import sys
+from typing import List, Optional, Union
+
+
+PPUTILS_DIR = Path(r"/path/to/pputils").expanduser().resolve()
+
+
+def slf_to_vtk(
+    input_slf: Union[str, Path],
+    output_template: Union[str, Path],
+    *,
+    binary: bool = True,
+    start: Optional[int] = None,
+    end: Optional[int] = None,
+) -> List[Path]:
+    """Convert a SELAFIN file to one VTK file per time step."""
+
+    input_slf = Path(input_slf).expanduser().resolve()
+    output_template = Path(output_template).expanduser().resolve()
+
+    if not input_slf.is_file():
+        raise FileNotFoundError(input_slf)
+
+    if output_template.suffix.lower() != ".vtk":
+        raise ValueError("output_template must end in .vtk")
+
+    if "." in output_template.stem:
+        raise ValueError("Avoid additional dots in the output filename")
+
+    if (start is None) != (end is None):
+        raise ValueError("Specify both start and end, or neither")
+
+    if start is not None and end is not None:
+        if start < 0 or end < 0:
+            raise ValueError("start and end must be non-negative")
+        if start > end:
+            raise ValueError("start must be less than or equal to end")
+
+    converter = PPUTILS_DIR / (
+        "sel2vtk_bin.py" if binary else "sel2vtk.py"
+    )
+
+    if not converter.is_file():
+        raise FileNotFoundError(f"PPUTILS converter not found: {converter}")
+
+    output_template.parent.mkdir(parents=True, exist_ok=True)
+
+    command = [
+        sys.executable,
+        str(converter),
+        "-i",
+        str(input_slf),
+        "-o",
+        output_template.name,
+    ]
+
+    if start is not None and end is not None:
+        # start/end are zero-based time-step indices.
+        command += ["-t_start", str(start), "-t_end", str(end)]
+
+    subprocess.run(
+        command,
+        cwd=output_template.parent,
+        check=True,
+    )
+
+    pattern = output_template.stem + "[0-9]" * 5 + ".vtk"
+    generated_files = sorted(output_template.parent.glob(pattern))
+
+    if not generated_files:
+        raise RuntimeError("pputils did not produce any VTK files")
+
+    return generated_files
+
+
+if __name__ == "__main__":
+    generated_files = slf_to_vtk(
+        input_slf="results.slf",
+        output_template="vtk/results.vtk",
+        binary=True,
+        # start=0,
+        # end=10,
+    )
+
+    for path in generated_files:
+        print(path)
+```
+
+Then run it in a terminal from your TELEMAC model directory:
+
+```bash
+python slf2vtk.py
+```
+
+The value given as `output_template` is a filename template rather than the name of one final file. For instance, `vtk/results.vtk` produces `vtk/results00000.vtk`, `vtk/results00001.vtk`, and so on; one file for each time step in the `.slf` file.
+
+By default, the script uses `sel2vtk_bin.py` to write binary VTK files. Set `binary=False` to write ASCII VTK files instead. To convert only part of the result series, uncomment `start` and `end`; these values are zero-based, inclusive time-step indices rather than simulation times.
+
 
 (tm2d-init-wet)=
 ## Exercise: Initial Conditions
