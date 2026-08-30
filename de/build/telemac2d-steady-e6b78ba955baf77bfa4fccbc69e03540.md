@@ -1,0 +1,1199 @@
+---
+description: Hydrodynamische numerische Simulationen mit Telemac2d
+---
+
+(telemac2d-steady)=
+# Stetig 2d
+
+```{admonition} Requirements
+This tutorial is designed for **advanced beginners** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>`.
+
+Der Fall in diesem Tutorial wurde mit der folgenden Software erstellt:
+* a text editor, such as {ref}`Notepad++ <npp>` (any other text editor will do the job).
+* Telemac v8p2r0 oder neuer ({ref}`stand-alone installation <modular-install>`).
+* {ref}`QGIS <qgis-install>` und das {ref}`PostTelemac plugin <tm-qgis-plugins>`.
+* Debian Linux 10 (Buster) / Debian 11 auf einer virtuellen Maschine installiert (lesen Sie mehr unter {ref}`software chapter <chpt-vm-linux>`).
+```
+
+## Beginnen Sie
+
+Dieser Abschnitt baut auf der SELAFIN (`*.slf`) Geometrie und den Conlim (`*.cli`) Randbedingungsdateien auf, die sich aus {ref}`TELEMAC pre-processing tutorial <slf-prepro-tm>` ergeben. Beide Dateien können auch aus dem ergänzenden Material-Repository dieses eBook heruntergeladen werden:
+
+* [Download qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) (verwendet **EPSG:32633** - ETRS 89 / UTM Zone 33N).
+* [Download borders.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli)].
+
+Consider saving both files in a new folder, such as `/steady2d-tutorial/` that will contain all model files.
+
+```{admonition} Download simulation files
+All simulation files used in this tutorial are available at [https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/).
+```
+
+## Lenkungsdatei (CAS)
+
+The steering file has the file ending `*.cas` (presumably derived from the French word *cas*, which means *case* in English). The `*.cas` file is the main simulation file with information about references to the two always mandatory files (i.e., the [SELAFIN](https://gdal.org/drivers/vector/selafin.html) `*.slf` geometry and the `*.cli` boundary files) and optional files, as well as definitions of simulation parameters. The steering file can be created or edited with a basic text editor or advanced GUI software such as {ref}`Fudaa PrePro <fudaa>` or {ref}`BlueKenue <bluekenue>`. This tutorial uses a basic text editor (e.g., {ref}`Notepad++ <npp>` on Windows).
+
+```{admonition} Fudaa PrePro
+*Fudaa PrePro* enthält Variablenbeschreibungen, die die Definition von Grenzen, Anfangsbedingungen und numerischen Parametern in der Steuerungsdatei erleichtern. Fudaa PrePro erstellt jedoch Dateianweisungen entsprechend der Plattform, auf der es ausgeführt wird (z. B. `\` unter Windows und `/` unter Linux) und schreibt absolute Dateipfade in die `*.cas`-Datei, was häufig eine manuelle Korrektur erfordert (z. B. wenn Fudaa PrePro zum Einrichten einer `*.cas`-Datei unter Windows zum Ausführen einer TELEMAC-Simulation unter Linux verwendet wird). Um mit Fudaa PrePro zu arbeiten, folgen Sie den Download-Anweisungen unter {ref}`software chapter <fudaa>`. Um Fudaa Prepro zu starten, öffnen Sie *Terminal * (Linux) oder *Befehlsaufforderung * (Windows) und tippen Sie auf:
+
+* `cd` zum Installationsverzeichnis (Download) von Fudaa PrePro
+* Starten Sie die GUI (erfordert Java):
+  * *Linux*: `sh supervisor.sh`
+  * *Windows*: `supervisor.bat`
+```
+
+For this tutorial, **create a new text file** in the same folder where `qgismesh.slf` and `boundaries.cli` live, and name it, for instance, `steady2d.cas` (e.g., `/steady2d-tutorial/steady2d.cas`). The next sections guide through parameter definitions that stem from the [Telemac2d manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf). The final steering file can be downloaded from the supplemental materials repository ([download steady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas)).
+
+### Überblick über die CAS-Datei
+
+Das untere Feld zeigt die bereitgestellte [steady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas) Datei, die für die Ausführung dieses Tutorials verwendet werden kann].
+
+````{admonition} Expand to view the complete .CAS file
+:class: note, dropdown
+
+```fortran
+/---------------------------------------------------------------------
+/ TELEMAC2D
+/ STEADY HYDRODYNAMICS TRAINING
+/---------------------------------------------------------------------
+
+/ steady2d.cas
+/------------------------------------------------------------------/
+/			COMPUTATION ENVIRONMENT
+/------------------------------------------------------------------/
+TITLE : '2d steady'
+/
+BOUNDARY CONDITIONS FILE : boundaries.cli
+GEOMETRY FILE            : qgismesh.slf
+RESULTS FILE           : r2dsteady.slf
+/
+MASS-BALANCE : YES / activates mass balance printouts - does not enforce mass balance
+VARIABLES FOR GRAPHIC PRINTOUTS : U,V,B,H,S,Q,F / Q enables boundary flux equilibrium controls, B required for gaia (optional)
+/
+/------------------------------------------------------------------/
+/			GENERAL PARAMETERS
+/------------------------------------------------------------------/
+TIME STEP : 1.
+NUMBER OF TIME STEPS : 15000
+GRAPHIC PRINTOUT PERIOD : 200
+LISTING PRINTOUT PERIOD : 100
+/
+/------------------------------------------------------------------/
+/			NUMERICAL PARAMETERS
+/------------------------------------------------------------------/
+/ General solver parameters
+DISCRETIZATIONS IN SPACE : 11;11
+FREE SURFACE GRADIENT COMPATIBILITY : 0.1  / default 1.
+ADVECTION : YES
+/
+/ STABILITY CONTROLS
+PRINTING CUMULATED FLOWRATES : YES
+/
+/ FINITE ELEMENT SCHEME PARAMETERS
+/------------------------------------------------------------------
+TREATMENT OF THE LINEAR SYSTEM : 2 / default is 2 - use 1 to avoid smoothened results
+SCHEME FOR ADVECTION OF VELOCITIES : 14 / alternatively keep 1
+SCHEME FOR ADVECTION OF TRACERS : 5
+SCHEME FOR ADVECTION OF K-EPSILON : 14
+IMPLICITATION FOR DEPTH : 0.55 / should be between 0.55 and 0.6
+IMPLICITATION FOR VELOCITY : 0.55 / should be between 0.55 and 0.6
+IMPLICITATION FOR DIFFUSION OF VELOCITY : 1. / v8p4 default
+IMPLICITATION COEFFICIENT OF TRACERS : 0.6 / v8p4 default
+MASS-LUMPING ON H : 1.
+MASS-LUMPING ON VELOCITY : 1.
+MASS-LUMPING ON TRACERS : 1.
+SUPG OPTION : 0;0;2;2 / classic supg for U and V
+/
+/ SOLVER
+/------------------------------------------------------------------
+INFORMATION ABOUT SOLVER : YES
+SOLVER : 1
+MAXIMUM NUMBER OF ITERATIONS FOR SOLVER : 200 / maximum number of iterations when solving the propagation step
+MAXIMUM NUMBER OF ITERATIONS FOR DIFFUSION OF TRACERS : 60 / tracer diffusion
+MAXIMUM NUMBER OF ITERATIONS FOR K AND EPSILON : 50 / diffusion and source terms of k-e
+/
+/ TIDAL FLATS
+TIDAL FLATS : YES
+CONTINUITY CORRECTION : YES / default is NO
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 2 / value 2 or 3 is required with tidal flats - default is 1
+/
+/ MATRIX HANDLING
+MATRIX STORAGE : 3 / default is 3
+/
+/ BOUNDARY CONDITIONS
+/------------------------------------------------------------------
+/
+/ Liquid boundaries
+PRESCRIBED FLOWRATES  : 35.; 0.
+PRESCRIBED ELEVATIONS : 374.80565;371.33
+/
+/ Type of velocity profile can be 1-constant normal profile (default) 2-UBOR and VBOR in the boundary conditions file (cli) 3-vector in UBOR in the boundary conditions file (cli) 4-vector is proportional to the root (water depth, only for Q) 5-vector is proportional to the root (virtual water depth), the virtual water depth is obtained from a lower point at the boundary condition (only for Q)
+VELOCITY PROFILES : 4;1
+/
+/ Friction at the bed
+LAW OF BOTTOM FRICTION : 4 / 4-Manning
+FRICTION COEFFICIENT : 0.03 / Roughness coefficient
+/ Friction at the boundaries
+LAW OF FRICTION ON LATERAL BOUNDARIES : 4 / 4-Manning
+ROUGHNESS COEFFICIENT OF BOUNDARIES : 0.03 / Roughness coefficient
+/
+/ INITIAL CONDITIONS
+/ ------------------------------------------------------------------
+INITIAL CONDITIONS : 'ZERO DEPTH' / start with dry model conditions
+/
+/-------------------------------------------------------------------
+/			TURBULENCE
+/-------------------------------------------------------------------
+/
+DIFFUSION OF VELOCITY : YES / default is YES
+TURBULENCE MODEL : 3
+/
+&ETA
+```
+
+```{admonition} What means &ETA?
+:class: note
+The `&ETA` keyword at the bottom of the `*.cas` template file makes TELEMAC printing out keywords and the values assigned to them when it runs its *Damocles* algorithm.
+```
+````
+
+(tm2d-gen)=
+### Allgemeine Parameter
+
+Die allgemeinen Parameter definieren die Berechnungsumgebung beginnend mit einem Simulationstitel und den wichtigsten Links zu den beiden obligatorischen Eingabedateien:
+
+* `BOUNDARY CONDITIONS FILE : boundaries.cli` - mit einer *MED*-Datei, verwenden Sie eine *BND*-Grenzdatei
+* `GEOMETRY FILE : qgismesh.slf`
+
+Das Modell **output** kann mit folgenden Stichworten definiert werden:
+
+* `RESULTS FILE : r2dsteady.slf` - kann entweder eine *MED*-Datei oder eine *SLF*-Datei sein
+* `VARIABLES FOR GRAPHIC PRINTOUTS` (d.h. Ausgabeparameter):
+  * `U,V,H,S,Q,F` , für streamwise (`U`: $u$) und lateral (`V`: $v$) Geschwindigkeiten, Wassertiefe (`H`: $h$), Wasseroberflächenhöhe (`S`: $wse$), Entladung/Fluxes (`Q`: $Q$) und {term}`Froude-Zahl <Froude number>` (`F`: $Fr$)
+  * Other variables of interest for tutorials in this eBook: bottom elevation `B` (required for {ref}`morphodynamics with Gaia <gaia-basics>`, value of the type of bottom friction used `W` ({ref}`see below <tm2d-friction>`), and {term}`turbulent kinetic energy <Turbulent kinetic energy>` `K` (requires the use of the $k-\epsilon$ {ref}`turbulence model <tm2d-turbulence>`).
+  * Die vollständige Liste der verfügbaren Ausgabevariablen finden Sie im [Telemac2d Referenzhandbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/raw/v9.0.0/documentation/telemac2d/reference/telemac2d_reference_9.0.pdf), Abschnitt 1.348 (Seite 92).
+
+The velocities (`U` and `V`), the water depth (`H`), and the discharge (`Q`) are standard variables that should be used in every simulation. In particular, the discharge `Q` is required to check when (steady) s converge at the inflow and outflow boundaries. Moreover, discharge `Q` enables to trace integrated fluxes along any user-defined line in the model. The procedure for verifying and identify discharges is described in the {ref}`discharge verification <verify-steady-tm2d>` section in the post-processing.
+
+Die Zeitvariablen (`TIME STEP` und `NUMBER OF TIME STEPS`) definieren die Simulationslänge. Die Ausdrucksperioden (`GRAPHIC PRINTOUT PERIOD` und `LISTING PRINTOUT PERIOD`) definieren die Ergebnisausgabehäufigkeit. Je kleiner die Ausdruckszeit ist, desto länger dauert die Simulation, da das Schreiben von Ergebnissen ein zeitaufwendiger Prozess ist. Die Ausdrucksperioden (Frequenzen) beziehen sich auf ein Vielfaches des `TIME STEPS`-Parameters und müssen eine kleinere Zahl als `NUMBER OF TIME STEPS` sein. Lesen Sie mehr über Zeitschrittparameter im [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) in den Abschnitten 5 und 12.4.2].
+
+In addition, the `MASS-BALANCE : YES` setting will print out mass fluxes and errors in the computation region, which is an important parameter for verifying the plausibility of the model. Note that this keyword only enables mass balance printouts and does not enforce mass balance of the model, which must be achieved through a consistent model setup following this tutorial and the [Telemac2d manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).
+
+````{admonition} Expand to review the GENERAL PARAMETERS used in this tutorial
+:class: note, dropdown
+```fortran
+TITLE : '2d steady flow'
+/
+BOUNDARY CONDITIONS FILE : boundaries.cli
+GEOMETRY FILE : qgismesh.slf
+RESULTS FILE : r2dsteady.slf
+/
+MASS-BALANCE : YES / activates mass balance printouts - does not enforce mass balance
+VARIABLES FOR GRAPHIC PRINTOUTS : U,V,H,S,Q,F / Q enables boundary flux equilibrium controls
+/
+TIME STEP : 1.
+NUMBER OF TIME STEPS : 15000
+GRAPHIC PRINTOUT PERIOD : 200
+LISTING PRINTOUT PERIOD : 100
+```
+````
+
+(tm2d-numerical)=
+### Allgemeine numerische Parameter
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 7.1 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Telemac2d kommt mit drei Solvern zum Approximieren des tiefengemittelten {term}`Navier-Stokes-Gleichungen <Navier-Stokes equations>` (dh das {term}`Flachwassergleichungen <Shallow water equations>`) {cite:p}`kundu_fluid_2008` (S. 262), das durch Hinzufügen des Schlüsselworts **EQUATIONS** zur `*.cas`-Datei ausgewählt werden kann:
+
+* `EQUATIONS : SAINT-VENANT FE` ist der **Standard**, der Telemac2d dazu bringt, eine Finite-Elemente-Methode von Saint-Venant zu verwenden,
+* `EQUATIONS : SAINT-VENANT FV` makes Telemac2d use a Saint-Venant finite volume method, and
+* `EQUATIONS : BOUSSINESQ` makes Telemac2d use the {term}`Boussinesq-Approximation <Boussinesq approximation>`, which assumes constant density (incrompressible fluid assumption) and is not to be confused with the {term}`Näherung von Boussinesq <Boussinesq hypothesis>`.
+
+In addition, a type of discretization has to be specified with the **DISCRETIZATIONS IN SPACE** keyword, which is a list of five integer values. The five list elements define spatial discretization schemes for (1) velocity, (2) depth, (3) tracers, (4) $k-\epsilon$ turbulence, and (5) $\tilde{\nu}$ advection (Spalart-Allmaras), respectively. The minimum length of the keyword list is 2 (for velocity and depth) and all other elements are optional. The list elements may take the following values defining spatial discretization:
+
+* `11` (**default**) aktiviert (lineare) dreieckige Diskretisierung im Raum (d.h. Dreiecke mit drei Knoten),
+* `12` activates quasi-bubble discretization with 4-nodes, and
+* `13` aktiviert die quadratische Diskretisierung mit 6-Knoten.
+
+The [Telemac2d manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) recommend using **the default value of `DISCRETIZATIONS IN SPACE : 11;11`** that assigns a linear discretization for velocity and water depth, which **is computationally fast but potentially unstable**. The option `12;11` may be used to reduce free surface instabilities or oscillations (e.g., along with steep bathymetry gradients). The option `13;11` increases the accuracy of results, the computing time, memory usage, and it is currently not available in Telemac2d.
+
+In addition, the **FREE SURFACE GRADIENT** keyword can be defined for increasing the stability of a model. Its default value is `1.0`, but it can be reduced close to zero to achieve stability. The developers propose a minimum value of `0.`, but more realistic results can be yielded by setting this keyword to slightly more than zero (e.g., `0.1`). For instance, the following keyword combination may reduce surface instabilities (also referred to as *wiggles* or *oscillations*):
+
+```fortran
+DISCRETIZATIONS IN SPACE : 12;11
+FREE SURFACE GRADIENT : 0.1
+```
+
+Standardmäßig wird {term}`Advektion <Advection>` über das Keyword `ADVECTION : YES` aktiviert und kann nur für bestimmte Begriffe deaktiviert werden:
+
+```fortran
+ADVECTION OF H : NO / deactivates depth advection
+ADVECTION OF U AND V : NO / deactivates velocity advection
+ADVECTION OF K AND EPSILON : NO / deactivates turbulent energy and dissipation (k-e model) or Spalart-Allmaras advection
+ADVECTION OF TRACERS : NO / deactivates tracer advection
+```
+
+Das Schlüsselwort **PROPAGATION** (Standard: `YES`) steuert die Simulation der Ausbreitung und verwandter Phänomene. Zum Beispiel wird das Deaktivieren der Ausbreitung (`PROPAGATION : NO`) auch {term}`Diffusion` deaktivieren. Umgekehrt, wenn die Ausbreitung aktiviert ist, kann {term}`Diffusion` separat deaktiviert werden. Lesen Sie mehr über {term}`Diffusion` in Telemac2d in der {ref}`turbulence <tm2d-turbulence>` Sektion.
+
+(tm2d-fe)=
+### Finite Elemente
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 7.2.1 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Telemac2d verwendet endliche Elemente für iterative Lösungen für {term}`Flachwassergleichungen <Shallow water equations>`. Das Schlüsselwort **BEHANDLUNG DES LINÄREN SYSTEMS** ermöglicht es, den ursprünglichen Satz von Gleichungen (Option `1`), der am Finite-Elemente-Solver von TELEMAC beteiligt ist, durch eine verallgemeinerte Wellengleichung (**Option `2`**) zu ersetzen. Der Ersatz (d.h. die Verwendung der verallgemeinerten Wellengleichung) ist seit v8p2** auf **Standard eingestellt und verringert die Berechnungszeit, glättet jedoch die Ergebnisse. Dieser Standard (`TREATMENT OF THE LINEAR SYSTEM : 2`) aktiviert automatisch Massenklumpen für Tiefe und Geschwindigkeit und impliziert eine explizite Geschwindigkeitsdiffusion.
+
+```{admonition} Use SCHEME FOR ADVECTION in lieu of TYPE OF ADVECTION
+:class: note, dropdown
+The **TYPE OF ADVECTION** keyword is a list of four integers that define the advection schemes for (1) velocities (both $u$ and $v$), (2) water depth $h$, (3) tracers, and (4) turbulence ($k-\epsilon$ or $\tilde{\nu}$). The value provided for (2) depth is ignored since v6p0 and a list of two values is sufficient in the absence of (3) tracers and a specific (4) turbulence model. Thus, in lieu of `TYPE OF ADVECTION`, the `SCHEME FOR ADVECTION OF VELOCITIES` keyword should be used. The default is `TYPE OF ADVECTION : 1;5;1;1` (where the `5` for water depth stems from an older Telemac2d version and does not trigger the PSI scheme). However, **the [Telemac2d manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) indicate that the TYPE OF ADVECTION keyword will be deprecated in future releases.**
+```
+
+Die [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf)] gibt an, dass die folgenden skalaren **SYSTEM FÜR ENTWICKLUNG** Schlüsselwörter anstelle der bald veralteten TYP DER ENTWICKLUNG-Liste gelten:
+
+```fortran
+SCHEME FOR ADVECTION OF VELOCITIES : 1 / default
+SCHEME FOR ADVECTION OF TRACERS : 1 / default
+SCHEME FOR ADVECTION OF K-EPSILON : 1 / default
+```
+
+The three `SCHEME FOR ADVECTION` scalar keywords may take the following values:
+
+* `1` sets a not mass-conservative method of characteristics (default for all),
+* `2` setzt ein semi-implizites Schema und aktiviert das Streamline Upwind Petrov Galerkin (SUPG) Schema (mehr unten).
+* `3`, `4`, `13` und `14` aktivieren das sogenannte NERD-Schema (diese Zahlen aktivieren nur verschiedene Schemata in 3d),
+* `5` setzt ein massenkonservatives PSI-Verteilungsschema (nicht mit Gezeitenwohnungen verwenden) und
+* `15` setzt das massenkonservative ERIA-Schema, das mit Gezeitenwohnungen funktioniert.
+
+Optionen `4` und `5` erfordern, dass die Bedingung {term}`CFL-Zahl <CFL>` kleiner als 1 ist.
+
+````{admonition} Recommended SCHEME OF ADVECTION ... keywords
+:class: tip
+Das [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf)] empfiehlt spezifische Kombinationen je nach Simulationsszenario.
+
+Für Modelle **ohne Trockenzonen** verwenden:
+```fortran
+SCHEME FOR ADVECTION OF VELOCITIES : 4 / alternatively keep 1
+SCHEME FOR ADVECTION OF TRACERS : 5
+SCHEME FOR ADVECTION OF K-EPSILON : 4
+```
+
+Für Modelle mit ** Tidal Flats ** Verwendung (wie in diesem Tutorial):
+```fortran
+SCHEME FOR ADVECTION OF VELOCITIES : 14 / alternatively keep 1
+SCHEME FOR ADVECTION OF TRACERS : 5
+SCHEME FOR ADVECTION OF K-EPSILON : 14
+```
+````
+
+**Ohne SYSTEM FÜR DIE GEWINNUNG ...** definiert das Schlüsselwort **SUPG OPTION** (Streamline Upwind Petrov Galerkin) ob Aufwinding zutrifft und welche Art von Aufwinding zutrifft. Die **SUPG OPTION** ist eine Liste von vier Ganzzahlen, wobei jedes Element einen der folgenden Werte annehmen kann:
+
+* `0` deaktiviert upwinding,
+* `1` ermöglicht das Aufwinden mit einem klassischen SUPG-Schema (empfohlen, wenn die Bedingung {term}`CFL-Zahl <CFL>` unbekannt ist), und
+* `2` enables upwinding with a modified SUPG scheme, where upwinding equals the {term}`CFL-Zahl <CFL>` condition (recommended when the {term}`CFL-Zahl <CFL>` condition is small).
+
+Der Standard ist `SUPG OPTION : 2;2;2;2`, wobei
+
+* the first list element refers to flow velocity (default `2`),
+* the second to water depth (default `2` - set to `0` when `MATRIX STORAGE : 3`),
+* the third to tracers (default `2`), and
+* the last (fourth) to the k-epsilon model (default `2`).
+
+Note that the `SUPG OPTION` keyword **is not optional** for many keyword combinations and this tutorial uses `SUPG OPTION : 0;0;2;2`.
+
+**Implicitation parameters** (**IMPLICITATION FOR DEPTH**, **IMPLICITATION FOR VELOCITIES**, and **IMPLICITATION FOR DIFFUSION OF VELOCITY**) apply to the semi-implicit time discretization used in Telemac2d. To enable cross-version compatibility, implicitation parameters should be defined in the `*.cas` file. For **DEPTH** and **VELOCITIES** use values between `0.55` and `0.60` (**default is `0.55` since v8p1**); for **IMPLICITATION FOR DIFFUSION OF VELOCITY** use `1.0` (default).
+
+The default `TREATMENT OF THE LINEAR SYSTEM : 2` involves so-called **mass lumping**, which leads to a smoothening of results. Specific mass lumping keywords and values are required for the flux control option of the **TREATMENT OF NEGATIVE DEPTHS** keyword and the default value for the treatment of tidal flats. To this end, the mass lumping keywords should be defined as:
+
+```fortran
+MASS-LUMPING ON H : 1.
+MASS-LUMPING ON VELOCITY : 1.
+MASS-LUMPING ON TRACERS : 1.
+```
+
+In addition, `MASS-LUMPING FOR WEAK CHARACTERISTICS : 1.` may be defined, which will make Telemac2d using weak characteristics (see below). The default value of any `MASS-LUMPING ...` keyword is `0.` and the maximum value is `1.`, which makes mass matrices diagonal.
+
+The **OPTION OF CHARACTERISTICS** keyword defines the method of characteristics that can take a **strong (default of `1`)** or a **weak (`2`)** form. A weak form decreases {term}`Diffusion`, is more conservative, and increases computation time. Telemac2d automatically switches from the default strong (`1`) to the weak (`2`) form when
+
+* `TYPE OF ADVECTION` wird auf `1` gesetzt,
+* ein beliebiges `SCHEME FOR ADVECTION ...` auf `1` gesetzt ist, oder
+* any `SCHEME OPTION FOR ADVECTION OF ...` is set to `2`.
+
+Keine dieser Optionen sollte mit Tracern verwendet werden, da sie nicht massenkonservativ sind.
+
+(steady2d-fv)=
+### Endliche Volumen
+
+Die Finite-Volume-Methode wird hier zur Vollständigkeit erwähnt und detaillierte Beschreibungen sind in Abschnitt 7.2.2 des [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) und das Malpasset-Beispiel (`telemac/v9.0.0/examples/telemac2d/malpasset/`) verfügbar. Um das Finite-Volume-Schema zu aktivieren:
+
+```fortran
+EQUATIONS : 'SAINT-VENANT FV' / the apostrophes are strictly needed here
+```
+
+
+```{admonition} Use finite volumes only with v8p2 or later
+Frühere Versionen des Finite Volume Solver von Telemac2d sind fehlerhaft, aber da große Verbesserungen mit v8p2 implementiert wurden, laufen die neuesten Versionen stabil.
+```
+
+Die Finite-Volume-Methode beinhaltet die Definition eines Schemas durch das Schlüsselwort **FINITE VOLUME SCHEME**, das einen der folgenden ganzzahligen Werte annehmen kann:
+
+* `0` ermöglicht das {cite:t}`roe1981ars`-Schema,
+* `1` ist der **Standard** und ermöglicht das kinetische Schema {cite:p}`audusse2000`,
+* `3` ermöglicht das {cite:t}`zokagoa2010`-Schema, das mit Gezeitenwohnungen unvereinbar ist,
+* `4` ermöglicht das {cite:t}`tchamen1998`-Schema zur Modellierung der Benetzung und Trocknung einer komplexen Bathymetrie,
+* `5` ermöglicht das Harten Lax Leer-Contact (HLLC) -Schema {cite:p}`toro2009a` und
+* `6` ermöglicht das Weighted Average Flux (WAF) {cite:p}`ata2012` Schema, für das Parallelität derzeit nicht implementiert ist.
+
+The finite volume/elements schemes are (semi-) explicit and potentially subjected to instability. For this reason, a desired {term}`CFL-Zahl <CFL>` condition and a variable timestep are recommended to be defined:
+
+```fortran
+DESIRED COURANT NUMBER : 0.9
+VARIABLE TIME-STEP : YES / default is NO
+DURATION : 15000
+```
+
+Das Schlüsselwort **DURATION** ist erforderlich, um die Simulation zu beenden.
+
+The variable timestep will cause irregular listing outputs, while the graphic output frequency is written as a function of the above-defined **TIME STEP**. Note that **this tutorial uses `VARIABLE TIME-STEP : NO`**.
+
+The **FINITE VOLUME SCHEME TIME ORDER** keyword defines the second-order time scheme, which is by default set to *Euler explicit* (`1`). Setting the time scheme order to `2` makes Telemac2d using the Newmark scheme where an integration coefficient may be used to change the integration parameter. Note that `NEWMARK TIME INTEGRATION COEFFICIENT : 1` corresponds to *Euler explicit*. To implement these options in the steering file, use the following settings:
+
+```fortran
+FINITE VOLUME SCHEME TIME ORDER : 2 / default is 1 - Euler explicit
+NEWMARK TIME INTEGRATION COEFFICIENT : 0.5 / default is 0.5
+```
+
+Andere Tutorials und das Telemac-Forum empfehlen jedoch die Verwendung der folgenden Schemaeinstellungen für endliche Volumes:
+
+```fortran
+FINITE VOLUME SCHEME : 5 / HLLC
+FINITE VOLUME SCHEME SPACE ORDER : 1
+FINITE VOLUME SCHEME TIME ORDER : 1
+```
+
+
+Zusätzliche keyword-empfehlungen für das finite volumenschema sind die folgenden.
+
+```fortran
+OPTION FOR THE DIFFUSION OF VELOCITIES : 2 / only option to get mass conservation but can cause problems with tidal flats
+SCHEME FOR ADVECTION OF VELOCITIES : 3 / use 3, also for FV - MATRIX STORAGE must be 3
+SCHEME OPTION FOR ADVECTION OF VELOCITIES : 4 / overrides SUPG OPTION and OPTION FOR CHARACTERISTICS
+NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2 / increase for higher accuracy and longer computing time, requires SCHEME OF ADVECTION 3,4,5, or 15 and OPTION 2,3,4
+TYPE OF SOURCES : 2 / 2=Dirac is the only possibility for mass conservation, the default=1 means linear function and is not mass conservative
+CONTINUITY CORRECTION : YES / particularly important when not only discharge but also depth is imposed at boundaries
+```
+
+Je nach Art der Analyse können auch die lösemittelbezogenen Parameter **SOLVER**, **SOLVER OPTIONS**, **MAXIMUMNUMMER DER ITERATION FÜR SOLVER** und **TIDAL FLATS** geändert werden. Konkret werden alle ** TIDAL FLAT ** Keywords mit dem FV-Schema ** veraltet.
+
+(tm2d-solver-pars)=
+### Numerische Lösungsmittelparameter
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 7.3.1 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Der Solver kann mit den Schlüsselwörtern **SOLVER**, **SOLVER FOR DIFFUSION OF TRACERS** und **SOLVER FOR K-EPSILON MODEL** ausgewählt und spezifiziert werden, wobei die folgenden Einstellungen empfohlen werden:
+
+```fortran
+SOLVER : 1 / default is 3
+SOLVER FOR DIFFUSION OF TRACERS : 1
+SOLVER FOR K-EPSILON MODEL : 1
+```
+
+Das Setzen des **SOLVER** auf `1` anstelle des Standardwerts von `3` wird mit `TREATMENT OF THE LINEAR SYSTEM : 2` (d.h. dem Standard seit v8p2) für konsistente und rückwärtskompatible Steuerungsdateien empfohlen.
+
+Every solver keyword can take an integer value between `1` and `8`, where `1`-`6` use conjugate gradient methods:
+
+* `1` sets the conjugate gradient method for symmetric matrices,
+* `2` sets the conjugate residual method,
+* `3` sets the conjugate gradient on normal equation method,
+* `4` sets the minimum error method,
+* `5` sets the squared conjugate gradient method,
+* `6` setzt die Methode des stabilisierten Bikonjugatgradienten (BICGSTAB),
+* `7` setzt die *Generalised Minimum RESidual* (**GMRES**) Methode und
+* `8` setzt den Yale University Direct Solver (YSMP), der nicht mit Parallelismus kompatibel ist.
+
+Die **GMRES-Methode kann mit dem Finite-Elemente-Schema** mit den folgenden Lösungsoptionen für {term}`Krylowraum <Krylov space>` aktiviert werden:
+
+```fortran
+SOLVER OPTION : 2 / hydrodynamic propagation
+SOLVER OPTION FOR TRACERS DIFFUSION : 2 / tracer diffusion
+OPTION FOR THE SOLVER FOR K-EPSILON MODEL : 2 /  k-e or Spalart-Allmaras
+```
+
+Die Lösungsoptionen variieren zwischen den Werten **`2` für ein kleines Mesh** und **`5` für ein großes Mesh**. Integer von `3` oder `4` können für mittelgroße Maschen verwendet werden. Das [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf)] empfiehlt, Simulationen mehrmals auszuführen, um einen optimalen Wert zu finden, wobei höhere Werte (in der Nähe von `5`) die für eine Iteration erforderliche Zeit erhöhen, aber zu einer schnelleren Konvergenz führen.
+
+(tm2d-accuracy)=
+### Numerische Genauigkeit
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 7.3.2 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Die Genauigkeitsschlüsselwörter lassen Telemac2d eine Iteration stoppen, wenn zwei aufeinanderfolgende Lösungen für dasselbe Element um weniger als einen **ACCURACY**-Schwellenwert variieren. Zu diesem Zweck können die folgenden Standardgenauigkeitsschwellenwerte variiert werden (Telemac2d ignoriert nicht relevante Parameter):
+
+```fortran
+SOLVER ACCURACY : 1.E-4 / propagation steps
+ACCURACY FOR DIFFUSION OF TRACERS : 1.E-6 / tracer diffusion
+ACCURACY OF K : 1.E-9 / diffusion and source terms of turbulent energy transport
+ACCURACY OF EPSILON : 1.E-9 / diffusion and source terms of turbulent dissipation transport
+ACCURACY OF SPALART-ALLMARAS : 1.E-9 / diffusion and source terms of the Spalart-Allmaras equation
+```
+
+In experience, the solver accuracy should not be larger than `1.E-3` (10$^{-3}$). In contrast, very small accuracies will lead to longer computation times. In addition or alternatively to the accuracy keywords, the following default numbers of maximum iterations can be modified to speed up calculations:
+
+```fortran
+MAXIMUM NUMBER OF ITERATIONS FOR SOLVER : 100 / maximum number of iterations when solving the propagation step
+MAXIMUM NUMBER OF ITERATIONS FOR DIFFUSION OF TRACERS : 60 / tracer diffusion
+MAXIMUM NUMBER OF ITERATIONS FOR K AND EPSILON : 50 / diffusion and source terms of k-e or Spalart-Allmaras
+```
+
+Telemac2d druckt Warnmeldungen aus, wenn die Konvergenz mit der definierten Kombination aus Genauigkeit und maximalen Iterationsnummernschlüsselwörtern nicht erreicht werden konnte. Die ausdrucke der warnmeldung können mit dem schlüsselwort *information about solvent * deaktiviert werden, die deaktivierung von konvergenzwarnungen wird jedoch nicht empfohlen.
+
+(tm2d-tidal)=
+### Gezeitenflachungen
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 7.5 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Das Schlüsselwort **TIDAL FLATS (Standard: `YES`)** gilt nur für das **finite elements Schema ({ref}`EQUATIONS keyword <tm2d-numerical>`) und kann mit {ref}`finite volumes <steady2d-fv>`** ignoriert werden. Der Begriff * Gezeiten* kann leicht verwirrend sein, da Gezeitenebenen über Küstenregionen hinaus auftreten können: Gezeitenflachungen können überall dort auftreten, wo Benetzung und Trocknung von Gitterzellen auftreten können oder an Strömungsübergängen (z. B. wenn schnell fließendes Wasser in eine Rückstauzone eintritt). Benetzen und Trocknen sowie Strömungsübergänge treten in fast allen Umgebungen auf, die komplexer sind als eine quadratisch-ähnliche Strömung, und daher wird die Aktivierung von Gezeitenflächen in Telemac2d-Modellen dringend empfohlen. Obwohl die Aktivierung von Gezeitenflächen zu längeren Berechnungszeiten führt, liefert eine Berechnung mit Gezeitenflächen in den meisten Fällen physikalisch vernünftige Ergebnisse.
+
+
+Das **TIDAL FLATS**-Keyword ist mit einigen anderen Telemac2d-Keywords verknüpft, die die Stabilität des Modells und die physische Aussagekraft fördern. Die folgenden keyword-setups können im allgemeinen auf (quasi) stetige, reale flüsse und kanäle angewendet werden (im gegensatz zu laborfluten mit vereinfachten geometrien).
+
+```fortran
+TIDAL FLATS : YES
+CONTINUITY CORRECTION : YES / default is NO
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 2 / value 2 or 3 is required with tidal flats
+```
+
+Die **OPTION FÜR DIE BEHANDLUNG VON TIDALFLATEN** akzeptiert ganzzahlige Werte zwischen `1` und `3`, um eine der folgenden Optionen auszuwählen:
+
+* `1` erkennt Gezeitenflachungen und korrigiert den freien Oberflächenverlauf.
+* `2` removes tidal flat elements by using a masking table that eliminates any contribution of concerned mesh elements. This option may affect the mass conservation of the model.
+* `3` resembles `1`, but adds a porosity term to half-dry mesh elements. This affects the amount of water in the model, which equals here the depth integral multiplied by the porosity. A user Fortran file may be used to modify the porosity term in the `USER_CORPOR` subroutine.
+
+Das Schlüsselwort **BEHANDLUNG NEGATIVER DEPTHS (Standard: `1`)** definiert einen Ansatz zur Eliminierung negativer Wassertiefenwerte, wobei die folgenden ganzzahligen Zahlen verwendet werden können:
+
+* `0` disables any treatment of negative water depths.
+* `1` glättet konservativ negative Wassertiefen (**Standard**).
+  * Ein float-nummer-schlüsselwort `THRESHOLD FOR NEGATIVE DEPTHS` (standardmäßig: `0.`) ist nur für diese option verfügbar.
+  * Setting the threshold to, for instance, `-0.1` makes that negative water depths larger (e.g., -0.05 m) than -0.1 meters remain unchanged.
+* `2` imposes a flux limitation that strictly ensures positive water depths.
+* `3` verhält sich ähnlich wie `2`, aber für das ERIA {term}`Advektion <Advection>`-Schema (setzen Sie `SCHEME FOR ADVECTION OF TRACERS` auf `4` oder `5`). Diese Option eignet sich für die Modellierung konservativer Tracer.
+
+````{admonition} TIDAL FLATS options require particular keyword combinations
+:class: tip
+Die Schlüsselwörter **SCHEME FOR ADVECTION ...** (siehe Abschnitt {ref}`finite element parameters <tm2d-fe>`) müssen für **TRACERS** auf LIPS (entweder `4` oder `5`) und für alle anderen auf ein NERD (`13` oder `14`) oder das ERIA (`15`) Schema gesetzt werden.
+
+Wenn Sie LIPS (`4` oder `5`) mit NERD (`13` oder `14`) verwenden, verwenden Sie die folgende Kombination (**in diesem Tutorial**):
+```fortran
+TIDAL FLATS : YES
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 2
+```
+
+Wenn Sie LIPS (`4` oder `5`) mit ERIA (`15`) verwenden, verwenden Sie die folgende Kombination:
+```fortran
+TIDAL FLATS : YES
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 1
+TREATMENT OF NEGATIVE DEPTHS : 3
+```
+
+Lesen Sie mehr über brauchbare oder problematische Parameterkombinationen für Gezeitenwohnungen in Abschnitt 16.5 im [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf)].
+````
+
+### Matrixhandling
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 7.6 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Telemac2d bietet mehrere Optionen für das Matrixhandling, die für bestimmte Solver-Schemata eingerichtet werden müssen.
+
+Das Schlüsselwort **MATRIX STORAGE** kann auf:
+
+* `1` for using classic element-by-element matrix storage.
+* `3` for using edge-based matrix storage (default). This default is required when any **SCHEME FOR ADVECTION ...** keyword is set to `3`, `4`, `5`, `13`, `14`, or `15`, and when any direct **SOLVER** is set to `8`.
+
+The additional **MATRIX-VECTOR PRODUCT** keyword may be used to switch between multiplication methods for the finite element scheme. However, the default value of `1` (vector multiplication by a non-assembled matrix) should currently **not be changed** because the only alternative (`2` for frontal assembled matrix multiplication) is not implemented for parallelism and quasi-bubble discretization.
+
+
+(tm2d-bounds)=
+### Grenzbedingungen
+
+**Die folgenden Beschreibungen der Reibungsparameter beziehen sich auf Abschnitt 4.2 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Flüssigkeitsrand-Keywords weisen den räumlich definierten flussaufwärts und flussabwärts gelegenen Flüssigkeitsrandlinien in der Conlim (`*.cli`) Datei {ref}`created with BlueKenue <bk-liquid-bc>` hydraulische Eigenschaften zu. Dieser Abschnitt enthält die Zuweisung von stationären Flüssigkeitsgrenzen für eine Entladung von 35 m$^3$/s. Dazu wird die stromaufwärtige Randbedingung auf eine stetige Zielzuflussrate gesetzt (*Offene Grenze mit vorgegebenem Q*) und die stromabwärtige Randbedingung erhält ein {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` (*Offene Grenze mit vorgegebenem Q und H*) zugewiesen (recall {numref}`Fig. %s <bk-bc-types>`). Zum Ausführen dieses Tutorials fügen Sie daher die folgenden Schlüsselwörter zur Steuerungsdatei (`*.cas`) hinzu:
+
+* The keyword `PRESCRIBED FLOWRATES : 35.;0.` assigns a flowrate of 35 m$^3$/s to the **upstream** boundary edge, and does not impose a flowrate on the **downstream** boundary edge. The downstream `Q` prescription of 0.0 makes Telemac2d ignore this value corresponding for the downstream boundary (prescribed depth only).
+* Das Schlüsselwort `PRESCRIBED ELEVATIONS : 374.80565;371.33` weist eine Wasseroberflächenhöhe $wse$ (oder H in Telemac) in Metern über dem Meeresspiegel (m.s.l.) sowohl an den **upstream**- als auch an den **downstream**-Grenzen zu.
+
+The order of prescribed flowrates (Q) and $wse$ (H) values depends on the order of the definition of the boundaries. Thus, the first list element defines values for the upstream and the second list element for the downstream open boundary.
+
+````{admonition} How to find out the order of boundary conditions?
+:class: tip
+The order of open boundaries can be read from the `*.cli` file. The first open boundary that is listed in the `*.cli` file corresponds to the first list element in any **PRESCRIBED ...** keyword. An open boundary node in the `*.cli` file is characterized by a line beginning with something like `4 5 5` or `5 5 5` (i.e., anything but `2 2 2`, which corresponds to a closed wall boundary node) and BlueKenue also marks the names of open boundaries at the line ends (after the hashtag). {numref}`Figure %s <boundary-cli>` illustrates the [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli) file used in this chapter where the `upstream` open boundary is defined at line 7, before the definition of the downstream open boundary starting at line 313.
+
+```{figure} ../../img/telemac/boundary-cli.png
+:alt: telemac 2d cli boundary conditions order cas steering file prescribed prescription
+:name: boundary-cli
+
+Die in diesem Tutorial verwendete Datei [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/boundaries.cli)] beginnt mit der in Zeile 7 definierten Upstream-Grenze. Um die stromabwärtige Grenze zu finden, scrollen Sie nach unten zur Linie 313.
+```
+````
+
+Liquid boundary conditions may be assigned to any open boundary in the `*.cli` file.
+
+````{admonition} External files instead of PRESCRIBED-keywords
+:class: note, dropdown
+Anstelle einer Liste von semi-kolon-getrennten Zahlen in der Steuerungsdatei können Flüssigkeitsrandbedingungen auch mit einer Flüssigkeitsrandbedingungsdatei im *ASCII*-Textformat definiert werden. Zu diesem Zweck müssen die Schlüsselwörter `LIQUID BOUNDARIES FILE` und / oder `STAGE-DISCHARGE CURVES FILE` in der Steuerungsdatei definiert werden. Externe Dateien sind für die Simulation von quasi-instationären Strömungen erforderlich (z. B. ein Hochwasser-Hydragraph oder Low-Flow-Sequenzen für Lebensräume) und weitere Details finden Sie in den Abschnitten 4.2.5 und 4.2.6 im [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) oder {ref}`unsteady section in this eBook <chpt-unsteady>`].
+````
+
+Ein Geschwindigkeitsprofiltyp kann jeder vorgegebenen offenen Grenze Q (Flowrate) oder U (Geschwindigkeit) in Form einer Liste zugeordnet werden, die die gleiche Elementreihenfolge wie die oben definierten **PRESCRIBED ...**-Schlüsselwörter hat. Zu diesem Zweck können vor- und nachgelagerte Geschwindigkeitsprofile mit dem Schlüsselwort **VELOCITY PROFILES** definiert werden, das die folgenden Werte akzeptiert:
+
+* `1` is the **default** option that defines the flow velocity direction at the boundary nodes normal to their edges. This option assigns a length of 1 to the vector and multiplies it with a numeric factor to yield a target flowrate.
+* `2` liest U- und V-Geschwindigkeitsprofile aus der Randbedingungen-Datei (`*.cli`), die mit einer Konstante multipliziert werden, um eine Zieldurchflussrate zu erhalten.
+* `3` imposes the velocity vector direction normal to the boundary and reads the value (UBOR) from the `*.cli` file, which is then multiplied by a constant to yield a target flowrate.
+* `4` imposes the velocity vector direction normal to the boundary and calculates the value's norm proportional to the square root of the water depth. This option can only be used with a *prescribed Q* open boundary.
+* `5` imposes the velocity vector direction normal to the boundary and calculates the value's norm proportional to the square root of a virtual water depth.
+
+With the upstream boundary being a *prescribed Q* boundary, this tutorial uses `VELOCITY PROFILES : 4;1` in the steering file. Read more about options for defining velocity profiles in section 4.2.8 of the [Telemac2d manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).
+
+
+```{admonition} Boundary conditions and mass balance
+:class: tip
+
+The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight focus on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
+```
+
+
+(tm2d-init-dry)=
+### Ursprüngliche Bedingungen
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 4.1 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Die Anfangsbedingungen beschreiben den Zustand des Modells zu Beginn einer Simulation. Telemac2d erkennt die folgenden Arten von Anfangsbedingungen, die in der Steuerungsdatei mit dem Schlüsselwort `INITIAL CONDITIONS : 'TYPE'` definiert werden können, wobei `TYPE` eine der folgenden sein kann:
+
+* `ZERO ELEVATION` initialisiert die freie Oberflächenhöhe bei 0 (**Standard**). Die anfänglichen Wassertiefen entsprechen somit der Bodenerhebung.
+* `CONSTANT ELEVATION` initializes the free surface elevation at a value defined with an **INITIAL ELEVATION** keyword that has a default value of `0.`. Thus, the initial water depths correspond to the subtraction of the bottom elevation from the water surface elevation $wse$. The initial water depth is set to zero at nodes where the bottom elevation is higher than defined by the **INITIAL ELEVATION** keyword.
+* `ZERO DEPTH` initializes the simulation with `0` (i.e., $wse$ corresponds to bottom elevation). Thus, the model starts with dry conditions, similar as in the {ref}`BASEMENT <basement2d>` tutorial.
+* `CONSTANT DEPTH` initialisiert die Wassertiefen mit einem Wert, der durch ein **INITIAL DEPTH**-Schlüsselwort definiert wird, das einen Standardwert von `0.` hat.
+* `TPXO SATELLITE ALTIMETRY` initialisiert das Modell anhand von Informationen, die von einer benutzerdefinierten Datenbank bereitgestellt werden (z. B. das [OSU TPXO-Modell für ocean tides](http://g.hyyb.org/archive/Tide/TPXO/TPXO_WEB/global.html)]. Lesen Sie mehr in Abschnitt 4.2.12 des [Telemac2d-Handbuchs](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) zur Modellierung mariner Systeme].
+
+Definieren Sie zunächst die anfängliche Wassertiefe als 0 mit dem folgenden Schlüsselwort, was bedeutet, dass das Modell mit einem trockenen Flussbett initialisiert wird:
+
+```fortran
+INITIAL CONDITIONS : 'ZERO DEPTH'
+```
+
+Die Simulationsgeschwindigkeit kann deutlich erhöht werden, wenn das Modell bereits einmal bei der gleichen (Anfangs-)Entladung gelaufen ist. Das Ergebnis einer früheren Simulation kann für die Anfangsbedingung mit den Schlüsselwörtern `COMPUTATION CONTINUED : YES` (Standard ist `NO`) und `PREVIOUS COMPUTATION FILE : *.slf` (geben Sie den Namen einer `*.slf`-Datei an) verwendet werden. Diese Art der Modellinitialisierung wird auch als *hotstart* bezeichnet. Lesen Sie mehr über Hotstarts in den Abschnitten {ref}`unsteady simulation <tm2d-hotstart>` und {ref}`Gaia <gaia-hotstart>`. Auch Abschnitt 4.1.3 in der [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) enthält Beschreibungen für die Fortsetzung (Hotstart) Berechnungen.
+
+
+````{admonition} Wet the model at the beginning
+
+Use a *constant* water *depth* initial condition of `1` (integer) to speed up calculations, which corresponds to a completely flooded initial model state (i.e., water volume surplus). However, this type initialization will also place a 1-m thick water layer beyond the riverbanks, where water may not be able to run off. Thus, puddles are likely to form longitudinally along the solid `2 2 2` boundaries.
+
+```fortran
+INITIAL CONDITIONS : 'CONSTANT DEPTH'
+INITIAL DEPTH : 1
+```
+
+In the case of delta simulations, an initial condition defined with `CONSTANT ELEVATION` might be preferably defined at a lake or sea level.
+````
+
+(tm2d-friction)=
+### Reibung (Rauheit)
+
+**Die folgenden Beschreibungen der Reibungsparameter beziehen sich auf Abschnitt 6.1 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Das Schlüsselwort **LAW OF BOTTOM FRICTION** definiert ein Rauheitsmodell für topografische Grenzen, das so eingestellt werden kann:
+
+* `0` for no friction.
+* `1` für die {cite:t}`haaland1983`-Gleichung, die eine implizite Form der {cite:t}`colebrook1937`-Gleichung ist, die auf dem Darcy-Weisbach-Reibfaktor $f_D$ aufbaut. Dieses Gesetz beinhaltet ein hohes Maß an Unsicherheit, die aus dem experimentellen Datensatz des ursprünglichen Autors stammt.
+* `2` for the {cite:t}`chezy_formula_1776` roughness that can be similarly used as `3` and `4`.
+* `3` für {cite:t}`strickler_beitrage_1923`Rauheit $k_{st}$ (lesen Sie mehr, zum Beispiel im {ref}` 1d hydraulics exercise <ex-1d-hydraulics>`), was die Umkehrung von $n_m$ (`4`) ist.
+* `4` für {cite:t}`manning_transactions_1891`Rauheit $n_m$ (lesen Sie mehr, zum Beispiel im {ref}` 1d hydraulics exercise <ex-1d-hydraulics>`), was die Umkehrung von $k_{st}$ (`3`) ist.
+* `5` für das {cite:t}`nikuradse_stromungsgesetze_1933`-Rauheitsgesetz, das gemäß {cite:t}`vanrijn2019` 3 $\cdot D_{90}$ entsprechen sollte.
+* `6` for the logarithmic law of the wall for turbulent flows. This option assumes that the average flow velocity is a logarithmic function of the distance from the wall beyond the viscous and buffer layers. The thickness of these layers is a function of the wall roughness length {cite:p}`von_karman_mechanische_1930`.
+* `7` für die {cite:t}`colebrook1937`-Gleichung, die den Darcy-Weisbach-Reibfaktor $f_D$ für turbulente Strömungen in glatten Rohren berechnet.
+
+With respect to the 2d applications in this eBook, the most relevant bottom roughness models are `3` {cite:p}`strickler_beitrage_1923`, `4` {cite:p}`manning_transactions_1891`, and `6` (log law). The {cite:t}`nikuradse_stromungsgesetze_1933` roughness law (`5`) is recommended for 3d simulations (see the {ref}`Telemac3d tutorial <chpt-telemac3d-slf>`). Friction is more generally referred to as with the general coefficient $c_{f}$, which has a particular relevance for {term}`Geschiebe <Bedload>` transport (cf. {ref}`morphodynamic calculations with Gaia <c-friction>`).
+
+The **FRICTION COEFFICIENT FOR THE BOTTOM** keyword sets the value for a characteristic roughness coefficient. For instance, when the friction law keyword is set to `3` {cite:p}`strickler_beitrage_1923`, the friction corresponds to the Strickler roughness coefficient $k_{st}$ (in fictive units of m$^{1/3}$ s$^{-1}$). For rough channels (e.g., mountain rivers) $k_{st} \approx 20$ m$^{1/3}$ s$^{-1}$ and for smooth concrete-lined channels $k_{st} \approx 75$ m$^{1/3}$ s$^{-1}$. In fully turbulent flows, the Strickler roughness can be approximated with $k_{st} \approx \frac{26}{D_{90}^{1/6}}$ {cite:p}`meyer-peter_formulas_1948` where $D_{90}$ is the grain diameter of which 90% of the surface grain mixture are finer.
+This tutorial features the application of a *Manning* roughness coefficient of $n_m$= 0.03, which is the inverse of $k_{st}$ and implemented with:
+
+```fortran
+LAW OF BOTTOM FRICTION : 4 / 4-Manning
+FRICTION COEFFICIENT : 0.03 / Roughness coefficient
+```
+
+````{dropdown} Expand to see exemplary values for Manning roughness
+{numref}`Table %s <tab-mannings-n>` listet beispielhafte Werte für den Manning-Rauheitskoeffizienten $n_m$ basierend auf {cite:t}`usgs1973_n` und {cite:t}`usgs1989_n` auf.
+
+```{list-table} Exemplary values for Manning roughness for straight uniform channels.
+:header-rows: 1
+:name: tab-mannings-n
+
+* - Oberflächentyp
+  - Materialdurchmesser (10$^{-3}$m)
+  - $n_m$ (m$^{-1/3}$s)
+
+* - Beton
+  - $-$
+  - 0,012-0,018
+
+* - Fester Boden
+  - $-$
+  - 0,025-0,032
+
+* - Grobsand
+  - 1-2
+  - 0,026-0,035
+
+* - Kies
+  - 2-64
+  - 0,028-0,035
+
+* - Pflaster
+  - 64-256
+  - 0.030-0.050
+
+* - Felsblock
+  - $>$256
+  - 0,040-0,070
+```
+````
+
+```{admonition} Friction zones (regional friction values)
+:class: tip, dropdown
+
+To create zones with different friction values, have a look at the spotlight focus on {ref}`roughness zones <tm-friction-zones>`.
+```
+
+In addition, specific roughness conditions should be defined for the liquid boundaries (see {ref}`above <tm2d-bounds>`), which should not be changed in the process of model calibration later. To this end, a **measured {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>`** is required to back-calculate cross-section averaged hydraulics. For this purpose, take a look at the {ref}`Python exercise on 1-d hydraulics for solving the Manning-Strickler <ex-1d-hydraulics>` formula.
+
+```fortran
+LAW OF FRICTION ON LATERAL BOUNDARIES : 3 / integer (3 is Strickler)
+ROUGHNESS COEFFICIENT OF BOUNDARIES : 33.3 / float inverse of n_m=0.03
+```
+
+```{admonition} Differentiate between bottom and boundary friction
+:class: important
+
+Wenn Sie die beiden Schlüsselwörter, die die Reibung an den Grenzen definieren, nicht verwenden, wirkt sich jede Rauheitskalibrierung auf die Massenbilanz aus.
+```
+
+
+(tm2d-turbulence)=
+### Turbulenzen
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 6.2 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+Turbulence describes a seemingly random and chaotic state of fluid motion in the form of three-dimensional vortices (eddies). True turbulence is only present in 3d vorticity and when it occurs, it mostly dominates all other flow phenomena through increases in energy dissipation, drag, heat transfer, and mixing {cite:p}`kundu_fluid_2008`. The phenomenon of turbulence has been a mystery to science for a long time, since turbulent flows ({term}`read more about the implementation in RANS <RANS>`) have been observed, but could not be explained by the linear equations systems. Today, turbulence is considered a random phenomenon that can be accounted for in linear equations, for instance, by introducing statistical parameters. For instance, when turbulence applies to the depth-averaged {term}`Navier-Stokes-Gleichungen <Navier-Stokes equations>` a numerical solution for a quantity (e.g., flow velocity) corresponds to $value = \overline{mean value} + value fluctuation'$. For this purpose, there are a variety of options for implementing turbulence in numerical models {cite:p}`nezu1993`.
+
+The horizontal and vertical dimensions of turbulent eddies can vary greatly, especially in rivers and transitions to backwater zones (tidal flats) where the wide horizontal flow dimension (river width $w$) is significantly larger than the vertical flow dimension (water depth $h$): $w >> h$. Telemac2d provides multiple turbulence models that can be applied to the vertical and/or horizontal dimensions and defined with the **TURBULENCE MODEL** keyword being an integer number for one of the following options:
+
+* `1` to use a constant viscosity coefficient (**default**) for turbulent viscosity, molecular viscosity, and {term}`Diffusion`. This closure option should not be used with {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` open boundaries (i.e., do not use with prescribed Q and H) {cite:p}`wilson2002`.
+* `2` to use the Elder formula for the {term}`Diffusion` coefficient $D$. The Elder turbulence closure also yields small errors for {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` open boundaries (i.e., do not use this option with prescribed Q and H) {cite:p}`wilson2002`.
+* `3` to use the $k-\epsilon$ two-equation model solving the {term}`Navier-Stokes-Gleichungen <Navier-Stokes equations>`. The first equation represents a turbulence closure for the {term}`turbulent kinetic energy <Turbulent kinetic energy>` $k$; the second equation is a turbulence closure for the turbulent dissipation $\epsilon$. Both equations express that the sum of change of (I) $k$ and $\epsilon$ in time, and (II) {term}`Advektion <Advection>` transport of $k$ and $\epsilon$ equal the sum of (1) {term}`Diffusion` transport of $k$ and $\epsilon$, (2) the production rate of $k$/$\epsilon$, and (3) the destruction rate of $k$/$\epsilon$ {cite:p}`launder1974`. The $k-\epsilon$ model is a generalization of the mixing length model (see option `5`) and assumes that the turbulent viscosity is isotropic (valid for many river applications, but not for circular-rotating flows or groundwater) {cite:p}`bradshaw1987`. Thus, the $k-\epsilon$ model introduces two additional equations and requires a finer mesh than the constant viscosity option `1`, which leads to a longer computation time. Yet, the $k-\epsilon$ model generally yields accurate results and small errors with {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` open boundaries {cite:p}`wilson2002`. The following default keywords are associated with the $k-\epsilon$ model:
+  * `VELOCITY DIFFUSIVITY : 1.E-6` entsprechend der kinematischen Viskosität $\nu$ von Wasser (10$^{-6}$m$^2$s).
+  * `TURBULENCE REGIME FOR SOLID BOUNDARIES : 2` **für raue Wände** von geschlossenen Grenzen, um den Wert anzuwenden, der für die Schlüsselwörter ** RECHT DER BOTTOM FRICTION** und **ROUGHNESS COEFFICIENT OF BOUNDARIES** gewählt wurde (Rückrufabschnitt {ref}`tm2d-friction`). Für **glatte geschlossene Begrenzungswände ** set `TURBULENCE REGIME FOR SOLID BOUNDARIES : 1`.
+  * `INFORMATION ABOUT K-EPSILON MODEL : YES` ermöglicht die Ausgabe von Informationen über die $k-\epsilon$ Verschlusslösung.
+* `4`, um das {cite:t}`smagorinsky1963` (auch bekannt als *general circulation*) Modell zu verwenden, das aus der Klimamodellierung stammt. Es stellt eine **große Wirbelsimulation** dar (LES, im Gegensatz zu {term}`RANS`). Das {cite:t}`smagorinsky1963`-Modell berücksichtigt nicht {term}`Diffusion`.
+* `5`, um ein Mischlängenmodell gemäß Prandtls Theorie zu verwenden, dass eine flüssige Menge ihre Eigenschaften für eine charakteristische Länge konserviert, bevor sie sich mit dem Massenstrom {cite:p}`bradshaw1974` vermischt.
+* `6` to use the {cite:t}`spalart1992` one-equation {term}`RANS` model, which solves a single transport equation for a modified turbulent kinematic viscosity $\tilde{\nu}$, from which the eddy viscosity $\nu_t$ is derived through a near-wall damping function. The transport equation for $\tilde{\nu}$ includes convection, {term}`Diffusion`, a production term proportional to the local strain rate, and a destruction term that depends on the distance to the nearest solid wall. Compared to the $k-\epsilon$ model, Spalart-Allmaras is computationally lighter (one equation instead of two) but the wall-distance-based destruction term makes adequate near-wall mesh resolution important. The model was originally developed for high-{term}`Reynolds-Zahl <Reynolds number>` aerodynamic (aerospace) flows with mild adverse pressure gradients, and is adapted in TELEMAC-2D as a depth-averaged {term}`RANS` closure. The following keywords apply; note that keywords containing `K-EPSILON` in their name also govern the Spalart-Allmaras solver:
+  * `INFORMATION ABOUT SPALART-ALLMARAS MODEL : YES` ermöglicht die Konsolenausgabe für den SA-Solver (Standard = JA).
+  * `TURBULENCE REGIME FOR SOLID BOUNDARIES : 2` für raue feste Wände (verwenden Sie `1` für glatte Wände); gleiche Rolle und Werte wie für das $k-\epsilon$-Modell (siehe {ref}`tm2d-friction`).
+  * `VELOCITY DIFFUSIVITY : 1.E-6` -- kinematic viscosity of water (10$^{-6}$ m$^2$/s), same role as in the $k-\epsilon$ model.
+  * `ACCURACY OF SPALART-ALLMARAS : 1.E-9` -- Konvergenzschwelle für den Diffusions- und Source-Term-Schritt der $\tilde{\nu}$-Gleichung (Standard $10^{-9}$).
+  * `SCHEME FOR ADVECTION OF K-EPSILON` controls advection of $\tilde{\nu}$; use the same recommendations as for $k-\epsilon$ (e.g., `14` with tidal flats, `4` without).
+  * Das fünfte Element von `DISCRETIZATIONS IN SPACE` setzt die räumliche Diskretisierung für $\tilde{\nu}$ (Standard `11`).
+  * `SOLVER FOR K-EPSILON MODEL`, `MAXIMUM NUMBER OF ITERATIONS FOR K AND EPSILON` und `PRECONDITIONING FOR K-EPSILON MODEL` regieren auch das SA-Solver-System.
+
+```{admonition} Near-wall resolution for the Spalart-Allmaras model
+:class: note
+
+In TELEMAC-2D, **walls** refer to solid lateral boundaries, that is, riverbanks, bridge piers, training walls, **not the bed** (bed roughness is handled separately by the bottom roughness model). The Spalart-Allmaras destruction term scales with $C_{w1} f_w \left(\tilde{\nu}/l_w\right)^2$, where $l_w$ is the shortest distance from a mesh node to the nearest solid boundary. This dependency causes $\tilde{\nu}$, and consequently $\nu_t$, to decay toward zero approaching the wall, which produces the velocity gradient profile expected in turbulent wall-bounded flow.
+
+For this decay to be well-resolved, **at least 2 to 3 mesh nodes should lie within the near-wall shear layer** along solid lateral boundaries. If the nearest node is located too far from the wall, $l_w$ is overestimated, the destruction term is too weak, and eddy viscosity near the boundary will be artificially elevated. In practice, this means applying local mesh refinement along solid boundaries is important: a useful target is element edge lengths of approx. 1/10$^{th}$ of the expected lateral shear-layer width, which in fluvial hydraulics typically ranges from a few decimeters near hydraulic structures to a few meters along open floodplain banks.
+
+Note that this requirement is more stringent than for the $k-\epsilon$ model. With `TURBULENCE REGIME FOR SOLID BOUNDARIES : 2`, the $k-\epsilon$ model applies the bottom roughness model directly at boundary nodes and does not rely on resolving the turbulent viscosity decay across the mesh.
+```
+
+Dieses Tutorial verwendet das $k-\epsilon$ Modell (`3`) wegen seiner Popularität und breiten Anwendbarkeit (nicht zu verwechseln mit Korrektheit).
+
+```
+DIFFUSION OF VELOCITY : YES / enabled by default
+TURBULENCE MODEL : 3
+```
+
+
+(tm2d-run)=
+## Ausführen Telemac2d
+
+Mit der Steuerungsdatei (`*.cas`) ist die letzte notwendige Zutat für den Betrieb einer stetigen hydrodynamischen 2D-Simulation mit Telemac2d verfügbar. Stellen Sie sicher, dass Sie alle erforderlichen Dateien in einem Simulationsordner ablegen (z. B. `~HOMETEL/mysimulations/steady2d-tutorial/`). Die erforderlichen Dateien können auch aus diesem eBook [steady2d tutorial repository](https://github.com/hydro-informatics/telemac/tree/main/steady2d-tutorial/)] heruntergeladen werden und umfassen:
+
+* [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/qgismesh.slf)
+* [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli)]
+* [steady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas)
+
+Wenn diese Dateien vorbereitet sind, laden Sie die TELEMAC-Umgebung und führen Sie Telemac2d nach den Erklärungen in den nächsten Abschnitten aus.
+
+### Ladeumgebung und Dateien
+
+Gehen Sie zum Konfigurationsordner der Telemac-Installation (z.B. `HOMETEL/configs/`, wobei `HOMETEL` so etwas wie `/home/telemac/v9.0.0/` sein könnte) und laden Sie die Umgebung (z.B. `pysource.gfortranHPC.sh` - verwenden Sie dasselbe wie für {ref}`compiling Telemac <tm-compile>`).
+
+```
+cd ~/telemac/v9.0.0/configs
+source pysource.gfortranHPC.sh
+```
+
+````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
+:class: note, dropdown
+
+Wenn Sie mit {ref}`Mint Hyfo VM <hyfo-vm>` arbeiten, laden Sie die TELEMAC-Umgebung wie folgt:
+
+```
+cd ~/telemac/v8p2/configs
+source pysource.hyfo-dyn.sh
+```
+````
+
+### Starten einer Telemac2d-Simulation
+
+Um eine Simulation zu starten, wechseln Sie zum Verzeichnis (`cd`), in dem die Simulationsdateien leben, und führen Sie die Steuerungsdatei (`.cas`) mit dem **telemac2d.py**-Skript aus:
+
+```
+cd ~/telemac/v9.0.0/mysimulations/steady2d-tutorial/
+telemac2d.py steady2d.cas -s
+```
+
+The `-s` flag is not strictly needed but useful for revising simulation characteristics, such as fluxes across the liquid boundaries or the total simulation time. It will write a file named `steady2d.cas.[...].sortie` and can be used for convergence analysis described in the spotlight chapter on {ref}`quantitative convergence <tm-convergence>`.
+
+Infolgedessen sollte eine erfolgreiche Berechnung mit den folgenden Zeilen (oder ähnlich) in *Terminal * enden:
+
+```fortran
+[...]
+                     *************************************
+                     *    END OF MEMORY ORGANIZATION:    *
+                     *************************************
+
+ CORRECT END OF RUN
+
+ ELAPSE TIME :
+                             03  MINUTES
+                             44  SECONDS
+... merging separated result files
+
+... handling result files
+        moving: r2dsteady.slf
+... deleting working dir
+
+My work is done
+```
+
+So produzierte Telemac2d die Datei *r2dsteady.slf*, die nun in {ref}`post-processing with QGIS <tm-steady2d-postpro>` oder ParaView analysiert werden kann.
+
+
+(tm-steady2d-postpro)=
+# Nachbearbeitung
+
+The post-processing of the steady 2d scenario uses QGIS and the {ref}`PostTelemac plugin <tm-qgis-plugins>`. Alternatively, Telemac results can also be visualized with [ParaView](https://www.paraview.org) or BlueKenue.
+
+(tm-use-q4ts)=
+## Ladeergebnisse und das Q4TS Plugin
+
+Starten Sie QGIS, {ref}`create a new QGIS project <qgis-project>`, setzen Sie das Projekt {term}`Koordinatenreferenzsystem <CRS>` auf `UTM zone 33N`, fügen Sie ein Satellitenbild {ref}`basemap <basemap>` hinzu und speichern Sie das Projekt (z. B. als `tm2d-postpro.qgis`) in demselben Ordner, in dem sich die Telemac2d-Simulationsergebnisse-Datei befindet (*r2dsteady.slf*), ähnlich den Beschreibungen im {ref}`pre-processing tutorial <tm-qgis-prepro>`.
+
+Load the `r2dsteady.slf` geometry file as mesh layer with drag and drop from the Browser panel to the Layers panel. Make sure to import it with its correct georeference: **EPSG:32633** (ETRS 89 / UTM zone 33N).
+
+Um mit diesem Abschnitt fortzufahren, stellen Sie sicher, dass das Q4TS-Plugin installiert ist (siehe Anweisungen unter {ref}`Software Requirements section <qgis-telemac>`). Um Ergebnisse ohne das Q4TS-Plugin zu untersuchen, ist direkt {ref}`jump to the next section <tm2d-post-export>`. Q4TS ist hilfreich, um SALOME/ParaVis-ähnliche Analysen (z. B. erweitertes Sondieren, Post-Processing-Pipelines, MED-zentrierte Workflows) durch Konversionsverarbeitung durchzuführen:
+
+* In **Processing > Toolbox** laufen **slf2med** (Q4TS-Anbieter):
+  * **Input .slf**: `r2dsteady.slf`
+  * **Input .cli** (optional): Ihre Grenzdatei, wenn Sie sie mitnehmen möchten
+  * **Output .med**: speichern `r2dsteady.med`
+
+Then open the `*.med` file in your preferred MED-capable post-processing workflow (ParaVis/SALOME). This is the one Q4TS feature that meaningfully bridges into "real post-processing" outside QGIS.
+
+## Querschnittsanalyse (Extraktwerte entlang von Schnittlinien)
+
+Dies ersetzt die alte Routine "Zeichne eine Linie und inspiziere / exportiere" von PostTelemac, ist aber sauberer, weil es eine reproduzierbare CSV aus einer Linienschicht erzeugt.
+
+1. Erstellen Sie eine Querschnittslinienschicht:
+  * Create a new line layer (GeoPackage recommended) called, for example, `control_sections`.
+  * Digitalisieren Sie eine oder mehrere Querschnittslinien über den Kanal (vorgelagerte, nachgelagerte, Kontrollabschnitte usw.).
+
+2. Export von Querschnittswerten aus der Masche in den CSV
+  * Öffnen **Verarbeitung > Toolbox** und Ausführen **Exportieren Sie Querschnittsdatensätze auf Zeilen aus Mesh**
+  * Konfigurieren:
+    * **Input Mesh Layer**: `r2dsteady`
+    * **Datensatzgruppen**: Wählen Sie aus, was Sie analysieren möchten (Beispiele)
+      * `WATER DEPTH` (Stabilität / Benetzungsverhalten)
+      * Geschwindigkeitskomponenten oder Größe (Hydraulik + Stabilitäts-Hotspots)
+      * jede diagnostische Variable, die Sie an die Ergebnisse geschrieben haben (falls verfügbar)
+    * **Datensatzzeit**:
+      * **Aktuelle Canvas-Zeit** für "Snapshot"-Checks verwenden oder
+      * Führen Sie mehrmals für bestimmte Zeitstempel aus, die Ihnen wichtig sind.
+    * **Lines für Datenexport**: `control_sections`
+    * **Zeilensegmentierungsauflösung**: Setzen Sie dies auf etwas, das für Ihre Mesh-Auflösung sinnvoll ist (nicht überproben).
+    * **Output**: speichern als `*.csv`
+
+Open the exported CSV in {ref}`Libre Office <lo>` and plot section profiles (e.g., depth vs. chainage, velocity vs. chainage). Repeat for upstream/downstream sections and compare.
+
+**Was Ihnen das sagt (Modellleistungswinkel):**
+* abschnittsweise Sicherheitsüberprüfungen (z. B. Tiefen-/Geschwindigkeitsmuster, bei denen Sie sie erwarten),
+* Hotspot-Erkennung (unphysische Spitzen in der Nähe von Grenzen, um steile Bathymetriegradienten usw.),
+* "Ist es noch stabil?" überprüft, indem derselbe Abschnitt in mehreren Zeitschritten verglichen wird.
+
+## Knotenanalyse (Zeitreihen an Kontrollpunkten)
+
+Für Konvergenz- / Stabilitätsprüfungen sind Punktzeitreihen in der Regel das schnellste Signal.
+
+1. Erstellen einer Kontrollpunktschicht:
+  * Create a point layer called `control_points`.
+  * Fügen Sie Punkte an Orten hinzu, die Ihnen wichtig sind:
+    * nahe Zu-/Abflussgrenzen,
+    * in der Nähe von hydraulischen Steuerungen,
+    * in Zonen, in denen eine Instabilität wahrscheinlich ist (flache Bereiche, starke Steigungen, Benetzungs-/Trocknungsfront).
+2. Zeitreihen aus dem Mesh nach CSV exportieren:
+  * Öffnen Sie **Processing > Toolbox** und führen Sie **Export Zeitreihenwerte aus Punkten eines Mesh-Datasets** aus
+  * Konfigurieren:
+    * **Input Mesh Layer**: `r2dsteady`
+    * **Datensatzgruppen**: Wählen Sie die wichtigsten Variablen aus, die Sie überwachen möchten (Tiefe, Geschwindigkeit und alle von Ihnen ausgegebenen Diagnosefelder)
+    * **Punkte für den Datenexport**: `control_points`
+    * **Output**: speichern als `*.csv`
+
+Plot the time series in {ref}`Libre Office <lo>` and use it as a quick performance dashboard:
+
+* Beruht sich Tiefe/Geschwindigkeit auf einen stabilen Wert (stationärer Zustand)?
+* Sehen Sie Oszillationen oder Spikes (numerische Probleme, Randbedingungen)?
+* Machen flache Knoten drehen nass / trocken unrealistisch (Benetzung / Trocknung Tuning Problem)?
+
+These extracted series are directly usable in the {ref}`wet initialization exercise below <tm2d-init-wet>`.
+
+(tm2d-post-export)=
+## Export nach GeoTIFF
+
+Um die Modellergebnisse in ein {term}`GeoTIFF`-Raster zu exportieren, gehen Sie zur **Processing Toolbox** (in QGIS), erweitern Sie den **Mesh**-Eintrag und öffnen Sie das **Rasterize-Mesh-Dataset**-Tool. Führen Sie im Popup-Fenster **Rasterize Mesh Dataset** ({numref}`Figure %s <rasterize-v-mesh>`) folgende Einstellungen aus:
+
+* **Input Mesh Layer**: Wählen Sie die Telemac Results Mesh Layer (`r2dsteady`)
+* **Datensatzgruppen**: Klicken Sie auf die Schaltfläche **...** > **Wählen Sie in Verfügbare Datensatzgruppen** und wählen Sie die gewünschte Anzahl aus. Dieses Tutorial bietet den Export einer Strömungsgeschwindigkeit. Klicken Sie auf **OK**, um zum Rasterize Mesh Dataset-Tool zurückzukehren.
+* **Datensatzzeit**: Klicken Sie auf das Pfeilsymbol nach oben / unten, um nach unten zu scrollen und den letzten Zeitschritt auszuwählen. In einer instationären (d.h. quasi-stationären) Simulation könnten auch andere Zeitschritte von Interesse sein.
+* **Extent**: Klicken Sie auf den Dropdown-Pfeil > **Berechnen aus Layer** > select **r2dsteady**
+* **Pixelgröße**: `1.0` (Standard). Bei gröberen oder feineren Maschen sollte die Pixelgröße variiert werden.
+* **Ausgabekoordinatensystem**: wählen Sie `EPSG:32633` (das ist das Koordinatenreferenzsystem des Meshs)
+* **Output-Rasterschicht**: Klicken Sie auf **...**, um zu einem Zielordner zu navigieren und einen Namen für das Raster einzugeben. Hier: `velocity-tmax.tif`.
+* **Run** die Rasterisierung.
+
+
+```{figure} ../../img/telemac/rasterize-mesh.png
+:alt: telemac qgis export velocity geotiff raster
+:name: rasterize-v-mesh
+
+Das Rasterize Mesh Dataset Tool in QGIS
+```
+
+The resulting **velocity-tmax** raster will be added to the Layers panel. For better visualization, some color is helpful. Therefore, double-click on the new **velocity-tmax** to open its properties. Go to the **Symbology**, change the **Render type** to `Singleband pseudocolor`, and use your favorite color ramp and number of classes for visualizing the velocity. To make `0`-entries invisible, click on their **Color** symbol and set the **Opacity** to 0%, or set the **Min** to `0.0001`.
+
+
+```{figure} ../../img/telemac/qgis-exported-v.png
+:alt: qgis telemac flow velocity vitesse results slf raster geotiff tif
+:name: qgis-exported-v
+
+Die exportierte Strömungsgeschwindigkeit (VITESSE) GeoTIFF Raster in QGIS (Hintergrundkarte: {cite:t}`googlesat` Satellitenbilder). Der Standort des Raster-Mesh-Dataset-Tools in der Processing Toolbox ist rechts hervorgehoben.
+```
+
+
+## Ergebnisse analysieren
+
+Die erste Analyse der Ergebnisse sollte sich mit der grundlegenden Korrektheit des Modells befassen, beispielsweise in Bezug auf die Massenbilanz und ihre Entwicklung im Laufe der Zeit. Zu diesem Zweck öffnen Sie den **Time Controller** <img src="../../img/qgis/time-controller.png" width="15" height="15"> im QGIS-Top-Menü.
+
+
+(verify-steady-tm2d)=
+### Quantitative Entladekonvergenz
+
+Während der Simulation fließen die Keywords `MASS-BALANCE : YES` und / oder `PRINTING CUMULATED FLOWRATES : YES` über Flüssigkeitsgrenzen im Terminal. Um die Flussraten und die Volumenbilanz retrospektiv zu überprüfen, muss die Simulation mit dem Flag `-s` ausgeführt worden sein, das den Simulationszustand in einer Datei speichert, die ähnlich wie `steady2d.cas_YEAR-MM-DD-HHhMMminSSs.sortie` aufgerufen wird. Basierend auf der `.sortie`-Datei können Summen von Flüssen, das Gesamtvolumen und der Volumenfehler mit den Python-Skripten extrahiert und analysiert werden, die zusammen mit der Telemac-Installation bereitgestellt werden (*HOMETEL/scripts/python3/*). Die Telemac Jupyter Notebooks (*HOMETEL/notebooks/* > *data manip/extraction/\*.ipynb* oder *workshops/exo fluxes.ipynb*) veranschaulichen die Verwendung der Python-Skripte. Eine ausführliche Diskussion über Konvergenz und optimierte Python-Skripte ([pythomac](https://pythomac.readthedocs.io)]) finden Sie in diesem eBook im Kapitel {ref}`quantitative Telemac convergence analysis <tm-convergence>`. Mit diesen Skripten wurde {numref}`Fig. %s <steady-flux-convergence-standalone>` erzeugt, die die Flüsse über die beiden Grenzen der steady-2d-Studie zeigen, was auf eine Konvergenz nach etwa 7000 Zeitschritten hinweist.
+
+```{figure} ../../img/telemac/steady-flux-convergence.png
+:alt: python telemac flux discharge convergence pythomac
+:name: steady-flux-convergence-standalone
+
+Flusskonvergenzkurve über die beiden Grenzen der trocken initialisierten stationären Telemac2d-Simulation (erstellt mit Pythomac).
+```
+
+(qualitative-postel)=
+### Qualitative Geschwindigkeit, Tiefe und Entladung Evolution
+
+The convergence of water depth and flow velocity, and therefore, discharge, can be qualitatively observed in QGIS through the **Time Controller** (see activation in {numref}`Fig. %s <qgis-time-controller-tm>`). The frequency of images can be set through clicking on the cogwheel of the time controller, and image sequences played by clicking in the *Play* button. Additionally, {numref}`Fig. %s <qgis-time-controller-tm>` uses an overlay of water depth pixel colors (contour plot), and flow velocity vectors, defined in the *Layer Styling* panel. The North and discharge arrows, and the title are *Decorators*, which can be found in **View** > **Decorators**.
+
+```{figure} ../../img/telemac/qgis-time-controller.jpg
+:alt: time controller qgis telemac
+:name: qgis-time-controller-tm
+
+The activated time controller in QGIS enables to move along the time axis of modeled quantities (background map: {cite:t}`googlesat` satellite imagery). The red-highlighted buttons activate the time controller, play the sequence of images of selected quantities, provide a setting for playing a frequency of images per second, and enable saving images of all timesteps (see instructions below).
+```
+
+Um eine Reihe von Bildern zu exportieren, um sie in ein filmähnliches GIF zu verwandeln, verwenden Sie die Schaltfläche **Speichern ** des Zeitcontrollers. Richten Sie die gewünschte Auflösung ein und definieren Sie einen Ausgabeordner. Die Serie von PNG-Bildern kann dann beispielsweise mit [GIMP](https://www.gimp.org/)] in ein GIF umgewandelt werden. Zu diesem Zweck herunterladen und öffnen GIMP, dann:
+
+* Öffnen Sie das erste Bild der exportierten Serie.
+* Ziehen Sie alle anderen exportierten Bilder in das *Layers*-Panel von GIMP.
+* Reverse die Reihenfolge der Layer in GIMP: **Layer** > **Stack** > **Reverse Layer Order**.
+* Speichern Sie das Bild als GIF: **File** > **Export As...**.
+* Select a folder to save the file, in the **Name** field enter `[any-name].GIF`, and click **Export**.
+* Im Popup-Fenster aktivieren Sie **As animation** und **Loop forever** mit einer empfohlenen Verzögerung zwischen Frames von **100 Millisekunden**. Behalten Sie alle anderen Standardwerte und klicken Sie auf **Export**.
+
+The animated figure below features an exported GIF with water depth in the background and flow velocity as streamline-vectors ranging from 0 to 2.0 m/s. The animation shows how the model is filled from both its upstream (left) and downstream (right) boundaries at the beginning of the simulation. While the upstream discharge was imposed along with a water depth through a `5 5 5` boundary, the downstream boundary only had a prescribed water depth `5 4 4` boundary. The prescription of sufficient water depths was necessary to avoid supercritical flows at the boundaries, which would make the numerical model crash immediately. Because the flux coming from the downstream boundary needs to move uphill, it cannot go very fast and is rolled over by a wave of water coming from the upstream boundary. If a downstream flux was prescribed, the model would have been more unstable and overdetermined. 
+
+````{div}
+:class: full-width
+```{admonition} GIF sequence of a dry-initialized Telemac2d model (large file size!)
+:class: tip, dropdown
+:name: telemac-flow-convergence-gif
+
+<img src="../../img/telemac/inn-dry-init.gif" alt="Telemac dry-init GIF" />
+
+```
+````
+
+```{admonition} Recall: boundary conditions and mass balance
+:class: important
+
+Mass balance is a crucial criterion for a sound numerical model. Read more in the spotlight chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
+```
+
+(vtk2slf)=
+### Konvertieren in VTK (ParaView)
+
+ParaView is great for 3D analysis. A straightforward way to load TELEMAC `.slf` result files is to convert them to the `.vtk` format. One quick way to get this conversion done is by using [pputils](https://codeberg.org/pprodano/pputils). To this end, first clone pputils, then make sure the `numpy` dependency is installed in the same Python environment that you will use for the conversion. Remember where you downloaded pputils:
+
+```bash
+git clone https://codeberg.org/pprodano/pputils.git
+python -m pip install numpy
+```
+
+After that, `cd` into your TELEMAC model directory (where the `.slf` file lives) and create a new Python script named `slf2vtk.py` with the following contents. Make sure to set `PPUTILS_DIR` to the cloned pputils directory and modify `input_slf="results.slf"` and `output_template="vtk/results.vtk"` to your needs:
+
+````{admonition} Click to unroll Python code
+:class: note, dropdown
+
+```python
+"""slf2vtk.py"""
+from pathlib import Path
+import subprocess
+import sys
+from typing import List, Optional, Union
+
+
+PPUTILS_DIR = Path(r"/path/to/pputils").expanduser().resolve()
+
+
+def slf_to_vtk(
+    input_slf: Union[str, Path],
+    output_template: Union[str, Path],
+    *,
+    binary: bool = True,
+    start: Optional[int] = None,
+    end: Optional[int] = None,
+) -> List[Path]:
+    """Convert a SELAFIN file to one VTK file per time step."""
+
+    input_slf = Path(input_slf).expanduser().resolve()
+    output_template = Path(output_template).expanduser().resolve()
+
+    if not input_slf.is_file():
+        raise FileNotFoundError(input_slf)
+
+    if output_template.suffix.lower() != ".vtk":
+        raise ValueError("output_template must end in .vtk")
+
+    if "." in output_template.stem:
+        raise ValueError("Avoid additional dots in the output filename")
+
+    if (start is None) != (end is None):
+        raise ValueError("Specify both start and end, or neither")
+
+    if start is not None and end is not None:
+        if start < 0 or end < 0:
+            raise ValueError("start and end must be non-negative")
+        if start > end:
+            raise ValueError("start must be less than or equal to end")
+
+    converter = PPUTILS_DIR / (
+        "sel2vtk_bin.py" if binary else "sel2vtk.py"
+    )
+
+    if not converter.is_file():
+        raise FileNotFoundError(f"PPUTILS converter not found: {converter}")
+
+    output_template.parent.mkdir(parents=True, exist_ok=True)
+
+    command = [
+        sys.executable,
+        str(converter),
+        "-i",
+        str(input_slf),
+        "-o",
+        output_template.name,
+    ]
+
+    if start is not None and end is not None:
+        # start/end are zero-based time-step indices.
+        command += ["-t_start", str(start), "-t_end", str(end)]
+
+    subprocess.run(
+        command,
+        cwd=output_template.parent,
+        check=True,
+    )
+
+    pattern = output_template.stem + "[0-9]" * 5 + ".vtk"
+    generated_files = sorted(output_template.parent.glob(pattern))
+
+    if not generated_files:
+        raise RuntimeError("pputils did not produce any VTK files")
+
+    return generated_files
+
+
+if __name__ == "__main__":
+    generated_files = slf_to_vtk(
+        input_slf="results.slf",
+        output_template="vtk/results.vtk",
+        binary=True,
+        # start=0,
+        # end=10,
+    )
+
+    for path in generated_files:
+        print(path)
+```
+````
+
+Führen Sie es dann in einem Terminal aus Ihrem TELEMAC-Modellverzeichnis aus:
+
+```bash
+python slf2vtk.py
+```
+
+The value given as `output_template` is a filename template rather than the name of one final file. For instance, `vtk/results.vtk` produces `vtk/results00000.vtk`, `vtk/results00001.vtk`, and so on; one file for each time step in the `.slf` file.
+
+By default, the script uses `sel2vtk_bin.py` to write binary VTK files. Set `binary=False` to write ASCII VTK files instead. To convert only part of the result series, uncomment `start` and `end`; these values are zero-based, inclusive time-step indices rather than simulation times.
+
+### TELEMAC-3D-Ladegeschwindigkeiten in ParaView
+
+Die im vorhergehenden Workflow erzeugten VTK-Dateien enthalten die Geschwindigkeitskomponenten \(u\), \(v\) und \(w\). Diese Größen repräsentieren die signierten Geschwindigkeiten in der Richtung \(x\)-, \(y\)- und \(z\)-Richtung. Die entsprechende dreidimensionale Geschwindigkeitsgröße ist
+
+$$
+|\mathbf{u}| = \sqrt{u^2 + v^2 + w^2}.
+$$
+
+Installieren Sie auf einem Debian-Computer ParaView aus dem Debian-Repository, wenn es nicht bereits verfügbar ist, und öffnen Sie dann die konvertierte Dateiserie aus dem Modellverzeichnis:
+
+```bash
+sudo apt update
+sudo apt install paraview
+
+cd /path/to/telemac/model/vtk
+paraview --data="$PWD/results..vtk"
+```
+
+In the final command, the two consecutive periods replace the numbered part of files such as `results00000.vtk`, `results00001.vtk`, and `results00002.vtk`. ParaView normally recognizes this naming pattern as a temporal file series. After the reader appears in the **Pipeline Browser**, select it and click **Apply**.
+
+Wenn `sel2vtk_bin.py` oder `sel2vtk.py` die TELEMAC-Variablen `VELOCITY U`, `VELOCITY V` und `VELOCITY W` erkennt, kombiniert [pputils](https://codeberg.org/pprodano/pputils) sie in den Punktdatenvektor `Velocity`.] Um die Gesamtgeschwindigkeit direkt anzuzeigen, wählen Sie **Velocity** aus dem Menü **Coloring** und dann **Magnitude**. Die Vektorkomponenten **X**, **Y** und **Z** entsprechen \(u\), \(v\) bzw. \(w\). Die ursprünglichen Skalar-Arrays bleiben auch als `VELOCITY_U`, `VELOCITY_V` und `VELOCITY_W` verfügbar.
+
+Wenn die Geschwindigkeitsgröße als separates Array zum Clippen, Schwellwerten, Sondieren oder Exportieren benötigt wird, wählen Sie den VTK-Leser im **Pipeline-Browser ** und dann **Filter > Allgemein > Rechner **. Setzen Sie **Result Array Name** auf `VELOCITY_MAGNITUDE`, bestätigen Sie, dass die Datenverbindung **Point Data** ist, und geben Sie Folgendes ein:
+
+```text
+mag(Velocity)
+```
+
+Click **Apply**, then color the Calculator output by `VELOCITY_MAGNITUDE`. For an animation, use **Rescale to Data Range over All Timesteps** so that one color scale is applied consistently throughout the simulation. This operation reads every time step and may therefore require additional time for a large TELEMAC-3D result set.
+
+Die Syntax der Dateiserie, die Vektorfärbung und der Rechnerausdruck folgen der [ParaView data-loading](https://docs.paraview.org/en/latest/UsersGuide/dataIngestion.html), [color-mapping](https://docs.paraview.org/en/latest/ReferenceManual/colorMapping.html) und] [Calculator](https://docs.paraview.org/en/latest/UsersGuide/filteringData.html#calculator)-Dokumentation]. ParaView ist als offizielles [Debian package](https://packages.debian.org/stable/paraview)] verfügbar.
+
+
+
+(tm2d-init-wet)=
+## Übung: Anfangsbedingungen
+
+The above {numref}`Fig. %s <steady-flux-convergence>` and {ref}`depth-velocity animation <telemac-flow-convergence-gif>` point to stability achieved after approximately 7000 timesteps. A wet-initialized model converges much faster, but either requires a previous run of a dry model initialization, or it can make use of other initial condition keywords in Telemac. Ideally, the dry-initialized model is used as a so-called hotstart condition for a wet-initialized model, as described in the {ref}`unsteady 2d tutorial <tm2d-hotstart>`. 
+  
+````{admonition} Challenge: initialize Telemac with an initial water depth
+:class: important
+
+Even though it is not best practice for modeling a river, running the steady2d.cas simulation with an initial water depth of 1 m is an interesting exercise to experience why it is not a good choice. To run the model with an initial water depth, we can facilitate the boundary conditions by removing the upstream depth constraint (i.e., setting the first entry of the `PRESCRIBED ELEVATIONS` keyword to `0.`), and modifying the `INITIAL [...]` condition keywords to a `'CONSTANT DEPTH'` of `1` meter:
+
+```fortran
+/ steady2d_wet.cas
+/ ... header
+/ ...
+PRESCRIBED FLOWRATES  : 35.;0.
+PRESCRIBED ELEVATIONS : 0.;371.33
+/ ...
+INITIAL CONDITIONS : 'CONSTANT DEPTH'
+INITIAL DEPTH : 1
+/ ...
+/ ... footer
+```
+
+Also, change the upstream boundary type to a less constrained `4 5 5` (prescribed Q only) type in the  {ref}`boundaries.cli <bk-liquid-bc>` file. For this modification, it is sufficient to **open boundaries.cli in any text editor** and use its **find-and-replace** function (e.g., `CTRL` + `H` keys in {ref}`npp`):
+
+* Im Feld **Find** Typ `5 5 5`.
+* Im **Ersetzen mit** Feldtyp `4 5 5`.
+* Klicken Sie auf **Replace**, bis alle **upstream**-Grenzknotentypen geändert wurden.
+* Speichern und schließen Sie **boundaries.cli**.
+
+Speichern Sie die geänderten `.cas` und `.cli` Dateien und führen Sie Telemac erneut aus:
+
+```
+telemac2d.py steady2d_wet.cas
+```
+
+The diagram in {numref}`Fig. %s <convergence-diagram-tm2d-wet>` plots the two columns of flows at the upstream and downstream open boundaries over time for the simulation setup in this tutorial. The diagram suggests that the model reaches stability (i.e., converges) after the 55th output listing (simulation time $t \leq 5500$).
+
+```{figure} ../../img/telemac/convergence-diagram-tm-pt.png
+:alt: telemac2d convergence steady simulation wet initialization
+:name: convergence-diagram-tm2d-wet
+
+Konvergenz von Zufluss (stromaufwärts) und Abfluss (stromabwärts) an den offenen Modellgrenzen eines Nassmodells.
+```
+
+```{figure} ../../img/telemac/qgis-exported-tif.png
+:alt: qgis flow velocity vitesse results slf PostTelemac raster geotiff tif
+:name: exported-tif
+
+Das GeoTIFF-Raster der Strömungsgeschwindigkeit (VITESSE) nach einer nassinitialisierten Telemac-Simulation, dargestellt in QGIS (Hintergrundkarte: {cite:t}`googlesat`Satellitenbilder).
+```
+
+```{admonition} Question: what are the pros and cons of the wet-initialized simulation with constant water depth?
+:class: note, dropdown
+
+**Positiv (pro)** ist, dass die Simulation deutlich schneller konvergiert als beim trocken initialisierten Modell.
+
+**Negative (Kontra-) Leistungsindikatoren sind einige Pixel mit einer Strömungsgeschwindigkeit von Nicht-Null auf den Auen (jenseits der Flussufer) in {numref}`Fig. %s <exported-tif>`. Diese scheinbar falsch modellierten Pixel sind ein Artefakt der Verwendung von nassen Anfangsbedingungen, die eine 1 m dicke Wasserschicht über das gesamte Modell legen. Insbesondere blieben Wasserflecken in kleinen, lokalen Geländesenken zwischen den festen Grenzen (`2 2 2`) und Deichen entlang der Flussufer. Dieses Wasser konnte nicht ablaufen und blieb bis zum Ende der Simulation auf diesen Patches. Dies ist ein physisch unvernünftiges No-Go-Flag, das ein Modell für jede Anwendung disqualifiziert.
+```
+````
+
+(tm2d-calibration)=
+# Anmerkungen zur Kalibrierung
+
+## Refresher: Wie funktioniert die Kalibrierung?
+
+{ref}`Calibration <calibration>` involves the step-wise adaptation of model input parameters to yield a possibly best (statistic) fit of modeled and measured data. In the process of model calibration, only one parameter should be modified at a time by 10 to 20-% deviations from its default value. For instance, if the beginning `FRICTION COEFFICIENT : 0.03`, the calibration may test for `FRICTION COEFFICIENT : 0.033`, then `FRICTION COEFFICIENT : 0.036`, `FRICTION COEFFICIENT : 0.027` and so on, ultimately to find out which value for **FRICTION COEFFICIENT** brings the model results closest to observations.
+
+Darüber hinaus vergleicht eine Sensitivitätsanalyse schrittweise Modifikationen mehrerer Parameter (immer noch: einer nach dem anderen) und deren Auswirkungen auf die Modellergebnisse. Wenn beispielsweise eine 10-%-Variation des **FRICTION-COEFFIZIENTEN** eine 5-%-Änderung der globalen Wassertiefe ergibt, während eine 10-%-Variation der Gittergröße (Kantenlänge) eine 20-%-Änderung der globalen Wassertiefe ergibt, kann der Schluss gezogen werden, dass die Modellsensitivität in Bezug auf die Gittergröße höher ist. Solche Schlussfolgerungen erfordern jedoch sorgfältige Überlegungen in multiparametrischen, komplexen Modellen von Flussökosystemen.
+
+## Kalibrierparameter in Telemac
+Die folgenden Parameter können für die Kalibrierung eines 2D-Modells auf Messungen verwendet werden (z. B. Wasseroberflächenhöhe, Wassertiefe oder Strömungsgeschwindigkeitsdaten):
+
+* **FRICTIONSKOEFFIZIENTER** ({ref}`friction section <tm2d-friction>`)
+* Lösungsmittel, Lösungsoptionen, Implizitation und andere numerische Parameter ({ref}`numerical parameter section <tm2d-solver-pars>`)
+* Typ des Modells {ref}`initialization <tm2d-init-dry>`
+* {ref}`Turbulence models and parameters <tm2d-turbulence>`
+
+```{admonition} Avoid accuracy-reducing keyword settings
+Keyword settings such as `MASS-LUMPING ... : ...`  lead to increased smoothing (i.e., reduced accuracy) of results to increase computation speed. However, in most cases, it is worth accepting longer computation times and yielding higher accuracy, which will reduce efforts for model calibration, and thus, saves more time in the end.
+```
+
+# Nächste Schritte
+
+1. Make sure the simulation is conservative according to the descriptions in the spotlight chapter on {ref}`mass balance <foc-mass-bc>`.
+1. Find a meaningful simulation duration for convergence of a dry-initialized simulation following the algorithms provided with the chapter on {ref}`quantitative convergence <tm-convergence>`.
+1. Use the dry-initialized model to simulate at least 2-3 steady discharges (with {ref}`hotstart conditions <tm2d-hotstart>`) for which measurement data is available for {ref}`calibration <calibration>` and validation. 
+1. Das kalibrierte und validierte Modell kann
+  * used for {ref}`unsteady hydrodynamic <chpt-unsteady>` simulations, and 
+  * dienen als Grundlage für morphodynamic {ref}`sediment transport modeling with Gaia <tm-gaia>`.

@@ -1,0 +1,581 @@
+---
+description: Tutoriel pour le fonctionnement et la validation d'une simulation hydrodynamique 2D stable avec BASEMENT v4, couvrant le model.json et simulation.json configuration, conditions limites, et vérification des résultats.
+---
+
+(basement2d)=
+# Exécuter et vérifier une simulation 2d stable
+
+```{admonition} Recall BASEMENT versions, BASEMD, and BASEHPC
+:class: note
+
+La version 2 (v2) de BASE a été développée avec des structures complexes et un large éventail de capacités, mais l'accent a été mis peu sur le temps de calcul. La version 3 (v3) de BASE a considérablement simplifié le processus de modélisation pour les utilisateurs et est venue avec des options informatiques très efficaces, y compris la parallélisation massive sur les GPU. Toutefois, le v3 simplifié manque de nombreux modules pertinents, comme les lits de rivière multicouches pour calculer le changement topographique en fonction des formules de transport par charriage multigrains. Maintenant, la version 4 de BASEMENT (v4) fournit à la fois les capacités multiples de v2 sous forme de configurations de BASEMD, et l'efficacité de calcul de v3 sous forme de configurations de BASEHPC. Ce tutoriel explique la configuration d'un modèle BASEHPC.
+
+```
+
+En plus du fichier {term}`SMS 2dm` du tutoriel {ref}`qgis-prepro-bm`, le moteur numérique de BASEMENT a besoin d'un fichier de configuration de modèle (**model.json**) et d'un fichier de simulation (**simulation.json**), qui sont tous deux créés automatiquement par BASEMENT.
+
+Les sections suivantes décrivent comment créer les fichiers requis {ref}`json` dans un répertoire de projets comme `C:\Basement\steady2d-tutorial\` (*Windows*) ou `~/Basement/steady2d-tutorial/` (*Linux*). Par conséquent, la première étape ** est de créer un répertoire de projet (dossier)**.
+
+```{admonition} Special characters in directory/folder names
+:class: attention
+Le répertoire de dossiers de projet défini ne doit pas contenir** **dots**, ni **caractères spéciaux**, ni **espaces**. N'utilisez que des lettres, des numéros, * * (sous-score) ou *-* (moins) dans les noms de dossiers.
+```
+
+**Placer** les fichiers d'entrée suivants dans le dossier du projet**:
+
+* Le fichier {term}`SMS 2dm` avec des élévations de fond interpolées du tutoriel {ref}`qgis-prepro-bm` (**prepro-tutorial quality-mesh-interp.2dm**).
+* Un fichier d'entrée de décharge stable (hydrographe plat) pour l'état des limites amont peut être téléchargé [here](https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt) (si nécessaire copier le contenu du fichier localement dans un éditeur de texte et enregistrer le fichier sous **steady-inflow.txt** dans le répertoire du projet).
+
+## Lancer le modèle
+Cette section guide la configuration du modèle, qui est enregistrée dans un fichier appelé **model.json** (ici: dans le dossier `/steady2d-tutorial/`). **Commencez BASE** et **choisissez le dossier créé ci-dessus** en tant que répertoire ** de scénarios** (voir {numref}`Fig. %s <bm-setup-start>`).
+
+```{figure} ../../img/basement/setup-start.png
+:alt: basement new project setup launch start
+:name: bm-setup-start
+
+Écran de bienvenue de BASE après avoir sélectionné un répertoire *Scenario* avec le bouton *Save Project* dans le coin supérieur droit. Les références de répertoire peuvent sembler différentes sur d'autres plateformes (par exemple, commencer par **"C:/...** sur Windows).
+```
+
+Ensuite, **left-click** sur **SETUP**, puis **right-click** et sélectionnez **Ajouter l'élément BASEHPC**. Un nouvel onglet appelé **Définir les paramètres du scénario** s'ouvre. Pour le moment, ignorez les messages d'avertissement et d'erreur (balises rouges) et définissez un **simulation name**:
+
+* **Cliquez-droit** sur **SETUP** et sélectionnez **Ajouter l'élément 'simulation name'**. Une nouvelle entrée appelée *simulation name* apparaîtra au bas de l'onglet *Définir les paramètres du scénario*.
+* **Scroll to the bottom**, **double-clic** sur **"RUNFILE"** (valeur par défaut derrière **simulation name**) et **remplace** `RUNFILE` avec `steady2d`.
+
+**Retourner** au sommet**, et **enregistrer le projet**, pour procéder aux sections suivantes.
+
+(bm-geometry)=
+## Géométrie et régions
+
+Le groupe **GEOMETRY** dans l'onglet **Définir les paramètres du scénario** indique le modèle, qui {term}`SMS 2dm` fichier maillage à utiliser et permet la définition des propriétés de la région et des limites liquides. À cette fin, effectuez les réglages suivants :
+
+* ** Double-cliquez** sur le champ **Value** de la ligne **mesh file** et cliquez sur le symbole du dossier <br> <img src="../../img/basement/select-meshfile.png">
+* Dans la fenêtre contextuelle, sélectionnez {ref}`previously created prepro-tutorial_quality-mesh-interp.2dm <qgis-prepro-bm>` et appuyez sur **Enter**.
+
+
+Le maillage créé dans le dernier chapitre contient plusieurs régions, qui doivent également être définies dans la configuration du modèle:
+
+* **Click droit** sur **GEOMETRY** > **Ajouter le point REGIONDEF**
+* ** Ajouter 5 points de la région** par ** clic droit** sur la nouvelle rubrique **REGIONDEF** > **Ajouter un point**. Le nombre de régions doit correspondre aux régions définies dans le {ref}`pre-processing tutorial <region-defs>`, qui sont également énumérées ci-dessous dans le {numref}`Tab. %s <region-defs-bm>`.
+* Définir les cinq régions par un ** clic droit** sur **index** > **Ajouter un élément**.
+  * Chaque élément **index [0]** obtient un numéro entier attribué correspondant au champ MATID dans le fichier forme des points de région (voir la section {ref}`regions` dans le tutoriel {ref}`qgis-prepro-bm`).
+  * Le **nom** de chaque élément régional correspond au champ **type** du MATID.
+
+{numref}`Table %s <region-defs-bm>` résume les définitions de la région requise. Avec les régions et le fichier maillé défini, le groupe GEOMETRY devrait ressembler à {numref}`Fig. %s <bm-regions>`.
+
+```{list-table} REGIONDEF items and their definitions to be defined in BASEMENT's model setup.
+:header-rows: 1
+:name: region-defs-bm
+
+* - **REGIONDEF**
+  - [0]
+  - Annexe
+  - [2]
+  - [3]
+  - Annexe
+* - **index [0]**
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+* - **Nom**
+  - lit de rivière
+  - block ramp
+  - banc de gravier
+  - plaine inondable
+  - Dépôt de sable
+```
+
+
+```{figure} ../../img/basement/setup-geometry.png
+:alt: region mesh file definitions basement
+:name: bm-regions
+
+Le groupe GEOMETRY avec REGIONDEFs et la référence au fichier mesh interpolé en hauteur (prepro-tutorial quality-mesh-interp.2dm).
+```
+
+```{admonition} Save the project...
+Enregistrer régulièrement la configuration du modèle en cliquant sur le bouton disque (coin supérieur droit, voir {numref}`Fig. %s <bm-setup-start>`).
+```
+
+Les {ref}`liquid (hydraulic) boundaries <liquid-boundary>` du tutoriel pré-traitement définissent géographiquement **lignes d'entrée et de sortie** avec **stringdef** attributs qui sont incorporés dans le fichier maillage (*prepro-tutorial quality-mesh-interp.2dm*) avec des informations de hauteur (élévation). Pour communiquer les types et les propriétés des limites des liquides, remplissez la section GEOMETRY :
+
+* **Click droit** sur **GEOMETRY** > ** Ajouter le point STRINGDEF**.
+* **Cliquez-droit** sur le nouvel élément **STRINGDEF** et sélectionnez **Ajouter l'élément** deux fois. Ainsi, deux éléments devraient être disponibles pour définir les limites des liquides en amont et en aval.
+* Définir le point **[0]** avec:
+  * **nom** = `inflow`
+  * **direction en amont** = `right`
+* Définir le point **[1]** avec :
+  * **nom** = `outflow`
+  * **direction en amont** = `right`
+
+Si vous avez utilisé le [liquid limits shapefile](https://github.com/hydro-informatics/materials-bm/raw/main/shapefiles/liquid-boundaries.zip) pour créer le fichier mesh, le **upstream direction** doit être `right`. {numref}`Figure %s <bm-geo-fin>` montre la définition des éléments STRINGDEF en utilisant le fichier de formes de limites liquides fourni.
+
+```{figure} ../../img/basement/setup-geometry-final.png
+:alt: region mesh file definitions basement
+:name: bm-geo-fin
+
+Le groupe GEOMETRY avec STRINGDEFs utilisant le fichier de bords liquides fourni dans le maillage de calcul.
+```
+
+(bm-hydraulics)=
+## Hydraulique
+
+Les caractéristiques du modèle hydraulique qui s'appliquent à la configuration de géométrie ci-dessus sont définies dans le groupe **HYDRAULICS** de la configuration de modèle de BASE. Ce tutoriel utilise les conditions **default** pour **INITIAL**, qui est **"dry"**. Aussi **Gardez les PARAMETERS** par défaut pour **{term}`Nombre de Courant <CFL>`** = `0.9`, **fluid density** = `1000.0`, **max time step** = `100.0`, et **minimum water profond** =` 0.01`.
+
+Les quantités hydrauliques, telles que la profondeur et le rejet de l'eau, doivent être affectées aux limites de liquide définies ci-dessus afin que le modèle numérique sache combien d'eau il doit faire circuler à travers le modèle. Par conséquent, ajouter les définitions de limites suivantes dans le groupe HYDRAULICS:
+
+* **Cliquez-droit** sur **HYDRAULICS** et sélectionnez **Ajouter l'article BONDAIRE**.
+* **Cliquez-droit** sur le nouvel article **BONDAIRE** et sélectionnez **Ajouter l'article NORME**.
+* **Cliquez-droit deux fois** sur le nouvel élément **STANDARD** et sélectionnez **Ajouter l'élément** à chaque fois. Ainsi, il devrait y avoir deux éléments **[0]** et **[1]** pour définir les conditions d'entrée et de sortie, respectivement.
+* **Définir l'élément [0]** dans les conditions suivantes :
+  * Pour **nom** entrer `inflow`.
+  * Pour **string name**, sélectionnez *inflow* (défini ci-dessus).
+  * Pour **type**, sélectionnez `uniform_in`
+  * **Clic droit** sur **[0]** et sélectionnez **Ajouter l'élément 'pente'**.
+  * Pour le nouvel élément **slope**, définissez une valeur de `0.0044`. Après avoir entré la valeur de pente, vérifiez si BASEMENT a bien compris le séparateur décimal : assurez-vous d'utiliser le séparateur décimal de votre local système (par exemple, sur un clavier européen, il peut être nécessaire d'utiliser `,` au lieu de `.`).
+  * **Cliquez-droit** sur **[0]** et sélectionnez **Ajouter l'élément 'décharge fichier'**.
+  * Dans la nouvelle ligne *discharge file*, cliquez sur le symbole du dossier pour sélectionner le fichier [steady-inflow.txt](https://github.com/hydro-informatics/materials-bm/raw/main/flows/steady-inflow.txt).
+* **Définir l'élément [1]** dans les conditions suivantes:
+  * Pour **nom** appuyez sur `outflow`.
+  * Pour **string name**, sélectionnez `outflow` STRINGDEF.
+  * Pour **type**, sélectionnez `uniform_out`
+  * **Cliquez-droit** sur **[1]** et sélectionnez **Ajouter l'élément 'pente'**.
+  * Pour le nouvel élément **slope**, définissez une valeur de `0.0044`.
+
+```{admonition} Liquid boundaries in practice
+:class: note
+Dans la pratique, un {term}`Courbe d'étalonnage <Stage-discharge relation>` pourrait être préférable pour la condition limite en aval, qui, dans BASE, correspond à **type** = `hqrelation_out`. La condition d'entrée en amont, cependant, est également souvent spécifiée dans la pratique seulement par décharge en fonction du temps, comme le montre ce tutoriel. Un facteur critique de la seule fonction de décharge du temps est la valeur du champ **slope**, qui correspond à la pente d'énergie et est souvent considérée comme équivalente à la pente du chenal. Cependant, cette hypothèse n'est ** valable que pour les flux réguliers**, qui ne se produisent presque jamais en réalité. C'est pourquoi, dans la pratique, des conditions d'écoulement quasi instables sont souvent utilisées sous la forme d'une séquence de débits réguliers dépendant du temps, par exemple, pour modéliser un hydrographe d'inondation.
+```
+
+{numref}`Figure %s <bm-hy-standard>` montre les définitions des éléments STANDARD BOUNDARY dans le groupe de configuration du modèle HYDRAULIQUE de BASE.
+
+```{figure} ../../img/basement/setup-hydraulics-standard.png
+:alt: basement standard hydraulic boundary conditions
+:name: bm-hy-standard
+
+L'entrée HYDRAULIQUE avec les définitions BOUNDARY > STANDARD pour les limites du modèle liquide en amont (entrée) et en aval (sortie).
+```
+
+Chaque surface présente des imperfections qui provoquent des turbulences lorsque des fluides comme l'eau s'écoulent dessus. Les turbulences causées par les imperfections de surface entraînent des débits décélérés près de la surface. Comme l'eau dans les rivières est presque toujours très proche de la surface de la Terre sous la forme du lit de la rivière par rapport aux imperfections d'un lit de la rivière, l'influence des turbulences induites par la friction est considérable. Dans les modèles hydrodynamiques, les turbulences induites par les frottements de la surface rugueuse des lits de rivière sont expliquées par un coefficient **friction**, tel que le coefficient **Strickler $k_{st}$** **ou** sa valeur **inverse** appelée **Manning $n$**. L'exercice sur {ref}`ex-1d-hydraulics` dans le chapitre *Python* explique les deux coefficients de rugosité en détail. Ce tutoriel utilise un coefficient de Strickler global de $k_{st}$=30 (unités fonctionnelles de m$^{1/3}$/s), qui explique les caractéristiques d'une rivière de gravier-cobble en méandre {cite:p}`strickler_beitrage_1923`. À cette fin, **droite-cliquez** sur le groupe **HYDRAULICS** et sélectionnez **Ajouter l'article FRICTION**. Définir le nouvel élément **FRICTION** avec :
+
+* **default friction** = 30,0
+* **type** = `strickler`
+
+Ensuite, assignez des valeurs Strickler propres à une région pour les cinq régions définies à {numref}`Tab. %s <region-defs-bm>`:
+
+* **Clic droit** sur **FRICTION** > ** Ajouter le point régions**.
+* **Cliquez-droit** sur la nouvelle rubrique **régions** et sélectionnez **Ajouter la rubrique** (**cinq fois** pour les cinq régions).
+* Attribuer les valeurs **friction** et **region name** énumérées dans {numref}`Tab. %s <region-kst>` aux points **cinq régions**.
+
+```{list-table} Strickler values for HYDRAULIC FRICTION regions.
+:header-rows: 1
+:name: region-kst
+
+* - Région
+  - Rivière
+  - Rampes de blocs
+  - Banques de gravier
+  - Plaines inondables
+  - Sable
+* - **Friction**
+  - 34
+  - 18
+  - 24
+  - 14
+  - 39
+* - **nom de la région**
+  - lit de rivière
+  - block ramp
+  - banc de gravier
+  - plaine inondable
+  - Dépôt de sable
+```
+
+
+{numref}`Figure %s <bm-hy-friction>` montre la définition des éléments de FRICTION hydraulique dans la configuration du modèle de BASE.
+
+```{figure} ../../img/basement/setup-hydraulics-friction.png
+:alt: basement friction hydraulic boundary conditions strickler
+:name: bm-hy-friction
+
+Le groupe HYDRAULICS avec des définitions FRICTION pour le modèle et ses régions.
+```
+
+(bm-physical-props)=
+## Propriétés physiques
+
+La définition du groupe **PHYSICAL PROPERTIES** est obligatoire pour BASEPLANDE 2D. Ce tutoriel utilise les propriétés physiques **default** (c.-à-d. *gravity* est `9.81`).
+
+(bm-export-setup)=
+## Écrire le fichier de configuration
+
+Assurez-vous que tout message d'avertissement ou d'erreur potentiel est résolu et que la configuration du modèle ressemble à {numref}`Fig. %s <ready2export-setup>`. Avant d'exporter le projet, enregistrez la configuration de simulation (cliquez sur le symbole du disque dans le coin supérieur droit de {numref}`Fig. %s <ready2export-setup>`). Vérifiez que Basement a correctement écrit les fichiers **model.json**, **simulation.json** et **results.json** dans le répertoire du projet (par exemple, `/Basement/steady2d-tutorial/`). Exportez la configuration du modèle en cliquant sur le bouton **Write** (coin inférieur droit dans {numref}`Fig. %s <ready2export-setup>`).
+
+```{figure} ../../img/basement/setup-ready2export.png
+:alt: basement export model setup h5
+:name: ready2export-setup
+
+La configuration finale du modèle pour exporter (écrire) vers un fichier de configuration (`*.h5` {term}`HDF`).
+```
+
+L'onglet **Console** active automatiquement et informe sur les progrès d'exportation. Si la toile **Error Output** n'est pas vide, vérifiez les messages d'erreur et dépannez les causes.
+
+```{admonition} Out of range (NUM >= 110) in file ... Substance.cpp one line 188
+:class: error
+
+Ce message d'erreur peut être lié à une définition incohérente des noms de chaînes dans le fichier maillé .2dm et la configuration du modèle. Même des lettres majuscules différentes pourraient en être la cause. Par exemple, si les deux dernières lignes (en bas de) `prepro-tutorial_quality-mesh-interp.2dm` définissent les limites du liquide avec des lettres all-inférieures `inflow` et `outflow`, mais vous les avez appelées `Inflow` et `Outflow`, corrigez l'erreur soit en renommant les chaînes au bas du fichier .2dm, soit en corrigeant les champs `string_name` définis dans le {ref}`HYDRAULICS section <bm-hydraulics>`.
+```
+
+(bm-sim-file)=
+## Configuration du fichier de simulation
+
+Après l'exportation réussie de la configuration du modèle, le ruban **Simulation** (à gauche dans {numref}`Fig. %s <ready2export-setup>`) devient disponible pour la configuration du fichier **simulation.json** dans le dossier du projet. Cliquez sur le ruban **Simulation** pour configurer le fichier *simulation.json* :
+
+* **Click droit** sur le groupe **SIMULATION** dans l'onglet activé **Définir Simulation Exécuter** et sélectionner **Ajouter l'élément 'OUTPUT'**.
+* **Clic droit** sur le nouvel élément **OUTPUT** pour définir cinq types de sortie:
+    * **[0]** = `water_depth`
+    * **[1]** = `water_surface`
+    * **[2]** = `bottom_elevation`
+    * **[3]** = `flow_velocity`
+    * **[4]** = `ns_hyd_discharge`
+* **Cliquez-droit** sur le groupe **SIMULATION** et sélectionnez **Ajouter l'élément 'TIME'**.
+* **Définir** l'élément **TIME** avec:
+    * **End** = `15000.0`
+    * **out** = `1000.0`
+    * **démarrage** = `0.0`
+
+```{admonition} Discharge controls
+Le paramètre de sortie `ns_hyd_discharge` (*ns* indique *nodestring*) nous permet de vérifier le bilan massique de décharge aux limites d'entrée et de sortie (STRING NAMEs), qui est une exigence **nécessaire dans la pratique**. En savoir plus sur les contrôles du bilan massique dans la section {ref}`simulation verification <bm-python>`.
+```
+
+Les valeurs définies dans la section TIME se rapportent aux mêmes unités de temps que celles définies dans le fichier *steady-inflow.txt* téléchargé et relié ci-dessus. {numref}`Figure %s <bm-sim-setup>` montre BASE avec les définitions dans le ruban Simulation.
+
+```{figure} ../../img/basement/setup-simulation.png
+:alt: basement simulation setup
+:name: bm-sim-setup
+
+La configuration du ruban Simulation avec la définition de cinq paramètres de sortie et le temps de simulation.
+```
+
+(bm-run)=
+## Exécuter la simulation (Steady 2d)
+
+La simulation peut être exécutée avec différentes options qui affectent principalement le temps de calcul (en bas de {numref}`Fig. %s <bm-sim-setup>`).
+
+* Le cadre **Standard Hardware** permet de basculer entre l'utilisation d'un processeur unique et l'utilisation d'un processeur multifils. L'option par défaut est multi-threaded, qui est fortement recommandé avec les ordinateurs contemporains.
+* Le cadre **High-performance Hardware** permet d'utiliser une unité de traitement graphique (GPU), qui peut être significativement plus rapide que CPU, mais seulement quand un processeur graphique puissant est disponible. Un GPU standard-slow n'aura pas d'avantage et pourrait même ralentir le calcul. Si vous n'êtes pas sûr du GPU de votre ordinateur, gardez les options par défaut (tous vides).
+* Le cadre **Options** permet de choisir :
+  * Le **Nombre de cœurs de processeur**, qui permet d'utiliser plusieurs processeurs d'un ordinateur. Les ordinateurs contemporains ont généralement au moins 8 cœurs qui peuvent tous être utilisés lorsque vous travaillez sur un serveur ou un ordinateur qui n'a pas d'autre but que d'exécuter des modèles numériques. Sinon, gardez le système fonctionnel pendant que la simulation fonctionne en utilisant la moitié du nombre de carottes disponibles.
+  * Précision numérique; pour des simulations plus rapides, sélectionnez ** Précision unique**. Pour ce tutoriel, la précision *Double* fonctionnera aussi suffisamment rapidement, mais dans la pratique, la précision *Single* est largement suffisante et considérablement plus rapide.
+
+```{admonition} How many CPUs does my computer have?
+**Les utilisateurs de Windows** peuvent activer **Task Manager** (*Start* > tap `task manager`) et rechercher le nombre de cœurs disponibles dans l'onglet **Performance** du gestionnaire de tâches.
+
+**Les utilisateurs de Linux** ont un aperçu des ressources du système en installant et en utilisant {ref}`htop <install-htop>`.
+```
+
+Pour démarrer la simulation, cliquez sur le bouton **Run** en bas à droite de la fenêtre BASE. Selon les paramètres matériels et de performance (p. ex. nombre de processeurs), la simulation du modèle de tutoriel dure environ 1-10 minutes. La base informe sur l'état d'avancement de la simulation dans le cadre **Console Output**, où le cadre **Error Output** doit rester vide (voir {numref}`Fig. %s <bm-sim-end>`). En cas d'erreur, retournez aux sections ci-dessus (ou même à {ref}`mesh generation tutorial <qgis-tutorial>`) pour corriger les erreurs.
+
+```{figure} ../../img/basement/simulation-end.png
+:alt: basement simulation end
+:name: bm-sim-end
+
+BASE après simulation réussie.
+```
+
+### Résultats de simulation d'exportation
+
+Une fois la simulation terminée, allez au ruban **Résultats** de BASEMENT. Trouvez le groupe **RESULTS** dans l'onglet **Export Simulation Results** et :
+
+* **Clic droit** sur le groupe **RESULTES** et sélectionnez **Ajouter l'élément 'EXPORT'**.
+* **Cliquez-droit** sur le nouvel article **EXPORT** et sélectionnez **Ajouter un article**.
+* Sélectionnez {term}`xdmf` dans le champ **format** du nouvel élément **[0]**.
+
+**Enregistrez le projet** (symbole disque dans le coin supérieur droit) et trouvez le **Export** indiqué dans {numref}`Fig. %s <bm-res-exp>`. L'exportation des sorties de simulation vers **results.{term}`xdmf`** sera confirmée dans le cadre **Console Output**.
+
+```{figure} ../../img/basement/setup-results-export.png
+:alt: basement results export
+:name: bm-res-exp
+
+Configuration du ruban Résultats après une simulation réussie.
+```
+
+
+# Post-traitement avec QGIS
+
+Commencez le QGIS et créez un nouveau projet ou réutilisez le projet à partir du tutoriel {ref}`qgis-prepro-bm`. Enregistrer le nouveau projet avec (un nom de fichier différent) significatif dans le dossier de modélisation de BASE (par exemple, `/Basement/steady2d/`**postpro-tutorial.qgz**). Mettre en place le projet de la même manière que dans le prétraitement:
+
+* Utiliser le système de référence des coordonnées **Allemagne Zone 4** ({ref}`start-qgis` section).
+* Ajouter un {ref}`satellite imagery basemap <basemap>` pour faciliter l'interprétation des résultats de simulation.
+* Importer le maillage de qualité interpolé en hauteur {ref}`prepro-tutorial_quality-mesh-interp.2dm <qualm-interp>` (**Layer** > **Ajouter un calque** > **Ajouter un calque...**).
+
+
+(qgis-imp-steps)=
+## Importer résultats.xdmf
+
+Le fichier de résultats de simulation **results.{term}`xdmf`** peut être chargé dans le QGIS comme source de données supplémentaire du maillage de qualité interpolé en hauteur ({ref}`prepro-tutorial_quality-mesh-interp.2dm <qualm-interp>`) à partir du tutoriel de prétraitement :
+
+* Dans le panneau **Layers**, **double-clic** sur **prepro-tutorial quality-mesh-interp.2dm** pour ouvrir la fenêtre **Layer Properties**.
+* Dans la fenêtre Propriétés **Layer**, allez au ruban **Source**.
+* Dans le cadre **Données disponibles** (voir {numref}`Fig. %s <qgis-assign-meshdata>`) cliquez sur le bouton **Assigner des données supplémentaires au bouton Mesh** <img src="../../img/qgis/sym-add-meshdata.png"> et choisissez `results.xdmf`.
+
+```{admonition} Could not read mesh dataset.
+:class: error
+
+Cette erreur peut être causée par deux problèmes connus de formatage dans BASE. Pour le dépanner, regardez notre {ref}`chapter on debugging BASEMENT <dbg-bm-xdmf>`.
+```
+
+* Dans le cadre **Statique Dataset**, sélectionnez un **Scalar Dataset Group** et utilisez le temps maximum (c.-à-d. `625 d 00:00:00` dans le cas du temps de simulation $t$=15000 avec un intervalle de sortie de 1000).
+* Cliquez sur **Appliquer** et **OK**.
+
+{numref}`Figure %s <qgis-assign-meshdata>` montre une configuration exemplaire de l'interpolation des données de sortie sur le maillage de calcul. Pour visualiser d'autres paramètres de sortie et/ou d'autres temps de simulation, varier les définitions dans le cadre **Static Dataset**.
+
+```{figure} ../../img/qgis/bm-load-results.png
+:alt: basement assign qgis metadata mesh
+:name: qgis-assign-meshdata
+
+Attribuer les données du maillage au maillage de calcul.
+```
+
+Pour améliorer la visualisation des résultats, rouvrez le **Layer Properties** de la couche de maille et allez au ruban **Symbology**. Visualisez un paramètre de sortie de simulation, comme **vitesse d'écoulement**, comme suit:
+
+* Dans l'onglet **Settings** (symbole hammer dans le coin supérieur gauche surligné à {numref}`Fig. %s <symbology4u>`), trouvez la listbox **Groups**.
+* Dans la listbox **Groups**, trouvez le paramètre à visualiser (par exemple **vitesse d'écoulement**) et activez le symbole des contours.
+* Passez à l'onglet **Contours** à côté de l'onglet Paramètres (boîte surlignée en haut à gauche de {numref}`Fig. %s <symbology4u>`) et sélectionnez un **Color Ramp**.
+* Après avoir défini un clic de visualisation **Appliquer** et **OK**.
+
+```{figure} ../../img/qgis/vis-flow-vel.png
+:alt: basement qgis results velocity meshdata
+:name: symbology4u
+
+Visualisez le paramètre vitesse d'écoulement avec les commandes Symbology. Les cases rouges mettent en évidence les onglets et les entrées pertinents.
+```
+
+{numref}`Figure %s <qgis-plot-metadata>` illustre une visualisation de la vitesse d'écoulement à la fin de la simulation. Les résultats de vitesse de flux sont également disponibles en séquence vidéo ([download](https://github.com/hydro-informatics/materials-bm/raw/main/exports/velocity-video-crayfish.avi)).
+
+```{figure} ../../img/qgis/bm-meshdata-u-plotted.png
+:alt: plotted qgis basement results flow velocity
+:name: qgis-plot-metadata
+
+Après application des paramètres Symbologie ci-dessus: La vitesse d'écoulement est illustrée par des nuances rouges.
+```
+
+(bm-rasterize-output)=
+## Rasterize les sorties
+
+Le format {ref}`raster` est utile pour de nombreuses tâches post-traitement telles que l'algèbre cartographique (p. ex. pour l'analyse de l'habitat ou l'évaluation de la zone d'inondation et de la profondeur). À cette fin, QGIS fournit l'outil **Rasterize mesh dataset** pour convertir les données mesh à n'importe quel moment de simulation en {ref}`Raster <raster>` (par exemple, {term}`GeoTIFF`). Pour ouvrir l'outil *Rasterize mesh dataset*, allez à **Processing** > **Toolbox** ou assurez-vous que le **View** > **Panels** > **Processing Toolbox** est coché. Dans la **Processing Toolbox** cliquez sur le groupe **Mesh** et double-cliquez sur **Rasterize mesh dataset** (voir aussi {numref}`Fig. %s <qgis-rasterize-mesh-menu>`).
+
+```{figure} ../../img/qgis/rasterize-mesh-menu.png
+:alt: rasterize basement velocity water depth qgis
+:name: qgis-rasterize-mesh-menu
+
+Ouvrez l'outil Rasterize mesh dans la boîte à outils de traitement de QGIS.
+```
+
+Faites les réglages suivants dans la fenêtre `Rasterize` (voir aussi {numref}`Fig. %s <qgis-rasterize-mesh>`):
+
+* Définissez le calque de mesh ** à `prepro-tutorial_quality-mesh-interp`.
+* Dans le cadre **Groupes de données**, cliquez sur le bouton **...** > **Sélectionnez Groupes de données disponibles** et sélectionnez **un paramètre** (par exemple **vitesse d'écoulement**). Ensuite, cliquez sur le bouton **Retour** <img src="../../img/qgis/sym-go-back.png">. Assurez-vous que la toile **Groupes de données** contient seulement **1** sélectionné **option**. Sinon, l'outil créera un multibande messy {ref}`Raster <raster>`.
+* Dans le cadre **Dataset time**, cochez le bouton **Dataset time step** et sélectionnez le dernier temps de simulation (c.-à-d. `625 d 00:00:00`).
+* Dans le champ **Extend [facultatif]**, cliquez sur le bouton **...** > **Calculer à partir du calque** > **prépro-tutorial quality-mesh-interp**.
+* Pour **Pixel size** tap `2.0` meters (plus ce nombre est grand, le plus gros sera le raster de sortie).
+* Pour **Système de coordonnées de sortie** sélectionnez `Project CRS: ESRI:31494 - Germany_Zone_4`.
+* Définir un calque raster **Output** en cliquant sur le bouton **...** > **Enregistrer dans le fichier**. Allez dans le répertoire cible (par exemple, `C:/Basement/steady2-tutorial/`) et entrez un nom de raster, comme `u-end.tif` (`u` pour la vitesse de flux, `end` pour la dernière étape du temps, et `.tif` pour {term}`GeoTIFF`). Cliquez sur **Enregistrer**.
+* Cliquez sur le bouton **Run** pour commencer à raster l'ensemble de données de maillage.
+
+Après la rastérisation réussie, fermez la fenêtre **Rasterize Mesh Dataset** en cliquant sur le bouton **Fermer**.
+
+```{figure} ../../img/qgis/rasterize-mesh.png
+:alt: setup rasterize mesh geotiff
+:name: qgis-rasterize-mesh
+
+Paramètres pour exporter les résultats de simulation avec l'outil Rasterize de QGIS.
+```
+
+Pour améliorer la visualisation du nouveau raster (vitesse de débit), double-cliquez sur le nouveau raster dans le panneau **Layers** et passez à l'onglet **Symbologie**. Sélectionnez **Singleband pseudocolor** pour **Type de rendu** (dans la région supérieure de la fenêtre) et une rampe de couleur**. Pour supprimer les pixels zéro valeur, double-cliquez sur le **Color** du champ **0**-**Value**, et dans la fenêtre **Sélectionner la couleur** réduire l'opacité** à **0$\%$**. {numref}`Figure %s <bm-exported-u-raster>` montre un exemple de visualisation de la vitesse d'écoulement exportée.
+
+
+```{figure} ../../img/qgis/bm-exported-u.png
+:alt: basement output rasterize mesh geotiff visualization singleband pseudocolor
+:name: bm-exported-u-raster
+
+Un pseudocolore à bande unique (Propriétés de la layer > Symbologie) représente le raster de vitesse de flux GeoTIF exporté avec une rampe de couleur *Reds* et des pixels de valeur zéro réglés à l'opacité zéro, superpositionnés sur l'imagerie satellite google {cite:p}`googlesat`.
+```
+
+```{admonition} Analyze geodata results with Python
+Faciliter la conversion et l'analyse des données géospatiales avec des applications efficaces {ref}`sec-geo-python` et le paquet [flusstools](https://flusstools.readthedocs.io).
+```
+
+(bm-crayfish)=
+## Mesh Visualisation avec Crayfish
+
+Le plugin open-source [Crayfish](https://www.lutraconsulting.co.uk/projects/crayfish/) permet de visualiser les valeurs de maillage (p. ex., changement des valeurs de nœuds au fil du temps) avec de nombreuses fonctionnalités, comme l'exportation d'animations vidéo des résultats du modèle. Pour créer une vidéo, par exemple, des sorties de vitesse de débit aux étapes de simulation 1+15, utilisez le plugin Crayfish comme suit:
+
+* Dans QGIS, assurez-vous que le plugin Crayfish est installé (appelez le {ref}`QGIS instructions <qgis-tbx-install>`).
+* Dans le panneau **Layer**, sélectionnez **prepro-tutorial quality-mesh-interp**.
+* Avec *prepro-tutorial quality-mesh-interp* sélectionné, allez dans **Mesh** (menu déroulant supérieur) > **Crayfish** > **Exporter l'animation ...** (si le calque n'est pas surligné, un message d'erreur apparaît : *Veuillez sélectionner un calque Mesh pour exporter*).
+* Dans la fenêtre **Export Animation**, allez dans l'onglet **General** et définissez un nom de fichier de sortie en cliquant sur le bouton **...** (par exemple, `velocity-video.avi`).
+* Cliquez sur **OK**.
+
+Pour la première fois qu'une vidéo est exportée, Crayfish devra définir un encodeur vidéo **FFmpeg** et guider l'installation (si nécessaire). Suivez les instructions et recommencez à exporter la vidéo.
+
+ ```{admonition} The resulting video export may look like this:
+
+ <iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/AYG0i1becyI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@hydroinformatics on YouTube</a>.</p>
+ ```
+
+```{admonition} Make animations of other parameters
+:class: note
+Pour faire des vidéos d'autres paramètres de simulation, modifiez le paramètre actuellement visualisé du maillage (*prepro-tutorial quality-mesh-interp*) en {ref}`explained above<qgis-imp-steps>`.
+```
+
+
+(bm-paraview)=
+# Post-traitement avec ParaView
+
+*ParaView* est un logiciel de visualisation librement disponible, qui permet de tracer et de traiter le fichier *results.{term}`xdmf`* à des fins scientifiques. Téléchargez et installez la dernière version de *ParaView* depuis leur [site Web](https://www.paraview.org/download/) (si ce n'est pas encore fait).
+
+## Importer résultats.xdmf
+Ouvrez *ParaView* et **cliquez sur l'icône du dossier** (en haut à gauche de la fenêtre indiquée à {numref}`Fig. %s <fig-pv-import>`) pour charger le fichier de résultats de simulation (`results.xdmf`). *ParaView* peut demander de choisir un plugin XDMF approprié: **Sélectionnez `XDMF Reader`** et cliquez sur `OK`. Maintenant, le `results.xdmf` devrait être visible dans le navigateur **Pipeline** et le bouton **Apply** est devenu vert (cliquez dessus).
+
+```{figure} ../../img/paraview/import-results.png
+:alt: basement results paraview
+:name: fig-pv-import
+
+ParaView après l'importation réussie des résultats du modèle (results.xdmf).
+```
+
+(pv-vis)=
+## Visualiser les paramètres
+ParaView affiche par défaut un des paramètres de résultat à l'étape 0 (c.-à-d. terrain nu et sec). Pour explorer d'autres paramètres, sélectionnez-les dans le menu déroulant de la barre de menu **Commandes variables actives** (boîte rouge de surlignement à {numref}`Fig. %s <fig-pv-vis>`). La barre de menu *Active Variable Controls* contient également des options pour manipuler la gamme de couleurs et la légende. Passez par les temps en utilisant les boutons de contrôle vidéo de la barre d'outils **VCR Controls** (boîte de surlignement bleu clair dans {numref}`Fig. %s <fig-pv-vis>`).
+
+
+```{figure} ../../img/paraview/vis-u.png
+:alt: basement results paraview
+:name: fig-pv-vis
+
+Les commandes variables actives (boîte rouge) et VCR (boîte bleu clair) dans ParaView pour visualiser les paramètres de sortie à différents moments.
+```
+
+```{admonition} Familiarize with the Viewport
+Le Viewport (par défaut `Layout #1`) fournit de nombreux outils pour zoomer dans le modèle et changer les perspectives entre 2d et 3d. Cliquez dans la fenêtre et maintenez le bouton gauche de la souris pour changer les perspectives. Prenez quelques minutes pour vous familiariser avec les perspectives.
+```
+
+Pour **exporter une animation d'un paramètre de sortie** au fil du temps comme film (par exemple, `avi`) ou image (par exemple, `jpg`, `png`, `tiff`) aller à **Fichier** > **Enregistrer l'animation...**.
+
+
+## Enregistrer le pipeline du projet
+Avec son approche de séquences d'applications de filtres programmables, ParaView enregistre un *État actuel* au format PVSM plutôt qu'un projet comme dans QGIS. L'état actuel d'un ensemble de données dans ParaView peut être enregistré sous forme de fichier `pvsm` via **Fichier** > **Enregistrer le fichier d'État**. **Enregistrer** l'état actuel du projet de tutoriel ParaView, par exemple, dans le dossier de simulation sous **pv-project.pvsm**. Pour charger un état ParaView existant (c.-à-d., projet), allez à **Fichier** > **État de charge**.
+
+```{admonition} Automate ParaView Pipelines
+Le fichier d'état peut également être enregistré en tant que script Python pour tirer parti des pipelines automatisés et des exportations (lisez plus dans le chapitre {ref}`Python <standalone>`).
+```
+
+(pv-exp-data)=
+## Données sur l'exportation
+Similaire à QGIS, les ensembles de paramètres de sortie peuvent être extraits, manipulés ou transformés dans ParaView. À cette fin, des filtres programmables peuvent être appliqués à l'ensemble de données d'origine dans ParaView pour calculer (c.-à-d., appliquer le filtre **Calculateur** <img src="../../img/paraview/sym-calc.png">), par exemple, le nombre de Froude à partir des ensembles de données sur la profondeur d'eau et la vitesse d'écoulement (lire plus dans le [ParaView Wiki](https://www.paraview.org/Wiki/Python_calculator_and_programmable_filter)). Ce tutoriel ne comporte que l'exportation de données maillage vers un fichier {term}`CSV` avec des filtres programmables :
+
+* Assurez-vous que le **Time** dans la barre d'outils **Current Time Controls** (boîte bleue claire dans {numref}`Fig. %s <fig-pv-cell-centers>`) est réglé à 15000 (période maximale).
+* Dans le **Pipeline Browser**, **droit-clic** sur `results.xdmf` > **Ajouter un filtre** > **Alphabetic** (c.-à-d. une liste de tous les filtres disponibles) > **Cell Centers**.
+* Dans la case **CellCenters1** **Propriétés**, cochez la case **Cellules Vertex** et cliquez sur le bouton maintenant vert **Appliquer** (voir {numref}`Fig. %s <fig-pv-cell-centers>`).
+* Pour enregistrer les données du vertex actuellement actives ** appuyez sur `CTRL` + `S` sur le clavier**, qui ouvre une fenêtre de dialogue *Save File*. Dans la fenêtre **Enregistrer le fichier** :
+  * Naviguez dans un dossier cible (par exemple, le dossier de simulation `/Basement/steady2d-tutorial/`)
+  * Entrez un nom de fichier** (p. ex. `flow_velocity.csv`)
+  * Dans le champ déroulant **Dossiers de type**, sélectionnez **Comma ou Tab Délimited Files(`*.csv *.tsv *.txt`)**.
+  * Cliquez sur **OK**.
+* La fenêtre **Configure Writer (CSV Writer)** s'ouvre :
+  * Cochez la case **Choisir le tableau pour écrire**.
+  * Sélectionnez **points vitesse** seulement (ou plus/autres paramètres).
+  * Gardez tous les autres défauts.
+  * Cliquez sur **OK**.
+
+```{figure} ../../img/paraview/cell-centers.png
+:alt: paraview basement export data
+:name: fig-pv-cell-centers
+
+Application du filtre programmable CellCenters dans ParaView, avec l'étape de temps maximale définie dans la barre d'outils Current Time Controls (boîte bleue claire).
+```
+
+Maintenant, un fichier *vitesse d'écoulement.*{term}`CSV` a été écrit qui contient des coordonnées point (coordonnées x, y et z) et vitesse d'écoulement dans les directions *x* (vitesse d'écoulement:0) et *y* (vitesse d'écoulement:1). La direction vitesse d'écoulement:2 (*z*-direction) est toujours nulle dans cette simulation 2d. Le fichier *vitesse d'écoulement.*{term}`CSV` peut également être utilisé avec QGIS (par exemple, dans QGIS allez à **Layer** > **Ajouter un calque** > **Ajouter un calque de texte délimité...** > sélectionner *vitesse d'écoulement.csv*, attribuer les colonnes et séparateurs corrects > cliquer **Ajouter**).
+
+```{admonition} Challenge: Calculate the absolute velocity
+Importer *vitesse d'écoulement.csv* dans QGIS et calculer la vitesse absolue de flux $U$ à partir de $u_x$ (vitesse d'écoulement:0) et $u_y$ (vitesse d'écoulement:1) comme $U = \sqrt{u^2_x + u^2_y}$. Comment les champs de flux sont-ils conformes au raster `u-end.tif` (voir {ref}`bm-rasterize-output` section)?
+```
+
+(bm-python)=
+# Vérification de simulation de Python
+Les développeurs de BASE à l'ETH Zurich fournissent une suite de [ scripts Python](http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/) pour le traitement des résultats de simulation. Pour l'utilisation ici, utilisez BASE v3, téléchargez le script Python [BMv3NodestringResults.py](http://people.ee.ethz.ch/~basement/baseweb/download/tools/python-scripts/BMv3NodestringResults.py), qui exporte des paramètres de sortie définis à l'utilisateur défini {ref}`STRINGDEFs <bm-geo-fin>`.
+
+Pour exécuter le script Python, {ref}`install Python <install-python>` pour votre plateforme ainsi que les paquets `numpy` et `h5py`.
+
+```{admonition} Guidance for installing Python
+Envisagez d'installer Python dans un {ref}`conda-env` (*Windows*) ou un {ref}`venv (pip) <pip-env>` (*Linux*) avec [flusstools](https://flusstools.readthedocs.io), qui inclut déjà toutes les exigences pour exécuter *BMv3NodestringResults.py*.
+```
+
+Pour exécuter le script *Python* sur n'importe quelle plateforme :
+
+* Activez en option l'environnement *Python* (conda ou vendiv) pertinent.
+* `cd` (changer le répertoire) dans le dossier de simulation.
+* Exécutez `python BMv3NodestringResults.py`.
+
+En détail, ceci se présente comme suit :
+
+`````{tab-set}
+````{tab-item} Windows / conda
+Lancez *Windows* ou *Anaconda Prompt* et tapez (exige que l'environnement conda {ref}`flussenv <conda-quick>` soit installé) :
+```
+conda activate flussenv
+cd C:\Basement\steady2d-tutorial\
+python BMv3NodestringResults.py
+```
+````
+
+````{tab-item} Linux / pip
+Lancez *Linux Terminal* et tapez (exige que l'environnement pip {ref}`vflussenv <pip-quick>` soit installé dans le répertoire HOME):
+```
+cd ~
+source vflussenv/bin/activate
+cd /Basement/steady2d-tutorial/
+python BMv3NodestringResults.py
+```
+
+Si {ref}`vflussenv <pip-quick>` est installé dans un autre répertoire que HOME, remplacez `cd ~` dans la première ligne du bloc de code ci-dessus par le répertoire d'installation parent de {ref}`vflussenv <pip-quick>`.
+````
+`````
+
+{numref}`Figure %s <export-py>` illustre l'exécution *BMv3NodestringRésultats.py* sur *Windows* dans *Anaconda Prompt*.
+
+```{figure} ../../img/basement/export-ns-py.png
+:alt: export nodestring python script basement BMv3NodestringResults
+:name: export-py
+
+Une fenêtre Python Anaconda Prompt sous BMv3NodestringRésultats.py
+```
+
+Exécuter le script *Python* génère trois fichiers {term}`CSV` qui contiennent des valeurs à l'utilisateur-défini {ref}`STRINGDEFs <bm-geo-fin>`:
+
+* **Discharge.csv** contient les rejets entrants et sortants.
+* **results.csv** contient tout paramètre OUTPUT défini dans le {ref}`simulation setup file <bm-sim-file>`.
+* **timestep.csv** liste le nombre de temps de paramètre OUTPUT.
+
+Le fichier principalement important est **Discharge.csv**, à partir duquel on peut lire lorsque l'écoulement et l'écoulement convergent dans une simulation à l'état d'équilibre (c.-à-d. **la simulation se stabilise**). Une simulation régulière dans laquelle la somme de tous les apports ne correspond pas à toutes les sorties doit être considérée comme erronée. Par exemple, si la somme des sorties dans la dernière étape est inférieure à la somme des entrées, le temps de simulation est trop court. Le diagramme dans {numref}`Fig. %s <convergence-diagram-bm>` trace l'entrée et la sortie pour la configuration de simulation de ce tutoriel. Le diagramme suggère que le modèle atteint la stabilité après l'étape 11 (temps de simulation $t \leq 11000$). Ainsi, le temps de simulation pourrait être limité à $t = 12000$, mais un temps de simulation de $t = 10000$ serait trop court.
+
+```{figure} ../../img/basement/convergence-diagram.png
+:alt: basement convergence model simulation discharge verification validation
+:name: convergence-diagram-bm
+
+Convergence des entrées et sorties aux limites du modèle.
+```
+
+
+```{admonition} Checkup: discharge convergence
+Notez la différence entre la durée de convergence dans cette simulation régulière avec BASE (plot in {numref}`Fig. %s <convergence-diagram-bm>`) qui commence par un modèle sec par rapport au tutoriel stable Telemac2d (plot in {numref}`Fig. %s <steady-flux-convergence>`).
+
+* **Perpétuellement augmenter la décharge dans une simulation régulière**<br> La définition de {ref}`upstream_direction <bm-geo-fin>` (par exemple, définie à tort comme `"left"` ou `"right"`) peut causer cette erreur.
+* **Extrait inférieur à l'entrée**<br>Augmenter le temps de simulation (voir la section {ref}`bm-sim-file`).
+* **Pas d'eau dans le modèle**<br> La décharge définie dans le fichier *steady-inflow.txt* (voir la section {ref}`bm-hydraulics`) doit définir les débits raisonnables dans le temps de simulation. En outre, la définition de {ref}`upstream_direction <bm-geo-fin>` (par exemple, définie à tort comme `"left"` ou `"right"`) peut causer cette erreur. Selon les paramètres régionaux de votre système, utilisez l'anglais **`.`** en lieu et place du européen **`,`** décimal delimiter pour définir les décharges dans *steady-inflow.txt*.
+```
+
+**Et ensuite?**
+: La vérification de la stabilité du modèle ne représente qu'une étape sur la voie d'un modèle utilisable en pratique. Avant qu'un modèle numérique puisse être utilisé pour simuler des scénarios décisionnels, il doit être étalonné et validé avec des données de mesure (semblable à TELEMAC {ref}`hydrodynamics <tm2d-calibration>`).

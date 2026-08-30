@@ -1,0 +1,402 @@
+---
+description: Tutorial für die Modellierung instationärer (quasi-stationärer) Entladungs- und Hochwasserhydrographien mit Telemac2d, Diskretisierung zeitvariabler Flüsse für 2D-Flusshydrauliksimulationen.
+---
+
+(chpt-unsteady)=
+# Instationär 2d
+
+```{admonition} Requirements
+This tutorial is designed for **advanced modelers** and before diving into this tutorial make sure to complete the {ref}`TELEMAC pre-processing <slf-prepro-tm>` and {ref}`Telemac2d steady hydrodynamic modeling <telemac2d-steady>` tutorials.
+
+Der Fall in diesem Tutorial wurde mit der folgenden Software erstellt:
+* a text editor, such as {ref}`Notepad++ <npp>` (any other text editor will do the job).
+* Telemac v8p2r0 oder neuer ({ref}`standalone installation <modular-install>`).
+* {ref}`QGIS <qgis-install>`.
+* Debian Linux 11 installiert auf einer virtuellen Maschine (lesen Sie mehr unter {ref}`software chapter <chpt-vm-linux>`).
+```
+
+## Beginnen Sie
+
+The {ref}`steady 2d tutorial <telemac2d-steady>` hypothesizes that the discharge of a river is constant over time. However, the discharge of a river is never truly constant (i.e., never steady) and varies slightly from second to second, even in controlled rivers. To model the inherently unsteady flows of rivers, we can discretize time-dependent discharge (e.g., a flood hydrograph) in a numerical model as a series of steady discharges. {numref}`Figure %s <unsteady-hydrograph>` illustrates the discretization of a natural flood hydrograph into steps of steady flows, which will be used in this chapter. Note that the hydrograph **starts at Time = 15000**, which is the result of the dry-initialized steady2d simulation.
+
+```{figure} ../../img/telemac/unsteady-hydrograph.png
+:alt: unsteady flow discharge quasi steady telemac telemac2d hydrodynamic
+:name: unsteady-hydrograph
+
+Die Diskretisierung eines kontinuierlichen Hydrographen in Stufen stetiger Strömungen (qualitativer Hydrograph für dieses Tutorial).
+```
+
+This chapter features the implementation of a quasi-steady discharge hydrograph into a hydrodynamic Telemac2d simulation through the definition of an inflow sequence (red circles in {numref}`Fig. %s <unsteady-hydrograph>`). The tutorial builds on the steady simulation of a discharge of 35 m$^3$/s and requires the following data from the {ref}`pre-processing <slf-prepro-tm>` and {ref}`steady2d <telemac2d-steady>` tutorials, which can be downloaded by clicking on the filenames:
+
+* Die Computational Mesh [qgismesh.slf](https://github.com/hydro-informatics/telemac/raw/main/bk-slf/qgismesh.slf) Datei (verwendet **EPSG:32633** - ETRS 89 / UTM Zone 33N).
+* Die Randdefinitionen [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) Datei].
+* Die Ergebnisdatei [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf)] des {ref}`dry initialized steady 2d simulation <tm2d-init-dry>` endet bei `t=15000` für 35 m$^3$/s.
+
+Consider saving the files in a new folder, such as `/unsteady2d-tutorial/`.
+
+```{admonition} Unsteady simulation file repository
+The simulation files used in this tutorial are available at [https://github.com/hydro-informatics/telemac/tree/main/unsteady2d-tutorial/](https://github.com/hydro-informatics/telemac/tree/main/unsteady2d-tutorial/).
+```
+
+(prepro-unsteady)=
+## Modellanpassungen
+
+Die Implementierung von instationären Flüssen erfordert die Anpassung von Schlüsselwörtern und zusätzlichen Schlüsselwörtern (z. B. zur Verknüpfung von Flüssigkeitsranddateien) in der Steuerungsdatei (`.cas`) aus dem steady2d-Tutorial ([Download steady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/steady2d.cas)].
+
+```{admonition} View the unsteady steering file
+Um die Integration der instationären Simulationsschlüsselwörter in die Steuerungsdatei anzuzeigen, laden Sie unsteady2d.cas](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/unsteady2d.cas) herunter.
+```
+
+(tm2d-hotstart)=
+### Startbedingungen
+
+**Die folgenden Beschreibungen beziehen sich auf Abschnitt 4.1.3 im [Telemac2d Manual](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf).**]
+
+To speed up the calculations and provide a well-converging baseline for the quasi-steady calculations, this tutorial re-uses the output of the steady 2d simulation with dry initial conditions (see the {ref}`tm2d-init-dry` section). This type of model initialization is also called *hotstart*. To hotstart the simulation, the steady results file [r2dsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dsteady.slf) needs to be defined as **PREVIOUS COMPUTATION FILE**:
+
+```fortran
+COMPUTATION CONTINUED : YES
+PREVIOUS COMPUTATION FILE : r2dsteady.slf / results of 35 CMS steady simulation
+/ INITIAL TIME SET TO ZERO : 0 / avoid restarting at 15000
+```
+
+An **INITIAL TIME SET TO ZERO** keyword may be defined  to reset the time from the previous computation file from `15000` to `0`. However, this tutorial does not use this option and continues at timestep 15000.
+
+Um mehrdeutige Definitionen von Anfangsbedingungen zu vermeiden, deaktivieren Sie ** (d.h. löschen oder kommentieren Sie Zeilen mit einem `/`) das Schlüsselwort **INITIAL BEDINGUNGEN **:
+
+```fortran
+/ INITIAL CONDITIONS : 'ZERO DEPTH'
+```
+
+### Allgemeine Parameter
+
+To simulate the hydrograph shown in {numref}`Fig. %s <unsteady-hydrograph>`, the simulation must run for at least another 15000 time steps (i.e., from `t=15000` to `t=30000`). Since printing out (intermediate) results has a significant effect on computing time, increase the graphic printout timestep to `500` (i.e., decrease the printout frequency compared to `200` used for the steady simulation):
+
+```fortran
+TIME STEP : 1.
+NUMBER OF TIME STEPS : 15000
+GRAPHIC PRINTOUT PERIOD : 500
+LISTING PRINTOUT PERIOD : 500
+```
+
+(tm2d-liq-file)=
+### Offene Grenzen
+
+This section features the implementation of quasi-steady (unsteady) flow conditions at the open liquid boundaries with a time-dependent inflow hydrograph and a downstream {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>`  (recall the rationales behind the choice of boundary types from the {ref}`pre-processing tutorial <bk-liquid-bc>`).
+
+
+```{admonition} Boundary conditions and mass balance
+
+The boundary condition settings affect mass balance, which is a crucial criterion for a sound numerical model. Read more in the spotlight chapter on setting up {ref}`boundary conditions for mass balance <foc-mass-bc>`.
+```
+
+
+---
+
+** Definieren Sie einen Quasi-steady Hydrographen **
+
+With the dry-initialized model ending at $t$=15000, the hydrograph needs to start at `15000`, even though the model start will represent time *zero* of the unsteady simulation. To implement the triangular-shaped hydrograph shown in {numref}`Fig. %s <unsteady-hydrograph>`, **create a new file called `inflows.liq`** in the simulation folder. Open the new `inflows.liq` file in a text editor and add the red-circled points in {numref}`Fig. %s <unsteady-hydrograph>` as time-dependent flow information at the **upstream (1)** and **downstream (2)** open (liquid) boundaries. In this file:
+
+* Add a file header starting with `#` signs (commented lines ignored by TELEMAC).
+* Implementieren Sie 2 Spalten für die Zeit **T** ($t$) und die Upstream-Zuflussrate **Q(1)**.
+* Trennen Sie die Spalten mit *spaces*.
+* The first column must be time `T` with strictly monotonously increasing values and the last time value must be greater than or equal to the last simulation timestep.
+
+```{admonition} How does Telemac count open (liquid) boundaries?
+Diese und weitere Informationen zur Definition von Grenzen finden Sie im Spotlight-Kapitel unter {ref}`boundary conditions <tm-foc-bc>`.
+```
+
+Daher sollte die Datei [inflows.liq](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/inflows.liq)] ähnlich aussehen:
+
+```python
+# Inflow hydrograph
+#
+T	Q(1)
+s	m3/s
+15000	35
+16000	35
+17000	50
+19000	1130
+22000	101
+25000	35
+99000	35
+```
+
+Die ursprüngliche Datei *boundaries.cli* beschreibt die nachgelagerte Grenze mit * prescribed Q und H* (Typ `5 5 5`). In der instationären Berechnung muss `Q` jedoch frei sein (sonst muss Q(2) in `inflows.liq` mit einer zusätzlichen Spalte definiert werden) und aus diesem Grund erfordert die `boundaries.cli`-Datei einige Anpassungen:
+
+* ** Öffnen Sie die bereitgestellte [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/steady2d-tutorial/boundaries.cli) Datei mit einem Texteditor (z. B. {ref}`npp` unter Windows).
+* Use find-and-replace (e.g., `CTRL` + `H` keys in {ref}`Notepad++ <npp>`, or `CTRL` + `F` keys in other text editors):
+  * **Find** `5 5 5`
+  * **Ersetzen** mit `4 5 5`
+  * Klicken Sie auf **Ersetzen** alle Upstream-Grenzknoten.
+* ** Speichern Sie die Datei als **boundaries-unsteady.cli ** und schließen Sie sie.
+
+Um die richtigen Einstellungen zu überprüfen [download borders-unsteady.cli](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/boundaries-unsteady.cli) für die unstetige Simulation].
+
+Passen Sie in der **Steering-Datei** den **Dateinamen für die Randbedingungen** an und fügen Sie den Link zu **inflows.liq** hinzu:
+
+```
+BOUNDARY CONDITIONS FILE : boundaries-unsteady.cli
+/ ...
+LIQUID BOUNDARIES FILE : inflows.liq
+```
+
+---
+
+**Ratingkurve (Stage-Discharge-Relation)**
+Um die Verwendung eines {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` für eine offene (liquide) Grenze zu aktivieren, muss das Schlüsselwort **STAGE-DISCHARGE CURVES** zur Steuerungsdatei hinzugefügt werden. Dieses Keyword erfordert eine Liste bestehend aus den folgenden Ganzzahlen:
+
+* `0` ist der **Standard**, der die Verwendung einer Bühnenentladungskurve deaktiviert.
+* `1` applies prescribed elevations as a function of calculated flow rate (discharge).
+* `2` applies prescribed flow rates (discharge) as a function of calculated elevation.
+
+Das Schlüsselwort **STAGE-DISCHARGE CURVES** ist eine Liste, die eine der drei Ganzzahlen (d.h. entweder `0`, `1` oder `2`) den offenen (liquiden) Grenzen zuweist. In diesem Tutorial aktiviert die Einstellung `STAGE-DISCHARGE CURVES : 0;1` die Verwendung eines {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` für die nachgelagerte Grenze nur dann, wenn die **upstream offene Grenze Nummer 1** auf `0` und die **downstream offene Grenze Nummer 1** auf `0` gesetzt ist.
+
+The form (curve) of the {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>` needs to be defined in a stage-discharge file ({term}`ASCII` text format). Such files typically apply to the downstream boundary of a model at control sections (e.g., a free overflow weir). This tutorial uses the following relationship that is stored in a file called [ratingcurve.txt (download)](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/ratingcurve.txt):
+
+```
+# Downstream ratingcurve.txt
+#
+Z(2)	Q(2)
+m	m3/s
+371.33	35
+371.45	50
+371.86	101
+375.73	1130
+379.08	2560
+```
+
+
+````{admonition} How to assign different stage-discharge curves at multiple boundaries?
+:class: tip, dropdown
+
+To define {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>`s at multiple open boundaries (e.g., at river diversions or tributaries), add the curves to the same file. TELEMAC automatically recognizes where the curves apply by the number given in parentheses after the parameter name in the column header. For instance, in the above example for this tutorial, the column headers `Z(2)` and `Q(2)` tell TELEMAC to use these values for the second (i.e., here, the downstream) open boundary. The column order is not important because TELEMAC reads the curve type (i.e., either $Q(Z)$ or $Z(Q)$) from the **STAGE-DISCHARGE CURVES** keyword.
+
+The following file block would prescribe {term}`Wasserstands-Abfluss Beziehung <Stage-discharge relation>`s to the upstream and downstream boundary conditions in this tutorial. However, the file cannot be used here unless the upstream boundary type is changed to `5 5 5` (`prescribed H and Q`) in the `boundaries.cli` file (read more in the {ref}`pre-processing tutorial <bk-liquid-bc>`).
+```
+#
+# Downstream Rating Curve
+#
+Z(2)	Q(2)
+m	m3/s
+371.33	35
+371.45	50
+371.86	101
+375.73	1130
+379.08	2560
+#
+# Upstream Rating Curve
+#
+Q(1)  Z(1)
+m3/s  m
+35    371.33
+50    371.45
+101   371.86
+1130  375.73
+2560  379.08
+```
+````
+
+Um die Stage-Discharge-Datei zu verwenden, definieren Sie die STAGE-DISCHARGE ... Schlüsselwörter in der Steuerungsdatei**:
+
+```
+/ steering.cas
+STAGE-DISCHARGE CURVES : 0;1
+STAGE-DISCHARGE CURVES FILE : ratingcurve.txt
+```
+
+---
+
+** mehrdeutige Open Boundary Definition Keywords entfernen **
+
+To avoid ambiguous definitions of the open boundaries conditions, **deactivate** (i.e., delete or comment out lines with a `/`) the **PRESCRIBED ...** keywords in the steering file:
+
+```fortran
+/ PRESCRIBED FLOWRATES  : 35.;0.
+/ PRESCRIBED ELEVATIONS : 374.80565;371.33
+```
+
+### Numerische Parameter
+
+Die Prädiktor-Korrektor-Schemata (**SYSTEM FÜR ...** Schlüsselwörter, die mit `3`, `4`, `5` oder `15` definiert sind, beruhen auf einem Parameter, der die Anzahl der Iterationen bei jedem Zeitschritt für die Konvergenz definiert (siehe {ref}`steady2d tutorial <telemac2d-steady>`). Für quasistationäre Simulationen empfehlen Telemac-Entwickler, diesen Parameter auf `2` oder etwas größer zu setzen (Abschnitt 7.2.1 im [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf)]. Daher **fügen Sie die folgende Zeile in die Lenkungsdatei ** hinzu:
+
+```fortran
+NUMBER OF CORRECTIONS OF DISTRIBUTIVE SCHEMES : 2
+```
+
+(tm-control-sections)=
+### Kontrollabschnitte
+
+Eine konsistente Möglichkeit, Flüsse an offenen Grenzen oder anderen bestimmten Linien (z. B. Zuflüsse oder Umleitungen von Nebenflüssen) zu verifizieren, besteht darin, das Schlüsselwort **KONTROLLE SEKTIONEN** zu verwenden. Ein Steuerabschnitt wird durch eine Folge von benachbarten Knotennummern definiert. Um beispielsweise die Flüsse über die offenen Grenzen in diesem Tutorial zu überprüfen, schauen Sie sich die Knotennummern in der Datei *boundaries.cli* an (z. B. 144 bis 32 für die Upstream- und 34 bis 5 für die Downstream-Grenze). Dann erstellen Sie eine neue Textdatei** (z. B. **control-sections.txt**) und:
+
+* **Add one comment line** with some short information (e.g., `# control sections input file`). Note that this line is **mandatory**.
+* In der **zweiten Zeile** fügen Sie eine ** raumgetrennte Liste von 2 Ganzzahlen** hinzu, wobei
+  * die erste ganze Zahl die Anzahl der Querschnitte definiert und
+  * die zweite ganze Zahl definiert, ob Knotennummern (d.h. IDs von *boundaries.cli* oder *qgismesh.slf*) oder Koordinaten definiert werden. Eine negative Zahl ermöglicht den Knoten-ID-Modus und eine positive Zahl ermöglicht den Koordinaten-Modus.
+* ** Definieren Sie so viele Querschnitte wie mit der ersten Ganzzahl definiert.** Jede Querschnittsdefinition besteht aus zwei Linien:
+  * The first line is a *string* (text) without spaces that is naming the cross-section (e.g., `inflow_cs`).
+  * Die zweite Zeile besteht aus zwei Zahlen, die den Anfangs- und Endpunkt der Querschnitte definieren. Wenn die zweite ganze Zahl in der Dateizeile negativ ist, geben Sie zwei raumgetrennte ganze Zahlen an. Wenn die zweite ganze Zahl positiv ist, geben Sie zwei räumlich getrennte Koordinatenpaare an (geben Sie einen Abstand zwischen die Koordinaten).
+
+Zum Beispiel kann die folgende * control-sections.txt * Datei mit der stetigen Simulation in diesem Tutorial verwendet werden ([download control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/control-sections.txt)].
+
+```
+# control sections steady2d
+2 -1
+Inflow_boundary
+144 32
+Outflow_boundary
+34 5
+```
+
+````{dropdown} Expand to view an example for coordinate-based control sections
+The following control section file uses point coordinates rather than node ID numbers to define three sections. Read more in {cite:t}`baxter2013` (i.e., section 4.1.2 in the [Baxter tutorial](http://www.opentelemac.org/index.php/component/jdownloads/summary/4-training-and-tutorials/185-telemac-2d-tutorial?Itemid=55)).
+```
+# control section file using coordinates
+3 0
+affluent_creek
+19572355.895577 626823.06664 1952347.2733 626923.9554
+main_river_upstream
+1946449.824 635349.6070 194.919 635209.807
+main_river_downstream
+1967737.56993 620784.415608 1967998.16429 620638.17849
+```
+````
+
+The second line in this file tells TELEMAC to use `2` control sections, which are defined by node IDs (`-1`). To use the control sections for the simulation add the following to the steering file:
+
+```
+/ steady2d.cas
+/ ...
+SECTIONS INPUT FILE :  control-sections.txt
+SECTIONS OUTPUT FILE : r-control-flows.txt
+```
+
+Beim erneuten Ausführen der Simulation werden die Flüsse über die beiden definierenden Kontrollabschnitte in eine Datei namens *r-control-flows.txt * geschrieben. Das [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf) bietet Erklärungen in Abschnitt 5.2.2.]
+
+## Ausführen von Telemac2d Unsteady
+
+Go to the configuration folder of the local TELEMAC installation (e.g., `~/telemac/v9.0.0/configs/`) and load the environment (e.g., `pysource.openmpi.sh` - use the same as for compiling TELEMAC).
+
+```
+cd ~/telemac/v9.0.0/configs
+source pysource.gfortranHPC.sh
+```
+
+````{admonition} If you are using the Hydro-Informatics (Hyfo) Mint VM
+:class: note, dropdown
+
+Wenn Sie mit {ref}`Mint Hyfo VM <hyfo-vm>` arbeiten, laden Sie die TELEMAC-Umgebung wie folgt:
+
+```
+cd ~/telemac/v8p2/configs
+source pysource.hyfo-dyn.sh
+```
+````
+
+With the TELEMAC environment loaded, change to the directory where the unsteady simulation lives (e.g., `/home/telemac/v9.0.0/mysimulations/unsteady2d-tutorial/`) and run the `*.cas` file by calling the **telemac2d.py** script.
+
+```
+cd ~/telemac/v9.0.0/mysimulations/unsteady2d-tutorial/
+telemac2d.py unsteady2d.cas
+```
+
+````{admonition} Speed up
+With {ref}`parallelism <tm-system-wide-opts>` enabled (e.g., in the {ref}`Mint Hyfo Virtual Machine <hyfo-vm>`), speed up the calculation by using multiple cores through the `--ncsize=N` flag. For instance, the following line runs the unsteady simulation on `N=2` cores:
+
+```
+telemac2d.py unsteady2d.cas --ncsize=2
+```
+````
+Eine erfolgreiche Berechnung sollte mit den folgenden Zeilen (oder ähnlich) in *Terminal * enden:
+
+```fortran
+[...]
+                    *************************************
+                    *    END OF MEMORY ORGANIZATION:    *
+                    *************************************
+
+CORRECT END OF RUN
+
+ELAPSE TIME :
+                            10  MINUTES
+                            32  SECONDS
+... merging separated result files
+
+... handling result files
+       moving: r2dunsteady.slf
+       moving: r-control-sections.txt
+... deleting working dir
+
+My work is done
+```
+
+Telemac2d schreibt die Dateien *r2dunsteady.slf* und *r-control-sections.txt*. Beide Ergebnisdateien sind auch im TELEMAC-Repository dieses eBooks verfügbar, um das Nachbearbeitungs-Tutorial durchzuführen:
+
+* [get r2dunsteady.slf](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r2dunsteady.slf), und]
+* [get r-control-sections.txt](https://github.com/hydro-informatics/telemac/raw/main/unsteady2d-tutorial/r-control-sections.txt).]
+
+
+## Nachbearbeitung
+
+### Offene Grenzflüsse
+
+The unsteady simulation intends to model time-variable flows (fluxes) over the upstream and downstream liquid boundaries. The above-defined {ref}`control sections <tm-control-sections>` enable insights into the correct adaptation of the flow at the upstream inflow boundary (*prescribed Q* through *inflows.liq*) and the downstream outflow boundary (*prescribed H* through *ratingcurve.txt*). {numref}`Figure %s <res-unsteady-hydrograph>` shows the modeled flow rates where the *Inflow_boundary* shows perfect agreement with *inflows.liq* and the *Outflow_boundary* reflects the flattening of the discharge curve in the modeled meandering gravel-cobble bed river.
+
+```{figure} ../../img/telemac/res-unsteady-hydrograph.png
+:alt: result unsteady flow discharge telemac2d hydrodynamic inflow outflow control sections
+:name: res-unsteady-hydrograph
+
+Die simulierten Flüsse fließen über die stromaufwärtigen *Inflow boundary* und die stromabwärtigen *Outflow boundary* Steuerabschnitte.
+```
+
+Der Peak-Zufluss entspricht den angegebenen 1130 m$^3$/s, während der Outflow-Peak-Abfluss nur 889 m$^3$/s beträgt und der Peak etwa 1070 Sekunden dauert (Einfluss bei $t$=19000 und Abfluss bei $t\approx$20070), um durch den Abschnitt zu gelangen.
+
+
+````{admonition} Resolve volume balance issues in unsteady simulations
+:class: warning, dropdown
+Die gesamten Zu- und Abflussvolumina in der hier vorgestellten Simulation betragen 3479930,958 m$^3$ bzw. 3430100,437 m$^3$. Es gibt also einen Gesamtvolumenfehler von 1,4$\%$. Um solche Probleme zu überwinden, empfiehlt das [Telemac2d-Handbuch](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf)], einen Mindestwert für die Wassertiefe zu verwenden, um zu definieren, wann eine Zelle nass oder trocken ist. Gleichzeitig empfehlen die Entwickler für die meisten Simulationen keine Mindestwassertiefe und betonen, diese Option nur für instationäre (quasi-stationäre) Simulationen zu verwenden. Um eine minimale Wassertiefe zu definieren, muss das Schlüsselwort **BEHANDLUNG DER TIDALFLATEN** auf `2` gesetzt werden (lesen Sie mehr unter {ref}`steady2d tutorial <tm2d-tidal>`), was weder mit Parallelisierungsroutinen noch mit den hier verwendeten `SCHEME FOR ADVECTION ... : 14`-Einstellungen kompatibel ist. Bessere Ergebnisse, aber lange nicht-parallelisierte quasi-stationäre Berechnungen könnten mit den folgenden Schlüsselwörtern in der Steuerungsdatei erzielt werden:
+
+```fortran
+OPTION FOR THE TREATMENT OF TIDAL FLATS : 2 / use segment-wise flux control
+MINIMUM VALUE OF DEPTH : 0.1 / in meters
+```
+````
+
+(tm-unsteady-qgis)=
+### Visualisierung mit QGIS
+
+The results of the unsteady simulation can be visualized and snapshots exported to raster (e.g., {term}`GeoTIFF`) or shapefile formats in QGIS, similar as explained in the {ref}`steady2d post-processing <tm2d-post-export>`. Specifically, the latest QGIS releases enable to load the Selafin results mesh file (here: *r2dunsteady.slf*) as a QGIS mesh layer. Therefore, **launch QGIS**, go to the **Layer** menu and click on **Add Layer** > **Add Mesh Layer...**. In the popup window (*Data Source Manager / Mesh*), **select r2dunsteady.slf**, click **Add**, and **Close**. {numref}`Figure %s <qgis-r2dunsteady-imported>` shows the imported r2dunsteady mesh layer in QGIS with a *Softlight* blending (set in the *Symbology*) on google satellite imagery.
+
+```{figure} ../../img/telemac/qgis-r2dunsteady-imported.png
+:alt: qgis telemac2d unsteady quasi steady simulation results slf
+:name: qgis-r2dunsteady-imported
+
+Die instationäre (quasi-steady) Simulationsergebnisse-Datei r2dunsteady.slf importiert als Mesh-Layer in QGIS und überlagert auf Google Satellitenbilder {cite:p}`googlesat`.
+```
+
+```{admonition} r2dunsteady.slf (results file) not correctly showing in QGIS
+:class: error, dropdown
+
+Wird die Ergebnisdatei `r2dunsteady.slf` nicht in QGIS angezeigt? Importieren Sie es mit der korrekten Georeferenz: **EPSG:32633** (ETRS 89 / UTM Zone 33N).
+```
+
+
+The simulation output parameters (e.g., `U`, `V`, or `Q`) at a selected timestep can be controlled in the layer properties of the `r2dunsteady` layer (double-click on it in the *Layers* panel).
+
+To **create a video of simulation results**, use the **Time Controller** (see activation in {numref}`Fig. %s <qgis-time-controller-tm-recall>`). The frequency of images can be set through clicking on the cogwheel of the time controller, and image sequences played by clicking in the *Play* button. Additionally, {numref}`Fig. %s <qgis-time-controller-tm>` uses an overlay of water depth pixel colors (contour plot), and flow velocity vectors, defined in the *Layer Styling* panel. The North and discharge arrows, and the title are *Decorators*, which can be found in **View** > **Decorators**.
+
+````{admonition} Expand to see the Time Controller
+```{figure} ../../img/telemac/qgis-time-controller.jpg
+:alt: time controller qgis telemac
+:name: qgis-time-controller-tm-recall
+
+The activated time controller in QGIS enables to move along the time axis of modeled quantities (background map: {cite:t}`googlesat` satellite imagery). The red-highlighted buttons activate the time controller, play the sequence of images of selected quantities, provide a setting for playing a frequency of images per second, and enable saving images of all timesteps (see instructions below).
+```
+````
+
+Die exportierte Bildserie kann mit Videobearbeitungssoftware in ein Video konvertiert werden, z. B. die einfach und kostenlos zu verwendenden [OpenShot](https://www.openshot.org/) (gut für Windows) oder [kdenlive](https://kdenlive.org/) (gut für Linux) Werkzeuge. Die unten gezeigte Box enthält ein beispielhaftes Video, das mit [kdenlive](https://kdenlive.org/)] erstellt wurde.
+
+```{admonition} Expand to view the results as video
+:class: tip, dropdown
+<iframe width="701" height="394" src="https://www.youtube-nocookie.com/embed/UJovUYb_Bo0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <p>Sebastian Schwindt <a href="https://www.youtube.com/@hydroinformatics">@ Hydro-Morphodynamics channel on YouTube</a>.</p>
+```

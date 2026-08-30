@@ -1,0 +1,67 @@
+---
+description: Tutorial für die Ausführung von OpenFOAM-Mehrphasenflusssimulationen, die die Feldinitialisierung, die Ausführung von Solvern und die Überwachung für hydraulische Anwendungen abdecken.
+---
+
+# Laufen OpenFOAM
+
+Nachdem alle notwendigen Wörterbücher erstellt und ausgefüllt wurden, kann der Fall schließlich ausgeführt werden.
+
+* Der erste Schritt besteht in der Initialisierung einer Region, die Wasser enthält, wie in der Datei *setFieldsDict * definiert.
+
+```
+user@user123:~/OpenFOAM-9/channel/Simulation$ setFields
+```
+
+* Verwenden Sie für parallele Läufe den Befehl `decomposePar`, wie während des Meshing-Prozesses, um die Geometrie für jeden [MPI (Message Passing Interface, ein Standard für paralleles Rechnen) ](https://www.mpi-forum.org/) Prozess in einzelne Geometrien zu zerlegen.
+
+```
+user@user123:~/OpenFOAM-9/channel/Simulation$ decomposePar
+
+```
+
+* Starten Sie die Simulation, indem Sie im Terminalfenster Folgendes eingeben:
+
+    * Bei Parallelläufen (ersetzen Sie "x" durch die Anzahl der Kerne):
+
+```
+user@user123:~/OpenFOAM-9/channel/Simulation$ mpirun -np x interFoam -parallel
+```
+
+    * Alternativ:
+
+```
+user@user123:~/OpenFOAM-9/channel/Simulation$ interFoam
+```
+
+Nachfolgend wird ein Beispiel für den Ausgabebildschirm der *interFoam*-Solver gezeigt. Die Hauptaspekte sind:
+
+* The first line shows the mean and maximum flow {term}`CFL-Zahl <CFL>` condition.
+* Line 2 shows instead the interface {term}`CFL-Zahl <CFL>` condition, which is more restrictive than the previous and should be strictly below 1 when solving multiphase flows.
+* "MULES: Correcting alpha.water" hängt vom Wert ab, der in der Datei *fvSolution* auf *nAlphaCorr* eingestellt ist.
+* Die Zeilen 7 und 9 beziehen sich auf die *nAlphaSubCycles*, die auf 1 gesetzt wurde, was nur eine Schleife bedeutet.
+* Die Zeilen 11, 13 und 15 beziehen sich auf die drei Druckkorrekturen und es sind keine nicht-orthogonalen Korrekturen vorhanden.
+* Wie in Zeile 16 gezeigt, wird nur für diese Iteration eine engere Toleranz angewendet (p-rghFinal).
+  
+```
+1    Courant Number mean: 0.00233217 max: 0.961058
+2    Interface Courant Number mean: 0.000313967 max: 0.234243
+3    deltaT = 0.000461857
+4    Time = 148.004
+5 
+6    smoothSolver:  Solving for alpha.water, Initial residual = 2.35103e-05, Final residual = 1.00306e-08, No Iterations 1
+7    Phase-1 volume fraction = 0.144966  Min(alpha.water) = -1.2641e-05  Max(alpha.water) = 1
+8    MULES: Correcting alpha.water
+9    MULES: Correcting alpha.water
+10   Phase-1 volume fraction = 0.144966  Min(alpha.water) = -2.71177e-05  Max(alpha.water) = 1
+11   DICPCG:  Solving for p-rgh, Initial residual = 0.000249542, Final residual = 1.17508e-05, No Iterations 6
+12   time step continuity errors : sum local = 8.05179e-08, global = 6.39537e-10, cumulative = -2.18471e-08
+13   DICPCG:  Solving for p-rgh, Initial residual = 2.05956e-05, Final residual = 1.01515e-06, No Iterations 58
+14   time step continuity errors : sum local = 6.95406e-09, global = -1.17766e-09, cumulative = -2.30247e-08
+15   DICPCG:  Solving for p-rgh, Initial residual = 2.95498e-06, Final residual = 9.64318e-08, No Iterations 75
+16   time step continuity errors : sum local = 6.60043e-10, global = 5.94012e-11, cumulative = -2.29653e-08
+17   smoothSolver:  Solving for epsilon, Initial residual = 0.0002476, Final residual = 5.94123e-06, No Iterations 1
+18   bounding epsilon, min: -3.63319e-06 max: 21370 average: 8.9958
+19   smoothSolver:  Solving for k, Initial residual = 0.000103198, Final residual = 1.17097e-06, No Iterations 1
+20   ExecutionTime = 63.45 s  ClockTime = 64 s
+```
+
