@@ -1,0 +1,233 @@
+---
+description: Guide pour l'établissement des conditions limites liquides dans TELEMAC, couvrant les limites surdéterminées, les relations étape-décharge, les coefficients de rugosité et les pointes pour la modélisation des rivières.
+---
+
+(tm-foc-bc)=
+# Conditions limites
+
+```{admonition} Requirements
+
+Ce tutoriel ne nécessite pas de code d'exécution, mais nous recommandons au moins de mettre en place un modèle Telemac, tel que décrit dans le {ref}`steady 2d tutorial <telemac2d-steady>`, ce qui facilite la compréhension des concepts et des termes.
+```
+
+Les conditions de limite des liquides sont surdéterminées lorsque trop de paramètres sont prescrits, qui sont au moins numériquement concurrents. Par exemple, si le rejet et la profondeur de l'eau sont prescrits, mais ne peuvent être obtenus avec les coefficients de rugosité définis, Telemac tentera de respecter la profondeur de l'eau. Cependant, cette profondeur d'eau ne correspond souvent pas au débit prescrit et Telemac essaie de compenser la différence en variant les longueurs (montants) des vecteurs de vitesse. À leur tour, les vecteurs de vitesse sont limités par les coefficients de rugosité. Ainsi, Telemac tente de varier les profondeurs d'eau et les vecteurs de vitesse pour obtenir un {term}`stage (H)-discharge (Q) relation <Stage-discharge relation>` prescrit à la limite, ce qui pourrait être impossible avec la rugosité définie. Une solution consisterait à ajuster les coefficients de rugosité (friction) de manière à ce que les conditions limites et les coefficients de rugosité définis soient exactement en équilibre. Toutefois, les conditions limites doivent être étalonnées spécifiquement pour les types de terrain multiples (c.-à-d. {ref}`roughness zones <tm-friction-zones>`) au moyen de l'étalonnage du modèle en utilisant des valeurs mesurées et non imposées par des problèmes aux limites du modèle pour atteindre le bilan massique. Et ensuite ?
+
+Pour régler le problème des conditions de limites excessives et du déséquilibre de masse, les sections suivantes donnent d'abord des conseils sur la façon de placer correctement les limites de liquide géométriquement, puis rappellent la configuration d'un fichier de limites, les types de limites (c.-à-d. les valeurs) et la façon dont elles peuvent affecter le bilan de masse.
+
+```{admonition} Tips for modeling rivers
+:class: important
+
+Les flux de travail et les conseils présentés dans ce chapitre se rapportent principalement à la modélisation numérique des rivières avec Telemac. Des conditions semblables peuvent s'appliquer aux estuaires des lacs, mais d'autres environnements, comme les régions côtières, nécessiteront des considérations différentes pour définir les conditions limites.
+```
+
+(tm-foc-draw-bc)=
+## Dessiner les limites des liquides
+
+Lors de l'établissement des limites de liquide, par exemple dans BlueKenue, quelques caractéristiques géométriques aideront à améliorer la stabilité et le bilan massique de la simulation ultérieure:
+
+* Les limites des liquides devraient avoir au moins 5-10 nœuds.
+* Toutes les limites d'entrée de liquide devraient avoir un nombre presque égal de nœuds que la somme des limites d'entrée de liquide.
+* Les limites d'entrée de liquide (en amont) ne devraient être définies qu'au niveau du lit inférieur de la rivière, jamais sur les rives ou les plaines inondables (voir {numref}`Fig. %s <draw-inflow>`).
+* Tirer les limites suffisamment loin de la région d'intérêt: les profondeurs d'eau imposées ou irréalistes (ou les élévations de surface de l'eau) liées aux débits affecteront fortement la région d'intérêt. En règle générale, dans une simulation 2d, les limites en amont et en aval devraient être distantes d'au moins 800 à 1000 m de la région d'intérêt.
+
+```{figure} ../../img/telemac/cross-section-sx.png
+:alt: draw bluekenue liquid boundary conditions conlim upstream inflow
+:name: draw-inflow
+
+La partie rouge soulignée de cette section transversale qualitative devrait être définie comme étant la condition limite d'entrée (en amont). Il ne faut pas inclure les nœuds de mesh sur les rives et sur les plaines inondables.
+```
+
+
+(tm-foc-unpack-bc)=
+## La structure des limites. Cli
+
+Les 2d stables, les 2d instables et les didacticiels présentent les différents types de limites à l'aide de rejets prescrits (`Q`) et/ou de profondeur d'eau (`H`), qui sont implémentés dans un fichier de limites `.cli` composé de 13 espaces (tab) - colon séparés :
+
+````{admonition} Example of a hydrodynamics boundaries.cli file (first 3 rows)
+:class: note
+```
+2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000         138           1
+2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9836           2
+2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9838           3
+...
+```
+````
+
+L'espace (onglet) - colon séparé correspond à 13 variables limites, qui sont énumérées à {numref}`Table %s <tab-bc-overview>` pour un Telemac2d/3d hydrodynamique (voir [boundaries.cli](https://github.com/hydro-informatics/telemac/raw/main/gaia2d-tutorial/boundaries.cli)) et un fichier de conditions limites Gaia.
+
+
+```{list-table} Meaning of columns in a Boundary.Cli file for Telemac2d/3d and Gaia.
+:header-rows: 1
+:name: tab-bc-overview
+
+* - Colonne no.<br>
+  - Flag<br>
+  - Télémac2d/3d<br>
+    <small>*parameter*</small>
+  - Gaia<br>
+    <small>*parameter*</small>
+
+* - 1
+  - type de limite
+  - LIHBOR<br>
+<small>*profondeur d'eau*</small>
+  - LIHBOR<br>
+<small>*profondeur d'eau*</small>
+
+* - 2
+  - type de limite
+  - LIBOR<br>
+    <small>*$x$-flowrate or $u$*</small>
+  - LAQBOR<br>
+<small>*charge des sédiments*</small>
+
+* - 3
+  - type de limite
+  - LIVBOR<br>
+    <small>*$y$-flowrate or $v$*</small>
+  - LIVBOR<br>
+<small>*velocity*</small>
+
+* - 4
+  - Ordonnance
+  - HBOR<br>
+<small>*profondeur d'eau*</small>
+  - C'est le cas de Q2BOR<br>
+<small>*charge des sédiments*</small>
+
+* - 5
+  - Ordonnance
+  - UBOR<br>
+    <small>*$x$-flowrate or $u$*</small>
+  - UBOR<br>
+    <small>*$x$-flowrate or $u$*</small>
+
+* - 6
+  - Ordonnance
+  - VBOR<br>
+    <small>*$y$-flowrate or $v$*</small>
+  - VBOR<br>
+    <small>*$y$-flowrate or $v$*</small>
+
+* - 7
+  - Ordonnance
+  - AUBOR<br>
+    <small>*wall friction*</small>
+  - AUBOR<br>
+    <small>*wall friction*</small>
+
+* - 8
+  - type de limite
+  - LITBOR<br>
+    <small>*tracer*</small>
+  - LIEBOR (LICBOR)<br>
+<small>*flowrate* (*concentration*)</small>
+
+* - 9
+  - Ordonnance
+  - TBOR<br>
+    <small>*tracer*</small>
+  - EBOR (CBOR)<br>
+<small>*élévation de fond*</small>
+
+* - 10
+  - Ordonnance
+  - ATMOR<br>
+<small>*chaleur flux*</small>
+  - ATMOR<br>
+<small>*chaleur flux*</small>
+
+* - 11
+  - Ordonnance
+  - BTIOR<br>
+<small>*chaleur flux*</small>
+  - BTIOR<br>
+<small>*chaleur flux*</small>
+
+* - 12
+  - ID du nœud mondial
+  - N<br>
+    <small>*Selafin mesh*</small>
+  - N<br>
+    <small>*Selafin mesh*</small>
+
+* - 13
+  - Identification du nœud local
+  - K <br><small>*boundary file*</small>
+  - K <br><small>*boundary file*</small>
+
+```
+
+
+Les trois premières colonnes d'un fichier `.cli` déterminent si une limite est solide ou liquide, et si liquide, le type de limite liquide. Ces trois colonnes (LIHBOR, LIUBOR et LIVBOR) peuvent prendre les valeurs suivantes:
+
+* `0` pour imposer une limite de vitesse zéro
+* `2` pour indiquer une limite solide (mur) avec friction
+* `4` pour définir un type de limite liquide libre
+* `5` pour définir un type de limite de liquide prescrit (c.-à-d. déterminé)
+* `6` pour prescrire une vitesse (uniquement pour LIUBOR/LIVBOR)
+
+De plus, ces valeurs peuvent être attribuées à la colonne 8 (LITBOR/LIEBOR) du fichier `.cli`. Notez que dans une simulation hydrodynamique, la combinaison des colonnes 2 et 3 (LIUBOR et LIVBOR) est effectivement une limite de décharge. Toutes les autres colonnes sont *Prescriptions* et *ID de nœud*. Les *Prescriptions* peuvent être utilisées pour imposer, par exemple, une valeur de vitesse d'écoulement (non recommandée). Les *ID Node* ont été écrits par BlueKenue (ou quel que soit le générateur de mailles utilisé) et ne devraient pas être modifiés. Ainsi, en ce qui concerne le bilan massique de l'eau, les trois premières colonnes sont importantes et elles peuvent se voir attribuer les combinaisons de valeurs (communes) énumérées dans {numref}`Tab. %s <bc-defs-tm>` ci-dessous. Pour le bilan massique des traceurs, la colonne 8 peut être définie de manière analogue. En outre, un fichier `.cli` pour le transport des sédiments peut être défini de la même manière que les trois premières colonnes, comme décrit dans le fichier {ref}`Gaia tutorial <gaia-bc>`.
+
+```{list-table} Value combinations for the first three columns of a hydrodynamic boundaries.cli file affecting the mass balance of water.
+:header-rows: 1
+:name: bc-defs-tm
+
+* - **Type**
+  - Numéro
+  - Application typique
+* - Solide
+  - `2 2 2`
+  - Limites solides
+* - Q prescrit
+  - `4 5 5`
+  - {ref}`Upstream liquid <tm2d-bounds>`
+* - H prescrit
+  - `5 4 4`
+  - {ref}`Downstream liquid <tm2d-bounds>`
+* - H et Q prescrits
+  - `5 5 5`
+  - {ref}`Stream gauges <tm2d-bounds>` (plutôt éviter)
+```
+
+(tm-edit-bc)=
+## Modifier la frontière. Cli pour changer les conditions
+
+Pour voir ou modifier le type de conditions limites, ouvrez le fichier `.cli` avec un éditeur de texte (en savoir plus sur {ref}`text editors <npp>`). En règle générale, la plupart des lignes contiennent la combinaison de valeurs `2 2 2` dans les colonnes 1-3, c'est-à-dire qu'elles sont des limites solides. Les lignes limites liquides commencent par `4` ou `5` comme indiqué dans {numref}`Tab. %s <bc-defs-tm>`. Chaque ligne du fichier `.cli` représente un noeud du maillage, et les lignes voisines représentent des nœuds maillage voisins. Par exemple, le nœud décrit à la ligne 435 d'un fichier `.cli` est géospatialement situé directement entre les nœuds limites décrits aux lignes 434 et 436 du fichier `.cli`. Puisque les définitions du fichier `.cli` sont purement géométriques ou géométriques, d'autres attributs hydrauliques doivent être prescrits ou liés dans le fichier de direction (`.cas`). Ainsi, le fichier de direction Telemac contrôle la quantité d'eau qui traverse les limites du liquide et/ou l'élévation de la profondeur et de la surface de l'eau avec les mots clés suivants:
+
+```fortran
+/ Keywords in a .cas steering file
+PRESCRIBED ELEVATIONS : 518.20 ; 0
+PRESCRIBED FLOWRATES  : 0 ; 118.0
+/ PRESCRIBED VELOCITIES : 1.0 ; 1.0 / not use simultaneously with PRESCRIBED FLOWRATES
+/ PRESCRIBED DEPTH : 1.0 ; 1.0 / not use simultaneously with PRESCRIBED ELEVATIONS
+```
+
+D'autres utilisations de ces mots-clés se trouvent dans les tutoriels {ref}`unsteady 2d <tm2d-liq-file>` et {ref}`Gaia <gaia-bc>`, ou dans la section 4.2 du [Manuel Telemac2d](https://gitlab.pam-retd.fr/otm/telemac-mascaret/-/blob/v9.0.0/documentation/telemac2d/user/telemac2d_user_9.0.pdf). Notez que chaque ligne `PRESCRIBED ...` sépare les valeurs pour chaque limite liquide avec un signe `;`. Notamment, les première et deuxième valeurs s'appliquent aux première et deuxième limites définies dans le fichier `.cli`, en comptant du haut du fichier `.cli` (voir paragraphe suivant). Si l'une de ces valeurs est `0` (p. ex., la deuxième ELEVATION et la première limite FLOWRATE), Telemac la traitera comme une limite liquide libre (`4`).
+
+L'ordre des limites se trouve dans le fichier `.cli`: la première séquence de nœuds où les lignes commencent par `4` ou `5` (ou `6`) est la première limite liquide. Parce que le générateur de mailles a placé les noeuds voisins dans les lignes voisines, les lignes limites sont définies dans les lignes voisines, aussi. La case ci-dessous présente un exemple de limite en aval définie entre les nœuds 7-12 (ID globaux 144-9818). Plus loin dans le fichier `.cli`, une autre limite liquide (par exemple, `4 5 5`) pourrait être trouvée pour définir les entrées en amont. Dans ce cas, la limite en aval est la limite 1 et la limite en amont est la limite 2, et les deux sont en conséquence prescrites dans le fichier de direction (`.cas`).
+
+````{admonition} Example of a downstream 5 4 4 (prescribed H) boundary defined in a .cli file
+:class: tip
+:name: cli-example
+
+```
+2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9828           6   # 
+5 4 4  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000         144           7   # downstream (144 - 9818)
+5 4 4  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9824           8   # downstream (144 - 9818)
+5 4 4  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9831           9   # downstream (144 - 9818)
+5 4 4  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000          89          10   # downstream (144 - 9818)
+5 4 4  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9817          11   # downstream (144 - 9818)
+5 4 4  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        9818          12   # downstream (144 - 9818)
+2 2 2  0.000 0.000 0.000 0.000  2  0.000 0.000 0.000        7602          13   # 
+```
+````
+
+
+## Limites et convergence
+
+La prescription de `5 4 4` (H seulement), `4 5 5` (Q seulement), ou `5 5 5` (Q et H) conditions limites dans le {ref}`above example <cli-example>` peut entraîner une instabilité numérique d'une simulation à sec-initialisée, ou des entrées et sorties déséquilibrées.
+
+Pour vérifier la conservation de la masse, reportez-vous à la section suivante sur {ref}`quantitative convergence <tm-convergence>` analyse des flux traversant (ou traversant) les limites du liquide.
+
+Pour résoudre les problèmes de convergence de masse, regardez notre {ref}`workflow for mass conservation <tm-foc-mass-workflow>`.
